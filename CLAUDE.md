@@ -6,6 +6,7 @@
 
 思考実験（running-thought-experiments スキルなど）を回すときは、[experiments/README.md](experiments/README.md) の「いつ書くか」に従って、会話と並行して `experiments/YYYY-MM-DD-<slug>.md` に書き残します。
 
+- 段階A では、記録を作る前に experiments/README.md の「価値の確認」（先行する答え・実在する相手・予想）を行う。
 - 段階A の返答を出したら、記録を作る（`状態: 設定中`）。先頭の「ゴール」に、誰のどの判断を変えうるかを書く（全体のゴールは experiments/README.md）。
 - 段階B の操作の返答を出すたびに、「経過」に追記する（`状態: 検討中`）。
 - 段階C で結論を出したら、結論を書く（`状態: 結論済み`）。完了条件（experiments/README.md）を満たしているか確かめ、実務者向けなら `briefs/` に手引きをまとめる。
