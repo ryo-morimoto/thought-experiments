@@ -136,11 +136,12 @@ next_question = "Service Workers・CSP・Storage などを閉包に入れると�
 [[cells]]
 row = "formal"
 col = "mandatory"
-status = "hypothesis"
-claim = "厳密な健全性は「形式的な元から導いたときだけ」ではなく「形式的な成果物に対してだけ」立つ（手で書いた WasmCert・CompCert・seL4・HACL* が反例）。導いても、元と委員会の意図の一致と生成器の正しさは試験か信頼にとどまる（SpecTec は試験で確かめ、DSL の意味も生成器の検証も無い）。段階C（攻撃）はまだ"
+status = "supported"
+claim = "厳密な健全性はいつも何かの形式的な成果物に対して立つので、区別になるのはその成果物が正文かどうか。正文が形式的か、証明に使う成果物から機械的に生成されるとき（Arm の ASL、SpecTec 以後の Wasm）、または正文との間に検証つきの変換があるときだけ、仕様に対する厳密な健全性に届き、信頼は生成器・証明系・DSL の意味に残る。HTML は並行の段などを書ける形式言語がまだ無く、この行に入れない"
 evidence = [
   "experiments/2026-11-21-formal-source-soundness.md",
   "https://webassembly.org/news/2025-03-27-spectec/",
+  "https://vtss.doc.ic.ac.uk/research/webassembly.html",
 ]
 mode = "destructive"
-next_question = "この結論を、経緯を知らない subagent に攻撃させる（段階C）"
+next_question = "正文の一部（Fetch の CORP の検査やオリジンの計算）だけを形式的な元から生成する案は成り立つか"

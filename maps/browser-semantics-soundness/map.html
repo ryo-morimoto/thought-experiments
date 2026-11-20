@@ -264,14 +264,15 @@ h2 { font-size: 14px; margin: 0 0 12px; color: var(--sub); font-weight: 600; let
   {
    "row": "formal",
    "col": "mandatory",
-   "status": "hypothesis",
-   "claim": "厳密な健全性は「形式的な元から導いたときだけ」ではなく「形式的な成果物に対してだけ」立つ（手で書いた WasmCert・CompCert・seL4・HACL* が反例）。導いても、元と委員会の意図の一致と生成器の正しさは試験か信頼にとどまる（SpecTec は試験で確かめ、DSL の意味も生成器の検証も無い）。段階C（攻撃）はまだ",
+   "status": "supported",
+   "claim": "厳密な健全性はいつも何かの形式的な成果物に対して立つので、区別になるのはその成果物が正文かどうか。正文が形式的か、証明に使う成果物から機械的に生成されるとき（Arm の ASL、SpecTec 以後の Wasm）、または正文との間に検証つきの変換があるときだけ、仕様に対する厳密な健全性に届き、信頼は生成器・証明系・DSL の意味に残る。HTML は並行の段などを書ける形式言語がまだ無く、この行に入れない",
    "evidence": [
     "experiments/2026-11-21-formal-source-soundness.md",
-    "https://webassembly.org/news/2025-03-27-spectec/"
+    "https://webassembly.org/news/2025-03-27-spectec/",
+    "https://vtss.doc.ic.ac.uk/research/webassembly.html"
    ],
    "mode": "destructive",
-   "next_question": "この結論を、経緯を知らない subagent に攻撃させる（段階C）"
+   "next_question": "正文の一部（Fetch の CORP の検査やオリジンの計算）だけを形式的な元から生成する案は成り立つか"
   }
  ],
  "legend_by_status": {
@@ -309,15 +310,6 @@ h2 { font-size: 14px; margin: 0 0 12px; color: var(--sub); font-weight: 600; let
   "supported"
  ],
  "candidates": [
-  {
-   "score": 80,
-   "kind": "cell",
-   "target": "formal/mandatory",
-   "name": "形式 × 必須",
-   "why": "仮説「厳密な健全性は「形式的な元から導いたときだけ」ではなく「形式的な成果物に対してだけ」立つ（手で書いた WasmCert・CompCert・seL4・HACL* が反例）。導いても、元と委員会の意図の一致と生成器の正しさは試験か信頼にとどまる（SpecTec は試験で確かめ、DSL の意味も生成器の検証も無い）。段階C（攻撃）はまだ」に反例がないか。反例がなければ根拠を足して確定させる",
-   "mode": "destructive",
-   "premises": []
-  },
   {
    "score": 70,
    "kind": "cell",
@@ -421,64 +413,73 @@ h2 { font-size: 14px; margin: 0 0 12px; color: var(--sub); font-weight: 600; let
    ]
   },
   {
-   "score": 50,
+   "score": 60,
    "kind": "cell",
    "target": "formal/opt-enum",
    "name": "形式 × 列挙した選択肢からの選択",
-   "why": "隣の「半形式」の結論「取り出せない段の過半（53%）が、オリジン・COOP・CORP・COEP を決める部分にあり、logical と concrete の選択やブラウジングコンテキストグループの任意の切り替えのように、隔離を決める段そのものが実装の選択になっている。非決定として過近似すると安全性は保てるが、情報流は保てず、性質を示すには粗すぎる」がここにも移るか。移らないなら、何が違うせいかを条件を変えて探す",
-   "mode": "destructive",
+   "why": "同じ行の「必須」では「厳密な健全性はいつも何かの形式的な成果物に対して立つので、区別になるのはその成果物が正文かどうか。正文が形式的か、証明に使う成果物から機械的に生成されるとき（Arm の ASL、SpecTec 以後の Wasm）、または正文との間に検証つきの変換があるときだけ、仕様に対する厳密な健全性に届き、信頼は生成器・証明系・DSL の意味に残る。HTML は並行の段などを書ける形式言語がまだ無く、この行に入れない」、同じ列の「半形式」では「取り出せない段の過半（53%）が、オリジン・COOP・CORP・COEP を決める部分にあり、logical と concrete の選択やブラウジングコンテキストグループの任意の切り替えのように、隔離を決める段そのものが実装の選択になっている。非決定として過近似すると安全性は保てるが、情報流は保てず、性質を示すには粗すぎる」。両方を前提にすると、このセルで何が言えるかを組み立てる",
+   "mode": "constructive",
    "premises": [
+    "formal/mandatory",
     "semiformal/opt-enum"
    ]
   },
   {
-   "score": 50,
+   "score": 60,
    "kind": "cell",
    "target": "formal/opt-impl",
    "name": "形式 × 実装依存の値・振る舞い",
-   "why": "隣の「非形式（自然言語）」の結論「WHATWG の implementation-defined には、C 言語の規格のような文書化の区別が無い（Infra の定義を確認）。モデルでの扱いは、何に裁量があるかで分ける: 値と構造はパラメータ、実行時の方策は安全性なら非決定・情報流なら方策のクラスを限ったパラメータ、仕様の欠落は対象外」がここにも移るか。移らないなら、何が違うせいかを条件を変えて探す",
-   "mode": "destructive",
+   "why": "同じ行の「必須」では「厳密な健全性はいつも何かの形式的な成果物に対して立つので、区別になるのはその成果物が正文かどうか。正文が形式的か、証明に使う成果物から機械的に生成されるとき（Arm の ASL、SpecTec 以後の Wasm）、または正文との間に検証つきの変換があるときだけ、仕様に対する厳密な健全性に届き、信頼は生成器・証明系・DSL の意味に残る。HTML は並行の段などを書ける形式言語がまだ無く、この行に入れない」、同じ列の「非形式（自然言語）」では「WHATWG の implementation-defined には、C 言語の規格のような文書化の区別が無い（Infra の定義を確認）。モデルでの扱いは、何に裁量があるかで分ける: 値と構造はパラメータ、実行時の方策は安全性なら非決定・情報流なら方策のクラスを限ったパラメータ、仕様の欠落は対象外」。両方を前提にすると、このセルで何が言えるかを組み立てる",
+   "mode": "constructive",
    "premises": [
+    "formal/mandatory",
     "informal/opt-impl"
    ]
   },
   {
-   "score": 50,
+   "score": 60,
    "kind": "cell",
    "target": "formal/extension",
    "name": "形式 × 拡張",
-   "why": "隣の「半形式」の結論「他の仕様から HTML・Fetch への差し込みは、HTML と Fetch の原稿には現れない（「applicable specifications」が 10 箇所あるだけ）。呼び出しの閉包の境界は手で選ぶしかなく、仕様を丸ごと落としうる」がここにも移るか。移らないなら、何が違うせいかを条件を変えて探す",
-   "mode": "destructive",
+   "why": "同じ行の「必須」では「厳密な健全性はいつも何かの形式的な成果物に対して立つので、区別になるのはその成果物が正文かどうか。正文が形式的か、証明に使う成果物から機械的に生成されるとき（Arm の ASL、SpecTec 以後の Wasm）、または正文との間に検証つきの変換があるときだけ、仕様に対する厳密な健全性に届き、信頼は生成器・証明系・DSL の意味に残る。HTML は並行の段などを書ける形式言語がまだ無く、この行に入れない」、同じ列の「半形式」では「他の仕様から HTML・Fetch への差し込みは、HTML と Fetch の原稿には現れない（「applicable specifications」が 10 箇所あるだけ）。呼び出しの閉包の境界は手で選ぶしかなく、仕様を丸ごと落としうる」。両方を前提にすると、このセルで何が言えるかを組み立てる",
+   "mode": "constructive",
    "premises": [
+    "formal/mandatory",
     "semiformal/extension"
    ]
   },
   {
-   "score": 40,
+   "score": 50,
    "kind": "cell",
    "target": "formal/opt-feature",
    "name": "形式 × 機能を支援するかの選択",
-   "why": "近くに結論がない。まず問いを立てて、何が起きうるかを広く出す",
-   "mode": "exploratory",
-   "premises": []
+   "why": "隣の「必須」の結論「厳密な健全性はいつも何かの形式的な成果物に対して立つので、区別になるのはその成果物が正文かどうか。正文が形式的か、証明に使う成果物から機械的に生成されるとき（Arm の ASL、SpecTec 以後の Wasm）、または正文との間に検証つきの変換があるときだけ、仕様に対する厳密な健全性に届き、信頼は生成器・証明系・DSL の意味に残る。HTML は並行の段などを書ける形式言語がまだ無く、この行に入れない」がここにも移るか。移らないなら、何が違うせいかを条件を変えて探す",
+   "mode": "destructive",
+   "premises": [
+    "formal/mandatory"
+   ]
   },
   {
-   "score": 40,
+   "score": 50,
    "kind": "cell",
    "target": "formal/deprecation",
    "name": "形式 × 廃止予定",
-   "why": "近くに結論がない。まず問いを立てて、何が起きうるかを広く出す",
-   "mode": "exploratory",
-   "premises": []
+   "why": "隣の「必須」の結論「厳密な健全性はいつも何かの形式的な成果物に対して立つので、区別になるのはその成果物が正文かどうか。正文が形式的か、証明に使う成果物から機械的に生成されるとき（Arm の ASL、SpecTec 以後の Wasm）、または正文との間に検証つきの変換があるときだけ、仕様に対する厳密な健全性に届き、信頼は生成器・証明系・DSL の意味に残る。HTML は並行の段などを書ける形式言語がまだ無く、この行に入れない」がここにも移るか。移らないなら、何が違うせいかを条件を変えて探す",
+   "mode": "destructive",
+   "premises": [
+    "formal/mandatory"
+   ]
   },
   {
-   "score": 40,
+   "score": 50,
    "kind": "cell",
    "target": "formal/error",
    "name": "形式 × 誤りの扱い",
-   "why": "近くに結論がない。まず問いを立てて、何が起きうるかを広く出す",
-   "mode": "exploratory",
-   "premises": []
+   "why": "隣の「必須」の結論「厳密な健全性はいつも何かの形式的な成果物に対して立つので、区別になるのはその成果物が正文かどうか。正文が形式的か、証明に使う成果物から機械的に生成されるとき（Arm の ASL、SpecTec 以後の Wasm）、または正文との間に検証つきの変換があるときだけ、仕様に対する厳密な健全性に届き、信頼は生成器・証明系・DSL の意味に残る。HTML は並行の段などを書ける形式言語がまだ無く、この行に入れない」がここにも移るか。移らないなら、何が違うせいかを条件を変えて探す",
+   "mode": "destructive",
+   "premises": [
+    "formal/mandatory"
+   ]
   }
  ],
  "top": 6
