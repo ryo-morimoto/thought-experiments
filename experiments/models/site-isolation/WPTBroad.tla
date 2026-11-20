@@ -118,4 +118,7 @@ BroadCases == {
 BroadMismatches == {t.name : t \in {u \in BroadCases : u.got # u.want}}
 PrintBroad == PrintT(<<"broad", Mutant, BroadMismatches>>)
 BroadAgree == BroadMismatches = {}
+\* Cases that Chrome, Firefox and Safari all pass on wpt.fyi.
+StableNames == {"w001", "w002", "w003", "w004", "w005", "w006", "w007", "w008", "w009", "w010", "w011", "w012", "w013", "w015", "w016", "w017", "w018", "w019", "w020", "w021", "w022", "w023", "w024", "w025", "w026", "w027", "w028", "w029", "w030", "w031", "w032", "w033", "w034", "w035", "w036", "w037", "w038", "w039", "w040", "w041", "w042", "w043", "w044", "w045", "w046", "w047", "w048", "w049", "w050", "w051", "w052", "w053", "w054", "w055", "w056", "w057", "w058", "w059", "w060", "w061", "w062", "w064", "w065", "w066", "w069", "w070", "w071"}
+PrintStable == PrintT(<<"stable", Mutant, BroadMismatches \cap StableNames>>)
 ===============================================================================

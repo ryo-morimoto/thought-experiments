@@ -52,27 +52,41 @@ COOPs == {"unsafe-none", "same-origin", "same-origin-allow-popups"}
 COEPs == {"unsafe-none", "require-corp", "credentialless"}
 CORPs == {"none", "same-origin", "same-site", "cross-origin"}
 
+\* Mechanical mutants: every decision in the spec operators is wrapped as
+\* C(id, e). Mutant "neg:<id>" negates that one decision; nothing else changes.
+C(id, e) == IF Mutant = "neg:" \o id THEN ~e ELSE e
+DecisionIds == {"coi-insecure", "coi-coop-so", "coi-coep-compat", "coi-mode",
+                "oac-coi", "oac-hist", "oac-header", "oac-secure",
+                "coop-both-unsafe", "coop-one-unsafe", "coop-equal", "coop-same-origin",
+                "popup-opener-sap", "popup-unsafe",
+                "corp-nav", "corp-has-header", "corp-cl-creds", "corp-allow-kinds",
+                "corp-so-check", "corp-ss-site", "corp-ss-scheme", "corp-first-pass",
+                "fetch-same-origin", "fetch-cors", "fetch-blocked"}
+MechMutants == {"neg:" \o d : d \in DecisionIds}
+
 \* --- HTML: COOP parsing and cross-origin isolation -------------------------
 CompatibleCOEP ==
   IF Mutant = "coi-no-credentialless" THEN {"require-corp"}
   ELSE IF Mutant = "coi-coop-only" THEN COEPs
   ELSE {"require-corp", "credentialless"}
 ParsedCOOP(coop, coep, o) ==
-  IF ~Secure(o) /\ Mutant # "coi-ignore-secure" THEN "unsafe-none"
-  ELSE IF coop = "same-origin" /\ coep \in CompatibleCOEP
+  IF C("coi-insecure", ~Secure(o)) /\ Mutant # "coi-ignore-secure" THEN "unsafe-none"
+  ELSE IF C("coi-coop-so", coop = "same-origin") /\ C("coi-coep-compat", coep \in CompatibleCOEP)
        THEN "same-origin-plus-COEP" ELSE coop
 
 COIMode(coop, coep, o) ==
-  IF ParsedCOOP(coop, coep, o) = "same-origin-plus-COEP" THEN "concrete" ELSE "none"
+  IF C("coi-mode", ParsedCOOP(coop, coep, o) = "same-origin-plus-COEP")
+  THEN "concrete" ELSE "none"
 
 CrossOriginIsolated(coop, coep, o) == COIMode(coop, coep, o) = "concrete"
 
 \* --- HTML: obtain a similar-origin window agent (agent cluster key) --------
 \* hist is the group's historical key for this origin: "absent", "site", "origin".
-RequestsOAC(header, o) == header /\ (Secure(o) \/ Mutant = "oac-ignore-secure")
+RequestsOAC(header, o) ==
+  C("oac-header", header) /\ (C("oac-secure", Secure(o)) \/ Mutant = "oac-ignore-secure")
 KeyKind(o, coiMode, hist, oacHeader) ==
-  IF coiMode # "none" /\ Mutant # "oac-ignore-coi" THEN "origin"
-  ELSE IF hist # "absent" /\ Mutant # "oac-ignore-hist" THEN hist
+  IF C("oac-coi", coiMode # "none") /\ Mutant # "oac-ignore-coi" THEN "origin"
+  ELSE IF C("oac-hist", hist # "absent") /\ Mutant # "oac-ignore-hist" THEN hist
   ELSE IF RequestsOAC(oacHeader, o) THEN "origin" ELSE "site"
 Key(o, kind) == IF kind = "origin" THEN o.host ELSE o.site
 OriginAgentCluster(kind) == kind = "origin"
@@ -81,9 +95,11 @@ DocumentDomainNoOp(kind) == kind = "origin"
 
 \* --- HTML: match opener policy values (popup BCG switch) -------------------
 MatchCOOP(dCOOP, dOrigin, rCOOP, rOrigin) ==
-  IF dCOOP = "unsafe-none" /\ rCOOP = "unsafe-none" THEN Mutant # "coop-unsafe-mismatch"
-  ELSE IF dCOOP = "unsafe-none" \/ rCOOP = "unsafe-none" THEN FALSE
-  ELSE IF dCOOP = rCOOP /\ (SameOrigin(dOrigin, rOrigin) \/ Mutant = "coop-ignore-origin")
+  IF C("coop-both-unsafe", dCOOP = "unsafe-none" /\ rCOOP = "unsafe-none")
+  THEN Mutant # "coop-unsafe-mismatch"
+  ELSE IF C("coop-one-unsafe", dCOOP = "unsafe-none" \/ rCOOP = "unsafe-none") THEN FALSE
+  ELSE IF C("coop-equal", dCOOP = rCOOP)
+          /\ (C("coop-same-origin", SameOrigin(dOrigin, rOrigin)) \/ Mutant = "coop-ignore-origin")
        THEN TRUE
   ELSE FALSE
 \* A popup's initial about:blank carries the opener's COOP and origin.
@@ -91,44 +107,50 @@ MatchCOOP(dCOOP, dOrigin, rCOOP, rOrigin) ==
 \* The first version of this model omitted the same-origin-allow-popups step;
 \* 3 of the 109 broad WPT cases caught it (kept as a mutant below).
 PopupSevered(openerCOOP, openerOrigin, popupCOOP, popupOrigin) ==
-  IF openerCOOP = "same-origin-allow-popups" /\ popupCOOP = "unsafe-none"
+  IF C("popup-opener-sap", openerCOOP = "same-origin-allow-popups")
+     /\ C("popup-unsafe", popupCOOP = "unsafe-none")
      /\ Mutant # "popup-no-sap-exception"
   THEN FALSE
   ELSE ~MatchCOOP(openerCOOP, openerOrigin, popupCOOP, popupOrigin)
 
 \* --- Fetch: cross-origin resource policy check ----------------------------
 CorpInternal(o, coep, r, forNav) ==
-  IF forNav /\ coep = "unsafe-none" THEN "allowed"
+  IF C("corp-nav", forNav /\ coep = "unsafe-none") THEN "allowed"
   ELSE
     LET p0 == IF r.corp = "cross-origin" /\ Mutant = "crossorigin-as-site"
               THEN "same-site" ELSE r.corp
-        p  == IF p0 # "none" THEN p0
+        p  == IF C("corp-has-header", p0 # "none") THEN p0
               ELSE CASE coep = "unsafe-none"    -> "none"
                      [] coep = "credentialless" ->
                           IF Mutant = "cl-ignore-creds" THEN "none"
                           ELSE IF Mutant = "cl-always" THEN "same-origin"
-                          ELSE IF r.creds \/ forNav THEN "same-origin" ELSE "none"
+                          ELSE IF C("corp-cl-creds", r.creds \/ forNav)
+                               THEN "same-origin" ELSE "none"
                      [] coep = "require-corp"   ->
                           IF Mutant = "coep-default" THEN "none" ELSE "same-origin"
-    IN CASE p \in {"none", "cross-origin"} -> "allowed"
-         [] p = "same-origin" -> IF SameOrigin(o, r.origin) THEN "allowed" ELSE "blocked"
-         [] p = "same-site"   ->
-              IF (IF Mutant = "samesite-as-origin" THEN SameOrigin(o, r.origin)
-                  ELSE SameSite(o, r.origin))
-                 /\ (Mutant = "samesite-scheme" \/ Secure(o) \/ ~Secure(r.origin))
+    IN IF C("corp-allow-kinds", p \in {"none", "cross-origin"}) THEN "allowed"
+       ELSE IF p = "same-origin"
+            THEN IF C("corp-so-check", SameOrigin(o, r.origin)) THEN "allowed" ELSE "blocked"
+       ELSE \* p = "same-site"
+              IF C("corp-ss-site", IF Mutant = "samesite-as-origin" THEN SameOrigin(o, r.origin)
+                                   ELSE SameSite(o, r.origin))
+                 /\ (Mutant = "samesite-scheme"
+                     \/ C("corp-ss-scheme", Secure(o) \/ ~Secure(r.origin)))
               THEN "allowed" ELSE "blocked"
 
 CorpCheck(o, coep, r, forNav) ==
-  IF CorpInternal(o, "unsafe-none", r, forNav) = "blocked" THEN "blocked"
+  IF C("corp-first-pass", CorpInternal(o, "unsafe-none", r, forNav) = "blocked")
+  THEN "blocked"
   ELSE CorpInternal(o, coep, r, forNav)
 
 \* Result of fetch(url, {mode}) seen by script in a document of origin o.
 FetchResult(o, coep, mode, r) ==
-  IF SameOrigin(o, r.origin)
+  IF C("fetch-same-origin", SameOrigin(o, r.origin))
      \/ (mode = "no-cors" /\ Mutant = "nocors-site-basic" /\ SameSite(o, r.origin))
   THEN "basic"
-  ELSE IF mode = "cors" THEN "cors"                  \* CORS outcome not modelled
-  ELSE IF CorpCheck(o, coep, r, FALSE) = "blocked" THEN "error" ELSE "opaque"
+  ELSE IF C("fetch-cors", mode = "cors") THEN "cors"  \* CORS outcome not modelled
+  ELSE IF C("fetch-blocked", CorpCheck(o, coep, r, FALSE) = "blocked")
+       THEN "error" ELSE "opaque"
 
 Responses == [origin : Origins, corp : CORPs, creds : BOOLEAN]
 
@@ -216,6 +238,19 @@ NoUndeclaredLeak ==
 BodyOnlyByOptIn ==
   \A o \in Origins, coep \in COEPs, mode \in {"cors", "no-cors"}, r \in FlowResponses :
     (~SameOrigin(o, r.origin) /\ Observe(o, coep, mode, r)[1] = "read") => r.acao
+
+\* Every operator's output over its whole input domain. Two Mutant values
+\* with the same Signature are equivalent: no test of these operators can
+\* tell them apart.
+AllResponses == [origin : AllOrigins, corp : CORPs, creds : BOOLEAN]
+Signature ==
+  <<[x \in COOPs \X COEPs \X AllOrigins |-> CrossOriginIsolated(x[1], x[2], x[3])],
+    [x \in AllOrigins \X {"none", "concrete"} \X {"absent", "site", "origin"} \X BOOLEAN
+        |-> KeyKind(x[1], x[2], x[3], x[4])],
+    [x \in COOPs \X AllOrigins \X COOPs \X AllOrigins |-> PopupSevered(x[1], x[2], x[3], x[4])],
+    [x \in AllOrigins \X COEPs \X {"cors", "no-cors"} \X AllResponses
+        |-> FetchResult(x[1], x[2], x[3], x[4])]>>
+PrintSignature == PrintT(<<"signature", Signature>>)
 
 \* One pair of responses that the page can tell apart.
 LeakWitness ==
