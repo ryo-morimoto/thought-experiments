@@ -2,6 +2,10 @@
 
 思考実験の記録場所です。外部データの扱いは [DATA_POLICY.md](DATA_POLICY.md) に従い、変更のたびに `python3 tools/check_data_policy.py` と `reuse lint` を通します。
 
+## 一次資料だけを根拠にする
+
+事実の根拠には、一次資料（著者自身の論文・著者稿、発行機関の公式文書）で確かめたものだけを使う。二次資料・孫引き・検索の要約は、一次資料を探す手がかりにとどめる。subagent に調査を任せるときも、この条件を依頼文に書く。手に入らない主張は「一次資料で確認できず」と明記し、結論と手引きの根拠から外す（詳しくは experiments/README.md の「一次資料」）。
+
 ## 思考実験は段階ごとに記録する
 
 思考実験（running-thought-experiments スキルなど）を回すときは、[experiments/README.md](experiments/README.md) の「いつ書くか」に従って、会話と並行して `experiments/YYYY-MM-DD-<slug>.md` に書き残します。

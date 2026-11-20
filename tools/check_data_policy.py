@@ -345,6 +345,8 @@ def check_lineage(sources: dict[str, tuple[PurePosixPath, dict]], licenses: dict
 # ---------- 思考実験の記録への参照（experiments/README.md の「いつ書くか」） ----------
 
 EXPERIMENT_REF_FILES = ["data-policy.toml", "DATA_POLICY.md", "README.md"]
+# 実務者向けの手引きに残してはいけない、二次資料に頼っていることを示す語
+SECONDARY_MARKERS = ("孫引き", "検索の要約", "検索結果の要約", "原文は未確認", "原文未確認", "二次資料経由", "【未検証】")
 EXPERIMENT_STATES = ("設定中", "検討中", "結論済み", "分岐", "中断")
 NAMED_EXPERIMENT = re.compile(r"思考実験「")
 EXPERIMENT_PATH = re.compile(r"experiments/[\w.-]+\.md")
@@ -366,6 +368,13 @@ def check_experiments(files: list[PurePosixPath]) -> list[str]:
                 near = "\n".join(lines[max(0, i - 2):i + 3])
                 if not EXPERIMENT_PATH.search(near):
                     errs.append(f"{name}:{i + 1}: 根拠にした思考実験の記録のパス（experiments/….md）を前後2行以内に書く")
+    for f in files:
+        if f.parent == PurePosixPath("briefs") and f.suffix == ".md":
+            for i, line in enumerate((ROOT / f).read_text(encoding="utf-8").splitlines(), 1):
+                for w in SECONDARY_MARKERS:
+                    if w in line:
+                        errs.append(f"{f}:{i}: 手引きに二次資料に頼っていることを示す語「{w}」がある。"
+                                    "一次資料で確かめて書き直すか、根拠から外す（experiments/README.md の「一次資料」）")
     for f in files:
         if f.parent == PurePosixPath("experiments") and f.suffix == ".md" and f.name != "README.md":
             text = (ROOT / f).read_text(encoding="utf-8")

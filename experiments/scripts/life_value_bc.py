@@ -12,8 +12,9 @@
 
 from __future__ import annotations
 
-LIFE_NEW = 6.01   # 億円/人。技術指針（共通編）令和6年9月改定（砂防の資料 第5回 資料1 p5 からの孫引き）
-LIFE_OLD = 2.26   # 億円/人。改定前の値（技術指針 共通編 2008年版 p20）
+LIFE_NEW = 6.01   # 億円/人。技術指針（共通編）令和6年9月版 p22 の精神的損害額（死亡）。逸失利益・医療費は含まない（過小側）
+                  # https://www.mlit.go.jp/tec/hyouka/public/24090501/shishin/shishin240905.pdf sha256 50f16e13…f83aa
+LIFE_OLD = 2.26   # 億円/人。改定前の精神的損害額（技術指針（共通編）令和5年9月版 p21 ほか）
 YEARS, RATE = 50, 0.04
 
 
