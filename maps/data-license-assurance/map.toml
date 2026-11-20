@@ -7,7 +7,7 @@ name = "保証したい性質"
 basis = "own"
 ref = "reports/データライセンス準拠ツールの限界.md"
 ref_title = "既存ツールは層①までしか守れない"
-checked = true
+ref_read = true
 note = "最初の調査の依頼文で定義した 3 層と、条件付き証明の 3 要件。"
 
 [[rows.values]]
@@ -45,7 +45,7 @@ name = "適合性評価の主体"
 basis = "standard"
 ref = "https://www.nist.gov/glossary-term/47956"
 ref_title = "ISO/IEC 17000:2020（NIST OSAC Lexicon の転載）"
-checked = false
+ref_read = false
 note = "第一者・第二者の定義は 2020 年版の転載で確認した。第三者は 2014 年版の転載しか見ていない。ISO の本文は有償。"
 
 [[cols.values]]
@@ -87,7 +87,7 @@ col = "second"
 status = "hypothesis"
 claim = "利用者は層②を証明できないが、提供者を説明責任を負う組織に限ることで、誤表示を受け取る確率は下げられる。"
 evidence = ["data-policy.toml"]
-next = "公的機関の公開データにも誤表示はどのくらいあるか。確率を下げる効果は測れるか。"
+next_question = "公的機関の公開データにも誤表示はどのくらいあるか。確率を下げる効果は測れるか。"
 
 [[cells]]
 row = "L2"
@@ -134,7 +134,7 @@ evidence = ["reports/データライセンス準拠ツールの限界.md"]
 row = "evid"
 col = "second"
 status = "open"
-next = "取得時のハッシュ・RFC 3161 タイムスタンプ・Wayback を足したことで、利用者が後から示せるのはどこまでか。"
+next_question = "取得時のハッシュ・RFC 3161 タイムスタンプ・Wayback を足したことで、利用者が後から示せるのはどこまでか。"
 evidence = ["tools/fetch_evidence.py"]
 
 [[cells]]

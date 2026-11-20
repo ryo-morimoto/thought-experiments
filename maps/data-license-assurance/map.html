@@ -131,7 +131,7 @@ h2 { font-size: 14px; margin: 0 0 12px; color: var(--sub); font-weight: 600; let
   "basis": "own",
   "ref": "reports/データライセンス準拠ツールの限界.md",
   "ref_title": "既存ツールは層①までしか守れない",
-  "checked": true,
+  "ref_read": true,
   "note": "最初の調査の依頼文で定義した 3 層と、条件付き証明の 3 要件。",
   "values": [
    {
@@ -171,7 +171,7 @@ h2 { font-size: 14px; margin: 0 0 12px; color: var(--sub); font-weight: 600; let
   "basis": "standard",
   "ref": "https://www.nist.gov/glossary-term/47956",
   "ref_title": "ISO/IEC 17000:2020（NIST OSAC Lexicon の転載）",
-  "checked": false,
+  "ref_read": false,
   "note": "第一者・第二者の定義は 2020 年版の転載で確認した。第三者は 2014 年版の転載しか見ていない。ISO の本文は有償。",
   "values": [
    {
@@ -227,7 +227,7 @@ h2 { font-size: 14px; margin: 0 0 12px; color: var(--sub); font-weight: 600; let
    "evidence": [
     "data-policy.toml"
    ],
-   "next": "公的機関の公開データにも誤表示はどのくらいあるか。確率を下げる効果は測れるか。"
+   "next_question": "公的機関の公開データにも誤表示はどのくらいあるか。確率を下げる効果は測れるか。"
   },
   {
    "row": "L2",
@@ -289,7 +289,7 @@ h2 { font-size: 14px; margin: 0 0 12px; color: var(--sub); font-weight: 600; let
    "evidence": [
     "tools/fetch_evidence.py"
    ],
-   "next": "取得時のハッシュ・RFC 3161 タイムスタンプ・Wayback を足したことで、利用者が後から示せるのはどこまでか。"
+   "next_question": "取得時のハッシュ・RFC 3161 タイムスタンプ・Wayback を足したことで、利用者が後から示せるのはどこまでか。"
   },
   {
    "row": "evid",
@@ -343,7 +343,7 @@ h2 { font-size: 14px; margin: 0 0 12px; color: var(--sub); font-weight: 600; let
    "title": "層② 事実整合・権利者性 × 第二者（利用者）",
    "why": "仮説「利用者は層②を証明できないが、提供者を説明責任を負う組織に限ることで、誤表示を受け取る確率は下げられる。」に反例がないか。反例がなければ根拠を足して確定させる",
    "mode": "destructive",
-   "sources": []
+   "premises": []
   },
   {
    "score": 80,
@@ -352,7 +352,7 @@ h2 { font-size: 14px; margin: 0 0 12px; color: var(--sub); font-weight: 600; let
    "title": "層③ 法的評価 × 第三者（独立）",
    "why": "仮説「層③を保証できるのは法務の第三者判断だけだが、その判断も個別の利用に閉じていて、データセットの性質としては残らない。」に反例がないか。反例がなければ根拠を足して確定させる",
    "mode": "destructive",
-   "sources": []
+   "premises": []
   },
   {
    "score": 80,
@@ -361,7 +361,7 @@ h2 { font-size: 14px; margin: 0 0 12px; color: var(--sub); font-weight: 600; let
    "title": "忠実性 × 第二者（利用者）",
    "why": "仮説「許可リストと SA の系譜検査は、利用者が自分で選んだ範囲では義務を含意する。ただし義務の判断そのものは人手で、形式的な裏付けはない。」に反例がないか。反例がなければ根拠を足して確定させる",
    "mode": "destructive",
-   "sources": []
+   "premises": []
   },
   {
    "score": 75,
@@ -370,7 +370,7 @@ h2 { font-size: 14px; margin: 0 0 12px; color: var(--sub); font-weight: 600; let
    "title": "軸「保証したい性質」の根拠を探す",
    "why": "自作の分類なので、既存の標準・論文の分類と突き合わせると欠けている値が見つかる可能性がある",
    "mode": "exploratory",
-   "sources": []
+   "premises": []
   },
   {
    "score": 70,
@@ -379,7 +379,7 @@ h2 { font-size: 14px; margin: 0 0 12px; color: var(--sub); font-weight: 600; let
    "title": "層① 内部整合 × 第一者（提供者）",
    "why": "同じ行の「第二者（利用者）」では「利用者は自分のリポジトリについて層①を機械的に検査できる。REUSE と自作チェッカーで全ファイルの宣言と本文の揃いを見られる。」、同じ列の「層② 事実整合・権利者性」では「提供者の自己申告は層②の証拠にならない。アグリゲータ上のライセンス表示が DPI の判定と一致するのは 35〜54% で、誤りは緩い方向に偏る。」。両方を前提にすると、このセルで何が言えるかを組み立てる",
    "mode": "constructive",
-   "sources": [
+   "premises": [
     "L1/second",
     "L2/first"
    ]
@@ -391,7 +391,7 @@ h2 { font-size: 14px; margin: 0 0 12px; color: var(--sub); font-weight: 600; let
    "title": "網羅性 × 第三者（独立）",
    "why": "同じ行の「第二者（利用者）」では「利用者の網羅性検査は「宣言があるか」までしか測れない。スキャナの再現率は約 0.79 で頭打ちになる。自作物を許可リストで定義すると、拡張子の偽装はふさげる。」、同じ列の「層① 内部整合」では「第三者も層①は再現できる。検査が決定的なので、CI の attestation で結果を第三者が検証できる。ClearlyDefined は上流パッケージの層①をキュレーションしている。」。両方を前提にすると、このセルで何が言えるかを組み立てる",
    "mode": "constructive",
-   "sources": [
+   "premises": [
     "cover/second",
     "L1/third"
    ]
@@ -403,7 +403,7 @@ h2 { font-size: 14px; margin: 0 0 12px; color: var(--sub); font-weight: 600; let
    "title": "証拠保全 × 第二者（利用者）",
    "why": "問い「取得時のハッシュ・RFC 3161 タイムスタンプ・Wayback を足したことで、利用者が後から示せるのはどこまでか。」に答える",
    "mode": "constructive",
-   "sources": []
+   "premises": []
   },
   {
    "score": 60,
@@ -412,7 +412,7 @@ h2 { font-size: 14px; margin: 0 0 12px; color: var(--sub); font-weight: 600; let
    "title": "層③ 法的評価 × 第一者（提供者）",
    "why": "同じ行の「第二者（利用者）」では「ツールは層③を利用者が書く規則に委ねる（ORT の evaluator rules は例示にすぎない）。」、同じ列の「層② 事実整合・権利者性」では「提供者の自己申告は層②の証拠にならない。アグリゲータ上のライセンス表示が DPI の判定と一致するのは 35〜54% で、誤りは緩い方向に偏る。」。両方を前提にすると、このセルで何が言えるかを組み立てる",
    "mode": "constructive",
-   "sources": [
+   "premises": [
     "L3/second",
     "L2/first"
    ]
@@ -424,7 +424,7 @@ h2 { font-size: 14px; margin: 0 0 12px; color: var(--sub); font-weight: 600; let
    "title": "網羅性 × 第一者（提供者）",
    "why": "同じ行の「第二者（利用者）」では「利用者の網羅性検査は「宣言があるか」までしか測れない。スキャナの再現率は約 0.79 で頭打ちになる。自作物を許可リストで定義すると、拡張子の偽装はふさげる。」、同じ列の「層② 事実整合・権利者性」では「提供者の自己申告は層②の証拠にならない。アグリゲータ上のライセンス表示が DPI の判定と一致するのは 35〜54% で、誤りは緩い方向に偏る。」。両方を前提にすると、このセルで何が言えるかを組み立てる",
    "mode": "constructive",
-   "sources": [
+   "premises": [
     "cover/second",
     "L2/first"
    ]
@@ -436,7 +436,7 @@ h2 { font-size: 14px; margin: 0 0 12px; color: var(--sub); font-weight: 600; let
    "title": "忠実性 × 第一者（提供者）",
    "why": "同じ行の「第三者（独立）」では「第三者が提供する標準化された義務評価エンジンは存在しない。ODRL の形式意味論は 2026 年時点でドラフトにとどまる。」、同じ列の「層② 事実整合・権利者性」では「提供者の自己申告は層②の証拠にならない。アグリゲータ上のライセンス表示が DPI の判定と一致するのは 35〜54% で、誤りは緩い方向に偏る。」。両方を前提にすると、このセルで何が言えるかを組み立てる",
    "mode": "constructive",
-   "sources": [
+   "premises": [
     "faith/third",
     "L2/first"
    ]
@@ -448,7 +448,7 @@ h2 { font-size: 14px; margin: 0 0 12px; color: var(--sub); font-weight: 600; let
    "title": "証拠保全 × 第一者（提供者）",
    "why": "同じ行の「第三者（独立）」では「第三者の証拠は「T 以前にこのバイト列が存在した」「T ごろにこの URL がこの内容を返した」で止まり、権利の真正性には届かない。運営者への信頼にも依存する。」、同じ列の「層② 事実整合・権利者性」では「提供者の自己申告は層②の証拠にならない。アグリゲータ上のライセンス表示が DPI の判定と一致するのは 35〜54% で、誤りは緩い方向に偏る。」。両方を前提にすると、このセルで何が言えるかを組み立てる",
    "mode": "constructive",
-   "sources": [
+   "premises": [
     "evid/third",
     "L2/first"
    ]
@@ -460,7 +460,7 @@ h2 { font-size: 14px; margin: 0 0 12px; color: var(--sub); font-weight: 600; let
    "title": "軸「適合性評価の主体」の出典を確認する",
    "why": "出典（https://www.nist.gov/glossary-term/47956）の本文で値の定義をまだ確かめていない",
    "mode": "exploratory",
-   "sources": []
+   "premises": []
   }
  ],
  "top": 6
@@ -527,7 +527,7 @@ const axisCards = {};
   const card = el("div", "axis-card");
   card.append(el("span", "dir", dir), el("span", "name", a.name));
   card.append(el("span", "chip " + a.basis, { standard: "標準", paper: "論文", own: "自作の分類" }[a.basis]));
-  if (!a.checked) card.append(el("span", "chip unchecked", "出典は未確認"));
+  if (!a.ref_read) card.append(el("span", "chip unchecked", "出典は未確認"));
   const ref = el("span", "muted"); ref.append("出典: ", link(a.ref)); if (a.ref_title) ref.lastChild.textContent = a.ref_title;
   card.append(ref);
   $("axes").append(card); axisCards[ax] = card;
@@ -556,7 +556,7 @@ D.rows.values.forEach((r) => {
     const x = cellOf(r.id, c.id); const key = `${r.id}/${c.id}`;
     const e = el("div", "cell " + x.status);
     e.append(el("div", "glyph", D.status[x.status][0]));
-    e.append(el("div", "text", x.claim || x.next || (x.status === "unexplored" ? "まだ誰も考えていない" : "")));
+    e.append(el("div", "text", x.claim || x.next_question || (x.status === "unexplored" ? "まだ誰も考えていない" : "")));
     if (rankOf[key]) e.append(el("div", "rank", rankOf[key]));
     e.onclick = () => select(D.frontier.findIndex((o) => o.target === key), key);
     grid.append(e); cellEls[key] = e;
@@ -581,7 +581,7 @@ function select(i, key) {
   if (o && o.kind === "axis") axisCards[o.target.split(":")[1]].classList.add("selected");
   else if (key) {
     grid.classList.add("focusing"); cellEls[key].classList.add("target");
-    (o ? o.sources : []).forEach((s) => cellEls[s] && cellEls[s].classList.add("premise"));
+    (o ? o.premises : []).forEach((s) => cellEls[s] && cellEls[s].classList.add("premise"));
   }
   const d = $("detail"); d.replaceChildren();
   if (key && !key.startsWith("axis:")) {
@@ -589,7 +589,7 @@ function select(i, key) {
     d.append(el("h3", null, `${D.status[x.status][0]} ${nameOf("rows", r)} × ${nameOf("cols", c)}`));
     d.append(el("div", "muted", D.status[x.status][1]));
     if (x.claim) d.append(el("p", "claim", x.claim));
-    if (x.next) d.append(el("p", null, "次の問い: " + x.next));
+    if (x.next_question) d.append(el("p", null, "次の問い: " + x.next_question));
     if (x.evidence && x.evidence.length) {
       const ul = el("ul"); x.evidence.forEach((p) => { const li = el("li", null, "根拠: "); li.append(link(p)); ul.append(li); }); d.append(ul);
     }

@@ -43,7 +43,7 @@ BASES = {"standard", "paper", "own"}
 
 
 @dataclass
-class Option:
+class Candidate:
     """次に考える候補。target はセルなら "row/col"、軸なら "axis:rows" など。"""
     score: int
     kind: str
@@ -51,7 +51,7 @@ class Option:
     title: str
     why: str
     mode: str
-    sources: list[str] = field(default_factory=list)  # 推論の前提にするセル
+    premises: list[str] = field(default_factory=list)  # 推論の前提にするセル
 
 
 # ---------- 読み込みと検査 ----------
@@ -117,7 +117,7 @@ def name(m: dict, ax: str, vid: str) -> str:
     return next(v["name"] for v in m[ax]["values"] if v["id"] == vid)
 
 
-def frontier(m: dict) -> list[Option]:
+def frontier(m: dict) -> list[Candidate]:
     rows = [v["id"] for v in m["rows"]["values"]]
     cols = [v["id"] for v in m["cols"]["values"]]
     out = []
@@ -126,11 +126,11 @@ def frontier(m: dict) -> list[Option]:
     for ax in ("rows", "cols"):
         a = m[ax]
         if a["basis"] == "own":
-            out.append(Option(75, "axis", f"axis:{ax}", f"軸「{a['name']}」の根拠を探す",
+            out.append(Candidate(75, "axis", f"axis:{ax}", f"軸「{a['name']}」の根拠を探す",
                               "自作の分類なので、既存の標準・論文の分類と突き合わせると欠けている値が見つかる可能性がある",
                               "exploratory"))
-        elif not a.get("checked"):
-            out.append(Option(50, "axis", f"axis:{ax}", f"軸「{a['name']}」の出典を確認する",
+        elif not a.get("ref_read"):
+            out.append(Candidate(50, "axis", f"axis:{ax}", f"軸「{a['name']}」の出典を確認する",
                               f"出典（{a['ref']}）の本文で値の定義をまだ確かめていない", "exploratory"))
 
     for r in rows:
@@ -140,16 +140,16 @@ def frontier(m: dict) -> list[Option]:
             here = f"{name(m, 'rows', r)} × {name(m, 'cols', c)}"
             target = f"{r}/{c}"
             if st == "contested":
-                out.append(Option(100, "cell", target, here,
+                out.append(Candidate(100, "cell", target, here,
                                   f"根拠が衝突している（{cell['claim']}）。どの前提が違うのかを特定する", "destructive"))
             elif st == "hypothesis":
-                out.append(Option(80, "cell", target, here,
+                out.append(Candidate(80, "cell", target, here,
                                   f"仮説「{cell['claim']}」に反例がないか。反例がなければ根拠を足して確定させる", "destructive"))
             elif st == "open":
-                q = cell.get("next") or cell.get("claim") or "問いが置かれている"
-                out.append(Option(70, "cell", target, here, f"問い「{q}」に答える", "constructive"))
+                q = cell.get("next_question") or cell.get("claim") or "問いが置かれている"
+                out.append(Candidate(70, "cell", target, here, f"問い「{q}」に答える", "constructive"))
             elif st in SETTLED and not cell.get("evidence"):
-                out.append(Option(65, "cell", target, here, "結論に根拠が書かれていない。根拠を足すか、仮説に戻す", "destructive"))
+                out.append(Candidate(65, "cell", target, here, "結論に根拠が書かれていない。根拠を足すか、仮説に戻す", "destructive"))
             elif st == "unexplored":
                 out.append(_unexplored(m, r, c, rows, cols, here, target))
 
@@ -157,7 +157,7 @@ def frontier(m: dict) -> list[Option]:
     return out
 
 
-def _unexplored(m, r, c, rows, cols, here, target) -> Option:
+def _unexplored(m, r, c, rows, cols, here, target) -> Candidate:
     """空のセル。同じ行・列の結論から、どう推論すればよいかを出す。"""
     in_row = [(cc, m["_cells"][(r, cc)]) for cc in cols if status(m, r, cc) in SETTLED]
     in_col = [(rr, m["_cells"][(rr, c)]) for rr in rows if status(m, rr, c) in SETTLED]
@@ -167,21 +167,21 @@ def _unexplored(m, r, c, rows, cols, here, target) -> Option:
         why = (f"同じ行の「{name(m, 'cols', cc)}」では「{a['claim']}」、同じ列の「{name(m, 'rows', rr)}」では"
                f"「{b['claim']}」。両方を前提にすると、このセルで何が言えるかを組み立てる")
         mode = "constructive"
-        sources = [f"{r}/{cc}", f"{rr}/{c}"]
+        premises = [f"{r}/{cc}", f"{rr}/{c}"]
     elif in_row or in_col:
         ax, (vid, x) = ("cols", in_row[0]) if in_row else ("rows", in_col[0])
         why = (f"隣の「{name(m, ax, vid)}」の結論「{x['claim']}」がここにも移るか。"
                "移らないなら、何が違うせいかを条件を変えて探す")
         mode = "destructive" if x["status"] == "supported" else "constructive"
-        sources = [f"{r}/{vid}" if in_row else f"{vid}/{c}"]
+        premises = [f"{r}/{vid}" if in_row else f"{vid}/{c}"]
     else:
         empty_row = all(status(m, r, cc) == "unexplored" for cc in cols)
         empty_col = all(status(m, rr, c) == "unexplored" for rr in rows)
         where = "行も列もまったく手がついていない" if empty_row and empty_col else "近くに結論がない"
         why = f"{where}。まず問いを立てて、何が起きうるかを広く出す"
         mode = "exploratory"
-        sources = []
-    return Option(score, "cell", target, here, why, mode, sources)
+        premises = []
+    return Candidate(score, "cell", target, here, why, mode, premises)
 
 
 # ---------- map.html ----------
@@ -189,13 +189,13 @@ def _unexplored(m, r, c, rows, cols, here, target) -> Option:
 def render(m: dict) -> str:
     rel = m["_path"].relative_to(ROOT)
     keep = lambda d, ks: {k: d[k] for k in ks if k in d}  # noqa: E731
-    axis = lambda a: {**keep(a, ("name", "basis", "ref", "ref_title", "checked", "note")),  # noqa: E731
+    axis = lambda a: {**keep(a, ("name", "basis", "ref", "ref_title", "ref_read", "note")),  # noqa: E731
                       "values": [keep(v, ("id", "name", "note")) for v in a["values"]]}
     data = {
         "title": m["title"], "question": m["question"], "dir": str(rel.parent),
         "up": "../" * (len(rel.parts) - 1),
         "rows": axis(m["rows"]), "cols": axis(m["cols"]),
-        "cells": [keep(c, ("row", "col", "status", "claim", "evidence", "mode", "next"))
+        "cells": [keep(c, ("row", "col", "status", "claim", "evidence", "mode", "next_question"))
                   for c in m.get("cells", [])],
         "status": {k: list(v) for k, v in STATUS.items()},
         "settled": sorted(SETTLED),
