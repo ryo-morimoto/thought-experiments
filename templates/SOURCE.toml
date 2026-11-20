@@ -35,6 +35,16 @@ third_party = "none-indicated"                # 第三者の権利がある部�
 # url = "https://catalog.data.metro.tokyo.lg.jp/api/3/action/package_show?id=..."  # datacite なら DOI を書く
 # accept_mismatch = "カタログの表記が古いため。規約ページで確認済み"  # 不一致を承知で使う場合の理由
 
+# --- 法令・告示・判決など（著作権法13条により権利の目的とならない著作物）のとき ---
+# license = "LicenseRef-jp-copyright-art13"
+# license_url = "https://laws.e-gov.go.jp/law/345AC0000000048"
+# terms = "jp-copyright-art13"
+# art13_item = 1                 # 1 法令（条例を含む）/ 2 告示・訓令・通達 / 3 判決等 / 4 国等が作成した翻訳物・編集物
+# publisher_type = "local-government"   # 国・地方公共団体の機関、独立行政法人等に限る
+# url は data-policy.toml の [art13.hosts] にあるホスト（公的機関が直接運営するサイト）から取得したものに限る
+# 初めて使うときは cp templates/LICENSES/LicenseRef-jp-copyright-art13.txt LICENSES/
+# attribution は義務ではないが、出典として書くことを推奨する
+
 # --- origin = "derived" のとき ---
 # derived_from = ["example-dataset"]
 # license = "CC-BY-4.0"   # 元データが SA なら同じライセンス、BY 系なら表示義務のあるライセンスにする

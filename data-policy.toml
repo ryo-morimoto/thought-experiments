@@ -15,7 +15,21 @@ paths = [
   ".githooks/**",
   ".github/**",
   "LICENSES/**",    # REUSE が要求するライセンス本文（REUSE 自体の検査対象外）
+  "templates/LICENSES/**",  # 13条などの説明文の雛形（.toml の雛形は拡張子で自作物になる）
 ]
+
+# 著作権法13条（権利の目的とならない著作物）として扱うデータの条件。
+#   items:           SOURCE.toml の art13_item に書ける号（1 法令 / 2 告示等 / 3 判決等 / 4 国等が作成した翻訳物・編集物）
+#   publisher_types: 13条の作成主体（国・地方公共団体の機関、独立行政法人、地方独立行政法人）に当たる種別
+#   hosts:           取得元として認めるホスト。公的機関が直接運営し、サイト規約に求償条項がないことを確認したものだけ。
+#                    民間事業者が運営する例規集（編集物・独自規約がある）は入れない。追加は理由を書いた単独のコミットにする。
+[art13]
+items = [1, 2, 3, 4]
+publisher_types = ["government", "local-government", "public-institution"]
+
+[art13.hosts]
+"laws.e-gov.go.jp" = "e-Gov 法令検索（デジタル庁）"
+"www.city.edogawa.tokyo.jp" = "江戸川区公式サイト。「著作権・リンク」に求償条項なし（2026-11-21 確認）"
 
 # 自作物の著作権表示とライセンス。REUSE.toml の生成に使う。
 # 対象: SOURCE.toml の管轄外のファイルと、各データディレクトリの宣言・証拠ファイル。
@@ -88,6 +102,19 @@ indemnity = false                # 解説の範囲で弁償・求償の条項な
 deemed_consent = true
 unilateral_change = true
 
+# 著作権法13条（権利の目的とならない著作物）。ライセンスではなく、法律上そもそも著作権の対象外であることを示す。
+# 対象は 13条各号（1 法令 / 2 告示・訓令・通達 / 3 判決等 / 4 それらの翻訳物・編集物で国・自治体・独法等が作成するもの）。
+# 本文が自由でも、民間事業者が編集・運営する例規集やデータベースの編集物・サイト規約は別問題なので、
+# 取得元は [art13] の hosts（公的機関が直接運営するサイト）に限る。
+[terms."jp-copyright-art13"]
+title = "著作権法第13条（権利の目的とならない著作物）"
+url = "https://laws.e-gov.go.jp/law/345AC0000000048"
+base_license = "LicenseRef-jp-copyright-art13"
+non_copyrightable = "excluded"   # 13条の対象はそもそも著作権の対象外
+indemnity = false                # 法律の規定であり、規約ではない
+deemed_consent = false
+unilateral_change = false        # 法改正はあり得る
+
 [terms."tokyo-opendata-2017"]
 title = "東京都オープンデータ利用規約（2017年3月24日）"
 url = "https://portal.data.metro.tokyo.lg.jp/terms/"
@@ -146,6 +173,13 @@ share_alike = false
 # 公共データ利用規約（第1.0版）（PDL1.0）。CC BY 4.0 互換。
 [licenses."LicenseRef-jp-PDL-1.0"]
 attribution = true
+share_alike = false
+
+# 著作権法13条により権利の目的とならない著作物（法令・告示・判決など）。ライセンスではないが、REUSE が
+# ファイルごとの識別子を要求するので LicenseRef として扱う。本文は LICENSES/LicenseRef-jp-copyright-art13.txt。
+# クレジット表示の法的義務はない（attribution = false）。出典は書くことを推奨する。
+[licenses."LicenseRef-jp-copyright-art13"]
+attribution = false
 share_alike = false
 
 [licenses."MIT"]
