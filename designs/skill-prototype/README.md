@@ -1,9 +1,10 @@
 # 課題の記録を下書きするスキルの試作
 
-[課題とバグの理解の記録形式](../課題の理解の記録形式.md)（第 2.1 版）を、エージェントが下書きするための Claude Code のスキル。`drafting-issue-records/` がスキル本体で、[ryo-morimoto/plugins](https://github.com/ryo-morimoto/plugins) の規約（`SKILL.md` は 1000 字以内の案内、参照は 1 主題 2000 字以内、英語の命令形）に合わせて書いた。
+[課題とバグの理解の記録形式](../課題の理解の記録形式.md)（第 2.1 版）を、エージェントが下書きするための Claude Code のスキル。[ryo-morimoto/plugins](https://github.com/ryo-morimoto/plugins) の規約（`SKILL.md` は 1000 字以内の案内、参照は 1 主題 2000 字以内、英語の命令形）に合わせて書いた。
 
-- 状態: 試作。プラグインのリポジトリには、まだ移していない（このセッションからはプラグインのリポジトリで git の操作ができなかったため）。
-- 移すときは、`plugins/<名前>/skills/drafting-issue-records/` に置き、`check_limits.py` 相当の検査と、`evals/` の評価ケースを足す。
+- 状態: plugin `issue-understanding` として一式を [package/plugins/issue-understanding/](package/plugins/issue-understanding/README.md) に置いた。スキル本体は `skills/drafting-issue-records/`、評価ケース 4 件は `skills/drafting-issue-records/evals/`。
+- プラグインのリポジトリへの導入は [package/install-to-plugins.sh](package/install-to-plugins.sh) で行う（このセッションからはプラグインのリポジトリで git を操作できないため、利用者が実行する）。origin/main から `feat/issue-understanding` のブランチを作り、`marketplace.json` に足し、生成物を作り直し、CI と同じ検査を通してから commit と push をする。
+- リポジトリの写し（.git を除く）で同じ手順を試し、`catalog.py check`（plugin 7 個: 問題なし）、2 つのスキルの `check_limits.py`、3 つの plugin のテストが通ることを確かめた。
 
 ## 試用の結果
 

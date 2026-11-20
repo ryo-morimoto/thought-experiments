@@ -1,0 +1,14 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "issue-understanding",
+  "version": "0.1.0",
+  "description": "課題（issue）やバグ報告を理解し評価するための記録を下書きする。報告者の主張と確かめた証拠を分け、仮説を確かめ方つきで書き、欠けた情報と問いを状態として残し、判断は人に任せる。",
+  "license": "MIT",
+  "keywords": [
+    "issue",
+    "bug-report",
+    "triage",
+    "debugging",
+    "security-report"
+  ]
+}

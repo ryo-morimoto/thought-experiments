@@ -1,0 +1,5 @@
+# ryo-morimoto/plugins に入れるための、自作の plugin の一式（skill、manifest、導入用の script）。
+# 外部データは含まない。check_limits.py は ryo-morimoto/plugins の自作の script の複写。
+id = "issue-understanding-plugin-package"
+title = "課題の記録を下書きする plugin の一式"
+origin = "original"
