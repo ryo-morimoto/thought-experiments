@@ -22,6 +22,7 @@ from __future__ import annotations
 import datetime as dt
 import gzip
 import hashlib
+import io
 import json
 import re
 import shutil
@@ -31,6 +32,7 @@ import tomllib
 import urllib.error
 import urllib.parse
 import urllib.request
+import zipfile
 import zlib
 from pathlib import Path, PurePosixPath
 
@@ -92,6 +94,16 @@ THIRD_PARTY = re.compile(r"©|\(c\)|copyright|all rights reserved|著作権|無�
 
 
 def third_party_markers(body: bytes) -> list[str]:
+    # zip・gzip は中身を展開して調べる（圧縮されたバイト列では語が見えないため）
+    if body[:4] == b"PK\x03\x04":
+        with zipfile.ZipFile(io.BytesIO(body)) as z:
+            found: set[str] = set()
+            for info in z.infolist():
+                if not info.is_dir():
+                    found |= set(third_party_markers(z.read(info)))
+            return sorted(found)
+    if body[:2] == b"\x1f\x8b":
+        return third_party_markers(gzip.decompress(body))
     for enc in ("utf-8", "cp932", "euc_jp"):
         try:
             text = body.decode(enc)
