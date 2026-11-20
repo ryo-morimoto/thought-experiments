@@ -15,7 +15,7 @@ paths = [
   ".githooks/**",
   ".github/**",
   "LICENSES/**",    # REUSE が要求するライセンス本文（REUSE 自体の検査対象外）
-  "templates/**",   # 雛形（SOURCE.toml、13条の説明文など）
+  "templates/LICENSES/**",  # 13条などの説明文の雛形（.toml の雛形は拡張子で自作物になる）
 ]
 
 # 著作権法13条（権利の目的とならない著作物）として扱うデータの条件。
