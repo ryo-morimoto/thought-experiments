@@ -60,6 +60,8 @@
 3. `python3 tools/check_data_policy.py --fix` で、そのディレクトリの `REUSE.toml` と `NOTICE.md` を生成する
 4. 新しいライセンスを使ったら `reuse download --all` で本文を `LICENSES/` に入れる
 
+`ots`（[OpenTimestamps](https://opentimestamps.org/) のクライアント）が入っていれば、手順 2 でビットコインへの刻印も付きます。刻印が完成するまで数時間かかるので、後で `ots upgrade <ディレクトリ>/EVIDENCE/MANIFEST.sha256.ots` を実行してからコミットします。検証にはビットコインのノードが要るため、CI では検証しません。RFC 3161 と独立した、追加の裏付けという位置づけです。
+
 `EVIDENCE/raw/` には規約ページなど他人の著作物の写しが入るので、コミットしません（`.gitignore` 済み）。ハッシュとタイムスタンプだけを公開し、写しは手元でバックアップします。
 
 リポジトリに含めないデータ（`committed = false`）は、[DVC](https://dvc.org/) の `import-url` で取得元とハッシュを記録します。
