@@ -92,14 +92,29 @@ next_question = "設計文書の項目の下に共通する「主体の計算」
 [[cells]]
 row = "impl"
 col = "mandatory"
-status = "hypothesis"
-claim = "修正 CL から根本原因を読むと、既知の 9 件のうち 5 件はブラウザが主体（オリジン）を誤って計算したもので、仕様由来の判定基準（オリジンの決め方、Window の再利用の条件など）を段階的に足すと 6 件中 4 件を捕まえた。ただし判定基準の段は既知のバグに合わせて足したもので、新しいバグを予測できるかは確かめていない"
+status = "supported"
+claim = "既知のバグに合わせずに作った仕様由来の判定基準が後づけと同じ 4 件を「予測した」とは言えない（結果を決めた選択はバグを見たあと）。試験の筋書きが入力を独立に与える「試験の時の判定基準」としてなら、仕様の段で判定できる場合がある（CVE-2024-1671 は get session history entries の選び方でモデルが捕まえた）。ブラウザの状態を入力にするコミット時の差分検査は、同じ誤りを共有し、既存の検査を超える効き目がほとんど無い"
 evidence = [
-  "experiments/2026-11-20-browser-semantics-soundness.md",
+  "experiments/2026-11-21-blind-origin-oracle.md",
   "experiments/models/site-isolation/OriginOracle.tla",
+  "experiments/models/site-isolation/NestedHistory.tla",
 ]
 mode = "destructive"
-next_question = "既知のバグに合わせずに作った判定基準で、ブラウザ側とレンダラー側のオリジンの差分を取ると、新しい不一致が見つかるか"
+next_question = "仕様の版・根・判定の規則・観測点を先に固定して時刻つきで記録し、その後に直されたバグを取り置きにして数えると、予測できるか"
+
+[[cells]]
+row = "fsp"
+col = "mandatory"
+status = "supported"
+claim = "WHATWG の仕様は Common Criteria の意味での評価対象の機能仕様にはならず、非形式の参照にとどまる。その対応の根拠は、モデルが扱う性質に関わる段がモデルに写っていることの非形式の提示で、良し悪しは段の数え上げではなく、落とした段を足して性質が変わるかで確かめる。実際に「安全でない文脈の COEP」の 1 段で OptInOnly が偽になり、その欠落は WPT の 109 件に捕まらなかった"
+evidence = [
+  "experiments/2026-11-21-fsp-correspondence.md",
+  "experiments/models/site-isolation/SpecIsolation.tla",
+  "https://www.commoncriteriaportal.org/files/ccfiles/CCPART3V3.1R5.pdf",
+]
+mode = "destructive"
+next_question = "モデルが扱う性質を先に決め、それに関わる仕様の段を全部足すと、モデルの証明はどこまで残るか"
+
 [[cells]]
 row = "toe"
 col = "mandatory"

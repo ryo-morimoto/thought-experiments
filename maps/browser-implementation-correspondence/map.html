@@ -219,14 +219,28 @@ h2 { font-size: 14px; margin: 0 0 12px; color: var(--sub); font-weight: 600; let
   {
    "row": "impl",
    "col": "mandatory",
-   "status": "hypothesis",
-   "claim": "修正 CL から根本原因を読むと、既知の 9 件のうち 5 件はブラウザが主体（オリジン）を誤って計算したもので、仕様由来の判定基準（オリジンの決め方、Window の再利用の条件など）を段階的に足すと 6 件中 4 件を捕まえた。ただし判定基準の段は既知のバグに合わせて足したもので、新しいバグを予測できるかは確かめていない",
+   "status": "supported",
+   "claim": "既知のバグに合わせずに作った仕様由来の判定基準が後づけと同じ 4 件を「予測した」とは言えない（結果を決めた選択はバグを見たあと）。試験の筋書きが入力を独立に与える「試験の時の判定基準」としてなら、仕様の段で判定できる場合がある（CVE-2024-1671 は get session history entries の選び方でモデルが捕まえた）。ブラウザの状態を入力にするコミット時の差分検査は、同じ誤りを共有し、既存の検査を超える効き目がほとんど無い",
    "evidence": [
-    "experiments/2026-11-20-browser-semantics-soundness.md",
-    "experiments/models/site-isolation/OriginOracle.tla"
+    "experiments/2026-11-21-blind-origin-oracle.md",
+    "experiments/models/site-isolation/OriginOracle.tla",
+    "experiments/models/site-isolation/NestedHistory.tla"
    ],
    "mode": "destructive",
-   "next_question": "既知のバグに合わせずに作った判定基準で、ブラウザ側とレンダラー側のオリジンの差分を取ると、新しい不一致が見つかるか"
+   "next_question": "仕様の版・根・判定の規則・観測点を先に固定して時刻つきで記録し、その後に直されたバグを取り置きにして数えると、予測できるか"
+  },
+  {
+   "row": "fsp",
+   "col": "mandatory",
+   "status": "supported",
+   "claim": "WHATWG の仕様は Common Criteria の意味での評価対象の機能仕様にはならず、非形式の参照にとどまる。その対応の根拠は、モデルが扱う性質に関わる段がモデルに写っていることの非形式の提示で、良し悪しは段の数え上げではなく、落とした段を足して性質が変わるかで確かめる。実際に「安全でない文脈の COEP」の 1 段で OptInOnly が偽になり、その欠落は WPT の 109 件に捕まらなかった",
+   "evidence": [
+    "experiments/2026-11-21-fsp-correspondence.md",
+    "experiments/models/site-isolation/SpecIsolation.tla",
+    "https://www.commoncriteriaportal.org/files/ccfiles/CCPART3V3.1R5.pdf"
+   ],
+   "mode": "destructive",
+   "next_question": "モデルが扱う性質を先に決め、それに関わる仕様の段を全部足すと、モデルの証明はどこまで残るか"
   },
   {
    "row": "toe",
@@ -290,23 +304,15 @@ h2 { font-size: 14px; margin: 0 0 12px; color: var(--sub); font-weight: 600; let
  ],
  "candidates": [
   {
-   "score": 80,
-   "kind": "cell",
-   "target": "impl/mandatory",
-   "name": "実装の表現 × 必須",
-   "why": "仮説「修正 CL から根本原因を読むと、既知の 9 件のうち 5 件はブラウザが主体（オリジン）を誤って計算したもので、仕様由来の判定基準（オリジンの決め方、Window の再利用の条件など）を段階的に足すと 6 件中 4 件を捕まえた。ただし判定基準の段は既知のバグに合わせて足したもので、新しいバグを予測できるかは確かめていない」に反例がないか。反例がなければ根拠を足して確定させる",
-   "mode": "destructive",
-   "premises": []
-  },
-  {
    "score": 60,
    "kind": "cell",
-   "target": "fsp/mandatory",
-   "name": "機能仕様 × 必須",
-   "why": "隣の「設計」の結論「設計文書（compromised-renderers.md）は資源の種類ごとに保護と既知の穴を並べているが、証拠の種類や主体の欄は無い。サイト分離の回避 39 件のうち、1 項目に収まるのは 26 件、項目をまたぐのが 7 件、対応する項目が無いのが 6 件で、文書の既知の穴にちょうど入ったものは 0 件だった。設計を基準点にしても、段ごとの網羅は文書に担保されない」がここにも移るか。移らないなら、何が違うせいかを条件を変えて探す",
-   "mode": "destructive",
+   "target": "fsp/opt-impl",
+   "name": "機能仕様 × 実装依存の値・振る舞い",
+   "why": "同じ行の「必須」では「WHATWG の仕様は Common Criteria の意味での評価対象の機能仕様にはならず、非形式の参照にとどまる。その対応の根拠は、モデルが扱う性質に関わる段がモデルに写っていることの非形式の提示で、良し悪しは段の数え上げではなく、落とした段を足して性質が変わるかで確かめる。実際に「安全でない文脈の COEP」の 1 段で OptInOnly が偽になり、その欠落は WPT の 109 件に捕まらなかった」、同じ列の「評価対象そのもの」では「プロセスへの配置は仕様で implementation-specific とされ（エージェントクラスタは「理想化したプロセスの境界」）、ブラウザごと・構成ごとに変わる。この部分のモデルは仕様の翻訳ではなく、そのブラウザの設計のモデルになる」。両方を前提にすると、このセルで何が言えるかを組み立てる",
+   "mode": "constructive",
    "premises": [
-    "design/mandatory"
+    "fsp/mandatory",
+    "toe/opt-impl"
    ]
   },
   {
@@ -318,6 +324,18 @@ h2 { font-size: 14px; margin: 0 0 12px; color: var(--sub); font-weight: 600; let
    "mode": "constructive",
    "premises": [
     "design/mandatory",
+    "toe/opt-impl"
+   ]
+  },
+  {
+   "score": 60,
+   "kind": "cell",
+   "target": "impl/opt-impl",
+   "name": "実装の表現 × 実装依存の値・振る舞い",
+   "why": "同じ行の「必須」では「既知のバグに合わせずに作った仕様由来の判定基準が後づけと同じ 4 件を「予測した」とは言えない（結果を決めた選択はバグを見たあと）。試験の筋書きが入力を独立に与える「試験の時の判定基準」としてなら、仕様の段で判定できる場合がある（CVE-2024-1671 は get session history entries の選び方でモデルが捕まえた）。ブラウザの状態を入力にするコミット時の差分検査は、同じ誤りを共有し、既存の検査を超える効き目がほとんど無い」、同じ列の「評価対象そのもの」では「プロセスへの配置は仕様で implementation-specific とされ（エージェントクラスタは「理想化したプロセスの境界」）、ブラウザごと・構成ごとに変わる。この部分のモデルは仕様の翻訳ではなく、そのブラウザの設計のモデルになる」。両方を前提にすると、このセルで何が言えるかを組み立てる",
+   "mode": "constructive",
+   "premises": [
+    "impl/mandatory",
     "toe/opt-impl"
    ]
   },
@@ -379,12 +397,56 @@ h2 { font-size: 14px; margin: 0 0 12px; color: var(--sub); font-weight: 600; let
   {
    "score": 50,
    "kind": "cell",
-   "target": "fsp/opt-impl",
-   "name": "機能仕様 × 実装依存の値・振る舞い",
-   "why": "隣の「評価対象そのもの」の結論「プロセスへの配置は仕様で implementation-specific とされ（エージェントクラスタは「理想化したプロセスの境界」）、ブラウザごと・構成ごとに変わる。この部分のモデルは仕様の翻訳ではなく、そのブラウザの設計のモデルになる」がここにも移るか。移らないなら、何が違うせいかを条件を変えて探す",
+   "target": "fsp/opt-feature",
+   "name": "機能仕様 × 機能を支援するかの選択",
+   "why": "隣の「必須」の結論「WHATWG の仕様は Common Criteria の意味での評価対象の機能仕様にはならず、非形式の参照にとどまる。その対応の根拠は、モデルが扱う性質に関わる段がモデルに写っていることの非形式の提示で、良し悪しは段の数え上げではなく、落とした段を足して性質が変わるかで確かめる。実際に「安全でない文脈の COEP」の 1 段で OptInOnly が偽になり、その欠落は WPT の 109 件に捕まらなかった」がここにも移るか。移らないなら、何が違うせいかを条件を変えて探す",
    "mode": "destructive",
    "premises": [
-    "toe/opt-impl"
+    "fsp/mandatory"
+   ]
+  },
+  {
+   "score": 50,
+   "kind": "cell",
+   "target": "fsp/opt-enum",
+   "name": "機能仕様 × 列挙した選択肢からの選択",
+   "why": "隣の「必須」の結論「WHATWG の仕様は Common Criteria の意味での評価対象の機能仕様にはならず、非形式の参照にとどまる。その対応の根拠は、モデルが扱う性質に関わる段がモデルに写っていることの非形式の提示で、良し悪しは段の数え上げではなく、落とした段を足して性質が変わるかで確かめる。実際に「安全でない文脈の COEP」の 1 段で OptInOnly が偽になり、その欠落は WPT の 109 件に捕まらなかった」がここにも移るか。移らないなら、何が違うせいかを条件を変えて探す",
+   "mode": "destructive",
+   "premises": [
+    "fsp/mandatory"
+   ]
+  },
+  {
+   "score": 50,
+   "kind": "cell",
+   "target": "fsp/extension",
+   "name": "機能仕様 × 拡張",
+   "why": "隣の「必須」の結論「WHATWG の仕様は Common Criteria の意味での評価対象の機能仕様にはならず、非形式の参照にとどまる。その対応の根拠は、モデルが扱う性質に関わる段がモデルに写っていることの非形式の提示で、良し悪しは段の数え上げではなく、落とした段を足して性質が変わるかで確かめる。実際に「安全でない文脈の COEP」の 1 段で OptInOnly が偽になり、その欠落は WPT の 109 件に捕まらなかった」がここにも移るか。移らないなら、何が違うせいかを条件を変えて探す",
+   "mode": "destructive",
+   "premises": [
+    "fsp/mandatory"
+   ]
+  },
+  {
+   "score": 50,
+   "kind": "cell",
+   "target": "fsp/deprecation",
+   "name": "機能仕様 × 廃止予定",
+   "why": "隣の「必須」の結論「WHATWG の仕様は Common Criteria の意味での評価対象の機能仕様にはならず、非形式の参照にとどまる。その対応の根拠は、モデルが扱う性質に関わる段がモデルに写っていることの非形式の提示で、良し悪しは段の数え上げではなく、落とした段を足して性質が変わるかで確かめる。実際に「安全でない文脈の COEP」の 1 段で OptInOnly が偽になり、その欠落は WPT の 109 件に捕まらなかった」がここにも移るか。移らないなら、何が違うせいかを条件を変えて探す",
+   "mode": "destructive",
+   "premises": [
+    "fsp/mandatory"
+   ]
+  },
+  {
+   "score": 50,
+   "kind": "cell",
+   "target": "fsp/error",
+   "name": "機能仕様 × 誤りの扱い",
+   "why": "隣の「必須」の結論「WHATWG の仕様は Common Criteria の意味での評価対象の機能仕様にはならず、非形式の参照にとどまる。その対応の根拠は、モデルが扱う性質に関わる段がモデルに写っていることの非形式の提示で、良し悪しは段の数え上げではなく、落とした段を足して性質が変わるかで確かめる。実際に「安全でない文脈の COEP」の 1 段で OptInOnly が偽になり、その欠落は WPT の 109 件に捕まらなかった」がここにも移るか。移らないなら、何が違うせいかを条件を変えて探す",
+   "mode": "destructive",
+   "premises": [
+    "fsp/mandatory"
    ]
   },
   {
@@ -445,103 +507,57 @@ h2 { font-size: 14px; margin: 0 0 12px; color: var(--sub); font-weight: 600; let
   {
    "score": 50,
    "kind": "cell",
-   "target": "impl/opt-impl",
-   "name": "実装の表現 × 実装依存の値・振る舞い",
-   "why": "隣の「評価対象そのもの」の結論「プロセスへの配置は仕様で implementation-specific とされ（エージェントクラスタは「理想化したプロセスの境界」）、ブラウザごと・構成ごとに変わる。この部分のモデルは仕様の翻訳ではなく、そのブラウザの設計のモデルになる」がここにも移るか。移らないなら、何が違うせいかを条件を変えて探す",
+   "target": "impl/opt-feature",
+   "name": "実装の表現 × 機能を支援するかの選択",
+   "why": "隣の「必須」の結論「既知のバグに合わせずに作った仕様由来の判定基準が後づけと同じ 4 件を「予測した」とは言えない（結果を決めた選択はバグを見たあと）。試験の筋書きが入力を独立に与える「試験の時の判定基準」としてなら、仕様の段で判定できる場合がある（CVE-2024-1671 は get session history entries の選び方でモデルが捕まえた）。ブラウザの状態を入力にするコミット時の差分検査は、同じ誤りを共有し、既存の検査を超える効き目がほとんど無い」がここにも移るか。移らないなら、何が違うせいかを条件を変えて探す",
    "mode": "destructive",
    "premises": [
-    "toe/opt-impl"
+    "impl/mandatory"
    ]
   },
   {
-   "score": 40,
-   "kind": "cell",
-   "target": "fsp/opt-feature",
-   "name": "機能仕様 × 機能を支援するかの選択",
-   "why": "行も列もまったく手がついていない。まず問いを立てて、何が起きうるかを広く出す",
-   "mode": "exploratory",
-   "premises": []
-  },
-  {
-   "score": 40,
-   "kind": "cell",
-   "target": "fsp/opt-enum",
-   "name": "機能仕様 × 列挙した選択肢からの選択",
-   "why": "行も列もまったく手がついていない。まず問いを立てて、何が起きうるかを広く出す",
-   "mode": "exploratory",
-   "premises": []
-  },
-  {
-   "score": 40,
-   "kind": "cell",
-   "target": "fsp/extension",
-   "name": "機能仕様 × 拡張",
-   "why": "行も列もまったく手がついていない。まず問いを立てて、何が起きうるかを広く出す",
-   "mode": "exploratory",
-   "premises": []
-  },
-  {
-   "score": 40,
-   "kind": "cell",
-   "target": "fsp/deprecation",
-   "name": "機能仕様 × 廃止予定",
-   "why": "行も列もまったく手がついていない。まず問いを立てて、何が起きうるかを広く出す",
-   "mode": "exploratory",
-   "premises": []
-  },
-  {
-   "score": 40,
-   "kind": "cell",
-   "target": "fsp/error",
-   "name": "機能仕様 × 誤りの扱い",
-   "why": "行も列もまったく手がついていない。まず問いを立てて、何が起きうるかを広く出す",
-   "mode": "exploratory",
-   "premises": []
-  },
-  {
-   "score": 40,
-   "kind": "cell",
-   "target": "impl/opt-feature",
-   "name": "実装の表現 × 機能を支援するかの選択",
-   "why": "近くに結論がない。まず問いを立てて、何が起きうるかを広く出す",
-   "mode": "exploratory",
-   "premises": []
-  },
-  {
-   "score": 40,
+   "score": 50,
    "kind": "cell",
    "target": "impl/opt-enum",
    "name": "実装の表現 × 列挙した選択肢からの選択",
-   "why": "近くに結論がない。まず問いを立てて、何が起きうるかを広く出す",
-   "mode": "exploratory",
-   "premises": []
+   "why": "隣の「必須」の結論「既知のバグに合わせずに作った仕様由来の判定基準が後づけと同じ 4 件を「予測した」とは言えない（結果を決めた選択はバグを見たあと）。試験の筋書きが入力を独立に与える「試験の時の判定基準」としてなら、仕様の段で判定できる場合がある（CVE-2024-1671 は get session history entries の選び方でモデルが捕まえた）。ブラウザの状態を入力にするコミット時の差分検査は、同じ誤りを共有し、既存の検査を超える効き目がほとんど無い」がここにも移るか。移らないなら、何が違うせいかを条件を変えて探す",
+   "mode": "destructive",
+   "premises": [
+    "impl/mandatory"
+   ]
   },
   {
-   "score": 40,
+   "score": 50,
    "kind": "cell",
    "target": "impl/extension",
    "name": "実装の表現 × 拡張",
-   "why": "近くに結論がない。まず問いを立てて、何が起きうるかを広く出す",
-   "mode": "exploratory",
-   "premises": []
+   "why": "隣の「必須」の結論「既知のバグに合わせずに作った仕様由来の判定基準が後づけと同じ 4 件を「予測した」とは言えない（結果を決めた選択はバグを見たあと）。試験の筋書きが入力を独立に与える「試験の時の判定基準」としてなら、仕様の段で判定できる場合がある（CVE-2024-1671 は get session history entries の選び方でモデルが捕まえた）。ブラウザの状態を入力にするコミット時の差分検査は、同じ誤りを共有し、既存の検査を超える効き目がほとんど無い」がここにも移るか。移らないなら、何が違うせいかを条件を変えて探す",
+   "mode": "destructive",
+   "premises": [
+    "impl/mandatory"
+   ]
   },
   {
-   "score": 40,
+   "score": 50,
    "kind": "cell",
    "target": "impl/deprecation",
    "name": "実装の表現 × 廃止予定",
-   "why": "近くに結論がない。まず問いを立てて、何が起きうるかを広く出す",
-   "mode": "exploratory",
-   "premises": []
+   "why": "隣の「必須」の結論「既知のバグに合わせずに作った仕様由来の判定基準が後づけと同じ 4 件を「予測した」とは言えない（結果を決めた選択はバグを見たあと）。試験の筋書きが入力を独立に与える「試験の時の判定基準」としてなら、仕様の段で判定できる場合がある（CVE-2024-1671 は get session history entries の選び方でモデルが捕まえた）。ブラウザの状態を入力にするコミット時の差分検査は、同じ誤りを共有し、既存の検査を超える効き目がほとんど無い」がここにも移るか。移らないなら、何が違うせいかを条件を変えて探す",
+   "mode": "destructive",
+   "premises": [
+    "impl/mandatory"
+   ]
   },
   {
-   "score": 40,
+   "score": 50,
    "kind": "cell",
    "target": "impl/error",
    "name": "実装の表現 × 誤りの扱い",
-   "why": "近くに結論がない。まず問いを立てて、何が起きうるかを広く出す",
-   "mode": "exploratory",
-   "premises": []
+   "why": "隣の「必須」の結論「既知のバグに合わせずに作った仕様由来の判定基準が後づけと同じ 4 件を「予測した」とは言えない（結果を決めた選択はバグを見たあと）。試験の筋書きが入力を独立に与える「試験の時の判定基準」としてなら、仕様の段で判定できる場合がある（CVE-2024-1671 は get session history entries の選び方でモデルが捕まえた）。ブラウザの状態を入力にするコミット時の差分検査は、同じ誤りを共有し、既存の検査を超える効き目がほとんど無い」がここにも移るか。移らないなら、何が違うせいかを条件を変えて探す",
+   "mode": "destructive",
+   "premises": [
+    "impl/mandatory"
+   ]
   }
  ],
  "top": 6

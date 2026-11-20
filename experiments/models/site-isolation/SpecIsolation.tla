@@ -68,7 +68,8 @@ DecisionIds == {"coi-insecure", "coi-coop-so", "coi-coep-compat", "coi-mode",
                 "popup-opener-sap", "popup-unsafe",
                 "corp-nav", "corp-has-header", "corp-cl-creds", "corp-allow-kinds",
                 "corp-so-check", "corp-ss-site", "corp-ss-scheme", "corp-first-pass",
-                "fetch-same-origin", "fetch-cors", "fetch-blocked"}
+                "fetch-same-origin", "fetch-cors", "fetch-blocked",
+                "coep-insecure", "coep-cl-strips"}
 MechMutants == {"neg:" \o d : d \in DecisionIds}
 
 \* --- HTML: COOP parsing and cross-origin isolation -------------------------
@@ -150,13 +151,31 @@ CorpCheck(o, coep, r, forNav) ==
   THEN "blocked"
   ELSE CorpInternal(o, coep, r, forNav)
 
+\* Steps added after the step-coverage measurement
+\* (experiments/2026-11-21-fsp-correspondence.md). Negating either with
+\* "false:<id>" gives back the earlier model that omitted it.
+\* HTML "obtain an embedder policy" step 2: a non-secure context keeps the
+\* default policy (unsafe-none).
+EffectiveCOEP(o, coep) ==
+  IF C("coep-insecure", ~Secure(o)) THEN "unsafe-none" ELSE coep
+\* Fetch "Cross-Origin-Embedder-Policy allows credentials": a document whose
+\* policy is credentialless sends its own cross-origin no-cors requests
+\* without credentials, so the response's request-includes-credentials is false.
+DocCreds(o, ecoep, mode, r) ==
+  IF C("coep-cl-strips", mode = "no-cors" /\ ecoep = "credentialless"
+                         /\ ~SameOrigin(o, r.origin))
+  THEN [r EXCEPT !.creds = FALSE] ELSE r
+
 \* Result of fetch(url, {mode}) seen by script in a document of origin o.
 FetchResult(o, coep, mode, r) ==
+  LET ecoep == EffectiveCOEP(o, coep)
+      rr    == DocCreds(o, ecoep, mode, r)
+  IN
   IF C("fetch-same-origin", SameOrigin(o, r.origin))
      \/ (mode = "no-cors" /\ Mutant = "nocors-site-basic" /\ SameSite(o, r.origin))
   THEN "basic"
   ELSE IF C("fetch-cors", mode = "cors") THEN "cors"  \* CORS outcome not modelled
-  ELSE IF C("fetch-blocked", CorpCheck(o, coep, r, FALSE) = "blocked")
+  ELSE IF C("fetch-blocked", CorpCheck(o, ecoep, rr, FALSE) = "blocked")
        THEN "error" ELSE "opaque"
 
 Responses == [origin : Origins, corp : CORPs, creds : BOOLEAN]
@@ -222,7 +241,9 @@ Base(r) == [origin |-> r.origin, corp |-> r.corp, creds |-> r.creds]
 Observe(o, coep, mode, r) ==
   IF SameOrigin(o, r.origin) THEN <<"read", r.body>>
   ELSE IF mode = "cors" THEN (IF r.acao THEN <<"read", r.body>> ELSE <<"error">>)
-  ELSE IF CorpCheck(o, coep, Base(r), FALSE) = "blocked" THEN <<"error">>
+  ELSE IF CorpCheck(o, EffectiveCOEP(o, coep),
+                    DocCreds(o, EffectiveCOEP(o, coep), mode, Base(r)), FALSE) = "blocked"
+       THEN <<"error">>
   ELSE IF Mutant = "opaque-length" THEN <<"opaque", Len(r.body)>>
   ELSE <<"opaque">>
 

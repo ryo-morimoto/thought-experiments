@@ -264,12 +264,13 @@ h2 { font-size: 14px; margin: 0 0 12px; color: var(--sub); font-weight: 600; let
    "row": "formal",
    "col": "mandatory",
    "status": "hypothesis",
-   "claim": "仕様と実装の両方を形式的な元から導くとき（SpecTec、Quark）だけ、その元に対する健全性が立つ。ただし信頼は生成器と、元の記述が委員会の意図に合っていることに移る。この思考実験では確かめていない（先行研究の報告による）",
+   "claim": "厳密な健全性は「形式的な元から導いたときだけ」ではなく「形式的な成果物に対してだけ」立つ（手で書いた WasmCert・CompCert・seL4・HACL* が反例）。導いても、元と委員会の意図の一致と生成器の正しさは試験か信頼にとどまる（SpecTec は試験で確かめ、DSL の意味も生成器の検証も無い）。段階C（攻撃）はまだ",
    "evidence": [
-    "experiments/2026-11-20-browser-semantics-soundness.md"
+    "experiments/2026-11-21-formal-source-soundness.md",
+    "https://webassembly.org/news/2025-03-27-spectec/"
    ],
-   "mode": "constructive",
-   "next_question": "WHATWG の算法の一部を形式的な元から生成する形に移すと、何が仕様の編集の負担になるか"
+   "mode": "destructive",
+   "next_question": "この結論を、経緯を知らない subagent に攻撃させる（段階C）"
   }
  ],
  "legend_by_status": {
@@ -312,7 +313,7 @@ h2 { font-size: 14px; margin: 0 0 12px; color: var(--sub); font-weight: 600; let
    "kind": "cell",
    "target": "formal/mandatory",
    "name": "形式 × 必須",
-   "why": "仮説「仕様と実装の両方を形式的な元から導くとき（SpecTec、Quark）だけ、その元に対する健全性が立つ。ただし信頼は生成器と、元の記述が委員会の意図に合っていることに移る。この思考実験では確かめていない（先行研究の報告による）」に反例がないか。反例がなければ根拠を足して確定させる",
+   "why": "仮説「厳密な健全性は「形式的な元から導いたときだけ」ではなく「形式的な成果物に対してだけ」立つ（手で書いた WasmCert・CompCert・seL4・HACL* が反例）。導いても、元と委員会の意図の一致と生成器の正しさは試験か信頼にとどまる（SpecTec は試験で確かめ、DSL の意味も生成器の検証も無い）。段階C（攻撃）はまだ」に反例がないか。反例がなければ根拠を足して確定させる",
    "mode": "destructive",
    "premises": []
   },
