@@ -4,6 +4,14 @@
 このファイルは `tools/check_data_policy.py --fix` が `SOURCE.toml` から生成します。手で編集しないでください。
 ライセンス本文は `LICENSES/`、ファイルごとのライセンスは各ディレクトリの `REUSE.toml` にあります。
 
+## RSMC Tokyo-Typhoon Center Best Track Data（全期間）
+
+- 提供者: 気象庁
+- 取得元: https://www.jma.go.jp/jma/jma-eng/jma-center/rsmc-hp-pub-eg/Besttracks/bst_all.zip
+- ライセンス: LicenseRef-jp-PDL-1.0（https://www.jma.go.jp/jma/en/copyright.html）
+- クレジット: Source: Japan Meteorological Agency website (https://www.jma.go.jp/jma/jma-eng/jma-center/rsmc-hp-pub-eg/besttrack.html)
+- 宣言: `data/jma-besttrack/SOURCE.toml`
+
 ## 台風の接近数（全国）
 
 - 提供者: 気象庁
