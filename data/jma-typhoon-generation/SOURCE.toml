@@ -9,6 +9,7 @@ license_url = "https://www.jma.go.jp/jma/kishou/info/coment.html"
 terms = "jma-pdl-1.0"
 # 規約の出典記載例「出典：気象庁ホームページ（当該ページのURL）」に沿う
 attribution = "出典：気象庁ホームページ（https://www.data.jma.go.jp/typhoon/statistics/generation/generation.html）"
+content_kind = ["table"]
 modified = false
 # 文字コードは Shift_JIS。1951〜2025年の月別・年間の発生数（2026年の速報値はページのみで CSV にない）
 

@@ -38,7 +38,7 @@ CACHE_DIR = ROOT / ".cache"
 
 REQUIRED = {
     "external": ["id", "title", "publisher", "publisher_type", "url", "license", "license_url",
-                 "terms", "modified", "concluded"],
+                 "terms", "content_kind", "modified", "concluded"],
     "derived": ["id", "title", "derived_from", "license"],
     "original": ["id", "title"],
 }
@@ -224,6 +224,33 @@ def check_art13(rel: PurePosixPath, src: dict, policy: dict) -> list[str]:
     if host not in cfg.get("hosts", {}):
         errs.append(f"{rel}: 取得元 {host!r} は [art13.hosts] にない。公的機関が直接運営するサイトから取得し、"
                     "サイト規約を確認してから登録する（民間の例規集は編集物・独自規約があるため不可）")
+    return errs
+
+
+def check_third_party(src_dir: PurePosixPath, src: dict, payload: list[PurePosixPath],
+                      policy: dict) -> list[str]:
+    """著作物の部分を含み、規約が第三者の権利の処理を利用者に任せるデータには、提供者の明示の証拠を求める。"""
+    rel = src_dir / SOURCE_NAME
+    tp = policy.get("third_party", {})
+    kinds = src.get("content_kind", [])
+    errs = []
+    if not isinstance(kinds, list) or any(k not in tp.get("kinds", []) for k in kinds):
+        return [f"{rel}: content_kind は {tp.get('kinds')} から選んだリストにする"]
+    creative = sorted(set(kinds) & set(tp.get("creative_kinds", [])))
+    exts = set(tp.get("creative_extensions", []))
+    found = sorted({f.suffix.lower().lstrip(".") for f in payload} & exts)
+    if found and not creative:
+        errs.append(f"{rel}: データに {found} のファイルがある。著作物の部分（image・document など）を content_kind に書く")
+    if not (creative or found):
+        return errs
+    terms = policy.get("terms", {}).get(src.get("terms"), {})
+    if terms.get("third_party_clearance", "user") != "user":
+        return errs
+    ev = src.get("concluded", {}).get("third_party_evidence")
+    if not (isinstance(ev, dict) and str(ev.get("url", "")).startswith("https://") and ev.get("quote")):
+        errs.append(f"{rel}: 著作物の部分 {creative or found} を含み、規約 {src.get('terms')} は第三者の権利の処理を"
+                    "利用者に任せている。提供者が権利処理済・自作と明示している証拠を "
+                    "[concluded] third_party_evidence = {url = \"https://…\", quote = \"原文\"} に書く。なければ使わない")
     return errs
 
 
@@ -456,7 +483,9 @@ def main() -> int:
         d = rel.parent
         sync(ROOT / d / REUSE_NAME, render_reuse(src, sources, policy), fix, str(d / REUSE_NAME), errs)
         if src.get("origin") == "external":
-            errs += check_evidence(d, src, payload_files(d, files, source_dirs), policy)
+            payload = payload_files(d, files, source_dirs)
+            errs += check_third_party(d, src, payload, policy)
+            errs += check_evidence(d, src, payload, policy)
 
     sync(ROOT / REUSE_NAME, render_root_reuse(policy), fix, REUSE_NAME, errs)
     sync(NOTICE_FILE, render_notice(sources), fix, "NOTICE.md", errs)

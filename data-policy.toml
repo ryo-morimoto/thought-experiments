@@ -67,6 +67,7 @@ public-institution = "独立行政法人・公的な図書館や博物館など"
 #   indemnity:         利用者に提供者の費用を弁償させる条項（求償条項）があるか
 #   deemed_consent:    利用をもって同意とみなす条項があるか
 #   unilateral_change: 予告なく変更する条項があるか
+#   third_party_clearance: 第三者の権利の処理を誰が負うか。"user"（利用者の責任で）/ "provider"（提供者が処理済と保証）
 # 規約を追加するときは本文を読み、確認した日と根拠を書いた単独のコミットにする。
 [terms_policy]
 # 求償条項のある規約のデータは使わない。提供者側の誤表示（第三者の権利の混入）のリスクが
@@ -74,6 +75,18 @@ public-institution = "独立行政法人・公的な図書館や博物館など"
 allow_indemnity = false
 # 著作物でないデータにも条件を課す規約は許可する（条件を守ればよい。記録だけする）。
 allow_non_copyrightable_applies = true
+
+# 第三者の権利のリスクは、数値データではなく著作物の部分（文章・写真・地図など）に集中する。
+# 規約が第三者の権利の処理を利用者に任せている（third_party_clearance = "user"）とき、著作物の部分を
+# 含むデータは、提供者が権利処理済・自作であると明示している証拠（URL と原文）がなければ使わない。
+# 著作物の部分を含むかは、SOURCE.toml の content_kind と、データファイルの拡張子の両方で判定する。
+[third_party]
+creative_kinds = ["text", "image", "map", "audio", "video", "document"]
+creative_extensions = ["png", "jpg", "jpeg", "gif", "webp", "svg", "tif", "tiff", "bmp",
+                       "pdf", "doc", "docx", "ppt", "pptx", "odt",
+                       "mp3", "wav", "ogg", "mp4", "mov", "webm"]
+# content_kind に書ける値
+kinds = ["table", "numeric", "geo-vector", "text", "image", "map", "audio", "video", "document"]
 
 [terms."cc-license-only"]
 title = "ライセンスの条文のみ（提供者独自の規約なし）"
@@ -83,6 +96,7 @@ non_copyrightable = "excluded"   # 著作権ライセンスなので、著作物
 indemnity = false
 deemed_consent = false
 unilateral_change = false
+third_party_clearance = "user"  # CC ライセンスは権利の保証をしない（第5条の免責）
 
 [terms."jp-pdl-1.0"]
 title = "公共データ利用規約（第1.0版）"
@@ -92,6 +106,7 @@ non_copyrightable = "excluded"   # 「数値データ、簡単な表・グラフ
 indemnity = false                # 本文に弁償・求償の条項なし（1.6 は提供者の免責のみ）。2026-11-21 確認
 deemed_consent = true
 unilateral_change = true
+third_party_clearance = "user"  # 1.2「利用者の責任で、当該第三者から利用の許諾を得てください」
 
 [terms."jp-gov-std-2.0"]
 title = "政府標準利用規約（第2.0版）"
@@ -101,6 +116,7 @@ non_copyrightable = "excluded"   # 解説：第2.0版から著作物でないコ
 indemnity = false                # 解説の範囲で弁償・求償の条項なし（本文は未読）。2026-11-21 確認
 deemed_consent = true
 unilateral_change = true
+third_party_clearance = "user"  # 解説の 1.2 相当部分に同じ文言
 
 # 著作権法13条（権利の目的とならない著作物）。ライセンスではなく、法律上そもそも著作権の対象外であることを示す。
 # 対象は 13条各号（1 法令 / 2 告示・訓令・通達 / 3 判決等 / 4 それらの翻訳物・編集物で国・自治体・独法等が作成するもの）。
@@ -114,6 +130,7 @@ non_copyrightable = "excluded"   # 13条の対象はそもそも著作権の対�
 indemnity = false                # 法律の規定であり、規約ではない
 deemed_consent = false
 unilateral_change = false        # 法改正はあり得る
+third_party_clearance = "user"  # 条例の PDF などに第三者の図版が含まれ得る
 
 [terms."tokyo-opendata-2017"]
 title = "東京都オープンデータ利用規約（2017年3月24日）"
@@ -123,6 +140,7 @@ non_copyrightable = "applies"    # 「コンテンツ」を本サイトのデー
 indemnity = true                 # 第6条：利用者による第三者の権利侵害等で提供者に生じた費用を利用者が弁償する
 deemed_consent = true            # 第1条
 unilateral_change = true         # 前文：予告なしに変更することがある
+third_party_clearance = "user"  # 第2条「第三者の知的財産権を尊重するものとし」
 
 [terms."jma-pdl-1.0"]
 title = "気象庁ホームページ利用規約（公共データ利用規約（第1.0版）準拠）"
@@ -132,6 +150,7 @@ non_copyrightable = "excluded"   # PDL1.0 準拠。数値データ・簡単な�
 indemnity = false                # 弁償・求償・費用・賠償の語なし（「損害」1件は Google Analytics に関する気象庁の免責）。2026-11-21 確認
 deemed_consent = true            # PDL1.0 準拠
 unilateral_change = true         # PDL1.0 準拠
+third_party_clearance = "user"  # PDL1.0 準拠（1.2）
 # 個別法令の注意として気象業務法17条（予報業務の許可）・23条（警報の制限）を挙げる。過去の統計の利用は該当しない見込み
 
 # 許可ライセンス。キーは SPDX 識別子、SPDX にないものは LicenseRef- を付ける。
