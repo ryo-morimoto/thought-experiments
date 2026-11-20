@@ -2,13 +2,13 @@
 """思考実験の地図。2 つの軸（なるべく標準や論文の分類）で問いの空間を区切り、
 どのセルが埋まっていて、次にどこを考えるべきかを出す。依存は標準ライブラリだけ（Python 3.11+）。
 
-地図は maps/<name>/map.toml に書き（雛形: templates/map.toml）、MAP.md はそこから生成する。
+地図は maps/<name>/map.toml に書き（雛形: templates/map.toml）、map.html はそこから生成する。
 
 使い方:
     python3 tools/thought_map.py frontier maps/<name>     # 次に考える候補を番号付きで出す
     python3 tools/thought_map.py frontier maps/<name> --json
-    python3 tools/thought_map.py render [maps/<name> ...]  # MAP.md を再生成（省略時はすべて）
-    python3 tools/thought_map.py check                     # 形式の検査と、MAP.md が最新かの検査
+    python3 tools/thought_map.py render [maps/<name> ...]  # map.html を再生成（省略時はすべて）
+    python3 tools/thought_map.py check                     # 形式の検査と、map.html が最新かの検査
 """
 
 from __future__ import annotations
@@ -17,12 +17,15 @@ import argparse
 import json
 import sys
 import tomllib
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, field
 from pathlib import Path
+
+import map_page
 
 ROOT = Path(__file__).resolve().parent.parent
 MAPS = ROOT / "maps"
-MAP_FILE, OUT_FILE = "map.toml", "MAP.md"
+MAP_FILE, OUT_FILE = "map.toml", "map.html"
+TOP = 6  # 地図に順位を出す候補の数
 
 # 状態 → (記号, 説明)。「埋まった」とみなすのは SETTLED だけ。
 STATUS = {
@@ -48,6 +51,7 @@ class Option:
     title: str
     why: str
     mode: str
+    sources: list[str] = field(default_factory=list)  # 推論の前提にするセル
 
 
 # ---------- 読み込みと検査 ----------
@@ -163,79 +167,42 @@ def _unexplored(m, r, c, rows, cols, here, target) -> Option:
         why = (f"同じ行の「{name(m, 'cols', cc)}」では「{a['claim']}」、同じ列の「{name(m, 'rows', rr)}」では"
                f"「{b['claim']}」。両方を前提にすると、このセルで何が言えるかを組み立てる")
         mode = "constructive"
+        sources = [f"{r}/{cc}", f"{rr}/{c}"]
     elif in_row or in_col:
         ax, (vid, x) = ("cols", in_row[0]) if in_row else ("rows", in_col[0])
         why = (f"隣の「{name(m, ax, vid)}」の結論「{x['claim']}」がここにも移るか。"
                "移らないなら、何が違うせいかを条件を変えて探す")
         mode = "destructive" if x["status"] == "supported" else "constructive"
+        sources = [f"{r}/{vid}" if in_row else f"{vid}/{c}"]
     else:
         empty_row = all(status(m, r, cc) == "unexplored" for cc in cols)
         empty_col = all(status(m, rr, c) == "unexplored" for rr in rows)
         where = "行も列もまったく手がついていない" if empty_row and empty_col else "近くに結論がない"
         why = f"{where}。まず問いを立てて、何が起きうるかを広く出す"
         mode = "exploratory"
-    return Option(score, "cell", target, here, why, mode)
+        sources = []
+    return Option(score, "cell", target, here, why, mode, sources)
 
 
-# ---------- MAP.md ----------
+# ---------- map.html ----------
 
 def render(m: dict) -> str:
-    rows, cols = m["rows"], m["cols"]
     rel = m["_path"].relative_to(ROOT)
-    up = "../" * (len(rel.parts) - 1)
-    L = [f"<!-- {rel} から tools/thought_map.py render で生成。直接編集しない -->", "",
-         f"# {m['title']}", "", f"**問い**: {m['question']}", ""]
-
-    L += ["## 軸", ""]
-    for ax, label in (("rows", "行"), ("cols", "列")):
-        a = m[ax]
-        basis = {"standard": "標準", "paper": "論文", "own": "自作（既存の分類に置き換える候補）"}[a["basis"]]
-        checked = "本文を確認済み" if a.get("checked") else "本文は未確認"
-        ref = a["ref"] if "://" in a["ref"] else f"{up}{a['ref']}"
-        L.append(f"- **{label}: {a['name']}** — 根拠: {basis}。[{a.get('ref_title', a['ref'])}]({ref})（{checked}）")
-        if a.get("note"):
-            L.append(f"  - {a['note']}")
-        for v in a["values"]:
-            L.append(f"  - `{v['id']}` {v['name']}" + (f" — {v['note']}" if v.get("note") else ""))
-    L.append("")
-
-    L += ["## 地図", "", "<!-- data-source: original -->"]
-    L.append("| | " + " | ".join(v["name"] for v in cols["values"]) + " | 埋まり |")
-    L.append("|---|" + "---|" * (len(cols["values"]) + 1))
-    for r in rows["values"]:
-        cells = [STATUS[status(m, r["id"], c["id"])][0] for c in cols["values"]]
-        n = sum(status(m, r["id"], c["id"]) in SETTLED for c in cols["values"])
-        L.append(f"| **{r['name']}** | " + " | ".join(cells) + f" | {n}/{len(cells)} |")
-    tot = sum(status(m, r["id"], c["id"]) in SETTLED for r in rows["values"] for c in cols["values"])
-    col_n = [sum(status(m, r["id"], c["id"]) in SETTLED for r in rows["values"]) for c in cols["values"]]
-    L.append("| 埋まり | " + " | ".join(f"{n}/{len(rows['values'])}" for n in col_n)
-             + f" | **{tot}/{len(rows['values']) * len(cols['values'])}** |")
-    L += ["", "凡例: " + "　".join(f"{s} {d}" for s, d in STATUS.values()), ""]
-
-    L += ["## セル", ""]
-    for c in sorted(m.get("cells", []), key=lambda c: (_idx(rows, c["row"]), _idx(cols, c["col"]))):
-        sym = STATUS[c["status"]][0]
-        L.append(f"### {sym} {name(m, 'rows', c['row'])} × {name(m, 'cols', c['col'])} (`{c['row']}/{c['col']}`)")
-        L.append("")
-        if c.get("claim"):
-            L.append(c["claim"])
-            L.append("")
-        for e in c.get("evidence", []):
-            L.append(f"- 根拠: [{e}]({e if '://' in e else up + e})")
-        if c.get("mode"):
-            L.append(f"- 最後に回したモード: {c['mode']}")
-        if c.get("next"):
-            L.append(f"- 次の問い: {c['next']}")
-        L.append("")
-
-    L += ["## 次に考える候補", "", "`python3 tools/thought_map.py frontier " + str(rel.parent) + "` と同じ内容。", ""]
-    for i, o in enumerate(frontier(m), 1):
-        L.append(f"{i}. **{o.title}** (`{o.target}`, {o.mode}) — {o.why}")
-    return "\n".join(L) + "\n"
-
-
-def _idx(axis: dict, vid: str) -> int:
-    return [v["id"] for v in axis["values"]].index(vid)
+    keep = lambda d, ks: {k: d[k] for k in ks if k in d}  # noqa: E731
+    axis = lambda a: {**keep(a, ("name", "basis", "ref", "ref_title", "checked", "note")),  # noqa: E731
+                      "values": [keep(v, ("id", "name", "note")) for v in a["values"]]}
+    data = {
+        "title": m["title"], "question": m["question"], "dir": str(rel.parent),
+        "up": "../" * (len(rel.parts) - 1),
+        "rows": axis(m["rows"]), "cols": axis(m["cols"]),
+        "cells": [keep(c, ("row", "col", "status", "claim", "evidence", "mode", "next"))
+                  for c in m.get("cells", [])],
+        "status": {k: list(v) for k, v in STATUS.items()},
+        "settled": sorted(SETTLED),
+        "frontier": [asdict(o) for o in frontier(m)],
+        "top": TOP,
+    }
+    return map_page.page(data)
 
 
 # ---------- CLI ----------
@@ -251,9 +218,9 @@ def main() -> int:
     f.add_argument("map", type=Path)
     f.add_argument("--top", type=int, default=10)
     f.add_argument("--json", action="store_true")
-    r = sub.add_parser("render", help="MAP.md を生成")
+    r = sub.add_parser("render", help="map.html を生成")
     r.add_argument("maps", type=Path, nargs="*")
-    sub.add_parser("check", help="形式と MAP.md の鮮度を検査")
+    sub.add_parser("check", help="形式と map.html の鮮度を検査")
     a = ap.parse_args()
 
     if a.cmd == "frontier":

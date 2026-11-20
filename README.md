@@ -10,11 +10,11 @@
 
 ```sh
 python3 tools/thought_map.py frontier maps/<name>   # 次に考える候補（理由と推論モードつき）
-python3 tools/thought_map.py render                 # map.toml から MAP.md を生成
-python3 tools/thought_map.py check                  # 形式と MAP.md の鮮度（pre-commit と CI でも実行）
+python3 tools/thought_map.py render                 # map.toml から map.html を生成
+python3 tools/thought_map.py check                  # 形式と map.html の鮮度（pre-commit と CI でも実行）
 ```
 
-Claude Code では `/thought-map` で、候補の提示 → 選択 → 思考実験 → 地図の更新、の1ループを回す（[.claude/skills/thought-map/SKILL.md](.claude/skills/thought-map/SKILL.md)）。雛形は [templates/map.toml](templates/map.toml) と [templates/experiment.md](templates/experiment.md)、最初の地図は [maps/data-license-assurance/MAP.md](maps/data-license-assurance/MAP.md)。
+Claude Code では `/thought-map` で、候補の提示 → 選択 → 思考実験 → 地図の更新、の1ループを回す（[.claude/skills/thought-map/SKILL.md](.claude/skills/thought-map/SKILL.md)）。雛形は [templates/map.toml](templates/map.toml) と [templates/experiment.md](templates/experiment.md)、最初の地図は [maps/data-license-assurance/map.html](maps/data-license-assurance/map.html)。
 
 ## セットアップ
 

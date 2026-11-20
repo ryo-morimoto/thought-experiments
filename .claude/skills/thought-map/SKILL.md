@@ -18,6 +18,10 @@ description: このリポジトリで、思考実験を回しながら地図（m
 
 ## 1. 候補を出して選んでもらう
 
+引数に `maps/<name> <row>/<col>`（または `axis:rows` / `axis:cols`）があれば、map.html の「コピー」から来た指定なので、選択を飛ばしてそのセルで 2 に進む。理由とモードは `frontier --json` の該当項目を使う。
+
+引数がなければ候補を出す。ユーザーには `maps/<name>/map.html` をブラウザで開くと全体と候補の理由が見られることを伝える。
+
 ```sh
 python3 tools/thought_map.py frontier maps/<name> --top 6
 ```
@@ -49,9 +53,9 @@ map.toml のセルを追加・更新する。
 - 実験中に、別のセルに効く結論や、軸に足りない値が見つかったら、そのセルに `open` を置くか軸に値を足す（足すときはユーザーに確認する）。
 
 ```sh
-python3 tools/thought_map.py render maps/<name>
+python3 tools/thought_map.py render maps/<name>   # map.html を再生成
 python3 tools/thought_map.py check
 python3 tools/check_data_policy.py
 ```
 
-最後に、変わったセル・埋まり具合（MAP.md の合計）・次の候補上位3つを短く報告して、続けるか聞く。
+最後に、変わったセル・埋まり具合（map.html の合計）・次の候補上位3つを短く報告して、続けるか聞く。

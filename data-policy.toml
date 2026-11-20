@@ -14,6 +14,7 @@ paths = [
   ".gitignore",
   ".githooks/**",
   ".github/**",
+  "maps/*/map.html", # map.toml から生成する思考実験の地図。HTML 全般は許可しない（データを貼り付けられるため）
   "LICENSES/**",    # REUSE が要求するライセンス本文（REUSE 自体の検査対象外）
 ]
 
