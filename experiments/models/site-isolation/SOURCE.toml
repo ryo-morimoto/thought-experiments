@@ -1,0 +1,5 @@
+# 思考実験 experiments/2026-11-20-browser-semantics-soundness.md のための自作の TLA+ モデル。
+# 外部データは含まない。
+id = "site-isolation-toy-model"
+title = "乗っ取られたレンダラーのもとでのサイト分離の検査を表す小さな TLA+ モデル"
+origin = "original"
