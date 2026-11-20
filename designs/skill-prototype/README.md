@@ -2,7 +2,7 @@
 
 [課題とバグの理解の記録形式](../課題の理解の記録形式.md)（第 2.1 版）を、エージェントが下書きするための Claude Code のスキル。[ryo-morimoto/plugins](https://github.com/ryo-morimoto/plugins) の規約（`SKILL.md` は 1000 字以内の案内、参照は 1 主題 2000 字以内、英語の命令形）に合わせて書いた。
 
-- 状態: plugin `issue-understanding` として一式を [package/plugins/issue-understanding/](package/plugins/issue-understanding/README.md) に置いた。スキル本体は `skills/drafting-issue-records/`、評価ケース 4 件は `skills/drafting-issue-records/evals/`。
+- 状態: plugin `issue-understanding` として一式を [package/plugins/issue-understanding/](package/plugins/issue-understanding/README.md) に置いた。スキル本体は `skills/evaluating-issue-reports/`、評価ケース 4 件は `skills/evaluating-issue-reports/evals/`。
 - プラグインのリポジトリへの導入は [package/install-to-plugins.sh](package/install-to-plugins.sh) で行う（このセッションからはプラグインのリポジトリで git を操作できないため、利用者が実行する）。origin/main から `feat/issue-understanding` のブランチを作り、`marketplace.json` に足し、生成物を作り直し、CI と同じ検査を通してから commit と push をする。
 - リポジトリの写し（.git を除く）で同じ手順を試し、`catalog.py check`（plugin 7 個: 問題なし）、2 つのスキルの `check_limits.py`、3 つの plugin のテストが通ることを確かめた。
 
@@ -31,3 +31,7 @@
 - 直した後のスキルは、まだ試用していない。
 - 試用は各 1 件で、自己評価（同じ subagent が後から結末を読んで評価した）。結末を先に見ないという約束は守られたと報告されているが、確かめる手段は無い。
 - 時間の計測があてにならなかった（バグで調査 6 分・記録 10 分、要望で体感 10〜15 分）。
+
+## 名前の変更
+
+2026-11-21 に skill の名前を `drafting-issue-records` から `evaluating-issue-reports` に変えた。単独で読むと「起票する issue を下書きする」と読め、隣の `draft-review-comments`（投稿するコメントを下書きする）からの類推でも同じ読みになるため（tellman-naming の判定、review.md の 4 行目と 5 行目）。plugin 名 `issue-understanding` は変えていない。[tests/](tests/) の試用の記録は、当時の名前のまま残している。

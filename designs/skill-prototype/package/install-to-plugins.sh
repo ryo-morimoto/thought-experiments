@@ -50,7 +50,7 @@ git commit -F - <<'MSG'
 feat(issue-understanding): 課題とバグ報告の記録を下書きする skill を追加 (experimental)
 
 課題（issue）やバグ報告を、主張と確かめた証拠に分けて記録する skill
-drafting-issue-records を追加する。種類（バグ・要望・症状の入れ物・セキュリティの
+evaluating-issue-reports を追加する。種類（バグ・要望・症状の入れ物・セキュリティの
 主張）ごとの欄、担い手と段階ごとの最低限、試用から作った評価ケース 4 件を含む。
 設計の根拠は ryo-morimoto/thought-experiments の designs/ にある。
 
