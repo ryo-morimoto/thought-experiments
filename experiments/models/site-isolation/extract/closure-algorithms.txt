@@ -1,0 +1,405 @@
+fetch	Byte-serializing a request origin
+fetch	CORS check
+fetch	CORS-preflight fetch
+fetch	CORS-safelisted request-header
+fetch	CORS-unsafe request-header byte
+fetch	CORS-unsafe request-header names
+fetch	Cross-Origin-Embedder-Policy allows credentials
+fetch	HTTP fetch
+fetch	HTTP-network fetch
+fetch	HTTP-network-or-cache fetch
+fetch	HTTP-redirect fetch
+fetch	Serializing a request origin
+fetch	Should response to request be blocked due to its MIME type?
+fetch	Should response to request be blocked due to nosniff?
+fetch	TAO check
+fetch	abort
+fetch	append
+fetch	append a request `Cookie` header
+fetch	append a request `Origin` header
+fetch	append to a request's navigation timing allow values list
+fetch	appropriate network error
+fetch	as a body
+fetch	available deferred-fetch quota
+fetch	build a content range
+fetch	clamp and coarsen connection timing info
+fetch	clone
+fetch	collect an HTTP quoted string
+fetch	contains
+fetch	convert header names to a sorted-lowercase set
+fetch	create a connection
+fetch	create a new cache entry
+fetch	create an opaque timing info
+fetch	cross-origin resource policy check
+fetch	cross-origin resource policy internal check
+fetch	data: URL processor
+fetch	deferred-fetch control document
+fetch	delete
+fetch	deserialize a serialized abort reason
+fetch	determine nosniff
+fetch	determine the HTTP cache partition
+fetch	determine the environment
+fetch	determine the network partition key
+fetch	determine the same-site mode
+fetch	environment default `User-Agent` value
+fetch	extract a MIME type
+fetch	extract full timing info
+fetch	extract header list values
+fetch	extract header values
+fetch	fetch
+fetch	fetch response handover
+fetch	fully read
+fetch	get
+fetch	get a structured field value
+fetch	get, decode, and split
+fetch	handle content codings
+fetch	incrementally read
+fetch	incrementally-read loop
+fetch	is offline
+fetch	location URL
+fetch	main fetch
+fetch	navigation TAO check
+fetch	obtain a connection
+fetch	override fetch
+fetch	parse a single range header value
+fetch	parse and store response `Set-Cookie` headers
+fetch	populate request from client
+fetch	potentially free deferred-fetch quota
+fetch	potentially override response for a request
+fetch	process the next manual redirect
+fetch	queue a cross-origin embedder policy CORP violation report
+fetch	queue a fetch task
+fetch	record connection timing info
+fetch	redirect-taint
+fetch	referrer
+fetch	reserve deferred-fetch quota
+fetch	resolve an origin
+fetch	safely extract
+fetch	scheme fetch
+fetch	serialize a response URL for reporting
+fetch	set
+fetch	set a structured field value
+fetch	should be blocked due to a bad port
+fetch	terminate
+fetch	total request length
+fetch	translate
+html	CSP-derived sandboxing flags
+html	Document's not restored reasons
+html	Scripting is disabled
+html	Scripting is enabled
+html	StructuredDeserialize
+html	StructuredSerializeForStorage
+html	StructuredSerializeInternal
+html	The body element
+html	The html element
+html	The navigation must be a replace
+html	URL and history update steps
+html	abort
+html	abort a document and its descendants
+html	abort a parser
+html	abort the ongoing navigation
+html	activate history entry
+html	activation
+html	active WindowProxy
+html	active browsing context
+html	active document
+html	active parser
+html	active window
+html	allowed by sandboxing to navigate
+html	allowed to use
+html	allows adding render-blocking elements
+html	allows auto-sizes
+html	ancestor navigables
+html	ancestor origins list
+html	ancestor revealing algorithm
+html	append
+html	append session history synchronous navigation steps
+html	append session history traversal steps
+html	apply link options from parsed header attributes
+html	apply the history step
+html	apply the push/replace history step
+html	at least as eager
+html	attempt to create a non-fetch scheme document
+html	attempt to populate the history entry's document
+html	autofocus delegate
+html	auxiliary browsing context
+html	being rendered
+html	block rendering
+html	blocking tokens set
+html	browsing context scope origin
+html	browsing-context connected
+html	build not restored reasons for a top-level traversable and its descendants
+html	build not restored reasons for document state
+html	can have its URL rewritten
+html	cannot navigate
+html	check a navigation response's adherence to `X-Frame-Options`
+html	check a navigation response's adherence to its embedder policy
+html	check if COOP values require a browsing context group switch
+html	check if enforcing report-only COOP would require a browsing context group switch
+html	check if popup COOP values require a browsing context group switch
+html	check if unloading is canceled
+html	check if we can run script
+html	child navigable
+html	clean up
+html	clean up after running script
+html	clear the forward session history
+html	click focusable
+html	clone a policy container
+html	collect tags from speculative load candidates
+html	colno
+html	commit a navigate event
+html	compatible with cross-origin isolation
+html	completely finish loading
+html	compute a speculative load referrer policy
+html	consider speculative loads
+html	consume a preloaded resource
+html	consume history-action user activation
+html	container
+html	container document
+html	create a classic script
+html	create a document to display a user agent page or PDF viewer inline
+html	create a new browsing context and document
+html	create a new browsing context group and document
+html	create a new realm
+html	create a new top-level browsing context and document
+html	create a policy container from a fetch response
+html	create a source set
+html	create a speculation rules parse result
+html	create an agent
+html	create and initialize a Document object
+html	create navigation params by fetching
+html	create navigation params from a srcdoc resource
+html	crossOriginIsolated
+html	current entry
+html	current focus chain of a top-level traversable
+html	current global object
+html	current node
+html	current settings object
+html	currentScript
+html	currently focused area of a top-level traversable
+html	deactivate a document for a cross-document navigation
+html	default script fetch options
+html	descendant navigables
+html	destroy
+html	determine navigation params policy container
+html	determine the creation sandboxing flags
+html	determine the iframe element referrer policy
+html	determine the origin
+html	document
+html	document base URL
+html	document-tree child navigables
+html	domain
+html	download the hyperlink
+html	effective domain
+html	encoding-parse a URL
+html	encoding-parse-and-serialize a URL
+html	enforce a response's opener policy
+html	entry settings object
+html	error
+html	evaluate a javascript: URL
+html	execute the deferred scripts
+html	execute the script element
+html	extract error information
+html	extract links from headers
+html	fallback base URL
+html	filename
+html	finalize a cross-document navigation
+html	finalize a same-document navigation
+html	find a potential indicated element
+html	find matching links
+html	finish
+html	finish parsing the children
+html	fire a download request navigate event
+html	fire a focus event
+html	fire a page transition event
+html	fire a push/replace/reload navigate event
+html	fire a traverse navigate event
+html	fire the pageswap event
+html	flush pending text
+html	focus chain
+html	focus delegate
+html	focus update steps
+html	focusing steps
+html	forcibly close
+html	fully active
+html	get all navigables that might experience a cross-document traversal
+html	get all navigables that only need history object length/index update
+html	get all navigables whose current session history entry will change or reload
+html	get all used history steps
+html	get session history entries
+html	get session history entries for the navigation API
+html	get the focusable area
+html	get the history object length and index
+html	get the navigation API entry index
+html	get the suggested filename
+html	get the target history entry
+html	get the used step
+html	global object
+html	hand-off to external software
+html	handle as a download
+html	has a style sheet that is blocking scripts
+html	has entries and events disabled
+html	has no style sheet that is blocking scripts
+html	hasUAVisualTransition
+html	hyperlink referrer policy
+html	iframe load event steps
+html	implied document
+html	inclusive descendant navigables
+html	indicated part
+html	inform the navigation API about aborting navigation
+html	initialize the navigation API entries for a new document
+html	inner consider speculative loads steps
+html	inner navigate event firing algorithm
+html	internal ancestor origin objects list
+html	key
+html	less eager
+html	lineno
+html	load a document
+html	load a media document
+html	load a multipart/x-mixed-replace document
+html	load a text document
+html	load an HTML document
+html	make active
+html	make document unsalvageable
+html	match integrity metadata
+html	match opener policy values
+html	matches
+html	matches about:blank
+html	matches about:srcdoc
+html	matches the environment
+html	merge existing and new import maps
+html	merge module specifier maps
+html	message
+html	navigable
+html	navigate
+html	navigate event intercept commit handler steps
+html	navigate to a fragment
+html	navigate to a javascript: URL
+html	navigation API
+html	navigationType
+html	newURL
+html	node navigable
+html	non-secure context
+html	normalize the source densities
+html	notify about rejected promises
+html	notify about the committed-to entry
+html	obtain a browsing context to use for a navigation response
+html	obtain a similar-origin window agent
+html	obtain a site
+html	obtain an embedder policy
+html	obtain an opener policy
+html	oldURL
+html	parse a URL
+html	parse a document rule predicate
+html	parse a sandboxing directive
+html	parse a sizes attribute
+html	parse a speculation rule
+html	parse a speculation rule set string
+html	parse a srcset attribute
+html	pause
+html	perform a microtask checkpoint
+html	persisted
+html	pop the current node
+html	populate with html/head/body
+html	potentially process scroll behavior
+html	potentially render-blocking
+html	potentially reset the focus
+html	prepare to run script
+html	printing steps
+html	process early hint headers
+html	process internal resource link
+html	process internal resource links
+html	process link headers
+html	process navigate event handler failure
+html	process scroll behavior
+html	process the `Speculation-Rules` header
+html	promise
+html	queue a cross-origin embedder policy inheritance violation
+html	queue a global task
+html	queue a microtask
+html	queue a task
+html	queue a violation report for browsing context group switch when navigating away from a COOP response
+html	queue a violation report for browsing context group switch when navigating to a COOP response
+html	queue an element task
+html	reactivate
+html	reason
+html	redundant with
+html	register an import map
+html	register speculation rules
+html	reject the finished promise
+html	relevant agent
+html	relevant global object
+html	relevant realm
+html	relevant settings object
+html	remove an element from the stack of open elements
+html	report an exception
+html	requires storing the policy container in history
+html	resolve the finished promise
+html	respond to base URL changes
+html	responsible event loop
+html	restorable scrollable regions
+html	restore persisted state
+html	restore scroll position data
+html	restore the history object state
+html	restrict
+html	resume applying the traverse history step
+html	returnValue
+html	rules for parsing floating-point number values
+html	rules for parsing integers
+html	rules for parsing non-negative integers
+html	run a classic script
+html	run a module script
+html	running script
+html	same origin
+html	same origin-domain
+html	same site
+html	sanitize a URL to send in a report
+html	save persisted state
+html	schemelessly same site
+html	scroll to the fragment
+html	secure context
+html	select the indicated part
+html	sequentially focusable
+html	serialization of an origin
+html	set the URL
+html	set the initial visibility state
+html	set the ongoing navigation
+html	set up a window environment settings object
+html	snapshot source snapshot params
+html	snapshot target snapshot params
+html	spin the event loop
+html	start a new parallel queue
+html	state
+html	steps to fire beforeunload
+html	stop intersection-observing a lazy loading element
+html	stop the speculative HTML parser
+html	stops parsing
+html	system focus
+html	tabindex value
+html	target name
+html	terminate a worklet global scope
+html	the environment settings object's global object
+html	the environment settings object's realm
+html	the realm's agent
+html	the realm's global object
+html	the realm's settings object
+html	top-level browsing context
+html	top-level traversable
+html	translate a preload destination
+html	traversable navigable
+html	try to scroll to the fragment
+html	unblock rendering
+html	unload
+html	unload a document and its descendants
+html	unloading document cleanup steps
+html	update document for history step application
+html	update speculation rules
+html	update the current document readiness
+html	update the navigation API entries for a same-document navigation
+html	update the navigation API entries for reactivation
+html	update the visibility state
+html	url
+html	valid floating-point number
+html	valid non-negative integer
+html	will lazy load element steps
+html	window event loop
