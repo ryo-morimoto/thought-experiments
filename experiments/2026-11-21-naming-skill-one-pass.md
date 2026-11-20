@@ -101,11 +101,29 @@ tellman-naming を4回呼んで、ようやく指摘が出なくなった。1回
 - 揺れを抑えるために変更を減らす規則（元の O3）: ユーザーの「厳しく」と衝突する。台帳で置き換えた。
 - `d64ae13` と一致するかを試験の的にすること: 私の最終の状態は指摘0件ではなく、3回の試行が揃って私と違う判定をした名前もあった（`frontier`、`map_page`、`validate`、`all_maps`）。
 
+### 修正案 A（ユーザーが選んだ選択肢。ユーザーの判断）
+
+規則の修正 ＋ 数え上げと繰り返し ＋ 判定の台帳。skill の元は claude.ai の plugin から同期されたもの（manifest の `backingPluginId`）で、元のリポジトリはここからは分からない。公開リポジトリに skill の本文を載せないため、修正後の一式と差分は一時フォルダ（`$CLAUDE_JOB_DIR/tmp/tellman-naming-proposed/` と `tellman-naming.diff`、367行）に置いた。私が新しく書いた数え上げスクリプトだけを [scripts/naming_inventory.py](scripts/naming_inventory.py) として残す。
+
+| ファイル | 変更 | 中身 |
+| --- | --- | --- |
+| `SKILL.md` | 変更 | 案内に `core/audit.md`（範囲の監査）と `core/decisions.md`（台帳）を足す。`survey.md` は「依頼されたときだけ」に下げる。999文字 |
+| `core/audit.md` | 新規 | 依頼の確定（範囲、適用か報告か、傾向に合わせるか、未公開の名前は内部扱い）→ core を全部読む → 台帳を読む → 機械的に数え上げる（`--collisions`、`--unused`）→ 全件を判定 → 適用 → 古い語の検索と再判定を指摘0件まで → 台帳に記録 → 任意で確認役（見落としの報告だけ） |
+| `core/decisions.md` | 新規 | 台帳 `naming-decisions.md` の書式（名前・判定・新しい名前・根拠・日付）。新しい根拠がない限り、記録した判定を変えない。「残す」も記録する |
+| `core/review.md` | 変更 | 0行目「要るか → 削除」と6行目「同じものの別名 → 統合」を足す。3行目（書き方の傾向）は依頼されたときだけ。名前の使われ方の検索を `survey.md` からここへ移す |
+| `core/respond.md` | 変更 | 「〜して」の依頼は適用まで。結論に削除・統合を足す。対象外を「公開済みの名前を何度ものリリースにわたって移すこと」に狭める |
+| `core/survey.md`、`core/boundaries.md` | 変更 | 書き方の傾向を優先するのは、依頼されたときだけ |
+| `scripts/inventory.py` | 新規 | 名前の数え上げ（Python は構文木、JS・CSS・HTML・設定ファイル・Markdown・Rust・Clojure は正規表現）。`--collisions`、`--unused`、`--words` |
+
+数え上げを最初の状態 `af39591` にかけると、名前402個（固有の名前251個）。`--collisions` は、試験で衝突として指摘された `cmd`、`a`、`cols` などを挙げた。`--unused` は、未使用の CSS クラス `flag` を挙げた（ほかに誤検出が4件）。
+
+まだ試していないこと: 修正後の skill を1回かけて、指摘0件に届くか、台帳でやり直しが減るか。
+
 完了条件の確認（[experiments/README.md](README.md) は、元の checkout にある最新版で確認した）:
 
 1. 最強の反論を反例の思考実験で検討した: 満たした。
 2. 前提にラベルを付け、ひっくり返しうる前提を明記した: 満たした。
-3. 従来の判断と食い違う具体例を、リポジトリのデータとスクリプトで再現できる: 満たしていない。試行の出力は一時ファイルにしかない。LLM の実行は同じ結果を再現しない。
+3. 従来の判断と食い違う具体例を、リポジトリのデータとスクリプトで再現できる: 満たした。従来の判断は「4回の手作業の見直しで完了した」。具体例は、その後のコミット `d64ae13` にも未使用の CSS クラス `flag` が残っていること。[scripts/reproduce_naming_unused.py](scripts/reproduce_naming_unused.py) が公開リポジトリから取得して再現する（試行の出力そのものは、LLM の実行なので再現しない）。
 4. 直近2回の操作で、どの対立仮説も脱落しなかった: 満たしていない。直近の操作（E3・E4）では脱落がなかったが、その前の操作（E1・E2）で H1 と H4 の後半が脱落した。
 
 ### 修正案の草案（段の形。どこまで入れるかは揺れの大きさで決める）
@@ -136,6 +154,14 @@ E1 と同じ依頼文で、作業場所だけを変えた E3・E4 を並列に�
 - 新しい名前が3回とも違った例: `INVOKE` → `SLASH_COMMAND` / `SKILL_COMMAND` / `SKILL`、`_cells` → `_cell_by_position` / `_grid` / `_cell_at`
 - 3回とも一致して、私と違った例: `frontier` と `map_page` は残す。`validate` → `find_errors`、`all_maps` → `find_maps`（外部を読むので動詞を付ける）
 
+### 再現の出力
+
+```
+$ python3 experiments/scripts/reproduce_naming_unused.py
+最初（af39591）: 未使用の CSS クラス flag あり  (https://raw.githubusercontent.com/ryo-morimoto/plugins/af39591/plugins/thought-experiments/skills/mapping-thought-experiments/scripts/map_page.py)
+4回の見直しの後（d64ae13）: 未使用の CSS クラス flag あり  (https://raw.githubusercontent.com/ryo-morimoto/plugins/d64ae13/plugins/thought-experiments/skills/mapping-thought-experiments/scripts/thought_map.py)
+```
+
 ### 判定が割れた名前（抜粋）
 
 <!-- data-source: original -->
@@ -161,6 +187,10 @@ E1 と同じ依頼文で、作業場所だけを変えた E3・E4 を並列に�
 | 4 | `d64ae13` | CSS・HTML・JSON の名前（状態の色の変数、`unchecked` など） | Python と JS の識別子しか数え上げていなかった。改名の影響を見ていなかった |
 
 ## 経過
+
+### 2026-11-21 修正案 A
+
+ユーザーが次の手1（A を採り、修正案を書く）を選んだ（ユーザーの判断）。修正後の skill 一式と差分を一時フォルダに作り、数え上げスクリプトと再現スクリプトを `experiments/scripts/` に置いた。完了条件の3を満たした。4（直近2回の操作で脱落なし）はまだ満たしていない。
 
 ### 2026-11-21 段階B（2回目の操作）と段階C
 
