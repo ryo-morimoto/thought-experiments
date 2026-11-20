@@ -1,0 +1,117 @@
+# 思考実験の地図。生成: python3 <skill>/scripts/thought_map.py render maps/browser-semantics-soundness
+# 軸の選び方と捨てた候補: research_notes/browser-semantics-soundness-map/axes.md
+
+title = "ブラウザの意味論から検証モデルへの変換の根拠"
+question = "ブラウザの意味論（WHATWG の散文と独立に作られたブラウザ）から検証モデルへの変換に、どの攻撃者・どの性質について、どんな根拠を与えられるか"
+
+[rows]
+name = "攻撃者の模型"
+basis = "paper"
+ref = "https://css.csail.mit.edu/6.566/2015/readings/formal-web.pdf"
+ref_title = "Akhawe, Barth, Lam, Mitchell, Song: Towards a Formal Foundation of Web Security (CSF 2010)。乗っ取りの 2 値は Reis, Moshchuk, Oskov: Site Isolation (USENIX Security 2019, https://www.usenix.org/system/files/sec19-reis.pdf)"
+ref_read = true
+note = "Akhawe らの 3 つの脅威に、Reis らのブラウザの脅威模型の 2 つを足した。どちらも本文で定義を確かめた（2026-11-21）。攻撃者のいない場合（イベントループの順序などの機能の正しさ）は行に無い"
+
+[[rows.values]]
+id = "web"
+name = "Web の攻撃者"
+note = "悪意のあるサイトを運営し、ブラウザも使えるが、自分のホスト宛て以外のネットワークは見えない（Akhawe ら）。仕様どおりに動くスクリプトを書く攻撃者"
+
+[[rows.values]]
+id = "network"
+name = "能動的なネットワークの攻撃者"
+note = "Web の攻撃者の能力に加え、ネットワークの通信を盗聴・遮断・偽造できる。ブラウザの API も使える（Akhawe ら）"
+
+[[rows.values]]
+id = "gadget"
+name = "ガジェットの攻撃者"
+note = "Web の攻撃者が、正直なサイトに（限られた種類の）内容を差し込める（Akhawe ら）。ブログのコメントやマッシュアップの部品"
+
+[[rows.values]]
+id = "renderer"
+name = "レンダラーを乗っ取る攻撃者"
+note = "レンダラーの脆弱性を突いて検査を回避し、任意のコードを実行できる。プロセスのメモリをすべて読め、特権を持つブラウザプロセスに嘘をつける（Reis ら の renderer exploit attacker）"
+
+[[rows.values]]
+id = "memdisc"
+name = "メモリを読み出す攻撃者"
+note = "任意のコードは動かせず、ブラウザプロセスにも嘘をつけないが、同じレンダラープロセスの中のデータを、同一オリジン方針が禁じていても読める。投機実行などの過渡的な実行の攻撃で実現する（Reis ら の memory disclosure attacker）"
+
+[cols]
+name = "性質の種類"
+basis = "paper"
+ref = "https://www.cs.cornell.edu/fbs/publications/Hyperproperties.pdf"
+ref_title = "Clarkson, Schneider: Hyperproperties (Journal of Computer Security 18(6), 2010)"
+ref_read = true
+note = "本文で定義を確かめた（2026-11-21）。トレースの性質は安全性と活性の交わり、ハイパー性質はハイパー安全性とハイパー活性の交わりで書ける。詳細化はトレースの性質を壊さないが、ハイパー性質は壊しうる"
+
+[[cols.values]]
+id = "safety"
+name = "安全性"
+note = "「悪いこと」が起きないことを言うトレースの性質。不変条件の論法で示す"
+
+[[cols.values]]
+id = "liveness"
+name = "活性"
+note = "「良いこと」がいずれ起きることを言うトレースの性質。整礎の論法で示す"
+
+[[cols.values]]
+id = "hypersafety"
+name = "ハイパー安全性"
+note = "複数のトレースの関係についての、有限の観測で破れが分かる性質。非干渉などの情報流の性質はここに入る"
+
+[[cols.values]]
+id = "hyperliveness"
+name = "ハイパー活性"
+note = "どの有限の観測も、性質を満たすトレースの集合に延ばせるハイパー性質。可能性論的な情報流の一部など"
+
+[[cells]]
+row = "web"
+col = "safety"
+status = "supported"
+claim = "隔離をアクセス制御（CORP で許したものだけが届く）として書くと、モデルの中では定義どおり成り立つ。仕様の版に対しても出荷中のブラウザに対しても健全性の根拠は与えられず、得られるのは WPT や変異による反証の記録と、段ごとの取り出しによる追跡可能性だけ。WPT は段の欠落の誤読を最も捕まえにくい"
+evidence = [
+  "experiments/2026-11-20-browser-semantics-soundness.md",
+  "experiments/models/site-isolation/SpecIsolation.tla",
+  "experiments/models/site-isolation/WPTBroad.tla",
+  "experiments/models/site-isolation/extract/README.md",
+  "experiments/models/site-isolation/wpt-draft/RESULTS.md",
+]
+mode = "destructive"
+next_question = "取り出した段の一覧と手書きのモデルを突き合わせ、モデルが落としている段を全部挙げられるか"
+
+[[cells]]
+row = "web"
+col = "hypersafety"
+status = "supported"
+claim = "通り道を宣言しない非干渉は、仕様の中で偽（no-cors の取得の成否で CORP の有無が分かる）。通り道を宣言した情報流ならモデルの中で成り立ち、誤読で破れるので自明ではない。ただし通り道の一覧はモデルと独立に先に固定する必要があり、非決定で過近似したモデルではハイパー性質は保たれない"
+evidence = [
+  "experiments/2026-11-20-browser-semantics-soundness.md",
+  "experiments/models/site-isolation/SpecIsolation.tla",
+  "https://www.cs.cornell.edu/fbs/publications/Hyperproperties.pdf",
+]
+mode = "destructive"
+next_question = "XS-Leaks のような独立した目録から通り道の一覧を先に固定すると、宣言つきの情報流はどこまで成り立つか"
+
+[[cells]]
+row = "renderer"
+col = "safety"
+status = "supported"
+claim = "仕様はプロセスモデルを扱わないので、仕様から変換したモデルは根拠にならず、モデルはブラウザの設計のモデルになる。根拠は攻撃者を想定した反証の記録（IPC を変異させるファジング、仕様由来のオリジン計算の判定基準）にとどまる。既知の 9 件のうち、主体の完全性で説明できるのは 1 件で、多くはブラウザ自身のオリジン計算の誤り"
+evidence = [
+  "experiments/2026-11-20-browser-semantics-soundness.md",
+  "experiments/models/site-isolation/SiteIsolation.tla",
+  "experiments/models/site-isolation/OriginOracle.tla",
+  "https://www.ndss-symposium.org/wp-content/uploads/2026-f902-paper.pdf",
+]
+mode = "destructive"
+next_question = "仕様由来のオリジン計算の判定基準を、既知のバグに合わせずに作ったとき、新しいバグを予測できるか"
+
+[[cells]]
+row = "memdisc"
+col = "hypersafety"
+status = "open"
+claim = ""
+evidence = ["experiments/2026-11-20-browser-semantics-soundness.md"]
+mode = "exploratory"
+next_question = "タイミングやプロセスの共有を観測に入れたとき、隔離の情報流の性質をどう書き、仕様と実装のどちらから根拠を取れるか（包含にもとづく健全性では扱えない）"

@@ -1,0 +1,4 @@
+# 地図の map.html は、自作の map.toml から thought_map.py render で生成した自作物。外部データは含まない。
+id = "map-browser-semantics-soundness"
+title = "思考実験の地図「ブラウザの意味論から検証モデルへの変換の根拠」の生成ページ"
+origin = "original"

@@ -3,7 +3,7 @@
 - 状態: 結論済み
 - 開始: 2026-11-20
 - 更新: 2026-11-21
-- 関連: [experiments/models/site-isolation/](models/site-isolation/SOURCE.toml)（TLA+ モデル）
+- 関連: [experiments/models/site-isolation/](models/site-isolation/SOURCE.toml)（TLA+ モデル）、[maps/browser-semantics-soundness/](../maps/browser-semantics-soundness/map.toml)（地図）
 
 この記録は、会話の後半（2026-11-21）にまとめて書いた。段階ごとのコミットはしておらず、途中経過は会話の記録から再構成した。
 
