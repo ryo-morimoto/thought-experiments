@@ -1,0 +1,29 @@
+id = "jma-besttrack"
+title = "RSMC Tokyo-Typhoon Center Best Track Data（全期間）"
+origin = "external"
+publisher = "気象庁"
+publisher_type = "government"
+url = "https://www.jma.go.jp/jma/jma-eng/jma-center/rsmc-hp-pub-eg/Besttracks/bst_all.zip"
+license = "LicenseRef-jp-PDL-1.0"
+license_url = "https://www.jma.go.jp/jma/en/copyright.html"
+terms = "jma-en-pdl-1.0"
+# 規約の出典記載例 "Source: Japan Meteorological Agency website (URL of relevant page)" に沿う
+attribution = "Source: Japan Meteorological Agency website (https://www.jma.go.jp/jma/jma-eng/jma-center/rsmc-hp-pub-eg/besttrack.html)"
+content_kind = ["table"]
+modified = false
+# zip のまま置く。取得元とバイト単位で同一なので、証拠（sha256・Internet Archive）と直接照合できる。
+# 展開すると bst_all.txt（約 6MB）。分析は zipfile で直接読む。
+# 形式（https://www.jma.go.jp/jma/jma-eng/jma-center/rsmc-hp-pub-eg/Besttracks/e_format_bst.html ）:
+#   固定長の ASCII。台風ごとにヘッダ行（先頭 "66666"、国際番号、データ行数、名前、最終改訂日）と、
+#   6時間ごとなどのデータ行（解析時刻 yymmddhh UTC、階級 2〜9、緯度・経度 0.1度単位、中心気圧 hPa、
+#   最大風速 kt、50kt/30kt 暴風域、上陸・通過の印）が続く。
+# 最大風速は 1977年以降だけ値がある（1976年以前は全データ行で 0 か空欄。取得したデータで確認）。
+# 1951〜2026年（2026年は年の途中）。過去分も再解析で改訂される（修正履歴:
+#   https://www.jma.go.jp/jma/jma-eng/jma-center/rsmc-hp-pub-eg/Besttracks/history_of_revision.csv ）。
+
+[concluded]
+license = "LicenseRef-jp-PDL-1.0"
+by = "Claude Opus 5.5（ryo-morimoto の依頼で確認。本人の確認待ち）"
+at = 2026-11-21
+basis = ["terms-page"]
+third_party = "none-indicated"   # 解析値の数表。第三者の権利の表示はない

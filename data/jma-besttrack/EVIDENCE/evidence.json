@@ -1,0 +1,22 @@
+{
+  "fetched_at": "2026-11-20T18:23:48+00:00",
+  "third_party_markers": [],
+  "tsa": "https://freetsa.org/tsr",
+  "opentimestamps": false,
+  "archives": {
+    "url": {
+      "url": "https://www.jma.go.jp/jma/jma-eng/jma-center/rsmc-hp-pub-eg/Besttracks/bst_all.zip",
+      "snapshot": "https://web.archive.org/web/20261120182314/https://www.jma.go.jp/jma/jma-eng/jma-center/rsmc-hp-pub-eg/Besttracks/bst_all.zip",
+      "archived_raw": "https://web.archive.org/web/20261120182314id_/https://www.jma.go.jp/jma/jma-eng/jma-center/rsmc-hp-pub-eg/Besttracks/bst_all.zip",
+      "archived_sha256": "003204477a76ce50cebc9af52f8e4a0323212bf0316b1d43ad058ef82987a18a",
+      "matches_local": true
+    },
+    "license_url": {
+      "url": "https://www.jma.go.jp/jma/en/copyright.html",
+      "snapshot": "https://web.archive.org/web/20261113150457/https://www.jma.go.jp/jma/en/copyright.html",
+      "archived_raw": "https://web.archive.org/web/20261113150457id_/https://www.jma.go.jp/jma/en/copyright.html",
+      "archived_sha256": "ff851548d5d8351c5b64abb3b253a540469a98c8fc25ad539b8b51a4b89d6f62",
+      "matches_local": true
+    }
+  }
+}
