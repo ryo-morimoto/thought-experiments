@@ -19,3 +19,5 @@ jobs:
           python-version: "3.12"
       # 出所・ライセンス義務・証拠（ハッシュとタイムスタンプ）
       - run: python3 tools/check_data_policy.py
+      # te 形式の思考実験の記録：te.lock の版を取得して照合し、experiments/ 以下を te check する
+      - run: python3 tools/te_check.py

@@ -1,6 +1,6 @@
 # このリポジトリでの作業
 
-思考実験の記録場所です。外部データの扱いは [DATA_POLICY.md](DATA_POLICY.md) に従い、変更のたびに `python3 tools/check_data_policy.py` と `reuse lint` を通します。
+思考実験の記録場所です。外部データの扱いは [DATA_POLICY.md](DATA_POLICY.md) に従い、変更のたびに `python3 tools/check_data_policy.py`、`reuse lint`、`python3 tools/te_check.py`（te 形式の記録の検査。版は `te.lock` に固定）を通します。
 
 ## 一次資料だけを根拠にする
 

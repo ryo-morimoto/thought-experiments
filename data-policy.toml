@@ -12,6 +12,7 @@ ignore_sources = ["templates/**"]
 extensions = ["md", "py", "toml"]
 paths = [
   ".gitignore",
+  "te.lock",        # te の版の固定（tools/te_check.py が書く）
   ".githooks/**",
   ".github/**",
   "LICENSES/**",    # REUSE が要求するライセンス本文（REUSE 自体の検査対象外）
