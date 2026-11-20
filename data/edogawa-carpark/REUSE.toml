@@ -1,0 +1,12 @@
+# 自動生成: python3 tools/check_data_policy.py --fix。手で編集しない（元は SOURCE.toml）。
+version = 1
+
+[[annotations]]
+path = "**"
+SPDX-FileCopyrightText = "江戸川区"
+SPDX-License-Identifier = "CC-BY-4.0"
+
+[[annotations]]
+path = ["SOURCE.toml", "EVIDENCE/**"]
+SPDX-FileCopyrightText = "2026 ryo-morimoto"
+SPDX-License-Identifier = "CC0-1.0"
