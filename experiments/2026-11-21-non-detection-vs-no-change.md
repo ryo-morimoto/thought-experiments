@@ -26,7 +26,7 @@
 - D1 扱ってよい。長い記録で検出されないこと自体が、変化が小さい証拠になる。
 - D2 扱ってはいけない。証拠がないことは、ないことの証拠ではない。
 - D3 検定の力しだい。判断に効く大きさの変化を見つけられる力があれば、未検出は情報になる。
-- D4 基準を用途ごとに分けるべき。防災では見逃しを減らす弱い基準を使う。
+- D4 基準を用途ごとに分けるべき。防災では見逃しを減らす弱い基準を使う（Knutson ら 2019 が同じ考え方を述べている。原文で確認）。
 - D5 観測をやめて予測を使うべき。治水の降雨量の倍率はこの方式だが、高潮の想定は違う。
 
 設定の欠陥:
@@ -140,7 +140,13 @@ n=75 傾き=-0.0439/年 (75年で -3.25個) 標準誤差=0.0246 t=-1.78
 
 - 国土交通省「高潮浸水想定区域図作成の手引き」Ver.2.11 は、想定する台風を室戸台風の中心気圧 911.6hPa と伊勢湾台風の経路・速度に固定し、気候変動の将来予測を「直ちに…反映させる制度とはなっていない」とする（[science_open_problems.md](../research_notes/台風と防災の未解決課題/science_open_problems.md)）。
 - 治水計画では、気候変動を踏まえて降雨量の変化倍率（2℃上昇で1.1倍、北海道は1.15倍）を採用している（同上、[japan_practice_challenges.md](../research_notes/台風と防災の未解決課題/japan_practice_challenges.md)）。
-- （一次資料で確認できず、根拠から外した）Knutson ら（2019、BAMS、doi:10.1175/BAMS-D-18-0189.1）が「従来の基準では著者の意見が割れたため弱い基準で評価し直した」という記述は、調査メモ経由の孫引きだった。出版社・大学・NOAA のサイトが自動取得を拒否し、原文を確認できていない（2026-11-21）。
+- Knutson ら（2019）「Tropical Cyclones and Climate Change Assessment: Part I」BAMS 100(10)、doi:10.1175/BAMS-D-18-0189.1（出版社の PDF、ユーザーが取得、sha256 `23553233e9132dd69426331a7c5e2234552db1f4d513ab2efb4a2e346d019e99`、2026-11-21 確認。PDF はリポジトリに入れていない）。当初の「従来の基準では著者の意見が割れたため弱い基準で評価し直した」は誤り（調査メモ経由の孫引き）。原文が挙げる理由は、第1種の誤りだけを避けると見逃しが生じうることと、どちらの誤りを避けるべきかが文脈と読み手によることだった。PDF の3ページ目:
+
+> "Adopting only the type I perspective has substantial potential for missing anthropogenic influences that are present but have not yet emerged or been identified to a high level of confidence. Therefore, we also make some assessment statements considering the type II error perspective."
+
+> "whether a type I or type II error is more important to avoid is context and audience dependent. If the goal is to advance scientific understanding, an emphasis on avoiding type I errors seems logical. However, for future planning and risk assessment, one may want to reduce type II errors in particular. For example, planners for infrastructure development in coastal regions may want to consider emerging detection/attribution findings—even if not at the 0.05 significance level—in their planning and decision-making."
+
+  この論文は、この節の最初の版で「Lloyd and Oreskes (2018)」を引いて type I・type II の論点を紹介している（Lloyd and Oreskes の原文は未読）。
 
 ### 段階B 操作1：指標ごとの検定の力と判断のしきい値
 
@@ -289,7 +295,7 @@ D 風速から年代のかさ上げを差し引く（2007-14年 -2kt、2015-25�
 
 ユーザーの評価：「価値があるようで当たり前のことしか言っていない、価値の無かった思考実験」。Claude もこの評価に同意する。
 
-- 既知の答えの再確認：「証拠がないことは、ないことの証拠ではない」「検出の基準は見逃しと空振りの損失を同じ重さに置く」は統計と意思決定論の教科書的な結論で、この点を示す先行研究として当初挙げた Knutson ら（2019）は、一次資料で確認できていない（上の「具体」を参照）。
+- 既知の答えの再確認：「証拠がないことは、ないことの証拠ではない」「検出の基準は見逃しと空振りの損失を同じ重さに置く」は統計と意思決定論の教科書的な結論で、Knutson ら（2019）は、計画やリスク評価では見逃し（第2種の誤り）を減らす基準を使いうると、沿岸のインフラ計画を例に、0.05 の有意水準に達しない知見も考慮しうると述べていた（原文で確認、上の「具体」を参照）。この思考実験の中核の結論は、この記述と同じだった。
 - 藁人形：攻撃した D1（未検出なら変化なしとして扱ってよい）は、段階B 操作3で、どの制度資料も根拠にしていないと分かっていた。誰も取っていない立場を崩していた。
 - 原因：段階A で先行する答えを調べず、攻撃する立場を実際に誰が取っているかを確かめず、結果の予想を記録しなかった。この反省から、experiments/README.md に「価値の確認」を加え、running-thought-experiments スキルに `value-checks.md` を提案した。
 - 残るもの（新しさは小さい）：気象庁の公開データでの具体的な数値（上陸数で80%の確率で見つけられる最小の変化が65%など）、ベストトラックの風速の記録の不均質の確認（TyRA がすでに指摘）、それらを再現するスクリプト。
@@ -310,6 +316,8 @@ D 風速から年代のかさ上げを差し引く（2007-14年 -2kt、2015-25�
 - 2026-11-21 訂正（[2026-11-21-life-value-in-flood-bc.md](2026-11-21-life-value-in-flood-bc.md) の段階B 操作2で判明）：国の人命の評価額のうち精神的損害額は、技術指針（共通編）の令和6年9月改定で 6.01億円/人になっていた（当初「令和7年9月」と書いたのは誤り。原文で確認：技術指針（共通編）令和6年9月版 p22（https://www.mlit.go.jp/tec/hyouka/public/24090501/shishin/shishin240905.pdf 、sha256 `50f16e135476550ca7d32450e28d1564b3ea601b30b0485f6a3bac2d2e8f83aa`）。令和7年9月版 p22 も同文（https://www.mlit.go.jp/tec/hyouka/public/250918_shishin/shishin/shishin250918.pdf 、sha256 `660bbad60629ab938f2bf926bc2f31a1c16ff5706c125f83ddbe5f97e9351962`）。逸失利益・医療費は含まない）（砂防のマニュアルからの孫引き。原文は未確認）。操作4の 2.26億円/人は古い値。6.01億円/人では避難の損失比の下限が約52（東京湾、19.6×6.01/2.26）、真備の下限が約183になり、結論の向きは強まる。資料の出どころも「河川事業の評価手法に関する研究会」に訂正した。
 
 - 2026-11-21 段階C の再攻撃（経緯を知らない reviewer 3人、スキルの評価の中で実施）。定義の文言、二値の規則、適用範囲の3点を直し、手引きも改訂した。
+
+- 2026-11-21 Knutson ら（2019）をユーザーが取得した出版社の PDF で確認した。弱い基準を併用した理由は「意見の割れ」ではなく「見逃しの恐れ」と「文脈と読み手による」だった。中核の結論がこの論文と同じであることが、一次資料で裏付けられた。
 
 ## 次の問い
 
