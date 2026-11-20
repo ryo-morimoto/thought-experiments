@@ -1,8 +1,10 @@
 # 「科学的に検出されていない」を、防災で「変化なし」として扱ってよいか
 
 - 状態: 結論済み
+- ゴール: 防災・政策の実務者が「気候の変化は検出されていない」という報告を受けたときの判断（現状の想定を維持するか、対策するか）
 - 開始: 2026-11-21
 - 更新: 2026-11-21
+- 成果物: [briefs/2026-11-21-non-detection-decision-guide.md](../briefs/2026-11-21-non-detection-decision-guide.md)
 - 関連: データ [data/jma-typhoon-accession/](../data/jma-typhoon-accession/SOURCE.toml)・[data/jma-typhoon-landing/](../data/jma-typhoon-landing/SOURCE.toml)、[data/jma-besttrack/](../data/jma-besttrack/SOURCE.toml)、分析スクリプト [experiments/scripts/besttrack_intensity.py](scripts/besttrack_intensity.py)、分岐元 [2026-11-21-typhoon-count-as-indicator.md](2026-11-21-typhoon-count-as-indicator.md)、調査メモ [research_notes/台風と防災の未解決課題/](../research_notes/台風と防災の未解決課題/)、データ [data/jma-typhoon-generation/](../data/jma-typhoon-generation/SOURCE.toml)、枠組みの出どころ [2026-11-20-data-policy-provability.md](2026-11-20-data-policy-provability.md)
 
 ## 問い
@@ -283,6 +285,8 @@ D 風速から年代のかさ上げを差し引く（2007-14年 -2kt、2015-25�
 
 - 2026-11-21 段階B 操作6（記録の均質性）と段階C（攻撃と結論）を並行して実施。最強の反論「検出の基準が中立」は、手続きの正当性と機会費用の部分だけ生き残り、中立という主張は脱落。+119% は記録の不均質による見かけの増加の可能性が高いと分かったが、結論の核は変わらない。結論済みとし、E1〜E3 の選択はユーザーに残した。
 - 2026-11-21 分岐：結論の過程で出た「治水の費用便益分析に人命を入れないことは、判断をどちらに偏らせるか」を、新しい思考実験として始めた（[2026-11-21-life-value-in-flood-bc.md](2026-11-21-life-value-in-flood-bc.md)）。
+
+- 2026-11-21 完了条件（experiments/README.md）を確認：最強の反論（検出の基準は中立か）を検討した／前提にラベルを付けた／従来の判断と食い違う具体例（上陸数で損失比4.2超なら対策）を experiments/scripts/detection_decision.py で再現できる／操作6 は結論の前提を変えたが対立仮説を新たに脱落させなかった。ゴールの相手を「防災や政策の実務者」に決め（ユーザーの判断）、手引き briefs/2026-11-21-non-detection-decision-guide.md にまとめた。
 
 ## 次の問い
 

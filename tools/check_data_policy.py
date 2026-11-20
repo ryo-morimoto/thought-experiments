@@ -372,6 +372,8 @@ def check_experiments(files: list[PurePosixPath]) -> list[str]:
             m = re.search(r"^- 状態:\s*(\S+)", text, re.M)
             if not m or m.group(1) not in EXPERIMENT_STATES:
                 errs.append(f"{f}: 先頭に「- 状態: {' | '.join(EXPERIMENT_STATES)}」を書く")
+            if not re.search(r"^- ゴール:\s*\S", text, re.M):
+                errs.append(f"{f}: 先頭に「- ゴール: <誰のどの判断を変えうるか>」を書く（experiments/README.md）")
     return errs
 
 
