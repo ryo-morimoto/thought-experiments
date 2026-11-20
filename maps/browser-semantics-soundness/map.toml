@@ -2,116 +2,171 @@
 # 軸の選び方と捨てた候補: research_notes/browser-semantics-soundness-map/axes.md
 
 title = "ブラウザの意味論から検証モデルへの変換の根拠"
-question = "ブラウザの意味論（WHATWG の散文と独立に作られたブラウザ）から検証モデルへの変換に、どの攻撃者・どの性質について、どんな根拠を与えられるか"
+question = "ブラウザの意味論（WHATWG の散文の仕様と、独立に作られたブラウザ）から検証モデルへの変換に、健全性の根拠を与えられるか"
 
 [rows]
-name = "攻撃者の模型"
-basis = "paper"
-ref = "https://css.csail.mit.edu/6.566/2015/readings/formal-web.pdf"
-ref_title = "Akhawe, Barth, Lam, Mitchell, Song: Towards a Formal Foundation of Web Security (CSF 2010)。乗っ取りの 2 値は Reis, Moshchuk, Oskov: Site Isolation (USENIX Security 2019, https://www.usenix.org/system/files/sec19-reis.pdf)"
+name = "何に対する健全性か"
+basis = "own"
+ref = "experiments/2026-11-20-browser-semantics-soundness.md"
+ref_title = "思考実験の記録（基準点を変えて答えが分かれた）"
 ref_read = true
-note = "Akhawe らの 3 つの脅威に、Reis らのブラウザの脅威模型の 2 つを足した。どちらも本文で定義を確かめた（2026-11-21）。攻撃者のいない場合（イベントループの順序などの機能の正しさ）は行に無い"
+note = "モデルが「過近似する」と主張する相手。思考実験の中で、答えがこの基準点ごとに分かれたので軸にした。既存の分類は見つけていない（自作）"
 
 [[rows.values]]
-id = "web"
-name = "Web の攻撃者"
-note = "悪意のあるサイトを運営し、ブラウザも使えるが、自分のホスト宛て以外のネットワークは見えない（Akhawe ら）。仕様どおりに動くスクリプトを書く攻撃者"
+id = "prose"
+name = "散文の仕様（ある版）"
+note = "WHATWG の HTML・Fetch などの原稿の、あるコミット。手書きでモデルに写す"
 
 [[rows.values]]
-id = "network"
-name = "能動的なネットワークの攻撃者"
-note = "Web の攻撃者の能力に加え、ネットワークの通信を盗聴・遮断・偽造できる。ブラウザの API も使える（Akhawe ら）"
+id = "extracted"
+name = "段ごとに取り出した参照"
+note = "同じ版の原稿から、算法を段ごとに機械的に取り出し、各段に仕様の位置を付けたもの（ESMeta/JISET の方式）"
 
 [[rows.values]]
-id = "gadget"
-name = "ガジェットの攻撃者"
-note = "Web の攻撃者が、正直なサイトに（限られた種類の）内容を差し込める（Akhawe ら）。ブログのコメントやマッシュアップの部品"
+id = "formal"
+name = "形式的な元から生成した仕様"
+note = "形式的な記述を元にして散文や参照実装を生成する仕様（Wasm の SpecTec の方式）。WHATWG には今のところ無い"
 
 [[rows.values]]
-id = "renderer"
-name = "レンダラーを乗っ取る攻撃者"
-note = "レンダラーの脆弱性を突いて検査を回避し、任意のコードを実行できる。プロセスのメモリをすべて読め、特権を持つブラウザプロセスに嘘をつける（Reis ら の renderer exploit attacker）"
-
-[[rows.values]]
-id = "memdisc"
-name = "メモリを読み出す攻撃者"
-note = "任意のコードは動かせず、ブラウザプロセスにも嘘をつけないが、同じレンダラープロセスの中のデータを、同一オリジン方針が禁じていても読める。投機実行などの過渡的な実行の攻撃で実現する（Reis ら の memory disclosure attacker）"
+id = "browser"
+name = "出荷中のブラウザ"
+note = "Chrome・Firefox・Safari などの、ある版とある構成（プラットフォーム、企業の方針、フィールドトライアル）"
 
 [cols]
-name = "性質の種類"
-basis = "paper"
-ref = "https://www.cs.cornell.edu/fbs/publications/Hyperproperties.pdf"
-ref_title = "Clarkson, Schneider: Hyperproperties (Journal of Computer Security 18(6), 2010)"
+name = "仕様の中身の種類"
+basis = "standard"
+ref = "https://www.w3.org/TR/qaframe-spec/"
+ref_title = "W3C QA Framework: Specification Guidelines（W3C Recommendation 2005）の 2.3.2 What is mandatory? と 2.4 Managing Variability"
 ref_read = true
-note = "本文で定義を確かめた（2026-11-21）。トレースの性質は安全性と活性の交わり、ハイパー性質はハイパー安全性とハイパー活性の交わりで書ける。詳細化はトレースの性質を壊さないが、ハイパー性質は壊しうる"
+note = "本文で定義を確かめた（2026-11-21）。2.4.1 の profile・module・level は WHATWG の Living Standard に無いので除いた。並行（in parallel）やタスクの投入は、この分類に無い（軸の欠け。research_notes の axes.md を参照）"
 
 [[cols.values]]
-id = "safety"
-name = "安全性"
-note = "「悪いこと」が起きないことを言うトレースの性質。不変条件の論法で示す"
+id = "mandatory"
+name = "必須"
+note = "すべての実装が従う決まった要求（2.3.2）。WHATWG では、決まった形の算法の段がほとんどこれにあたる"
 
 [[cols.values]]
-id = "liveness"
-name = "活性"
-note = "「良いこと」がいずれ起きることを言うトレースの性質。整礎の論法で示す"
+id = "opt-feature"
+name = "機能を支援するかの選択"
+note = "よく定義された機能を支援するかしないかを実装が選べる（2.4.2 の options の 1 つ目）"
 
 [[cols.values]]
-id = "hypersafety"
-name = "ハイパー安全性"
-note = "複数のトレースの関係についての、有限の観測で破れが分かる性質。非干渉などの情報流の性質はここに入る"
+id = "opt-enum"
+name = "列挙した選択肢からの選択"
+note = "列挙された値や振る舞いから実装が選ぶ（2.4.2 の 2 つ目）。例: cross-origin isolation を logical と concrete のどちらにするか"
 
 [[cols.values]]
-id = "hyperliveness"
-name = "ハイパー活性"
-note = "どの有限の観測も、性質を満たすトレースの集合に延ばせるハイパー性質。可能性論的な情報流の一部など"
+id = "opt-impl"
+name = "実装依存の値・振る舞い"
+note = "値や振る舞いを実装に任せる（2.4.2 の 3 つ目、discretionary items）。WHATWG の implementation-defined、optionally、user agent may など"
+
+[[cols.values]]
+id = "extension"
+name = "拡張"
+note = "他の仕様や実装が振る舞いを足せる点（2.4.3）。WHATWG では「applicable specifications」や他の仕様からの差し込み"
+
+[[cols.values]]
+id = "deprecation"
+name = "廃止予定"
+note = "廃止予定の機能と、その扱い（2.4.4）"
+
+[[cols.values]]
+id = "error"
+name = "誤りの扱い"
+note = "誤った入力や状態に対する振る舞い（2.4.5）"
 
 [[cells]]
-row = "web"
-col = "safety"
+row = "prose"
+col = "mandatory"
 status = "supported"
-claim = "隔離をアクセス制御（CORP で許したものだけが届く）として書くと、モデルの中では定義どおり成り立つ。仕様の版に対しても出荷中のブラウザに対しても健全性の根拠は与えられず、得られるのは WPT や変異による反証の記録と、段ごとの取り出しによる追跡可能性だけ。WPT は段の欠落の誤読を最も捕まえにくい"
+claim = "手書きのモデルでは、散文からモデルへの橋は反証可能な仮説にとどまる。WPT の 109 件はモデルの段の欠落を 1 つ捕まえたが、もう 1 つ（COEP allows credentials）は捕まえず、機械的な誤読でも段の欠落が最も捕まりにくかった（非等価な 21 個中 19 個）"
 evidence = [
   "experiments/2026-11-20-browser-semantics-soundness.md",
   "experiments/models/site-isolation/SpecIsolation.tla",
   "experiments/models/site-isolation/WPTBroad.tla",
-  "experiments/models/site-isolation/extract/README.md",
-  "experiments/models/site-isolation/wpt-draft/RESULTS.md",
 ]
 mode = "destructive"
 next_question = "取り出した段の一覧と手書きのモデルを突き合わせ、モデルが落としている段を全部挙げられるか"
 
 [[cells]]
-row = "web"
-col = "hypersafety"
+row = "extracted"
+col = "mandatory"
 status = "supported"
-claim = "通り道を宣言しない非干渉は、仕様の中で偽（no-cors の取得の成否で CORP の有無が分かる）。通り道を宣言した情報流ならモデルの中で成り立ち、誤読で破れるので自明ではない。ただし通り道の一覧はモデルと独立に先に固定する必要があり、非決定で過近似したモデルではハイパー性質は保たれない"
+claim = "隔離に関わる算法の閉包（415 算法、3445 段）の 91.3% は取り出せる形だが、段の中の条件は自然言語のままで、取り出したものを確かめる独立した判定基準が無い。得られるのは健全性ではなく追跡可能性で、モデルが落とした段は一覧との突き合わせで機械的に見つかる（実際の 2 つの欠落はどちらも取り出され、根から到達できた）"
 evidence = [
   "experiments/2026-11-20-browser-semantics-soundness.md",
-  "experiments/models/site-isolation/SpecIsolation.tla",
+  "experiments/models/site-isolation/extract/README.md",
+]
+mode = "destructive"
+next_question = "取り出した参照を実行できる形にし、WPT と突き合わせられるか（ESMeta と test262 の関係を作れるか）"
+
+[[cells]]
+row = "extracted"
+col = "opt-enum"
+status = "supported"
+claim = "取り出せない段の過半（53%）が、オリジン・COOP・CORP・COEP を決める部分にあり、logical と concrete の選択やブラウジングコンテキストグループの任意の切り替えのように、隔離を決める段そのものが実装の選択になっている。非決定として過近似すると安全性は保てるが、情報流は保てず、性質を示すには粗すぎる"
+evidence = [
+  "experiments/2026-11-20-browser-semantics-soundness.md",
+  "experiments/models/site-isolation/extract/README.md",
   "https://www.cs.cornell.edu/fbs/publications/Hyperproperties.pdf",
 ]
 mode = "destructive"
-next_question = "XS-Leaks のような独立した目録から通り道の一覧を先に固定すると、宣言つきの情報流はどこまで成り立つか"
+next_question = "実装の選択を、ブラウザごとの選び方で埋めたとき、過近似はどこまで細かくなるか"
 
 [[cells]]
-row = "renderer"
-col = "safety"
+row = "prose"
+col = "opt-impl"
 status = "supported"
-claim = "仕様はプロセスモデルを扱わないので、仕様から変換したモデルは根拠にならず、モデルはブラウザの設計のモデルになる。根拠は攻撃者を想定した反証の記録（IPC を変異させるファジング、仕様由来のオリジン計算の判定基準）にとどまる。既知の 9 件のうち、主体の完全性で説明できるのは 1 件で、多くはブラウザ自身のオリジン計算の誤り"
+claim = "WHATWG の implementation-defined には、C 言語の規格のような文書化の区別が無い（Infra の定義を確認）。モデルでの扱いは、何に裁量があるかで分ける: 値と構造はパラメータ、実行時の方策は安全性なら非決定・情報流なら方策のクラスを限ったパラメータ、仕様の欠落は対象外"
+evidence = [
+  "experiments/2026-11-20-browser-semantics-soundness.md",
+  "https://infra.spec.whatwg.org/",
+]
+mode = "constructive"
+next_question = "HTML の implementation-defined の全件を、値・構造・方策・欠落に分けるとどうなるか"
+
+[[cells]]
+row = "extracted"
+col = "extension"
+status = "supported"
+claim = "他の仕様から HTML・Fetch への差し込みは、HTML と Fetch の原稿には現れない（「applicable specifications」が 10 箇所あるだけ）。呼び出しの閉包の境界は手で選ぶしかなく、仕様を丸ごと落としうる"
+evidence = [
+  "experiments/2026-11-20-browser-semantics-soundness.md",
+  "experiments/models/site-isolation/extract/README.md",
+]
+mode = "destructive"
+next_question = "Service Workers・CSP・Storage などを閉包に入れると、残りと境界はどう変わるか"
+
+[[cells]]
+row = "browser"
+col = "mandatory"
+status = "supported"
+claim = "出荷中のブラウザに対しては健全性の根拠は与えられず、試験による段階的な確信にとどまる。必須の段（credentialless の CORP の検査）でも、下書きの試験で Firefox 160 の欠陥が見つかった。3 エンジンとも通る試験に絞ると、Origin-Agent-Cluster の領域はまったく確かめられない"
+evidence = [
+  "experiments/2026-11-20-browser-semantics-soundness.md",
+  "experiments/models/site-isolation/wpt-draft/RESULTS.md",
+  "experiments/models/site-isolation/wpt-draft/UPSTREAM.md",
+]
+mode = "destructive"
+next_question = "どこまで試験すれば十分かの止めどきを、誰がどう決められるか"
+
+[[cells]]
+row = "browser"
+col = "opt-impl"
+status = "supported"
+claim = "プロセスへの配置は仕様で implementation-specific とされ（エージェントクラスタは「理想化したプロセスの境界」）、ブラウザごと・構成ごとに変わる。この部分のモデルは仕様の翻訳ではなく、そのブラウザの設計のモデルになる"
 evidence = [
   "experiments/2026-11-20-browser-semantics-soundness.md",
   "experiments/models/site-isolation/SiteIsolation.tla",
-  "experiments/models/site-isolation/OriginOracle.tla",
-  "https://www.ndss-symposium.org/wp-content/uploads/2026-f902-paper.pdf",
 ]
 mode = "destructive"
-next_question = "仕様由来のオリジン計算の判定基準を、既知のバグに合わせずに作ったとき、新しいバグを予測できるか"
+next_question = ""
 
 [[cells]]
-row = "memdisc"
-col = "hypersafety"
-status = "open"
-claim = ""
+row = "formal"
+col = "mandatory"
+status = "hypothesis"
+claim = "仕様と実装の両方を形式的な元から導くとき（SpecTec、Quark）だけ、その元に対する健全性が立つ。ただし信頼は生成器と、元の記述が委員会の意図に合っていることに移る。この思考実験では確かめていない（先行研究の報告による）"
 evidence = ["experiments/2026-11-20-browser-semantics-soundness.md"]
-mode = "exploratory"
-next_question = "タイミングやプロセスの共有を観測に入れたとき、隔離の情報流の性質をどう書き、仕様と実装のどちらから根拠を取れるか（包含にもとづく健全性では扱えない）"
+mode = "constructive"
+next_question = "WHATWG の算法の一部を形式的な元から生成する形に移すと、何が仕様の編集の負担になるか"
