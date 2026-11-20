@@ -1,0 +1,7 @@
+# 自作物はすべて CC0-1.0。データディレクトリでは、その中の REUSE.toml（SOURCE.toml から生成）が優先される。
+version = 1
+
+[[annotations]]
+path = "**"
+SPDX-FileCopyrightText = "2026 ryo-morimoto"
+SPDX-License-Identifier = "CC0-1.0"

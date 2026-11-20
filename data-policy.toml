@@ -1,0 +1,87 @@
+# データ利用ポリシーの機械可読な設定。DATA_POLICY.md の「表明」を実装するもの。
+# ライセンスを追加するときは、本文を読んで二次利用（複製・加工・再配布）が
+# 許されていることを確かめてから、単独のコミットで追加する。
+
+# この拡張子のファイルは「データ」とみなし、SOURCE.toml の管轄下にしか置けない。
+data_extensions = [
+  "csv", "tsv", "json", "jsonl", "ndjson", "geojson", "xml", "yaml", "yml",
+  "parquet", "feather", "arrow", "sqlite", "db", "duckdb",
+  "xlsx", "xls", "ods",
+  "zip", "gz", "bz2", "xz", "7z", "tar",
+  "shp", "dbf", "shx", "prj",
+  "pdf", "png", "jpg", "jpeg", "gif", "webp", "svg",
+  "mp3", "wav", "mp4",
+]
+
+# データ拡張子でもチェック対象外にするパス（glob、リポジトリルートからの相対）。
+# 設定ファイルなど、自分で書いたデータでないものだけを入れる。
+ignore = [
+  ".github/**",
+  ".githooks/**",
+  "templates/**",
+]
+
+# 自作物の著作権表示とライセンス。REUSE.toml の生成に使う。
+# 対象: SOURCE.toml の管轄外のファイルと、各データディレクトリの宣言・証拠ファイル。
+[self]
+copyright = "2026 ryo-morimoto"
+license = "CC0-1.0"
+
+# RFC 3161 タイムスタンプ局。証拠マニフェストに時刻証明を付ける。
+[tsa]
+url = "https://freetsa.org/tsr"
+cafile = "tools/tsa/freetsa-cacert.pem"
+untrusted = "tools/tsa/freetsa-tsa.crt"
+
+# 許可ライセンス。キーは SPDX 識別子、SPDX にないものは LicenseRef- を付ける。
+#   attribution: クレジット表示が必要か（true なら SOURCE.toml の attribution が必須）
+#   share_alike: 派生物に同じライセンスを付ける義務があるか
+#   offer_derived: 派生物を公開したら派生データ自体の提供義務があるか（ODbL 4.6）
+# 非営利限定（NC）と改変禁止（ND）は、二次利用の範囲が狭いので許可していない。
+
+[licenses."CC0-1.0"]
+attribution = false
+share_alike = false
+
+[licenses."PDDL-1.0"]
+attribution = false
+share_alike = false
+
+[licenses."CC-BY-4.0"]
+attribution = true
+share_alike = false
+
+[licenses."CC-BY-SA-4.0"]
+attribution = true
+share_alike = true
+
+[licenses."ODC-By-1.0"]
+attribution = true
+share_alike = false
+
+[licenses."ODbL-1.0"]
+attribution = true
+share_alike = true
+offer_derived = true
+
+# 政府標準利用規約（第2.0版）。CC BY 4.0 互換。e-Stat など各府省のサイトで使われる。
+[licenses."LicenseRef-jp-gov-std-2.0"]
+attribution = true
+share_alike = false
+
+# 公共データ利用規約（第1.0版）（PDL1.0）。CC BY 4.0 互換。
+[licenses."LicenseRef-jp-PDL-1.0"]
+attribution = true
+share_alike = false
+
+[licenses."MIT"]
+attribution = true
+share_alike = false
+
+[licenses."Apache-2.0"]
+attribution = true
+share_alike = false
+
+[licenses."BSD-3-Clause"]
+attribution = true
+share_alike = false

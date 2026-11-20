@@ -1,0 +1,11 @@
+#!/bin/sh
+# データ利用ポリシーの検査。有効化: git config core.hooksPath .githooks
+set -e
+top="$(git rev-parse --show-toplevel)"
+cd "$top"
+if command -v reuse >/dev/null 2>&1; then
+  reuse lint --lines
+else
+  echo "警告: reuse がないので全ファイルのライセンス宣言は CI でだけ検査される（pipx install reuse）" >&2
+fi
+exec python3 tools/check_data_policy.py

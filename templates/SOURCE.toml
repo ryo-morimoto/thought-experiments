@@ -1,0 +1,35 @@
+# データを置くディレクトリにこのファイルをコピーして埋める。
+# 同じディレクトリとその下のデータファイルすべてに、この宣言が適用される。
+# 埋めたら `python3 tools/fetch_evidence.py <ディレクトリ>` で証拠を取り、
+# `python3 tools/check_data_policy.py --fix` で REUSE.toml と NOTICE.md を生成する。
+
+id = "example-dataset"            # リポジトリ内で一意。derived_from から参照される
+title = "データセットの名前"
+origin = "external"               # external | derived | original
+
+# --- origin = "external" のとき ---
+publisher = "提供者（組織名など）"            # REUSE の著作権表示にも使う
+url = "https://example.org/dataset"           # データを取得した公開ページ
+license = "CC-BY-4.0"                         # 宣言値（declared）: data-policy.toml の licenses のキー
+license_url = "https://creativecommons.org/licenses/by/4.0/legalcode.ja"  # ライセンス・利用規約の本文
+attribution = "出典：提供者「データセットの名前」(https://example.org/dataset)"  # ライセンスが求める表記
+modified = false                              # 加工したら true
+# modifications = "2020年以降の行だけを抽出し、列名を英語に変更（加工：ryo-morimoto）"  # modified = true なら必須
+# committed = false   # リポジトリに含めない場合。取得は DVC の import-url などで再現できるようにする
+
+# 確認値（concluded）: 自分で規約を読んで確かめた結果。宣言値と食い違うなら使わない。
+[concluded]
+license = "CC-BY-4.0"
+by = "ryo-morimoto"
+at = 2026-11-20
+basis = ["terms-page"]                        # 根拠: terms-page, catalog, license-file など
+
+# 任意: 提供者の機械可読カタログとの突き合わせ（fetch_evidence.py が照合する）
+# [catalog]
+# type = "ckan"                               # ckan | datacite
+# url = "https://catalog.data.metro.tokyo.lg.jp/api/3/action/package_show?id=..."  # datacite なら DOI を書く
+# accept_mismatch = "カタログの表記が古いため。規約ページで確認済み"  # 不一致を承知で使う場合の理由
+
+# --- origin = "derived" のとき ---
+# derived_from = ["example-dataset"]
+# license = "CC-BY-4.0"   # 元データが SA なら同じライセンス、BY 系なら表示義務のあるライセンスにする

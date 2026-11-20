@@ -1,0 +1,34 @@
+# タグを打ったときだけ、「このコミットのリポジトリがデータ利用ポリシー検査に通った」ことを
+# Sigstore で署名し、公開の透明性ログに記録する。検証: gh attestation verify <tar> --repo <owner/repo>
+name: attest
+
+on:
+  push:
+    tags: ["*"]
+
+permissions:
+  contents: read
+  id-token: write
+  attestations: write
+  artifact-metadata: write
+
+jobs:
+  attest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: fsfe/reuse-action@v6
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - run: python3 tools/check_data_policy.py --report data-policy-report.json
+      - run: git archive --format=tar.gz -o "repo-${GITHUB_REF_NAME}.tar.gz" HEAD
+      - uses: actions/attest@v4
+        with:
+          subject-path: repo-${{ github.ref_name }}.tar.gz
+          predicate-type: https://github.com/${{ github.repository }}/blob/main/DATA_POLICY.md
+          predicate-path: data-policy-report.json
+      # リポジトリ自体を Software Heritage に保存するよう依頼する（未検証: 匿名での依頼の可否と回数制限）
+      - name: Software Heritage save request
+        continue-on-error: true
+        run: curl -fsS -X POST "https://archive.softwareheritage.org/api/1/origin/save/git/url/${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/"

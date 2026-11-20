@@ -1,0 +1,21 @@
+name: data-policy
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      # 全ファイルにライセンス宣言があるか（網羅性）
+      - uses: fsfe/reuse-action@v6
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      # 出所・ライセンス義務・証拠（ハッシュとタイムスタンプ）
+      - run: python3 tools/check_data_policy.py

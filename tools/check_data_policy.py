@@ -1,0 +1,355 @@
+#!/usr/bin/env python3
+"""DATA_POLICY.md のルールを検査する。依存は標準ライブラリと openssl だけ（Python 3.11+）。
+
+全ファイルのライセンス宣言（網羅性）は REUSE（`reuse lint`）が受け持つ。
+このスクリプトは REUSE がやらないこと、つまり出所・ライセンス義務・証拠を検査する。
+
+使い方:
+    python3 tools/check_data_policy.py                 # 検査のみ。違反があれば終了コード 1
+    python3 tools/check_data_policy.py --fix           # REUSE.toml と NOTICE.md を再生成してから検査
+    python3 tools/check_data_policy.py --report r.json # 結果を JSON でも書き出す（CI の attestation 用）
+"""
+
+from __future__ import annotations
+
+import datetime as dt
+import fnmatch
+import hashlib
+import json
+import shutil
+import subprocess
+import sys
+import tomllib
+from pathlib import Path, PurePosixPath
+
+ROOT = Path(__file__).resolve().parent.parent
+POLICY_FILE = ROOT / "data-policy.toml"
+NOTICE_FILE = ROOT / "NOTICE.md"
+SOURCE_NAME = "SOURCE.toml"
+REUSE_NAME = "REUSE.toml"
+EVIDENCE_DIR = "EVIDENCE"
+MANIFEST = f"{EVIDENCE_DIR}/MANIFEST.sha256"
+ORIGINS = {"external", "derived", "original"}
+
+REQUIRED = {
+    "external": ["id", "title", "publisher", "url", "license", "license_url", "modified", "concluded"],
+    "derived": ["id", "title", "derived_from", "license"],
+    "original": ["id", "title"],
+}
+
+
+# ---------- 共通（fetch_evidence.py からも使う） ----------
+
+def load_policy() -> dict:
+    return tomllib.loads(POLICY_FILE.read_text(encoding="utf-8"))
+
+
+def repo_files() -> list[PurePosixPath]:
+    """追跡中と、未追跡だが .gitignore されていないファイル。"""
+    out = subprocess.run(
+        ["git", "ls-files", "-z", "--cached", "--others", "--exclude-standard"],
+        cwd=ROOT, check=True, capture_output=True,
+    ).stdout.decode()
+    return sorted({PurePosixPath(p) for p in out.split("\0") if p and (ROOT / p).is_file()})
+
+
+def sha256(path: Path) -> str:
+    h = hashlib.sha256()
+    with path.open("rb") as f:
+        for chunk in iter(lambda: f.read(1 << 20), b""):
+            h.update(chunk)
+    return h.hexdigest()
+
+
+def payload_files(src_dir: PurePosixPath, files: list[PurePosixPath],
+                  source_dirs: set[PurePosixPath]) -> list[PurePosixPath]:
+    """src_dir が直接管轄するデータ本体（宣言・REUSE.toml・証拠・下位の宣言の管轄を除く）。"""
+    out = []
+    for f in files:
+        if src_dir not in f.parents or governing_source(f, source_dirs) != src_dir:
+            continue
+        rel = f.relative_to(src_dir)
+        if str(rel) in (SOURCE_NAME, REUSE_NAME) or rel.parts[0] == EVIDENCE_DIR:
+            continue
+        out.append(f)
+    return out
+
+
+def governing_source(path: PurePosixPath, source_dirs: set[PurePosixPath]):
+    for parent in path.parents:
+        if parent in source_dirs:
+            return parent
+    return None
+
+
+def verify_tsr(manifest: Path, tsr: Path, policy: dict) -> str | None:
+    """RFC 3161 トークンを検証する。問題があればエラーメッセージを返す。"""
+    if not shutil.which("openssl"):
+        return "openssl がないのでタイムスタンプを検証できない"
+    tsa = policy.get("tsa", {})
+    cmd = ["openssl", "ts", "-verify", "-data", str(manifest), "-in", str(tsr),
+           "-CAfile", str(ROOT / tsa["cafile"]), "-untrusted", str(ROOT / tsa["untrusted"])]
+    r = subprocess.run(cmd, capture_output=True, text=True)
+    if r.returncode != 0 or "Verification: OK" not in r.stdout:
+        return "タイムスタンプの検証に失敗: " + (r.stderr or r.stdout).strip().splitlines()[-1]
+    return None
+
+
+# ---------- 個別の宣言の検査 ----------
+
+def check_source(rel: PurePosixPath, src: dict, licenses: dict) -> list[str]:
+    errs: list[str] = []
+    if rel.parent == PurePosixPath("."):
+        errs.append(f"{rel}: ルートに SOURCE.toml は置けない（全ファイルを一括で宣言できてしまう）")
+    origin = src.get("origin")
+    if origin not in ORIGINS:
+        return errs + [f"{rel}: origin は {sorted(ORIGINS)} のいずれか（現在: {origin!r}）"]
+
+    for key in REQUIRED[origin]:
+        if key not in src or src[key] in ("", []):
+            errs.append(f"{rel}: {key} がない")
+
+    lic = src.get("license")
+    if lic is not None and lic not in licenses:
+        errs.append(f"{rel}: ライセンス {lic!r} は data-policy.toml で許可されていない")
+
+    if origin != "external":
+        return errs
+
+    for key in ("url", "license_url"):
+        if key in src and not str(src[key]).startswith("https://"):
+            errs.append(f"{rel}: {key} は https:// で始まる公開 URL にする")
+    if lic in licenses and licenses[lic].get("attribution") and not src.get("attribution"):
+        errs.append(f"{rel}: {lic} はクレジット表示が必要なので attribution を書く")
+    if "modified" in src and not isinstance(src["modified"], bool):
+        errs.append(f"{rel}: modified は true / false にする")
+    if src.get("modified") is True and not src.get("modifications"):
+        errs.append(f"{rel}: modified = true なら modifications に加工内容（と加工した主体）を書く")
+
+    c = src.get("concluded")
+    if isinstance(c, dict):
+        for key in ("license", "by", "at", "basis"):
+            if not c.get(key):
+                errs.append(f"{rel}: concluded.{key} がない")
+        if c.get("license") and c.get("license") != lic:
+            errs.append(f"{rel}: 宣言値 {lic!r} と確認値 {c.get('license')!r} が食い違う")
+        if "at" in c and not isinstance(c["at"], dt.date):
+            errs.append(f"{rel}: concluded.at は日付（例: 2026-11-20）にする")
+    elif c is not None:
+        errs.append(f"{rel}: concluded は表（[concluded]）にする")
+    return errs
+
+
+def check_evidence(src_dir: PurePosixPath, src: dict, payload: list[PurePosixPath],
+                   policy: dict) -> list[str]:
+    """外部データの証拠: マニフェストとデータの一致、タイムスタンプ、カタログ照合。"""
+    rel = src_dir / SOURCE_NAME
+    base = ROOT / src_dir
+    manifest, tsr = base / MANIFEST, base / (MANIFEST + ".tsr")
+    hint = f"python3 tools/fetch_evidence.py {src_dir} を実行する"
+    if not manifest.exists() or not tsr.exists():
+        return [f"{rel}: 証拠（{MANIFEST} と .tsr）がない。{hint}"]
+
+    errs: list[str] = []
+    recorded: dict[str, str] = {}
+    for line in manifest.read_text(encoding="utf-8").splitlines():
+        if line.strip():
+            digest, name = line.split(None, 1)
+            recorded[name.strip()] = digest
+    for f in payload:
+        name = str(f.relative_to(src_dir))
+        if name not in recorded:
+            errs.append(f"{f}: 証拠マニフェストに載っていない。{hint}")
+        elif recorded[name] != sha256(ROOT / f):
+            errs.append(f"{f}: 証拠を取った後に中身が変わっている。{hint}")
+    for name in recorded:
+        if not name.startswith(EVIDENCE_DIR + "/") and not (base / name).exists():
+            if src.get("committed", True):
+                errs.append(f"{rel}: マニフェストにある {name} がリポジトリにない")
+    if (msg := verify_tsr(manifest, tsr, policy)):
+        errs.append(f"{rel}: {msg}")
+
+    ev_file = base / EVIDENCE_DIR / "evidence.json"
+    ev = json.loads(ev_file.read_text(encoding="utf-8")) if ev_file.exists() else {}
+    cat = ev.get("catalog")
+    if cat and cat.get("result") == "mismatch" and not src.get("catalog", {}).get("accept_mismatch"):
+        errs.append(f"{rel}: カタログのライセンス {cat.get('licenses')} が宣言と一致しない"
+                    "（承知で使うなら [catalog] accept_mismatch に理由を書く）")
+    return errs
+
+
+def check_lineage(sources: dict[str, tuple[PurePosixPath, dict]], licenses: dict) -> list[str]:
+    errs: list[str] = []
+    for rel, src in sources.values():
+        if src.get("origin") != "derived":
+            continue
+        parents = src.get("derived_from", [])
+        if not isinstance(parents, list):
+            errs.append(f"{rel}: derived_from は id のリストにする")
+            continue
+        mine = licenses.get(src.get("license"), {})
+        sa = set()
+        for pid in parents:
+            if pid not in sources:
+                errs.append(f"{rel}: derived_from の {pid!r} に対応する SOURCE.toml がない")
+                continue
+            plic = sources[pid][1].get("license")
+            pinfo = licenses.get(plic, {})
+            if pinfo.get("share_alike"):
+                sa.add(plic)
+            # CC BY 3(a)(4) などの代わりの、より厳しい規則: 表示義務を落とすライセンスにしない
+            if pinfo.get("attribution") and mine and not mine.get("attribution"):
+                errs.append(f"{rel}: 元データ {pid}（{plic}）は表示義務があるので、"
+                            f"表示義務のない {src.get('license')} にはできない")
+            # ODbL 4.6 の代わりの、より厳しい規則: 派生物は必ずリポジトリに含めて提供する
+            if pinfo.get("offer_derived") and src.get("committed", True) is False:
+                errs.append(f"{rel}: 元データ {pid}（{plic}）は派生データの提供義務があるので committed = false にできない")
+        if len(sa) > 1:
+            errs.append(f"{rel}: 継承ライセンスが混在している {sorted(sa)}。組み合わせられない")
+        elif sa and src.get("license") not in sa:
+            (need,) = sa
+            errs.append(f"{rel}: 元データが {need}（継承）なので license = \"{need}\" にする")
+    return errs
+
+
+# ---------- 生成物 ----------
+
+def toml_str(s: str) -> str:
+    return json.dumps(s, ensure_ascii=False)
+
+
+def render_reuse(src: dict, sources: dict, policy: dict) -> str:
+    me = policy["self"]
+    if src.get("origin") == "external":
+        holder = src.get("publisher", "")
+    elif src.get("origin") == "derived":
+        ups = [sources[p][1].get("publisher") for p in src.get("derived_from", []) if p in sources]
+        holder = "; ".join([me["copyright"], *[u for u in ups if u]])
+    else:
+        holder = me["copyright"]
+    lic = src.get("license") or me["license"]
+    return "\n".join([
+        "# 自動生成: python3 tools/check_data_policy.py --fix。手で編集しない（元は SOURCE.toml）。",
+        "version = 1",
+        "",
+        "[[annotations]]",
+        'path = "**"',
+        f"SPDX-FileCopyrightText = {toml_str(holder)}",
+        f"SPDX-License-Identifier = {toml_str(lic)}",
+        "",
+        "[[annotations]]",
+        f'path = ["{SOURCE_NAME}", "{EVIDENCE_DIR}/**"]',
+        f"SPDX-FileCopyrightText = {toml_str(me['copyright'])}",
+        f"SPDX-License-Identifier = {toml_str(me['license'])}",
+        "",
+    ])
+
+
+def render_notice(sources: dict[str, tuple[PurePosixPath, dict]]) -> str:
+    lines = [
+        "# NOTICE",
+        "",
+        "このリポジトリが利用している外部データとそのクレジット表示です。",
+        "このファイルは `tools/check_data_policy.py --fix` が `SOURCE.toml` から生成します。手で編集しないでください。",
+        "ライセンス本文は `LICENSES/`、ファイルごとのライセンスは各ディレクトリの `REUSE.toml` にあります。",
+        "",
+    ]
+    external = [(rel, s) for rel, s in sources.values() if s.get("origin") == "external"]
+    if not external:
+        lines.append("現在、外部データは使っていません。")
+    for rel, s in sorted(external, key=lambda x: x[1]["id"]):
+        lines += [
+            f"## {s.get('title', s['id'])}",
+            "",
+            f"- 提供者: {s.get('publisher', '')}",
+            f"- 取得元: {s.get('url', '')}",
+            f"- ライセンス: {s.get('license', '')}（{s.get('license_url', '')}）",
+        ]
+        if s.get("attribution"):
+            lines.append(f"- クレジット: {s['attribution']}")
+        if s.get("modified"):
+            lines.append(f"- 加工内容: {s.get('modifications', '')}")
+        lines += [f"- 宣言: `{rel}`", ""]
+    return "\n".join(lines).rstrip() + "\n"
+
+
+def sync(path: Path, content: str, fix: bool, label: str, errs: list[str]) -> None:
+    current = path.read_text(encoding="utf-8") if path.exists() else None
+    if current == content:
+        return
+    if fix:
+        path.write_text(content, encoding="utf-8")
+        print(f"{label} を再生成しました")
+    else:
+        errs.append(f"{label} が SOURCE.toml と一致しない。--fix で再生成する")
+
+
+# ---------- main ----------
+
+def main() -> int:
+    args = sys.argv[1:]
+    fix = "--fix" in args
+    report = args[args.index("--report") + 1] if "--report" in args else None
+
+    policy = load_policy()
+    licenses: dict = policy.get("licenses", {})
+    exts = {e.lower().lstrip(".") for e in policy.get("data_extensions", [])}
+    ignore = list(policy.get("ignore", []))
+
+    files = [f for f in repo_files() if not any(fnmatch.fnmatch(str(f), p) for p in ignore)]
+    errs: list[str] = []
+
+    sources: dict[str, tuple[PurePosixPath, dict]] = {}
+    source_dirs: set[PurePosixPath] = set()
+    for f in files:
+        if f.name != SOURCE_NAME:
+            continue
+        source_dirs.add(f.parent)
+        try:
+            src = tomllib.loads((ROOT / f).read_text(encoding="utf-8"))
+        except tomllib.TOMLDecodeError as e:
+            errs.append(f"{f}: TOML として読めない: {e}")
+            continue
+        errs += check_source(f, src, licenses)
+        sid = src.get("id")
+        if sid in sources:
+            errs.append(f"{f}: id {sid!r} が {sources[sid][0]} と重複している")
+        elif sid:
+            sources[sid] = (f, src)
+
+    for f in files:
+        if f.suffix.lower().lstrip(".") in exts and governing_source(f, source_dirs) is None:
+            errs.append(f"{f}: データファイルだが SOURCE.toml の管轄下にない")
+
+    errs += check_lineage(sources, licenses)
+
+    for rel, src in sources.values():
+        d = rel.parent
+        sync(ROOT / d / REUSE_NAME, render_reuse(src, sources, policy), fix, str(d / REUSE_NAME), errs)
+        if src.get("origin") == "external":
+            errs += check_evidence(d, src, payload_files(d, files, source_dirs), policy)
+
+    sync(NOTICE_FILE, render_notice(sources), fix, "NOTICE.md", errs)
+
+    if report:
+        head = subprocess.run(["git", "rev-parse", "HEAD"], cwd=ROOT, capture_output=True, text=True)
+        Path(report).write_text(json.dumps({
+            "commit": head.stdout.strip(),
+            "checked_at": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
+            "ok": not errs,
+            "errors": errs,
+            "sources": {sid: {"path": str(rel), "origin": s.get("origin"), "license": s.get("license")}
+                        for sid, (rel, s) in sorted(sources.items())},
+        }, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+    if errs:
+        print("データ利用ポリシー違反（DATA_POLICY.md を参照）:", file=sys.stderr)
+        for e in errs:
+            print(f"  - {e}", file=sys.stderr)
+        return 1
+    print(f"データ利用ポリシー: OK（宣言 {len(sources)} 件）")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
