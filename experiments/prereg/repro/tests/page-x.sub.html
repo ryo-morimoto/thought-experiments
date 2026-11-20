@@ -1,0 +1,12 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>victim page X</title>
+<body>
+<div id="secret">SECRET-CONTENT-AT-X</div>
+<script>
+// Create a same-document history entry so a later same-document back() is possible,
+// then announce readiness to the opener.
+history.pushState({}, "", location.href + "#s1");
+if (window.opener) window.opener.postMessage({x: "ready", href: location.href}, "*");
+</script>
+</body>
