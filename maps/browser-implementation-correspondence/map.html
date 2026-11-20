@@ -247,11 +247,9 @@ h2 { font-size: 14px; margin: 0 0 12px; color: var(--sub); font-weight: 600; let
    "row": "toe",
    "col": "mandatory",
    "status": "supported",
-   "claim": "出荷中のブラウザに対しては健全性の根拠は与えられず、試験による段階的な確信にとどまる。必須の段（credentialless の CORP の検査）でも、下書きの試験で Firefox 160 の欠陥が見つかった。3 エンジンとも通る試験に絞ると、Origin-Agent-Cluster の領域はまったく確かめられない",
+   "claim": "出荷中のブラウザに対しては健全性の根拠は与えられず、試験による段階的な確信にとどまる。必須の段（credentialless の CORP の検査）でも、下書きの試験で出荷中のブラウザの欠陥が見つかった（詳細は報告の公開まで外した）。3 エンジンとも通る試験に絞ると、Origin-Agent-Cluster の領域はまったく確かめられない",
    "evidence": [
-    "experiments/2026-11-20-browser-semantics-soundness.md",
-    "experiments/models/site-isolation/wpt-draft/RESULTS.md",
-    "experiments/models/site-isolation/wpt-draft/UPSTREAM.md"
+    "experiments/2026-11-20-browser-semantics-soundness.md"
    ],
    "mode": "destructive",
    "next_question": "どこまで試験すれば十分かの止めどきを、誰がどう決められるか"
@@ -345,7 +343,7 @@ h2 { font-size: 14px; margin: 0 0 12px; color: var(--sub); font-weight: 600; let
    "kind": "cell",
    "target": "toe/opt-feature",
    "name": "評価対象そのもの × 機能を支援するかの選択",
-   "why": "隣の「必須」の結論「出荷中のブラウザに対しては健全性の根拠は与えられず、試験による段階的な確信にとどまる。必須の段（credentialless の CORP の検査）でも、下書きの試験で Firefox 160 の欠陥が見つかった。3 エンジンとも通る試験に絞ると、Origin-Agent-Cluster の領域はまったく確かめられない」がここにも移るか。移らないなら、何が違うせいかを条件を変えて探す",
+   "why": "隣の「必須」の結論「出荷中のブラウザに対しては健全性の根拠は与えられず、試験による段階的な確信にとどまる。必須の段（credentialless の CORP の検査）でも、下書きの試験で出荷中のブラウザの欠陥が見つかった（詳細は報告の公開まで外した）。3 エンジンとも通る試験に絞ると、Origin-Agent-Cluster の領域はまったく確かめられない」がここにも移るか。移らないなら、何が違うせいかを条件を変えて探す",
    "mode": "destructive",
    "premises": [
     "toe/mandatory"
@@ -356,7 +354,7 @@ h2 { font-size: 14px; margin: 0 0 12px; color: var(--sub); font-weight: 600; let
    "kind": "cell",
    "target": "toe/opt-enum",
    "name": "評価対象そのもの × 列挙した選択肢からの選択",
-   "why": "隣の「必須」の結論「出荷中のブラウザに対しては健全性の根拠は与えられず、試験による段階的な確信にとどまる。必須の段（credentialless の CORP の検査）でも、下書きの試験で Firefox 160 の欠陥が見つかった。3 エンジンとも通る試験に絞ると、Origin-Agent-Cluster の領域はまったく確かめられない」がここにも移るか。移らないなら、何が違うせいかを条件を変えて探す",
+   "why": "隣の「必須」の結論「出荷中のブラウザに対しては健全性の根拠は与えられず、試験による段階的な確信にとどまる。必須の段（credentialless の CORP の検査）でも、下書きの試験で出荷中のブラウザの欠陥が見つかった（詳細は報告の公開まで外した）。3 エンジンとも通る試験に絞ると、Origin-Agent-Cluster の領域はまったく確かめられない」がここにも移るか。移らないなら、何が違うせいかを条件を変えて探す",
    "mode": "destructive",
    "premises": [
     "toe/mandatory"
@@ -367,7 +365,7 @@ h2 { font-size: 14px; margin: 0 0 12px; color: var(--sub); font-weight: 600; let
    "kind": "cell",
    "target": "toe/extension",
    "name": "評価対象そのもの × 拡張",
-   "why": "隣の「必須」の結論「出荷中のブラウザに対しては健全性の根拠は与えられず、試験による段階的な確信にとどまる。必須の段（credentialless の CORP の検査）でも、下書きの試験で Firefox 160 の欠陥が見つかった。3 エンジンとも通る試験に絞ると、Origin-Agent-Cluster の領域はまったく確かめられない」がここにも移るか。移らないなら、何が違うせいかを条件を変えて探す",
+   "why": "隣の「必須」の結論「出荷中のブラウザに対しては健全性の根拠は与えられず、試験による段階的な確信にとどまる。必須の段（credentialless の CORP の検査）でも、下書きの試験で出荷中のブラウザの欠陥が見つかった（詳細は報告の公開まで外した）。3 エンジンとも通る試験に絞ると、Origin-Agent-Cluster の領域はまったく確かめられない」がここにも移るか。移らないなら、何が違うせいかを条件を変えて探す",
    "mode": "destructive",
    "premises": [
     "toe/mandatory"
@@ -378,7 +376,7 @@ h2 { font-size: 14px; margin: 0 0 12px; color: var(--sub); font-weight: 600; let
    "kind": "cell",
    "target": "toe/deprecation",
    "name": "評価対象そのもの × 廃止予定",
-   "why": "隣の「必須」の結論「出荷中のブラウザに対しては健全性の根拠は与えられず、試験による段階的な確信にとどまる。必須の段（credentialless の CORP の検査）でも、下書きの試験で Firefox 160 の欠陥が見つかった。3 エンジンとも通る試験に絞ると、Origin-Agent-Cluster の領域はまったく確かめられない」がここにも移るか。移らないなら、何が違うせいかを条件を変えて探す",
+   "why": "隣の「必須」の結論「出荷中のブラウザに対しては健全性の根拠は与えられず、試験による段階的な確信にとどまる。必須の段（credentialless の CORP の検査）でも、下書きの試験で出荷中のブラウザの欠陥が見つかった（詳細は報告の公開まで外した）。3 エンジンとも通る試験に絞ると、Origin-Agent-Cluster の領域はまったく確かめられない」がここにも移るか。移らないなら、何が違うせいかを条件を変えて探す",
    "mode": "destructive",
    "premises": [
     "toe/mandatory"
@@ -389,7 +387,7 @@ h2 { font-size: 14px; margin: 0 0 12px; color: var(--sub); font-weight: 600; let
    "kind": "cell",
    "target": "toe/error",
    "name": "評価対象そのもの × 誤りの扱い",
-   "why": "隣の「必須」の結論「出荷中のブラウザに対しては健全性の根拠は与えられず、試験による段階的な確信にとどまる。必須の段（credentialless の CORP の検査）でも、下書きの試験で Firefox 160 の欠陥が見つかった。3 エンジンとも通る試験に絞ると、Origin-Agent-Cluster の領域はまったく確かめられない」がここにも移るか。移らないなら、何が違うせいかを条件を変えて探す",
+   "why": "隣の「必須」の結論「出荷中のブラウザに対しては健全性の根拠は与えられず、試験による段階的な確信にとどまる。必須の段（credentialless の CORP の検査）でも、下書きの試験で出荷中のブラウザの欠陥が見つかった（詳細は報告の公開まで外した）。3 エンジンとも通る試験に絞ると、Origin-Agent-Cluster の領域はまったく確かめられない」がここにも移るか。移らないなら、何が違うせいかを条件を変えて探す",
    "mode": "destructive",
    "premises": [
     "toe/mandatory"

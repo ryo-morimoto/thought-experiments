@@ -120,11 +120,9 @@ next_question = "モデルが扱う性質を先に決め、それに関わる仕
 row = "toe"
 col = "mandatory"
 status = "supported"
-claim = "出荷中のブラウザに対しては健全性の根拠は与えられず、試験による段階的な確信にとどまる。必須の段（credentialless の CORP の検査）でも、下書きの試験で Firefox 160 の欠陥が見つかった。3 エンジンとも通る試験に絞ると、Origin-Agent-Cluster の領域はまったく確かめられない"
+claim = "出荷中のブラウザに対しては健全性の根拠は与えられず、試験による段階的な確信にとどまる。必須の段（credentialless の CORP の検査）でも、下書きの試験で出荷中のブラウザの欠陥が見つかった（詳細は報告の公開まで外した）。3 エンジンとも通る試験に絞ると、Origin-Agent-Cluster の領域はまったく確かめられない"
 evidence = [
   "experiments/2026-11-20-browser-semantics-soundness.md",
-  "experiments/models/site-isolation/wpt-draft/RESULTS.md",
-  "experiments/models/site-isolation/wpt-draft/UPSTREAM.md",
 ]
 mode = "destructive"
 next_question = "どこまで試験すれば十分かの止めどきを、誰がどう決められるか"

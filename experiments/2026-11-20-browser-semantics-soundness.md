@@ -229,15 +229,9 @@ D⁗ を新しい subagent 3 体（形式手法・科学哲学・WPT の保守�
 
 前回の「(a) は条件つきで『はい』」は、取り出しを試す前に、攻撃した subagent の先例（記憶）に従って出したもので、早すぎた。今回の「いいえ」は、取り出しの実測（残りが判定の部分に集まり、条件の文は形式化されない）を根拠にしている。
 
-### Firefox の振る舞いと上流への報告
+### ブラウザの振る舞いと上流への報告
 
-subagent が Fetch と Service Workers の仕様、MDN の browser-compat-data、wpt.fyi、Bugzilla、GitHub の課題を調べた。
-
-- 仕様の読みの違いではない。応答の request-includes-credentials は既定で true（Fetch の response の定義）で、service worker の respondWith の写し方にかかわらず遮断になる。
-- 機能の欠如でもない。Firefox は credentialless を 119 から持ち（browser-compat-data）、wpt.fyi の Firefox 160 で credentialless の他の試験は通り、require-corp の service worker の応答では CORP の検査をする。
-- Firefox の実装の欠陥（credentialless かつ service worker が渡した応答の経路）と判断した。Gecko のソースは確かめていない。
-- 既存の報告: Bugzilla 1760782（wpt-sync が自動で起こした TIMEOUT だけのバグ、未整理）、1560488（ServiceWorkerGlobalScope.serviceWorker が無い）。原因まで書いた報告は無い。wpt.fyi でも既存の試験は Firefox で TIMEOUT。
-- 上流への報告は、Bugzilla（新しいバグか 1760782 へのコメント）と、WPT の 2 つの試験の `serviceWorker.state` の修正を推す。仕様への課題は要らない。下書きは [wpt-draft/UPSTREAM.md](models/site-isolation/wpt-draft/UPSTREAM.md)。送るかどうかはユーザーが決める（まだ送っていない）。
+（未修正のセキュリティのバグにあたるため、Mozilla に非公開で報告し、公開されるまで詳細をこの記録から外した。2026-11-21）
 
 前提の種類:
 
@@ -395,9 +389,7 @@ LateLock-Witness.cfg の証人: `Navigate("top","A")`（p1 はロックされな
 
 67 件で生き残ったのは cl-ignore-creds、coi-no-credentialless、crossorigin-as-site と、OAC に関わる 7 個（OAC の試験は 3 エンジンとも通るものが無い）。
 
-**生き残った誤読を確かめる試験の下書き**: subagent が WPT を調べ、`html/cross-origin-embedder-policy/credentialless/service-worker-coep-none-proxy.https.window.js` が「COEP unsafe-none の service worker が資格情報つきで取った CORP 無しの応答を、credentialless の文書が受け取ると遮断される」を既に確かめていると報告した。欠けているのは、同じ service worker で資格情報だけを変えた対の比較で、それを足す下書きを [models/site-isolation/wpt-draft/](models/site-isolation/wpt-draft/README.md) に置いた（上流には出していない）。
-
-**下書きを実ブラウザで動かした結果**（[RESULTS.md](models/site-isolation/wpt-draft/RESULTS.md)）: subagent がコンテナの中で WPT（31362d1）を動かした。Chrome 158 は 5 つの小試験すべてに通り、Firefox 160 は「資格情報つき・CORP 無し → 遮断」の小試験だけに失敗した（opaque が返った）。既存の試験も Firefox で同じく失敗した。また、下書きと既存の試験はどちらも service worker の中で `serviceWorker.state` を読んでおり、Firefox はこれを実装していないため準備の段で止まった。下書きは `registration.active.state` に直した。この段（COEP allows credentials と CORP の検査が service worker の応答にどう効くか）は、筆者のモデルに欠けていた段、誤読が WPT の 109 件で生き残った段、エンジンの振る舞いが分かれる段が重なった場所だった。
+**生き残った誤読を確かめる試験の下書き**: 試験の下書きを作り、実ブラウザで動かした。（未修正のセキュリティのバグにあたるため、Mozilla に非公開で報告し、公開されるまで詳細をこの記録から外した。2026-11-21）
 
 **段の欠落の誤読と、等価の判定の作り直し**: 判定 25 箇所それぞれに「常に偽（段の欠落）」と「常に真（検査の欠落）」の誤読を足し、合計 91 個にした。前回の等価の判定は、比べた文字列に誤読ごとに違う別の印字（LeakWitness）が混ざっていたうえ、TLC がレコードを定義域とする関数を一定でない順で印字するため、正しくなかった。入力に固定の順を与えた入れ子の列（SignatureSeq）で比べ直した。
 
@@ -461,20 +453,17 @@ subagent が文書（2026-11-21 の main）と論文の Table V を読んで対�
 
 - 2026-11-21 結論の「いいえ」への攻撃、段の欠落の誤読、下書きの試験の実行を並行で進めた（ユーザーの判断: 1、2、3 を並列）。答えを (a) 仕様の版に対しては条件つきで「はい」、(b) 出荷中のブラウザに対しては「いいえ」に分けた。前回の等価の判定の誤りを直した。
 
-- 2026-11-21 改訂した答えへの攻撃、算法の取り出しの実測、Firefox の振る舞いの調査を並行で進めた（ユーザーの判断: 1 の後に 2、3 を並列で追加）。(a) も「いいえ」に戻し、取り出しで得られるのは追跡可能性だと記録した。上流への報告の下書きを作った（未送信）。
+- 2026-11-21 改訂した答えへの攻撃、算法の取り出しの実測、ブラウザの振る舞いの調査を並行で進めた（ユーザーの判断: 1 の後に 2、3 を並列で追加）。(a) も「いいえ」に戻し、取り出しで得られるのは追跡可能性だと記録した。上流への報告の下書きを作った（未送信）。
 
 - 2026-11-21 訂正（後続の思考実験 [2026-11-21-fsp-correspondence.md](2026-11-21-fsp-correspondence.md) から）: SpecIsolation.tla は「安全でない文脈の COEP は unsafe-none」の段を落としており、その段を入れると OptInOnly（アクセス制御としての隔離がモデルの中で成り立つ）は偽になる。本記録で「OptInOnly は定義どおり成り立つ」としたのは、モデルの欠落に支えられていた。2 段を足したモデルでの反例は、http://a.test の文書が COEP require-corp を送り、https://a.test から CORP 無しの応答を no-cors で取ると opaque が返る、というもの（COEP は安全でない文脈では効かないので、仕様どおりの振る舞い）。安全な文脈の文書に限った OptInOnlySecure は成り立つ（Spec-OptInSecure.cfg）。したがって、アクセス制御としての隔離は「自明に成り立つ」のではなく、「仕様が付ける条件（安全な文脈）を書き落とすと偽、書けば定義の言い直し」と改める。結論の「モデルの中」の項もこれに合わせて直した。
 
 ## 未検証
 
 - 取り出しの分類は正規表現による形の判定で、抜き取り検査で 5〜8% の誤りがあった。呼び出しは仕様の中のリンクを呼び出しとみなした過大な近似。
-- Firefox の欠陥の原因（Gecko の中で資格情報の印がどう扱われているか）。
 
 - WHATWG の隔離に関わる算法のうち、機械的に取り出せない「残り」がどれだけあるか。改訂した答えの (a) はこれに依る。
-- Firefox が service worker の応答で CORP の遮断をしない理由。wpt.fyi 上の既存の試験の Firefox の結果。
 
 - HTML の PR #7617 と Chrome M115 の既定の変更は、WPT の保守者の観点の subagent が確認した。筆者は直接読んでいない。
-- 試験の下書きは実行していない。service worker の respondWith を通したときに request-includes-credentials が保たれるかは、エンジンの実装に依る（下書きの README の未解決の点）。
 
 - 109 件の引数への写し方（ポートだけ違うオリジンを Awww などに当てた等）は subagent の判断。wpt.fyi の結果は stable の 1 回の実行。
 - 誤読 16 個は筆者が選んだもので、誤読の母集団を代表するとは言えない。検出の割合は「この 16 個に対して」の値。
@@ -498,5 +487,5 @@ subagent が文書（2026-11-21 の main）と論文の Table V を読んで対�
 ## 次の問い
 
 - 取り出した段の一覧と手書きのモデルを機械的に突き合わせ、モデルが落としている段を全部挙げる（本記録の 2 つ以外にもあるか）。
-- 上流への報告を送るかを決める（[wpt-draft/UPSTREAM.md](models/site-isolation/wpt-draft/UPSTREAM.md)）。
+- 上流への報告: Mozilla に非公開で報告した。公開されたら、詳細をこの記録に戻す。
 - 残りのうち「実装の選択」を、ブラウザごとの選び方（WPT や実装の文書から）で埋めたとき、過近似がどこまで細かくなるか。
