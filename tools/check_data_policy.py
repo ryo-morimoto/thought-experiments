@@ -37,7 +37,7 @@ CACHE_DIR = ROOT / ".cache"
 
 REQUIRED = {
     "external": ["id", "title", "publisher", "publisher_type", "url", "license", "license_url",
-                 "modified", "concluded"],
+                 "terms", "modified", "concluded"],
     "derived": ["id", "title", "derived_from", "license"],
     "original": ["id", "title"],
 }
@@ -149,6 +149,7 @@ def check_source(rel: PurePosixPath, src: dict, licenses: dict, policy: dict) ->
     types = policy.get("publisher_types", {})
     if src.get("publisher_type") and src["publisher_type"] not in types:
         errs.append(f"{rel}: 提供者の種別 {src['publisher_type']!r} は data-policy.toml の publisher_types にない")
+    errs += check_terms(rel, src, policy)
     for key in ("url", "license_url"):
         if key in src and not str(src[key]).startswith("https://"):
             errs.append(f"{rel}: {key} は https:// で始まる公開 URL にする")
@@ -175,6 +176,29 @@ def check_source(rel: PurePosixPath, src: dict, licenses: dict, policy: dict) ->
             errs.append(f"{rel}: concluded.at は日付（例: 2026-11-20）にする")
     elif c is not None:
         errs.append(f"{rel}: concluded は表（[concluded]）にする")
+    return errs
+
+
+def check_terms(rel: PurePosixPath, src: dict, policy: dict) -> list[str]:
+    """利用規約（data-policy.toml の [terms]）の登録と、規約の性質に対する方針を検査する。"""
+    tid = src.get("terms")
+    if not tid:
+        return []
+    t = policy.get("terms", {}).get(tid)
+    if t is None:
+        return [f"{rel}: 規約 {tid!r} が data-policy.toml の [terms] にない。本文を読んで登録する"]
+    errs = []
+    tp = policy.get("terms_policy", {})
+    if t.get("base_license") not in ("*", src.get("license")):
+        errs.append(f"{rel}: 規約 {tid} のライセンスは {t.get('base_license')!r} で、宣言 {src.get('license')!r} と一致しない")
+    if t.get("url") and t["url"] != src.get("license_url"):
+        errs.append(f"{rel}: license_url は規約 {tid} の url（{t['url']}）にする")
+    if t.get("indemnity") and not tp.get("allow_indemnity", False):
+        errs.append(f"{rel}: 規約 {tid}（{t.get('title')}）には求償条項がある。"
+                    "提供者側の誤表示のリスクが利用者に移るため使わない（terms_policy.allow_indemnity）")
+    if t.get("non_copyrightable") == "applies" and not tp.get("allow_non_copyrightable_applies", True):
+        errs.append(f"{rel}: 規約 {tid} は著作物でないデータにも条件を課すため使わない"
+                    "（terms_policy.allow_non_copyrightable_applies）")
     return errs
 
 

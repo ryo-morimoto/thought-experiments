@@ -13,6 +13,7 @@ publisher_type = "local-government"           # data-policy.toml の publisher_t
 url = "https://example.org/dataset"           # データを取得した公開ページ
 license = "CC-BY-4.0"                         # 宣言値（declared）: data-policy.toml の licenses のキー
 license_url = "https://creativecommons.org/licenses/by/4.0/legalcode.ja"  # ライセンス・利用規約の本文
+terms = "cc-license-only"                     # data-policy.toml の [terms] のキー。提供者独自の規約があれば登録して指定する
 attribution = "出典：提供者「データセットの名前」(https://example.org/dataset)"  # ライセンスが求める表記
 modified = false                              # 加工したら true
 # modifications = "2020年以降の行だけを抽出し、列名を英語に変更（加工：ryo-morimoto）"  # modified = true なら必須

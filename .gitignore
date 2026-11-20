@@ -4,3 +4,5 @@
 .cache/
 __pycache__/
 .tmp/
+# Claude Code の作業用 worktree（REUSE はグローバルな除外設定を読まないので明記する）
+.claude/worktrees/
