@@ -85,6 +85,24 @@ def archived_digest(snapshot: str) -> dict:
         return {"archived_raw": raw, "archived_sha256": None, "archive_error": str(e)}
 
 
+# 第三者の権利を示す語。提供者が権利者でない部分（地図・写真・他社データ）が混ざっている手がかりになる。
+# 見つかっても違反とは限らない（提供者自身の著作権表示など）。確認した結果を書かせるための目印。
+THIRD_PARTY = re.compile(r"©|\(c\)|copyright|all rights reserved|著作権|無断転載|転載を禁|ゼンリン|zenrin|"
+                         r"google|esri|openstreetmap|getty|shutterstock|pixta|写真提供|地図提供", re.I)
+
+
+def third_party_markers(body: bytes) -> list[str]:
+    for enc in ("utf-8", "cp932", "euc_jp"):
+        try:
+            text = body.decode(enc)
+            break
+        except UnicodeDecodeError:
+            continue
+    else:
+        return []
+    return sorted({m.group(0).lower() for m in THIRD_PARTY.finditer(text)})
+
+
 def family(lic: str) -> str:
     """'CC-BY-4.0' -> 'cc-by'（バージョンを落とした系統名）。"""
     return re.sub(r"-\d+(\.\d+)*$", "", lic.lower())
@@ -171,8 +189,12 @@ def main() -> int:
             a["matches_local"] = a.get("archived_sha256") == local
         archives[name] = a
 
+    marks = set(third_party_markers((raw_dir / "url.body").read_bytes()))
+    for f in payload_files(d, files, source_dirs):
+        marks |= set(third_party_markers((ROOT / f).read_bytes()))
     ev = {
         "fetched_at": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
+        "third_party_markers": sorted(marks),
         "tsa": policy["tsa"]["url"],
         "opentimestamps": ots,
         "archives": archives,
@@ -191,6 +213,9 @@ def main() -> int:
             print(f"警告: {name} の Internet Archive の保存内容が手元の写しと一致しない"
                   f"（{a.get('archive_error') or '内容が異なる'}）。動的なページなら事情を archive_note に書く",
                   file=sys.stderr)
+    if marks:
+        print(f"注意: データに第三者の権利を示す語 {sorted(marks)} がある。確認して [concluded] third_party_note に書く",
+              file=sys.stderr)
     if not ots:
         print("注意: ots コマンドがないので OpenTimestamps は付けていない", file=sys.stderr)
     print(f"証拠を {d / EVIDENCE_DIR} に書きました。EVIDENCE/raw/ はコミットせず手元で保管してください")

@@ -23,6 +23,8 @@ import tomllib
 import urllib.request
 from pathlib import Path, PurePosixPath
 
+import embedded_data
+
 ROOT = Path(__file__).resolve().parent.parent
 POLICY_FILE = ROOT / "data-policy.toml"
 NOTICE_FILE = ROOT / "NOTICE.md"
@@ -34,7 +36,8 @@ ORIGINS = {"external", "derived", "original"}
 CACHE_DIR = ROOT / ".cache"
 
 REQUIRED = {
-    "external": ["id", "title", "publisher", "url", "license", "license_url", "modified", "concluded"],
+    "external": ["id", "title", "publisher", "publisher_type", "url", "license", "license_url",
+                 "modified", "concluded"],
     "derived": ["id", "title", "derived_from", "license"],
     "original": ["id", "title"],
 }
@@ -124,7 +127,7 @@ def verify_tsr(manifest: Path, tsr: Path, policy: dict) -> str | None:
 
 # ---------- 個別の宣言の検査 ----------
 
-def check_source(rel: PurePosixPath, src: dict, licenses: dict) -> list[str]:
+def check_source(rel: PurePosixPath, src: dict, licenses: dict, policy: dict) -> list[str]:
     errs: list[str] = []
     if rel.parent == PurePosixPath("."):
         errs.append(f"{rel}: ルートに SOURCE.toml は置けない（全ファイルを一括で宣言できてしまう）")
@@ -143,6 +146,9 @@ def check_source(rel: PurePosixPath, src: dict, licenses: dict) -> list[str]:
     if origin != "external":
         return errs
 
+    types = policy.get("publisher_types", {})
+    if src.get("publisher_type") and src["publisher_type"] not in types:
+        errs.append(f"{rel}: 提供者の種別 {src['publisher_type']!r} は data-policy.toml の publisher_types にない")
     for key in ("url", "license_url"):
         if key in src and not str(src[key]).startswith("https://"):
             errs.append(f"{rel}: {key} は https:// で始まる公開 URL にする")
@@ -155,11 +161,16 @@ def check_source(rel: PurePosixPath, src: dict, licenses: dict) -> list[str]:
 
     c = src.get("concluded")
     if isinstance(c, dict):
-        for key in ("license", "by", "at", "basis"):
+        for key in ("license", "by", "at", "basis", "third_party"):
             if not c.get(key):
                 errs.append(f"{rel}: concluded.{key} がない")
         if c.get("license") and c.get("license") != lic:
             errs.append(f"{rel}: 宣言値 {lic!r} と確認値 {c.get('license')!r} が食い違う")
+        tp = c.get("third_party")
+        if tp is not None and tp != "none-indicated" and not isinstance(tp, list):
+            errs.append(f"{rel}: concluded.third_party は \"none-indicated\" か、第三者の権利がある部分のリストにする")
+        if isinstance(tp, list) and tp:
+            errs.append(f"{rel}: 第三者の権利がある部分 {tp} を含むデータは使わない（その部分を除いてから取り込む）")
         if "at" in c and not isinstance(c["at"], dt.date):
             errs.append(f"{rel}: concluded.at は日付（例: 2026-11-20）にする")
     elif c is not None:
@@ -208,6 +219,11 @@ def check_evidence(src_dir: PurePosixPath, src: dict, payload: list[PurePosixPat
             elif a.get("archived_sha256") != recorded.get(f"{EVIDENCE_DIR}/raw/{name}.body"):
                 errs.append(f"{rel}: {name} の Internet Archive の保存内容が手元の写しと一致しない"
                             "（動的なページなどで一致しない事情があれば archive_note に書く）")
+    # 第三者の権利を示す語（© やゼンリンなど）がデータにあれば、確認した結果を書かせる
+    marks = ev.get("third_party_markers") or []
+    if marks and not src.get("concluded", {}).get("third_party_note"):
+        errs.append(f"{rel}: データに第三者の権利を示す語 {marks} がある。"
+                    "確認した結果を [concluded] third_party_note に書く")
     cat = ev.get("catalog")
     if cat and cat.get("result") == "mismatch" and not src.get("catalog", {}).get("accept_mismatch"):
         errs.append(f"{rel}: カタログのライセンス {cat.get('licenses')} が宣言と一致しない"
@@ -292,7 +308,9 @@ def render_root_reuse(policy: dict) -> str:
         "# 自作物だけに宣言する。それ以外を一括で宣言すると、出所の分からないファイルにも自作物のラベルが付いてしまう。",
         "version = 1",
         "",
+        "# aggregate: ファイル内の SPDX スニペット（埋め込んだ外部データ）の宣言と合わせて扱う",
         "[[annotations]]",
+        'precedence = "aggregate"',
         "path = [" + ", ".join(toml_str(p) for p in paths) + "]",
         f"SPDX-FileCopyrightText = {toml_str(me['copyright'])}",
         f"SPDX-License-Identifier = {toml_str(me['license'])}",
@@ -364,7 +382,7 @@ def main() -> int:
         except tomllib.TOMLDecodeError as e:
             errs.append(f"{f}: TOML として読めない: {e}")
             continue
-        errs += check_source(f, src, licenses)
+        errs += check_source(f, src, licenses, policy)
         sid = src.get("id")
         if sid in sources:
             errs.append(f"{f}: id {sid!r} が {sources[sid][0]} と重複している")
@@ -377,6 +395,13 @@ def main() -> int:
                         "SOURCE.toml の管轄下にもない。データなら出所を宣言する")
 
     errs += check_lineage(sources, licenses)
+
+    # ファイルの形をしていないデータ（自作物のファイルに埋め込まれた表や数値）
+    emb = policy.get("embedded", {})
+    for f in files:
+        if governing_source(f, source_dirs) is None and is_own(f, policy) \
+                and not any(fnmatch.fnmatch(str(f), p) for p in emb.get("skip", [])):
+            errs += embedded_data.scan(str(f), (ROOT / f).read_bytes(), sources, licenses, emb)
 
     for rel, src in sources.values():
         d = rel.parent

@@ -2,7 +2,9 @@
 # 自作物だけに宣言する。それ以外を一括で宣言すると、出所の分からないファイルにも自作物のラベルが付いてしまう。
 version = 1
 
+# aggregate: ファイル内の SPDX スニペット（埋め込んだ外部データ）の宣言と合わせて扱う
 [[annotations]]
+precedence = "aggregate"
 path = ["**/*.md", "**/*.py", "**/*.toml", ".gitignore", ".githooks/**", ".github/**"]
 SPDX-FileCopyrightText = "2026 ryo-morimoto"
 SPDX-License-Identifier = "CC0-1.0"

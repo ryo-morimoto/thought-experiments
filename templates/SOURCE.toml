@@ -9,6 +9,7 @@ origin = "external"               # external | derived | original
 
 # --- origin = "external" のとき ---
 publisher = "提供者（組織名など）"            # REUSE の著作権表示にも使う
+publisher_type = "local-government"           # data-policy.toml の publisher_types のキー
 url = "https://example.org/dataset"           # データを取得した公開ページ
 license = "CC-BY-4.0"                         # 宣言値（declared）: data-policy.toml の licenses のキー
 license_url = "https://creativecommons.org/licenses/by/4.0/legalcode.ja"  # ライセンス・利用規約の本文
@@ -24,6 +25,8 @@ license = "CC-BY-4.0"
 by = "ryo-morimoto"
 at = 2026-11-20
 basis = ["terms-page"]                        # 根拠: terms-page, catalog, license-file など
+third_party = "none-indicated"                # 第三者の権利がある部分の表示がないことを確認した。あればリストで書く（その場合は使えない）
+# third_party_note = "「©」は提供者自身の著作権表示"  # fetch_evidence.py が第三者の権利を示す語を見つけたときに書く
 
 # 任意: 提供者の機械可読カタログとの突き合わせ（fetch_evidence.py が照合する）
 # [catalog]

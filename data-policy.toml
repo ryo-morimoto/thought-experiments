@@ -30,6 +30,22 @@ url = "https://freetsa.org/tsr"
 cafile = { url = "https://freetsa.org/files/cacert.pem", sha256 = "2151b61137ffa86bf664691ba67e7da0b19f98c758e3d228d5d8ebf27e044438" }
 untrusted = { url = "https://freetsa.org/files/tsa.crt", sha256 = "8bfb0305bb64e2571ca507552ef3245cb1c2fee8728e0ff8689225081ea13467" }
 
+# 自作物のファイルに埋め込まれたデータ（表・数値の並び）の検出。tools/embedded_data.py を参照。
+[embedded]
+min_rows = 10        # この行数以上の表・CSV らしい行・数値の行の連続をデータとみなす
+min_numbers = 50     # 1 行にこの個数以上の数値があればデータとみなす
+skip = ["LICENSES/**"]
+
+# 外部データの提供者として認める種別。提供者が権利者であることは証明できないので、
+# 説明責任を負う組織に限ることで、誤ったライセンス表示を受け取る確率を下げる。
+# 追加するときは、ライセンスと同じく理由を書いた単独のコミットにする。
+[publisher_types]
+government = "国の行政機関"
+local-government = "地方公共団体"
+intergovernmental = "国際機関"
+academic = "大学・研究機関（機関として公開しているもの）"
+public-institution = "独立行政法人・公的な図書館や博物館など"
+
 # 許可ライセンス。キーは SPDX 識別子、SPDX にないものは LicenseRef- を付ける。
 #   attribution: クレジット表示が必要か（true なら SOURCE.toml の attribution が必須）
 #   share_alike: 派生物に同じライセンスを付ける義務があるか
