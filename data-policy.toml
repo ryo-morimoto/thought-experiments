@@ -97,6 +97,16 @@ indemnity = true                 # 第6条：利用者による第三者の権�
 deemed_consent = true            # 第1条
 unilateral_change = true         # 前文：予告なしに変更することがある
 
+[terms."jma-pdl-1.0"]
+title = "気象庁ホームページ利用規約（公共データ利用規約（第1.0版）準拠）"
+url = "https://www.jma.go.jp/jma/kishou/info/coment.html"
+base_license = "LicenseRef-jp-PDL-1.0"
+non_copyrightable = "excluded"   # PDL1.0 準拠。数値データ・簡単な表は本利用ルールの適用外
+indemnity = false                # 弁償・求償・費用・賠償の語なし（「損害」1件は Google Analytics に関する気象庁の免責）。2026-11-21 確認
+deemed_consent = true            # PDL1.0 準拠
+unilateral_change = true         # PDL1.0 準拠
+# 個別法令の注意として気象業務法17条（予報業務の許可）・23条（警報の制限）を挙げる。過去の統計の利用は該当しない見込み
+
 # 許可ライセンス。キーは SPDX 識別子、SPDX にないものは LicenseRef- を付ける。
 #   attribution: クレジット表示が必要か（true なら SOURCE.toml の attribution が必須）
 #   share_alike: 派生物に同じライセンスを付ける義務があるか

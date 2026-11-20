@@ -1,0 +1,25 @@
+id = "jma-typhoon-generation"
+title = "台風の発生数（協定世界時基準）"
+origin = "external"
+publisher = "気象庁"
+publisher_type = "government"
+url = "https://www.data.jma.go.jp/typhoon/statistics/generation/generation.csv"
+license = "LicenseRef-jp-PDL-1.0"
+license_url = "https://www.jma.go.jp/jma/kishou/info/coment.html"
+terms = "jma-pdl-1.0"
+# 規約の出典記載例「出典：気象庁ホームページ（当該ページのURL）」に沿う
+attribution = "出典：気象庁ホームページ（https://www.data.jma.go.jp/typhoon/statistics/generation/generation.html）"
+modified = false
+# 文字コードは Shift_JIS。1951〜2025年の月別・年間の発生数（2026年の速報値はページのみで CSV にない）
+
+[concluded]
+license = "LicenseRef-jp-PDL-1.0"
+by = "Claude Opus 5.5（ryo-morimoto の依頼で確認。本人の確認待ち）"
+at = 2026-11-21
+basis = ["terms-page", "catalog"]
+third_party = "none-indicated"   # 単純な数表。第三者の権利の表示はない
+
+[catalog]
+type = "ckan"
+url = "https://data.e-gov.go.jp/data/api/3/action/package_show?id=3971caad-b85a-43d1-ab16-a5e910febcda"
+accept_mismatch = "e-Gov カタログは政府標準利用規約（第2.0版）と表記するが、気象庁サイトの現行規約は PDL1.0 準拠（2026-11-21 確認）。カタログ側の表記が古いとみられる"
