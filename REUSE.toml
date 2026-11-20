@@ -5,6 +5,6 @@ version = 1
 # aggregate: ファイル内の SPDX スニペット（埋め込んだ外部データ）の宣言と合わせて扱う
 [[annotations]]
 precedence = "aggregate"
-path = ["**/*.md", "**/*.py", "**/*.toml", ".gitignore", ".githooks/**", ".github/**"]
+path = ["**/*.md", "**/*.py", "**/*.toml", ".gitignore", ".githooks/**", ".github/**", "templates/**"]
 SPDX-FileCopyrightText = "2026 ryo-morimoto"
 SPDX-License-Identifier = "CC0-1.0"

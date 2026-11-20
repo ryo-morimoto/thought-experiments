@@ -20,6 +20,7 @@ import shutil
 import subprocess
 import sys
 import tomllib
+import urllib.parse
 import urllib.request
 from pathlib import Path, PurePosixPath
 
@@ -150,6 +151,7 @@ def check_source(rel: PurePosixPath, src: dict, licenses: dict, policy: dict) ->
     if src.get("publisher_type") and src["publisher_type"] not in types:
         errs.append(f"{rel}: 提供者の種別 {src['publisher_type']!r} は data-policy.toml の publisher_types にない")
     errs += check_terms(rel, src, policy)
+    errs += check_art13(rel, src, policy)
     for key in ("url", "license_url"):
         if key in src and not str(src[key]).startswith("https://"):
             errs.append(f"{rel}: {key} は https:// で始まる公開 URL にする")
@@ -199,6 +201,29 @@ def check_terms(rel: PurePosixPath, src: dict, policy: dict) -> list[str]:
     if t.get("non_copyrightable") == "applies" and not tp.get("allow_non_copyrightable_applies", True):
         errs.append(f"{rel}: 規約 {tid} は著作物でないデータにも条件を課すため使わない"
                     "（terms_policy.allow_non_copyrightable_applies）")
+    return errs
+
+
+ART13_LICENSE = "LicenseRef-jp-copyright-art13"
+
+
+def check_art13(rel: PurePosixPath, src: dict, policy: dict) -> list[str]:
+    """著作権法13条（権利の目的とならない著作物）として扱うデータの条件。"""
+    if src.get("license") != ART13_LICENSE:
+        return []
+    cfg = policy.get("art13", {})
+    errs = []
+    if src.get("terms") != "jp-copyright-art13":
+        errs.append(f"{rel}: 13条の区分では terms = \"jp-copyright-art13\" にする")
+    if src.get("art13_item") not in cfg.get("items", []):
+        errs.append(f"{rel}: 13条のどの号に当たるかを art13_item に書く（{cfg.get('items')}）")
+    if src.get("publisher_type") not in cfg.get("publisher_types", []):
+        errs.append(f"{rel}: 13条の作成主体は国・地方公共団体の機関・独立行政法人等。"
+                    f"publisher_type {src.get('publisher_type')!r} は当たらない")
+    host = urllib.parse.urlsplit(str(src.get("url", ""))).hostname
+    if host not in cfg.get("hosts", {}):
+        errs.append(f"{rel}: 取得元 {host!r} は [art13.hosts] にない。公的機関が直接運営するサイトから取得し、"
+                    "サイト規約を確認してから登録する（民間の例規集は編集物・独自規約があるため不可）")
     return errs
 
 
