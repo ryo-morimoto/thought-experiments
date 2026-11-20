@@ -60,7 +60,7 @@ promise_test(async test => {
       })());
     };
     await clients.claim();
-    send("${reply}", serviceWorker.state);
+    send("${reply}", registration.active.state);
   `);
   assert_equals(await receive(reply), "activated");
 }, "Setup: COEP:unsafe-none ServiceWorker proxying cross-origin no-cors");

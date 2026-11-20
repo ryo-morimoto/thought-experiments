@@ -53,8 +53,15 @@ COEPs == {"unsafe-none", "require-corp", "credentialless"}
 CORPs == {"none", "same-origin", "same-site", "cross-origin"}
 
 \* Mechanical mutants: every decision in the spec operators is wrapped as
-\* C(id, e). Mutant "neg:<id>" negates that one decision; nothing else changes.
-C(id, e) == IF Mutant = "neg:" \o id THEN ~e ELSE e
+\* C(id, e). Only the named decision changes:
+\*   "neg:<id>"   negate it
+\*   "false:<id>" always false: the step guarded by it is omitted
+\*   "true:<id>"  always true: the check it makes is omitted
+C(id, e) ==
+  CASE Mutant = "neg:" \o id   -> ~e
+    [] Mutant = "false:" \o id -> FALSE
+    [] Mutant = "true:" \o id  -> TRUE
+    [] OTHER                   -> e
 DecisionIds == {"coi-insecure", "coi-coop-so", "coi-coep-compat", "coi-mode",
                 "oac-coi", "oac-hist", "oac-header", "oac-secure",
                 "coop-both-unsafe", "coop-one-unsafe", "coop-equal", "coop-same-origin",
@@ -250,7 +257,28 @@ Signature ==
     [x \in COOPs \X AllOrigins \X COOPs \X AllOrigins |-> PopupSevered(x[1], x[2], x[3], x[4])],
     [x \in AllOrigins \X COEPs \X {"cors", "no-cors"} \X AllResponses
         |-> FetchResult(x[1], x[2], x[3], x[4])]>>
-PrintSignature == PrintT(<<"signature", Signature>>)
+\* The same outputs as nested sequences over fixed input orders. TLC prints
+\* functions over record domains in no stable order, so equivalence is judged
+\* on this form.
+OSeq    == <<OA, OAwww, OAwww2, OB, OAhttp, OAwwwhttp, OBhttp>>
+COOPSeq == <<"unsafe-none", "same-origin", "same-origin-allow-popups">>
+COEPSeq == <<"unsafe-none", "require-corp", "credentialless">>
+CORPSeq == <<"none", "same-origin", "same-site", "cross-origin">>
+BoolSeq == <<FALSE, TRUE>>
+Seq7 == 1..7
+SignatureSeq ==
+  <<[a \in 1..3 |-> [b \in 1..3 |-> [c \in Seq7 |->
+       IF CrossOriginIsolated(COOPSeq[a], COEPSeq[b], OSeq[c]) THEN 1 ELSE 0]]],
+    [a \in Seq7 |-> [b \in 1..2 |-> [c \in 1..3 |-> [d \in 1..2 |->
+       KeyKind(OSeq[a], <<"none", "concrete">>[b], <<"absent", "site", "origin">>[c],
+               BoolSeq[d])]]]],
+    [a \in 1..3 |-> [b \in Seq7 |-> [c \in 1..3 |-> [d \in Seq7 |->
+       IF PopupSevered(COOPSeq[a], OSeq[b], COOPSeq[c], OSeq[d]) THEN 1 ELSE 0]]]],
+    [a \in Seq7 |-> [b \in 1..3 |-> [c \in 1..2 |-> [d \in Seq7 |-> [e \in 1..4 |->
+       [f \in 1..2 |->
+         FetchResult(OSeq[a], COEPSeq[b], <<"cors", "no-cors">>[c],
+                     [origin |-> OSeq[d], corp |-> CORPSeq[e], creds |-> BoolSeq[f]])]]]]]]>>
+PrintSignature == PrintT(<<"signature", SignatureSeq>>)
 
 \* One pair of responses that the page can tell apart.
 LeakWitness ==
