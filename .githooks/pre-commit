@@ -8,4 +8,5 @@ if command -v reuse >/dev/null 2>&1; then
 else
   echo "警告: reuse がないので全ファイルのライセンス宣言は CI でだけ検査される（pipx install reuse）" >&2
 fi
+python3 tools/thought_map.py check
 exec python3 tools/check_data_policy.py

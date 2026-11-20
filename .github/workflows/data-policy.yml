@@ -19,3 +19,5 @@ jobs:
           python-version: "3.12"
       # 出所・ライセンス義務・証拠（ハッシュとタイムスタンプ）
       - run: python3 tools/check_data_policy.py
+      # 思考実験の地図の形式と、MAP.md が map.toml から生成した最新のものか
+      - run: python3 tools/thought_map.py check

@@ -1,0 +1,45 @@
+# 思考実験の地図の雛形。maps/<name>/map.toml にコピーして埋める。
+# 生成: python3 tools/thought_map.py render maps/<name>
+# 候補: python3 tools/thought_map.py frontier maps/<name>
+
+title = ""
+question = ""   # 地図全体で答えたい問い
+
+# 軸は、なるべく既存の標準や論文の分類を使う。値の網羅性を他人の分類に担保させるため。
+# basis: standard（規格・仕様）| paper（論文・サーベイ）| own（自作。候補に「根拠を探す」が出る）
+# checked: 出典の本文で値の定義を確かめたら true
+[rows]
+name = ""
+basis = "paper"
+ref = ""          # URL かリポジトリ内のパス
+ref_title = ""
+checked = false
+note = ""
+
+[[rows.values]]
+id = ""
+name = ""
+note = ""
+
+[cols]
+name = ""
+basis = "standard"
+ref = ""
+ref_title = ""
+checked = false
+
+[[cols.values]]
+id = ""
+name = ""
+
+# セルは考えたところだけ書く。書いていないセルは「未探索」。
+# status: open | hypothesis | supported | refuted | contested | out_of_scope
+# mode: 最後に回した思考実験のモード（constructive | destructive | exploratory）
+[[cells]]
+row = ""
+col = ""
+status = "open"
+claim = ""        # open 以外は必須。結論・仮説・扱わない理由
+evidence = []     # 根拠。URL かリポジトリ内のパス（reports/… や experiments/…）
+mode = ""
+next = ""         # 次に問うべきこと
