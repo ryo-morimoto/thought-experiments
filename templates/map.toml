@@ -1,6 +1,6 @@
 # 思考実験の地図の雛形。maps/<name>/map.toml にコピーして埋める。
 # 生成: python3 tools/thought_map.py render maps/<name>
-# 候補: python3 tools/thought_map.py frontier maps/<name>
+# 候補: python3 tools/thought_map.py candidates maps/<name>
 
 title = ""
 question = ""   # 地図全体で答えたい問い

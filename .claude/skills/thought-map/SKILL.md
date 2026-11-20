@@ -18,12 +18,12 @@ description: このリポジトリで、思考実験を回しながら地図（m
 
 ## 1. 候補を出して選んでもらう
 
-引数に `maps/<name> <row>/<col>`（または `axis:rows` / `axis:cols`）があれば、map.html の「コピー」から来た指定なので、選択を飛ばしてそのセルで 2 に進む。理由とモードは `frontier --json` の該当項目を使う。
+引数に `maps/<name> <row>/<col>`（または `axis:rows` / `axis:cols`）があれば、map.html の「コピー」から来た指定なので、選択を飛ばしてそのセルで 2 に進む。理由とモードは `candidates --json` の該当項目を使う。
 
 引数がなければ候補を出す。ユーザーには `maps/<name>/map.html` をブラウザで開くと全体と候補の理由が見られることを伝える。
 
 ```sh
-python3 tools/thought_map.py frontier maps/<name> --top 6
+python3 tools/thought_map.py candidates maps/<name>
 ```
 
 上位から3つを AskUserQuestion の選択肢にする（4つ目は「地図全体を見る」）。各選択肢の description には、セル名・状態・モード・**なぜそこか**（隣のセルのどの結論から推論するのか）を1〜2文で書く。ユーザーが別のセルや新しい軸を言ったらそれに従う。

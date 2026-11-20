@@ -9,7 +9,7 @@
 問いの空間を2つの軸で区切った表を `maps/<name>/map.toml` に書き、思考実験で1セルずつ埋めていく。軸にはなるべく既存の標準や論文の分類を使う（自作の軸には「既存の分類に置き換える」候補が出る）。空いているセルについては、同じ行・列の結論からどう推論するかの候補をツールが出す。
 
 ```sh
-python3 tools/thought_map.py frontier maps/<name>   # 次に考える候補（理由と推論モードつき）
+python3 tools/thought_map.py candidates maps/<name> # 次に考える候補（理由と推論モードつき）
 python3 tools/thought_map.py render                 # map.toml から map.html を生成
 python3 tools/thought_map.py check                  # 形式と map.html の鮮度（pre-commit と CI でも実行）
 ```
