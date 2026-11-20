@@ -16,6 +16,7 @@ attribution = "出典：提供者「データセットの名前」(https://examp
 modified = false                              # 加工したら true
 # modifications = "2020年以降の行だけを抽出し、列名を英語に変更（加工：ryo-morimoto）"  # modified = true なら必須
 # committed = false   # リポジトリに含めない場合。取得は DVC の import-url などで再現できるようにする
+# archive_note = "…"  # Internet Archive に保存できない、または保存内容が手元と一致しない事情（動的なページなど）
 
 # 確認値（concluded）: 自分で規約を読んで確かめた結果。宣言値と食い違うなら使わない。
 [concluded]

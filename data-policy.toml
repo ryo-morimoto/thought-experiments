@@ -2,23 +2,19 @@
 # ライセンスを追加するときは、本文を読んで二次利用（複製・加工・再配布）が
 # 許されていることを確かめてから、単独のコミットで追加する。
 
-# この拡張子のファイルは「データ」とみなし、SOURCE.toml の管轄下にしか置けない。
-data_extensions = [
-  "csv", "tsv", "json", "jsonl", "ndjson", "geojson", "xml", "yaml", "yml",
-  "parquet", "feather", "arrow", "sqlite", "db", "duckdb",
-  "xlsx", "xls", "ods",
-  "zip", "gz", "bz2", "xz", "7z", "tar",
-  "shp", "dbf", "shx", "prj",
-  "pdf", "png", "jpg", "jpeg", "gif", "webp", "svg",
-  "mp3", "wav", "mp4",
-]
+# SOURCE.toml として扱わないもの（雛形）。
+ignore_sources = ["templates/**"]
 
-# データ拡張子でもチェック対象外にするパス（glob、リポジトリルートからの相対）。
-# 設定ファイルなど、自分で書いたデータでないものだけを入れる。
-ignore = [
-  ".github/**",
+# 自作物とみなすファイル。これ以外のファイルはすべて「データ」とみなし、SOURCE.toml の管轄下にしか置けない。
+# データの拡張子を列挙する方式だと、拡張子を変えるだけ（.csv → .txt）で検査をすり抜けられるため、こちらを許可リストにする。
+# ルートの REUSE.toml はここから生成される（自作物だけに CC0 を宣言し、それ以外を一括で宣言しない）。
+[own]
+extensions = ["md", "py", "toml"]
+paths = [
+  ".gitignore",
   ".githooks/**",
-  "templates/**",
+  ".github/**",
+  "LICENSES/**",    # REUSE が要求するライセンス本文（REUSE 自体の検査対象外）
 ]
 
 # 自作物の著作権表示とライセンス。REUSE.toml の生成に使う。
@@ -28,10 +24,11 @@ copyright = "2026 ryo-morimoto"
 license = "CC0-1.0"
 
 # RFC 3161 タイムスタンプ局。証拠マニフェストに時刻証明を付ける。
+# 証明書は他人のファイルなのでコミットせず、検査のたびに取得して sha256 で照合する。
 [tsa]
 url = "https://freetsa.org/tsr"
-cafile = "tools/tsa/freetsa-cacert.pem"
-untrusted = "tools/tsa/freetsa-tsa.crt"
+cafile = { url = "https://freetsa.org/files/cacert.pem", sha256 = "2151b61137ffa86bf664691ba67e7da0b19f98c758e3d228d5d8ebf27e044438" }
+untrusted = { url = "https://freetsa.org/files/tsa.crt", sha256 = "8bfb0305bb64e2571ca507552ef3245cb1c2fee8728e0ff8689225081ea13467" }
 
 # 許可ライセンス。キーは SPDX 識別子、SPDX にないものは LicenseRef- を付ける。
 #   attribution: クレジット表示が必要か（true なら SOURCE.toml の attribution が必須）

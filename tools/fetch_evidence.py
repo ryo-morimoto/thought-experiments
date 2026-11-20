@@ -7,6 +7,7 @@
   1. url と license_url の応答（本文とヘッダ）を EVIDENCE/raw/ に保存する。
      他人の著作物なのでコミットしない（.gitignore 済み）。手元で保管し、ハッシュだけ公開する。
   2. 同じ URL を Internet Archive の Save Page Now に送り、第三者による保存の URL を記録する。
+     保存された生の内容（id_ 付き URL）を取り直し、手元の写しとハッシュが一致するかも記録する。
   3. [catalog] があれば、提供者のカタログ（CKAN / DataCite）のライセンス表記と照合する。
   4. データ本体と 1 の保存物の sha256 を EVIDENCE/MANIFEST.sha256 に書き、
      RFC 3161 タイムスタンプ（.tsr）を付ける。ots コマンドがあれば OpenTimestamps も付ける。
@@ -19,6 +20,8 @@
 from __future__ import annotations
 
 import datetime as dt
+import gzip
+import hashlib
 import json
 import re
 import shutil
@@ -28,6 +31,7 @@ import tomllib
 import urllib.error
 import urllib.parse
 import urllib.request
+import zlib
 from pathlib import Path, PurePosixPath
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -60,6 +64,25 @@ def save_page_now(url: str) -> dict:
             return {"snapshot": snap}
     except (urllib.error.URLError, TimeoutError) as e:
         return {"snapshot": None, "error": str(e)}
+
+
+def archived_digest(snapshot: str) -> dict:
+    """Internet Archive が保存した生の内容（id_ 付き URL）を取得し、sha256 を返す。"""
+    m = re.match(r"(https://web\.archive\.org/web/\d+)/(.+)", snapshot)
+    if not m:
+        return {"archived_sha256": None, "archive_error": f"想定外の保存 URL: {snapshot}"}
+    raw = f"{m.group(1)}id_/{m.group(2)}"
+    try:
+        with get(raw, timeout=120) as r:
+            body, enc = r.read(), (r.headers.get("Content-Encoding") or "").lower()
+        # 手元の取得は圧縮なし。保存側が gzip で返すことがあるので、展開してから比べる
+        if enc == "gzip" or body[:2] == b"\x1f\x8b":
+            body = gzip.decompress(body)
+        elif enc == "deflate":
+            body = zlib.decompress(body)
+        return {"archived_raw": raw, "archived_sha256": hashlib.sha256(body).hexdigest()}
+    except (urllib.error.URLError, TimeoutError) as e:
+        return {"archived_raw": raw, "archived_sha256": None, "archive_error": str(e)}
 
 
 def family(lic: str) -> str:
@@ -141,7 +164,12 @@ def main() -> int:
     archives = {}
     for name, url in targets.items():
         print(f"Save Page Now: {url}")
-        archives[name] = {"url": url, **save_page_now(url)}
+        a = {"url": url, **save_page_now(url)}
+        if a.get("snapshot"):
+            a.update(archived_digest(a["snapshot"]))
+            local = sha256(raw_dir / f"{name}.body")
+            a["matches_local"] = a.get("archived_sha256") == local
+        archives[name] = a
 
     ev = {
         "fetched_at": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
@@ -158,6 +186,10 @@ def main() -> int:
     for name, a in archives.items():
         if not a.get("snapshot"):
             print(f"警告: {name} を Internet Archive に保存できなかった（{a.get('error')}）。後で再実行する",
+                  file=sys.stderr)
+        elif not a.get("matches_local"):
+            print(f"警告: {name} の Internet Archive の保存内容が手元の写しと一致しない"
+                  f"（{a.get('archive_error') or '内容が異なる'}）。動的なページなら事情を archive_note に書く",
                   file=sys.stderr)
     if not ots:
         print("注意: ots コマンドがないので OpenTimestamps は付けていない", file=sys.stderr)

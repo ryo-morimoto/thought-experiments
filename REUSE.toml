@@ -1,7 +1,8 @@
-# 自作物はすべて CC0-1.0。データディレクトリでは、その中の REUSE.toml（SOURCE.toml から生成）が優先される。
+# 自動生成: python3 tools/check_data_policy.py --fix。手で編集しない（元は data-policy.toml の [own]）。
+# 自作物だけに宣言する。それ以外を一括で宣言すると、出所の分からないファイルにも自作物のラベルが付いてしまう。
 version = 1
 
 [[annotations]]
-path = "**"
+path = ["**/*.md", "**/*.py", "**/*.toml", ".gitignore", ".githooks/**", ".github/**"]
 SPDX-FileCopyrightText = "2026 ryo-morimoto"
 SPDX-License-Identifier = "CC0-1.0"

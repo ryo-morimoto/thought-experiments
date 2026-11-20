@@ -20,6 +20,7 @@ import shutil
 import subprocess
 import sys
 import tomllib
+import urllib.request
 from pathlib import Path, PurePosixPath
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -30,6 +31,7 @@ REUSE_NAME = "REUSE.toml"
 EVIDENCE_DIR = "EVIDENCE"
 MANIFEST = f"{EVIDENCE_DIR}/MANIFEST.sha256"
 ORIGINS = {"external", "derived", "original"}
+CACHE_DIR = ROOT / ".cache"
 
 REQUIRED = {
     "external": ["id", "title", "publisher", "url", "license", "license_url", "modified", "concluded"],
@@ -82,13 +84,38 @@ def governing_source(path: PurePosixPath, source_dirs: set[PurePosixPath]):
     return None
 
 
+def is_own(path: PurePosixPath, policy: dict) -> bool:
+    """自作物とみなすファイルか（data-policy.toml の [own]）。"""
+    own = policy.get("own", {})
+    if path.suffix.lower().lstrip(".") in own.get("extensions", []):
+        return True
+    return any(fnmatch.fnmatch(str(path), p) for p in own.get("paths", []))
+
+
+def pinned_file(spec: dict) -> Path:
+    """URL から取得し、記録した sha256 と一致することを確かめたファイル（.cache/ に置く）。"""
+    dest = CACHE_DIR / spec["url"].rsplit("/", 1)[-1]
+    if not dest.exists() or sha256(dest) != spec["sha256"]:
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        req = urllib.request.Request(spec["url"], headers={"User-Agent": "thought-experiments-check/1.0"})
+        with urllib.request.urlopen(req, timeout=60) as r:
+            dest.write_bytes(r.read())
+    if sha256(dest) != spec["sha256"]:
+        raise RuntimeError(f"{spec['url']} の sha256 が data-policy.toml の記録と一致しない（差し替えの疑い）")
+    return dest
+
+
 def verify_tsr(manifest: Path, tsr: Path, policy: dict) -> str | None:
     """RFC 3161 トークンを検証する。問題があればエラーメッセージを返す。"""
     if not shutil.which("openssl"):
         return "openssl がないのでタイムスタンプを検証できない"
     tsa = policy.get("tsa", {})
+    try:
+        cafile, untrusted = pinned_file(tsa["cafile"]), pinned_file(tsa["untrusted"])
+    except (OSError, RuntimeError) as e:
+        return f"タイムスタンプ局の証明書を用意できない: {e}"
     cmd = ["openssl", "ts", "-verify", "-data", str(manifest), "-in", str(tsr),
-           "-CAfile", str(ROOT / tsa["cafile"]), "-untrusted", str(ROOT / tsa["untrusted"])]
+           "-CAfile", str(cafile), "-untrusted", str(untrusted)]
     r = subprocess.run(cmd, capture_output=True, text=True)
     if r.returncode != 0 or "Verification: OK" not in r.stdout:
         return "タイムスタンプの検証に失敗: " + (r.stderr or r.stdout).strip().splitlines()[-1]
@@ -171,6 +198,16 @@ def check_evidence(src_dir: PurePosixPath, src: dict, payload: list[PurePosixPat
 
     ev_file = base / EVIDENCE_DIR / "evidence.json"
     ev = json.loads(ev_file.read_text(encoding="utf-8")) if ev_file.exists() else {}
+    # 取得元の証拠: 第三者（Internet Archive）が保存した内容が、手元の写しと一致するか
+    if not src.get("archive_note"):
+        for name in ("url", "license_url"):
+            a = ev.get("archives", {}).get(name, {})
+            if not a.get("snapshot"):
+                errs.append(f"{rel}: {name} の Internet Archive 保存がない。{hint}"
+                            "（保存できない事情があれば archive_note に書く）")
+            elif a.get("archived_sha256") != recorded.get(f"{EVIDENCE_DIR}/raw/{name}.body"):
+                errs.append(f"{rel}: {name} の Internet Archive の保存内容が手元の写しと一致しない"
+                            "（動的なページなどで一致しない事情があれば archive_note に書く）")
     cat = ev.get("catalog")
     if cat and cat.get("result") == "mismatch" and not src.get("catalog", {}).get("accept_mismatch"):
         errs.append(f"{rel}: カタログのライセンス {cat.get('licenses')} が宣言と一致しない"
@@ -245,6 +282,24 @@ def render_reuse(src: dict, sources: dict, policy: dict) -> str:
     ])
 
 
+def render_root_reuse(policy: dict) -> str:
+    """自作物だけに CC0 を宣言する。データディレクトリでは、その中の REUSE.toml が優先される。"""
+    own, me = policy.get("own", {}), policy["self"]
+    paths = [f"**/*.{e}" for e in own.get("extensions", [])]
+    paths += [p for p in own.get("paths", []) if not p.startswith("LICENSES/")]
+    return "\n".join([
+        "# 自動生成: python3 tools/check_data_policy.py --fix。手で編集しない（元は data-policy.toml の [own]）。",
+        "# 自作物だけに宣言する。それ以外を一括で宣言すると、出所の分からないファイルにも自作物のラベルが付いてしまう。",
+        "version = 1",
+        "",
+        "[[annotations]]",
+        "path = [" + ", ".join(toml_str(p) for p in paths) + "]",
+        f"SPDX-FileCopyrightText = {toml_str(me['copyright'])}",
+        f"SPDX-License-Identifier = {toml_str(me['license'])}",
+        "",
+    ])
+
+
 def render_notice(sources: dict[str, tuple[PurePosixPath, dict]]) -> str:
     lines = [
         "# NOTICE",
@@ -293,16 +348,15 @@ def main() -> int:
 
     policy = load_policy()
     licenses: dict = policy.get("licenses", {})
-    exts = {e.lower().lstrip(".") for e in policy.get("data_extensions", [])}
-    ignore = list(policy.get("ignore", []))
+    ignore_sources = list(policy.get("ignore_sources", []))
 
-    files = [f for f in repo_files() if not any(fnmatch.fnmatch(str(f), p) for p in ignore)]
+    files = repo_files()
     errs: list[str] = []
 
     sources: dict[str, tuple[PurePosixPath, dict]] = {}
     source_dirs: set[PurePosixPath] = set()
     for f in files:
-        if f.name != SOURCE_NAME:
+        if f.name != SOURCE_NAME or any(fnmatch.fnmatch(str(f), p) for p in ignore_sources):
             continue
         source_dirs.add(f.parent)
         try:
@@ -318,8 +372,9 @@ def main() -> int:
             sources[sid] = (f, src)
 
     for f in files:
-        if f.suffix.lower().lstrip(".") in exts and governing_source(f, source_dirs) is None:
-            errs.append(f"{f}: データファイルだが SOURCE.toml の管轄下にない")
+        if governing_source(f, source_dirs) is None and not is_own(f, policy):
+            errs.append(f"{f}: 自作物の拡張子・パス（data-policy.toml の [own]）でなく、"
+                        "SOURCE.toml の管轄下にもない。データなら出所を宣言する")
 
     errs += check_lineage(sources, licenses)
 
@@ -329,6 +384,7 @@ def main() -> int:
         if src.get("origin") == "external":
             errs += check_evidence(d, src, payload_files(d, files, source_dirs), policy)
 
+    sync(ROOT / REUSE_NAME, render_root_reuse(policy), fix, REUSE_NAME, errs)
     sync(NOTICE_FILE, render_notice(sources), fix, "NOTICE.md", errs)
 
     if report:
