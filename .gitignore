@@ -4,5 +4,7 @@
 .cache/
 __pycache__/
 .tmp/
+# TLC が反例ごとに生成するトレース（再実行で再現できる）
+**/*_TTrace_*
 # Claude Code の作業用 worktree（REUSE はグローバルな除外設定を読まないので明記する）
 .claude/worktrees/
