@@ -52,6 +52,58 @@
 
 生き残り: P2。脱落: P3（署名が示すのは主張まで）、「2系統の独立した裏付け」（A1）。P4 は P1 に吸収。
 
+## 具体
+
+### 調査の材料
+
+- 既存製品の調査（層①〜③・網羅性・忠実性・証拠保全の対応表、誤表示率の数値と出典）: [reports/データライセンス準拠ツールの限界.md](../reports/データライセンス準拠ツールの限界.md)、調査メモ: [research_notes/データライセンス準拠ツールの限界/](../research_notes/データライセンス準拠ツールの限界/)
+- 忠実性の突き合わせで読んだ条文: CC BY 4.0（https://creativecommons.org/licenses/by/4.0/legalcode.en ）、CC BY-SA 4.0（https://creativecommons.org/licenses/by-sa/4.0/legalcode.en ）、ODbL 1.0（https://opendatacommons.org/licenses/odbl/1-0/ ）、PDL1.0（https://www.digital.go.jp/resources/open_data/public_data_license_v1.0 ）
+
+ODbL 1.0 4.6 の要旨（反例の根拠）: 派生データベースか、そこから作った制作物を公衆に利用させるときは、派生データベース全体か変更点のファイルを機械可読な形で提供しなければならない。元のデータベースから直接作った制作物は対象外。
+
+### 既製品を動かして分かったこと（実行の記録）
+
+`reuse spdx` は確認値（LicenseConcluded）を出さない。REUSE 6.3.0 で、宣言を書いたファイルを出力した結果:
+
+```
+FileName: ./data/osm/roads.csv
+LicenseConcluded: NOASSERTION
+LicenseInfoInFile: ODbL-1.0
+```
+
+RFC 3161（FreeTSA）は openssl だけで発行・検証まで完結した:
+
+```
+Status: Granted.
+Time stamp: Nov 20 14:20:45 2026 GMT
+Verification: OK
+```
+
+Internet Archive の保存内容（`id_` 付き URL）は gzip で返ることがあり、そのまま比べると不一致になった。CC の規約ページで、保存側 12,786 バイト（gzip）に対し、手元は 54,711 バイト。展開すると sha256 が一致した（`8a0bd54c7eb714d6…`）。
+
+attestation は、gzip した tar ではハッシュが git のバージョンで変わり、第三者が再現できなかった（CI `a67803a2…`、手元 `0b3a5c93…`）。圧縮しない tar に変えると一致した:
+
+- タグ v0.1.1、署名対象 `repo-v0.1.1.tar` の sha256 `10c68b8be6bdc82108404d43b0415f7f415aa2c1af8a579826d85b7e2c776ce8`
+- attestation: https://github.com/ryo-morimoto/thought-experiments/attestations/70179845 （CI 実行 https://github.com/ryo-morimoto/thought-experiments/actions/runs/44754767341 ）
+- 検証: `git archive --format=tar -o repo.tar v0.1.1 && gh attestation verify repo.tar --repo ryo-morimoto/thought-experiments --predicate-type https://github.com/ryo-morimoto/thought-experiments/data-policy-check/v1` は終了コード 0、1 バイト変えた tar は終了コード 1
+- 予測型の URL にアンダースコアを含めると、GitHub API の絞り込みが `HTTP 422: predicate_type invalid predicate type provided` を返した
+
+### 攻撃（A2・A3）の再現と、塞いだ後の検査の出力
+
+A2（拡張子を変える）を塞いだ後、CSV を `notes.txt` として置いた結果:
+
+```
+  - notes.txt: 自作物の拡張子・パス（data-policy.toml の [own]）でなく、SOURCE.toml の管轄下にもない。データなら出所を宣言する
+notes.txt: no license identifier
+notes.txt: no copyright notice
+```
+
+A3（取得元の照合）の実データでの結果は、江戸川区のデータ（参照は [2026-11-21-non-copyrightable-obligations.md](2026-11-21-non-copyrightable-obligations.md) の「具体」）と気象庁のデータ（[data/jma-typhoon-generation/EVIDENCE/evidence.json](../data/jma-typhoon-generation/EVIDENCE/evidence.json)）の両方で、データ本体・規約とも保存内容が手元の写しと一致した。
+
+### 判例（著作権法13条により権利の対象外）
+
+知財高裁 平成18年(行ケ)10358号（平成19年3月26日判決）は、Internet Archive の記録の証明力を否定した（利用規約が正確性を保証していないこと、誤表示の例があることを理由とする）。同じ判決は、自己申告の日付も退けている。調査メモ: [provenance_and_evidence.md](../research_notes/データライセンス準拠ツールの限界/provenance_and_evidence.md)
+
 ## 経過
 
 - 2026-11-20 段階A〜C。結論を受けて、L1〜L4 を実装した（REUSE、`SOURCE.toml`、証拠の取得、確認値、attestation）。
