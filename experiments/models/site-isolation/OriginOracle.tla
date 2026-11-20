@@ -110,13 +110,19 @@ Needs == [b \in AllBugs |->
                                 "determine the origin"}
     [] b = "CVE-2018-16074" -> {"obtain a site"}
     [] b = "CVE-2019-13738" -> {"create and initialize a Document object"}
-    [] b = "CVE-2024-1671"  -> {"author-derived srcdoc invariant"}
+    \* Spec step "get session history entries" 6.1.1: a nested history belongs
+    \* to its parent's document state (found by mapping bugs to spec steps,
+    \* experiments/2026-11-21-fsp-correspondence.md). It replaces the author's
+    \* srcdoc invariant as the check this bug needs.
+    [] b = "CVE-2024-1671"  -> {"get session history entries"}
     [] OTHER                -> {}]
 \* Algorithms the extraction found reachable from navigate and main fetch.
 NavFetchClosure == {"determine the origin", "obtain a site",
                     "create a new browsing context and document",
                     "create and initialize a Document object",
-                    "obtain a similar-origin window agent"}
+                    "obtain a similar-origin window agent",
+                    \* in the extracted closure, outside the decision slice
+                    "get session history entries"}
 \* The same, with window.open's "window open steps" added as an entry point.
 WithOpenClosure == NavFetchClosure \cup {"window open steps"}
 BlindCaught(closure) ==
