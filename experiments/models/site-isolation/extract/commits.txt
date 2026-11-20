@@ -1,0 +1,6 @@
+whatwg/html  0e292f402d0c3dd17fe00c1bb2ef3a3c94cd8bce  2026-11-20T13:37:02Z  file: source (saved as data/html.src)
+whatwg/fetch d7fc0fdb1bdc25bec9c3699b57d4bb042f88098e  2026-11-20T13:36:10Z  file: fetch.bs
+whatwg/url   4f461b81a748443b235840599cea6290df40329a  2026-11-19T13:54:52Z  file: url.bs (parsed only, not in closure)
+02f6c195883f6a3bd49d02452ae57263b9745ef2161733e413b93b8c3a490f2e  data/html.src
+ea61c842bd1540870cf1aeccc74fb9d3ca75307c9fcbd38feefa92494701f25e  data/fetch.bs
+104714f5f507f846dc5876f01e640830c69db03319f49da9aecd00d283a200fa  data/url.bs
