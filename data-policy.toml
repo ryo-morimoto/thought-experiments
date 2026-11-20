@@ -155,6 +155,19 @@ unilateral_change = true         # PDL1.0 準拠
 third_party_clearance = "user"  # PDL1.0 準拠（1.2）
 # 個別法令の注意として気象業務法17条（予報業務の許可）・23条（警報の制限）を挙げる。過去の統計の利用は該当しない見込み
 
+[terms."jma-en-pdl-1.0"]
+title = "Japan Meteorological Agency website Legal Notice（Public Data License (Version 1.0) 準拠、英語版）"
+url = "https://www.jma.go.jp/jma/en/copyright.html"
+base_license = "LicenseRef-jp-PDL-1.0"
+non_copyrightable = "excluded"   # PDL1.0 準拠。数値データ・簡単な表は本利用ルールの適用外
+indemnity = false                # indemnif・reimburs・compensat・cost・expense は 0 件。damage 1 件は Google Analytics に関する気象庁の免責。2026-11-21 確認
+deemed_consent = true            # PDL1.0 準拠
+unilateral_change = true         # PDL1.0 準拠
+third_party_clearance = "user"   # "it is the responsibility of the user to obtain consent"（2) No infringement of third party rights）
+# RSMC Tokyo のベストトラックのページ末尾「Legal Notice」はこのページを指す（RSMC 独自の条件はない）。
+# 出典記載例 "Source: Japan Meteorological Agency website (URL of relevant page)"。
+# 個別法令の注意として気象業務法17条・23条を挙げる（日本語版と同じ）。
+
 # 許可ライセンス。キーは SPDX 識別子、SPDX にないものは LicenseRef- を付ける。
 #   attribution: クレジット表示が必要か（true なら SOURCE.toml の attribution が必須）
 #   share_alike: 派生物に同じライセンスを付ける義務があるか
