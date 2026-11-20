@@ -82,7 +82,7 @@ def validate(m: dict) -> list[str]:
             errs.append(f"{where}: {k} がない")
     if errs:
         return errs
-    ids = {}
+    ids_by_axis = {}
     for ax in ("rows", "cols"):
         a = m[ax]
         for k in ("name", "basis", "ref", "values"):
@@ -93,7 +93,7 @@ def validate(m: dict) -> list[str]:
         vids = [v.get("id") for v in a.get("values", [])]
         if not vids or len(vids) != len(set(vids)) or None in vids or "" in vids:
             errs.append(f"{where}: [{ax}] の値がないか、id が欠けている・重複している")
-        ids[ax] = set(vids)
+        ids_by_axis[ax] = set(vids)
     if errs:
         return errs
     seen = set()
@@ -103,7 +103,7 @@ def validate(m: dict) -> list[str]:
         if target in seen:
             errs.append(f"{label} が重複している")
         seen.add(target)
-        if target[0] not in ids["rows"] or target[1] not in ids["cols"]:
+        if target[0] not in ids_by_axis["rows"] or target[1] not in ids_by_axis["cols"]:
             errs.append(f"{label} の row/col が軸の値にない")
         st = c.get("status")
         if st not in LEGEND_BY_STATUS or st == "unexplored":
@@ -202,7 +202,7 @@ def render(m: dict) -> str:
                       "values": [keep(v, ("id", "name", "note")) for v in a["values"]]}
     up = Path(os.path.relpath(ROOT, map_dir)).as_posix()
     data = json.dumps({
-        "title": m["title"], "question": m["question"], "dir": rel(map_dir),
+        "title": m["title"], "question": m["question"], "map_dir": rel(map_dir),
         "up": "" if up == "." else up + "/",  # map.html から <root> への相対パス
         "skill_command": SKILL_COMMAND,
         "rows": axis(m["rows"]), "cols": axis(m["cols"]),
@@ -224,10 +224,10 @@ def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--root", type=Path, default=Path.cwd(), help="maps/ と根拠のパスの基点（既定: 作業ディレクトリ）")
     sub = ap.add_subparsers(dest="cmd", required=True)
-    p = sub.add_parser("candidates", help="次に考える候補")
-    p.add_argument("map", type=Path)
-    p.add_argument("--top", type=int, default=TOP)
-    p.add_argument("--json", action="store_true")
+    cands_cli = sub.add_parser("candidates", help="次に考える候補")
+    cands_cli.add_argument("map", type=Path)
+    cands_cli.add_argument("--top", type=int, default=TOP)
+    cands_cli.add_argument("--json", action="store_true")
     for cmd, h in (("render", "map.html を生成"), ("check", "形式と map.html の鮮度を検査")):
         sub.add_parser(cmd, help=h).add_argument("maps", type=Path, nargs="*")
     args = ap.parse_args(argv)
@@ -281,18 +281,18 @@ TEMPLATE = r"""<!doctype html>
 <title>__TITLE__</title>
 <style>
 :root {
-  --bg: #f7f6f2; --paper: #ffffff; --ink: #1d1d1b; --sub: #6b6a64; --line: #dcd9d0;
-  --known: #2f7d6d; --known-bg: #dcefe9; --refuted: #7a5c58; --refuted-bg: #ece3e1;
-  --hypo: #b07a12; --hypo-bg: #f8ecd2; --open: #b07a12; --conflict: #c0392b; --conflict-bg: #f7dcd8;
-  --void: #b9b5aa; --focus: #3b5bdb; --focus-bg: #e5eafd; --premise: #7048e8;
+  --bg: #f7f6f2; --paper: #ffffff; --ink: #1d1d1b; --sub: #6b6a64; --line: #dcd9d0; --out_of_scope: #dcd9d0;
+  --supported: #2f7d6d; --supported-bg: #dcefe9; --refuted: #7a5c58; --refuted-bg: #ece3e1;
+  --hypothesis: #b07a12; --hypothesis-bg: #f8ecd2; --open: #b07a12; --contested: #c0392b; --contested-bg: #f7dcd8;
+  --unexplored: #b9b5aa; --focus: #3b5bdb; --focus-bg: #e5eafd; --premise: #7048e8;
   --mono: ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #161614; --paper: #1f1f1c; --ink: #ecebe6; --sub: #a3a198; --line: #3a3934;
-    --known: #6cc3ad; --known-bg: #1f3a33; --refuted: #c9a8a2; --refuted-bg: #3a2d2b;
-    --hypo: #e2b453; --hypo-bg: #3d3220; --open: #e2b453; --conflict: #ff8a7a; --conflict-bg: #4a2522;
-    --void: #5d5b54; --focus: #8ea2ff; --focus-bg: #262d4d; --premise: #b197fc;
+    --bg: #161614; --paper: #1f1f1c; --ink: #ecebe6; --sub: #a3a198; --line: #3a3934; --out_of_scope: #3a3934;
+    --supported: #6cc3ad; --supported-bg: #1f3a33; --refuted: #c9a8a2; --refuted-bg: #3a2d2b;
+    --hypothesis: #e2b453; --hypothesis-bg: #3d3220; --open: #e2b453; --contested: #ff8a7a; --contested-bg: #4a2522;
+    --unexplored: #5d5b54; --focus: #8ea2ff; --focus-bg: #262d4d; --premise: #b197fc;
   }
 }
 * { box-sizing: border-box; }
@@ -319,12 +319,12 @@ h2 { font-size: 14px; margin: 0 0 12px; color: var(--sub); font-weight: 600; let
 
 /* 軸 */
 .axis-card { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; margin-bottom: 8px; font-size: 13px; }
-.axis-card .dir { color: var(--sub); width: 2em; }
+.axis-card .side { color: var(--sub); width: 2em; }
 .axis-card .name { font-weight: 600; }
 .chip { font-size: 11px; padding: 1px 8px; border-radius: 999px; border: 1px solid currentColor; white-space: nowrap; }
-.chip.standard, .chip.paper { color: var(--known); }
-.chip.own { color: var(--hypo); border-style: dashed; }
-.chip.unchecked { color: var(--sub); border-style: dotted; }
+.chip.standard, .chip.paper { color: var(--supported); }
+.chip.own { color: var(--hypothesis); border-style: dashed; }
+.chip.unread { color: var(--sub); border-style: dotted; }
 .axis-card.flag { cursor: pointer; }
 .axis-card.selected { outline: 2px solid var(--focus); outline-offset: 3px; border-radius: 4px; }
 
@@ -333,8 +333,8 @@ h2 { font-size: 14px; margin: 0 0 12px; color: var(--sub); font-weight: 600; let
 .colhead, .rowhead { font-size: 13px; font-weight: 600; padding: 6px 8px; display: flex; flex-direction: column; justify-content: center; }
 .colhead { text-align: center; align-items: center; border-bottom: 2px solid var(--line); }
 .rowhead { border-right: 2px solid var(--line); }
-.rowhead.head-own { border-right-style: dashed; border-right-color: var(--hypo); }
-.colhead.head-own { border-bottom-style: dashed; border-bottom-color: var(--hypo); }
+.rowhead.head-own { border-right-style: dashed; border-right-color: var(--hypothesis); }
+.colhead.head-own { border-bottom-style: dashed; border-bottom-color: var(--hypothesis); }
 .tally { font-size: 11px; color: var(--sub); font-weight: 400; }
 .corner { font-size: 11px; color: var(--sub); display: flex; align-items: flex-end; padding: 6px; }
 
@@ -343,27 +343,27 @@ h2 { font-size: 14px; margin: 0 0 12px; color: var(--sub); font-weight: 600; let
 .cell:hover { transform: translateY(-1px); }
 .cell .glyph { font-size: 18px; font-weight: 700; line-height: 1; }
 .cell .text { margin-top: 6px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
-.cell.supported { background: var(--known-bg); border-color: var(--known); color: var(--ink); }
-.cell.supported .glyph { color: var(--known); }
+.cell.supported { background: var(--supported-bg); border-color: var(--supported); color: var(--ink); }
+.cell.supported .glyph { color: var(--supported); }
 .cell.refuted { background: var(--refuted-bg); border-color: var(--refuted); }
 .cell.refuted .glyph { color: var(--refuted); }
-.cell.hypothesis { border-color: var(--hypo);
-  background: repeating-linear-gradient(135deg, var(--hypo-bg) 0 8px, var(--paper) 8px 14px); }
-.cell.hypothesis .glyph { color: var(--hypo); }
-.cell.contested { border-color: var(--conflict);
-  background: repeating-linear-gradient(45deg, var(--conflict-bg) 0 6px, var(--paper) 6px 12px); }
-.cell.contested .glyph { color: var(--conflict); }
+.cell.hypothesis { border-color: var(--hypothesis);
+  background: repeating-linear-gradient(135deg, var(--hypothesis-bg) 0 8px, var(--paper) 8px 14px); }
+.cell.hypothesis .glyph { color: var(--hypothesis); }
+.cell.contested { border-color: var(--contested);
+  background: repeating-linear-gradient(45deg, var(--contested-bg) 0 6px, var(--paper) 6px 12px); }
+.cell.contested .glyph { color: var(--contested); }
 .cell.open { border: 2px dashed var(--open); background: var(--paper); }
 .cell.open .glyph { color: var(--open); }
-.cell.unexplored { border: 1.5px dashed var(--void); background: transparent; color: var(--sub); }
-.cell.unexplored .glyph { color: var(--void); }
-.cell.out_of_scope { background: var(--line); color: var(--sub); }
+.cell.unexplored { border: 1.5px dashed var(--unexplored); background: transparent; color: var(--sub); }
+.cell.unexplored .glyph { color: var(--unexplored); }
+.cell.out_of_scope { background: var(--out_of_scope); color: var(--sub); }
 
 .rank { position: absolute; top: 7px; right: 8px; width: 22px; height: 22px; border-radius: 50%;
   background: var(--focus); color: #fff; font-size: 12px; font-weight: 700; display: grid; place-items: center; }
 .grid.focusing .cell { opacity: .35; }
-.grid.focusing .cell.target, .grid.focusing .cell.premise { opacity: 1; }
-.cell.target { box-shadow: 0 0 0 3px var(--focus); }
+.grid.focusing .cell.chosen, .grid.focusing .cell.premise { opacity: 1; }
+.cell.chosen { box-shadow: 0 0 0 3px var(--focus); }
 .cell.premise { box-shadow: 0 0 0 3px var(--premise); }
 .cell.premise::after { content: "前提"; position: absolute; top: 8px; left: 32px; font-size: 10px;
   color: #fff; background: var(--premise); padding: 0 6px; border-radius: 4px; }
@@ -376,7 +376,7 @@ h2 { font-size: 14px; margin: 0 0 12px; color: var(--sub); font-weight: 600; let
 .cand.selected { border-color: var(--focus); background: var(--focus-bg); }
 .cand .n { grid-row: span 2; width: 22px; height: 22px; border-radius: 50%; background: var(--focus); color: #fff;
   font-size: 12px; font-weight: 700; display: grid; place-items: center; }
-.cand.k-axis .n { background: var(--hypo); }
+.cand.k-axis .n { background: var(--hypothesis); }
 .cand .t { font-weight: 600; font-size: 13.5px; }
 .cand .meta { font-size: 12px; color: var(--sub); }
 .mode { font-size: 11px; padding: 1px 7px; border-radius: 4px; background: var(--line); color: var(--ink); margin-right: 6px; }
@@ -398,7 +398,7 @@ h2 { font-size: 14px; margin: 0 0 12px; color: var(--sub); font-weight: 600; let
 __DATA__
 </script>
 <header>
-  <div class="eyebrow">思考実験の地図 · <span id="mapdir"></span></div>
+  <div class="eyebrow">思考実験の地図 · <span id="map-dir"></span></div>
   <h1 id="title"></h1>
   <p class="question" id="question"></p>
   <div class="progress">
@@ -422,32 +422,31 @@ __DATA__
 <script>
 const D = JSON.parse(document.getElementById("data").textContent);
 const $ = (id) => document.getElementById(id);
-const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
+const el = (tag, cls, text) => { const node = document.createElement(tag); if (cls) node.className = cls; if (text != null) node.textContent = text; return node; };
 const labelByMode = { constructive: "組み立てる", destructive: "崩す（反例探し）", exploratory: "広げる" };
-const colorByStatus = { supported: "--known", refuted: "--refuted", hypothesis: "--hypo", contested: "--conflict", open: "--open", unexplored: "--void", out_of_scope: "--line" };
 const SETTLED = new Set(D.settled);
-const cellOf = (r, c) => D.cells.find((x) => x.row === r && x.col === c) || { row: r, col: c, status: "unexplored" };
+const cellOf = (r, c) => D.cells.find((cell) => cell.row === r && cell.col === c) || { row: r, col: c, status: "unexplored" };
 const nameOf = (ax, id) => D[ax].values.find((v) => v.id === id).name;
-const link = (p) => { const a = el("a", null, p); a.href = p.includes("://") ? p : D.up + p; return a; };
+const link = (p) => { const anchor = el("a", null, p); anchor.href = p.includes("://") ? p : D.up + p; return anchor; };
 
-$("mapdir").textContent = D.dir;
+$("map-dir").textContent = D.map_dir;
 $("title").textContent = D.title;
 $("question").textContent = D.question;
 
 // 進み具合
 const gridCells = D.rows.values.flatMap((r) => D.cols.values.map((c) => cellOf(r.id, c.id)));
 const countByStatus = {};
-gridCells.forEach((x) => countByStatus[x.status] = (countByStatus[x.status] || 0) + 1);
+gridCells.forEach((cell) => countByStatus[cell.status] = (countByStatus[cell.status] || 0) + 1);
 ["supported", "refuted", "contested", "hypothesis", "open", "out_of_scope", "unexplored"].forEach((s) => {
   if (!countByStatus[s]) return;
   const seg = el("span"); seg.style.width = (100 * countByStatus[s] / gridCells.length) + "%";
-  seg.style.background = `var(${colorByStatus[s]})`; seg.title = `${D.legend_by_status[s][1]}: ${countByStatus[s]}`; $("bar").append(seg);
+  seg.style.background = `var(--${s})`; seg.title = `${D.legend_by_status[s][1]}: ${countByStatus[s]}`; $("bar").append(seg);
 });
-const settledCount = gridCells.filter((x) => SETTLED.has(x.status)).length;
+const settledCount = gridCells.filter((cell) => SETTLED.has(cell.status)).length;
 $("count").append(el("b", null, `${settledCount}`), ` / ${gridCells.length} セルに結論 · 未探索 ${countByStatus.unexplored || 0}`);
 Object.entries(D.legend_by_status).forEach(([s, [glyph, meaning]]) => {
-  const item = el("span"); const sw = el("i"); sw.style.background = `var(${colorByStatus[s]})`;
-  if (s === "unexplored" || s === "open") { sw.style.background = "transparent"; sw.style.border = `1.5px dashed var(${colorByStatus[s]})`; }
+  const item = el("span"); const sw = el("i"); sw.style.background = `var(--${s})`;
+  if (s === "unexplored" || s === "open") { sw.style.background = "transparent"; sw.style.border = `1.5px dashed var(--${s})`; }
   item.append(sw, `${glyph} ${meaning.split("（")[0]}`); $("legend").append(item);
 });
 
@@ -456,9 +455,9 @@ const cardByAxis = {};
 [["rows", "行"], ["cols", "列"]].forEach(([ax, label]) => {
   const a = D[ax];
   const card = el("div", "axis-card");
-  card.append(el("span", "dir", label), el("span", "name", a.name));
+  card.append(el("span", "side", label), el("span", "name", a.name));
   card.append(el("span", "chip " + a.basis, { standard: "標準", paper: "論文", own: "自作の分類" }[a.basis]));
-  if (!a.ref_read) card.append(el("span", "chip unchecked", "出典は未確認"));
+  if (!a.ref_read) card.append(el("span", "chip unread", "出典は未確認"));
   const cite = el("span", "muted"); cite.append("出典: ", link(a.ref)); if (a.ref_title) cite.lastChild.textContent = a.ref_title;
   card.append(cite);
   $("axes").append(card); cardByAxis[ax] = card;
@@ -476,20 +475,20 @@ D.cols.values.forEach((c) => {
 });
 const rankByTarget = {};
 D.candidates.forEach((cand, i) => { if (cand.kind === "cell" && rankByTarget[cand.target] == null && i < D.top) rankByTarget[cand.target] = i + 1; });
-const cellByTarget = {};
+const nodeByTarget = {};
 D.rows.values.forEach((r) => {
   const h = el("div", "rowhead" + (D.rows.basis === "own" ? " head-own" : ""), r.name);
   const n = D.cols.values.filter((c) => SETTLED.has(cellOf(r.id, c.id).status)).length;
   h.append(el("span", "tally", `${n}/${D.cols.values.length}`)); if (r.note) h.title = r.note;
   grid.append(h);
   D.cols.values.forEach((c) => {
-    const x = cellOf(r.id, c.id); const target = `${r.id}/${c.id}`;
-    const cell = el("div", "cell " + x.status);
-    cell.append(el("div", "glyph", D.legend_by_status[x.status][0]));
-    cell.append(el("div", "text", x.claim || x.next_question || (x.status === "unexplored" ? "まだ誰も考えていない" : "")));
-    if (rankByTarget[target]) cell.append(el("div", "rank", rankByTarget[target]));
-    cell.onclick = () => select(D.candidates.findIndex((cand) => cand.target === target), target);
-    grid.append(cell); cellByTarget[target] = cell;
+    const cell = cellOf(r.id, c.id); const target = `${r.id}/${c.id}`;
+    const node = el("div", "cell " + cell.status);
+    node.append(el("div", "glyph", D.legend_by_status[cell.status][0]));
+    node.append(el("div", "text", cell.claim || cell.next_question || (cell.status === "unexplored" ? "まだ誰も考えていない" : "")));
+    if (rankByTarget[target]) node.append(el("div", "rank", rankByTarget[target]));
+    node.onclick = () => select(D.candidates.findIndex((cand) => cand.target === target), target);
+    grid.append(node); nodeByTarget[target] = node;
   });
 });
 
@@ -504,34 +503,34 @@ D.candidates.slice(0, D.top).forEach((cand, i) => {
 function select(i, target) {
   const cand = i >= 0 ? D.candidates[i] : null;
   target = target || (cand && cand.target);
-  document.querySelectorAll(".cand").forEach((x, j) => x.classList.toggle("selected", j === i));
-  Object.values(cellByTarget).forEach((x) => x.classList.remove("target", "premise"));
-  Object.values(cardByAxis).forEach((x) => x.classList.remove("selected"));
+  document.querySelectorAll(".cand").forEach((node, j) => node.classList.toggle("selected", j === i));
+  Object.values(nodeByTarget).forEach((node) => node.classList.remove("chosen", "premise"));
+  Object.values(cardByAxis).forEach((node) => node.classList.remove("selected"));
   grid.classList.remove("focusing");
   if (cand && cand.kind === "axis") cardByAxis[target.split(":")[1]].classList.add("selected");
   else if (target) {
-    grid.classList.add("focusing"); cellByTarget[target].classList.add("target");
-    (cand ? cand.premises : []).forEach((p) => cellByTarget[p] && cellByTarget[p].classList.add("premise"));
+    grid.classList.add("focusing"); nodeByTarget[target].classList.add("chosen");
+    (cand ? cand.premises : []).forEach((premise) => nodeByTarget[premise] && nodeByTarget[premise].classList.add("premise"));
   }
   const d = $("detail"); d.replaceChildren();
   if (target && !target.startsWith("axis:")) {
-    const [r, c] = target.split("/"); const x = cellOf(r, c);
-    d.append(el("h3", null, `${D.legend_by_status[x.status][0]} ${nameOf("rows", r)} × ${nameOf("cols", c)}`));
-    d.append(el("div", "muted", D.legend_by_status[x.status][1]));
-    if (x.claim) d.append(el("p", "claim", x.claim));
-    if (x.next_question) d.append(el("p", null, "次の問い: " + x.next_question));
-    if (x.evidence && x.evidence.length) {
-      const ul = el("ul"); x.evidence.forEach((p) => { const li = el("li", null, "根拠: "); li.append(link(p)); ul.append(li); }); d.append(ul);
+    const [r, c] = target.split("/"); const cell = cellOf(r, c);
+    d.append(el("h3", null, `${D.legend_by_status[cell.status][0]} ${nameOf("rows", r)} × ${nameOf("cols", c)}`));
+    d.append(el("div", "muted", D.legend_by_status[cell.status][1]));
+    if (cell.claim) d.append(el("p", "claim", cell.claim));
+    if (cell.next_question) d.append(el("p", null, "次の問い: " + cell.next_question));
+    if (cell.evidence && cell.evidence.length) {
+      const ul = el("ul"); cell.evidence.forEach((p) => { const li = el("li", null, "根拠: "); li.append(link(p)); ul.append(li); }); d.append(ul);
     }
   } else if (cand) d.append(el("h3", null, cand.name));
   if (cand) {
     const box = el("div", "why"); box.append(el("span", "mode", labelByMode[cand.mode]), cand.why); d.append(box);
-    const cmd = el("div", "cmd"); const code = el("code", null, `${D.skill_command} ${D.dir} ${cand.target}`);
+    const cmd = el("div", "cmd"); const code = el("code", null, `${D.skill_command} ${D.map_dir} ${cand.target}`);
     const btn = el("button", null, "コピー");
     btn.onclick = () => navigator.clipboard.writeText(code.textContent).then(() => { btn.textContent = "コピーした"; setTimeout(() => btn.textContent = "コピー", 1200); });
     cmd.append(code, btn); d.append(cmd);
     d.append(el("div", "hint", "Claude Code に貼ると、この候補から思考実験を始める。"));
-  } else if (target) d.append(el("div", "hint", "このセルは今の候補に入っていない。考えたいなら Claude Code で " + D.skill_command + " " + D.dir + " " + target));
+  } else if (target) d.append(el("div", "hint", "このセルは今の候補に入っていない。考えたいなら Claude Code で " + D.skill_command + " " + D.map_dir + " " + target));
 }
 document.addEventListener("keydown", (e) => {
   const n = parseInt(e.key, 10); if (n >= 1 && n <= Math.min(9, D.top)) select(n - 1);
