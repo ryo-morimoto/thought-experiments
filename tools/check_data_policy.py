@@ -16,6 +16,7 @@ import datetime as dt
 import fnmatch
 import hashlib
 import json
+import re
 import shutil
 import subprocess
 import sys
@@ -341,6 +342,39 @@ def check_lineage(sources: dict[str, tuple[PurePosixPath, dict]], licenses: dict
     return errs
 
 
+# ---------- 思考実験の記録への参照（experiments/README.md の「いつ書くか」） ----------
+
+EXPERIMENT_REF_FILES = ["data-policy.toml", "DATA_POLICY.md", "README.md"]
+EXPERIMENT_STATES = ("設定中", "検討中", "結論済み", "分岐", "中断")
+NAMED_EXPERIMENT = re.compile(r"思考実験「")
+EXPERIMENT_PATH = re.compile(r"experiments/[\w.-]+\.md")
+
+
+def check_experiments(files: list[PurePosixPath]) -> list[str]:
+    """方針の根拠として名指しした思考実験には、実在する記録へのパスを近くに書かせる。"""
+    errs = []
+    for name in EXPERIMENT_REF_FILES:
+        path = ROOT / name
+        if not path.exists():
+            continue
+        lines = path.read_text(encoding="utf-8").splitlines()
+        for i, line in enumerate(lines):
+            for ref in EXPERIMENT_PATH.findall(line):
+                if not (ROOT / ref).exists():
+                    errs.append(f"{name}:{i + 1}: 思考実験の記録 {ref} がない")
+            if NAMED_EXPERIMENT.search(line):
+                near = "\n".join(lines[max(0, i - 2):i + 3])
+                if not EXPERIMENT_PATH.search(near):
+                    errs.append(f"{name}:{i + 1}: 根拠にした思考実験の記録のパス（experiments/….md）を前後2行以内に書く")
+    for f in files:
+        if f.parent == PurePosixPath("experiments") and f.suffix == ".md" and f.name != "README.md":
+            text = (ROOT / f).read_text(encoding="utf-8")
+            m = re.search(r"^- 状態:\s*(\S+)", text, re.M)
+            if not m or m.group(1) not in EXPERIMENT_STATES:
+                errs.append(f"{f}: 先頭に「- 状態: {' | '.join(EXPERIMENT_STATES)}」を書く")
+    return errs
+
+
 # ---------- 生成物 ----------
 
 def toml_str(s: str) -> str:
@@ -486,6 +520,8 @@ def main() -> int:
             payload = payload_files(d, files, source_dirs)
             errs += check_third_party(d, src, payload, policy)
             errs += check_evidence(d, src, payload, policy)
+
+    errs += check_experiments(files)
 
     sync(ROOT / REUSE_NAME, render_root_reuse(policy), fix, REUSE_NAME, errs)
     sync(NOTICE_FILE, render_notice(sources), fix, "NOTICE.md", errs)
