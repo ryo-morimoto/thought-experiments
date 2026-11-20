@@ -35,7 +35,3 @@ jobs:
           # 予測型 URL に '_' を含めると GitHub API の絞り込みで 422 になるので使わない
           predicate-type: https://github.com/${{ github.repository }}/data-policy-check/v1
           predicate-path: data-policy-report.json
-      # リポジトリ自体を Software Heritage に保存するよう依頼する（匿名で受け付けられることを確認済み）
-      - name: Software Heritage save request
-        continue-on-error: true
-        run: curl -fsS -X POST "https://archive.softwareheritage.org/api/1/origin/save/git/url/${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/"
