@@ -1,0 +1,22 @@
+{
+  "fetched_at": "2026-11-20T18:01:40+00:00",
+  "third_party_markers": [],
+  "tsa": "https://freetsa.org/tsr",
+  "opentimestamps": false,
+  "archives": {
+    "url": {
+      "url": "https://www.data.jma.go.jp/typhoon/statistics/landing/landing.csv",
+      "snapshot": "https://web.archive.org/web/20261120175820/https://www.data.jma.go.jp/typhoon/statistics/landing/landing.csv",
+      "archived_raw": "https://web.archive.org/web/20261120175820id_/https://www.data.jma.go.jp/typhoon/statistics/landing/landing.csv",
+      "archived_sha256": "973c8d10091cdc25663d660ceae3144c0d8af5606204740e546c9bcbcfc00285",
+      "matches_local": true
+    },
+    "license_url": {
+      "url": "https://www.jma.go.jp/jma/kishou/info/coment.html",
+      "snapshot": "https://web.archive.org/web/20261120161513/https://www.jma.go.jp/jma/kishou/info/coment.html",
+      "archived_raw": "https://web.archive.org/web/20261120161513id_/https://www.jma.go.jp/jma/kishou/info/coment.html",
+      "archived_sha256": "ff2b45042e6207053d8f6aa617656aa6a144e462db138f0b8138de6eefbeff48",
+      "matches_local": true
+    }
+  }
+}

@@ -1,0 +1,22 @@
+id = "jma-typhoon-accession"
+title = "台風の接近数（全国）"
+origin = "external"
+publisher = "気象庁"
+publisher_type = "government"
+url = "https://www.data.jma.go.jp/typhoon/statistics/accession/accession.csv"
+license = "LicenseRef-jp-PDL-1.0"
+license_url = "https://www.jma.go.jp/jma/kishou/info/coment.html"
+terms = "jma-pdl-1.0"
+# 規約の出典記載例「出典：気象庁ホームページ（当該ページのURL）」に沿う
+attribution = "出典：気象庁ホームページ（https://www.data.jma.go.jp/typhoon/statistics/accession/accession.html）"
+content_kind = ["table"]
+modified = false
+# 文字コードは Shift_JIS。1951〜2025年の確定値（2026年の速報値はページのみ）。
+# 定義（ページ本文）: 台風の中心が国内のいずれかの気象官署等から300 km以内に入った場合を「日本に接近した台風」とする。接近は2か月にまたがる場合があり、各月の合計と年間の数は一致しないことがある
+
+[concluded]
+license = "LicenseRef-jp-PDL-1.0"
+by = "Claude Opus 5.5（ryo-morimoto の依頼で確認。本人の確認待ち）"
+at = 2026-11-21
+basis = ["terms-page"]
+third_party = "none-indicated"   # 単純な数表。第三者の権利の表示はない

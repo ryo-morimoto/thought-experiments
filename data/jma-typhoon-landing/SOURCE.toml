@@ -1,0 +1,22 @@
+id = "jma-typhoon-landing"
+title = "台風の上陸数"
+origin = "external"
+publisher = "気象庁"
+publisher_type = "government"
+url = "https://www.data.jma.go.jp/typhoon/statistics/landing/landing.csv"
+license = "LicenseRef-jp-PDL-1.0"
+license_url = "https://www.jma.go.jp/jma/kishou/info/coment.html"
+terms = "jma-pdl-1.0"
+# 規約の出典記載例「出典：気象庁ホームページ（当該ページのURL）」に沿う
+attribution = "出典：気象庁ホームページ（https://www.data.jma.go.jp/typhoon/statistics/landing/landing.html）"
+content_kind = ["table"]
+modified = false
+# 文字コードは Shift_JIS。1951〜2025年の確定値（2026年の速報値はページのみ）。
+# 定義（ページ本文）: 台風の中心が北海道、本州、四国、九州の海岸線に達した場合を「日本に上陸した台風」とする。小さい島や半島を横切って短時間で再び海に出る場合は「通過」とする
+
+[concluded]
+license = "LicenseRef-jp-PDL-1.0"
+by = "Claude Opus 5.5（ryo-morimoto の依頼で確認。本人の確認待ち）"
+at = 2026-11-21
+basis = ["terms-page"]
+third_party = "none-indicated"   # 単純な数表。第三者の権利の表示はない
