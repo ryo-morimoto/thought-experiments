@@ -1,0 +1,4 @@
+# 事前登録した試験の分類と、判定に使った算法の名前の一覧。自作（subagent の分類と筆者の集計）。
+id = "prereg-origin-oracle-data"
+title = "仕様由来の判定基準の事前登録した試験の分類データ"
+origin = "original"

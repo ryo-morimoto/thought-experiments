@@ -1,0 +1,404 @@
+Byte-serializing a request origin
+CORS check
+CORS-preflight fetch
+CORS-safelisted request-header
+CORS-unsafe request-header byte
+CORS-unsafe request-header names
+CSP-derived sandboxing flags
+Cross-Origin-Embedder-Policy allows credentials
+Document's not restored reasons
+HTTP fetch
+HTTP-network fetch
+HTTP-network-or-cache fetch
+HTTP-redirect fetch
+Scripting is disabled
+Scripting is enabled
+Serializing a request origin
+Should response to request be blocked due to its MIME type?
+Should response to request be blocked due to nosniff?
+StructuredDeserialize
+StructuredSerializeForStorage
+StructuredSerializeInternal
+TAO check
+The body element
+The html element
+The navigation must be a replace
+URL and history update steps
+abort
+abort a document and its descendants
+abort a parser
+abort the ongoing navigation
+activate history entry
+activation
+active WindowProxy
+active browsing context
+active document
+active parser
+active window
+allowed by sandboxing to navigate
+allowed to use
+allows adding render-blocking elements
+allows auto-sizes
+ancestor navigables
+ancestor origins list
+ancestor revealing algorithm
+append
+append a request `Cookie` header
+append a request `Origin` header
+append session history synchronous navigation steps
+append session history traversal steps
+append to a request's navigation timing allow values list
+apply link options from parsed header attributes
+apply the history step
+apply the push/replace history step
+appropriate network error
+as a body
+at least as eager
+attempt to create a non-fetch scheme document
+attempt to populate the history entry's document
+autofocus delegate
+auxiliary browsing context
+available deferred-fetch quota
+being rendered
+block rendering
+blocking tokens set
+browsing context scope origin
+browsing-context connected
+build a content range
+build not restored reasons for a top-level traversable and its descendants
+build not restored reasons for document state
+can have its URL rewritten
+cannot navigate
+check a navigation response's adherence to `X-Frame-Options`
+check a navigation response's adherence to its embedder policy
+check if COOP values require a browsing context group switch
+check if enforcing report-only COOP would require a browsing context group switch
+check if popup COOP values require a browsing context group switch
+check if unloading is canceled
+check if we can run script
+child navigable
+clamp and coarsen connection timing info
+clean up
+clean up after running script
+clear the forward session history
+click focusable
+clone
+clone a policy container
+collect an HTTP quoted string
+collect tags from speculative load candidates
+colno
+commit a navigate event
+compatible with cross-origin isolation
+completely finish loading
+compute a speculative load referrer policy
+consider speculative loads
+consume a preloaded resource
+consume history-action user activation
+container
+container document
+contains
+convert header names to a sorted-lowercase set
+create a classic script
+create a connection
+create a document to display a user agent page or PDF viewer inline
+create a new browsing context and document
+create a new browsing context group and document
+create a new cache entry
+create a new realm
+create a new top-level browsing context and document
+create a policy container from a fetch response
+create a source set
+create a speculation rules parse result
+create an agent
+create an opaque timing info
+create and initialize a Document object
+create navigation params by fetching
+create navigation params from a srcdoc resource
+cross-origin resource policy check
+cross-origin resource policy internal check
+crossOriginIsolated
+current entry
+current focus chain of a top-level traversable
+current global object
+current node
+current settings object
+currentScript
+currently focused area of a top-level traversable
+data: URL processor
+deactivate a document for a cross-document navigation
+default script fetch options
+deferred-fetch control document
+delete
+descendant navigables
+deserialize a serialized abort reason
+destroy
+determine navigation params policy container
+determine nosniff
+determine the HTTP cache partition
+determine the creation sandboxing flags
+determine the environment
+determine the iframe element referrer policy
+determine the network partition key
+determine the origin
+determine the same-site mode
+document
+document base URL
+document-tree child navigables
+domain
+download the hyperlink
+effective domain
+encoding-parse a URL
+encoding-parse-and-serialize a URL
+enforce a response's opener policy
+entry settings object
+environment default `User-Agent` value
+error
+evaluate a javascript: URL
+execute the deferred scripts
+execute the script element
+extract a MIME type
+extract error information
+extract full timing info
+extract header list values
+extract header values
+extract links from headers
+fallback base URL
+fetch
+fetch response handover
+filename
+finalize a cross-document navigation
+finalize a same-document navigation
+find a potential indicated element
+find matching links
+finish
+finish parsing the children
+fire a download request navigate event
+fire a focus event
+fire a page transition event
+fire a push/replace/reload navigate event
+fire a traverse navigate event
+fire the pageswap event
+flush pending text
+focus chain
+focus delegate
+focus update steps
+focusing steps
+forcibly close
+fully active
+fully read
+get
+get a structured field value
+get all navigables that might experience a cross-document traversal
+get all navigables that only need history object length/index update
+get all navigables whose current session history entry will change or reload
+get all used history steps
+get session history entries
+get session history entries for the navigation API
+get the focusable area
+get the history object length and index
+get the navigation API entry index
+get the suggested filename
+get the target history entry
+get the used step
+get, decode, and split
+global object
+hand-off to external software
+handle as a download
+handle content codings
+has a style sheet that is blocking scripts
+has entries and events disabled
+has no style sheet that is blocking scripts
+hasUAVisualTransition
+hyperlink referrer policy
+iframe load event steps
+implied document
+inclusive descendant navigables
+incrementally read
+incrementally-read loop
+indicated part
+inform the navigation API about aborting navigation
+initialize the navigation API entries for a new document
+inner consider speculative loads steps
+inner navigate event firing algorithm
+internal ancestor origin objects list
+is offline
+key
+less eager
+lineno
+load a document
+load a media document
+load a multipart/x-mixed-replace document
+load a text document
+load an HTML document
+location URL
+main fetch
+make active
+make document unsalvageable
+match integrity metadata
+match opener policy values
+matches
+matches about:blank
+matches about:srcdoc
+matches the environment
+merge existing and new import maps
+merge module specifier maps
+message
+navigable
+navigate
+navigate event intercept commit handler steps
+navigate to a fragment
+navigate to a javascript: URL
+navigation API
+navigation TAO check
+navigationType
+newURL
+node navigable
+non-secure context
+normalize the source densities
+notify about rejected promises
+notify about the committed-to entry
+obtain a browsing context to use for a navigation response
+obtain a connection
+obtain a similar-origin window agent
+obtain a site
+obtain an embedder policy
+obtain an opener policy
+oldURL
+override fetch
+parse a URL
+parse a document rule predicate
+parse a sandboxing directive
+parse a single range header value
+parse a sizes attribute
+parse a speculation rule
+parse a speculation rule set string
+parse a srcset attribute
+parse and store response `Set-Cookie` headers
+pause
+perform a microtask checkpoint
+persisted
+pop the current node
+populate request from client
+populate with html/head/body
+potentially free deferred-fetch quota
+potentially override response for a request
+potentially process scroll behavior
+potentially render-blocking
+potentially reset the focus
+prepare to run script
+printing steps
+process early hint headers
+process internal resource link
+process internal resource links
+process link headers
+process navigate event handler failure
+process scroll behavior
+process the `Speculation-Rules` header
+process the next manual redirect
+promise
+queue a cross-origin embedder policy CORP violation report
+queue a cross-origin embedder policy inheritance violation
+queue a fetch task
+queue a global task
+queue a microtask
+queue a task
+queue a violation report for browsing context group switch when navigating away from a COOP response
+queue a violation report for browsing context group switch when navigating to a COOP response
+queue an element task
+reactivate
+reason
+record connection timing info
+redirect-taint
+redundant with
+referrer
+register an import map
+register speculation rules
+reject the finished promise
+relevant agent
+relevant global object
+relevant realm
+relevant settings object
+remove an element from the stack of open elements
+report an exception
+requires storing the policy container in history
+reserve deferred-fetch quota
+resolve an origin
+resolve the finished promise
+respond to base URL changes
+responsible event loop
+restorable scrollable regions
+restore persisted state
+restore scroll position data
+restore the history object state
+restrict
+resume applying the traverse history step
+returnValue
+rules for parsing floating-point number values
+rules for parsing integers
+rules for parsing non-negative integers
+run a classic script
+run a module script
+running script
+safely extract
+same origin
+same origin-domain
+same site
+sanitize a URL to send in a report
+save persisted state
+scheme fetch
+schemelessly same site
+scroll to the fragment
+secure context
+select the indicated part
+sequentially focusable
+serialization of an origin
+serialize a response URL for reporting
+set
+set a structured field value
+set the URL
+set the initial visibility state
+set the ongoing navigation
+set up a window environment settings object
+should be blocked due to a bad port
+snapshot source snapshot params
+snapshot target snapshot params
+spin the event loop
+start a new parallel queue
+state
+steps to fire beforeunload
+stop intersection-observing a lazy loading element
+stop the speculative HTML parser
+stops parsing
+system focus
+tabindex value
+target name
+terminate
+terminate a worklet global scope
+the environment settings object's global object
+the environment settings object's realm
+the realm's agent
+the realm's global object
+the realm's settings object
+top-level browsing context
+top-level traversable
+total request length
+translate
+translate a preload destination
+traversable navigable
+try to scroll to the fragment
+unblock rendering
+unload
+unload a document and its descendants
+unloading document cleanup steps
+update document for history step application
+update speculation rules
+update the current document readiness
+update the navigation API entries for a same-document navigation
+update the navigation API entries for reactivation
+update the visibility state
+url
+valid floating-point number
+valid non-negative integer
+will lazy load element steps
+window event loop
+window open steps

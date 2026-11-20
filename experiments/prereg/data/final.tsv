@@ -1,0 +1,45 @@
+id	in_scope	scope_reason	wrong_value	spec_algorithms	test_time	confidence	note
+1	Y	traversal treated cross-origin about:blank entry as same-document	history-entry	apply the history step;determine the origin	Y	medium	DSN reuse made back a same-document nav keeping the other window's origin; spec gives about:blank-with-other-initiator its own document state
+2	Y	error page policy container stored in history entry and later inherited	inheritance	requires storing the policy container in history;determine navigation params policy container	Y	medium	failed nav then local-scheme reload/traverse reads stored policy container
+3	N	mixed-content upgrade check, origin itself correct	other		NA	medium	enforcement logic (ShouldAutoupgrade) ignored precursor; Mixed Content policy, not origin computation
+4	N	sandbox/popup enforcement and isTrusted check on synthetic event	other		NA	medium	could be read as navigable choice, but root cause is untrusted event honored
+5	N	renderer-supplied origin accepted; MHTML non-standard	origin		NA	high	missing validation of renderer input
+6	Y	browser assigned error-page opaque origin with victim precursor; child site computed from it	site	attempt to populate the history entry's document;obtain a site	N	medium	needs injecting srcdoc iframe into error page (renderer); precursor is browser-internal
+7	N	missing validation of renderer-forged initiator origin	origin		NA	high	
+8	N	fenced frames non-standard; renderer initiator forwarded	origin		NA	medium	if fenced frames counted as standard: origin, initiator should be opaque
+9	Y	navigate-event origin check used URL origin instead of entry's committed origin	origin	get session history entries for the navigation API;apply the history step	Y	high	CSP-sandboxed document entries; test supplies sandbox and history ops
+10	Y	same-URL replace decision skipped origin comparison for error pages	history-entry	navigate	Y	high	spec replace rule requires initiator same origin with active document's origin
+11	N	commit IPC from BFCached frame not rejected (renderer forged)	history-entry		NA	high	lifetime/validation
+12	Y	prefetch attributed to primary main frame instead of initiating frame	creator	consider speculative loads	N	low	could also be read as inactive-frame lifetime (out); inactive doc sending rules is renderer-only
+13	Y	initiator policies looked up in wrong storage partition	inheritance	snapshot source snapshot params;determine navigation params policy container	N	low	storage partition is browser-internal (WebView/IWA)
+14	N	keep-alive handle lifetime for initiator policies	inheritance		NA	medium	root cause is lifetime of handle in deferred nav
+15	N	missing validation of renderer-forged redirect URL	history-entry		NA	high	
+16	N	missing validation of renderer-supplied committed URL	other		NA	high	
+17	N	redirect info sent to wrong process (data exposure)	other		NA	medium	
+18	N	redirect chain not sanitized for error commit (data exposure)	other		NA	medium	
+19	N	post_data cleanup across SiteInstance change; renderer	other		NA	medium	
+20	N	load-event timing side channel	other		NA	medium	
+21	N	iOS WebUI gate, chrome:// non-standard	other		NA	high	
+22	N	iOS reload to app-specific URL, non-standard	other		NA	high	
+23	N	IPCs from inactive document accepted (lifetime)	other		NA	medium	
+24	N	localhost check ignores scheme (validation), fenced frames	other		NA	high	
+25	N	framebusting intervention non-standard; spec allows top nav with allow-top-navigation	other		NA	medium	mechanism not public
+26	N	javascript: doc placed in top-level process (remoteType) instead of creator iframe process	site		NA	medium	The wrongly computed value is the initial browser remoteType (process placement, excluded by step 1), not an origin/site/creator value the spec defines; sided with coder B. [adjudicated]
+27	Y	noreferrer popup request treated as user-initiated, initiator lost	origin	window open steps;OTHER:Fetch Metadata:set the Sec-Fetch-Site header	Y	medium	
+28	N	CSP lost because detached global has no client info (lifetime of client)	inheritance		NA	low	Root cause is LoadInfo losing mClientInfo for a removed/closed global (lifetime), not a miscomputed inherited policy; sided with coder A. [adjudicated]
+29	Y	permissions policy not inherited for blob: document in cross-origin iframe	inheritance	OTHER:Permissions Policy:create a Permissions Policy for a navigable;determine the origin	Y	medium	mechanism partly public
+30	N	mixed content / popup blocker policy, mechanism unclear	other		NA	low	could not judge mechanism well
+31	Y	Window reuse after same-origin navigation from initial about:blank and about:blank CSP inheritance	window-reuse	create and initialize a Document object;create a new browsing context and document;new sharedworker(scripturl, options)	Y	medium	Spec defines Window reuse in create and initialize a Document object, about:blank policy container clone from creator in create a new browsing context and document, and outsideSettings as this relevant settings object in the SharedWorker constructor; sided with neither (union, dropping create a new child navigable which only calls the inheritance step). [adjudicated]
+32	N	missing validation of renderer-supplied PrincipalToInherit	inheritance		NA	high	
+33	N	missing validation of renderer-supplied PrincipalToInherit	inheritance		NA	high	
+34	N	forged srcdoc load state not validated	inheritance		NA	high	
+35	N	history load validation missing srcdoc compare	history-entry		NA	high	
+36	N	missing validation of renderer-supplied triggering principal	creator		NA	high	
+37	N	missing ownership check on traversal IPC	history-entry		NA	high	
+38	Y	parent tab's triggering principal used for user-typed URL	creator	navigate	Y	medium	browser-UI navigation; test needs UI automation
+39	Y	same-site computation for cookies on cross-site iframe navigation	site	determine the same-site mode;append a request `Cookie` header	Y	medium	mechanism mostly in patch
+40	Y	permissions policy initialized from wrong window context (default policy)	inheritance	OTHER:Permissions Policy:create a Permissions Policy for a navigable	Y	low	race is browser-internal but inputs (allow attr, origins) test-suppliable
+41	N	renderer-forged NullPrincipal precursor and remote type override	site		NA	high	
+42	Y	EventSource message origin computed before redirect	origin	dispatch the event	Y	high	spec: origin of event stream's final URL
+43	Y	Origin header not null after cross-origin redirect (inverted condition)	origin	HTTP-redirect fetch;serializing a request origin	Y	high	
+44	N	missing validation of renderer-supplied triggering principal	creator		NA	high	

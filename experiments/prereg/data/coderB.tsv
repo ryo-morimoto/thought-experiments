@@ -1,0 +1,45 @@
+id	in_scope	scope_reason	wrong_value	spec_algorithms	test_time	confidence	note
+1	Y	same-document traversal across origin change	history-entry	navigate;apply the history step	Y	high	about:blank nav by other window must create new document state; back must be cross-document
+2	Y	error page policy container saved in entry and reused	inheritance	attempt to populate the history entry's document;determine navigation params policy container	Y	medium	spec sets saveExtraDocumentState false for failures, so policy container not stored
+3	N	mixed-content enforcement ignores precursor; origin itself correct	other		NA	medium	could be read as origin use in Mixed Content spec
+4	N	sandbox/popup enforcement via untrusted modifier keys	other		NA	medium	event trust validation, not origin computation
+5	N	non-standard MHTML plus renderer-supplied origin accepted	origin		NA	medium	missing validation of renderer input
+6	Y	error-page opaque origin keeps precursor so srcdoc child site is victim's	origin	create a document to display a user agent page or PDF viewer inline;obtain a site	N	low	exploit needs renderer to inject srcdoc into error page; also placement aspect
+7	N	renderer-supplied initiator origin not checked	creator		NA	medium	missing validation
+8	N	fenced frames non-standard; renderer initiator forwarded	creator		NA	medium	if fenced frames counted, value is initiator origin
+9	Y	navigate-event decision used URL origin instead of entry origin	origin	check if unloading is canceled;apply the history step;get session history entries for the navigation API	Y	high	spec uses document state's origin
+10	Y	same-URL replace decision skipped origin comparison for error pages	history-entry	navigate	Y	high	navigate step: replace only if initiator same origin with active document
+11	N	commit IPC from BFCached frame accepted	other		NA	high	lifetime/renderer validation
+12	Y	prefetch attributed to primary main frame instead of initiator	creator	consider speculative loads	N	low	needs inactive (BFCached) document sending request; also lifetime aspect
+13	Y	initiator policies looked up under wrong storage partition	inheritance	snapshot source snapshot params;determine navigation params policy container	N	low	storage partition is browser-internal (WebView/IWA)
+14	N	initiator policy keep-alive handle dropped	inheritance		NA	medium	lifetime
+15	N	renderer-forged client_side_redirect_url not verified	other		NA	high	renderer validation
+16	N	renderer committed URL not validated	other		NA	high	renderer validation
+17	N	redirect info leaked to process for error page	other		NA	medium	sanitization/placement
+18	N	redirect chain not sanitized for error page	other		NA	medium	information leak, no miscomputed origin
+19	N	POST data/file grants kept across SiteInstance change	other		NA	medium	state cleanup and grants
+20	N	load-event count side channel	other		NA	medium	event timing
+21	N	iOS WebUI gate carve-out	other		NA	high	non-standard app-specific URLs
+22	N	iOS reload to chrome:// URL	other		NA	high	non-standard app-specific URLs
+23	N	navigation IPCs from inactive document	other		NA	high	lifetime
+24	N	fenced frame localhost scheme check	other		NA	high	non-standard feature / URL check
+25	N	framebusting intervention bypass on Android	other		NA	medium	allow-top-navigation permits it by spec; intervention is non-standard
+26	N	javascript: doc created in top-level's process	site		NA	low	process placement (remoteType); could be read as creator: navigate to a javascript: URL
+27	Y	noreferrer window.open treated as user-initiated	creator	OTHER:Fetch Metadata:set the Sec-Fetch-Site header;window open steps;navigate	Y	medium	sourceDocument is non-null for window.open
+28	Y	CSP of detached global lost (no client info)	inheritance	populate request from client	Y	low	could be read as lifetime
+29	Y	permissions policy not inherited after iframe navigates to blob:	inheritance	OTHER:Permissions Policy:define an inherited policy for feature in container at origin	Y	medium	mechanism partly public
+30	N	mixed-content/popup-blocker for blob:/data: popup	other		NA	low	mechanism unclear; treated like 3
+31	Y	Window reuse after initial about:blank and CSP inheritance	window-reuse	create and initialize a Document object;create a new browsing context and document	Y	medium	relevant settings object after reuse
+32	N	content-supplied PrincipalToInherit not validated	inheritance		NA	high	renderer validation
+33	N	content-supplied PrincipalToInherit not validated (srcdoc)	inheritance		NA	high	renderer validation
+34	N	forged srcdoc load state	inheritance		NA	high	renderer validation
+35	N	history load validation misses srcdocData	history-entry		NA	high	renderer validation
+36	N	child-supplied triggering principal not validated	creator		NA	high	renderer validation
+37	N	sender ownership of BrowsingContext not verified	history-entry		NA	high	renderer validation
+38	Y	parent tab triggeringPrincipal used for typed URL	creator	navigate	Y	medium	browser UI nav has null sourceDocument, opaque initiator
+39	Y	same-site mode for cookies on cross-site iframe navigation	site	determine the same-site mode	Y	medium	mechanism mostly in patch
+40	Y	feature policy computed before window context current	inheritance	OTHER:Permissions Policy:create a Permissions Policy for a navigable	N	medium	race on internal ordering
+41	N	content-chosen precursor and RemoteTypeOverride not validated	site		NA	high	renderer validation
+42	Y	EventSource origin computed pre-redirect	origin	dispatch the event	Y	high	spec uses event stream's final URL
+43	Y	Origin header not null after cross-origin redirect	origin	redirect-taint;Serializing a request origin	Y	high	inverted same-origin condition
+44	N	child-supplied principalInfo for openWindow not verified	creator		NA	high	renderer validation
