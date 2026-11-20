@@ -2,6 +2,8 @@
 
 対象: `te` の設計（`plugins/thought-experiments/docs/te-design.md`）の出来事 `frame` / `rival` / `probe`・`operation` / `attack` / `conclusion` / `correction` に、既存の標準をどう対応させるか。調査日 2026-11-21。GitHub の数値は `gh api` で同日に取得した。
 
+一次資料による確認（2026-11-21）: 検索要約経由だった項目（Bex & Prakken、ASPIC+、Mandel ほか 2018、Dhami ほか 2019・2024）を著者版か出版社版の PDF で照合し、URL・sha256・ページを書いた（確認作業のファイルはコミットしていない）。Wikipedia などの二次資料だけで支えている項目（IBIS、Compendium、Kialo）は、今回の照合の対象外で、一次資料では未確認のまま。
+
 ## Toulmin モデル（claim, data, warrant, backing, qualifier, rebuttal）と te の前提・結論
 
 ### Takeaway
@@ -10,7 +12,7 @@ Toulmin の6要素のうち、te にないのは **warrant（推論の許可）�
 ### Cited Findings
 - Toulmin の図式は Data・Claim・Qualifier・Warrant・Backing・Rebuttal を分ける。warrant は推論の許可、backing は warrant の裏付け、rebuttal は warrant による結論の例外を述べる — [Verheij, Toulmin 章 2009](https://www.ai.rug.nl/~verheij/publications/pdf/toulmin2009.pdf)
 - qualifier は warrant が結論に与える力の程度を示す（「必然的に」など） — [Verheij 2009](https://www.ai.rug.nl/~verheij/publications/pdf/toulmin2009.pdf)、[ICAR Dicoplantin: Layout of Argument](https://icar.cnrs.fr/dicoplantin/layout-of-argument-toulmin-e/)
-- Bex と Prakken は「necessarily」「certainly」の qualifier は演繹、それ以外は defeasible と読み、Toulmin の rebuttal を Pollock の意味での undercutter（推論への攻撃）と解釈している — [Prakken ほか COMMA 2026 論文](https://webspace.science.uu.nl/~prakk101/pubs/comma26TAL.pdf)（検索要約経由。本文の該当箇所は未確認）
+- Bex と Prakken（"Toulmin Argumentation Logic"、COMMA 2026、著者版 p.3）は、qualifier が necessarily・certainly なら演繹、それ以外は defeasible と扱う（"The qualifiers necessarily and certainly indicate a deductive argument while all other qualifiers indicate a defeasible inference."）。Toulmin の rebuttal は結論の反対を導く例もあってあいまいだと認めたうえで、Pollock と ASPIC+ の意味での undercutter（warrant を適用不能にするもの）として読むことを「選んで」いる（"we have made the choice to let a rebuttal do no more than making the warrant inapplicable"） — [著者版 PDF](https://webspace.science.uu.nl/~prakk101/pubs/comma26TAL.pdf)、sha256 `4db8bfc09b8f537104619c2be0135a04127a88d860c6a27f5d2bc32909eb2457`
 - 学生向け教材では rebuttal を「反論一般」の意味で使い、undercut と rebut を区別しない — [UTSA Toulmin Model](https://www.utsa.edu/twc/documents/Toulmin_Model_of_Argumentation.pdf)
 - SEP「Informal Logic」は Toulmin を歴史上の基準点として挙げるだけで、6要素の定義はしていない — [SEP: Informal Logic](https://plato.stanford.edu/entries/logic-informal/)
 
@@ -128,9 +130,9 @@ ACH の「仮説×証拠の行列」「診断性（すべての仮説と整合�
 - 「不整合（マイナス）が最も少ない仮説がおそらく最有力」。整合する証拠は意味が小さい。ただしマイナスの数による順位は粗く、不整合の度合いは1つの記号では表せない — [Heuer ch. 8](https://www.cia.gov/resources/csi/static/Pyschology-of-Intelligence-Analysis.pdf)
 - 判断を支える論述は、検討して退けた別の判断とその理由を論じなければ不完全である — [Heuer ch. 8](https://www.cia.gov/resources/csi/static/Pyschology-of-Intelligence-Analysis.pdf)
 - 2009 年の CIA「A Tradecraft Primer」は、key assumptions check、indicators/signposts、ACH を「診断的技法」に、devil's advocacy を「反対的（contrarian）技法」に分類する — [CIA: A Tradecraft Primer (2009)](https://www.cia.gov/resources/csi/static/955180a45afe3f5013772c313b16face/Tradecraft-Primer-apr09.pdf)、[CIA 紹介ページ](https://www.cia.gov/resources/csi/books-monographs/a-tradecraft-primer)
-- 評価: Dhami, Belton, Mandel (2019, Applied Cognitive Psychology 33(6):1080–1090) は分析官 50 人を ACH 使用群と対照群に無作為に分けた。ACH 群は ACH の全段階を守らず、確証バイアスの軽減は混在した結果で、ACH は判断の不整合と誤差を増やしうる。著者は ACH がいつ有用かを再考し、代替の技法を検討するよう勧めている — [Strathprints: Dhami ほか 2019](https://strathprints.strath.ac.uk/69049/)
-- 同じ実験の別の分析では、ACH 群は対照群より base rate を使わなかった。Mandel, Karvetski, Dhami (2018) では、ACH を指示された分析官の確率判断は一貫性が低く、正確さもわずかに低かった — 検索結果の要約経由（[Karvetski ほか JDM 2020](https://dlab.sauder.ubc.ca/sjdm/journal/20/200430/jdm200430.html)、本文は接続できず未確認）
-- Dhami ほか (2024, Cognitive Research: Principles and Implications) は、行列の向き（仮説を行、証拠を列）を変えると確証バイアスが有意に減ったと報告している — [Springer: s41235-024-00560-y](https://link.springer.com/article/10.1186/s41235-024-00560-y)（検索要約経由。本文の詳細は未確認）
+- 評価: Dhami, Belton, Mandel (2019, Applied Cognitive Psychology 33(6):1080–1090) は分析官 50 人を ACH 使用群と対照群に無作為に分けた。ACH 群は ACH の全段階を守らず、確証バイアスの軽減は混在した結果で、ACH は判断の不整合と誤差を増やしうる（p.1: "ACH may increase judgement inconsistency and error"）。著者は ACH がいつ有用かを考え、代替の技法を検討するよう勧めている（p.1）。base rate を使った分析官は ACH 群で 12%（n = 3）、訓練なしの群で 52%（n = 13）だった（p.5） — 著者リポジトリの出版社版 [PDF](https://strathprints.strath.ac.uk/69049/1/Dhami_etal_ACP_2019_The_analysis_of_competing_hypotheses_in_intelligence.pdf)（早期公開版のページ付け、CC BY-NC-ND）、sha256 `99cdc3a3c1f340fc608cc1d7d000dd9512c77deb270780ae4f7f1a4e4a81ddbb`
+- Mandel, Karvetski, Dhami (2018, Judgment and Decision Making 13(6):607–621) では、ACH を使った分析官の群は、対照群より確率判断の正確さと一貫性がわずかに低かった。情報の有用性の評価は ACH 群のほうがよかった。再較正と集約は正確さを大きく改善した（p.607: "Although ACH failed to improve accuracy, we found that recalibration and aggregation methods substantially improved accuracy."） — 出版社版 [PDF](https://journal.sjdm.org/18/18803/jdm18803.pdf)、sha256 `47452d92e2040a9b1d6724a2960814c1fd1b7615bcf293a6cdeca23bfb9729c8`
+- Dhami ほか (2024, Cognitive Research: Principles and Implications 9:37) の Study 1（大学の職員・学生 161 人。分析官ではない）では、仮説を行・証拠を列に置いた行列を見た群は確証バイアスが有意に少なかった。ACH 標準の行列（仮説を列・証拠を行）と文章形式の群では減らなかった。ACH 標準の行列は、証拠の信頼性への感度も高めなかった（p.1） — Europe PMC が配信する出版社版 [PDF](https://europepmc.org/articles/PMC11169332?pdf=render)（doi:10.1186/s41235-024-00560-y、CC BY 4.0）、sha256 `56199b865755f7ffe0f2e697a221094d9723cc68c1db2314d90d96fcdd117016`
 
 ### Inferences
 - 対応:
@@ -145,7 +147,7 @@ ACH の「仮説×証拠の行列」「診断性（すべての仮説と整合�
 ### Gaps
 - Heuer & Pherson『Structured Analytic Techniques for Intelligence Analysis』の内容は確認していない。
 - Tradecraft Primer の ACH の節の本文（手順の書き方）は未確認（目次と分類のみ）。
-- Dhami 2019 の本文（どの段階を飛ばしたか）は未確認。
+- Dhami 2019 でどの段階を飛ばしたかは本文の Table 1 にあるが、まだ読んでいない。
 
 ## 攻撃の類型（rebut / undercut / undermine、Pollock、ASPIC+）と te の応答の型
 
@@ -153,9 +155,9 @@ ACH の「仮説×証拠の行列」「診断性（すべての仮説と整合�
 論証理論の標準は「何を攻撃するか」（結論・推論・前提）の分類で、te の応答の型（surrender / bar / restrict / reinterpret / incorporate）は「攻撃を受けてどうするか」の分類。両者は直交するので、te の objection に `target`（premise / inference / conclusion）を足すのがよい。今の `premise` 欄だけでは undermine しか表せない。
 
 ### Cited Findings
-- ASPIC+ では、論証は ordinary premise・結論・推論規則の3点で攻撃でき、それぞれ undermining・rebutting・undercutting と呼ぶ — [Modgil & Prakken, ASPIC+ tutorial (2014)](https://dspace.library.uu.nl/bitstream/handle/1874/304259/ASPICtutorial.pdf?sequence=1)、[Argument & Computation 掲載ページ](https://content.iospress.com/articles/argument-and-computation/869766)
-- rebut と undercut は defeasible な推論規則にだけ適用され、strict な規則には適用されない。攻撃が defeat になるかは選好で決まるが、undercut は推論規則の例外を表すので選好によらず defeat になる — [ASPIC+ tutorial](https://dspace.library.uu.nl/bitstream/handle/1874/304259/ASPICtutorial.pdf?sequence=1)（検索要約経由。定義の本文は未照合）
-- Pollock の区別は undercutting と rebutting。Toulmin の rebuttal は undercut と読める — [Prakken ほか COMMA 2026](https://webspace.science.uu.nl/~prakk101/pubs/comma26TAL.pdf)、[Verheij 2009](https://www.ai.rug.nl/~verheij/publications/pdf/toulmin2009.pdf)
+- ASPIC+ では、論証は ordinary premise・結論・推論規則の3点で攻撃でき、それぞれ undermining・rebutting・undercutting と呼ぶ（p.8: "arguments can be attacked on a conclusion of a defeasible inference (rebutting attack), on a defeasible inference step itself (undercutting attack), or on an ordinary premise (undermining attack)."） — Modgil & Prakken, ASPIC+ tutorial（Argument & Computation 5(1), 2014）の著者版（2013-12-16 版）[PDF](https://webspace.science.uu.nl/~prakk101/pubs/ASPICtutorial.pdf)、sha256 `ce5e2d81dd4d41366df1e4c68c3a00fef1a1d85715b06187ddab5330967026c6`（ページは著者版のもの。出版社版 5(1):31–62 とは異なる）
+- rebut と undercut は defeasible な推論にだけ向けられ、strict な推論には向けられない。攻撃が defeat になるかは、undermine と rebut では選好で決まるが、undercut は選好によらず defeat になる（著者版 pp.8–9: "undercutting attacks succeed as defeats independently of any preferences"）。その理由はこのチュートリアルには書かれておらず、Modgil & Prakken (2013) に委ねている — 同上
+- Pollock の区別は undercutting と rebutting。Bex と Prakken は Toulmin の rebuttal を undercut と読むことを選んでいる — [Bex & Prakken COMMA 2026 著者版](https://webspace.science.uu.nl/~prakk101/pubs/comma26TAL.pdf) p.3、[Verheij 2009](https://www.ai.rug.nl/~verheij/publications/pdf/toulmin2009.pdf)
 - AIF でも、例外（exception）は conflict scheme の conflicting element になり、推論（RA-node）そのものを攻撃できる — [AIF Specification 2011](https://arg-tech.org/wp-content/uploads/2011/09/aif-spec.pdf)
 - Carneades では critical question を assumption か exception として前提に足し、どちらかで立証責任の移り方が変わる — [Gordon ほか 2007](https://tfgordon.github.io/publications/GordonPrakkenWalton2007b.pdf)
 - Argdown は `-`（attack）と `_`（undercut）を記法で区別する — [Argdown Syntax](https://argdown.org/syntax/)
