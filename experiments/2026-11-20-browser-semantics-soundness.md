@@ -142,6 +142,12 @@ A（レンダラーの値で書く・読む）1 件、B（ブラウザが自分�
 - モデル→実装: 実装ごと。性質を 4 つに分け、それぞれの反証の観察を持つ。(1) 主体の計算の正しさ（仕様から作った判定基準、または 2 つの計算の差分。9 件中 5〜6 件）、(2) 検査が素通りしないこと（寿命。2 件）、(3) 配置が主体を失わずに導かれること（2 件と重なる）、(4) レンダラーの値への耐性（1 件。乗っ取りを仮定するときだけ）。
 - 厳密な意味の健全性: 両側が形式的なときだけ立つ。核や仕様を形式的な元から導く（Quark、SpecTec）。
 
+D⁗ の 3 つの点を具体にした結果（「具体」の「橋の強さと判定基準と情報流」）:
+
+- 散文→モデルの橋: WPT の 109 件が、筆者の最初の読み（COOP の same-origin-allow-popups の段を落とした）を 3 件で捕まえた。16 のもっともらしい誤読のうち 109 件は 14、先の 18 件と合わせて 15 を捕まえ、credentialless で資格情報つきの要求を CORP 無しで遮断する段だけが、どの試験にも捕まらなかった。
+- モデル→実装（主体の計算の正しさ）: 仕様から作った判定基準は、オリジンの比較だけで 6 件中 1 件、サイトの比較を足して 2 件、仕様から導いた述語（Window の再利用の条件、srcdoc のオリジンは親か不透明）を足して 4 件を捕まえ、直した版には誤報を出さなかった。残る 2 件（タブ復元後の配置、アドレスバーの表示）は仕様の意味論の外にある。
+- モデルの中: 宣言した通り道つきの情報流（NoUndeclaredLeak）は成り立ち、不透明な応答が本体の長さを漏らす誤読を入れると破れた。自明でも偽でもない形で書ける。
+
 これは段階A の対立仮説のうち、R1 の狭い読み（無条件の証明はできない）、R5（根拠の本体は仮定）、R6（単一ソース化）に戻ってきた形で、途中の改訂（a′〜D‴）は、それぞれどこに条件と測り方を足すべきかを具体にした。
 
 前提の種類:
@@ -275,6 +281,34 @@ LateLock-Witness.cfg の証人: `Navigate("top","A")`（p1 はロックされな
 | Spec-Mutant-COEP.cfg | 誤読「require-corp で CORP 無しを same-origin とみなさない」 | WPT が捕まえる（rc-nocors-nocorp） |
 | Spec-Mutant-SameSite.cfg | 誤読「same-site のスキーム条件を無視」 | WPT の 18 件では捕まらない |
 
+### 橋の強さと判定基準と情報流
+
+**散文→モデルの橋（WPT による変異の検出）**: subagent が WPT の試験本文（wpt.live）から、モデルの演算子に直接写せる 109 件の期待値を集めた（[models/site-isolation/wpt-cases.tsv](models/site-isolation/wpt-cases.tsv)、[索引](models/site-isolation/WPTBroadIndex.md)）。[tsv2tla.py](models/site-isolation/tsv2tla.py) で [WPTBroad.tla](models/site-isolation/WPTBroad.tla) を生成した。筆者の最初の読みは w027・w030・w033（opener が same-origin-allow-popups で popup が unsafe-none）で食い違い、HTML の「check if popup COOP values require a browsing context group switch」を読み直して、その段を落としていたと分かった。直した後は 109 件すべてと一致する。
+
+<!-- data-source: original（筆者のモデルを TLC で検査した結果） -->
+| 誤読 | 18 件 | 109 件 |
+| --- | --- | --- |
+| coep-default、coi-ignore-secure、coi-coop-only、coi-no-credentialless、oac-ignore-coi、coop-ignore-origin、samesite-as-origin、nocors-site-basic | 捕まえる | 捕まえる |
+| crossorigin-as-site | 捕まえる | 捕まえない |
+| samesite-scheme、cl-always、oac-ignore-hist、oac-ignore-secure、coop-unsafe-mismatch、popup-no-sap-exception（筆者の最初の読み） | 捕まえない | 捕まえる |
+| cl-ignore-creds | 捕まえない | 捕まえない |
+
+16 の誤読のうち、18 件で 9、109 件で 14、両方で 15。生き残った 1 つは、subagent の報告どおり「credentialless・資格情報つき・CORP 無し → 遮断」を直接確かめる試験が無いことに対応する（service worker 経由のものだけ）。109 件では、Chrome が OAC の既定（ヘッダー無しで originAgentCluster が false）の試験にすべて失敗し、Safari は OAC の試験の大半に失敗、Firefox は全件通過だった。演算子に写せなかった試験（リダイレクト、CORS の結果、opener の COEP、祖先による安全な文脈など）は数に入っていない。
+
+**主体の計算の正しさの判定基準（OriginOracle.tla）**: [models/site-isolation/OriginOracle.tla](models/site-isolation/OriginOracle.tla)。subagent が HTML の「determining the origin」、ブラウジングコンテキストの作成、window open の手順、Window の再利用の条件と、URL Standard の「origin of a URL」を引き、各バグの最小のシナリオを修正 CL のメッセージから立てた。
+
+<!-- data-source: original（筆者のモデルを TLC で検査した結果） -->
+| 判定基準の段 | 捕まえたバグ |
+| --- | --- |
+| オリジンの比較 | CVE-2022-1637 |
+| ＋サイトの比較 | ＋CVE-2018-16074 |
+| ＋仕様から導いた述語 | ＋CVE-2019-13738（Window の再利用）、CVE-2024-1671（srcdoc のオリジンは親か不透明） |
+| 捕まえない | CVE-2018-16073（配置）、CVE-2018-6165（表示） |
+
+どの段でも、直した版に誤報は出なかった。CVE-2024-1671 の述語「srcdoc のオリジンは親か不透明」は筆者が仕様から導いたもので、仕様に書かれた文ではない。CVE-2019-13738 では、今の仕様だとサンドボックスの指定がその読み込みに効かない時点の問題もあり、モデルは「指定が効いて不透明になった」場合だけを扱った。
+
+**宣言した通り道つきの情報流（SpecIsolation.tla の後半）**: 応答に秘密の本体と CORS の許可を足した。宣言は「相手のヘッダー（CORP、ACAO）、資格情報の有無、CORS を許したときの本体」。NoUndeclaredLeak と BodyOnlyByOptIn は成り立ち（Spec-Flow.cfg）、不透明な応答が本体の長さを見せる誤読では NoUndeclaredLeak が破れた（Spec-Flow-Mutant.cfg）。先の NoHeaderLeak（宣言なしの非干渉）は偽のまま。
+
 ### compromised-renderers.md と NDSS の 39 件の対応づけ
 
 subagent が文書（2026-11-21 の main）と論文の Table V を読んで対応づけた。筆者は報告を読んだ。
@@ -304,7 +338,12 @@ subagent が文書（2026-11-21 の main）と論文の Table V を読んで対�
 
 - 2026-11-21 D‴ への攻撃、②-a のモデル、9 件の根本原因の調査を並行で進めた（ユーザーの判断: 1〜3 を並列）。問いを再定式化し、D⁗ に改めた。
 
+- 2026-11-21 橋の強さ（WPT による変異の検出）、主体の計算の判定基準、宣言した通り道つきの情報流を並行で進めた（ユーザーの判断: 2、3、4 を並列）。109 件の WPT が筆者のモデルの誤読を 1 つ捕まえ、直した。
+
 ## 未検証
+
+- 109 件の引数への写し方（ポートだけ違うオリジンを Awww などに当てた等）は subagent の判断。wpt.fyi の結果は stable の 1 回の実行。
+- 誤読 16 個は筆者が選んだもので、誤読の母集団を代表するとは言えない。検出の割合は「この 16 個に対して」の値。
 
 - WPT の 18 の期待値は subagent が試験の本文（wpt.live）から写したもの。wpt.fyi の列とブラウザの対応は推測。HTTP から HTTPS への same-site の場合を確かめる試験は選べていない（モデルの変異が生き残った理由でもある）。
 - 9 件の根本原因は課題の最初の報告と修正 CL から判断し、コメントの議論は読めていない。CVE-2018-6165 と CVE-2019-13738 がサイト分離の回避に数えられるべきかは不確か。
@@ -325,6 +364,6 @@ subagent が文書（2026-11-21 の main）と論文の Table V を読んで対�
 ## 次の問い
 
 - D⁗ を、経緯を知らない subagent に攻撃させる。
-- 散文→モデルの橋の強さを測る: SpecIsolation.tla にもっともらしい誤読を系統的に入れ、WPT の全試験（選んだ 10 個だけでなく）が何割を捕まえるかを数える。
-- 主体の計算の正しさ（B 型の 5 件）を、仕様の「オリジンの決め方」と about:blank・srcdoc の継承をモデルにした判定基準で、実際に再現できるかを確かめる。
-- 宣言した通り道つきの情報流として、②-a の性質を書き直す（エラーの有無のような仕様が許す漏れを宣言に入れる）。
+- 生き残った誤読（credentialless と資格情報）を確かめる WPT の試験を書いて提案できるか。
+- 誤読を、仕様の各段を機械的に 1 つずつ変える形で作り、筆者の選び方の偏りを減らす。
+- OriginOracle の判定基準を、実ブラウザのトレース（ブラウザ側とレンダラー側のオリジンの両方）に当てる差分検査として設計する。

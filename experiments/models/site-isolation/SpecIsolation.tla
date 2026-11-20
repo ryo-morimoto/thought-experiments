@@ -7,20 +7,42 @@
 (* headers, no permissions policy, the implementation-defined choice between *)
 (* "logical" and "concrete" cross-origin isolation is fixed to "concrete",   *)
 (* and COOP/COEP are ignored on non-secure contexts.                         *)
-EXTENDS Naturals, TLC
+EXTENDS Naturals, Sequences, TLC
 
-\* Deliberate misreadings, to see which ones WPT agreement would catch:
-\*   "none"            the reading above
-\*   "coep-default"    require-corp does not default a missing CORP to same-origin
-\*   "samesite-scheme" CORP same-site ignores the https -> http scheme condition
+\* Deliberate misreadings, to see which ones WPT agreement would catch.
+\* "none" is the reading above; each other value changes one step.
 CONSTANT Mutant
+Mutants == {
+  "coep-default",        \* require-corp does not default a missing CORP to same-origin
+  "samesite-scheme",     \* CORP same-site ignores the https -> http scheme condition
+  "cl-ignore-creds",     \* credentialless never defaults a missing CORP
+  "cl-always",           \* credentialless defaults like require-corp
+  "coi-ignore-secure",   \* COOP/COEP honoured on non-secure contexts
+  "coi-coop-only",       \* COOP same-origin alone gives cross-origin isolation
+  "coi-no-credentialless", \* only require-corp is compatible with isolation
+  "oac-ignore-hist",     \* agent-cluster key ignores the historical map
+  "oac-ignore-coi",      \* isolation does not force origin keying
+  "oac-ignore-secure",   \* Origin-Agent-Cluster honoured on non-secure contexts
+  "coop-ignore-origin",  \* matching COOP values ignores the same-origin condition
+  "coop-unsafe-mismatch", \* unsafe-none on both sides does not match
+  "samesite-as-origin",  \* CORP same-site requires same origin
+  "crossorigin-as-site", \* CORP cross-origin treated as same-site
+  "nocors-site-basic",   \* same-site no-cors responses are readable (basic)
+  "popup-no-sap-exception" \* the author's first reading: no allow-popups step
+}
+\* Misreadings that only touch the information-flow observation (part 4):
+FlowMutants == {"opaque-length"}  \* opaque responses expose the body length
 
 \* Origins are records; site is the registrable domain.
 OA     == [scheme |-> "https", host |-> "a.test",      site |-> "a.test"]
 OAwww  == [scheme |-> "https", host |-> "www1.a.test", site |-> "a.test"]
 OB     == [scheme |-> "https", host |-> "b.test",      site |-> "b.test"]
 OAhttp == [scheme |-> "http",  host |-> "a.test",      site |-> "a.test"]
+OAwww2 == [scheme |-> "https", host |-> "www2.a.test", site |-> "a.test"]
+OAwwwhttp == [scheme |-> "http", host |-> "www1.a.test", site |-> "a.test"]
+OBhttp == [scheme |-> "http",  host |-> "b.test",      site |-> "b.test"]
 Origins == {OA, OAwww, OB, OAhttp}
+AllOrigins == Origins \cup {OAwww2, OAwwwhttp, OBhttp}
 
 SameOrigin(x, y) == x = y
 SameSite(x, y)   == x.site = y.site          \* schemelessly same site
@@ -31,9 +53,13 @@ COEPs == {"unsafe-none", "require-corp", "credentialless"}
 CORPs == {"none", "same-origin", "same-site", "cross-origin"}
 
 \* --- HTML: COOP parsing and cross-origin isolation -------------------------
+CompatibleCOEP ==
+  IF Mutant = "coi-no-credentialless" THEN {"require-corp"}
+  ELSE IF Mutant = "coi-coop-only" THEN COEPs
+  ELSE {"require-corp", "credentialless"}
 ParsedCOOP(coop, coep, o) ==
-  IF ~Secure(o) THEN "unsafe-none"
-  ELSE IF coop = "same-origin" /\ coep \in {"require-corp", "credentialless"}
+  IF ~Secure(o) /\ Mutant # "coi-ignore-secure" THEN "unsafe-none"
+  ELSE IF coop = "same-origin" /\ coep \in CompatibleCOEP
        THEN "same-origin-plus-COEP" ELSE coop
 
 COIMode(coop, coep, o) ==
@@ -43,10 +69,10 @@ CrossOriginIsolated(coop, coep, o) == COIMode(coop, coep, o) = "concrete"
 
 \* --- HTML: obtain a similar-origin window agent (agent cluster key) --------
 \* hist is the group's historical key for this origin: "absent", "site", "origin".
-RequestsOAC(header, o) == header /\ Secure(o)
+RequestsOAC(header, o) == header /\ (Secure(o) \/ Mutant = "oac-ignore-secure")
 KeyKind(o, coiMode, hist, oacHeader) ==
-  IF coiMode # "none" THEN "origin"
-  ELSE IF hist # "absent" THEN hist
+  IF coiMode # "none" /\ Mutant # "oac-ignore-coi" THEN "origin"
+  ELSE IF hist # "absent" /\ Mutant # "oac-ignore-hist" THEN hist
   ELSE IF RequestsOAC(oacHeader, o) THEN "origin" ELSE "site"
 Key(o, kind) == IF kind = "origin" THEN o.host ELSE o.site
 OriginAgentCluster(kind) == kind = "origin"
@@ -55,29 +81,40 @@ DocumentDomainNoOp(kind) == kind = "origin"
 
 \* --- HTML: match opener policy values (popup BCG switch) -------------------
 MatchCOOP(dCOOP, dOrigin, rCOOP, rOrigin) ==
-  IF dCOOP = "unsafe-none" /\ rCOOP = "unsafe-none" THEN TRUE
+  IF dCOOP = "unsafe-none" /\ rCOOP = "unsafe-none" THEN Mutant # "coop-unsafe-mismatch"
   ELSE IF dCOOP = "unsafe-none" \/ rCOOP = "unsafe-none" THEN FALSE
-  ELSE IF dCOOP = rCOOP /\ SameOrigin(dOrigin, rOrigin) THEN TRUE
+  ELSE IF dCOOP = rCOOP /\ (SameOrigin(dOrigin, rOrigin) \/ Mutant = "coop-ignore-origin")
+       THEN TRUE
   ELSE FALSE
 \* A popup's initial about:blank carries the opener's COOP and origin.
+\* HTML "check if popup COOP values require a browsing context group switch".
+\* The first version of this model omitted the same-origin-allow-popups step;
+\* 3 of the 109 broad WPT cases caught it (kept as a mutant below).
 PopupSevered(openerCOOP, openerOrigin, popupCOOP, popupOrigin) ==
-  ~MatchCOOP(openerCOOP, openerOrigin, popupCOOP, popupOrigin)
+  IF openerCOOP = "same-origin-allow-popups" /\ popupCOOP = "unsafe-none"
+     /\ Mutant # "popup-no-sap-exception"
+  THEN FALSE
+  ELSE ~MatchCOOP(openerCOOP, openerOrigin, popupCOOP, popupOrigin)
 
 \* --- Fetch: cross-origin resource policy check ----------------------------
 CorpInternal(o, coep, r, forNav) ==
   IF forNav /\ coep = "unsafe-none" THEN "allowed"
   ELSE
-    LET p0 == r.corp
+    LET p0 == IF r.corp = "cross-origin" /\ Mutant = "crossorigin-as-site"
+              THEN "same-site" ELSE r.corp
         p  == IF p0 # "none" THEN p0
               ELSE CASE coep = "unsafe-none"    -> "none"
                      [] coep = "credentialless" ->
-                          IF r.creds \/ forNav THEN "same-origin" ELSE "none"
+                          IF Mutant = "cl-ignore-creds" THEN "none"
+                          ELSE IF Mutant = "cl-always" THEN "same-origin"
+                          ELSE IF r.creds \/ forNav THEN "same-origin" ELSE "none"
                      [] coep = "require-corp"   ->
                           IF Mutant = "coep-default" THEN "none" ELSE "same-origin"
     IN CASE p \in {"none", "cross-origin"} -> "allowed"
          [] p = "same-origin" -> IF SameOrigin(o, r.origin) THEN "allowed" ELSE "blocked"
          [] p = "same-site"   ->
-              IF SameSite(o, r.origin)
+              IF (IF Mutant = "samesite-as-origin" THEN SameOrigin(o, r.origin)
+                  ELSE SameSite(o, r.origin))
                  /\ (Mutant = "samesite-scheme" \/ Secure(o) \/ ~Secure(r.origin))
               THEN "allowed" ELSE "blocked"
 
@@ -87,8 +124,10 @@ CorpCheck(o, coep, r, forNav) ==
 
 \* Result of fetch(url, {mode}) seen by script in a document of origin o.
 FetchResult(o, coep, mode, r) ==
-  IF mode = "cors" THEN "cors"                       \* CORS outcome not modelled
-  ELSE IF SameOrigin(o, r.origin) THEN "basic"
+  IF SameOrigin(o, r.origin)
+     \/ (mode = "no-cors" /\ Mutant = "nocors-site-basic" /\ SameSite(o, r.origin))
+  THEN "basic"
+  ELSE IF mode = "cors" THEN "cors"                  \* CORS outcome not modelled
   ELSE IF CorpCheck(o, coep, r, FALSE) = "blocked" THEN "error" ELSE "opaque"
 
 Responses == [origin : Origins, corp : CORPs, creds : BOOLEAN]
@@ -141,6 +180,42 @@ NoHeaderLeak ==
   \A o \in Origins, coep \in COEPs, r1, r2 \in Responses :
     (r1.origin = r2.origin /\ r1.creds = r2.creds /\ ~SameOrigin(o, r1.origin)) =>
       FetchResult(o, coep, "no-cors", r1) = FetchResult(o, coep, "no-cors", r2)
+
+\* --- Part 4: isolation as information flow with declared channels ----------
+\* A response now has a secret body and a CORS opt-in. What a page sees:
+\* same-origin or CORS-allowed bodies are readable; a CORP-blocked no-cors
+\* fetch is an error; any other cross-origin no-cors fetch is opaque.
+Bodies == {"x", "yy"}                 \* two secrets of different length
+FlowResponses ==
+  [origin : Origins, corp : CORPs, creds : BOOLEAN, acao : BOOLEAN, body : Bodies]
+Base(r) == [origin |-> r.origin, corp |-> r.corp, creds |-> r.creds]
+
+Observe(o, coep, mode, r) ==
+  IF SameOrigin(o, r.origin) THEN <<"read", r.body>>
+  ELSE IF mode = "cors" THEN (IF r.acao THEN <<"read", r.body>> ELSE <<"error">>)
+  ELSE IF CorpCheck(o, coep, Base(r), FALSE) = "blocked" THEN <<"error">>
+  ELSE IF Mutant = "opaque-length" THEN <<"opaque", Len(r.body)>>
+  ELSE <<"opaque">>
+
+\* Declared channels: what the target chose to reveal. Its headers (CORP,
+\* ACAO), whether the request carried credentials, and the body only when it
+\* opted in to CORS. The error-or-opaque oracle is declared through CORP.
+Declared(mode, r) ==
+  <<r.corp, r.creds, r.acao, IF mode = "cors" /\ r.acao THEN r.body ELSE "hidden">>
+
+NoUndeclaredLeak ==
+  \A o \in Origins, coep \in COEPs, mode \in {"cors", "no-cors"},
+     r1, r2 \in FlowResponses :
+    (/\ r1.origin = r2.origin
+     /\ ~SameOrigin(o, r1.origin)
+     /\ Declared(mode, r1) = Declared(mode, r2))
+    => Observe(o, coep, mode, r1) = Observe(o, coep, mode, r2)
+
+\* The access-control property follows from the flow property's declarations:
+\* a cross-origin body is readable only through the CORS declaration.
+BodyOnlyByOptIn ==
+  \A o \in Origins, coep \in COEPs, mode \in {"cors", "no-cors"}, r \in FlowResponses :
+    (~SameOrigin(o, r.origin) /\ Observe(o, coep, mode, r)[1] = "read") => r.acao
 
 \* One pair of responses that the page can tell apart.
 LeakWitness ==
