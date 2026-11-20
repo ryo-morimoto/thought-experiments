@@ -1,6 +1,6 @@
 ---
 name: evaluating-issue-reports
-description: Drafts a structured record for understanding and evaluating an issue or bug report (bug, feature request, duplicate-heavy issue, security claim), separating unverified claims from checked evidence and leaving judgments for a human. Use when asked to triage, understand or evaluate an issue, or to decide whether to report upstream.
+description: Drafts a structured record for understanding and evaluating an issue or bug report (bug, feature request, duplicates, security claim), separating unverified claims from checked evidence and leaving judgments for a human. Use when asked to understand or evaluate an issue or bug report, or whether to report it upstream; not for drafting a reply.
 ---
 # Evaluating issue reports
 
