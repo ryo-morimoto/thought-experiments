@@ -202,11 +202,12 @@ h2 { font-size: 14px; margin: 0 0 12px; color: var(--sub); font-weight: 600; let
    "row": "informal",
    "col": "mandatory",
    "status": "supported",
-   "claim": "手書きのモデルでは、散文からモデルへの橋は反証可能な仮説にとどまる。WPT の 109 件はモデルの段の欠落を 1 つ捕まえたが、もう 1 つ（COEP allows credentials）は捕まえず、機械的な誤読でも段の欠落が最も捕まりにくかった（非等価な 21 個中 19 個）",
+   "claim": "手書きのモデルでは、散文からモデルへの橋は反証可能な仮説にとどまる。WPT の 109 件はモデルの段の欠落を 1 つ捕まえたが、もう 1 つ（COEP allows credentials）は捕まえず、機械的な誤読でも段の欠落が最も捕まりにくかった（非等価な 21 個中 19 個）。後に足した「安全でない文脈の COEP」の段の欠落は WPT の 109 件に捕まらず、その欠落のせいでアクセス制御としての性質（OptInOnly）が成り立って見えていた",
    "evidence": [
     "experiments/2026-11-20-browser-semantics-soundness.md",
     "experiments/models/site-isolation/SpecIsolation.tla",
-    "experiments/models/site-isolation/WPTBroad.tla"
+    "experiments/models/site-isolation/WPTBroad.tla",
+    "experiments/2026-11-21-fsp-correspondence.md"
    ],
    "mode": "destructive",
    "next_question": "取り出した段の一覧と手書きのモデルを突き合わせ、モデルが落としている段を全部挙げられるか"
@@ -322,7 +323,7 @@ h2 { font-size: 14px; margin: 0 0 12px; color: var(--sub); font-weight: 600; let
    "kind": "cell",
    "target": "informal/opt-enum",
    "name": "非形式（自然言語） × 列挙した選択肢からの選択",
-   "why": "同じ行の「必須」では「手書きのモデルでは、散文からモデルへの橋は反証可能な仮説にとどまる。WPT の 109 件はモデルの段の欠落を 1 つ捕まえたが、もう 1 つ（COEP allows credentials）は捕まえず、機械的な誤読でも段の欠落が最も捕まりにくかった（非等価な 21 個中 19 個）」、同じ列の「半形式」では「取り出せない段の過半（53%）が、オリジン・COOP・CORP・COEP を決める部分にあり、logical と concrete の選択やブラウジングコンテキストグループの任意の切り替えのように、隔離を決める段そのものが実装の選択になっている。非決定として過近似すると安全性は保てるが、情報流は保てず、性質を示すには粗すぎる」。両方を前提にすると、このセルで何が言えるかを組み立てる",
+   "why": "同じ行の「必須」では「手書きのモデルでは、散文からモデルへの橋は反証可能な仮説にとどまる。WPT の 109 件はモデルの段の欠落を 1 つ捕まえたが、もう 1 つ（COEP allows credentials）は捕まえず、機械的な誤読でも段の欠落が最も捕まりにくかった（非等価な 21 個中 19 個）。後に足した「安全でない文脈の COEP」の段の欠落は WPT の 109 件に捕まらず、その欠落のせいでアクセス制御としての性質（OptInOnly）が成り立って見えていた」、同じ列の「半形式」では「取り出せない段の過半（53%）が、オリジン・COOP・CORP・COEP を決める部分にあり、logical と concrete の選択やブラウジングコンテキストグループの任意の切り替えのように、隔離を決める段そのものが実装の選択になっている。非決定として過近似すると安全性は保てるが、情報流は保てず、性質を示すには粗すぎる」。両方を前提にすると、このセルで何が言えるかを組み立てる",
    "mode": "constructive",
    "premises": [
     "informal/mandatory",
@@ -334,7 +335,7 @@ h2 { font-size: 14px; margin: 0 0 12px; color: var(--sub); font-weight: 600; let
    "kind": "cell",
    "target": "informal/extension",
    "name": "非形式（自然言語） × 拡張",
-   "why": "同じ行の「必須」では「手書きのモデルでは、散文からモデルへの橋は反証可能な仮説にとどまる。WPT の 109 件はモデルの段の欠落を 1 つ捕まえたが、もう 1 つ（COEP allows credentials）は捕まえず、機械的な誤読でも段の欠落が最も捕まりにくかった（非等価な 21 個中 19 個）」、同じ列の「半形式」では「他の仕様から HTML・Fetch への差し込みは、HTML と Fetch の原稿には現れない（「applicable specifications」が 10 箇所あるだけ）。呼び出しの閉包の境界は手で選ぶしかなく、仕様を丸ごと落としうる」。両方を前提にすると、このセルで何が言えるかを組み立てる",
+   "why": "同じ行の「必須」では「手書きのモデルでは、散文からモデルへの橋は反証可能な仮説にとどまる。WPT の 109 件はモデルの段の欠落を 1 つ捕まえたが、もう 1 つ（COEP allows credentials）は捕まえず、機械的な誤読でも段の欠落が最も捕まりにくかった（非等価な 21 個中 19 個）。後に足した「安全でない文脈の COEP」の段の欠落は WPT の 109 件に捕まらず、その欠落のせいでアクセス制御としての性質（OptInOnly）が成り立って見えていた」、同じ列の「半形式」では「他の仕様から HTML・Fetch への差し込みは、HTML と Fetch の原稿には現れない（「applicable specifications」が 10 箇所あるだけ）。呼び出しの閉包の境界は手で選ぶしかなく、仕様を丸ごと落としうる」。両方を前提にすると、このセルで何が言えるかを組み立てる",
    "mode": "constructive",
    "premises": [
     "informal/mandatory",
@@ -358,7 +359,7 @@ h2 { font-size: 14px; margin: 0 0 12px; color: var(--sub); font-weight: 600; let
    "kind": "cell",
    "target": "informal/opt-feature",
    "name": "非形式（自然言語） × 機能を支援するかの選択",
-   "why": "隣の「必須」の結論「手書きのモデルでは、散文からモデルへの橋は反証可能な仮説にとどまる。WPT の 109 件はモデルの段の欠落を 1 つ捕まえたが、もう 1 つ（COEP allows credentials）は捕まえず、機械的な誤読でも段の欠落が最も捕まりにくかった（非等価な 21 個中 19 個）」がここにも移るか。移らないなら、何が違うせいかを条件を変えて探す",
+   "why": "隣の「必須」の結論「手書きのモデルでは、散文からモデルへの橋は反証可能な仮説にとどまる。WPT の 109 件はモデルの段の欠落を 1 つ捕まえたが、もう 1 つ（COEP allows credentials）は捕まえず、機械的な誤読でも段の欠落が最も捕まりにくかった（非等価な 21 個中 19 個）。後に足した「安全でない文脈の COEP」の段の欠落は WPT の 109 件に捕まらず、その欠落のせいでアクセス制御としての性質（OptInOnly）が成り立って見えていた」がここにも移るか。移らないなら、何が違うせいかを条件を変えて探す",
    "mode": "destructive",
    "premises": [
     "informal/mandatory"
@@ -369,7 +370,7 @@ h2 { font-size: 14px; margin: 0 0 12px; color: var(--sub); font-weight: 600; let
    "kind": "cell",
    "target": "informal/deprecation",
    "name": "非形式（自然言語） × 廃止予定",
-   "why": "隣の「必須」の結論「手書きのモデルでは、散文からモデルへの橋は反証可能な仮説にとどまる。WPT の 109 件はモデルの段の欠落を 1 つ捕まえたが、もう 1 つ（COEP allows credentials）は捕まえず、機械的な誤読でも段の欠落が最も捕まりにくかった（非等価な 21 個中 19 個）」がここにも移るか。移らないなら、何が違うせいかを条件を変えて探す",
+   "why": "隣の「必須」の結論「手書きのモデルでは、散文からモデルへの橋は反証可能な仮説にとどまる。WPT の 109 件はモデルの段の欠落を 1 つ捕まえたが、もう 1 つ（COEP allows credentials）は捕まえず、機械的な誤読でも段の欠落が最も捕まりにくかった（非等価な 21 個中 19 個）。後に足した「安全でない文脈の COEP」の段の欠落は WPT の 109 件に捕まらず、その欠落のせいでアクセス制御としての性質（OptInOnly）が成り立って見えていた」がここにも移るか。移らないなら、何が違うせいかを条件を変えて探す",
    "mode": "destructive",
    "premises": [
     "informal/mandatory"
@@ -380,7 +381,7 @@ h2 { font-size: 14px; margin: 0 0 12px; color: var(--sub); font-weight: 600; let
    "kind": "cell",
    "target": "informal/error",
    "name": "非形式（自然言語） × 誤りの扱い",
-   "why": "隣の「必須」の結論「手書きのモデルでは、散文からモデルへの橋は反証可能な仮説にとどまる。WPT の 109 件はモデルの段の欠落を 1 つ捕まえたが、もう 1 つ（COEP allows credentials）は捕まえず、機械的な誤読でも段の欠落が最も捕まりにくかった（非等価な 21 個中 19 個）」がここにも移るか。移らないなら、何が違うせいかを条件を変えて探す",
+   "why": "隣の「必須」の結論「手書きのモデルでは、散文からモデルへの橋は反証可能な仮説にとどまる。WPT の 109 件はモデルの段の欠落を 1 つ捕まえたが、もう 1 つ（COEP allows credentials）は捕まえず、機械的な誤読でも段の欠落が最も捕まりにくかった（非等価な 21 個中 19 個）。後に足した「安全でない文脈の COEP」の段の欠落は WPT の 109 件に捕まらず、その欠落のせいでアクセス制御としての性質（OptInOnly）が成り立って見えていた」がここにも移るか。移らないなら、何が違うせいかを条件を変えて探す",
    "mode": "destructive",
    "premises": [
     "informal/mandatory"

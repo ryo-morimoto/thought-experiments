@@ -222,6 +222,21 @@ OptInOnly ==
       \/ r.corp = "cross-origin"
       \/ r.corp = "same-site" /\ SameSite(o, r.origin)
 
+\* OptInOnly is false once a non-secure context keeps COEP unsafe-none
+\* (experiments/2026-11-21-fsp-correspondence.md). The property restated with
+\* the condition the spec puts on COEP: only secure contexts get the guarantee.
+OptInOnlySecure ==
+  \A o \in Origins, r \in Responses :
+    (Secure(o) /\ FetchResult(o, "require-corp", "no-cors", r) = "opaque") =>
+      \/ r.corp = "cross-origin"
+      \/ r.corp = "same-site" /\ SameSite(o, r.origin)
+\* One requester and response for which OptInOnly fails.
+OptInWitness ==
+  CHOOSE x \in Origins \X Responses :
+    /\ FetchResult(x[1], "require-corp", "no-cors", x[2]) = "opaque"
+    /\ ~(x[2].corp = "cross-origin" \/ (x[2].corp = "same-site" /\ SameSite(x[1], x[2].origin)))
+PrintOptIn == PrintT(<<"optin-witness", OptInWitness>>)
+
 \* Noninterference: what a page observes about a cross-origin no-cors fetch
 \* does not depend on the target's response headers.
 NoHeaderLeak ==
