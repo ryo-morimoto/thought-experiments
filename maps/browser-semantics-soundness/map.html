@@ -123,37 +123,32 @@ h2 { font-size: 14px; margin: 0 0 12px; color: var(--sub); font-weight: 600; let
 <script type="application/json" id="data">
 {
  "title": "ブラウザの意味論から検証モデルへの変換の根拠",
- "question": "ブラウザの意味論（WHATWG の散文の仕様と、独立に作られたブラウザ）から検証モデルへの変換に、健全性の根拠を与えられるか",
+ "question": "ブラウザの意味論（WHATWG の散文の仕様と、独立に作られたブラウザ）から検証モデルへの変換に、健全性の根拠を与えられるか。この地図は仕様の側（仕様をどこまで形式的に書けば、何が言えるか）を扱い、実装の側は地図 browser-implementation-correspondence が扱う",
  "map_dir": "maps/browser-semantics-soundness",
  "up": "../../",
  "skill_command": "/thought-experiments:mapping-thought-experiments",
  "rows": {
-  "name": "何に対する健全性か",
-  "basis": "own",
-  "ref": "experiments/2026-11-20-browser-semantics-soundness.md",
-  "ref_title": "思考実験の記録（基準点を変えて答えが分かれた）",
+  "name": "仕様の形式性",
+  "basis": "standard",
+  "ref": "https://www.commoncriteriaportal.org/files/ccfiles/CCPART1V3.1R5.pdf",
+  "ref_title": "Common Criteria for Information Technology Security Evaluation, Part 1, v3.1 R5（ISO/IEC 15408-1 相当）の用語集 formal / semiformal / informal",
   "ref_read": true,
-  "note": "モデルが「過近似する」と主張する相手。思考実験の中で、答えがこの基準点ごとに分かれたので軸にした。既存の分類は見つけていない（自作）",
+  "note": "本文の用語集で定義を確かめた（2026-11-21）。仕様をどう書いたかの区別で、どの段（仕様か実装か）かの区別は地図 browser-implementation-correspondence の行に分けた",
   "values": [
    {
-    "id": "prose",
-    "name": "散文の仕様（ある版）",
-    "note": "WHATWG の HTML・Fetch などの原稿の、あるコミット。手書きでモデルに写す"
+    "id": "informal",
+    "name": "非形式（自然言語）",
+    "note": "expressed in natural language（CC Part 1 の 55）。WHATWG の HTML・Fetch の原稿をそのまま読んで手でモデルに写す場合"
    },
    {
-    "id": "extracted",
-    "name": "段ごとに取り出した参照",
-    "note": "同じ版の原稿から、算法を段ごとに機械的に取り出し、各段に仕様の位置を付けたもの（ESMeta/JISET の方式）"
+    "id": "semiformal",
+    "name": "半形式",
+    "note": "expressed in a restricted syntax language with defined semantics（CC Part 1 の 84）。原稿の算法を段の決まった形（Let、If … return など）として機械的に取り出した場合が、ここを目指すもの。ただし取り出しでは、段の形は限られても条件の文の意味は定まらない"
    },
    {
     "id": "formal",
-    "name": "形式的な元から生成した仕様",
-    "note": "形式的な記述を元にして散文や参照実装を生成する仕様（Wasm の SpecTec の方式）。WHATWG には今のところ無い"
-   },
-   {
-    "id": "browser",
-    "name": "出荷中のブラウザ",
-    "note": "Chrome・Firefox・Safari などの、ある版とある構成（プラットフォーム、企業の方針、フィールドトライアル）"
+    "name": "形式",
+    "note": "restricted syntax with defined semantics based on well-established mathematical concepts（CC Part 1 の 52）。形式的な記述を元に、散文や参照実装を生成する仕様（Wasm の SpecTec の方式）。WHATWG には今のところ無い"
    }
   ]
  },
@@ -204,7 +199,7 @@ h2 { font-size: 14px; margin: 0 0 12px; color: var(--sub); font-weight: 600; let
  },
  "cells": [
   {
-   "row": "prose",
+   "row": "informal",
    "col": "mandatory",
    "status": "supported",
    "claim": "手書きのモデルでは、散文からモデルへの橋は反証可能な仮説にとどまる。WPT の 109 件はモデルの段の欠落を 1 つ捕まえたが、もう 1 つ（COEP allows credentials）は捕まえず、機械的な誤読でも段の欠落が最も捕まりにくかった（非等価な 21 個中 19 個）",
@@ -217,10 +212,10 @@ h2 { font-size: 14px; margin: 0 0 12px; color: var(--sub); font-weight: 600; let
    "next_question": "取り出した段の一覧と手書きのモデルを突き合わせ、モデルが落としている段を全部挙げられるか"
   },
   {
-   "row": "extracted",
+   "row": "semiformal",
    "col": "mandatory",
    "status": "supported",
-   "claim": "隔離に関わる算法の閉包（415 算法、3445 段）の 91.3% は取り出せる形だが、段の中の条件は自然言語のままで、取り出したものを確かめる独立した判定基準が無い。得られるのは健全性ではなく追跡可能性で、モデルが落とした段は一覧との突き合わせで機械的に見つかる（実際の 2 つの欠落はどちらも取り出され、根から到達できた）",
+   "claim": "隔離に関わる算法の閉包（415 算法、3445 段）の 91.3% は取り出せる形（制限された構文）だが、段の中の条件は自然言語のままで意味が定まらず、半形式の定義を満たしきらない。取り出したものを確かめる独立した判定基準も無い。得られるのは健全性ではなく追跡可能性で、モデルが落とした段は一覧との突き合わせで機械的に見つかる（実際の 2 つの欠落はどちらも取り出され、根から到達できた）",
    "evidence": [
     "experiments/2026-11-20-browser-semantics-soundness.md",
     "experiments/models/site-isolation/extract/README.md"
@@ -229,7 +224,7 @@ h2 { font-size: 14px; margin: 0 0 12px; color: var(--sub); font-weight: 600; let
    "next_question": "取り出した参照を実行できる形にし、WPT と突き合わせられるか（ESMeta と test262 の関係を作れるか）"
   },
   {
-   "row": "extracted",
+   "row": "semiformal",
    "col": "opt-enum",
    "status": "supported",
    "claim": "取り出せない段の過半（53%）が、オリジン・COOP・CORP・COEP を決める部分にあり、logical と concrete の選択やブラウジングコンテキストグループの任意の切り替えのように、隔離を決める段そのものが実装の選択になっている。非決定として過近似すると安全性は保てるが、情報流は保てず、性質を示すには粗すぎる",
@@ -242,7 +237,7 @@ h2 { font-size: 14px; margin: 0 0 12px; color: var(--sub); font-weight: 600; let
    "next_question": "実装の選択を、ブラウザごとの選び方で埋めたとき、過近似はどこまで細かくなるか"
   },
   {
-   "row": "prose",
+   "row": "informal",
    "col": "opt-impl",
    "status": "supported",
    "claim": "WHATWG の implementation-defined には、C 言語の規格のような文書化の区別が無い（Infra の定義を確認）。モデルでの扱いは、何に裁量があるかで分ける: 値と構造はパラメータ、実行時の方策は安全性なら非決定・情報流なら方策のクラスを限ったパラメータ、仕様の欠落は対象外",
@@ -254,7 +249,7 @@ h2 { font-size: 14px; margin: 0 0 12px; color: var(--sub); font-weight: 600; let
    "next_question": "HTML の implementation-defined の全件を、値・構造・方策・欠落に分けるとどうなるか"
   },
   {
-   "row": "extracted",
+   "row": "semiformal",
    "col": "extension",
    "status": "supported",
    "claim": "他の仕様から HTML・Fetch への差し込みは、HTML と Fetch の原稿には現れない（「applicable specifications」が 10 箇所あるだけ）。呼び出しの閉包の境界は手で選ぶしかなく、仕様を丸ごと落としうる",
@@ -264,31 +259,6 @@ h2 { font-size: 14px; margin: 0 0 12px; color: var(--sub); font-weight: 600; let
    ],
    "mode": "destructive",
    "next_question": "Service Workers・CSP・Storage などを閉包に入れると、残りと境界はどう変わるか"
-  },
-  {
-   "row": "browser",
-   "col": "mandatory",
-   "status": "supported",
-   "claim": "出荷中のブラウザに対しては健全性の根拠は与えられず、試験による段階的な確信にとどまる。必須の段（credentialless の CORP の検査）でも、下書きの試験で Firefox 160 の欠陥が見つかった。3 エンジンとも通る試験に絞ると、Origin-Agent-Cluster の領域はまったく確かめられない",
-   "evidence": [
-    "experiments/2026-11-20-browser-semantics-soundness.md",
-    "experiments/models/site-isolation/wpt-draft/RESULTS.md",
-    "experiments/models/site-isolation/wpt-draft/UPSTREAM.md"
-   ],
-   "mode": "destructive",
-   "next_question": "どこまで試験すれば十分かの止めどきを、誰がどう決められるか"
-  },
-  {
-   "row": "browser",
-   "col": "opt-impl",
-   "status": "supported",
-   "claim": "プロセスへの配置は仕様で implementation-specific とされ（エージェントクラスタは「理想化したプロセスの境界」）、ブラウザごと・構成ごとに変わる。この部分のモデルは仕様の翻訳ではなく、そのブラウザの設計のモデルになる",
-   "evidence": [
-    "experiments/2026-11-20-browser-semantics-soundness.md",
-    "experiments/models/site-isolation/SiteIsolation.tla"
-   ],
-   "mode": "destructive",
-   "next_question": ""
   },
   {
    "row": "formal",
@@ -340,218 +310,152 @@ h2 { font-size: 14px; margin: 0 0 12px; color: var(--sub); font-weight: 600; let
   {
    "score": 80,
    "kind": "cell",
-   "target": "extracted/opt-impl",
-   "name": "段ごとに取り出した参照 × 実装依存の値・振る舞い",
-   "why": "同じ行の「必須」では「隔離に関わる算法の閉包（415 算法、3445 段）の 91.3% は取り出せる形だが、段の中の条件は自然言語のままで、取り出したものを確かめる独立した判定基準が無い。得られるのは健全性ではなく追跡可能性で、モデルが落とした段は一覧との突き合わせで機械的に見つかる（実際の 2 つの欠落はどちらも取り出され、根から到達できた）」、同じ列の「散文の仕様（ある版）」では「WHATWG の implementation-defined には、C 言語の規格のような文書化の区別が無い（Infra の定義を確認）。モデルでの扱いは、何に裁量があるかで分ける: 値と構造はパラメータ、実行時の方策は安全性なら非決定・情報流なら方策のクラスを限ったパラメータ、仕様の欠落は対象外」。両方を前提にすると、このセルで何が言えるかを組み立てる",
-   "mode": "constructive",
-   "premises": [
-    "extracted/mandatory",
-    "prose/opt-impl"
-   ]
-  },
-  {
-   "score": 80,
-   "kind": "cell",
    "target": "formal/mandatory",
-   "name": "形式的な元から生成した仕様 × 必須",
+   "name": "形式 × 必須",
    "why": "仮説「仕様と実装の両方を形式的な元から導くとき（SpecTec、Quark）だけ、その元に対する健全性が立つ。ただし信頼は生成器と、元の記述が委員会の意図に合っていることに移る。この思考実験では確かめていない（先行研究の報告による）」に反例がないか。反例がなければ根拠を足して確定させる",
    "mode": "destructive",
    "premises": []
   },
   {
-   "score": 75,
-   "kind": "axis",
-   "target": "axis:rows",
-   "name": "軸「何に対する健全性か」の根拠を探す",
-   "why": "自作の分類なので、既存の標準・論文の分類と突き合わせると欠けている値が見つかる可能性がある",
-   "mode": "exploratory",
-   "premises": []
-  },
-  {
    "score": 70,
    "kind": "cell",
-   "target": "prose/opt-enum",
-   "name": "散文の仕様（ある版） × 列挙した選択肢からの選択",
-   "why": "同じ行の「必須」では「手書きのモデルでは、散文からモデルへの橋は反証可能な仮説にとどまる。WPT の 109 件はモデルの段の欠落を 1 つ捕まえたが、もう 1 つ（COEP allows credentials）は捕まえず、機械的な誤読でも段の欠落が最も捕まりにくかった（非等価な 21 個中 19 個）」、同じ列の「段ごとに取り出した参照」では「取り出せない段の過半（53%）が、オリジン・COOP・CORP・COEP を決める部分にあり、logical と concrete の選択やブラウジングコンテキストグループの任意の切り替えのように、隔離を決める段そのものが実装の選択になっている。非決定として過近似すると安全性は保てるが、情報流は保てず、性質を示すには粗すぎる」。両方を前提にすると、このセルで何が言えるかを組み立てる",
+   "target": "informal/opt-enum",
+   "name": "非形式（自然言語） × 列挙した選択肢からの選択",
+   "why": "同じ行の「必須」では「手書きのモデルでは、散文からモデルへの橋は反証可能な仮説にとどまる。WPT の 109 件はモデルの段の欠落を 1 つ捕まえたが、もう 1 つ（COEP allows credentials）は捕まえず、機械的な誤読でも段の欠落が最も捕まりにくかった（非等価な 21 個中 19 個）」、同じ列の「半形式」では「取り出せない段の過半（53%）が、オリジン・COOP・CORP・COEP を決める部分にあり、logical と concrete の選択やブラウジングコンテキストグループの任意の切り替えのように、隔離を決める段そのものが実装の選択になっている。非決定として過近似すると安全性は保てるが、情報流は保てず、性質を示すには粗すぎる」。両方を前提にすると、このセルで何が言えるかを組み立てる",
    "mode": "constructive",
    "premises": [
-    "prose/mandatory",
-    "extracted/opt-enum"
+    "informal/mandatory",
+    "semiformal/opt-enum"
    ]
   },
   {
    "score": 70,
    "kind": "cell",
-   "target": "prose/extension",
-   "name": "散文の仕様（ある版） × 拡張",
-   "why": "同じ行の「必須」では「手書きのモデルでは、散文からモデルへの橋は反証可能な仮説にとどまる。WPT の 109 件はモデルの段の欠落を 1 つ捕まえたが、もう 1 つ（COEP allows credentials）は捕まえず、機械的な誤読でも段の欠落が最も捕まりにくかった（非等価な 21 個中 19 個）」、同じ列の「段ごとに取り出した参照」では「他の仕様から HTML・Fetch への差し込みは、HTML と Fetch の原稿には現れない（「applicable specifications」が 10 箇所あるだけ）。呼び出しの閉包の境界は手で選ぶしかなく、仕様を丸ごと落としうる」。両方を前提にすると、このセルで何が言えるかを組み立てる",
+   "target": "informal/extension",
+   "name": "非形式（自然言語） × 拡張",
+   "why": "同じ行の「必須」では「手書きのモデルでは、散文からモデルへの橋は反証可能な仮説にとどまる。WPT の 109 件はモデルの段の欠落を 1 つ捕まえたが、もう 1 つ（COEP allows credentials）は捕まえず、機械的な誤読でも段の欠落が最も捕まりにくかった（非等価な 21 個中 19 個）」、同じ列の「半形式」では「他の仕様から HTML・Fetch への差し込みは、HTML と Fetch の原稿には現れない（「applicable specifications」が 10 箇所あるだけ）。呼び出しの閉包の境界は手で選ぶしかなく、仕様を丸ごと落としうる」。両方を前提にすると、このセルで何が言えるかを組み立てる",
    "mode": "constructive",
    "premises": [
-    "prose/mandatory",
-    "extracted/extension"
+    "informal/mandatory",
+    "semiformal/extension"
    ]
   },
   {
    "score": 70,
    "kind": "cell",
-   "target": "browser/opt-enum",
-   "name": "出荷中のブラウザ × 列挙した選択肢からの選択",
-   "why": "同じ行の「必須」では「出荷中のブラウザに対しては健全性の根拠は与えられず、試験による段階的な確信にとどまる。必須の段（credentialless の CORP の検査）でも、下書きの試験で Firefox 160 の欠陥が見つかった。3 エンジンとも通る試験に絞ると、Origin-Agent-Cluster の領域はまったく確かめられない」、同じ列の「段ごとに取り出した参照」では「取り出せない段の過半（53%）が、オリジン・COOP・CORP・COEP を決める部分にあり、logical と concrete の選択やブラウジングコンテキストグループの任意の切り替えのように、隔離を決める段そのものが実装の選択になっている。非決定として過近似すると安全性は保てるが、情報流は保てず、性質を示すには粗すぎる」。両方を前提にすると、このセルで何が言えるかを組み立てる",
+   "target": "semiformal/opt-impl",
+   "name": "半形式 × 実装依存の値・振る舞い",
+   "why": "同じ行の「必須」では「隔離に関わる算法の閉包（415 算法、3445 段）の 91.3% は取り出せる形（制限された構文）だが、段の中の条件は自然言語のままで意味が定まらず、半形式の定義を満たしきらない。取り出したものを確かめる独立した判定基準も無い。得られるのは健全性ではなく追跡可能性で、モデルが落とした段は一覧との突き合わせで機械的に見つかる（実際の 2 つの欠落はどちらも取り出され、根から到達できた）」、同じ列の「非形式（自然言語）」では「WHATWG の implementation-defined には、C 言語の規格のような文書化の区別が無い（Infra の定義を確認）。モデルでの扱いは、何に裁量があるかで分ける: 値と構造はパラメータ、実行時の方策は安全性なら非決定・情報流なら方策のクラスを限ったパラメータ、仕様の欠落は対象外」。両方を前提にすると、このセルで何が言えるかを組み立てる",
    "mode": "constructive",
    "premises": [
-    "browser/mandatory",
-    "extracted/opt-enum"
-   ]
-  },
-  {
-   "score": 70,
-   "kind": "cell",
-   "target": "browser/extension",
-   "name": "出荷中のブラウザ × 拡張",
-   "why": "同じ行の「必須」では「出荷中のブラウザに対しては健全性の根拠は与えられず、試験による段階的な確信にとどまる。必須の段（credentialless の CORP の検査）でも、下書きの試験で Firefox 160 の欠陥が見つかった。3 エンジンとも通る試験に絞ると、Origin-Agent-Cluster の領域はまったく確かめられない」、同じ列の「段ごとに取り出した参照」では「他の仕様から HTML・Fetch への差し込みは、HTML と Fetch の原稿には現れない（「applicable specifications」が 10 箇所あるだけ）。呼び出しの閉包の境界は手で選ぶしかなく、仕様を丸ごと落としうる」。両方を前提にすると、このセルで何が言えるかを組み立てる",
-   "mode": "constructive",
-   "premises": [
-    "browser/mandatory",
-    "extracted/extension"
+    "semiformal/mandatory",
+    "informal/opt-impl"
    ]
   },
   {
    "score": 60,
    "kind": "cell",
-   "target": "prose/opt-feature",
-   "name": "散文の仕様（ある版） × 機能を支援するかの選択",
+   "target": "informal/opt-feature",
+   "name": "非形式（自然言語） × 機能を支援するかの選択",
    "why": "隣の「必須」の結論「手書きのモデルでは、散文からモデルへの橋は反証可能な仮説にとどまる。WPT の 109 件はモデルの段の欠落を 1 つ捕まえたが、もう 1 つ（COEP allows credentials）は捕まえず、機械的な誤読でも段の欠落が最も捕まりにくかった（非等価な 21 個中 19 個）」がここにも移るか。移らないなら、何が違うせいかを条件を変えて探す",
    "mode": "destructive",
    "premises": [
-    "prose/mandatory"
+    "informal/mandatory"
    ]
   },
   {
    "score": 60,
    "kind": "cell",
-   "target": "prose/deprecation",
-   "name": "散文の仕様（ある版） × 廃止予定",
+   "target": "informal/deprecation",
+   "name": "非形式（自然言語） × 廃止予定",
    "why": "隣の「必須」の結論「手書きのモデルでは、散文からモデルへの橋は反証可能な仮説にとどまる。WPT の 109 件はモデルの段の欠落を 1 つ捕まえたが、もう 1 つ（COEP allows credentials）は捕まえず、機械的な誤読でも段の欠落が最も捕まりにくかった（非等価な 21 個中 19 個）」がここにも移るか。移らないなら、何が違うせいかを条件を変えて探す",
    "mode": "destructive",
    "premises": [
-    "prose/mandatory"
+    "informal/mandatory"
    ]
   },
   {
    "score": 60,
    "kind": "cell",
-   "target": "prose/error",
-   "name": "散文の仕様（ある版） × 誤りの扱い",
+   "target": "informal/error",
+   "name": "非形式（自然言語） × 誤りの扱い",
    "why": "隣の「必須」の結論「手書きのモデルでは、散文からモデルへの橋は反証可能な仮説にとどまる。WPT の 109 件はモデルの段の欠落を 1 つ捕まえたが、もう 1 つ（COEP allows credentials）は捕まえず、機械的な誤読でも段の欠落が最も捕まりにくかった（非等価な 21 個中 19 個）」がここにも移るか。移らないなら、何が違うせいかを条件を変えて探す",
    "mode": "destructive",
    "premises": [
-    "prose/mandatory"
+    "informal/mandatory"
    ]
   },
   {
    "score": 60,
    "kind": "cell",
-   "target": "extracted/opt-feature",
-   "name": "段ごとに取り出した参照 × 機能を支援するかの選択",
-   "why": "隣の「必須」の結論「隔離に関わる算法の閉包（415 算法、3445 段）の 91.3% は取り出せる形だが、段の中の条件は自然言語のままで、取り出したものを確かめる独立した判定基準が無い。得られるのは健全性ではなく追跡可能性で、モデルが落とした段は一覧との突き合わせで機械的に見つかる（実際の 2 つの欠落はどちらも取り出され、根から到達できた）」がここにも移るか。移らないなら、何が違うせいかを条件を変えて探す",
+   "target": "semiformal/opt-feature",
+   "name": "半形式 × 機能を支援するかの選択",
+   "why": "隣の「必須」の結論「隔離に関わる算法の閉包（415 算法、3445 段）の 91.3% は取り出せる形（制限された構文）だが、段の中の条件は自然言語のままで意味が定まらず、半形式の定義を満たしきらない。取り出したものを確かめる独立した判定基準も無い。得られるのは健全性ではなく追跡可能性で、モデルが落とした段は一覧との突き合わせで機械的に見つかる（実際の 2 つの欠落はどちらも取り出され、根から到達できた）」がここにも移るか。移らないなら、何が違うせいかを条件を変えて探す",
    "mode": "destructive",
    "premises": [
-    "extracted/mandatory"
+    "semiformal/mandatory"
    ]
   },
   {
    "score": 60,
    "kind": "cell",
-   "target": "extracted/deprecation",
-   "name": "段ごとに取り出した参照 × 廃止予定",
-   "why": "隣の「必須」の結論「隔離に関わる算法の閉包（415 算法、3445 段）の 91.3% は取り出せる形だが、段の中の条件は自然言語のままで、取り出したものを確かめる独立した判定基準が無い。得られるのは健全性ではなく追跡可能性で、モデルが落とした段は一覧との突き合わせで機械的に見つかる（実際の 2 つの欠落はどちらも取り出され、根から到達できた）」がここにも移るか。移らないなら、何が違うせいかを条件を変えて探す",
+   "target": "semiformal/deprecation",
+   "name": "半形式 × 廃止予定",
+   "why": "隣の「必須」の結論「隔離に関わる算法の閉包（415 算法、3445 段）の 91.3% は取り出せる形（制限された構文）だが、段の中の条件は自然言語のままで意味が定まらず、半形式の定義を満たしきらない。取り出したものを確かめる独立した判定基準も無い。得られるのは健全性ではなく追跡可能性で、モデルが落とした段は一覧との突き合わせで機械的に見つかる（実際の 2 つの欠落はどちらも取り出され、根から到達できた）」がここにも移るか。移らないなら、何が違うせいかを条件を変えて探す",
    "mode": "destructive",
    "premises": [
-    "extracted/mandatory"
+    "semiformal/mandatory"
    ]
   },
   {
    "score": 60,
    "kind": "cell",
-   "target": "extracted/error",
-   "name": "段ごとに取り出した参照 × 誤りの扱い",
-   "why": "隣の「必須」の結論「隔離に関わる算法の閉包（415 算法、3445 段）の 91.3% は取り出せる形だが、段の中の条件は自然言語のままで、取り出したものを確かめる独立した判定基準が無い。得られるのは健全性ではなく追跡可能性で、モデルが落とした段は一覧との突き合わせで機械的に見つかる（実際の 2 つの欠落はどちらも取り出され、根から到達できた）」がここにも移るか。移らないなら、何が違うせいかを条件を変えて探す",
+   "target": "semiformal/error",
+   "name": "半形式 × 誤りの扱い",
+   "why": "隣の「必須」の結論「隔離に関わる算法の閉包（415 算法、3445 段）の 91.3% は取り出せる形（制限された構文）だが、段の中の条件は自然言語のままで意味が定まらず、半形式の定義を満たしきらない。取り出したものを確かめる独立した判定基準も無い。得られるのは健全性ではなく追跡可能性で、モデルが落とした段は一覧との突き合わせで機械的に見つかる（実際の 2 つの欠落はどちらも取り出され、根から到達できた）」がここにも移るか。移らないなら、何が違うせいかを条件を変えて探す",
    "mode": "destructive",
    "premises": [
-    "extracted/mandatory"
-   ]
-  },
-  {
-   "score": 60,
-   "kind": "cell",
-   "target": "formal/opt-impl",
-   "name": "形式的な元から生成した仕様 × 実装依存の値・振る舞い",
-   "why": "隣の「散文の仕様（ある版）」の結論「WHATWG の implementation-defined には、C 言語の規格のような文書化の区別が無い（Infra の定義を確認）。モデルでの扱いは、何に裁量があるかで分ける: 値と構造はパラメータ、実行時の方策は安全性なら非決定・情報流なら方策のクラスを限ったパラメータ、仕様の欠落は対象外」がここにも移るか。移らないなら、何が違うせいかを条件を変えて探す",
-   "mode": "destructive",
-   "premises": [
-    "prose/opt-impl"
-   ]
-  },
-  {
-   "score": 60,
-   "kind": "cell",
-   "target": "browser/opt-feature",
-   "name": "出荷中のブラウザ × 機能を支援するかの選択",
-   "why": "隣の「必須」の結論「出荷中のブラウザに対しては健全性の根拠は与えられず、試験による段階的な確信にとどまる。必須の段（credentialless の CORP の検査）でも、下書きの試験で Firefox 160 の欠陥が見つかった。3 エンジンとも通る試験に絞ると、Origin-Agent-Cluster の領域はまったく確かめられない」がここにも移るか。移らないなら、何が違うせいかを条件を変えて探す",
-   "mode": "destructive",
-   "premises": [
-    "browser/mandatory"
-   ]
-  },
-  {
-   "score": 60,
-   "kind": "cell",
-   "target": "browser/deprecation",
-   "name": "出荷中のブラウザ × 廃止予定",
-   "why": "隣の「必須」の結論「出荷中のブラウザに対しては健全性の根拠は与えられず、試験による段階的な確信にとどまる。必須の段（credentialless の CORP の検査）でも、下書きの試験で Firefox 160 の欠陥が見つかった。3 エンジンとも通る試験に絞ると、Origin-Agent-Cluster の領域はまったく確かめられない」がここにも移るか。移らないなら、何が違うせいかを条件を変えて探す",
-   "mode": "destructive",
-   "premises": [
-    "browser/mandatory"
-   ]
-  },
-  {
-   "score": 60,
-   "kind": "cell",
-   "target": "browser/error",
-   "name": "出荷中のブラウザ × 誤りの扱い",
-   "why": "隣の「必須」の結論「出荷中のブラウザに対しては健全性の根拠は与えられず、試験による段階的な確信にとどまる。必須の段（credentialless の CORP の検査）でも、下書きの試験で Firefox 160 の欠陥が見つかった。3 エンジンとも通る試験に絞ると、Origin-Agent-Cluster の領域はまったく確かめられない」がここにも移るか。移らないなら、何が違うせいかを条件を変えて探す",
-   "mode": "destructive",
-   "premises": [
-    "browser/mandatory"
+    "semiformal/mandatory"
    ]
   },
   {
    "score": 50,
    "kind": "cell",
    "target": "formal/opt-enum",
-   "name": "形式的な元から生成した仕様 × 列挙した選択肢からの選択",
-   "why": "隣の「段ごとに取り出した参照」の結論「取り出せない段の過半（53%）が、オリジン・COOP・CORP・COEP を決める部分にあり、logical と concrete の選択やブラウジングコンテキストグループの任意の切り替えのように、隔離を決める段そのものが実装の選択になっている。非決定として過近似すると安全性は保てるが、情報流は保てず、性質を示すには粗すぎる」がここにも移るか。移らないなら、何が違うせいかを条件を変えて探す",
+   "name": "形式 × 列挙した選択肢からの選択",
+   "why": "隣の「半形式」の結論「取り出せない段の過半（53%）が、オリジン・COOP・CORP・COEP を決める部分にあり、logical と concrete の選択やブラウジングコンテキストグループの任意の切り替えのように、隔離を決める段そのものが実装の選択になっている。非決定として過近似すると安全性は保てるが、情報流は保てず、性質を示すには粗すぎる」がここにも移るか。移らないなら、何が違うせいかを条件を変えて探す",
    "mode": "destructive",
    "premises": [
-    "extracted/opt-enum"
+    "semiformal/opt-enum"
+   ]
+  },
+  {
+   "score": 50,
+   "kind": "cell",
+   "target": "formal/opt-impl",
+   "name": "形式 × 実装依存の値・振る舞い",
+   "why": "隣の「非形式（自然言語）」の結論「WHATWG の implementation-defined には、C 言語の規格のような文書化の区別が無い（Infra の定義を確認）。モデルでの扱いは、何に裁量があるかで分ける: 値と構造はパラメータ、実行時の方策は安全性なら非決定・情報流なら方策のクラスを限ったパラメータ、仕様の欠落は対象外」がここにも移るか。移らないなら、何が違うせいかを条件を変えて探す",
+   "mode": "destructive",
+   "premises": [
+    "informal/opt-impl"
    ]
   },
   {
    "score": 50,
    "kind": "cell",
    "target": "formal/extension",
-   "name": "形式的な元から生成した仕様 × 拡張",
-   "why": "隣の「段ごとに取り出した参照」の結論「他の仕様から HTML・Fetch への差し込みは、HTML と Fetch の原稿には現れない（「applicable specifications」が 10 箇所あるだけ）。呼び出しの閉包の境界は手で選ぶしかなく、仕様を丸ごと落としうる」がここにも移るか。移らないなら、何が違うせいかを条件を変えて探す",
+   "name": "形式 × 拡張",
+   "why": "隣の「半形式」の結論「他の仕様から HTML・Fetch への差し込みは、HTML と Fetch の原稿には現れない（「applicable specifications」が 10 箇所あるだけ）。呼び出しの閉包の境界は手で選ぶしかなく、仕様を丸ごと落としうる」がここにも移るか。移らないなら、何が違うせいかを条件を変えて探す",
    "mode": "destructive",
    "premises": [
-    "extracted/extension"
+    "semiformal/extension"
    ]
   },
   {
    "score": 40,
    "kind": "cell",
    "target": "formal/opt-feature",
-   "name": "形式的な元から生成した仕様 × 機能を支援するかの選択",
+   "name": "形式 × 機能を支援するかの選択",
    "why": "近くに結論がない。まず問いを立てて、何が起きうるかを広く出す",
    "mode": "exploratory",
    "premises": []
@@ -560,7 +464,7 @@ h2 { font-size: 14px; margin: 0 0 12px; color: var(--sub); font-weight: 600; let
    "score": 40,
    "kind": "cell",
    "target": "formal/deprecation",
-   "name": "形式的な元から生成した仕様 × 廃止予定",
+   "name": "形式 × 廃止予定",
    "why": "近くに結論がない。まず問いを立てて、何が起きうるかを広く出す",
    "mode": "exploratory",
    "premises": []
@@ -569,7 +473,7 @@ h2 { font-size: 14px; margin: 0 0 12px; color: var(--sub); font-weight: 600; let
    "score": 40,
    "kind": "cell",
    "target": "formal/error",
-   "name": "形式的な元から生成した仕様 × 誤りの扱い",
+   "name": "形式 × 誤りの扱い",
    "why": "近くに結論がない。まず問いを立てて、何が起きうるかを広く出す",
    "mode": "exploratory",
    "premises": []

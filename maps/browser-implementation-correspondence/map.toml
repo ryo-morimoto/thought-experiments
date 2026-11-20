@@ -1,0 +1,127 @@
+# 思考実験の地図。生成: python3 <skill>/scripts/thought_map.py render maps/browser-implementation-correspondence
+# 軸の選び方と捨てた候補: research_notes/browser-semantics-soundness-map/axes.md
+
+title = "検証モデルとブラウザの実装の各段の対応"
+question = "ブラウザの意味論から検証モデルへの変換の根拠のうち、実装の側: 検証モデルから、ブラウザの機能仕様・設計・実装の表現・出荷物の各段への対応に、どんな根拠を与えられるか。仕様の書き方の側は地図 browser-semantics-soundness が扱う"
+
+[rows]
+name = "表現の段"
+basis = "standard"
+ref = "https://www.commoncriteriaportal.org/files/ccfiles/CCPART3V3.1R5.pdf"
+ref_title = "Common Criteria v3.1 R5, Part 3 の ADV クラス（ADV_FSP、ADV_TDS、ADV_IMP）と Part 1 の用語集（implementation representation、target of evaluation）"
+ref_read = true
+note = "本文で定義を確かめた（2026-11-21）。CC では、検証モデルは ADV_SPM の security policy model に当たり、機能仕様との対応を示すことが求められる。この地図は、その対応を段ごとにどこまで示せるかを扱う"
+
+[[rows.values]]
+id = "fsp"
+name = "機能仕様"
+note = "外から TSF に入るすべての手段（インターフェース）を記述するもの（ADV_FSP）。ブラウザでは、Web に見える振る舞いを定める WHATWG の仕様がこれに当たる。仕様の書き方の違いは地図 browser-semantics-soundness で扱う"
+
+[[rows.values]]
+id = "design"
+name = "設計"
+note = "TSF を部分系や部品に分けて記述するもの（ADV_TDS）。ブラウザでは、Chromium の process_model_and_site_isolation.md や compromised-renderers.md のような設計文書"
+
+[[rows.values]]
+id = "impl"
+name = "実装の表現"
+note = "TSF の最も抽象度の低い表現で、それ以上の設計の詳細化なしに TSF を作るのに使うもの（CC Part 1 の 162）。ブラウザのソースコードと修正 CL"
+
+[[rows.values]]
+id = "toe"
+name = "評価対象そのもの"
+note = "ソフトウェア・ファームウェア・ハードウェアの集まり（CC Part 1 の 89、target of evaluation）。出荷中のブラウザの、ある版とある構成（プラットフォーム、企業の方針、フィールドトライアル）"
+
+[cols]
+name = "仕様の中身の種類"
+basis = "standard"
+ref = "https://www.w3.org/TR/qaframe-spec/"
+ref_title = "W3C QA Framework: Specification Guidelines（W3C Recommendation 2005）の 2.3.2 What is mandatory? と 2.4 Managing Variability"
+ref_read = true
+note = "本文で定義を確かめた（2026-11-21）。2.4.1 の profile・module・level は WHATWG の Living Standard に無いので除いた。並行（in parallel）やタスクの投入は、この分類に無い（軸の欠け。research_notes の axes.md を参照）"
+
+[[cols.values]]
+id = "mandatory"
+name = "必須"
+note = "すべての実装が従う決まった要求（2.3.2）。WHATWG では、決まった形の算法の段がほとんどこれにあたる"
+
+[[cols.values]]
+id = "opt-feature"
+name = "機能を支援するかの選択"
+note = "よく定義された機能を支援するかしないかを実装が選べる（2.4.2 の options の 1 つ目）"
+
+[[cols.values]]
+id = "opt-enum"
+name = "列挙した選択肢からの選択"
+note = "列挙された値や振る舞いから実装が選ぶ（2.4.2 の 2 つ目）。例: cross-origin isolation を logical と concrete のどちらにするか"
+
+[[cols.values]]
+id = "opt-impl"
+name = "実装依存の値・振る舞い"
+note = "値や振る舞いを実装に任せる（2.4.2 の 3 つ目、discretionary items）。WHATWG の implementation-defined、optionally、user agent may など"
+
+[[cols.values]]
+id = "extension"
+name = "拡張"
+note = "他の仕様や実装が振る舞いを足せる点（2.4.3）。WHATWG では「applicable specifications」や他の仕様からの差し込み"
+
+[[cols.values]]
+id = "deprecation"
+name = "廃止予定"
+note = "廃止予定の機能と、その扱い（2.4.4）"
+
+[[cols.values]]
+id = "error"
+name = "誤りの扱い"
+note = "誤った入力や状態に対する振る舞い（2.4.5）"
+
+
+[[cells]]
+row = "design"
+col = "mandatory"
+status = "supported"
+claim = "設計文書（compromised-renderers.md）は資源の種類ごとに保護と既知の穴を並べているが、証拠の種類や主体の欄は無い。サイト分離の回避 39 件のうち、1 項目に収まるのは 26 件、項目をまたぐのが 7 件、対応する項目が無いのが 6 件で、文書の既知の穴にちょうど入ったものは 0 件だった。設計を基準点にしても、段ごとの網羅は文書に担保されない"
+evidence = [
+  "experiments/2026-11-20-browser-semantics-soundness.md",
+  "https://chromium.googlesource.com/chromium/src/+/main/docs/security/compromised-renderers.md",
+  "https://www.ndss-symposium.org/wp-content/uploads/2026-f902-paper.pdf",
+]
+mode = "destructive"
+next_question = "設計文書の項目の下に共通する「主体の計算」を、設計の段の不変条件として書けるか"
+
+[[cells]]
+row = "impl"
+col = "mandatory"
+status = "hypothesis"
+claim = "修正 CL から根本原因を読むと、既知の 9 件のうち 5 件はブラウザが主体（オリジン）を誤って計算したもので、仕様由来の判定基準（オリジンの決め方、Window の再利用の条件など）を段階的に足すと 6 件中 4 件を捕まえた。ただし判定基準の段は既知のバグに合わせて足したもので、新しいバグを予測できるかは確かめていない"
+evidence = [
+  "experiments/2026-11-20-browser-semantics-soundness.md",
+  "experiments/models/site-isolation/OriginOracle.tla",
+]
+mode = "destructive"
+next_question = "既知のバグに合わせずに作った判定基準で、ブラウザ側とレンダラー側のオリジンの差分を取ると、新しい不一致が見つかるか"
+[[cells]]
+row = "toe"
+col = "mandatory"
+status = "supported"
+claim = "出荷中のブラウザに対しては健全性の根拠は与えられず、試験による段階的な確信にとどまる。必須の段（credentialless の CORP の検査）でも、下書きの試験で Firefox 160 の欠陥が見つかった。3 エンジンとも通る試験に絞ると、Origin-Agent-Cluster の領域はまったく確かめられない"
+evidence = [
+  "experiments/2026-11-20-browser-semantics-soundness.md",
+  "experiments/models/site-isolation/wpt-draft/RESULTS.md",
+  "experiments/models/site-isolation/wpt-draft/UPSTREAM.md",
+]
+mode = "destructive"
+next_question = "どこまで試験すれば十分かの止めどきを、誰がどう決められるか"
+
+[[cells]]
+row = "toe"
+col = "opt-impl"
+status = "supported"
+claim = "プロセスへの配置は仕様で implementation-specific とされ（エージェントクラスタは「理想化したプロセスの境界」）、ブラウザごと・構成ごとに変わる。この部分のモデルは仕様の翻訳ではなく、そのブラウザの設計のモデルになる"
+evidence = [
+  "experiments/2026-11-20-browser-semantics-soundness.md",
+  "experiments/models/site-isolation/SiteIsolation.tla",
+]
+mode = "destructive"
+next_question = ""
+

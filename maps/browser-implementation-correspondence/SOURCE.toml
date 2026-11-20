@@ -1,0 +1,4 @@
+# 地図の map.html は、自作の map.toml から thought_map.py render で生成した自作物。外部データは含まない。
+id = "map-browser-implementation-correspondence"
+title = "思考実験の地図「検証モデルとブラウザの実装の各段の対応」の生成ページ"
+origin = "original"
