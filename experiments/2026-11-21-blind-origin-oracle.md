@@ -1,6 +1,6 @@
 # 既知のバグに合わせずに作った仕様由来の判定基準は、実装のオリジン計算の誤りを予測できるか
 
-- 状態: 設定中
+- 状態: 検討中
 - 開始: 2026-11-21
 - 更新: 2026-11-21
 - 関連: [maps/browser-implementation-correspondence/map.toml](../maps/browser-implementation-correspondence/map.toml) のセル「実装の表現 × 必須」、[experiments/2026-11-20-browser-semantics-soundness.md](2026-11-20-browser-semantics-soundness.md)、[OriginOracle.tla](models/site-isolation/OriginOracle.tla)
@@ -30,7 +30,15 @@
 
 ## 条件を変える
 
-（段階B で書く）
+固定: 既知の 6 件（CVE-2022-1637、CVE-2018-16074、CVE-2019-13738、CVE-2024-1671、CVE-2018-16073、CVE-2018-6165）と、各バグの「仕様の値」と「ブラウザが計算した値」（前の思考実験の OriginOracle.tla と同じ）。理想化: バグが仕様の値から外れたかを、比べるのに要る算法さえあれば判定できるとした（判定の手順そのものは前の思考実験のまま）。変える: 判定基準に入れる算法の集め方。
+
+1. 入口を navigate と main fetch に限り、前の思考実験の取り出しの閉包（HTML 0e292f4、Fetch d7fc0fd）でたどれる算法だけを入れる。オリジンの決め方、サイトの求め方、ブラウジングコンテキストの作成、文書の作成と初期化（Window の再利用の条件を含む）、似たオリジンのエージェントの取得が入り、window open の手順と「choosing a navigable」の規則は入らない。捕まえるのは 2 件（CVE-2018-16074、CVE-2019-13738）。
+2. 入口に window.open（window open の手順）を足す。CVE-2022-1637 の「作り手は open を呼んだフレーム」が判定できるようになり、3 件。
+3. 前の思考実験の作り方（バグごとに段を足す）。筆者が導いた不変条件「srcdoc のオリジンは親か不透明」で CVE-2024-1671 も捕まえ、4 件。
+
+どの作り方でも、直した版には誤報が出ない。CVE-2018-16073（タブ復元後の配置）と CVE-2018-6165（アドレスバーの表示）は、どの作り方でも捕まらない。
+
+脱落: R1「予測できる（後づけと同じだけ捕まえる）」は、作り方 1・2 で 4 件に届かないので、そのままの形では脱落。R2「後づけにすぎない（1 件ほど）」も、仕様の算法だけで 2〜3 件を捕まえたので脱落。判定は「入口の選び方」に左右される、という新しい対立が出た。R3（実装の冗長性の差分）と R4（設計の段）は、この操作では区別できない。
 
 ## 結果を攻撃する
 
@@ -42,11 +50,25 @@
 
 ## 具体
 
-（段階B 以降で書く）
+取り出しの閉包に何が入っているかは、前の思考実験の取り出しの出力（ジョブの一時ディレクトリの closure_steps.tsv）を筆者が確かめた。「create and initialize a Document object」の手順 7（Window の再利用の条件）は、navigate と main fetch から判定に至る部分に入っている。window open の手順、「the rules for choosing a navigable」、「create a new auxiliary browsing context and document」は閉包に無い。
+
+モデル: [models/site-isolation/OriginOracle.tla](models/site-isolation/OriginOracle.tla) の後半（Needs、NavFetchClosure、WithOpenClosure、BlindCaught）と [Origin-Blind.cfg](models/site-isolation/Origin-Blind.cfg)。TLC の出力:
+
+```
+<< "blind",
+   "nav+fetch",
+   {"CVE-2018-16074", "CVE-2019-13738"},
+   "with window.open",
+   {"CVE-2022-1637", "CVE-2018-16074", "CVE-2019-13738"} >>
+Model checking completed. No error has been found.
+```
+
+各バグの判定に要る算法（Needs）は筆者の判断。CVE-2018-16074 は、ブラウザが計算したオリジンを「obtain a site」に通して比べるので、blob URL のオリジンを決める URL Standard の手順（閉包の外）には頼らない、と読んだ。
 
 ## 経過
 
 - 2026-11-21 段階A。試し打ち: 判定基準の作り方を「バグごとに段を足す」から「取り出しの閉包でオリジンに関わる段を全部入れる」に変えてみる。前の思考実験の取り出しの一覧には、オリジンの決め方、サイトの求め方、Window の再利用の条件（どれも仕様の段）が入る。これだけで 6 件中 3 件（CVE-2022-1637、CVE-2018-16074、CVE-2019-13738）が捕まる見込み。CVE-2024-1671 を捕まえた「srcdoc のオリジンは親か不透明」は筆者が導いた不変条件で、段の一覧には無い。R1 と R2 の中間（暫定、モデルではまだ確かめていない）。
+- 2026-11-21 段階B（ユーザーの判断: 1-a）。判定基準を、取り出しの閉包でたどれる算法だけから作った。入口を navigate と main fetch にすると 2 件、window.open を足すと 3 件、前の後づけの作り方は 4 件。R1 と R2 はどちらも脱落し、「入口の選び方」が結果を左右すると分かった。
 
 ## 次の問い
 

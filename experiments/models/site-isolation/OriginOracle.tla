@@ -99,6 +99,33 @@ CaughtExpected ==
   /\ CaughtAt("site")    = {"CVE-2022-1637", "CVE-2018-16074"}
   /\ CaughtAt("derived") = {"CVE-2022-1637", "CVE-2018-16074", "CVE-2019-13738", "CVE-2024-1671"}
 
+\* --- Blind construction (experiments/2026-11-21-blind-origin-oracle.md) ---
+\* Build the oracle without looking at the bugs: include every spec algorithm
+\* reachable from chosen entry points in the extracted call graph
+\* (extract/README.md; HTML 0e292f4). A case is caught only if every spec
+\* algorithm its check needs is in that set. The srcdoc invariant used for
+\* CVE-2024-1671 was derived by the author and is in no extracted algorithm.
+Needs == [b \in AllBugs |->
+  CASE b = "CVE-2022-1637"  -> {"window open steps", "create a new browsing context and document",
+                                "determine the origin"}
+    [] b = "CVE-2018-16074" -> {"obtain a site"}
+    [] b = "CVE-2019-13738" -> {"create and initialize a Document object"}
+    [] b = "CVE-2024-1671"  -> {"author-derived srcdoc invariant"}
+    [] OTHER                -> {}]
+\* Algorithms the extraction found reachable from navigate and main fetch.
+NavFetchClosure == {"determine the origin", "obtain a site",
+                    "create a new browsing context and document",
+                    "create and initialize a Document object",
+                    "obtain a similar-origin window agent"}
+\* The same, with window.open's "window open steps" added as an entry point.
+WithOpenClosure == NavFetchClosure \cup {"window open steps"}
+BlindCaught(closure) ==
+  {b \in AllBugs : /\ Needs[b] # {}
+                   /\ Needs[b] \subseteq closure
+                   /\ \E c \in Cases : c.bug = b /\ c.buggy # c.spec}
+ReportBlind == PrintT(<<"blind", "nav+fetch", BlindCaught(NavFetchClosure),
+                        "with window.open", BlindCaught(WithOpenClosure)>>)
+
 VARIABLE dummy
 Init == dummy = 0
 Next == UNCHANGED dummy
