@@ -145,3 +145,17 @@ evidence = [
 ]
 mode = "destructive"
 next_question = "正文の一部（Fetch の CORP の検査やオリジンの計算）だけを形式的な元から生成する案は成り立つか"
+
+[[cells]]
+row = "informal"
+col = "opt-enum"
+status = "supported"
+claim = "散文の仕様が列挙した選択肢（任意の段を含む）は、依存してよい入力（エンジン・プラットフォーム・構成・観測できる状態）を明示した関数として扱う。仕様の水準の性質は選択肢をすべて許す非決定の包みで示し（安全性なら健全）、配備の性質は各エンジンの選び方を観測から関数として取り出して示す（Chrome のグループの切り替えは「開いた側が無く前のページが bfcache に入れる」の関数だった）。WPT の期待値は列挙の一方を前提にしているので、決めるのはブラウザごとの結果から"
+evidence = [
+  "experiments/2026-11-21-informal-enumerated-choice.md",
+  "experiments/models/site-isolation/Spec-COILogical.cfg",
+  "experiments/models/site-isolation/bcg-observe/RESULTS.md",
+]
+mode = "constructive"
+next_question = "依存する入力を明示した関数としてモデルを書くと、宣言した通り道つきの情報流はどこまで残るか"
+

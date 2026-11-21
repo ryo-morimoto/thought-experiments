@@ -273,6 +273,19 @@ h2 { font-size: 14px; margin: 0 0 12px; color: var(--sub); font-weight: 600; let
    ],
    "mode": "destructive",
    "next_question": "正文の一部（Fetch の CORP の検査やオリジンの計算）だけを形式的な元から生成する案は成り立つか"
+  },
+  {
+   "row": "informal",
+   "col": "opt-enum",
+   "status": "supported",
+   "claim": "散文の仕様が列挙した選択肢（任意の段を含む）は、依存してよい入力（エンジン・プラットフォーム・構成・観測できる状態）を明示した関数として扱う。仕様の水準の性質は選択肢をすべて許す非決定の包みで示し（安全性なら健全）、配備の性質は各エンジンの選び方を観測から関数として取り出して示す（Chrome のグループの切り替えは「開いた側が無く前のページが bfcache に入れる」の関数だった）。WPT の期待値は列挙の一方を前提にしているので、決めるのはブラウザごとの結果から",
+   "evidence": [
+    "experiments/2026-11-21-informal-enumerated-choice.md",
+    "experiments/models/site-isolation/Spec-COILogical.cfg",
+    "experiments/models/site-isolation/bcg-observe/RESULTS.md"
+   ],
+   "mode": "constructive",
+   "next_question": "依存する入力を明示した関数としてモデルを書くと、宣言した通り道つきの情報流はどこまで残るか"
   }
  ],
  "legend_by_status": {
@@ -313,18 +326,6 @@ h2 { font-size: 14px; margin: 0 0 12px; color: var(--sub); font-weight: 600; let
   {
    "score": 70,
    "kind": "cell",
-   "target": "informal/opt-enum",
-   "name": "非形式（自然言語） × 列挙した選択肢からの選択",
-   "why": "同じ行の「必須」では「手書きのモデルでは、散文からモデルへの橋は反証可能な仮説にとどまる。WPT の 109 件はモデルの段の欠落を 1 つ捕まえたが、もう 1 つ（COEP allows credentials）は捕まえず、機械的な誤読でも段の欠落が最も捕まりにくかった（非等価な 21 個中 19 個）。後に足した「安全でない文脈の COEP」の段の欠落は WPT の 109 件に捕まらず、その欠落のせいでアクセス制御としての性質（OptInOnly）が成り立って見えていた」、同じ列の「半形式」では「取り出せない段の過半（53%）が、オリジン・COOP・CORP・COEP を決める部分にあり、logical と concrete の選択やブラウジングコンテキストグループの任意の切り替えのように、隔離を決める段そのものが実装の選択になっている。非決定として過近似すると安全性は保てるが、情報流は保てず、性質を示すには粗すぎる」。両方を前提にすると、このセルで何が言えるかを組み立てる",
-   "mode": "constructive",
-   "premises": [
-    "informal/mandatory",
-    "semiformal/opt-enum"
-   ]
-  },
-  {
-   "score": 70,
-   "kind": "cell",
    "target": "informal/extension",
    "name": "非形式（自然言語） × 拡張",
    "why": "同じ行の「必須」では「手書きのモデルでは、散文からモデルへの橋は反証可能な仮説にとどまる。WPT の 109 件はモデルの段の欠落を 1 つ捕まえたが、もう 1 つ（COEP allows credentials）は捕まえず、機械的な誤読でも段の欠落が最も捕まりにくかった（非等価な 21 個中 19 個）。後に足した「安全でない文脈の COEP」の段の欠落は WPT の 109 件に捕まらず、その欠落のせいでアクセス制御としての性質（OptInOnly）が成り立って見えていた」、同じ列の「半形式」では「他の仕様から HTML・Fetch への差し込みは、HTML と Fetch の原稿には現れない（「applicable specifications」が 10 箇所あるだけ）。呼び出しの閉包の境界は手で選ぶしかなく、仕様を丸ごと落としうる」。両方を前提にすると、このセルで何が言えるかを組み立てる",
@@ -344,6 +345,18 @@ h2 { font-size: 14px; margin: 0 0 12px; color: var(--sub); font-weight: 600; let
    "premises": [
     "semiformal/mandatory",
     "informal/opt-impl"
+   ]
+  },
+  {
+   "score": 70,
+   "kind": "cell",
+   "target": "formal/opt-enum",
+   "name": "形式 × 列挙した選択肢からの選択",
+   "why": "同じ行の「必須」では「厳密な健全性はいつも何かの形式的な成果物に対して立つので、区別になるのはその成果物が正文かどうか。正文が形式的か、証明に使う成果物から機械的に生成されるとき（Arm の ASL、SpecTec 以後の Wasm）、または正文との間に検証つきの変換があるときだけ、仕様に対する厳密な健全性に届き、信頼は生成器・証明系・DSL の意味に残る。HTML は並行の段などを書ける形式言語がまだ無く、この行に入れない」、同じ列の「非形式（自然言語）」では「散文の仕様が列挙した選択肢（任意の段を含む）は、依存してよい入力（エンジン・プラットフォーム・構成・観測できる状態）を明示した関数として扱う。仕様の水準の性質は選択肢をすべて許す非決定の包みで示し（安全性なら健全）、配備の性質は各エンジンの選び方を観測から関数として取り出して示す（Chrome のグループの切り替えは「開いた側が無く前のページが bfcache に入れる」の関数だった）。WPT の期待値は列挙の一方を前提にしているので、決めるのはブラウザごとの結果から」。両方を前提にすると、このセルで何が言えるかを組み立てる",
+   "mode": "constructive",
+   "premises": [
+    "formal/mandatory",
+    "informal/opt-enum"
    ]
   },
   {
@@ -410,18 +423,6 @@ h2 { font-size: 14px; margin: 0 0 12px; color: var(--sub); font-weight: 600; let
    "mode": "destructive",
    "premises": [
     "semiformal/mandatory"
-   ]
-  },
-  {
-   "score": 60,
-   "kind": "cell",
-   "target": "formal/opt-enum",
-   "name": "形式 × 列挙した選択肢からの選択",
-   "why": "同じ行の「必須」では「厳密な健全性はいつも何かの形式的な成果物に対して立つので、区別になるのはその成果物が正文かどうか。正文が形式的か、証明に使う成果物から機械的に生成されるとき（Arm の ASL、SpecTec 以後の Wasm）、または正文との間に検証つきの変換があるときだけ、仕様に対する厳密な健全性に届き、信頼は生成器・証明系・DSL の意味に残る。HTML は並行の段などを書ける形式言語がまだ無く、この行に入れない」、同じ列の「半形式」では「取り出せない段の過半（53%）が、オリジン・COOP・CORP・COEP を決める部分にあり、logical と concrete の選択やブラウジングコンテキストグループの任意の切り替えのように、隔離を決める段そのものが実装の選択になっている。非決定として過近似すると安全性は保てるが、情報流は保てず、性質を示すには粗すぎる」。両方を前提にすると、このセルで何が言えるかを組み立てる",
-   "mode": "constructive",
-   "premises": [
-    "formal/mandatory",
-    "semiformal/opt-enum"
    ]
   },
   {

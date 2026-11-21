@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name="timeout" content="long">
+<title>BCG swap probe: c2-noopener-samesite</title>
+<script src="/resources/testharness.js"></script>
+<script src="/resources/testharnessreport.js"></script>
+<script src="/common/utils.js"></script>
+<script src="/common/dispatcher/dispatcher.js"></script>
+<script src="/common/get-host-info.sub.js"></script>
+<script src="/html/browsers/browsing-the-web/remote-context-helper/resources/remote-context-helper.js"></script>
+<script src="resources/bcg-probe.js"></script>
+<script>
+bcgProbe({label: 'c2 noopener same-site cross-origin', openerPresent: false, dest: 'HTTPS_REMOTE_ORIGIN'});
+</script>
