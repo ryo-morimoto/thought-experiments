@@ -1,6 +1,6 @@
 # 拡張に耐える条件（支配の条件と漏らす一覧）は、手書きのモデルで確かめられるか
 
-- 状態: 設定中
+- 状態: 検討中
 - 開始: 2026-11-21
 - 更新: 2026-11-21
 - 関連: [experiments/2026-11-21-informal-extension.md](2026-11-21-informal-extension.md)（この記録の前提を出した思考実験）、[maps/browser-semantics-soundness/map.toml](../maps/browser-semantics-soundness/map.toml) のセル「非形式 × 拡張」、[ExtensionHooks.tla](models/site-isolation/ExtensionHooks.tla)
@@ -33,7 +33,29 @@
 
 ## 条件を変える
 
-（段階B で書く）
+固定: SpecIsolation.tla（2 段を足した版、`Mutant = "none"`）。変える: 取り直しの経路と、基の検査の置き場所（ユーザーの判断: 1 と 2 を並行）。
+
+**操作 1: 支配の条件**
+
+Fetch の「HTTP fetch」は、CORP の検査を HTTP-network-or-cache fetch が返した応答に対して行う（fetch.bs d7fc0fd、5895〜5905 行付近）。HTTP-network-or-cache fetch の中には、認証のあとの取り直しやキャッシュが入るので、検査はそのあとに来る。[DominanceRetry.tla](models/site-isolation/DominanceRetry.tla) で、内部の取り直しのある no-cors の取得と、止められたあとにページが iframe のナビゲーションで取り直す経路を写し、検査の置き場所を変えた（[Dominance-after.cfg](models/site-isolation/Dominance-after.cfg)、[Dominance-before.cfg](models/site-isolation/Dominance-before.cfg)）。差し込みは止めるだけで、何を読んでもよい。
+
+<!-- data-source: original（筆者のモデルを TLC で検査した結果） -->
+| 検査の置き場所 | 取り直しのある取得 | 止められたあとのナビゲーション |
+| --- | --- | --- |
+| 取り直しのあと（仕様） | 成り立つ | 成り立つ |
+| 最初の応答だけ（仮の仕様） | 成り立たない | 成り立つ |
+
+反例（仮の仕様）: 最初の応答は CORP same-site（同意あり）、資格情報つきの取り直しへの応答は CORP なし。最初の応答だけを確かめると、同意の無い応答の中身が届く。
+
+読み取れること:
+
+- 写した経路では、支配の条件は仕様の段の置き場所から出る。検査が取り直しのあとの最後の応答に掛かるので、止めるだけの差し込みがどこで止めても、届く中身は基の検査を通る。
+- ページが止められたあとに別の経路（ナビゲーション）で取り直しても、その経路にも基の検査（forNavigation の CORP の検査と、子の COEP）がある。ページが自分で選べる経路は、差し込みが無くても選べるので、止めることで新しく開く経路ではない。
+- 支配の条件で効くのは、差し込みの性質ではなく、基の仕様の検査の置き場所だった。崩れるとしたら、取得を通らずに中身を使う経路。写していない候補: HTML の文書ごとの「利用できる画像の一覧」（取得を飛ばすが、同じ文書の同じ方策で取った画像に限られる、筆者の読みで未検証）、文書をまたいで再利用する拡張（Prefetch など、操作 1 の範囲外）。
+
+**操作 2: 漏らす一覧（ORB）**
+
+（subagent の報告を待って書く）
 
 ## 結果を攻撃する
 
@@ -50,7 +72,8 @@
 ## 経過
 
 - 2026-11-21 段階A。前の思考実験の 2 つの未検証の前提を問いにし、対立仮説 R1〜R4 を置いた。
+- 2026-11-21 段階B の操作 1。CORP の検査は取り直しのあとの最後の応答に掛かるので、写した経路では支配の条件が成り立った。最初の応答だけを確かめる仮の仕様では崩れた。効くのは基の検査の置き場所。
 
 ## 具体
 
-（段階B で書く）
+- CORP の検査の置き場所: fetch.bs（d7fc0fd、ジョブの一時ディレクトリの extract/data/）の「HTTP fetch」、5895〜5905 行付近。HTTP-network-or-cache fetch の呼び出しのあと、リダイレクトの扱いの前。
