@@ -82,9 +82,15 @@ ParsedCOOP(coop, coep, o) ==
   ELSE IF C("coi-coop-so", coop = "same-origin") /\ C("coi-coep-compat", coep \in CompatibleCOEP)
        THEN "same-origin-plus-COEP" ELSE coop
 
+\* HTML "obtain a browsing context to use for a navigation response": the new
+\* group's cross-origin isolation mode is "logical" or "concrete"
+\* (implementation-defined). The model fixes "concrete"; the run with
+\* Mutant = "param:coi-logical" uses "logical" instead. It is a parameter, not
+\* a misreading, so it is not in Mutants (experiments/2026-11-21-informal-enumerated-choice.md).
+COIChoice == IF Mutant = "param:coi-logical" THEN "logical" ELSE "concrete"
 COIMode(coop, coep, o) ==
   IF C("coi-mode", ParsedCOOP(coop, coep, o) = "same-origin-plus-COEP")
-  THEN "concrete" ELSE "none"
+  THEN COIChoice ELSE "none"
 
 CrossOriginIsolated(coop, coep, o) == COIMode(coop, coep, o) = "concrete"
 

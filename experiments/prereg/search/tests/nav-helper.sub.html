@@ -1,0 +1,45 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>nav helper (served on any origin)</title>
+<body>
+<div id="secret">SECRET-CONTENT</div>
+<script>
+// Helper page used on same-origin A and cross-origin B. It accepts commands by
+// postMessage from the opener and runs them in this popup (or its own frames),
+// then reports its state. Its self.origin and location.href let the opener's
+// oracle compare the document's origin against its URL's origin.
+(function () {
+  function report(ev) {
+    try {
+      if (window.opener) window.opener.postMessage(
+        {helper: true, ev: ev, origin: self.origin, href: location.href}, "*");
+    } catch (e) {}
+  }
+  window.addEventListener("message", function (e) {
+    var d = e.data;
+    if (!d || !d.histcmd) return;
+    var op = d.histcmd;
+    try {
+      switch (op.k) {
+        case "push":
+          history.pushState({s: op.s || 0}, "", location.pathname + location.search + (op.hash || "#p"));
+          break;
+        case "replaceState":
+          history.replaceState({s: op.s || 0}, "", location.pathname + location.search + (op.hash || "#r"));
+          break;
+        case "hash":
+          location.hash = op.hash || "#h";
+          break;
+        case "back":    history.back();    break;
+        case "forward": history.forward(); break;
+        case "go":      history.go(op.n|0); break;
+      }
+    } catch (err) {}
+    report("did:" + op.k);
+  });
+  // Create one same-document entry so a later same-document back() is possible.
+  try { history.pushState({s: 0}, "", location.pathname + location.search + "#s1"); } catch (e) {}
+  report("loaded");
+})();
+</script>
+</body>

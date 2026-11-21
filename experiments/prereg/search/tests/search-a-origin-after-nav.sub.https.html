@@ -1,0 +1,190 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="timeout" content="long">
+<title>Search for CVE-2025-3071-class origin confusion: random navigation/history sequences on a popup</title>
+<!--
+Combines a spec-derived oracle with an automatic trigger search.
+
+Oracle (HTML "determine the origin" + the same-origin access rule): if the opener can
+access the popup's location/document without a SecurityError, then the popup's current
+URL must be same-origin with the opener or an about: URL. Additionally, when the popup's
+own helper script reports self.origin together with location.href, self.origin must equal
+the URL's origin for http(s) URLs. Any violation is the CVE-2025-3071 leak (origin stays
+wrong after e.g. about:blank + back, a same-document nav reusing the document sequence
+number across a cross-origin owner change).
+
+Generator: seeded PRNG (mulberry32). Each sequence (length 3..8) is random ops applied to
+a popup: navigate to {A-helper, B-helper, about:blank} (optionally with #fragment),
+location.replace to one of those, history.pushState/replaceState, location.hash change,
+history.back/forward/go(n). Navigations are driven by the opener (popup.location = url,
+allowed cross-origin). History/hash/state ops are tried opener-direct (same-origin path)
+and, on SecurityError, routed to the popup's helper by postMessage (cross-origin path).
+-->
+<script src="/resources/testharness.js"></script>
+<script src="/resources/testharnessreport.js"></script>
+<script src="/common/get-host-info.sub.js"></script>
+<script>
+const host = get_host_info();
+const SELF_ORIGIN = location.origin;            // opener origin A
+const A = host.HTTPS_ORIGIN;                    // same-origin A
+const B = host.HTTPS_NOTSAMESITE_ORIGIN;        // cross-site B
+const base = location.pathname.replace(/[^/]*$/, "");
+const A_HELPER = A + base + "nav-helper.sub.html";
+const B_HELPER = B + base + "nav-helper.sub.html";
+
+function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+const sleep = ms => new Promise(r=>setTimeout(r,ms));
+
+// Latest helper self-report, used by the secondary oracle.
+let lastReport = null;
+addEventListener("message", e => { if (e.data && e.data.helper) lastReport = e.data; });
+
+// Operation alphabet. `dest` ops are document-loading navigations; the rest are
+// same-document / traversal ops applied to whatever document is current.
+function genOp(rnd){
+  const frag = rnd() < 0.5 ? "" : ("#f" + ((rnd()*1000)|0));
+  const r = rnd();
+  if (r < 0.22) return {t:"nav", url:A_HELPER + frag, loads:"A"};
+  if (r < 0.44) return {t:"nav", url:B_HELPER + frag, loads:"B"};
+  if (r < 0.58) return {t:"nav", url:"about:blank" + frag, loads:"blank"};
+  if (r < 0.68) return {t:"replace", url:(rnd()<0.5?A_HELPER:B_HELPER) + frag, loads:(rnd()<0.5?"A":"B")};
+  if (r < 0.76) return {t:"push", hash:frag||"#p"};
+  if (r < 0.84) return {t:"replaceState", hash:frag||"#r"};
+  if (r < 0.90) return {t:"hash", hash:frag||"#h"};
+  if (r < 0.94) return {t:"back"};
+  if (r < 0.98) return {t:"forward"};
+  return {t:"go", n:(rnd()<0.5?-1:1)*(1+((rnd()*2)|0))};
+}
+function genSeq(seed, len){
+  const rnd = mulberry32(seed);
+  const ops = [];
+  for (let i=0;i<len;i++) ops.push(genOp(rnd));
+  return ops;
+}
+
+function originOf(href){ try { return new URL(href, SELF_ORIGIN).origin; } catch(e){ return null; } }
+function isHttp(o){ return o && (o.indexOf("http://")===0 || o.indexOf("https://")===0); }
+
+// Apply one op. Navigations: opener-direct. History/hash/state: opener-direct, else helper.
+function applyOp(pop, op){
+  if (op.t === "nav"){ try { pop.location.href = op.url; } catch(e){} return; }
+  if (op.t === "replace"){ try { pop.location.replace(op.url); } catch(e){ try{ pop.location.href = op.url; }catch(e2){} } return; }
+  // same-document / traversal
+  try {
+    switch(op.t){
+      case "push":         pop.history.pushState({}, "", pop.location.pathname + pop.location.search + op.hash); return;
+      case "replaceState": pop.history.replaceState({}, "", pop.location.pathname + pop.location.search + op.hash); return;
+      case "hash":         pop.location.hash = op.hash; return;
+      case "back":         pop.history.back(); return;
+      case "forward":      pop.history.forward(); return;
+      case "go":           pop.history.go(op.n); return;
+    }
+  } catch(e){
+    // cross-origin: route to the popup's own helper script
+    const map = {push:{k:"push",hash:op.hash}, replaceState:{k:"replaceState",hash:op.hash},
+                 hash:{k:"hash",hash:op.hash}, back:{k:"back"}, forward:{k:"forward"}, go:{k:"go",n:op.n}};
+    try { pop.postMessage({histcmd: map[op.t]}, "*"); } catch(e2){}
+  }
+}
+
+// Oracle run from the opener after a step. Returns a violation object or null.
+function checkOracle(pop){
+  let href=null, accessible=false;
+  try { href = pop.location.href; accessible = true; } catch(e){ accessible=false; }
+  if (accessible){
+    const o = originOf(href);
+    // Document is reachable by the opener: URL must be same-origin A or an about: URL.
+    if (href && href.indexOf("about:")!==0 && isHttp(o) && o !== SELF_ORIGIN){
+      return {kind:"opener-read-cross-origin", href:href, urlOrigin:o};
+    }
+  }
+  // Secondary: helper self-report must agree with its URL's origin for http(s).
+  const rep = lastReport;
+  if (rep && rep.href && rep.href.indexOf("about:")!==0){
+    const uo = originOf(rep.href);
+    if (isHttp(uo) && rep.origin && rep.origin !== "null" && rep.origin !== uo){
+      return {kind:"self-origin-mismatch", href:rep.href, selfOrigin:rep.origin, urlOrigin:uo};
+    }
+  }
+  return null;
+}
+
+// Run one sequence on a fresh popup; return the first violation (with step index) or null.
+async function runSeq(t, ops){
+  lastReport = null;
+  const pop = window.open(A_HELPER);
+  if (!pop) return {blocked:true};
+  try {
+    await sleep(300);
+    for (let i=0;i<ops.length;i++){
+      applyOp(pop, ops[i]);
+      await sleep((op => op.t === "nav" || op.t === "replace" ? 250 : 150)(ops[i]));
+      const v = checkOracle(pop);
+      if (v){ v.step = i; return v; }
+    }
+    return null;
+  } finally {
+    try { pop.close(); } catch(e){}
+  }
+}
+
+// Delta-debugging shrink: remove ops while a violation persists.
+async function shrink(t, ops){
+  let cur = ops.slice();
+  let changed = true;
+  let guard = 0;
+  while (changed && guard < 40){
+    changed = false;
+    for (let i=0;i<cur.length;i++){
+      const cand = cur.slice(0,i).concat(cur.slice(i+1));
+      if (cand.length === 0) continue;
+      const v = await runSeq(t, cand);
+      guard++;
+      if (v && !v.blocked){ cur = cand; changed = true; break; }
+      if (guard >= 40) break;
+    }
+  }
+  return cur;
+}
+
+function opStr(op){
+  if (op.t==="nav"||op.t==="replace") return op.t+"("+op.url.replace(SELF_ORIGIN,"A").replace(B,"B")+")";
+  if (op.t==="go") return "go("+op.n+")";
+  if (op.hash) return op.t+"("+op.hash+")";
+  return op.t;
+}
+
+promise_test(async t => {
+  const BASE_SEED = 0x51A1 ^ (Date.now() & 0xffff); // printed below
+  const TIME_BUDGET_MS = 150000;
+  const t0 = Date.now();
+  let ran = 0, blocked = 0;
+  const violations = [];
+  let seed = BASE_SEED;
+  while (Date.now() - t0 < TIME_BUDGET_MS && ran < 400){
+    const len = 3 + (seed % 6);           // 3..8
+    const ops = genSeq(seed, len);
+    const v = await runSeq(t, ops);
+    if (v && v.blocked){ blocked++; }
+    else {
+      ran++;
+      if (v){
+        const shrunk = await shrink(t, ops);
+        violations.push({seed, len, v, seq: ops.map(opStr), shrunk: shrunk.map(opStr)});
+        if (violations.length >= 3) break;   // enough evidence
+      }
+    }
+    seed = (seed + 1) | 0;
+  }
+  const summary = "base_seed="+BASE_SEED+" sequences_run="+ran+" popup_blocked="+blocked+
+    " violations="+violations.length +
+    (violations.length ? "\nFIRST: seed="+violations[0].seed+" kind="+violations[0].v.kind+
+      "\n seq="+JSON.stringify(violations[0].seq)+
+      "\n shrunk="+JSON.stringify(violations[0].shrunk)+
+      "\n detail="+JSON.stringify(violations[0].v) : "");
+  // Make the summary visible in the harness output regardless of pass/fail.
+  test(() => {}, "SUMMARY " + summary.split("\n")[0]);
+  assert_true(ran > 0, "at least one sequence ran (popups not universally blocked). " + summary);
+  assert_equals(violations.length, 0, "spec-oracle violations found by random search. " + summary);
+}, "CVE-2025-3071 search: no origin-confusion across random nav/history sequences");
+</script>
