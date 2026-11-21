@@ -1,6 +1,6 @@
 # 散文の仕様が列挙した選択肢を、手書きのモデルはどう扱えば根拠を与えられるか
 
-- 状態: 設定中
+- 状態: 検討中
 - 開始: 2026-11-21
 - 更新: 2026-11-21
 - 関連: [maps/browser-semantics-soundness/map.toml](../maps/browser-semantics-soundness/map.toml) のセル「非形式 × 列挙した選択肢からの選択」、[experiments/2026-11-20-browser-semantics-soundness.md](2026-11-20-browser-semantics-soundness.md)、[SpecIsolation.tla](models/site-isolation/SpecIsolation.tla)
@@ -29,7 +29,29 @@
 
 ## 条件を変える
 
-（段階B で書く）
+固定: SpecIsolation.tla（2 段を足した版）、WPT の 109 件の期待値と各エンジンの結果（[wpt-cases.tsv](models/site-isolation/wpt-cases.tsv)、wpt.fyi の 2026-11-20 の stable）。変える: 列挙の扱い方（ユーザーの判断: 操作 1 と 2 を並行）。
+
+**操作 2: cross-origin isolation mode の選択をパラメータにしてモデルで動かす**
+
+モデルに `COIChoice` を入れ、"concrete" と "logical" を切り替えた（"logical" は `Mutant = "param:coi-logical"` で選ぶ。誤読ではなくパラメータなので、誤読の数には入れない）。
+
+<!-- data-source: original（筆者のモデルを TLC で検査した結果） -->
+| 選択 | 18 件との食い違い | 109 件との食い違い |
+| --- | --- | --- |
+| concrete（今までの固定） | 無し | 無し |
+| logical | coi-cl-https | w063、w067、w068、w069、w070、w071 |
+
+食い違う 6 件はどれも、COOP と COEP を送った文書で crossOriginIsolated が真になることを期待する試験。各エンジンの結果（wpt-cases.tsv）では、Chrome と Firefox は 6 件とも通り、Safari は require-corp の 3 件（w069〜w071）を通して credentialless の 3 件に失敗する（Safari が credentialless を持たないため）。仕様では、エージェントクラスタの鍵は mode が "none" でなければ "logical" でも "concrete" でもオリジンになるので、2 つの選択の違いは crossOriginIsolated（と、それに結びつく SharedArrayBuffer などの機能）だけに現れる。
+
+読み取れること:
+
+- この選択は Web のページから観測できる。観測できた範囲では、3 つのエンジンとも "concrete" を選んでいる。
+- WPT は列挙の一方（concrete）を期待値として書いており、選択肢を非決定にしたモデルは WPT との一致で確かめられない（R1 の「非決定にして WPT で確かめる」は成り立たない）。
+- パラメータにして、ブラウザごとの選択を WPT の結果から決める扱い（R2）は、この選択については成り立つ。
+
+**操作 1: HTML と Fetch の列挙した選択肢の数え上げ**
+
+（subagent の報告を待って書く）
 
 ## 結果を攻撃する
 
@@ -46,6 +68,7 @@
 ## 経過
 
 - 2026-11-21 段階A。試し打ち: モデルの固定を "concrete" から {"logical", "concrete"} の非決定に変えてみる。仕様の「cross-origin isolated capability」は、エージェントクラスタの mode が "concrete" のときだけ真になる（元の思考実験の調査で引用）。すると "logical" を選んだ実行では、COOP と COEP を送っても crossOriginIsolated は偽になる。WPT の credentialless の試験は真を期待しているので、非決定のモデルは WPT と食い違う。WPT は列挙の一方（concrete）を前提にしている。R2 に有利（選択は観測でき、パラメータとして決められる）で、R1 の「非決定にして WPT で確かめる」は成り立たない。R4 の疑いは残る（暫定、モデルではまだ動かしていない）。
+- 2026-11-21 段階B の操作 2。選択をパラメータにしてモデルで動かすと、"logical" では WPT の 6 件（と 18 件の 1 件）と食い違い、"concrete" では全件一致した。観測できる範囲では 3 エンジンとも concrete。R1 の「非決定にして WPT で確かめる」は成り立たず、R2 がこの選択について成り立つ。
 
 ## 次の問い
 
