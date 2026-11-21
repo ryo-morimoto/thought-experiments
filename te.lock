@@ -1,5 +1,5 @@
 # te version pin. CI fetches this commit and checks bundle_sha256 before running te check.
 repo = "https://github.com/ryo-morimoto/plugins"
-commit = "aab3f3c28359ddcdf50c843e15b37d21a477037f"
+commit = "e864b236f7c83226ae834ef31f71f06ecd73d02e"
 path = "plugins/thought-experiments/skills/running-thought-experiments"
-bundle_sha256 = "b5989de30748e81687e66e0f8d19bc18c1e95f6f3103b889d64502c240c706b3"
+bundle_sha256 = "4d7eae1f7dd3c43726d4ad22b070acda22ad298f4b091af70cd8ede5f3f53b8c"
