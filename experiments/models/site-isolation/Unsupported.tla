@@ -10,7 +10,8 @@
 (* adds capability or restriction (rival R5)?                               *)
 EXTENDS Naturals, TLC
 
-\* Features this browser supports: a subset of {"credentialless", "coop", "oac"}.
+\* Features this browser supports: a subset of
+\* {"credentialless", "coop", "oac", "dip", "nap"}.
 CONSTANT Supported
 
 VARIABLE dummy
@@ -63,7 +64,54 @@ OACAny ==
   \A o \in S!Origins, h \in Hists :
     S!Secure(o) => S!DocumentDomainNoOp(S!KeyKind(o, "none", h, SeenOAC(TRUE)))
 
-Results == [isolationGuarded |-> IsolationGuarded,
+\* --- Stage B, second round: Document-Isolation-Policy and noopener-allow-popups.
+\* DIP (WICG Draft Community Group Report, 23 April 2025): a secure document
+\* with isolate-and-require-corp or isolate-and-credentialless is assigned to
+\* a cross-origin isolated agent cluster, and its no-cors fetches are checked.
+\* Approximation (author's reading): the fetch check is that of the COEP value
+\* of the same name. An unsupported or unknown value leaves the policy "none".
+DIPs == {"none", "isolate-and-require-corp", "isolate-and-credentialless"}
+SeenDIP(d) == IF "dip" \notin Supported THEN "none" ELSE d
+DIPIsolated(d, o) == S!Secure(o) /\ d # "none"
+DIPAsCOEP(d) == CASE d = "isolate-and-require-corp"   -> "require-corp"
+                  [] d = "isolate-and-credentialless" -> "credentialless"
+                  [] OTHER                            -> "unsafe-none"
+
+\* P5, DIP's guarantee tied to the capability, as P1.
+DIPGuarded ==
+  \A o \in S!Origins, d \in DIPs, r \in S!Responses :
+    LET dd == SeenDIP(d)
+        c  == DIPAsCOEP(IF S!Secure(o) THEN dd ELSE "none")
+        rr == S!DocCreds(o, c, "no-cors", r)
+    IN (/\ DIPIsolated(dd, o)
+        /\ ~S!SameOrigin(o, r.origin)
+        /\ S!FetchResult(o, c, "no-cors", r) = "opaque")
+       => \/ r.corp = "cross-origin"
+          \/ r.corp = "same-site" /\ S!SameSite(o, r.origin)
+          \/ ~rr.creds
+
+\* HTML "check if popup COOP values require a browsing context group switch",
+\* with the noopener-allow-popups steps that SpecIsolation leaves out.
+COOPsNAP == S!COOPs \cup {"noopener-allow-popups"}
+SeenCOOPNAP(coop) ==
+  IF coop = "noopener-allow-popups" /\ "nap" \notin Supported THEN "unsafe-none"
+  ELSE SeenCOOP(coop)
+SeveredNAP(openerCOOP, openerOrigin, popupCOOP, popupOrigin) ==
+  IF popupCOOP = "noopener-allow-popups" THEN TRUE
+  ELSE IF openerCOOP \in {"same-origin-allow-popups", "noopener-allow-popups"}
+          /\ popupCOOP = "unsafe-none" THEN FALSE
+  ELSE IF openerCOOP = "noopener-allow-popups" THEN TRUE
+  ELSE S!PopupSevered(openerCOOP, openerOrigin, popupCOOP, popupOrigin)
+
+\* P6, a restriction with no capability attached: a secure document that sent
+\* noopener-allow-popups is severed from whatever opened it, even same-origin.
+NAPSevers ==
+  \A o \in S!Origins, p \in S!Origins, oc \in COOPsNAP :
+    S!Secure(p) =>
+      SeveredNAP(SeenCOOPNAP(oc), o, SeenCOOPNAP("noopener-allow-popups"), p)
+
+Results == [dipGuarded |-> DIPGuarded, napSevers |-> NAPSevers,
+            isolationGuarded |-> IsolationGuarded,
             credentiallessStrips |-> CredentiallessStrips,
             coopSevers |-> COOPSevers,
             oacFresh |-> OACFresh, oacAny |-> OACAny]

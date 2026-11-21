@@ -97,6 +97,44 @@ subagent の報告（一次資料で確かめたもの。chromium/src main の H
 - R4（列が潰れる）: 部分的。必須の段と実装依存の粒度に帰着し、Android の部分的な分離では固定そのものが成り立たない。
 - R5（向きで分かれる）: 形を変えて残る。「制限が能力と結びついているか」で分かれる。
 
+### 2 巡目（ユーザーの判断:「1,3 を並列で進める」）
+
+#### 操作 4: 支援しているか・効いたかを、ページから観測できるか（R3）
+
+subagent の報告（一次資料で確かめたもの、HTML と compromised-renderers.md、2026-11-21 取得）:
+
+- 観測の手段は、crossOriginIsolated の getter、originAgentCluster の getter、opener の getter（opener のブラウジングコンテキストが null なら null）。COOP そのものに JavaScript の API は無く、違反の報告は送り手のサーバーの reporting endpoint に届く。
+- COOP: 別オリジンの opener から開かれ、COOP same-origin を送ったページで window.opener が null でなければ、COOP は効いていない。操作 1 で P3 が偽になった構成は、こうして見分けられる。逆に、null でも効いた証拠にはならない。仕様は COOP が無くても切り替えを許している（「If browsingContext's group's browsing context set's size is 1, optionally set swapGroup to true.」）。
+- COEP credentialless: COOP と合わせて送ったのに crossOriginIsolated が偽なら、どちらかが効いていない（どちらかまでは分からない）。資格情報が実際に外れたかは、ページから見えない。
+- OAC: getter が偽なのは、履歴の対応表による正当な結果か、ヘッダーを支援していないためか、区別できない。支援そのものは、getter があるかで推測できるだけ（推論）。
+- 観測するのはページ自身のスクリプトで、レンダラーの中で動く。乗っ取られたレンダラーのもとでの保証にはならない（推論。getter の値をどのプロセスが計算するかは一次資料で確認できず）。JavaScript を切った構成（操作 2）では、観測そのものができない。
+
+仮説への効き目: R3 は条件つき。言えるのは「構成ごとに、効かなかったことを検出できる（反例を見つけられる）」までで、「効いた」ことは確かめられない。toe/mandatory の「試験による段階的な確信」と同じ種類で、健全性の根拠ではない。
+
+#### 操作 5: 能力と結びついた制限か、制限だけか、の区別をほかの機能で確かめる（R5）
+
+Unsupported.tla に 2 つの機能を足し、支援する機能の組を 7 通りにして TLC で調べた。
+
+- Document-Isolation-Policy（WICG の Draft Community Group Report、23 April 2025。W3C の標準ではない）。isolate-and-require-corp か isolate-and-credentialless を送った安全な文書は、cross-origin isolated なエージェントクラスタに入り、no-cors の取得が検査される。制限が能力と結びついている型。取得の検査は、同じ名前の COEP の値で近似した（筆者の読み）。
+- noopener-allow-popups（HTML の COOP の値）。開いた側との繋がりを、同一オリジンでも切る。制限だけの型。HTML は「it does not create a robust security boundary between those same-origin documents」とも書いている。
+
+<!-- data-source: original -->
+| 支援する機能 | P1 隔離の保証 | P5 DIP の保証 | P3 COOP が切り離す | P6 noopener-allow-popups が切り離す |
+| --- | --- | --- | --- | --- |
+| すべて | 真 | 真 | 真 | 真 |
+| DIP なし | 真 | 真 | 真 | 真 |
+| noopener-allow-popups なし | 真 | 真 | 真 | 偽 |
+| COOP なし | 真 | 真 | 偽 | 偽 |
+| なし | 真 | 真 | 偽 | 偽 |
+
+- 予想どおり、能力と結びついた型（DIP）は、支援しない構成でも保証が空虚に保たれる。制限だけの型（noopener-allow-popups）は、黙って消える。P5 は、require-corp の既定の誤読（coep-default）で偽になるので、空虚に真なのではない。
+- ただし、noopener-allow-popups について仕様自身が「頑健な境界ではない」と書いている。消えるのは、仕様が保証として約束していない性質。OAC（要求として書かれ、履歴で効かないことがある）と合わせると、制限だけの型のうち、仕様が保証として約束しているのは COOP same-origin（別オリジンとの切り離し）だけになる。
+
+#### 2 巡目を合わせて（暫定）
+
+- R5 の言い直し: 支援しない構成で失うものは、機能の型と仕様の約束の強さで決まる。(1) 能力と結びついた制限（COEP、DIP）は、能力ごと消えるので安全な側に倒れる。(2) 制限だけで、仕様が保証として約束するもの（COOP same-origin）は、黙って消える。ページから「効かなかった」ことは検出できる。(3) 制限だけで、仕様が約束しないもの（OAC、noopener-allow-popups）は、支援する構成でも頼れないので、失う分が小さい。
+- R3: 条件つき。検出できるのは反例だけ。
+
 ## 結果を攻撃する
 
 （段階C で書く）
@@ -142,6 +180,27 @@ subagent の報告（一次資料で確かめたもの。chromium/src main の H
   ```
 
   空虚でないことの確認（INSTANCE の Mutant だけを変えて、支援する機能はすべて）: coi-coop-only で isolationGuarded が偽、false:coep-cl-strips で credentiallessStrips が偽。cl-ignore-creds では isolationGuarded は真のまま（文書の側で資格情報を外す段が別に守るため）。
+- 2 巡目で、Unsupported-*.cfg の内容を 5 つの機能の組に書き換え、no-dip・no-nap を足した。上の 1 巡目の出力は、コミット 24bbd65 の cfg（3 つの機能の組）によるもの。2 巡目の実行は、7 つの cfg について同じコマンド。出力（PrintResults の行、どれも「No error has been found.」）:
+
+  ```text
+  all:     [ dipGuarded |-> TRUE, napSevers |-> TRUE, isolationGuarded |-> TRUE, credentiallessStrips |-> TRUE, coopSevers |-> TRUE, oacFresh |-> TRUE, oacAny |-> FALSE ]
+  no-cl:   [ dipGuarded |-> TRUE, napSevers |-> TRUE, isolationGuarded |-> TRUE, credentiallessStrips |-> FALSE, coopSevers |-> TRUE, oacFresh |-> TRUE, oacAny |-> FALSE ]
+  no-coop: [ dipGuarded |-> TRUE, napSevers |-> FALSE, isolationGuarded |-> TRUE, credentiallessStrips |-> TRUE, coopSevers |-> FALSE, oacFresh |-> TRUE, oacAny |-> FALSE ]
+  no-oac:  [ dipGuarded |-> TRUE, napSevers |-> TRUE, isolationGuarded |-> TRUE, credentiallessStrips |-> TRUE, coopSevers |-> TRUE, oacFresh |-> FALSE, oacAny |-> FALSE ]
+  no-dip:  [ dipGuarded |-> TRUE, napSevers |-> TRUE, isolationGuarded |-> TRUE, credentiallessStrips |-> TRUE, coopSevers |-> TRUE, oacFresh |-> TRUE, oacAny |-> FALSE ]
+  no-nap:  [ dipGuarded |-> TRUE, napSevers |-> FALSE, isolationGuarded |-> TRUE, credentiallessStrips |-> TRUE, coopSevers |-> TRUE, oacFresh |-> TRUE, oacAny |-> FALSE ]
+  none:    [ dipGuarded |-> TRUE, napSevers |-> FALSE, isolationGuarded |-> TRUE, credentiallessStrips |-> FALSE, coopSevers |-> FALSE, oacFresh |-> FALSE, oacAny |-> FALSE ]
+  ```
+
+  空虚でないことの確認: coep-default で dipGuarded と isolationGuarded がともに偽。
+- Document-Isolation-Policy（https://wicg.github.io/document-isolation-policy/ 、2026-11-21 取得、sha256 4ad38bcbe90a10cae87ac2f6ca2e693f43f5a5c12379a09f38398065a06e16da）:
+  > If parsedItem[0] is "isolate-and-require-corp" or "isolate-and-credentialless", set policy's value to parsedItem[0].
+
+  > It is not a W3C Standard nor is it on the W3C Standards Track.
+- HTML の noopener-allow-popups（https://html.spec.whatwg.org/ 、2026-11-21 取得）:
+  > While including a noopener-allow-popups value severs the opener relationship between the document on which it is applied and its opener, it does not create a robust security boundary between those same-origin documents.
+- 操作 4 の出典（subagent が取得、2026-11-21）: https://html.spec.whatwg.org/ の crossOriginIsolated・originAgentCluster・opener の getter と、navigate の swapGroup の段、https://chromium.googlesource.com/chromium/src/+/main/docs/security/compromised-renderers.md
+  > making security decisions based on trustworthy knowledge, calculated within the privileged browser process
 - 操作 2 の出典（subagent が取得、2026-11-21）: https://chromium.googlesource.com/chromium/src/+/main/components/policy/resources/templates/policy_definitions/ContentSettings/DefaultJavaScriptSetting.yaml 、同じディレクトリの JavaScriptBlockedForUrls.yaml、https://github.com/mozilla/policy-templates/blob/master/docs/index.md 、https://html.spec.whatwg.org/ の「scripting is enabled」
   > Setting the policy to 2 denies JavaScript.
 - 操作 3 の出典（subagent が取得、2026-11-21、chromium/src 0b06350a4d5436997354d84fdf3fce356fa4ab31）: https://chromium.googlesource.com/chromium/src/+/main/testing/variations/fieldtrial_testing_config.json 、policy_definitions/Miscellaneous/ の SitePerProcess.yaml・SitePerProcessAndroid.yaml・IsolateOrigins.yaml・OriginAgentClusterDefaultEnabled.yaml、https://chromium.googlesource.com/chromium/src/+/main/docs/process_model_and_site_isolation.md
@@ -151,6 +210,7 @@ subagent の報告（一次資料で確かめたもの。chromium/src main の H
 
 - 2026-11-21 段階A。試し打ち（暫定）: 判定基準を変える。toe/mandatory で欠陥が見つかったのは、必須の段では試験の失敗がそのまま欠陥を意味したから。WPT の `.optional` の規約では、支援しない選択が許されるので、試験の失敗は欠陥とは限らない。エンジンは失敗を「支援しないと選んだ」と読み替えられる。すると、この列では試験が反例を出しても欠陥の主張にならず、確かめられるのは「支援すると称する構成での振る舞い」だけになる。R1 に不利、R4 に有利（支援すると決めれば必須に帰着する）。ただし領域に (a) の例がほぼ無いので、この効き目は小さい。
 - 2026-11-21 段階B。ユーザーの判断で、操作 1〜3 を並行して進めた（「条件を変える」）。R1 が落ち、R2 が支えられた。R4 は部分的に当たり、R5 は「制限が能力と結びついているか」に形を変えて残った。R3 は未判定。
+- 2026-11-21 段階B の 2 巡目。ユーザーの判断で、操作 4（R3: 観測）と操作 5（R5: DIP と noopener-allow-popups）を並行して進めた。R3 は条件つき（検出できるのは反例だけ）。R5 は「機能の型と仕様の約束の強さ」に言い直した。
 
 ## 次の問い
 
