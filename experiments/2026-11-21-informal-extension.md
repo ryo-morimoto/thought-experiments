@@ -1,6 +1,6 @@
 # 散文の仕様の拡張点がある中で、手書きのモデルの結論に根拠を与えられるか
 
-- 状態: 検討中
+- 状態: 結論済み
 - 開始: 2026-11-21
 - 更新: 2026-11-21
 - 関連: [maps/browser-semantics-soundness/map.toml](../maps/browser-semantics-soundness/map.toml) のセル「非形式 × 拡張」、[experiments/2026-11-20-browser-semantics-soundness.md](2026-11-20-browser-semantics-soundness.md)、[experiments/2026-11-21-informal-enumerated-choice.md](2026-11-21-informal-enumerated-choice.md)、[SpecIsolation.tla](models/site-isolation/SpecIsolation.tla)
@@ -77,7 +77,7 @@ subagent が、隔離に関わる閉包（415 算法）の段から他の仕様�
 - Fenced Frame は、生成時の sandbox のフラグ（不透明なオリジン）、作った側からの方策の継承の停止、COEP と CORP を囲む側の文書で確かめること、COOP の仕組みを借りたグループの切り替えを足す。
 - 呼び出しの形の N には、Service Workers の handle fetch（応答を作れる）、CSP の sandbox、Mixed Content による URL の書き換え（相手のオリジンが変わる）、Permissions Policy の cross-origin-isolated の機能がある。
 - 開いた差し込みは少ない。名を挙げない他の仕様に委ねる段は 3 つ（ページの可視性の変化、文書の破棄の後始末）で、隔離の判断には触れない。ほかに、ユーザーエージェントの差し込みが 2 つ（応答を直接返せる「potentially override response for a request」と、ネットワークの分割の鍵の実装定義の値）。
-- 書き換えのいくつかは、もう無い算法の名前や段の番号を指している（Document Policy、Client Hints、Mixed Content）。書き換えを当てた仕様の全体は、原稿のどこにも 1 つの文書として存在せず、当て方が定まらない場合がある。
+- 書き換えのいくつかは、もう無い算法の名前や段の番号を指している（Document Policy、Client Hints、Mixed Content）。書き換えを当てた仕様の全体は、原稿のどこにも 1 つの文書として存在しない（段階C で弱めた: 当て先が古いが、振る舞いの衝突は示していない）。
 - 限界: M は本文の読みで、証明していない。操作 2 で効いた「差し込みが何を読むか」は、この数え上げでは分けていない。走査していない仕様がある（Attribution Reporting、CHIPS、Clear-Site-Data、Worklets など）。
 
 **2 つの操作を合わせて**
@@ -89,23 +89,63 @@ subagent が、隔離に関わる閉包（415 算法）の段から他の仕様�
 
 ## 結果を攻撃する
 
-（段階C で書く）
+経緯を知らない subagent 2 体（形式手法、仕様の編集者）に結論を攻撃させ、並行して、隔離を変える差し込みの 1 つ（DIP）を閉包に入れた（ユーザーの判断: 1 と 2 を並行）。
+
+**DIP を閉包に入れる**（[DIPExtension.tla](models/site-isolation/DIPExtension.tla)、[DIP.cfg](models/site-isolation/DIP.cfg)。SpecIsolation.tla は変えていない）。WICG の編集者草案（2026-11-21 に取得）から、安全でない文脈では "none" のままであること、文書の cross-origin isolation の鍵がグループの鍵を上書きすること、isolate-and-credentialless の no-cors の要求で資格情報を落とすこと、CORP の検査を DIP によっても same-origin に引き上げることを写した（引き上げは、DIP の値を COEP の値として読んだ 2 つめの CORP の検査で、どちらかが止めれば止める、と近似した）。
+
+<!-- data-source: original（筆者のモデルを TLC で検査した結果） -->
+| 性質 | 結果 |
+| --- | --- |
+| DIP が "none" ならモデルは変わらない | 成り立つ |
+| OptInOnlySecure（DIP がどれでも） | 成り立つ |
+| crossOriginIsolated なら COOP same-origin と互換の COEP がある（閉じたモデルが暗に言っていたこと） | 成り立たない（https の文書が COOP unsafe-none でも DIP だけで隔離される） |
+| crossOriginIsolated な文書に届く別オリジンの no-cors の中身は、CORP の同意つきか資格情報なし | 成り立つ |
+| NoUndeclaredLeak（DIP がどれでも） | 成り立つ |
+
+閉じたモデルの結論のうち、仕組みについての性質（隔離は COOP と COEP から来る）は DIP で崩れ、仕組みの理由についての性質（隔離された文書には同意した中身しか届かない）は残った。DIP の差し込みは、取得については止める側を足すだけで、読むのも宣言された値だけだった（操作 2 の契約を満たす）。
+
+<!-- data-source: original（subagent の反論の要約と筆者の判定） -->
+| 反論 | 判定 | 理由 |
+| --- | --- | --- |
+| 止めるだけなら保つ、は局所の単調性で、止めたことで別の経路（代替の中身、onerror からの再要求、再試行、キャッシュ）が開くと崩れる。要るのは、別オリジンの中身を届けるすべての経路が、拡張に迂回されない基の検査を通るという支配の条件（形式手法） | 受け入れる | モデルに代替の経路が無いので、止めるだけの結果は支配の条件のもとでの結果と言い直す |
+| 宣言した入力だけ読む、を満たさないものが基の Fetch にもある。ORB は本文を嗅いで止めるかを決める。情報流の性質には、拡張ごとの契約ではなく、何を意図して漏らすかの明示した一覧（declassification）が要る（形式手法、記憶による） | 受け入れる | モデルの NoUndeclaredLeak は ORB を写していないことによる。漏らす一覧を性質の一部にする |
+| 拡張を閉包に入れることは広がらない。難しいのは拡張どうしの干渉（DIP と Fenced Frame など）で、互いの仮定が循環する（形式手法） | 一部受け入れる | DIP と COEP は「どちらかが止めれば止める」で合わさった。拡張どうしの組み合わせは試していない |
+| 数え上げは下限で、再現率が分からない。モデルとの忠実さと、当て先の古い書き換えで対象が再構成になることが本当の穴（形式手法） | 受け入れる | |
+| 「仕様」は WHATWG が取り込んだ本文で、WICG の草案は提案にすぎない。そう数えれば閉じた世界はほぼ正しい。範囲の選び方を言っていない（仕様の編集者、working mode は記憶による） | 受け入れる | 範囲を「取り込んだ本文」と「配備（拡張つき）」に分ける |
+| 出荷の状況で答えが変わる。DIP は Chrome 137 だけで出荷され WebKit は否定的、Fenced Frame は Chromium が取り除く予定を告げた（仕様の編集者、blink-dev で確認） | 受け入れる | 拡張は配備ごとの仮定にする（地図 B の側） |
+| 当て先の古い書き換えは、合成が定まらない証拠ではなく編集の遅れ。振る舞いの衝突は示していない（仕様の編集者） | 受け入れる | 「当て方が定まらない場合がある」を「当て先が古いが、衝突は示していない」に弱める |
+| 境界は収束する。COEP credentialless は WICG の非単調な書き換えだったが、約 1 年で HTML と Fetch に取り込まれた（whatwg/html#6638、2021-11-02）。HTML・Fetch を追うモデルは普通の差分で拾えた（仕様の編集者、確認） | 受け入れる | 他の仕様から逆にたどる手間は、取り込まれる前の期間にだけ要る |
+| ある時点の仕様の集合に相対的、は限界ではなく検証の主張の普通の形（2 体とも） | 受け入れる | R4 を取り下げる |
 
 ## 結論
 
-（段階C で書く）
+このセルについての結論: 手で書いた HTML・Fetch のモデルは、WHATWG が取り込んだ本文の、固定したコミットの上の閉じた世界として、範囲を書けば、隔離の結論に根拠を持てる。取り込まれていない他の仕様の書き換え（DIP、Fenced Frame など）は「仕様」ではなく配備ごとの仮定で、配備の結論（Chromium と DIP）には閉包に入れる必要がある。拡張に耐える結論は、性質を仕組み（隔離は COOP と COEP から）ではなく、その理由（隔離された文書には同意した中身しか届かない）の形で書いたものだった（DIP を入れて前者は崩れ、後者は残った）。アクセス制御には、別オリジンの中身を届けるすべての経路が基の検査を通るという支配の条件が要り、情報流には、意図して漏らすもの（ORB の嗅ぎ分けなど）の明示した一覧が要る。どちらもまだ確かめていない。
+
+前提:
+
+1. 経験的（TLC）: 止めるだけの差し込みはアクセス制御を保ち、情報流は差し込みが何を読むかで決まる（ExtensionHooks.tla）。DIP を入れると、仕組みの性質は崩れ、理由の性質・OptInOnlySecure・NoUndeclaredLeak は残る（DIPExtension.tla）。
+2. 経験的（数え上げ、1 人の判定）: 閉包への拡張点は 103 件、隔離を変える非単調なものが 27 件で、多くは取り込まれていない書き換え。
+3. 確認した事実（subagent が出典を確かめた）: DIP は Chrome 137 だけで出荷、Fenced Frame は Chromium が取り除く予定、COEP credentialless は約 1 年で HTML と Fetch に取り込まれた。
+4. 未検証: 支配の条件（モデルに代替の経路が無い）、漏らす一覧（ORB を写していない）、拡張どうしの干渉、数え上げの再現率。
+
+生き残った選択肢: 「範囲を取り込んだ本文に固定した閉じた世界（R1 に範囲を書いたもの）に、配備ごとの拡張を閉包に入れる（R3）を足し、性質は理由の形で書く」。脱落: R4（時点への相対性は限界ではない）、「止めるだけなら契約で足りる」（支配の条件が要る）、「当て先の古い書き換えは合成が定まらない証拠」。
 
 ## 次の問い
 
-（段階C で書く）
+- 支配の条件を確かめる: 代替の中身や onerror からの再要求の経路をモデルに足すと、止めるだけの差し込みでアクセス制御は崩れるか。
+- 漏らす一覧を書く: ORB をモデルに入れ、意図して漏らすものを Declared に足すと、NoUndeclaredLeak はどう言い直すことになるか。
+- 拡張どうしの干渉: DIP と、取り込まれた COOP・COEP の継承（popup）を組み合わせると、理由の形の性質は残るか。
 
 ## 経過
 
 - 2026-11-21 段階A。問いと対立仮説 R1〜R4 を置いた。拡張点の 3 つの形と、単調・非単調の分け方を見込みとして書いた（未検証）。
 - 2026-11-21 段階B の操作 2。拡張点を契約つきの差し込みとしてモデルに足した。止めるだけならアクセス制御は保たれるが、情報流は差し込みが宣言していない本文を読めば崩れる。効くのは形ではなく、何を読むかだった。
 - 2026-11-21 段階B の操作 1。閉包への拡張点は 103 件、うち隔離の判断を変える非単調なものが 27 件（多くは HTML・Fetch の原稿に現れない書き換え、DIP と Fenced Frame）。開いた差し込みは隔離に触れない。閉じた世界の仮定は今の仕様の集合では偽で、隔離を変える差し込みは閉包に入れるしかない。
+- 2026-11-21 段階C（ユーザーの判断: 1 と 2 を並行）。DIP を閉包に入れると、仕組みの性質は崩れ、理由の性質は残った。新しい subagent 2 体の攻撃で、範囲を「取り込んだ本文」と「配備」に分け、支配の条件と漏らす一覧を前提に加え、R4 を取り下げた。結論を出した。
 
 ## 具体
 
 - 「applicable specifications」の数: HTML の原稿（0e292f4）に 10 箇所、Fetch の原稿（d7fc0fd）に 0 箇所（`grep -c` で数えた。ファイルはジョブの一時ディレクトリの extract/data/）。
+- DIP の取得先: https://wicg.github.io/document-isolation-policy/ （2026-11-21 09:38 UTC の編集者草案、sha256 はジョブの一時ディレクトリの ext/dl/others/SHA256SUMS）。
+- 仕様の編集者の観点の subagent が確かめた出典: https://annevankesteren.nl/2014/02/monkey-patch 、https://github.com/whatwg/html/pull/6638 、https://github.com/whatwg/html/issues/5849 、https://groups.google.com/a/chromium.org/g/blink-dev/c/cFuPRXcpc84 、https://groups.google.com/a/chromium.org/g/blink-dev/c/c9w5uH3eSuo （筆者は開いていない）。
 - Fetch の原稿で、他の標準からの差し込みに触れる箇所: 1678 行付近（他の標準が Fetch に差し込むための便宜）、2006 行付近（CSP の form-action は HTML の navigate か form submission に直接差し込む必要がある）。
