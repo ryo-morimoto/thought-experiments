@@ -1,6 +1,6 @@
 # 出荷中のブラウザで、支援するかを選べる機能の部分に、検証モデルとの対応の根拠を与えられるか
 
-- 状態: 検討中
+- 状態: 結論済み
 - 開始: 2026-11-21
 - 更新: 2026-11-21
 - ゴール: 手書きの検証モデル（SpecIsolation.tla など）で出荷中のブラウザを確かめる人が、試験をどの構成（機能を支援する版・しない版、フィールドトライアルの群）に当てるか、また「確かめた」と言える範囲をどう書くかの判断を変えうる
@@ -133,15 +133,74 @@ Unsupported.tla に 2 つの機能を足し、支援する機能の組を 7 通�
 #### 2 巡目を合わせて（暫定）
 
 - R5 の言い直し: 支援しない構成で失うものは、機能の型と仕様の約束の強さで決まる。(1) 能力と結びついた制限（COEP、DIP）は、能力ごと消えるので安全な側に倒れる。(2) 制限だけで、仕様が保証として約束するもの（COOP same-origin）は、黙って消える。ページから「効かなかった」ことは検出できる。(3) 制限だけで、仕様が約束しないもの（OAC、noopener-allow-popups）は、支援する構成でも頼れないので、失う分が小さい。
-- R3: 条件つき。検出できるのは反例だけ。
+- R3: 条件つき。検出できるのは反例だけ（段階C で、COOP は開いた側から「効いた」ことも観測できると分かり、改めた）。
+
+### 3 巡目（ユーザーの判断:「1,2 を並列で進める」）
+
+#### 操作 6: 型 2 の COOP が効かなかったことを検出する試験
+
+subagent が試験を書き、Chrome for Testing 159.0.8154.6（Playwright の chromium-1255）で動かした。筆者がリポジトリに写した版（[coop-detect/](models/site-isolation/coop-detect/run.sh)）でもう一度動かし、同じ出力を得た。
+
+- 開かれた側から: 別オリジンの opener（http://127.0.0.1:18431）が、COOP same-origin を返すポップアップ（http://localhost:18432）を開く。既定の構成では、ポップアップの window.opener が null（効いた）。`--disable-features=CrossOriginOpenerPolicy` では present（効いていない）。ヘッダーを送らない対照では、どちらの構成でも present。
+- 支援しない構成は、出荷版のバイナリでスイッチ 1 つで作れた。Chromium の services/network/public/cpp/features.cc の注釈には、COOP は「enabled for all platforms except WebView」とある（WebView の実機では確かめていない）。
+
+試験は、この構成で両方向を区別した。限界: null は noopener や、HTML が任意に許す切り替えでも起こる。JavaScript を切った構成では動かない。乗っ取られたレンダラーは観測を偽れる。
 
 ## 結果を攻撃する
 
-（段階C で書く）
+経緯を渡さない新しい subagent 3 体に、ブラウザのセキュリティの実務・形式手法・認識論と標準の視点で、段階B の時点の結論（C1〜C4）を攻撃させた。渡したのは、問い・用語・結論・前提とその種類だけ。報告の事実のうち、結論に使うものは筆者が一次資料で確かめ直した（「具体」）。
+
+<!-- data-source: original -->
+| 反論 | 視点 | 扱い | 理由と結果 |
+| --- | --- | --- | --- |
+| C2 の「型」は機能ではなく性質の書き方で決まる。同じ credentialless が、能力を条件にした性質（P1）では型 (1)、ヘッダーだけの約束（P2）では型 (2) になる | 形式（高）、認識論（中〜高、後づけの分類） | 受け入れる（言い直す） | 分け目を「機能の型」から「保証が能力を条件にして書かれているか」に改める |
+| 型 (1) の「保たれる」は、支援しない構成では前件が偽になり、定義から出る（前件を満たす組は 0 個）。空虚でないことを示した変異も、全部を支援する構成でしか効かない | 形式（高、TLC で確認） | 受け入れる | 「保たれる」の中身は「能力が与えられない」ことだと読み直す。前件を満たす組が 0 個でないことも性質と組にして書くべきだった |
+| 能力は隔離と別の経路で得られる。Chromium の企業ポリシー SharedArrayBufferUnrestrictedAccessAllowed を有効にすると「sites can use SharedArrayBuffer with no restrictions」になり、crossOriginIsolated が偽のまま能力だけが得られる | 実務（高、一次資料を確認）、形式（記憶） | 受け入れる（筆者が一次資料で確認） | 型 (1) の安全な側への倒れ方は、仕様の述語（cross-origin isolated capability）についてだけ成り立つ。出荷物の構成は、能力と制限の結びつきを外せる |
+| 隔離の判定と取得の検査が、同じ写像（SeenCOEP）を使うと仮定している。判定の側だけが credentialless を知っていると、全部を支援する構成でも P1 が偽 | 形式（中、TLC で確認） | 受け入れる（未検証の前提として残す） | 消費者ごとに写像を試験することが根拠の対象になる。実在のブラウザで起きたかは確かめていない |
+| COOP が効いたことも観測できる。COOP same-origin を送る側から開いた別オリジンのポップアップは「will appear closed to the opener」 | 実務（中） | 受け入れる（筆者が試験で確認） | 既定の構成で closed が true、ヘッダー無しと COOP を切った構成では false。操作 4 の「効いたことは確かめられない」は、開かれた側の向きに限る |
+| C1 は、行を CC の評価対象に取った時点で決まっている（CC Part 1 の 20 段: assurance は「grounds for confidence」。ATE_IND は TSF の一部を試験する） | 認識論（高） | 受け入れる | 結論 C1 は「既存の見方の確認」と明記する |
+| 列は行の中で消える。CC Part 1 の 189〜193 段では、選択肢の有効・無効は「configuration」で、複数の構成を許すなら「each such configuration must meet the requirements」 | 認識論（高、一次資料を確認） | 受け入れる（筆者が一次資料で確認） | 出荷物の段で、この列は「構成」の一部になる。地図の軸の扱いとして利用者に示す |
+| 「領域に支援しなくてよい機能がほとんど無い」は誤り。HTML は logical と concrete の選択を「implementation-defined」とし、プロセスへの割り当ても実装に任せる | 実務（高） | 制限する | 指摘の例は、列の別の値（列挙した選択肢、実装依存）に入る。「支援するかの選択」に限れば C4 は残るが、領域の裁量の中心は別の列にある、と書き添える |
+| 型 (3)「失う分が小さい」は誤り。OAC を無視するブラウザでは、同じサイトの別オリジンが同じプロセスに入りうるので、Spectre 型の攻撃のもとで失う分は最大になりうる | 認識論（中）、実務（Chromium は OAC を既定で有効にしており、仕様を読んだモデルの既定とずれる） | 受け入れる | 「仕様が約束する分が小さい」までに弱める。安全上の損失は、プロセスへの割り当て（実装依存の列）で決まる |
+| C3 は層を混ぜている。モデルの側では 32 構成すべての解析が数秒で終わる。標本にとどまるのは試験の側 | 形式（中） | 受け入れる | 「全製品を解析すれば健全」の条件はモデルについては満たせる。欠けるのは、各構成でモデルと実装が対応しているかの根拠 |
+| 試験の構成は出荷物の標本ですらない（README: 「Chrome branded builds do not use these definitions by default」） | 実務（中、一次資料を確認） | 受け入れる | C3 に加える |
+| 利用者の履歴で隔離の範囲が変わる構成も、非決定で過大に近似すれば検査できる | 実務（中） | 受け入れる（制限する） | 「評価対象が定まらない」を「CC の意味の評価対象としては構成を固定できない。モデルでは非決定にできるが、None が最悪の場合だとは限らない」に改める |
+
+再開した脱落: なし。R1 の脱落（COOP を支援しない構成で制限が黙って消える）は、攻撃のもとでも残った。
 
 ## 結論
 
-（段階C で書く）
+**状態: supported**（C1 は既存の見方の確認。新しいのは、何を試験すべきかの区別と、再現できる試験）
+
+前提:
+
+1. 定義上: 行を CC の評価対象に取ると、構成の違いは「configuration」で、許した構成のどれもが要件を満たさなければならない（CC Part 1 の 189〜193 段）。この列は出荷物の段では構成の一部になる。
+2. 論証: 支援しないブラウザはヘッダーを既定値として読む（HTML の obtain an embedder policy / obtain an opener policy は知っている値だけを入れる）。
+3. 経験的（筆者の TLA+ モデルと TLC）: 能力を条件にした保証（P1、P5）は、支援しない構成では能力が与えられないので保たれる。ただし定義から出る（前件を満たす組は 0 個）。ヘッダーだけの約束（P2、P3、P6）は、支援しないと偽になる。
+4. 経験的（一次資料）: Chromium は企業ポリシーで SharedArrayBuffer を隔離なしで許せる。試験の構成は study ごとに 1 群で、ブランド版は既定でそれを使わない。Android の部分的なサイト分離は利用者の履歴に依存する。Chromium は OAC を既定で有効にしている。
+5. 経験的（試験）: COOP same-origin が効いたかどうかは、Chrome for Testing 159 で両方の向きから観測できた。
+6. 未検証: 隔離の判定と取得の検査が同じ写像を使うこと。Android WebView が COOP を支援しないこと。DIP の取得の検査を COEP で近似したこと。
+
+結論:
+
+- C1（既存の見方の確認）: 出荷中のブラウザの、支援するかを選べる機能の部分にも健全性の根拠は与えられず、試験による段階的な確信にとどまる。toe/mandatory の結論が移る。
+- C2（言い直し）: 支援しない構成で何が消えるかは、機能ではなく、保証が能力を条件にして書かれているかで決まる。能力を条件にした保証は、能力が与えられないので保たれる。ただしそれは仕様の述語についてだけで、出荷物は別の経路（SharedArrayBuffer の企業ポリシー）で能力を与えうる。ヘッダーだけの約束（COOP same-origin の切り離し）は黙って消えるが、ページから観測できる。
+- C3: 根拠として与えられるのは、構成ごとに「ヘッダーの読み（Seen の写像）が実装と合っているか」を、消費者ごと（隔離の判定、取得の検査、ブラウジングコンテキストの切り替え）に確かめる試験である。モデルの側では全構成の解析ができる。欠けるのは、試験する構成の選び方（Chromium の試験の構成は出荷物の標本ですらない）と、能力を別の経路で与える構成（企業ポリシー）の扱い。
+
+生き残った選択肢と脱落した選択肢:
+
+| 仮説 | 結果 |
+| --- | --- |
+| R1 そのまま移る | 脱落（COOP を支援しない構成で、ヘッダーだけの約束が消える）。ただし C1 の健全性の部分は移る |
+| R2 悪くなる | 生き残り（試験の構成は study ごとに 1 群、ブランド版は使わない） |
+| R3 観測で良くなる部分がある | 条件つきで生き残り（COOP は両方の向きから観測できた。観測はレンダラーの中なので、攻撃者のもとでは保証にならない） |
+| R4 列が潰れる | 生き残り（CC の構成の扱いで、列は構成の一部になる） |
+| R5 向きで分かれる | 言い直して生き残り（分け目は保証の書き方。能力を別の経路で与える構成があると崩れる） |
+
+価値の確認（段階C）:
+
+- 予想との比較: 予想（そのまま移り、構成の組合せで悪くなる）と一致した。C1 は「既存の見方の確認」。新しいのは、(a) 保証の書き方による区別と、それが企業ポリシーで崩れること、(b) 消費者ごとの写像を試験の対象にすること、(c) COOP の効き目を両方の向きから観測できる、再現できる試験。
+- 誰が考えを変えうるか: 手書きのモデルで出荷中のブラウザを確かめる人。試験する構成に、SharedArrayBuffer の企業ポリシー、COOP を切った構成（WebView を含む）、Android の部分的な分離を足すかどうかの判断。地図の持ち主にとっては、この列を toe の行で別に持つかどうかの判断。
 
 ## 具体
 
@@ -201,6 +260,47 @@ Unsupported.tla に 2 つの機能を足し、支援する機能の組を 7 通�
   > While including a noopener-allow-popups value severs the opener relationship between the document on which it is applied and its opener, it does not create a robust security boundary between those same-origin documents.
 - 操作 4 の出典（subagent が取得、2026-11-21）: https://html.spec.whatwg.org/ の crossOriginIsolated・originAgentCluster・opener の getter と、navigate の swapGroup の段、https://chromium.googlesource.com/chromium/src/+/main/docs/security/compromised-renderers.md
   > making security decisions based on trustworthy knowledge, calculated within the privileged browser process
+- 操作 6 の試験: [coop-detect/run.sh](models/site-isolation/coop-detect/run.sh)、[server.py](models/site-isolation/coop-detect/server.py)（開かれた側から）、[server-closed.py](models/site-isolation/coop-detect/server-closed.py)（開いた側から）。実行（models/site-isolation/coop-detect で）:
+
+  ```sh
+  CHROME=~/.cache/ms-playwright/chromium-1255/chrome-linux64/chrome sh run.sh
+  CHROME=~/.cache/ms-playwright/chromium-1255/chrome-linux64/chrome SERVER=server-closed.py sh run.sh
+  ```
+
+  出力:
+
+  ```text
+  Google Chrome for Testing 159.0.8154.6
+  flags=[] coop=[same-origin] -> REPORT same-origin null
+  flags=[] coop=[] -> REPORT  present
+  flags=[--disable-features=CrossOriginOpenerPolicy] coop=[same-origin] -> REPORT same-origin present
+  flags=[--disable-features=CrossOriginOpenerPolicy] coop=[] -> REPORT  present
+
+  Google Chrome for Testing 159.0.8154.6
+  flags=[] coop=[same-origin] -> REPORT same-origin true
+  flags=[] coop=[] -> REPORT  false
+  flags=[--disable-features=CrossOriginOpenerPolicy] coop=[same-origin] -> REPORT same-origin false
+  flags=[--disable-features=CrossOriginOpenerPolicy] coop=[] -> REPORT  false
+  ```
+- Chromium の services/network/public/cpp/features.cc（subagent が取得、chromium/src f217d1a6809e4a2ec757973b8e2a2fe955d905ce、2026-11-21）:
+  > // Currently this feature is enabled for all platforms except WebView.
+- 段階C で筆者が確かめ直した一次資料（2026-11-21 取得）:
+  - https://chromium.googlesource.com/chromium/src/+/main/components/policy/resources/templates/policy_definitions/Miscellaneous/SharedArrayBufferUnrestrictedAccessAllowed.yaml
+    > When set to Enabled, sites can use SharedArrayBuffer with no restrictions.
+  - HTML（https://html.spec.whatwg.org/ ）の COOP same-origin の説明:
+    > any auxiliary browsing context created needs to contain same origin documents that also have the same opener policy or it will appear closed to the opener.
+  - HTML の cross-origin isolation mode: 「The choice of which is implementation-defined.」
+  - https://chromium.googlesource.com/chromium/src/+/main/docs/process_model_and_site_isolation.md : 「Origin-Agent-Cluster is now enabled by default」
+  - CC Part 1 v3.1 R5（https://www.commoncriteriaportal.org/files/ccfiles/CCPART1V3.1R5.pdf ）の 193 段:
+    > Note that if the guidance of the TOE still allows more than one configuration, these configurations are collectively called "the TOE" and each such configuration must meet the requirements levied on the TOE.
+- 形式手法の攻撃者の TLC の実行（subagent が行った。モデルのコピーに、変異の定数・写像の分割・前件を満たす組の数を足したもの。作業ファイルはジョブの一時領域にあり、リポジトリには入れていない）。要点の出力:
+
+  ```text
+  s00 {} isoW 0 dipW 0: isolationGuarded TRUE, dipGuarded TRUE, credentiallessStrips FALSE, coopSevers FALSE
+  m32 全部 coi-coop-only isoW 114: isolationGuarded FALSE
+  m33 coop なし coi-coop-only isoW 0: isolationGuarded TRUE
+  split 全部 Split=TRUE isoW 70: isolationGuarded FALSE
+  ```
 - 操作 2 の出典（subagent が取得、2026-11-21）: https://chromium.googlesource.com/chromium/src/+/main/components/policy/resources/templates/policy_definitions/ContentSettings/DefaultJavaScriptSetting.yaml 、同じディレクトリの JavaScriptBlockedForUrls.yaml、https://github.com/mozilla/policy-templates/blob/master/docs/index.md 、https://html.spec.whatwg.org/ の「scripting is enabled」
   > Setting the policy to 2 denies JavaScript.
 - 操作 3 の出典（subagent が取得、2026-11-21、chromium/src 0b06350a4d5436997354d84fdf3fce356fa4ab31）: https://chromium.googlesource.com/chromium/src/+/main/testing/variations/fieldtrial_testing_config.json 、policy_definitions/Miscellaneous/ の SitePerProcess.yaml・SitePerProcessAndroid.yaml・IsolateOrigins.yaml・OriginAgentClusterDefaultEnabled.yaml、https://chromium.googlesource.com/chromium/src/+/main/docs/process_model_and_site_isolation.md
@@ -211,7 +311,11 @@ Unsupported.tla に 2 つの機能を足し、支援する機能の組を 7 通�
 - 2026-11-21 段階A。試し打ち（暫定）: 判定基準を変える。toe/mandatory で欠陥が見つかったのは、必須の段では試験の失敗がそのまま欠陥を意味したから。WPT の `.optional` の規約では、支援しない選択が許されるので、試験の失敗は欠陥とは限らない。エンジンは失敗を「支援しないと選んだ」と読み替えられる。すると、この列では試験が反例を出しても欠陥の主張にならず、確かめられるのは「支援すると称する構成での振る舞い」だけになる。R1 に不利、R4 に有利（支援すると決めれば必須に帰着する）。ただし領域に (a) の例がほぼ無いので、この効き目は小さい。
 - 2026-11-21 段階B。ユーザーの判断で、操作 1〜3 を並行して進めた（「条件を変える」）。R1 が落ち、R2 が支えられた。R4 は部分的に当たり、R5 は「制限が能力と結びついているか」に形を変えて残った。R3 は未判定。
 - 2026-11-21 段階B の 2 巡目。ユーザーの判断で、操作 4（R3: 観測）と操作 5（R5: DIP と noopener-allow-popups）を並行して進めた。R3 は条件つき（検出できるのは反例だけ）。R5 は「機能の型と仕様の約束の強さ」に言い直した。
+- 2026-11-21 段階B の 3 巡目と段階C。ユーザーの判断で、操作 6（COOP の検出の試験）と段階C の攻撃を並行して進めた。試験は両方向を区別した。攻撃で、C2 の分け目を「保証が能力を条件にして書かれているか」に言い直し、企業ポリシーで能力が別の経路から得られることを加えた。C1 は既存の見方の確認とした。
 
 ## 次の問い
 
-（段階C で書く）
+- 隔離の判定と取得の検査で、ヘッダーの読みが食い違う構成（判定の側だけが credentialless を知っている）は、実在のブラウザの版で起きたか。
+- SharedArrayBuffer の企業ポリシーのように、能力を別の経路で与える構成を、モデルの性質（能力を条件にした保証）にどう入れるか。
+- 地図: toe の行で、列「機能を支援するかの選択」は CC の構成に吸収される。行の値に「構成の集合」を足すか、列を toe で out_of_scope にするか（利用者の判断を待つ）。
+- 地図の toe/opt-enum（logical か concrete か）と toe/opt-impl（プロセスへの割り当て）に、型 (3) の損失の大きさが移る。

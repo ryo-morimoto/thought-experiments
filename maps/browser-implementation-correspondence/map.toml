@@ -139,3 +139,25 @@ evidence = [
 mode = "destructive"
 next_question = ""
 
+
+[[cells]]
+row = "toe"
+col = "opt-feature"
+status = "supported"
+claim = "出荷中のブラウザの、支援するかを選べる機能の部分にも健全性の根拠は与えられず、試験による確信にとどまる（必須の結論が移る。既存の見方の確認）。支援しない構成で消えるのは、能力を条件にしない約束（COOP same-origin の切り離し。ページから両方の向きで観測できた）で、能力を条件にした保証は能力ごと消えて保たれるが、それは仕様の述語についてだけで、Chromium は企業ポリシーで SharedArrayBuffer を隔離なしで与えうる。与えられる根拠は、構成ごと・消費者ごとにヘッダーの読みが実装と合っているかの試験で、Chromium の試験の構成は study ごとに 1 群で、出荷物の標本ですらない"
+evidence = [
+  "experiments/2026-11-21-toe-optional-feature.md",
+  "experiments/models/site-isolation/Unsupported.tla",
+  "experiments/models/site-isolation/coop-detect/run.sh",
+  "https://chromium.googlesource.com/chromium/src/+/main/testing/variations/README.md",
+  "https://chromium.googlesource.com/chromium/src/+/main/components/policy/resources/templates/policy_definitions/Miscellaneous/SharedArrayBufferUnrestrictedAccessAllowed.yaml",
+  "https://www.commoncriteriaportal.org/files/ccfiles/CCPART1V3.1R5.pdf",
+]
+mode = "destructive"
+next_question = "隔離の判定と取得の検査でヘッダーの読みが食い違う構成（判定の側だけが credentialless を知っている）は、実在のブラウザの版で起きたか"
+
+[[cells]]
+row = "toe"
+col = "opt-enum"
+status = "open"
+next_question = "toe/opt-feature の結論（制限だけの機能を支援しないと、安全上の損失はプロセスへの割り当てで決まる）は、cross-origin isolation mode を logical と concrete のどちらにするか（HTML では implementation-defined）にも移るか。logical を選んだ出荷物で、能力を条件にした保証はどうなるか"

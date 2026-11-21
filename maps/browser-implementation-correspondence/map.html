@@ -265,6 +265,28 @@ h2 { font-size: 14px; margin: 0 0 12px; color: var(--sub); font-weight: 600; let
    ],
    "mode": "destructive",
    "next_question": ""
+  },
+  {
+   "row": "toe",
+   "col": "opt-feature",
+   "status": "supported",
+   "claim": "出荷中のブラウザの、支援するかを選べる機能の部分にも健全性の根拠は与えられず、試験による確信にとどまる（必須の結論が移る。既存の見方の確認）。支援しない構成で消えるのは、能力を条件にしない約束（COOP same-origin の切り離し。ページから両方の向きで観測できた）で、能力を条件にした保証は能力ごと消えて保たれるが、それは仕様の述語についてだけで、Chromium は企業ポリシーで SharedArrayBuffer を隔離なしで与えうる。与えられる根拠は、構成ごと・消費者ごとにヘッダーの読みが実装と合っているかの試験で、Chromium の試験の構成は study ごとに 1 群で、出荷物の標本ですらない",
+   "evidence": [
+    "experiments/2026-11-21-toe-optional-feature.md",
+    "experiments/models/site-isolation/Unsupported.tla",
+    "experiments/models/site-isolation/coop-detect/run.sh",
+    "https://chromium.googlesource.com/chromium/src/+/main/testing/variations/README.md",
+    "https://chromium.googlesource.com/chromium/src/+/main/components/policy/resources/templates/policy_definitions/Miscellaneous/SharedArrayBufferUnrestrictedAccessAllowed.yaml",
+    "https://www.commoncriteriaportal.org/files/ccfiles/CCPART1V3.1R5.pdf"
+   ],
+   "mode": "destructive",
+   "next_question": "隔離の判定と取得の検査でヘッダーの読みが食い違う構成（判定の側だけが credentialless を知っている）は、実在のブラウザの版で起きたか"
+  },
+  {
+   "row": "toe",
+   "col": "opt-enum",
+   "status": "open",
+   "next_question": "toe/opt-feature の結論（制限だけの機能を支援しないと、安全上の損失はプロセスへの割り当てで決まる）は、cross-origin isolation mode を logical と concrete のどちらにするか（HTML では implementation-defined）にも移るか。logical を選んだ出荷物で、能力を条件にした保証はどうなるか"
   }
  ],
  "legend_by_status": {
@@ -303,6 +325,27 @@ h2 { font-size: 14px; margin: 0 0 12px; color: var(--sub); font-weight: 600; let
  ],
  "candidates": [
   {
+   "score": 70,
+   "kind": "cell",
+   "target": "toe/opt-enum",
+   "name": "評価対象そのもの × 列挙した選択肢からの選択",
+   "why": "問い「toe/opt-feature の結論（制限だけの機能を支援しないと、安全上の損失はプロセスへの割り当てで決まる）は、cross-origin isolation mode を logical と concrete のどちらにするか（HTML では implementation-defined）にも移るか。logical を選んだ出荷物で、能力を条件にした保証はどうなるか」に答える",
+   "mode": "constructive",
+   "premises": []
+  },
+  {
+   "score": 60,
+   "kind": "cell",
+   "target": "fsp/opt-feature",
+   "name": "機能仕様 × 機能を支援するかの選択",
+   "why": "同じ行の「必須」では「WHATWG の仕様は Common Criteria の意味での評価対象の機能仕様にはならず、非形式の参照にとどまる。その対応の根拠は、モデルが扱う性質に関わる段がモデルに写っていることの非形式の提示で、良し悪しは段の数え上げではなく、落とした段を足して性質が変わるかで確かめる。実際に「安全でない文脈の COEP」の 1 段で OptInOnly が偽になり、その欠落は WPT の 109 件に捕まらなかった」、同じ列の「評価対象そのもの」では「出荷中のブラウザの、支援するかを選べる機能の部分にも健全性の根拠は与えられず、試験による確信にとどまる（必須の結論が移る。既存の見方の確認）。支援しない構成で消えるのは、能力を条件にしない約束（COOP same-origin の切り離し。ページから両方の向きで観測できた）で、能力を条件にした保証は能力ごと消えて保たれるが、それは仕様の述語についてだけで、Chromium は企業ポリシーで SharedArrayBuffer を隔離なしで与えうる。与えられる根拠は、構成ごと・消費者ごとにヘッダーの読みが実装と合っているかの試験で、Chromium の試験の構成は study ごとに 1 群で、出荷物の標本ですらない」。両方を前提にすると、このセルで何が言えるかを組み立てる",
+   "mode": "constructive",
+   "premises": [
+    "fsp/mandatory",
+    "toe/opt-feature"
+   ]
+  },
+  {
    "score": 60,
    "kind": "cell",
    "target": "fsp/opt-impl",
@@ -312,6 +355,18 @@ h2 { font-size: 14px; margin: 0 0 12px; color: var(--sub); font-weight: 600; let
    "premises": [
     "fsp/mandatory",
     "toe/opt-impl"
+   ]
+  },
+  {
+   "score": 60,
+   "kind": "cell",
+   "target": "design/opt-feature",
+   "name": "設計 × 機能を支援するかの選択",
+   "why": "同じ行の「必須」では「設計文書（compromised-renderers.md）は資源の種類ごとに保護と既知の穴を並べているが、証拠の種類や主体の欄は無い。サイト分離の回避 39 件のうち、1 項目に収まるのは 26 件、項目をまたぐのが 7 件、対応する項目が無いのが 6 件で、文書の既知の穴にちょうど入ったものは 0 件だった。設計を基準点にしても、段ごとの網羅は文書に担保されない」、同じ列の「評価対象そのもの」では「出荷中のブラウザの、支援するかを選べる機能の部分にも健全性の根拠は与えられず、試験による確信にとどまる（必須の結論が移る。既存の見方の確認）。支援しない構成で消えるのは、能力を条件にしない約束（COOP same-origin の切り離し。ページから両方の向きで観測できた）で、能力を条件にした保証は能力ごと消えて保たれるが、それは仕様の述語についてだけで、Chromium は企業ポリシーで SharedArrayBuffer を隔離なしで与えうる。与えられる根拠は、構成ごと・消費者ごとにヘッダーの読みが実装と合っているかの試験で、Chromium の試験の構成は study ごとに 1 群で、出荷物の標本ですらない」。両方を前提にすると、このセルで何が言えるかを組み立てる",
+   "mode": "constructive",
+   "premises": [
+    "design/mandatory",
+    "toe/opt-feature"
    ]
   },
   {
@@ -329,6 +384,18 @@ h2 { font-size: 14px; margin: 0 0 12px; color: var(--sub); font-weight: 600; let
   {
    "score": 60,
    "kind": "cell",
+   "target": "impl/opt-feature",
+   "name": "実装の表現 × 機能を支援するかの選択",
+   "why": "同じ行の「必須」では「既知のバグに合わせずに作った仕様由来の判定基準が後づけと同じ 4 件を「予測した」とは言えない（結果を決めた選択はバグを見たあと）。試験の筋書きが入力を独立に与える「試験の時の判定基準」としてなら、仕様の段で判定できる場合がある（CVE-2024-1671 は get session history entries の選び方でモデルが捕まえた）。ブラウザの状態を入力にするコミット時の差分検査は、同じ誤りを共有し、既存の検査を超える効き目がほとんど無い。事前登録した試験では、取り置きのバグ 15 件のうち 10 件で判定に要る仕様の算法が事前に固定した集合に入っていたが、無作為な根の閉包でも中央値で同じ 10 件になり（navigate が呼び出しの要）、この規則では予測の力を測れなかった。実際の試験に書けた 3 件は、直る前のブラウザでも通り、バグを見つけなかった（判定基準は値の決まりを与えるが、バグの引き金は与えない）」、同じ列の「評価対象そのもの」では「出荷中のブラウザの、支援するかを選べる機能の部分にも健全性の根拠は与えられず、試験による確信にとどまる（必須の結論が移る。既存の見方の確認）。支援しない構成で消えるのは、能力を条件にしない約束（COOP same-origin の切り離し。ページから両方の向きで観測できた）で、能力を条件にした保証は能力ごと消えて保たれるが、それは仕様の述語についてだけで、Chromium は企業ポリシーで SharedArrayBuffer を隔離なしで与えうる。与えられる根拠は、構成ごと・消費者ごとにヘッダーの読みが実装と合っているかの試験で、Chromium の試験の構成は study ごとに 1 群で、出荷物の標本ですらない」。両方を前提にすると、このセルで何が言えるかを組み立てる",
+   "mode": "constructive",
+   "premises": [
+    "impl/mandatory",
+    "toe/opt-feature"
+   ]
+  },
+  {
+   "score": 60,
+   "kind": "cell",
    "target": "impl/opt-impl",
    "name": "実装の表現 × 実装依存の値・振る舞い",
    "why": "同じ行の「必須」では「既知のバグに合わせずに作った仕様由来の判定基準が後づけと同じ 4 件を「予測した」とは言えない（結果を決めた選択はバグを見たあと）。試験の筋書きが入力を独立に与える「試験の時の判定基準」としてなら、仕様の段で判定できる場合がある（CVE-2024-1671 は get session history entries の選び方でモデルが捕まえた）。ブラウザの状態を入力にするコミット時の差分検査は、同じ誤りを共有し、既存の検査を超える効き目がほとんど無い。事前登録した試験では、取り置きのバグ 15 件のうち 10 件で判定に要る仕様の算法が事前に固定した集合に入っていたが、無作為な根の閉包でも中央値で同じ 10 件になり（navigate が呼び出しの要）、この規則では予測の力を測れなかった。実際の試験に書けた 3 件は、直る前のブラウザでも通り、バグを見つけなかった（判定基準は値の決まりを与えるが、バグの引き金は与えない）」、同じ列の「評価対象そのもの」では「プロセスへの配置は仕様で implementation-specific とされ（エージェントクラスタは「理想化したプロセスの境界」）、ブラウザごと・構成ごとに変わる。この部分のモデルは仕様の翻訳ではなく、そのブラウザの設計のモデルになる」。両方を前提にすると、このセルで何が言えるかを組み立てる",
@@ -336,28 +403,6 @@ h2 { font-size: 14px; margin: 0 0 12px; color: var(--sub); font-weight: 600; let
    "premises": [
     "impl/mandatory",
     "toe/opt-impl"
-   ]
-  },
-  {
-   "score": 60,
-   "kind": "cell",
-   "target": "toe/opt-feature",
-   "name": "評価対象そのもの × 機能を支援するかの選択",
-   "why": "隣の「必須」の結論「出荷中のブラウザに対しては健全性の根拠は与えられず、試験による段階的な確信にとどまる。必須の段（credentialless の CORP の検査）でも、下書きの試験で出荷中のブラウザの欠陥が見つかった（詳細は報告の公開まで外した）。3 エンジンとも通る試験に絞ると、Origin-Agent-Cluster の領域はまったく確かめられない」がここにも移るか。移らないなら、何が違うせいかを条件を変えて探す",
-   "mode": "destructive",
-   "premises": [
-    "toe/mandatory"
-   ]
-  },
-  {
-   "score": 60,
-   "kind": "cell",
-   "target": "toe/opt-enum",
-   "name": "評価対象そのもの × 列挙した選択肢からの選択",
-   "why": "隣の「必須」の結論「出荷中のブラウザに対しては健全性の根拠は与えられず、試験による段階的な確信にとどまる。必須の段（credentialless の CORP の検査）でも、下書きの試験で出荷中のブラウザの欠陥が見つかった（詳細は報告の公開まで外した）。3 エンジンとも通る試験に絞ると、Origin-Agent-Cluster の領域はまったく確かめられない」がここにも移るか。移らないなら、何が違うせいかを条件を変えて探す",
-   "mode": "destructive",
-   "premises": [
-    "toe/mandatory"
    ]
   },
   {
@@ -391,17 +436,6 @@ h2 { font-size: 14px; margin: 0 0 12px; color: var(--sub); font-weight: 600; let
    "mode": "destructive",
    "premises": [
     "toe/mandatory"
-   ]
-  },
-  {
-   "score": 50,
-   "kind": "cell",
-   "target": "fsp/opt-feature",
-   "name": "機能仕様 × 機能を支援するかの選択",
-   "why": "隣の「必須」の結論「WHATWG の仕様は Common Criteria の意味での評価対象の機能仕様にはならず、非形式の参照にとどまる。その対応の根拠は、モデルが扱う性質に関わる段がモデルに写っていることの非形式の提示で、良し悪しは段の数え上げではなく、落とした段を足して性質が変わるかで確かめる。実際に「安全でない文脈の COEP」の 1 段で OptInOnly が偽になり、その欠落は WPT の 109 件に捕まらなかった」がここにも移るか。移らないなら、何が違うせいかを条件を変えて探す",
-   "mode": "destructive",
-   "premises": [
-    "fsp/mandatory"
    ]
   },
   {
@@ -451,17 +485,6 @@ h2 { font-size: 14px; margin: 0 0 12px; color: var(--sub); font-weight: 600; let
   {
    "score": 50,
    "kind": "cell",
-   "target": "design/opt-feature",
-   "name": "設計 × 機能を支援するかの選択",
-   "why": "隣の「必須」の結論「設計文書（compromised-renderers.md）は資源の種類ごとに保護と既知の穴を並べているが、証拠の種類や主体の欄は無い。サイト分離の回避 39 件のうち、1 項目に収まるのは 26 件、項目をまたぐのが 7 件、対応する項目が無いのが 6 件で、文書の既知の穴にちょうど入ったものは 0 件だった。設計を基準点にしても、段ごとの網羅は文書に担保されない」がここにも移るか。移らないなら、何が違うせいかを条件を変えて探す",
-   "mode": "destructive",
-   "premises": [
-    "design/mandatory"
-   ]
-  },
-  {
-   "score": 50,
-   "kind": "cell",
    "target": "design/opt-enum",
    "name": "設計 × 列挙した選択肢からの選択",
    "why": "隣の「必須」の結論「設計文書（compromised-renderers.md）は資源の種類ごとに保護と既知の穴を並べているが、証拠の種類や主体の欄は無い。サイト分離の回避 39 件のうち、1 項目に収まるのは 26 件、項目をまたぐのが 7 件、対応する項目が無いのが 6 件で、文書の既知の穴にちょうど入ったものは 0 件だった。設計を基準点にしても、段ごとの網羅は文書に担保されない」がここにも移るか。移らないなら、何が違うせいかを条件を変えて探す",
@@ -501,17 +524,6 @@ h2 { font-size: 14px; margin: 0 0 12px; color: var(--sub); font-weight: 600; let
    "mode": "destructive",
    "premises": [
     "design/mandatory"
-   ]
-  },
-  {
-   "score": 50,
-   "kind": "cell",
-   "target": "impl/opt-feature",
-   "name": "実装の表現 × 機能を支援するかの選択",
-   "why": "隣の「必須」の結論「既知のバグに合わせずに作った仕様由来の判定基準が後づけと同じ 4 件を「予測した」とは言えない（結果を決めた選択はバグを見たあと）。試験の筋書きが入力を独立に与える「試験の時の判定基準」としてなら、仕様の段で判定できる場合がある（CVE-2024-1671 は get session history entries の選び方でモデルが捕まえた）。ブラウザの状態を入力にするコミット時の差分検査は、同じ誤りを共有し、既存の検査を超える効き目がほとんど無い。事前登録した試験では、取り置きのバグ 15 件のうち 10 件で判定に要る仕様の算法が事前に固定した集合に入っていたが、無作為な根の閉包でも中央値で同じ 10 件になり（navigate が呼び出しの要）、この規則では予測の力を測れなかった。実際の試験に書けた 3 件は、直る前のブラウザでも通り、バグを見つけなかった（判定基準は値の決まりを与えるが、バグの引き金は与えない）」がここにも移るか。移らないなら、何が違うせいかを条件を変えて探す",
-   "mode": "destructive",
-   "premises": [
-    "impl/mandatory"
    ]
   },
   {
