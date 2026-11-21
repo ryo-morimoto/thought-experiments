@@ -181,6 +181,12 @@ subagent が試験を書き、Chrome for Testing 159.0.8154.6（Playwright の c
 5. 経験的（試験）: COOP same-origin が効いたかどうかは、Chrome for Testing 159 で両方の向きから観測できた。
 6. 未検証: 隔離の判定と取得の検査が同じ写像を使うこと。Android WebView が COOP を支援しないこと。DIP の取得の検査を COEP で近似したこと。
 
+結論をひっくり返しうる前提:
+
+- 前提 2（支援しないブラウザは既定値として読む）が崩れ、知らない値を別の値として読むブラウザがあれば、C2 の真偽表は変わる。
+- 前提 6 の「同じ写像」が実在のブラウザで崩れていれば（判定の側だけが credentialless を知る版）、能力を条件にした保証も、全部を支援する構成で破れる（UnsupportedSplit.tla で確認）。C2 の「保たれる」は成り立たなくなる。
+- C1 は、行を CC の評価対象に取ったこと（前提 1）に依る。行を「仕様のある版」に取り直せば、健全性は版つきで立ちうる（toe/mandatory の元の記録の (a)）。
+
 結論:
 
 - C1（既存の見方の確認）: 出荷中のブラウザの、支援するかを選べる機能の部分にも健全性の根拠は与えられず、試験による段階的な確信にとどまる。toe/mandatory の結論が移る。
@@ -293,7 +299,7 @@ subagent が試験を書き、Chrome for Testing 159.0.8154.6（Playwright の c
   - https://chromium.googlesource.com/chromium/src/+/main/docs/process_model_and_site_isolation.md : 「Origin-Agent-Cluster is now enabled by default」
   - CC Part 1 v3.1 R5（https://www.commoncriteriaportal.org/files/ccfiles/CCPART1V3.1R5.pdf ）の 193 段:
     > Note that if the guidance of the TOE still allows more than one configuration, these configurations are collectively called "the TOE" and each such configuration must meet the requirements levied on the TOE.
-- 形式手法の攻撃者の TLC の実行（subagent が行った。モデルのコピーに、変異の定数・写像の分割・前件を満たす組の数を足したもの。作業ファイルはジョブの一時領域にあり、リポジトリには入れていない）。要点の出力:
+- 形式手法の攻撃者の TLC の実行（subagent が行った。モデルのコピーに、変異の定数・写像の分割・前件を満たす組の数を足したもの）。32 構成すべてと変異 6 本の作業ファイルはジョブの一時領域にあり、リポジトリには入れていない。要点の出力:
 
   ```text
   s00 {} isoW 0 dipW 0: isolationGuarded TRUE, dipGuarded TRUE, credentiallessStrips FALSE, coopSevers FALSE
@@ -301,6 +307,16 @@ subagent が試験を書き、Chrome for Testing 159.0.8154.6（Playwright の c
   m33 coop なし coi-coop-only isoW 0: isolationGuarded TRUE
   split 全部 Split=TRUE isoW 70: isolationGuarded FALSE
   ```
+
+  写像の分割のモデルは、筆者がリポジトリに写した（[UnsupportedSplit.tla](models/site-isolation/UnsupportedSplit.tla)、UnsupportedSplit-{all,split,nocoop-mut}.cfg）。もう一度動かした（Unsupported.tla と同じ podman のコマンドで、-config /m/UnsupportedSplit-$n.cfg /m/UnsupportedSplit.tla）。出力（どれも「No error has been found.」）:
+
+  ```text
+  all:        Split FALSE, isoW 70, dipW 6: isolationGuarded TRUE, dipGuarded TRUE
+  split:      Split TRUE,  isoW 70, dipW 6: isolationGuarded FALSE, dipGuarded TRUE
+  nocoop-mut: COOP なし、Mut coi-coop-only, isoW 0: isolationGuarded TRUE
+  ```
+
+  isoW は IsolationGuarded の前件を満たす組の数。COOP を支援しない構成では 0 で、変異を入れても真のまま（保証は定義から出ている）。
 - 操作 2 の出典（subagent が取得、2026-11-21）: https://chromium.googlesource.com/chromium/src/+/main/components/policy/resources/templates/policy_definitions/ContentSettings/DefaultJavaScriptSetting.yaml 、同じディレクトリの JavaScriptBlockedForUrls.yaml、https://github.com/mozilla/policy-templates/blob/master/docs/index.md 、https://html.spec.whatwg.org/ の「scripting is enabled」
   > Setting the policy to 2 denies JavaScript.
 - 操作 3 の出典（subagent が取得、2026-11-21、chromium/src 0b06350a4d5436997354d84fdf3fce356fa4ab31）: https://chromium.googlesource.com/chromium/src/+/main/testing/variations/fieldtrial_testing_config.json 、policy_definitions/Miscellaneous/ の SitePerProcess.yaml・SitePerProcessAndroid.yaml・IsolateOrigins.yaml・OriginAgentClusterDefaultEnabled.yaml、https://chromium.googlesource.com/chromium/src/+/main/docs/process_model_and_site_isolation.md
@@ -312,6 +328,18 @@ subagent が試験を書き、Chrome for Testing 159.0.8154.6（Playwright の c
 - 2026-11-21 段階B。ユーザーの判断で、操作 1〜3 を並行して進めた（「条件を変える」）。R1 が落ち、R2 が支えられた。R4 は部分的に当たり、R5 は「制限が能力と結びついているか」に形を変えて残った。R3 は未判定。
 - 2026-11-21 段階B の 2 巡目。ユーザーの判断で、操作 4（R3: 観測）と操作 5（R5: DIP と noopener-allow-popups）を並行して進めた。R3 は条件つき（検出できるのは反例だけ）。R5 は「機能の型と仕様の約束の強さ」に言い直した。
 - 2026-11-21 段階B の 3 巡目と段階C。ユーザーの判断で、操作 6（COOP の検出の試験）と段階C の攻撃を並行して進めた。試験は両方向を区別した。攻撃で、C2 の分け目を「保証が能力を条件にして書かれているか」に言い直し、企業ポリシーで能力が別の経路から得られることを加えた。C1 は既存の見方の確認とした。
+
+## 完了条件
+
+experiments/README.md（main の 870bcbe の版。このブランチは、その節が入る前に分かれた）の完了条件に照らす。
+
+0. 価値の確認: 段階A（先行する答え、実在する相手、予想）と段階C（予想との比較、誰が考えを変えうるか）を書いた。
+1. 最強の反論を反例の思考実験として検討した: 企業ポリシーで SharedArrayBuffer を隔離なしで与える構成と、写像を分割する構成（TLC で確認）。
+2. 前提にラベルを付け、ひっくり返しうる前提を明記した（「結論」）。
+3. 従来の判断と食い違う具体例を、リポジトリのスクリプトで再現できる: 従来の判断は「出荷しそうな構成を 1 つ試験すればよい」（Chromium の試験の構成）。COOP を切った構成では同じヘッダーの約束が黙って消え、それは試験 [coop-detect/run.sh](models/site-isolation/coop-detect/run.sh) で再現できる。写像の分割は UnsupportedSplit.tla で再現できる。スクリプトの置き場所は、main の README の言う `experiments/scripts/` ではなく、このブランチの慣例の `experiments/models/site-isolation/` にした。
+4. 直近 2 回の操作（2 巡目、3 巡目）で、脱落した対立仮説はない。
+
+実務者向けの手引き: [briefs/2026-11-21-shipped-browser-unsupported-features-guide.md](../briefs/2026-11-21-shipped-browser-unsupported-features-guide.md)
 
 ## 次の問い
 
