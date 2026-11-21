@@ -1,0 +1,219 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="timeout" content="long">
+<title>Search for CVE-2026-8950-class Origin-header mistainting over random redirect chains</title>
+<!--
+Combines a JS reference oracle for Fetch's Origin-header rules with an automatic search
+over random redirect chains.
+
+Reference oracle (fetch.bs):
+  - "compute the redirect-taint": iterate the URL list; cross-site hop => "cross-site".
+  - "serializing a request origin": taint != "same-origin" => "null", else serialize origin.
+  - "append a request Origin header": cors/websocket => header = serialized; else if method
+    is not GET/HEAD => header = serialized (referrer-policy null-set does not apply, all https);
+    else no Origin header.
+  - redirect method rewrite (HTTP-redirect fetch): 301/302 on POST -> GET; 303 on non-GET/HEAD -> GET.
+
+Generator: seeded PRNG. A chain has 1..4 redirect hops over origins {A, A-subdomain(same-site),
+B(cross-site)} with statuses {301,302,303,307,308}, a final echo target on one of those origins,
+a request method {GET,POST} and an observable mode {cors-fetch, form-POST-nav, iframe-GET-nav}.
+The echo handler returns the Origin header it received. The oracle computes the expected value
+and we flag any mismatch, then shrink (remove hops while the mismatch persists).
+
+Validation: on a correct engine every chain must match the oracle (0 violations). Run the current
+browsers first; any mismatch there is an oracle bug or a genuine engine difference, not the CVE.
+-->
+<script src="/resources/testharness.js"></script>
+<script src="/resources/testharnessreport.js"></script>
+<script src="/common/get-host-info.sub.js"></script>
+<body>
+<script>
+const host = get_host_info();
+const SELF_ORIGIN = location.origin;
+const A      = host.HTTPS_ORIGIN;              // site S1
+const A_SUB  = host.HTTPS_REMOTE_ORIGIN;       // www1.* : same site S1, different origin
+const B      = host.HTTPS_NOTSAMESITE_ORIGIN;  // site S2 (cross-site)
+const base   = location.pathname.replace(/[^/]*$/, "");
+
+// Nodes carry origin + site label so the oracle needs no registrable-domain parsing.
+const NODES = {
+  A:   {origin: A,     site: "S1"},
+  Asub:{origin: A_SUB, site: "S1"},
+  B:   {origin: B,     site: "S2"},
+};
+const O = {origin: SELF_ORIGIN, site: "S1"};   // request origin (this page is A)
+const HOSTS = ["A", "Asub", "B"];
+const STATUSES = [301, 302, 303, 307, 308];
+
+function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+const sleep = ms => new Promise(r=>setTimeout(r,ms));
+const pick = (rnd, arr) => arr[(rnd()*arr.length)|0];
+
+// ---- Reference oracle -------------------------------------------------------
+function sameOrigin(a,b){ return a.origin === b.origin; }
+function sameSite(a,b){ return a.site === b.site; }
+
+function redirectTaint(reqOrigin, urlNodes){
+  let lastURL = null, taint = "same-origin";
+  for (const url of urlNodes){
+    if (lastURL === null){ lastURL = url; continue; }
+    if (!sameSite(url, lastURL) && !sameSite(reqOrigin, lastURL)) return "cross-site";
+    if (!sameOrigin(url, lastURL) && !sameOrigin(reqOrigin, lastURL)) taint = "same-site";
+    lastURL = url;
+  }
+  return taint;
+}
+function serializeReqOrigin(reqOrigin, urlNodes){
+  return redirectTaint(reqOrigin, urlNodes) === "same-origin" ? reqOrigin.origin : "null";
+}
+// finalMethod after the redirect chain's method rewrites.
+function finalMethod(method, statuses){
+  let m = method;
+  for (const s of statuses){
+    if ((s === 301 || s === 302) && m === "POST") m = "GET";
+    else if (s === 303 && m !== "GET" && m !== "HEAD") m = "GET";
+  }
+  return m;
+}
+// Expected echoed Origin string for a given chain+mode.
+function expectedOrigin(chain){
+  const urlNodes = chain.hops.map(h => NODES[h.host]).concat([NODES[chain.finalHost]]);
+  const serialized = serializeReqOrigin(O, urlNodes);
+  const fm = finalMethod(chain.method, chain.hops.map(h => h.status));
+  // main fetch: response tainting becomes "cors" only once a URL that is not same origin with the
+  // request's origin is fetched in cors mode; a fully same-origin chain stays "basic".
+  // Oracle bug #1 (found on current Chrome and Firefox): v1 assumed "cors" for every cors-mode fetch.
+  const tainting = (chain.mode === "cors" && urlNodes.some(u => !sameOrigin(u, O))) ? "cors" : "basic";
+  if (tainting === "cors"){
+    return serialized;                       // responseTainting cors: header always present
+  }
+  // form / iframe navigation: mode is not cors, responseTainting basic.
+  if (fm !== "GET" && fm !== "HEAD") return serialized;  // append serialized
+  return "<no-origin-header>";               // no Origin header appended
+}
+
+// ---- Chain construction -----------------------------------------------------
+function buildURLs(chain){
+  const echoScript = chain.mode === "cors" ? "echo-origin.py" : "echo-origin-page.py";
+  let url = NODES[chain.finalHost].origin + base + echoScript + "?rid=" + chain.rid;
+  for (let k = chain.hops.length - 1; k >= 0; k--){
+    const h = chain.hops[k];
+    url = NODES[h.host].origin + base + "redirect.py?status=" + h.status +
+          "&location=" + encodeURIComponent(url);
+  }
+  return url;  // initial request URL
+}
+
+function genChain(rnd, rid){
+  const L = 1 + ((rnd()*4)|0);               // 1..4 hops
+  const hops = [];
+  for (let k=0;k<L;k++) hops.push({host: pick(rnd,HOSTS), status: pick(rnd,STATUSES)});
+  const finalHost = pick(rnd, HOSTS);
+  const modeR = rnd();
+  let mode, method;
+  if (modeR < 0.5){ mode = "cors";  method = rnd()<0.5 ? "GET" : "POST"; }
+  else if (modeR < 0.8){ mode = "form"; method = "POST"; }
+  else { mode = "iframe"; method = "GET"; }
+  return {hops, finalHost, mode, method, rid: String(rid)};
+}
+
+// ---- Observation ------------------------------------------------------------
+let frameSink = {};
+addEventListener("message", e => { if (e.data && "rid" in e.data) frameSink[e.data.rid] = e.data.origin; });
+
+async function observe(chain){
+  const url = buildURLs(chain);
+  if (chain.mode === "cors"){
+    try {
+      const resp = await fetch(url, {method: chain.method, mode: "cors",
+                                     body: chain.method === "POST" ? "payload" : undefined});
+      if (!resp.ok) return {err: "http " + resp.status};
+      return {origin: (await resp.text()).trim()};
+    } catch(e){ return {err: "fetch:" + e.name}; }
+  }
+  // navigation modes: submit into a named iframe, read the posted Origin.
+  const name = "f_" + chain.rid;
+  const ifr = document.createElement("iframe");
+  ifr.name = name; document.body.appendChild(ifr);
+  delete frameSink[chain.rid];
+  if (chain.mode === "form"){
+    const form = document.createElement("form");
+    form.method = "POST"; form.target = name; form.action = url;
+    const inp = document.createElement("input"); inp.name = "k"; inp.value = "v";
+    form.appendChild(inp); document.body.appendChild(form);
+    form.submit();
+    var cleanupForm = form;
+  } else { // iframe GET
+    ifr.src = url;
+  }
+  const t0 = Date.now();
+  while (frameSink[chain.rid] === undefined && Date.now()-t0 < 4000) await sleep(40);
+  const got = frameSink[chain.rid];
+  try { ifr.remove(); if (chain.mode==="form") cleanupForm.remove(); } catch(e){}
+  if (got === undefined) return {err: "timeout"};
+  return {origin: got.trim()};
+}
+
+function chainStr(c){
+  return c.method + " " + c.mode + " [" +
+    c.hops.map(h => h.host+":"+h.status).join(" -> ") + "] => " + c.finalHost;
+}
+
+async function evalChain(chain){
+  const exp = expectedOrigin(chain);
+  const obs = await observe(chain);
+  if (obs.err) return {skip: obs.err};
+  const actual = obs.origin === SELF_ORIGIN ? SELF_ORIGIN : obs.origin;
+  const match = (obs.origin === exp);
+  return {match, exp, actual: obs.origin, chain};
+}
+
+// Shrink: drop hops while the mismatch persists (expected recomputed each time).
+async function shrink(chain){
+  let cur = chain;
+  let changed = true, guard = 0;
+  while (changed && guard < 20 && cur.hops.length > 1){
+    changed = false;
+    for (let i=0;i<cur.hops.length;i++){
+      const cand = Object.assign({}, cur, {hops: cur.hops.slice(0,i).concat(cur.hops.slice(i+1)),
+                                           rid: cur.rid + "s" + guard});
+      const r = await evalChain(cand); guard++;
+      if (r && r.match === false){ cur = cand; changed = true; break; }
+    }
+  }
+  return cur;
+}
+
+promise_test(async t => {
+  const BASE_SEED = 0xB0B ^ (Date.now() & 0xffff);
+  const TIME_BUDGET_MS = 120000;
+  const t0 = Date.now();
+  const rnd = mulberry32(BASE_SEED);
+  let evaluated = 0, skipped = 0;
+  const violations = [];
+  let rid = 0;
+  while (Date.now()-t0 < TIME_BUDGET_MS && evaluated < 600){
+    const chain = genChain(rnd, rid++);
+    const r = await evalChain(chain);
+    if (r.skip){ skipped++; continue; }
+    evaluated++;
+    if (r.match === false){
+      const sh = await shrink(chain);
+      const shr = await evalChain(Object.assign({}, sh, {rid: sh.rid+"final"}));
+      violations.push({chain: chainStr(chain), exp: r.exp, actual: r.actual,
+                       shrunk: chainStr(sh), shrunkExp: shr.exp, shrunkActual: shr.actual});
+      if (violations.length >= 4) break;
+    }
+  }
+  let summary = "base_seed="+BASE_SEED+" chains_evaluated="+evaluated+" skipped="+skipped+
+                " violations="+violations.length;
+  for (const v of violations){
+    summary += "\n  VIOL: " + v.chain + " | expected=" + v.exp + " actual=" + v.actual +
+               "\n    shrunk: " + v.shrunk + " | expected=" + v.shrunkExp + " actual=" + v.shrunkActual;
+  }
+  test(() => {}, "SUMMARY " + summary.split("\n")[0]);
+  assert_true(evaluated > 0, "at least one chain was observable. " + summary);
+  assert_equals(violations.length, 0, "oracle/engine Origin-header mismatches. " + summary);
+}, "CVE-2026-8950 search: engine Origin headers match the Fetch oracle over random redirect chains");
+</script>
+</body>

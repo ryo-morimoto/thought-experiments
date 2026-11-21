@@ -1,0 +1,5 @@
+# 事前登録した試験の追加の試み: 仕様由来の判定基準と引き金の自動探索を組み合わせた試験（subagent が書いた自作の試験と実行の要約）。
+# 外部のデータは含まない。
+id = "prereg-origin-oracle-search"
+title = "仕様由来の判定基準と引き金の探索の試験"
+origin = "original"
