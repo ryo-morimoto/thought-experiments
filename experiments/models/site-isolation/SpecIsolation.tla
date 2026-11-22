@@ -7,6 +7,10 @@
 (* headers, no permissions policy, the implementation-defined choice between *)
 (* "logical" and "concrete" cross-origin isolation is fixed to "concrete",   *)
 (* and COOP/COEP are ignored on non-secure contexts.                         *)
+(* fixes/FIXES.md adds document contexts (secure context from the top-level *)
+(* creation URL), one level of nested navigation, and Mixed Content, each   *)
+(* gated by a decision id in FixIds (experiments/2026-11-23-havoc-unmodeled- *)
+(* steps.md found the gaps). Old operator signatures are kept.              *)
 EXTENDS Naturals, Sequences, TLC
 
 \* Deliberate misreadings, to see which ones WPT agreement would catch.
@@ -69,8 +73,31 @@ DecisionIds == {"coi-insecure", "coi-coop-so", "coi-coep-compat", "coi-mode",
                 "corp-nav", "corp-has-header", "corp-cl-creds", "corp-allow-kinds",
                 "corp-so-check", "corp-ss-site", "corp-ss-scheme", "corp-first-pass",
                 "fetch-same-origin", "fetch-cors", "fetch-blocked",
-                "coep-insecure", "coep-cl-strips"}
+                "coep-insecure", "coep-cl-strips",
+                \* added in fixes/FIXES.md (experiments/2026-11-23-havoc-unmodeled-steps.md)
+                "secure-ctx-top", "nav-corp-check", "nav-coep-adherence",
+                "mc-ancestor", "mc-upgrade", "mc-block"}
+\* The steps added in fixes/FIXES.md; "false:<id>" omits one of them.
+FixIds == {"secure-ctx-top", "nav-corp-check", "nav-coep-adherence",
+           "mc-ancestor", "mc-upgrade", "mc-block"}
+FixMutants == {"false:" \o d : d \in FixIds}
 MechMutants == {"neg:" \o d : d \in DecisionIds}
+
+\* A document's context (fixes/FIXES.md, G1). self: the document's origin;
+\* top: the origin of its environment's top-level creation URL, i.e. of the
+\* top-level document. A top-level document has top = self. One nesting
+\* level; data: top-level URLs and workers are not modelled.
+TopCtx(o) == [self |-> o, top |-> o]
+Contexts  == [self : Origins, top : Origins]
+\* HTML "secure context": decided by the top-level creation URL alone.
+\* "false:secure-ctx-top" gives back the earlier per-origin reading.
+SecureCtx(ctx) ==
+  IF C("secure-ctx-top", ctx.top # ctx.self) THEN Secure(ctx.top) ELSE Secure(ctx.self)
+\* "Compatible with cross-origin isolation" as the spec defines it (not
+\* subject to the named Mutants, which change CompatibleCOEP).
+CompatCOI == {"require-corp", "credentialless"}
+\* Cross-origin resource policy "opt-in" of a response r to a requester o.
+HasOptIn(o, r) == r.corp = "cross-origin" \/ (r.corp = "same-site" /\ SameSite(o, r.origin))
 
 \* --- HTML: COOP parsing and cross-origin isolation -------------------------
 CompatibleCOEP ==
@@ -96,12 +123,16 @@ CrossOriginIsolated(coop, coep, o) == COIMode(coop, coep, o) = "concrete"
 
 \* --- HTML: obtain a similar-origin window agent (agent cluster key) --------
 \* hist is the group's historical key for this origin: "absent", "site", "origin".
-RequestsOAC(header, o) ==
-  C("oac-header", header) /\ (C("oac-secure", Secure(o)) \/ Mutant = "oac-ignore-secure")
-KeyKind(o, coiMode, hist, oacHeader) ==
+\* The reserved environment's secure-ness is that of the context (G1);
+\* KeyKind(o, ...) is the top-level case.
+RequestsOACCtx(header, ctx) ==
+  C("oac-header", header) /\ (C("oac-secure", SecureCtx(ctx)) \/ Mutant = "oac-ignore-secure")
+RequestsOAC(header, o) == RequestsOACCtx(header, TopCtx(o))
+KeyKindCtx(ctx, coiMode, hist, oacHeader) ==
   IF C("oac-coi", coiMode # "none") /\ Mutant # "oac-ignore-coi" THEN "origin"
   ELSE IF C("oac-hist", hist # "absent") /\ Mutant # "oac-ignore-hist" THEN hist
-  ELSE IF RequestsOAC(oacHeader, o) THEN "origin" ELSE "site"
+  ELSE IF RequestsOACCtx(oacHeader, ctx) THEN "origin" ELSE "site"
+KeyKind(o, coiMode, hist, oacHeader) == KeyKindCtx(TopCtx(o), coiMode, hist, oacHeader)
 Key(o, kind) == IF kind = "origin" THEN o.host ELSE o.site
 OriginAgentCluster(kind) == kind = "origin"
 \* document.domain setter is a no-op when the cluster is origin-keyed.
@@ -162,8 +193,11 @@ CorpCheck(o, coep, r, forNav) ==
 \* "false:<id>" gives back the earlier model that omitted it.
 \* HTML "obtain an embedder policy" step 2: a non-secure context keeps the
 \* default policy (unsafe-none).
-EffectiveCOEP(o, coep) ==
-  IF C("coep-insecure", ~Secure(o)) THEN "unsafe-none" ELSE coep
+\* Since fixes/FIXES.md (G1), "non-secure context" is SecureCtx of the
+\* document's context; EffectiveCOEP(o, coep) is the top-level case.
+EffectiveCOEPCtx(ctx, coep) ==
+  IF C("coep-insecure", ~SecureCtx(ctx)) THEN "unsafe-none" ELSE coep
+EffectiveCOEP(o, coep) == EffectiveCOEPCtx(TopCtx(o), coep)
 \* Fetch "Cross-Origin-Embedder-Policy allows credentials": a document whose
 \* policy is credentialless sends its own cross-origin no-cors requests
 \* without credentials, so the response's request-includes-credentials is false.
@@ -172,10 +206,12 @@ DocCreds(o, ecoep, mode, r) ==
                          /\ ~SameOrigin(o, r.origin))
   THEN [r EXCEPT !.creds = FALSE] ELSE r
 
-\* Result of fetch(url, {mode}) seen by script in a document of origin o.
-FetchResult(o, coep, mode, r) ==
-  LET ecoep == EffectiveCOEP(o, coep)
-      rr    == DocCreds(o, ecoep, mode, r)
+\* Result of a fetch by a document in context ctx whose policy container's
+\* embedder policy is ecoep (whether parsed from its own header or
+\* inherited). The part below Mixed Content.
+FetchResultPC(ctx, ecoep, mode, r) ==
+  LET o  == ctx.self
+      rr == DocCreds(o, ecoep, mode, r)
   IN
   IF C("fetch-same-origin", SameOrigin(o, r.origin))
      \/ (mode = "no-cors" /\ Mutant = "nocors-site-basic" /\ SameSite(o, r.origin))
@@ -183,6 +219,52 @@ FetchResult(o, coep, mode, r) ==
   ELSE IF C("fetch-cors", mode = "cors") THEN "cors"  \* CORS outcome not modelled
   ELSE IF C("fetch-blocked", CorpCheck(o, ecoep, rr, FALSE) = "blocked")
        THEN "error" ELSE "opaque"
+
+\* --- Mixed Content (fixes/FIXES.md, G3) -----------------------------------
+\* Mixed Content 4.3: the client prohibits mixed security contexts if its
+\* origin, or an ancestor document's origin, is potentially trustworthy.
+ProhibitsMixed(ctx) == Secure(ctx.self) \/ C("mc-ancestor", Secure(ctx.top))
+IsMixed(ctx, r) == ProhibitsMixed(ctx) /\ ~Secure(r.origin)
+\* 4.1 rewrites only the scheme; the explicit port is kept.
+HttpsTwin(o) == [o EXCEPT !.scheme = "https"]
+\* dest: "fetch" (fetch(), blockable) or "image" (<img>, upgradeable).
+\* served: whether a TLS server answers at the upgraded URL (same host and
+\* port). It is an input about the target, not a choice of the browser.
+\* The upgraded request reaches the https twin with the same headers.
+FetchResultDest(ctx, coep, mode, dest, r, served) ==
+  LET up == C("mc-upgrade", IsMixed(ctx, r) /\ dest = "image")
+      rr == IF up THEN [r EXCEPT !.origin = HttpsTwin(r.origin)] ELSE r
+  IN IF up /\ ~served THEN "error"   \* network error: no TLS at that port
+     ELSE IF C("mc-block", IsMixed(ctx, rr)) THEN "error"   \* 4.4: blocked
+     ELSE FetchResultPC(ctx, EffectiveCOEPCtx(ctx, coep), mode, rr)
+
+\* fetch() from a document in context ctx.
+FetchResultCtx(ctx, coep, mode, r) == FetchResultDest(ctx, coep, mode, "fetch", r, TRUE)
+\* <img> from a top-level document (element rows: basic/opaque mean "load").
+ImageResult(o, coep, r, served) ==
+  FetchResultDest(TopCtx(o), coep, "no-cors", "image", r, served)
+\* Result of fetch(url, {mode}) seen by script in a top-level document of
+\* origin o. Before fixes/FIXES.md this was FetchResultPC(TopCtx(o),
+\* EffectiveCOEP(o, coep), mode, r), without Mixed Content.
+FetchResult(o, coep, mode, r) == FetchResultCtx(TopCtx(o), coep, mode, r)
+
+\* --- HTML: nested navigation (fixes/FIXES.md, G2) --------------------------
+\* A child navigable whose container document has context pctx and policy
+\* container embedder policy pecoep navigates to response r. cecoep is the
+\* policy container embedder policy the child document would get.
+ChildCtx(pctx, r) == [self |-> r.origin, top |-> pctx.top]
+NavChildPC(pctx, pecoep, r, cecoep) ==
+  \* Mixed Content 4.4: an iframe request is blockable.
+  IF C("mc-block", IsMixed(pctx, r)) THEN "error"
+  \* create navigation params by fetching: CORP check with forNavigation
+  \* against the container document.
+  ELSE IF C("nav-corp-check", CorpCheck(pctx.self, pecoep, r, TRUE) = "blocked") THEN "error"
+  \* check a navigation response's adherence to its embedder policy.
+  ELSE IF C("nav-coep-adherence", pecoep \in CompatCOI /\ cecoep \notin CompatCOI) THEN "error"
+  ELSE "loaded"
+\* ccoep: the COEP header of r.
+NavChild(pctx, pecoep, r, ccoep) ==
+  NavChildPC(pctx, pecoep, r, EffectiveCOEPCtx(ChildCtx(pctx, r), ccoep))
 
 Responses == [origin : Origins, corp : CORPs, creds : BOOLEAN]
 
@@ -242,6 +324,66 @@ OptInWitness ==
     /\ FetchResult(x[1], "require-corp", "no-cors", x[2]) = "opaque"
     /\ ~(x[2].corp = "cross-origin" \/ (x[2].corp = "same-site" /\ SameSite(x[1], x[2].origin)))
 PrintOptIn == PrintT(<<"optin-witness", OptInWitness>>)
+
+\* --- Properties added in fixes/FIXES.md -------------------------------------
+\* OptInOnlySecure quantifies over top-level documents only, so the fixes
+\* leave it unchanged by construction. Lifted to nested contexts with its
+\* old premise (https origin), and restated over secure contexts (G1).
+OptInOnlySecureLifted ==
+  \A ctx \in Contexts, r \in Responses :
+    (Secure(ctx.self) /\ FetchResultCtx(ctx, "require-corp", "no-cors", r) = "opaque") =>
+      HasOptIn(ctx.self, r)
+OptInOnlySecureCtx ==
+  \A ctx \in Contexts, r \in Responses :
+    (SecureCtx(ctx) /\ FetchResultCtx(ctx, "require-corp", "no-cors", r) = "opaque") =>
+      HasOptIn(ctx.self, r)
+\* Premise on the policy container's embedder policy, whatever wrote it
+\* (header or inheritance), instead of the header.
+OptInOnlyPC ==
+  \A ctx \in Contexts, r \in Responses :
+    FetchResultPC(ctx, "require-corp", "no-cors", r) = "opaque" => HasOptIn(ctx.self, r)
+\* G2: DIPExtension's COIOnlyWithOptIn (no DIP) for a top-level document
+\* and for a child it embeds. If the top-level document is cross-origin
+\* isolated and the child loads, (1) the navigation response itself is
+\* same-origin or opted in, and (2) the child's cross-origin no-cors bytes
+\* arrive only without credentials or with an opt-in.
+COIOnlyWithOptInNested ==
+  \A o \in Origins, coop \in COOPs, coep \in COEPs, r \in Responses,
+     ccoep \in COEPs, s \in Responses :
+    LET pctx == TopCtx(o)
+        cctx == ChildCtx(pctx, r)
+        cec  == EffectiveCOEPCtx(cctx, ccoep)
+        ss   == DocCreds(cctx.self, cec, "no-cors", s)
+    IN (CrossOriginIsolated(coop, coep, o) /\ NavChild(pctx, EffectiveCOEP(o, coep), r, ccoep) = "loaded")
+       => /\ (SameOrigin(o, r.origin) \/ HasOptIn(o, r))
+          /\ (FetchResultCtx(cctx, ccoep, "no-cors", s) = "opaque" => (~ss.creds \/ HasOptIn(cctx.self, s)))
+\* Same, without the child (DIPExtension's COIOnlyWithOptIn, dip = "none").
+COIOnlyWithOptInTop ==
+  \A o \in Origins, coop \in COOPs, coep \in COEPs, s \in Responses :
+    LET ss == DocCreds(o, EffectiveCOEP(o, coep), "no-cors", s) IN
+    (CrossOriginIsolated(coop, coep, o) /\ FetchResult(o, coep, "no-cors", s) = "opaque")
+      => (~ss.creds \/ HasOptIn(o, s))
+NestedWitness ==
+  CHOOSE x \in Origins \X COOPs \X COEPs \X Responses \X COEPs \X Responses :
+    LET pctx == TopCtx(x[1]) cctx == ChildCtx(pctx, x[4])
+        ss == DocCreds(cctx.self, EffectiveCOEPCtx(cctx, x[5]), "no-cors", x[6]) IN
+    /\ CrossOriginIsolated(x[2], x[3], x[1])
+    /\ NavChild(pctx, EffectiveCOEP(x[1], x[3]), x[4], x[5]) = "loaded"
+    /\ ~(/\ (SameOrigin(x[1], x[4].origin) \/ HasOptIn(x[1], x[4]))
+         /\ (FetchResultCtx(cctx, x[5], "no-cors", x[6]) = "opaque" => (~ss.creds \/ HasOptIn(cctx.self, x[6]))))
+LiftedWitness ==
+  CHOOSE x \in Contexts \X Responses :
+    Secure(x[1].self) /\ FetchResultCtx(x[1], "require-corp", "no-cors", x[2]) = "opaque"
+    /\ ~HasOptIn(x[1].self, x[2])
+PrintFixes == PrintT(<<"fixes", Mutant,
+  <<"optin-only-secure", OptInOnlySecure>>,
+  <<"optin-only-secure-lifted", OptInOnlySecureLifted,
+    IF OptInOnlySecureLifted THEN "-" ELSE LiftedWitness>>,
+  <<"optin-only-secure-ctx", OptInOnlySecureCtx>>,
+  <<"optin-only-pc", OptInOnlyPC>>,
+  <<"coi-optin-top", COIOnlyWithOptInTop>>,
+  <<"coi-optin-nested", COIOnlyWithOptInNested,
+    IF COIOnlyWithOptInNested THEN "-" ELSE NestedWitness>>>>)
 
 \* Noninterference: what a page observes about a cross-origin no-cors fetch
 \* does not depend on the target's response headers.

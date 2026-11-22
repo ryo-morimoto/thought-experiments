@@ -1,0 +1,5 @@
+# 手書きのモデルの 3 つの穴（secure context、子の埋め込みポリシーの検査、Mixed Content）を埋めた段の検査: cfg、検査用の TLA+、手順と結果の要約（subagent が書いた）。
+# 仕様の本文は写さない（15 語以内の句と anchor だけ）。Mixed Content 仕様の取得物は参照（URL・日付・sha256）だけ残す。
+id = "site-isolation-fixes"
+title = "モデルの穴を埋めた段と、3 つの検査法がそれを捉えるか"
+origin = "original"
