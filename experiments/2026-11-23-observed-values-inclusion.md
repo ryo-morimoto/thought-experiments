@@ -1,6 +1,6 @@
 # ブラウザが実際に返した値はすべてモデルが許す値か（実装 ⊆ モデル）
 
-- 状態: 設定中
+- 状態: 検討中
 - 開始: 2026-11-23
 - 更新: 2026-11-23
 - 関連: [research_notes/2026-11-23-model-fidelity-survey.md](../research_notes/2026-11-23-model-fidelity-survey.md)（向きの区別と先行研究）、[experiments/2026-11-20-browser-semantics-soundness.md](2026-11-20-browser-semantics-soundness.md)（元の問いの結論 (b)）、[experiments/2026-11-23-havoc-unmodeled-steps.md](2026-11-23-havoc-unmodeled-steps.md)（並行して進める、仕様の側の取りこぼし）、[WPTBroad.tla](models/site-isolation/WPTBroad.tla)、[wpt-cases.tsv](models/site-isolation/wpt-cases.tsv)
@@ -31,7 +31,44 @@
 
 ## 条件を変える
 
-（段階B で書く）
+固定: SpecIsolation.tla（2 段を足した版）と WPT の 109 件の筋書き。変える: 比べる相手（試験の期待値か、ブラウザが実際に返した値か）と、モデルの変異体。
+
+subagent が観測の試験を書き、podman の中で Chrome 158.0.8127.36 と Firefox 160.0.1 に 2 回ずつ動かし、モデルが許す値の集合を TLC で求めて比べた（[observe/](models/site-isolation/observe/RESULTS.md)。WPT のクローンは 31362d122）。筆者は報告を読んだ。
+
+**写す手間**: 109 件すべてを写せた（写せなかった行は 0）。試験のファイル 11 個と補助 2 個で済み、各観測を「OBS <行> :: <値>」という通る小試験として出した。入力は元の試験の URL、ヘッダー、モード、順序のまま。Origin-Agent-Cluster の筋書きは、新しいブラウジングコンテキストグループにするため noopener の popup で動かした。2 回の繰り返しで、すべての行の値が同じだった。元の試験を手元で動かした合否も、下の分類と合った。
+
+**包含**（変異の無いモデル、cross-origin isolation mode は concrete と logical の両方を許す）
+
+<!-- data-source: original（subagent の観測と TLC の検査の集計） -->
+| 行 | ブラウザ | 観測した値 | モデルが許す値 | 分類 |
+| --- | --- | --- | --- | --- |
+| w014 | 両方 | 誤り | 読み込み | モデルの欠落。Mixed Content を写していない（原因の細部は未確認）。wpt.fyi でも 3 エンジンとも失敗 |
+| Origin-Agent-Cluster の getter の 12 行 | Chrome | 真 | 偽 | ブラウザの食い違い。wpt.fyi で既知（Chrome は失敗、Firefox は通過） |
+| document.domain の 4 行（w106〜w109） | Chrome | 設定が効かない | 効く | 同じ食い違いを document.domain から見たもの |
+
+- Firefox は 109 件中 108 件、Chrome は 92 件で、観測した値がモデルの許す値に入った。
+- Chrome は、ヘッダーが無くても、グループの過去の鍵がサイトでも、安全な文脈の窓をオリジンで区切る（http では偽）。外れ方は隔離を厳しくする側で、wpt.fyi で既に失敗として公開されている。伏せるものは無かった。
+- HTML の本文では、エージェントクラスタと popup の COOP の段に実装の選択は無く、cross-origin isolation mode がモデルの唯一のパラメータだった。
+
+**判別の力**（変異体 43 個: neg の 27 と、名前つきの 16）。変異の無いモデルの集合に入り、変異体の集合に入らない観測があれば、その変異体を殺したと数えた（モデルの外の観測で殺したことにしないため）。
+
+<!-- data-source: original（subagent の TLC の検査の集計） -->
+| cross-origin isolation mode | 殺した | この行では等価 | 違うが生き残った |
+| --- | --- | --- | --- |
+| concrete と logical | 38 | 3 | 2 |
+| concrete だけ | 40 | 3 | 0 |
+| logical だけ | 33 | 10 | 0 |
+
+- Chrome と Firefox は同じ変異体の集合を殺した。殺した集合は、試験の期待値を観測として入れたときと同じだった。観測した値は、期待値を超える判別の力を足さなかった。
+- 両方のブラウザが、logical なら外れる 6 行で真を返したので、両方とも concrete を選んでいる（前の思考実験と一致）。
+- 等価な 3 個は、cl-ignore-creds、crossorigin-as-site、neg:coep-cl-strips。credentialless の資格情報を落とす段の欠落は、観測でも見分けられない（前の記録で WPT が捕まえなかったのと同じ）。
+
+読み取れること:
+
+- R1（包含は成り立つ）は、Firefox と、Chrome の取得・popup・cross-origin isolated の部分で当たった。そこでは、試した 109 点でモデルの証明がブラウザに移ることを支える（詳細化の証明ではなく、点の上の支え）。
+- R2（包含は崩れる）は、Chrome の Origin-Agent-Cluster と document.domain で当たった。ここでは、モデルの結論は Chrome に移らない。Chrome を確かめるには「安全な文脈ではいつもオリジンで区切る」というパラメータがモデルに要る。両方のブラウザで、Mixed Content の欠落も外れを生んだ。
+- R3（写し方が律速）は当たらなかった。この断片では、写す手間は試験のファイル 11 個で済んだ。
+- R4（包含は空）は当たらなかった。変異体の 38〜40 個を殺した。ただし、殺せる変異体は期待値と同じで、観測の価値は「期待値とブラウザが食い違う所を、モデルの外の値として特定すること」にあった。
 
 ## 結果を攻撃する
 
@@ -48,7 +85,8 @@
 ## 経過
 
 - 2026-11-23 段階A。問いと対立仮説 R1〜R4、判別の力の対照を置いた。
+- 2026-11-23 段階B。Firefox は 109 件中 108 件、Chrome は 92 件で、観測した値がモデルの許す値に入った。外れは、Chrome の Origin-Agent-Cluster の既知の食い違い（16 行）と、Mixed Content の欠落（1 行、両方）。写す手間は小さく、変異体の 40 個を殺したが、期待値を超える判別の力は無かった。
 
 ## 具体
 
-（段階B で書く）
+- 観測の試験、手順、観測した値、モデルの集合: [observe/](models/site-isolation/observe/RESULTS.md)（observed.tsv、AllowedSets.tla、tests/、driver/）。生のログと TLC の出力は、ジョブの一時ディレクトリの observe/。

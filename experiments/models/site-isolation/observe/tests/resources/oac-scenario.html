@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<title>OAC scenario parent (opened noopener, so each scenario has its own browsing context group)</title>
+<script src="/common/get-host-info.sub.js"></script>
+<script src="/common/utils.js"></script>
+<script src="/common/dispatcher/dispatcher.js"></script>
+<body>
+<script>
+// helpers.mjs calls these testharness globals; this page is not a test.
+const cleanups = [];
+window.assert_equals = (a, b, m) => { if (a !== b) throw new Error(`assert_equals ${m || ""}: ${a} !== ${b}`); };
+window.add_completion_callback = f => cleanups.push(f);
+</script>
+<script type="module">
+// The scenario replays the setup of one original test in
+// html/browsers/origin/origin-keyed-agent-clusters/ with the same helpers, hosts
+// and header values, then reads values instead of asserting them.
+import { insertIframe, navigateIframe, openWindow }
+  from "/html/browsers/origin/origin-keyed-agent-clusters/resources/helpers.mjs";
+
+const params = new URLSearchParams(location.search);
+const uuid = params.get("uuid");
+const sc = JSON.parse(params.get("s"));
+const info = get_host_info();
+
+// Host tokens as in the originals: "" = {{hosts[][]}}, "www" = {{hosts[][www]}},
+// "alt" = {{hosts[alt][]}}; ":p2" suffix = :{{ports[https][1]}}.
+function hostOf(tok) {
+  let [name, port] = tok.split(":");
+  let h = name === "alt" ? info.NOTSAMESITE_HOST
+        : name === "" ? info.ORIGINAL_HOST : name + "." + info.ORIGINAL_HOST;
+  if (port === "p2") h += ":" + info.HTTPS_PORT2;
+  return h;
+}
+function waitForMessage(src) {
+  return new Promise(resolve => {
+    const handler = e => {
+      if (e.source === src) { window.removeEventListener("message", handler); resolve(e.data); }
+    };
+    window.addEventListener("message", handler);
+  });
+}
+function withTimeout(p, ms, what) {
+  return Promise.race([p, new Promise(r => setTimeout(() => r("timeout:" + what), ms))]);
+}
+const B = v => v === true ? "TRUE" : v === false ? "FALSE" : String(v);
+
+let openee = null;
+async function step(s) {
+  const [kind, tok, header] = s;
+  if (kind === "iframe") {
+    await insertIframe(hostOf(tok), header === null ? undefined : header);
+  } else if (kind === "nav") {
+    const iframe = document.createElement("iframe");
+    const p = navigateIframe(iframe, hostOf(tok), header === null ? undefined : header);
+    document.body.append(iframe);
+    await p;
+  } else if (kind === "window") {
+    openee = await openWindow(hostOf(tok), header === null ? undefined : header);
+  } else if (kind === "static") {
+    // [static, host, path]: an <iframe> of a fixed resource, as in markup.
+    const iframe = document.createElement("iframe");
+    const loaded = new Promise(r => iframe.onload = r);
+    iframe.src = location.protocol + "//" + hostOf(tok) +
+      (location.port ? ":" + location.port : "") + header;
+    document.body.append(iframe);
+    await loaded;
+  }
+}
+async function read(r) {
+  const [row, target, kind, extra] = r;
+  if (kind === "getter") {
+    if (target === "self") return B(self.originAgentCluster);
+    const w = target === "openee" ? openee : frames[target];
+    w.postMessage({ command: "get originAgentCluster" }, "*");
+    return B(await withTimeout(waitForMessage(w), 10000, "getter"));
+  }
+  if (kind === "sync") {
+    // testSameAgentCluster: does document.domain give synchronous access?
+    // access -> the setter took effect (no-op FALSE); SecurityError -> no-op TRUE.
+    if (target === "self") {
+      try { frames[extra].document; frames[extra].location.href; return "FALSE"; }
+      catch (e) { return e.name === "SecurityError" ? "TRUE" : "exc:" + e.name; }
+    }
+    frames[target].postMessage({ command: "access document", indexIntoParentFrameOfDestination: extra }, "*");
+    const v = await withTimeout(waitForMessage(frames[target]), 10000, "sync");
+    return v === "accessed document successfully" ? "FALSE" : v === "SecurityError" ? "TRUE" : "raw:" + v;
+  }
+  if (kind === "dd-self") {
+    // document-domain.sub.https.html, first subtest.
+    document.domain = document.domain;
+    try { frames[0].document; return "TRUE"; }
+    catch (e) { return e.name === "SecurityError" ? "FALSE" : "exc:" + e.name; }
+  }
+  if (kind === "dd-child") {
+    // document-domain.sub.https.html, third subtest: frame.html on www1 with ?1.
+    frames[1].postMessage({ type: "set document.domain", newValue: info.ORIGINAL_HOST }, "*");
+    const v = await withTimeout(waitForMessage(frames[1]), 10000, "dd-child");
+    if (v && v.type === "new document.domain")
+      return v.result === "www1." + info.ORIGINAL_HOST ? "TRUE"
+           : v.result === info.ORIGINAL_HOST ? "FALSE" : "raw:" + v.result;
+    return "raw:" + JSON.stringify(v);
+  }
+  return "unknown-read";
+}
+
+const out = [];
+try {
+  for (const s of sc.steps) {
+    const v = await withTimeout(step(s).then(() => "ok"), 15000, "step " + JSON.stringify(s));
+    if (v !== "ok") throw new Error(v);
+  }
+  for (const r of sc.reads) {
+    try { out.push([r[0], await read(r)]); }
+    catch (e) { out.push([r[0], "exc:" + e.name + ":" + e.message]); }
+  }
+} catch (e) {
+  out.push(["error", String(e && e.message || e)]);
+}
+await send(uuid, JSON.stringify(out));
+for (const f of cleanups) { try { f(); } catch (e) {} }
+setTimeout(() => window.close(), 200);
+</script>

@@ -1,0 +1,5 @@
+# 実装 ⊆ モデル の検査のための自作の観測試験、実行の手順、TLA+ の許容集合、観測値の表と結果の要約（subagent が書いた）。
+# WPT の試験やヘルパーの写しは含めない（実行時に WPT の clone から読み込む）。wpt.fyi の応答も含めない。
+id = "site-isolation-observe"
+title = "WPT の 109 の場面でブラウザが返した値とモデルが許す値の比較"
+origin = "original"

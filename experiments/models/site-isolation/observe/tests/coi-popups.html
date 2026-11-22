@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=timeout content=long>
+<title>OBS crossOriginIsolated of popups (credentialless/cross-origin-isolated.window.js)</title>
+<script src="/resources/testharness.js"></script>
+<script src="/resources/testharnessreport.js"></script>
+<script src="/common/get-host-info.sub.js"></script>
+<script src="/common/utils.js"></script>
+<script src="/common/dispatcher/dispatcher.js"></script>
+<script src="/html/cross-origin-embedder-policy/credentialless/resources/common.js"></script>
+<script src="resources/obs.js"></script>
+<body>
+<script>
+// Same origins and header pipes as the original; the popup reports
+// window.crossOriginIsolated instead of the test asserting it.
+const http  = get_host_info().HTTP_ORIGIN;
+const https = get_host_info().HTTPS_ORIGIN;
+async function popupCOI(origin, headers) {
+  const w_token = token();
+  const w = window.open(origin + executor_path + headers + `&uuid=${w_token}`);
+  const this_token = token();
+  send(w_token, `send("${this_token}", String(window.crossOriginIsolated));`);
+  const v = await receive(this_token);
+  try { w.close(); } catch (e) {}
+  send(w_token, "window.close()");
+  return v;
+}
+runObs([
+  ["w063", () => popupCOI(https, coop_same_origin + coep_credentialless)],
+  ["w064", () => popupCOI(http, coop_same_origin + coep_credentialless)],
+  ["w065", () => popupCOI(https, coep_credentialless)],
+  ["w066", () => popupCOI(https, coop_same_origin + coep_report_only_credentialless)],
+  ["w067", () => popupCOI(https, coop_same_origin + coep_credentialless + coep_report_only_credentialless)],
+]).then(done);
+</script>

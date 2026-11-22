@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=timeout content=long>
+<title>OBS under COOP same-origin + COEP credentialless (no-cors-omit.https.window.js)</title>
+<script src="/resources/testharness.js"></script>
+<script src="/resources/testharnessreport.js"></script>
+<script src="/common/get-host-info.sub.js"></script>
+<script src="/common/utils.js"></script>
+<script src="resources/obs.js"></script>
+<body>
+<script>
+// Same headers as html/cross-origin-embedder-policy/credentialless/no-cors-omit.https.window.js.headers.
+const resourceURL = () => get_host_info().HTTPS_REMOTE_ORIGIN + "/common/square.png?" + token();
+runObs([
+  ["w068", () => String(self.crossOriginIsolated)],
+  ["w026", () => fetchOutcome(resourceURL(), {mode: "no-cors", credentials: "omit"})],
+]).then(done);
+</script>

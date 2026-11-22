@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=timeout content=long>
+<title>OBS FetchResult from an https page (fetch.https.any.js, scheme-restriction.https.window.js)</title>
+<script src="/resources/testharness.js"></script>
+<script src="/resources/testharnessreport.js"></script>
+<script src="/common/get-host-info.sub.js"></script>
+<script src="resources/obs.js"></script>
+<body>
+<script>
+const host = get_host_info();
+const path = "/fetch/cross-origin-resource-policy/";
+const notSameSiteBaseURL = host.HTTPS_NOTSAMESITE_ORIGIN + path;
+
+runObs([
+  // fetch.https.any.js
+  ["w009", () => fetchOutcome(path + "resources/hello.py?corp=same-origin")],
+  ["w010", () => fetchOutcome(path + "resources/hello.py?corp=same-site")],
+  ["w011", () => fetchOutcome(notSameSiteBaseURL + "resources/hello.py?corp=same-origin", {mode: "no-cors"})],
+  ["w012", () => fetchOutcome(notSameSiteBaseURL + "resources/hello.py?corp=same-site", {mode: "no-cors"})],
+  // scheme-restriction.https.window.js: http same-site <img> from an https page
+  ["w014", () => elementOutcome("img", host.HTTP_REMOTE_ORIGIN + path + "resources/image.py?corp=same-site")],
+]).then(done);
+</script>

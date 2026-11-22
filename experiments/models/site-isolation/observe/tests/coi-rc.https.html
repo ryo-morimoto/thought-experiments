@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<title>OBS crossOriginIsolated under COOP same-origin + COEP require-corp (coep-with-*.https.html)</title>
+<script src="/resources/testharness.js"></script>
+<script src="/resources/testharnessreport.js"></script>
+<script src="resources/obs.js"></script>
+<body>
+<script>
+// html/cross-origin-opener-policy/coep-with-{same-origin,same-site,cross-origin}.https.html
+// all send these two headers and read window.crossOriginIsolated on the top-level page.
+runObs([
+  ["w069", () => String(self.crossOriginIsolated)],
+  ["w070", () => String(self.crossOriginIsolated)],
+  ["w071", () => String(self.crossOriginIsolated)],
+]).then(done);
+</script>

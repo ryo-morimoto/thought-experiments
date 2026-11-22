@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=timeout content=long>
+<title>OBS FetchResult from an http page (fetch.any.js, scheme-restriction.any.js, image-loads.html, script-loads.html)</title>
+<script src="/resources/testharness.js"></script>
+<script src="/resources/testharnessreport.js"></script>
+<script src="/common/get-host-info.sub.js"></script>
+<script src="resources/obs.js"></script>
+<body>
+<script>
+// Same URLs, modes and order as the original tests (requester http://{{host}}:HTTP_PORT).
+const host = get_host_info();
+const path = "/fetch/cross-origin-resource-policy/";
+const localBaseURL = host.HTTP_ORIGIN + path;
+const sameSiteBaseURL = "http://" + host.ORIGINAL_HOST + ":" + host.HTTP_PORT2 + path;
+const notSameSiteBaseURL = host.HTTP_NOTSAMESITE_ORIGIN + path;
+const httpsBaseURL = host.HTTPS_ORIGIN + path;
+const rel = path; // the originals use ./resources/ relative to this directory
+
+runObs([
+  // fetch.any.js
+  ["w001", () => fetchOutcome(rel + "resources/hello.py?corp=same-origin")],
+  ["w002", () => fetchOutcome(rel + "resources/hello.py?corp=same-site")],
+  ["w003", () => fetchOutcome(notSameSiteBaseURL + "resources/hello.py?corp=same-origin", {mode: "no-cors"})],
+  ["w004", () => fetchOutcome(notSameSiteBaseURL + "resources/hello.py?corp=same-site", {mode: "no-cors"})],
+  ["w005", () => fetchOutcome(httpsBaseURL + "resources/hello.py?corp=same-site", {mode: "no-cors"})],
+  ["w006", () => fetchOutcome(httpsBaseURL + "resources/hello.py?corp=same-origin", {mode: "no-cors"})],
+  // one subtest in the original: first same-site, then same-origin
+  ["w007", () => fetchOutcome(sameSiteBaseURL + "resources/hello.py?corp=same-site", {mode: "no-cors"})],
+  ["w008", () => fetchOutcome(sameSiteBaseURL + "resources/hello.py?corp=same-origin", {mode: "no-cors"})],
+  // scheme-restriction.any.js
+  ["w013", () => fetchOutcome(host.HTTPS_REMOTE_ORIGIN + path + "resources/hello.py?corp=same-site", {mode: "no-cors"})],
+  // image-loads.html
+  ["w015", () => elementOutcome("img", rel + "resources/image.py?corp=same-origin")],
+  ["w016", () => elementOutcome("img", rel + "resources/image.py?corp=same-site")],
+  ["w017", () => elementOutcome("img", notSameSiteBaseURL + "resources/image.py?corp=same-origin&acao=*")],
+  ["w018", () => elementOutcome("img", notSameSiteBaseURL + "resources/image.py?corp=same-site&acao=*")],
+  // script-loads.html
+  ["w019", () => elementOutcome("script", rel + "resources/script.py?corp=same-origin")],
+  ["w020", () => elementOutcome("script", rel + "resources/script.py?corp=same-site")],
+  ["w021", () => elementOutcome("script", notSameSiteBaseURL + "resources/script.py?corp=same-origin&acao=*")],
+  ["w022", () => elementOutcome("script", notSameSiteBaseURL + "resources/script.py?corp=same-site&acao=*")],
+]).then(done);
+</script>

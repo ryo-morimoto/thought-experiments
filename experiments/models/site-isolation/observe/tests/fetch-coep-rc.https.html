@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=timeout content=long>
+<title>OBS FetchResult under COEP require-corp (require-corp.https.html)</title>
+<script src="/resources/testharness.js"></script>
+<script src="/resources/testharnessreport.js"></script>
+<script src="/common/get-host-info.sub.js"></script>
+<script src="resources/obs.js"></script>
+<body>
+<script>
+// Same headers as html/cross-origin-embedder-policy/require-corp.https.html(.headers).
+const remote = get_host_info().HTTPS_REMOTE_ORIGIN;
+runObs([
+  ["w023", () => fetchOutcome(remote + "/html/cross-origin-embedder-policy/resources/nothing-cross-origin-corp.js", {mode: "no-cors"})],
+  ["w024", () => fetchOutcome(remote + "/common/blank.html", {mode: "no-cors"})],
+  ["w025", async () => {
+    const w = window.open();
+    try {
+      return await fetchOutcome(remote + "/common/blank.html", {mode: "no-cors"}, w.fetch.bind(w), w.TypeError);
+    } finally { w.close(); }
+  }],
+  // Not a TSV row: the page's own state, for the record.
+  ["ctx-rc", () => String(self.crossOriginIsolated)],
+]).then(done);
+</script>

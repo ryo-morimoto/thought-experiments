@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=timeout content=long>
+<title>OBS PopupSevered, opener COOP absent</title>
+<script src="/resources/testharness.js"></script>
+<script src="/resources/testharnessreport.js"></script>
+<script src="/common/dispatcher/dispatcher.js"></script>
+<script src="/common/get-host-info.sub.js"></script>
+<script src="/common/utils.js"></script>
+<script src="/html/cross-origin-opener-policy/resources/common.js"></script>
+<script src="/html/cross-origin-opener-policy/resources/popup-test.js"></script>
+<script src="resources/obs.js"></script>
+<body>
+<script>
+// Same popup URLs (getExecutorPath) and settle time (500 ms) as popup_test() in
+// html/cross-origin-opener-policy/resources/popup-test.js. Value: TRUE when the
+// popup is closed from the opener side and its opener is null, FALSE when it is
+// open with a non-null opener, else the raw pair.
+async function popupObs(origin, headers) {
+  const popup_token = token();
+  const reply_token = token();
+  const popup = window.open(getExecutorPath(popup_token, origin.origin, headers));
+  send(popup_token, `send('${reply_token}', 'Popup loaded');`);
+  if (await receive(reply_token) !== 'Popup loaded') throw new Error('no load');
+  await sleep(500);
+  const closed = popup.closed;
+  const hasOpener = await getPopupHasOpener(popup_token);
+  send(popup_token, `close()`);
+  await sleep(100);
+  if (closed && hasOpener === "false") return "TRUE";
+  if (!closed && hasOpener === "true") return "FALSE";
+  return `closed=${closed},opener=${hasOpener}`;
+}
+runObs([
+  ["w054", () => popupObs(CROSS_ORIGIN, {coop: "unsafe-none"})],
+  ["w055", () => popupObs(CROSS_ORIGIN, {coop: "same-origin"})],
+  ["w056", () => popupObs(CROSS_ORIGIN, {coop: "same-origin-allow-popups"})],
+  ["w057", () => popupObs(SAME_ORIGIN, {coop: "unsafe-none"})],
+  ["w058", () => popupObs(SAME_ORIGIN, {coop: "same-origin"})],
+  ["w059", () => popupObs(SAME_ORIGIN, {coop: "same-origin-allow-popups"})],
+  ["w060", () => popupObs(SAME_SITE, {coop: "unsafe-none"})],
+  ["w061", () => popupObs(SAME_SITE, {coop: "same-origin"})],
+  ["w062", () => popupObs(SAME_SITE, {coop: "same-origin-allow-popups"})],
+]).then(done);
+</script>

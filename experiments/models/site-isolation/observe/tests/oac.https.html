@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=timeout content=long>
+<title>OBS OriginAgentCluster and DocumentDomainNoOp (origin-keyed-agent-clusters/*)</title>
+<script src="/resources/testharness.js"></script>
+<script src="/resources/testharnessreport.js"></script>
+<script src="/common/get-host-info.sub.js"></script>
+<script src="/common/utils.js"></script>
+<script src="/common/dispatcher/dispatcher.js"></script>
+<script src="resources/obs.js"></script>
+<body>
+<script>
+// Each scenario is the setup of one original test, run in a noopener popup
+// (its own browsing context group, as a fresh top-level test page would be).
+// Parent headers are added with a wptserve pipe instead of a .headers file.
+const OAC = "|header(Origin-Agent-Cluster,%3F1)";
+const COI = "|header(Cross-Origin-Opener-Policy,same-origin)|header(Cross-Origin-Embedder-Policy,require-corp)";
+const D = "/html/browsers/origin/origin-keyed-agent-clusters/resources/";
+const I = (h, hdr = null) => ["iframe", h, hdr];
+const SC = [
+  // [original test, parent pipe, steps, reads, scheme]
+  ["1-iframe/parent-no-child-yes-subdomain", "", [I("www", "?1")], [["w072", "self", "getter"], ["w078", 0, "getter"]]],
+  ["1-iframe/parent-yes-child-no-subdomain", OAC, [I("www")], [["w073", "self", "getter"], ["w082", 0, "getter"]]],
+  ["1-iframe/parent-no-child-bad-subdomain", "",
+    ["", "?0", "true", "\"?1\"", "1", "?2", "(?1)"].map(v => I("www", v)),
+    [0, 1, 2, 3, 4, 5, 6].flatMap(i => [["w074", i, "getter"], ["w108", "self", "sync", i]])],
+  ["1-iframe/parent-no-child-yes-cross-site", "", [["nav", "alt", "?1"]], [["w075", 0, "getter"]]],
+  ["1-iframe/parent-no-child-yes-port", "", [I(":p2", "?1")], [["w076", 0, "getter"]]],
+  ["1-iframe/parent-no-child-yes-same", "", [I("", "?1")], [["w077", 0, "getter"]]],
+  ["1-iframe/parent-no-child-yeswithparams-subdomain", "", [I("www", "?1;param1;param2=value2")], [["w079", 0, "getter"]]],
+  ["1-iframe/parent-yes-child-no-port", OAC, [I(":p2")], [["w080", 0, "getter"]]],
+  ["1-iframe/parent-yes-child-no-same", OAC, [I("")], [["w081", 0, "getter"]]],
+  ["1-iframe/parent-yes-child-yes-port", OAC, [I(":p2", "?1")], [["w083", 0, "getter"]]],
+  ["1-iframe/parent-yes-child-yes-same", OAC, [I("", "?1")], [["w084", 0, "getter"]]],
+  ["1-iframe/parent-yes-child-yes-subdomain", OAC, [I("www", "?1")], [["w085", 0, "getter"]]],
+  ["2-iframes/parent-no-child1-no-subdomain-child2-yes-subdomain", "", [I("www"), I("www", "?1")], [["w086", 1, "getter"], ["w106", "self", "sync", 0]]],
+  ["2-iframes/parent-no-child1-no-subdomain-child2-yes-subdomainport", "", [I("www"), I("www:p2", "?1")], [["w087", 1, "getter"]]],
+  ["2-iframes/parent-no-child1-no-subdomain1-child2-yes-subdomain2", "", [I("www"), I("www1", "?1")], [["w088", 1, "getter"]]],
+  ["2-iframes/parent-no-child1-yes-subdomain-child2-no-port", "", [I("www", "?1"), I(":p2")], [["w089", 1, "getter"], ["w109", "self", "sync", 1]]],
+  ["2-iframes/parent-no-child1-yes-subdomain-child2-no-subdomain", "", [I("www", "?1"), I("www")], [["w090", 1, "getter"]]],
+  ["2-iframes/parent-yes-child1-no-subdomain-child2-no-subdomain", OAC, [I("www"), I("www")], [["w091", 1, "getter"]]],
+  ["2-iframes/parent-yes-child1-no-subdomain-child2-no-subdomain2", OAC, [I("www"), I("www1")], [["w092", 1, "getter"], ["w107", 0, "sync", 1]]],
+  ["2-iframes/parent-yes-child1-no-subdomain-child2-yes-subdomain", OAC, [I("www"), I("www", "?1")], [["w093", 1, "getter"]]],
+  ["2-iframes/parent-yes-child1-no-subdomain-child2-yes-subdomain2", OAC, [I("www"), I("www1", "?1")], [["w094", 1, "getter"]]],
+  ["2-iframes/parent-yes-child1-yes-subdomain-child2-no-port", OAC, [I("www", "?1"), I(":p2")], [["w095", 1, "getter"]]],
+  ["2-iframes/parent-yes-child1-yes-subdomain-child2-no-subdomain", OAC, [I("www", "?1"), I("www")], [["w096", 1, "getter"]]],
+  ["2-iframes/parent-yes-child1-yes-subdomain-child2-yes-subdomain", OAC, [I("www", "?1"), I("www", "?1")], [["w097", 1, "getter"]]],
+  ["getter-special-cases/cross-origin-isolated", COI, [["static", "www1", D + "coep-frame.html"]], [["w098", "self", "getter"], ["w099", 0, "getter"]]],
+  ["popups/opener-yes-openee-no-subdomain", OAC, [["window", "www", null]], [["w100", "openee", "getter"]]],
+  ["popups/opener-no-openee-yes-subdomain", "", [["window", "www", "?1"]], [["w101", "openee", "getter"]]],
+  ["insecure-http", OAC, [I("www", "?1")], [["w102", "self", "getter"], ["w103", 0, "getter"]], "http"],
+  ["document-domain", OAC, [["static", "", D + "frame.html"], ["static", "www1", D + "frame.html"]], [["w104", "self", "dd-self"], ["w105", 1, "dd-child"]]],
+];
+
+const scenarioPath = location.pathname.replace(/[^\/]*$/, "") + "resources/oac-scenario.html";
+async function runScenario([name, pipe, steps, reads, scheme]) {
+  const uuid = token();
+  const origin = scheme === "http" ? get_host_info().HTTP_ORIGIN : get_host_info().HTTPS_ORIGIN;
+  const s = encodeURIComponent(JSON.stringify({steps, reads}));
+  const url = `${origin}${scenarioPath}?uuid=${uuid}&s=${s}` + (pipe ? `&pipe=${pipe}` : "");
+  window.open(url, "_blank", "noopener");
+  const reply = await Promise.race([receive(uuid),
+    new Promise(r => setTimeout(() => r(JSON.stringify([["error", "scenario timeout"]])), 60000))]);
+  const res = JSON.parse(reply);
+  const rowsSeen = new Set();
+  for (const [row, v] of res) {
+    if (row === "error") { for (const r of reads) if (!rowsSeen.has(r[0])) obs(r[0], "error:" + v); continue; }
+    rowsSeen.add(row);
+    obs(row, v);
+  }
+}
+(async () => {
+  for (const sc of SC) {
+    try { await runScenario(sc); } catch (e) { obsError(sc[0], e); }
+  }
+})().then(done);
+</script>
