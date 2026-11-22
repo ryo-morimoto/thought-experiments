@@ -162,13 +162,16 @@ next_question = "依存する入力を明示した関数としてモデルを書
 [[cells]]
 row = "informal"
 col = "extension"
-status = "hypothesis"
-claim = "手書きの HTML・Fetch のモデルは、WHATWG が取り込んだ本文の固定したコミットの上の閉じた世界として範囲を書けば、隔離の結論に根拠を持てる。取り込まれていない書き換え（DIP、Fenced Frame）は配備ごとの仮定で、閉包に入れる。拡張に耐えたのは、性質を仕組み（隔離は COOP と COEP から）ではなく理由（隔離された文書には同意した中身しか届かない）の形で書いたもので、DIP を入れて前者は崩れ後者は残った。アクセス制御には支配の条件、情報流には漏らすものの一覧が要り、どちらも未検証"
+status = "supported"
+claim = "手書きの HTML・Fetch のモデルの隔離の結論は、WHATWG が取り込んだ本文の固定したコミットに範囲を限っても、写した経路についての結論にとどまる。拡張に耐えたのは、性質を仕組みではなく理由（隔離された文書には同意した中身しか届かない）の形で書いたものだった（DIP を入れて前者は崩れ後者は残った）。アクセス制御に要る支配の条件は基の仕様の性質で、経路ごとに確かめるしかなく、確かめた再利用の経路のうち 2 つで本文が保証しなかった（詳細は外した）。情報流の漏らす一覧は、攻撃者が選べない秘密の関数でなければ意味が無く、ORB の判定はそうではない"
 evidence = [
   "experiments/2026-11-21-informal-extension.md",
+  "experiments/2026-11-21-dominance-declassification.md",
   "experiments/models/site-isolation/ExtensionHooks.tla",
   "experiments/models/site-isolation/DIPExtension.tla",
+  "experiments/models/site-isolation/DominanceRetry.tla",
+  "experiments/models/site-isolation/ORBExtension.tla",
 ]
 mode = "constructive"
-next_question = "代替の中身や onerror からの再要求の経路を足すと、止めるだけの差し込みでアクセス制御は崩れるか（支配の条件）"
+next_question = "別オリジンの中身が文書に入る経路の一覧を、仕様の本文から機械的に作れるか"
 
