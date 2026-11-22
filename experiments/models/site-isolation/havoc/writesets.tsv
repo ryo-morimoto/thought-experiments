@@ -1,0 +1,1681 @@
+spec	algorithm	step	form	write_kind	target_label	concept	status	model_ref	havoc_point
+fetch	abort	1	assign	field	state	other	notread		
+fetch	abort	2	assign	local	fallbackError	other	gap		
+fetch	abort	3	assign	local	error	other	gap		
+fetch	abort	4	assign	local	serializedError	other	gap		
+fetch	abort	5	assign	field	serialized abort reason	other	notread		
+fetch	deserialize a serialized abort reason	1	assign	local	fallbackError	other	gap		
+fetch	deserialize a serialized abort reason	2	assign	local	deserializedError	other	gap		
+fetch	deserialize a serialized abort reason	3	branch	embedded-local	deserializedError	other	notread		
+fetch	queue a fetch task	1	branch	embedded-collection	taskDestination	other	notread		
+fetch	collect an HTTP quoted string	1	assign	local	positionStart	other	gap		
+fetch	collect an HTTP quoted string	2	assign	local	value	other	gap		
+fetch	collect an HTTP quoted string	5.1	assign	collection	input	other	gap		
+fetch	collect an HTTP quoted string	5.3	assign	local	quoteOrBackslash	other	gap		
+fetch	collect an HTTP quoted string	5.5.1	branch	embedded-collection	value and break	other	notread		
+fetch	collect an HTTP quoted string	5.5.2	assign	collection	value	other	gap		
+fetch	get a structured field value	2	assign	local	value	other	gap		
+fetch	get a structured field value	4	assign	local	result	other	gap		
+fetch	set a structured field value	1	assign	local	serializedValue	other	gap		
+fetch	set a structured field value	2	assign	unparsed	?	other	gap		
+fetch	get, decode, and split	1	assign	local	value	other	gap		
+fetch	get, decode, and split	1	assign	local	input	other	gap		
+fetch	get, decode, and split	2	assign	local	position	other	gap		
+fetch	get, decode, and split	3	assign	local	values	other	gap		
+fetch	get, decode, and split	4	assign	local	temporaryValue	other	gap		
+fetch	get, decode, and split	5.1	assign	collection	input	other	gap		
+fetch	get, decode, and split	5.2.1	assign	collection	input	other	gap		
+fetch	get, decode, and split	5.3	assign	collection	the start and end of temporaryValue	other	gap		
+fetch	get, decode, and split	5.4	assign	collection	values	other	gap		
+fetch	get, decode, and split	5.5	assign	local	temporaryValue	other	gap		
+fetch	append	1	branch	embedded-local	name	other	notread		
+fetch	append	2	assign	collection	list	other	gap		
+fetch	set	1	branch	embedded-local	the value of the first such	other	notread		
+fetch	convert header names to a sorted-lowercase set	1	assign	local	headerNamesSet	other	gap		
+fetch	CORS-safelisted request-header	2.2	assign	local	mimeType	other	gap		
+fetch	CORS-safelisted request-header	2.5	assign	local	rangeValue	other	gap		
+fetch	CORS-unsafe request-header names	1	assign	local	unsafeNames	other	gap		
+fetch	CORS-unsafe request-header names	2	assign	local	potentiallyUnsafeNames	other	gap		
+fetch	CORS-unsafe request-header names	3	assign	local	safelistValueSize	other	gap		
+fetch	CORS-unsafe request-header names	4.1	branch	embedded-collection	unsafeNames	other	notread		
+fetch	extract header list values	3	assign	local	values	other	gap		
+fetch	extract header list values	4.1	assign	local	extract	other	gap		
+fetch	extract header list values	4.3	assign	collection	extract	other	gap		
+fetch	build a content range	1	assign	local	contentRange	other	gap		
+fetch	build a content range	2	assign	collection	contentRange	other	gap		
+fetch	build a content range	3	assign	collection	contentRange	other	gap		
+fetch	build a content range	4	assign	collection	contentRange	other	gap		
+fetch	build a content range	5	assign	collection	contentRange	other	gap		
+fetch	build a content range	6	assign	collection	contentRange	other	gap		
+fetch	parse a single range header value	1	assign	local	data	other	gap		
+fetch	parse a single range header value	3	assign	local	position	other	gap		
+fetch	parse a single range header value	8	assign	local	rangeStart	other	gap		
+fetch	parse a single range header value	9	assign	local	rangeStartValue	other	gap		
+fetch	parse a single range header value	14	assign	local	rangeEnd	other	gap		
+fetch	parse a single range header value	15	assign	local	rangeEndValue	other	gap		
+fetch	environment default `User-Agent` value	1	assign	local	userAgent	other	gap		
+fetch	clone	1	assign	unparsed	?	other	gap		
+fetch	clone	2	assign	field	stream	other	notread		
+fetch	incrementally read	1	branch	embedded-local	taskDestination	other	notread		
+fetch	incrementally read	2	assign	local	reader	other	gap		
+fetch	incrementally-read loop	1	assign	local	readRequest	other	gap		
+fetch	incrementally-read loop	1.1	assign	local	continueAlgorithm	other	gap		
+fetch	incrementally-read loop	1.2	branch	embedded-local	continueAlgorithm	other	notread		
+fetch	incrementally-read loop	1.3.1	assign	local	bytes	other	gap		
+fetch	incrementally-read loop	1.3.2	assign	local	continueAlgorithm	other	gap		
+fetch	fully read	1	branch	embedded-local	taskDestination	other	notread		
+fetch	fully read	2	assign	unparsed	?	other	gap		
+fetch	fully read	3	assign	unparsed	?	other	gap		
+fetch	fully read	4	assign	local	reader	other	gap		
+fetch	redirect-taint	2	assign	local	lastURL	creds	unmodeled	redirect taint	h-creds-mode
+fetch	redirect-taint	3	assign	local	taint	creds	unmodeled	redirect taint	h-creds-mode
+fetch	redirect-taint	4.1	branch	embedded-local	lastURL	other	notread		
+fetch	redirect-taint	4.2	branch	embedded-return	result	creds	unmodeled	redirect taint	h-creds-mode
+fetch	redirect-taint	4.3	branch	embedded-local	taint	creds	unmodeled	redirect taint	h-creds-mode
+fetch	redirect-taint	4.4	assign	local	lastURL	creds	unmodeled	redirect taint	h-creds-mode
+fetch	redirect-taint	5	return	return	result	creds	unmodeled	redirect taint	h-creds-mode
+fetch	clone	1	assign	local	newRequest	other	gap		
+fetch	clone	2	assign	field	WebDriver id	other	notread		
+fetch	serialize a response URL for reporting	2	assign	local	url	other	gap		
+fetch	serialize a response URL for reporting	3	assign	unparsed	?	other	gap		
+fetch	serialize a response URL for reporting	4	assign	unparsed	?	other	gap		
+fetch	Cross-Origin-Embedder-Policy allows credentials	2	branch	embedded-return	result	creds	modeled	coep-cl-strips	h-creds-cl
+fetch	Cross-Origin-Embedder-Policy allows credentials	3	branch	embedded-return	result	creds	outscope	no client	
+fetch	Cross-Origin-Embedder-Policy allows credentials	4	branch	embedded-return	result	creds	modeled	coep-cl-strips	h-creds-cl
+fetch	Cross-Origin-Embedder-Policy allows credentials	5	branch	embedded-return	result	creds	unmodeled	redirect taint	h-creds-mode
+fetch	Cross-Origin-Embedder-Policy allows credentials	6	return	return	result	creds	modeled	coep-cl-strips	h-creds-cl
+fetch	location URL	2	assign	local	location	other	gap		
+fetch	location URL	3	branch	embedded-local	location	other	notread		
+fetch	location URL	4	branch	embedded-field	fragment	other	notread		
+fetch	obtain a connection	1.2	assign	local	connections	other	gap		
+fetch	obtain a connection	2	assign	local	proxies	other	gap		
+fetch	obtain a connection	3	assign	local	timingInfo	timing	notread		
+fetch	obtain a connection	4.1	assign	field	domain lookup start time	timing	notread		
+fetch	obtain a connection	4.2	assign	local	hosts	other	gap		
+fetch	obtain a connection	4.3	branch	embedded-local	hosts	other	notread		
+fetch	obtain a connection	4.5	assign	field	domain lookup end time	timing	notread		
+fetch	obtain a connection	4.6	assign	local	connection	other	gap		
+fetch	obtain a connection	4.8	branch	embedded-collection	connection pool	other	notread		
+fetch	create a connection	1	assign	field	connection start time	timing	notread		
+fetch	create a connection	2	assign	local	connection	other	gap		
+fetch	create a connection	3	assign	field	ALPN negotiated protocol	timing	notread		
+fetch	determine the network partition key	1	assign	local	topLevelOrigin	other	gap		
+fetch	determine the network partition key	2	branch	embedded-local	topLevelOrigin	other	notread		
+fetch	determine the network partition key	4	assign	local	topLevelSite	other	gap		
+fetch	determine the network partition key	5	assign	local	secondKey	other	gap		
+fetch	determine the HTTP cache partition	1	assign	local	key	other	notread	other key	
+fetch	should be blocked due to a bad port	1	assign	local	url	other	gap		
+fetch	Should response to request be blocked due to its MIME type?	1	assign	local	mimeType	other	gap		
+fetch	Should response to request be blocked due to its MIME type?	3	assign	local	destination	other	gap		
+fetch	append a request `Cookie` header	2	assign	local	sameSite	other	gap		
+fetch	append a request `Cookie` header	3	assign	local	isSecure	other	gap		
+fetch	append a request `Cookie` header	4	assign	local	httpOnlyAllowed	other	gap		
+fetch	append a request `Cookie` header	5	assign	local	cookies	other	gap		
+fetch	append a request `Cookie` header	7	assign	local	value	other	gap		
+fetch	append a request `Cookie` header	8	assign	collection	header list	other	notread	request header	
+fetch	parse and store response `Set-Cookie` headers	2	assign	local	allowNonHostOnlyCookieForPublicSuffix	other	gap		
+fetch	parse and store response `Set-Cookie` headers	3	assign	local	isSecure	other	gap		
+fetch	parse and store response `Set-Cookie` headers	4	assign	local	httpOnlyAllowed	other	gap		
+fetch	parse and store response `Set-Cookie` headers	5	assign	local	sameSiteStrictOrLaxAllowed	other	gap		
+fetch	append a request `Origin` header	2	assign	local	serializedOrigin	other	gap		
+fetch	append a request `Origin` header	3	branch	embedded-collection	header list	other	notread	request header	
+fetch	append a request `Origin` header	4.2	assign	collection	header list	other	notread	request header	
+fetch	extract a MIME type	1	assign	local	charset	other	gap		
+fetch	extract a MIME type	2	assign	local	essence	other	gap		
+fetch	extract a MIME type	3	assign	local	mimeType	other	gap		
+fetch	extract a MIME type	4	assign	local	values	other	gap		
+fetch	extract a MIME type	6.1	assign	local	temporaryMimeType	other	gap		
+fetch	extract a MIME type	6.3	assign	local	mimeType	other	gap		
+fetch	extract a MIME type	6.4.1	assign	local	charset	other	gap		
+fetch	extract a MIME type	6.4.2	branch	embedded-local	charset	other	notread		
+fetch	extract a MIME type	6.4.3	assign	local	essence	other	gap		
+fetch	determine nosniff	1	assign	local	values	other	gap		
+fetch	Should response to request be blocked due to nosniff?	2	assign	local	mimeType	other	gap		
+fetch	Should response to request be blocked due to nosniff?	3	assign	local	destination	other	gap		
+fetch	cross-origin resource policy check	1	assign	local	forNavigation	corp	modeled	forNav	
+fetch	cross-origin resource policy check	2	assign	local	embedderPolicy	coep	modeled	CorpCheck coep	
+fetch	cross-origin resource policy check	3	branch	embedded-return	result	corp	modeled	corp-first-pass	
+fetch	cross-origin resource policy check	5	branch	embedded-return	result	corp	modeled	fetch-blocked	
+fetch	cross-origin resource policy check	7	return	return	result	corp	modeled	CorpCheck	
+fetch	cross-origin resource policy internal check	1	branch	embedded-return	result	corp	modeled	corp-nav	
+fetch	cross-origin resource policy internal check	2	assign	local	policy	corp	modeled	r.corp	
+fetch	cross-origin resource policy internal check	3	branch	embedded-local	policy	corp	modeled	r.corp (CORPs)	
+fetch	cross-origin resource policy internal check	4	branch	embedded	?	corp	modeled	corp-cl-creds	
+fetch	cross-origin resource policy internal check	5	branch	embedded-return	result	corp	modeled	corp-allow-kinds	
+fetch	queue a cross-origin embedder policy CORP violation report	1	assign	local	endpoint	report	notread		
+fetch	queue a cross-origin embedder policy CORP violation report	2	assign	local	serializedURL	other	gap		
+fetch	queue a cross-origin embedder policy CORP violation report	3	assign	local	disposition	other	gap		
+fetch	queue a cross-origin embedder policy CORP violation report	4	assign	local	body	other	gap		
+fetch	fetch	2	assign	local	taskDestination	other	gap		
+fetch	fetch	3	assign	local	crossOriginIsolatedCapability	coicap	notread	timing only	
+fetch	fetch	5.1	assign	local	taskDestination	other	gap		
+fetch	fetch	5.2	assign	local	crossOriginIsolatedCapability	coicap	notread	timing only	
+fetch	fetch	6	branch	embedded-local	taskDestination	other	notread		
+fetch	fetch	7	assign	local	timingInfo	timing	notread		
+fetch	fetch	8	assign	local	fetchParams	other	gap		
+fetch	fetch	9	branch	embedded-field	body	other	notread		
+fetch	fetch	11.2	assign	local	onPreloadedResponseAvailable	other	gap		
+fetch	fetch	11.3	assign	local	foundPreloadedResource	other	gap		
+fetch	fetch	11.4	branch	embedded-field	preloaded response candidate	other	notread		
+fetch	fetch	12.1	assign	local	value	other	gap		
+fetch	fetch	12.2	branch	embedded-local	value	other	notread		
+fetch	fetch	12.4	assign	collection	header list	other	notread	request header	
+fetch	fetch	13.1	assign	local	emulatedLanguage	other	gap		
+fetch	fetch	13.2.1	assign	local	encodedEmulatedLanguage	other	gap		
+fetch	fetch	13.2.2	assign	collection	header list	other	notread	request header	
+fetch	fetch	16.1	assign	local	record	other	gap		
+fetch	fetch	16.2	assign	collection	fetch records	other	gap		
+fetch	populate request from client	1.1	assign	field	traversable for user prompts	other	notread		
+fetch	populate request from client	1.2.1	assign	local	global	other	gap		
+fetch	populate request from client	1.2.2	branch	embedded-field	traversable for user prompts	other	notread		
+fetch	populate request from client	2.2	assign	field	origin	origin	modeled	identity (requester o)	
+fetch	populate request from client	3.1	branch	embedded-field	policy container	coep	modeled	identity (client COEP)	
+fetch	populate request from client	3.2	branch	embedded-field	policy container	coep	outscope	no client	
+fetch	main fetch	1	assign	local	request	other	gap		
+fetch	main fetch	2	assign	local	response	response	composite	r quantified	
+fetch	main fetch	3	branch	embedded-local	response	response	outscope	local-URLs-only	
+fetch	main fetch	8	branch	embedded-field	referrer policy	other	notread		
+fetch	main fetch	9	branch	embedded-field	referrer	other	notread		
+fetch	main fetch	10	assign	field	scheme	origin	unmodeled	scheme upgrade	h-respurl
+fetch	main fetch	12	branch	embedded-local	response	response	modeled	FetchResult	
+fetch	main fetch	12.4	assign	field	response tainting	tainting	modeled	fetch-same-origin	h-tainting
+fetch	main fetch	12.7	assign	field	response tainting	tainting	modeled	fetch-cors/opaque	h-tainting
+fetch	main fetch	12.9	assign	field	response tainting	tainting	modeled	fetch-cors	h-tainting
+fetch	main fetch	12.10	assign	local	corsWithPreflightResponse	other	gap		
+fetch	main fetch	12.13	assign	field	response tainting	tainting	modeled	fetch-cors	h-tainting
+fetch	main fetch	14.1.1	assign	local	headerNames	other	gap		
+fetch	main fetch	14.1.2	branch	embedded-field	CORS-exposed header-name list	other	notread		
+fetch	main fetch	14.1.3	branch	embedded-field	CORS-exposed header-name list	other	notread		
+fetch	main fetch	14.2	assign	local	response	tainting	modeled	FetchResult kinds	h-tainting
+fetch	main fetch	15	assign	local	internalResponse	response	composite	r quantified	
+fetch	main fetch	16	branch	embedded-local	it	origin	unmodeled	redirects	h-respurl
+fetch	main fetch	17	assign	field	redirect taint	creds	unmodeled	redirect taint	h-creds-mode
+fetch	main fetch	18	branch	embedded-field	navigation timing allow values list	timing	notread		
+fetch	main fetch	21	branch	embedded-local	response and internalResponse	response	composite	r quantified	
+fetch	main fetch	23.1	assign	local	processBodyError	other	gap		
+fetch	main fetch	23.3	assign	unparsed	?	other	gap		
+fetch	main fetch	23.3.2	assign	field	body	other	notread		
+fetch	fetch response handover	1	assign	local	timingInfo	timing	notread		
+fetch	fetch response handover	2	branch	embedded-field	server-timing headers	timing	notread		
+fetch	fetch response handover	3	branch	embedded-field	full timing info	timing	notread		
+fetch	fetch response handover	4	assign	local	processResponseEndOfBody	other	gap		
+fetch	fetch response handover	4.1	assign	local	unsafeEndTime	timing	notread		
+fetch	fetch response handover	4.2	assign	field	report timing steps	report	notread		
+fetch	fetch response handover	4.2.2	assign	field	end time	timing	notread		
+fetch	fetch response handover	4.2.3	assign	local	cacheState	other	gap		
+fetch	fetch response handover	4.2.4	assign	local	bodyInfo	other	gap		
+fetch	fetch response handover	4.2.5	branch	embedded-local	timingInfo	timing	notread		
+fetch	fetch response handover	4.2.6	assign	local	responseStatus	other	gap		
+fetch	fetch response handover	4.2.7.1	assign	local	responseStatus	other	gap		
+fetch	fetch response handover	4.2.7.2	assign	local	mimeType	other	gap		
+fetch	fetch response handover	4.2.7.3	branch	embedded-field	content type	other	notread		
+fetch	fetch response handover	4.3	assign	local	processResponseEndOfBodyTask	other	gap		
+fetch	fetch response handover	4.3.1	assign	unparsed	?	other	gap		
+fetch	fetch response handover	6	assign	local	internalResponse	response	composite	r quantified	
+fetch	fetch response handover	9.1	assign	local	transformStream	other	gap		
+fetch	fetch response handover	9.2	assign	local	identityTransformAlgorithm	other	gap		
+fetch	fetch response handover	9.3	assign	unparsed	?	other	gap		
+fetch	fetch response handover	9.4	assign	field	stream	other	notread		
+fetch	fetch response handover	10.1	assign	unparsed	?	other	gap		
+fetch	fetch response handover	10.2	assign	local	processBodyError	other	gap		
+fetch	override fetch	1	assign	local	request	other	gap		
+fetch	override fetch	2	assign	local	response	response	composite	r quantified	
+fetch	scheme fetch	2	assign	local	request	other	gap		
+fetch	scheme fetch	3.1	assign	local	blobURLEntry	other	gap		
+fetch	scheme fetch	3.3	assign	local	requestEnvironment	other	gap		
+fetch	scheme fetch	3.4	assign	local	isTopLevelSelfFetch	other	gap		
+fetch	scheme fetch	3.5.1	assign	local	global	other	gap		
+fetch	scheme fetch	3.6	assign	local	stringOrEnvironment	other	gap		
+fetch	scheme fetch	3.7	assign	local	blob	other	gap		
+fetch	scheme fetch	3.9	assign	local	response	response	composite	r quantified	
+fetch	scheme fetch	3.10	assign	local	fullLength	other	gap		
+fetch	scheme fetch	3.11	assign	local	serializedFullLength	other	gap		
+fetch	scheme fetch	3.12	assign	local	type	other	gap		
+fetch	scheme fetch	3.13.1	assign	local	bodyWithType	other	gap		
+fetch	scheme fetch	3.13.2	assign	field	status message	other	notread		
+fetch	scheme fetch	3.13.3	assign	field	body	other	notread		
+fetch	scheme fetch	3.13.4	assign	field	header list	corp	input	r.corp quantified	
+fetch	scheme fetch	3.14.1	assign	unparsed	?	other	gap		
+fetch	scheme fetch	3.14.2	assign	local	rangeHeader	other	gap		
+fetch	scheme fetch	3.14.3	assign	local	rangeValue	other	gap		
+fetch	scheme fetch	3.14.5	assign	unparsed	?	other	gap		
+fetch	scheme fetch	3.14.6.1	assign	local	rangeStart	other	gap		
+fetch	scheme fetch	3.14.6.2	assign	local	rangeEnd	other	gap		
+fetch	scheme fetch	3.14.7.2	branch	embedded-local	rangeEnd	other	notread		
+fetch	scheme fetch	3.14.8	assign	local	slicedBlob	other	gap		
+fetch	scheme fetch	3.14.9	assign	local	slicedBodyWithType	other	gap		
+fetch	scheme fetch	3.14.10	assign	field	body	other	notread		
+fetch	scheme fetch	3.14.11	assign	local	serializedSlicedLength	other	gap		
+fetch	scheme fetch	3.14.12	assign	local	contentRange	other	gap		
+fetch	scheme fetch	3.14.13	assign	field	status	other	notread		
+fetch	scheme fetch	3.14.14	assign	field	status message	other	notread		
+fetch	scheme fetch	3.14.15	assign	field	header list	corp	input	r.corp quantified	
+fetch	scheme fetch	3.16	assign	local	dataURLStruct	other	gap		
+fetch	scheme fetch	3.18	assign	local	mimeType	other	gap		
+fetch	HTTP fetch	1	assign	local	request	other	gap		
+fetch	HTTP fetch	2	assign	local	response and internalResponse	response	composite	r quantified	
+fetch	HTTP fetch	3.1	assign	local	requestForServiceWorker	other	gap		
+fetch	HTTP fetch	3.2.1	assign	local	transformStream	other	gap		
+fetch	HTTP fetch	3.2.2	assign	unparsed	?	other	gap		
+fetch	HTTP fetch	3.2.3	assign	unparsed	?	other	gap		
+fetch	HTTP fetch	3.2.4	assign	field	stream	other	notread		
+fetch	HTTP fetch	3.3	assign	local	serviceWorkerStartTime	timing	notread		
+fetch	HTTP fetch	3.4	assign	local	fetchResponse	response	unmodeled	service worker (boundary)	h-sw
+fetch	HTTP fetch	3.5.1	assign	local	response	response	composite	r quantified	
+fetch	HTTP fetch	3.5.2	assign	field	final service worker start time	timing	notread		
+fetch	HTTP fetch	3.5.3	assign	field	service worker timing info	timing	notread		
+fetch	HTTP fetch	3.5.5	assign	local	internalResponse	response	composite	r quantified	
+fetch	HTTP fetch	3.6	branch	embedded-field	service worker timing info	timing	notread		
+fetch	HTTP fetch	4.1.1	assign	local	preflightResponse	other	gap		
+fetch	HTTP fetch	4.2	branch	embedded-field	service-workers mode	other	notread		
+fetch	HTTP fetch	4.3	assign	local	response and internalResponse	response	modeled	r	
+fetch	HTTP fetch	6.1	branch	embedded-collection	navigation timing allow values list given	timing	notread		
+fetch	HTTP fetch	6.3.1	assign	local	response	response	composite	r quantified	
+fetch	HTTP fetch	6.3.2	branch	embedded-field	next manual redirect steps	other	notread		
+fetch	HTTP fetch	6.3.3	branch	embedded-local	response	response	composite	r quantified	
+fetch	HTTP fetch	6.3.5	assign	local	response	response	composite	r quantified	
+fetch	HTTP-redirect fetch	1	assign	local	request	other	gap		
+fetch	HTTP-redirect fetch	2	assign	local	internalResponse	response	composite	r quantified	
+fetch	HTTP-redirect fetch	3	assign	local	locationURL	other	gap		
+fetch	HTTP-redirect fetch	12.1	assign	field	method	other	notread		
+fetch	HTTP-redirect fetch	14	branch	embedded-field	body	other	notread		
+fetch	HTTP-redirect fetch	15	assign	local	timingInfo	timing	notread		
+fetch	HTTP-redirect fetch	16	assign	field	redirect end time and post-redirect start	timing	notread		
+fetch	HTTP-redirect fetch	17	branch	embedded-field	redirect start time	timing	notread		
+fetch	HTTP-redirect fetch	18	assign	collection	URL list	origin	unmodeled	redirects	h-respurl
+fetch	HTTP-redirect fetch	20	assign	local	recursive	other	gap		
+fetch	HTTP-redirect fetch	21.2	assign	local	recursive	other	gap		
+fetch	HTTP-network-or-cache fetch	1	assign	local	request	other	gap		
+fetch	HTTP-network-or-cache fetch	2	assign	local	httpFetchParams	other	gap		
+fetch	HTTP-network-or-cache fetch	3	assign	local	httpRequest	other	gap		
+fetch	HTTP-network-or-cache fetch	4	assign	local	response	response	composite	r quantified	
+fetch	HTTP-network-or-cache fetch	5	assign	local	storedResponse	response	composite	r quantified	
+fetch	HTTP-network-or-cache fetch	6	assign	local	httpCache	other	gap		
+fetch	HTTP-network-or-cache fetch	7	assign	unparsed	?	other	gap		
+fetch	HTTP-network-or-cache fetch	8.1	branch	embedded-local	httpFetchParams	other	notread		
+fetch	HTTP-network-or-cache fetch	8.2.1	assign	local	httpRequest	other	gap		
+fetch	HTTP-network-or-cache fetch	8.2.2	assign	local	httpFetchParams	other	gap		
+fetch	HTTP-network-or-cache fetch	8.2.3	assign	field	request	other	notread		
+fetch	HTTP-network-or-cache fetch	8.3	assign	local	includeCredentials	creds	unmodeled	credentials mode	h-creds-mode
+fetch	HTTP-network-or-cache fetch	8.4	branch	embedded-local	includeCredentials	creds	modeled	coep-cl-strips	h-creds-cl
+fetch	HTTP-network-or-cache fetch	8.5	assign	local	contentLength	other	gap		
+fetch	HTTP-network-or-cache fetch	8.6	assign	local	contentLengthHeaderValue	other	gap		
+fetch	HTTP-network-or-cache fetch	8.7	branch	embedded-local	contentLengthHeaderValue	other	notread		
+fetch	HTTP-network-or-cache fetch	8.8	branch	embedded-local	contentLengthHeaderValue	other	notread		
+fetch	HTTP-network-or-cache fetch	8.9	branch	embedded-collection	header list	other	notread	request header	
+fetch	HTTP-network-or-cache fetch	8.10.1	assign	local	inflightKeepaliveBytes	other	gap		
+fetch	HTTP-network-or-cache fetch	8.10.2	assign	local	group	other	gap		
+fetch	HTTP-network-or-cache fetch	8.10.3	assign	local	inflightRecords	other	gap		
+fetch	HTTP-network-or-cache fetch	8.10.4.1	assign	local	inflightRequest	other	gap		
+fetch	HTTP-network-or-cache fetch	8.10.4.2	assign	collection	?	other	gap		
+fetch	HTTP-network-or-cache fetch	8.11.1	assign	local	referrerValue	other	gap		
+fetch	HTTP-network-or-cache fetch	8.11.2	assign	collection	header list	other	notread	request header	
+fetch	HTTP-network-or-cache fetch	8.12	assign	collection	?	other	gap		
+fetch	HTTP-network-or-cache fetch	8.13	assign	collection	?	other	gap		
+fetch	HTTP-network-or-cache fetch	8.15.1	assign	local	userAgent	other	gap		
+fetch	HTTP-network-or-cache fetch	8.15.2	assign	collection	header list	other	notread	request header	
+fetch	HTTP-network-or-cache fetch	8.16	branch	embedded-field	cache mode	other	notread		
+fetch	HTTP-network-or-cache fetch	8.18.1	branch	embedded-collection	header list	other	notread	request header	
+fetch	HTTP-network-or-cache fetch	8.18.2	branch	embedded-collection	header list	other	notread	request header	
+fetch	HTTP-network-or-cache fetch	8.19	branch	embedded-collection	header list	other	notread	request header	
+fetch	HTTP-network-or-cache fetch	8.21.1	assign	collection	?	other	gap		
+fetch	HTTP-network-or-cache fetch	8.21.2.1	assign	local	authorizationValue	other	gap		
+fetch	HTTP-network-or-cache fetch	8.21.2.2	branch	embedded-local	authorizationValue	other	notread		
+fetch	HTTP-network-or-cache fetch	8.21.2.4	branch	embedded-collection	header list	other	notread	request header	
+fetch	HTTP-network-or-cache fetch	8.24	assign	local	httpCache	other	gap		
+fetch	HTTP-network-or-cache fetch	8.25	branch	embedded-field	cache mode	other	notread		
+fetch	HTTP-network-or-cache fetch	8.26.1	assign	local	storedResponse	response	composite	r quantified	
+fetch	HTTP-network-or-cache fetch	8.26.2.1.1	assign	local	response	response	composite	r quantified	
+fetch	HTTP-network-or-cache fetch	8.26.2.1.2	assign	field	cache state	other	notread		
+fetch	HTTP-network-or-cache fetch	8.26.2.1.3	assign	local	revalidateRequest	other	gap		
+fetch	HTTP-network-or-cache fetch	8.26.2.1.4	assign	field	cache mode set	other	notread		
+fetch	HTTP-network-or-cache fetch	8.26.2.1.5	assign	unparsed	?	other	gap		
+fetch	HTTP-network-or-cache fetch	8.26.2.1.6	assign	field	service-workers mode set	other	notread		
+fetch	HTTP-network-or-cache fetch	8.26.2.2.2.1	branch	embedded-collection	header list	corp	input	r.corp quantified	
+fetch	HTTP-network-or-cache fetch	8.26.2.2.2.2	branch	embedded-collection	header list	corp	input	r.corp quantified	
+fetch	HTTP-network-or-cache fetch	8.26.2.2.3	branch	embedded-local	response	response	composite	r quantified	
+fetch	HTTP-network-or-cache fetch	11.2	assign	local	forwardResponse	response	composite	r quantified	
+fetch	HTTP-network-or-cache fetch	11.4.1	assign	collection	?	other	gap		
+fetch	HTTP-network-or-cache fetch	11.4.2	assign	local	response	response	composite	r quantified	
+fetch	HTTP-network-or-cache fetch	11.4.3	assign	field	cache state	other	notread		
+fetch	HTTP-network-or-cache fetch	11.5.1	assign	local	response	response	composite	r quantified	
+fetch	HTTP-network-or-cache fetch	11.5.2	assign	collection	httpCache	other	gap		
+fetch	HTTP-network-or-cache fetch	12	assign	field	URL list	origin	unmodeled	redirects	h-respurl
+fetch	HTTP-network-or-cache fetch	14	assign	field	request-includes-credentials	creds	modeled	r.creds	
+fetch	HTTP-network-or-cache fetch	15.2.2	assign	field	body	other	notread		
+fetch	HTTP-network-or-cache fetch	15.3.2	assign	local	username and password	other	gap		
+fetch	HTTP-network-or-cache fetch	15.3.3	assign	unparsed	?	other	gap		
+fetch	HTTP-network-or-cache fetch	15.3.4	assign	unparsed	?	other	gap		
+fetch	HTTP-network-or-cache fetch	15.4	assign	local	response	response	composite	r quantified	
+fetch	HTTP-network-or-cache fetch	16.5	assign	local	response	response	composite	r quantified	
+fetch	HTTP-network-or-cache fetch	17.2	assign	local	response	response	composite	r quantified	
+fetch	HTTP-network fetch	1	assign	local	request	other	gap		
+fetch	HTTP-network fetch	3	assign	local	response	response	composite	r quantified	
+fetch	HTTP-network fetch	4	assign	local	timingInfo	timing	notread		
+fetch	HTTP-network fetch	5	assign	local	networkPartitionKey	other	gap		
+fetch	HTTP-network fetch	6	assign	local	newConnection	other	gap		
+fetch	HTTP-network fetch	8.2	assign	field	final connection timing info	timing	notread		
+fetch	HTTP-network fetch	8.4	assign	field	final network-request start time	timing	notread		
+fetch	HTTP-network fetch	8.5	assign	local	response	response	composite	r quantified	
+fetch	HTTP-network fetch	8.5.1	assign	field	final network-response start time	timing	notread		
+fetch	HTTP-network fetch	8.5.4	assign	local	status	other	gap		
+fetch	HTTP-network fetch	8.5.5.1	branch	embedded-field	first interim network-response start time	timing	notread		
+fetch	HTTP-network fetch	8.5.10.1	assign	unparsed	?	other	gap		
+fetch	HTTP-network fetch	8.5.10.2	assign	local	processEndOfBody	other	gap		
+fetch	HTTP-network fetch	8.5.10.3	assign	unparsed	?	other	gap		
+fetch	HTTP-network fetch	10	assign	local	buffer	other	gap		
+fetch	HTTP-network fetch	11	assign	local	stream	other	gap		
+fetch	HTTP-network fetch	12	assign	local	pullAlgorithm	other	gap		
+fetch	HTTP-network fetch	12.1	assign	local	promise	other	gap		
+fetch	HTTP-network fetch	13	assign	local	cancelAlgorithm	other	gap		
+fetch	HTTP-network fetch	14	assign	unparsed	?	other	gap		
+fetch	HTTP-network fetch	15	assign	field	body	other	notread		
+fetch	HTTP-network fetch	18.1.1.1.1	assign	local	bytes	other	gap		
+fetch	HTTP-network fetch	18.1.1.1.2	assign	local	codings	other	gap		
+fetch	HTTP-network fetch	18.1.1.1.3	assign	local	filteredCoding	other	gap		
+fetch	HTTP-network fetch	18.1.1.1.4	branch	embedded-local	filteredCoding	other	notread		
+fetch	HTTP-network fetch	18.1.1.1.5	branch	embedded-local	filteredCoding	other	notread		
+fetch	HTTP-network fetch	18.1.1.1.6	branch	embedded-local	filteredCoding	other	notread		
+fetch	HTTP-network fetch	18.1.1.1.7	assign	field	content encoding	other	notread		
+fetch	HTTP-network fetch	18.1.1.1.9	assign	local	bytes	other	gap		
+fetch	HTTP-network fetch	18.1.1.1.12	assign	collection	buffer	other	gap		
+fetch	HTTP-network fetch	18.2.1.1	assign	unparsed	?	other	gap		
+fetch	CORS-preflight fetch	1	assign	local	preflight	other	gap		
+fetch	CORS-preflight fetch	2	assign	collection	header list	other	notread	request header	
+fetch	CORS-preflight fetch	3	assign	collection	header list	other	notread	request header	
+fetch	CORS-preflight fetch	4	assign	local	headers	other	gap		
+fetch	CORS-preflight fetch	5.1	assign	local	value	other	gap		
+fetch	CORS-preflight fetch	5.2	assign	collection	header list	other	notread	request header	
+fetch	CORS-preflight fetch	6	assign	local	response	response	composite	r quantified	
+fetch	CORS-preflight fetch	7.1	assign	local	methods	other	gap		
+fetch	CORS-preflight fetch	7.2	assign	local	headerNames	other	gap		
+fetch	CORS-preflight fetch	7.4	branch	embedded-local	methods	other	notread		
+fetch	CORS-preflight fetch	7.8	assign	local	max-age	other	gap		
+fetch	CORS-preflight fetch	7.9	branch	embedded-local	max-age	other	notread		
+fetch	CORS-preflight fetch	7.10	branch	embedded-local	max-age	other	notread		
+fetch	create a new cache entry	1	assign	local	entry	other	gap		
+fetch	create a new cache entry	2	assign	collection	CORS-preflight cache	other	gap		
+fetch	CORS check	1	assign	local	origin	other	notread	origin not read by model	
+fetch	CORS check	6	assign	local	credentials	other	notread	CORS credentials	
+fetch	TAO check	3	assign	local	values	other	gap		
+fetch	append to a request's navigation timing allow values list	2	assign	local	taoValues	other	gap		
+fetch	append to a request's navigation timing allow values list	3	branch	embedded-local	taoValues	other	notread		
+fetch	append to a request's navigation timing allow values list	4	assign	collection	navigation timing allow values list	timing	notread		
+fetch	total request length	1	assign	local	totalRequestLength	other	gap		
+fetch	total request length	2	assign	collection	?	other	gap		
+fetch	total request length	4	assign	collection	?	other	gap		
+fetch	available deferred-fetch quota	1	assign	local	controlDocument	other	gap		
+fetch	available deferred-fetch quota	2	assign	local	navigable	other	gap		
+fetch	available deferred-fetch quota	3	assign	local	isTopLevel	other	gap		
+fetch	available deferred-fetch quota	4	assign	local	deferredFetchAllowed	other	gap		
+fetch	available deferred-fetch quota	5	assign	local	deferredFetchMinimalAllowed	other	gap		
+fetch	available deferred-fetch quota	6	assign	local	quota	other	gap		
+fetch	available deferred-fetch quota	7	assign	local	quotaForRequestOrigin	other	notread	origin not read by model	
+fetch	available deferred-fetch quota	8.2.2	assign	local	requestLength	other	gap		
+fetch	available deferred-fetch quota	8.2.3	assign	collection	?	other	gap		
+fetch	reserve deferred-fetch quota	1	assign	field	reserved deferred-fetch quota	other	notread		
+fetch	reserve deferred-fetch quota	2	assign	local	controlDocument	other	gap		
+fetch	data: URL processor	2	assign	local	input	other	gap		
+fetch	data: URL processor	3	assign	unparsed	?	other	gap		
+fetch	data: URL processor	4	assign	local	mimeType	other	gap		
+fetch	data: URL processor	8	assign	local	encodedBody	other	gap		
+fetch	data: URL processor	9	assign	local	body	other	gap		
+fetch	data: URL processor	10.1	assign	local	stringBody	other	gap		
+fetch	data: URL processor	10.2	assign	local	body	other	gap		
+fetch	data: URL processor	10.4	assign	collection	mimeType	other	gap		
+fetch	data: URL processor	10.5	assign	collection	mimeType	other	gap		
+fetch	data: URL processor	10.6	assign	collection	mimeType	other	gap		
+fetch	data: URL processor	11	branch	embedded-collection	mimeType	other	notread		
+fetch	data: URL processor	12	assign	local	mimeTypeRecord	other	gap		
+fetch	data: URL processor	13	branch	embedded-local	mimeTypeRecord	other	notread		
+html	start a new parallel queue	1	assign	local	parallelQueue	other	gap		
+html	start a new parallel queue	2.1.1	assign	local	steps	other	gap		
+html	rules for parsing integers	1	assign	local	input	other	gap		
+html	rules for parsing integers	2	assign	local	position	other	gap		
+html	rules for parsing integers	3	assign	unparsed	?	other	gap		
+html	rules for parsing integers	6.1	assign	local	sign	other	gap		
+html	rules for parsing non-negative integers	1	assign	local	input	other	gap		
+html	rules for parsing non-negative integers	2	assign	local	value	other	gap		
+html	rules for parsing floating-point number values	1	assign	local	input	other	gap		
+html	rules for parsing floating-point number values	2	assign	local	position	other	gap		
+html	rules for parsing floating-point number values	3	assign	unparsed	?	other	gap		
+html	rules for parsing floating-point number values	4	assign	unparsed	?	other	gap		
+html	rules for parsing floating-point number values	5	assign	unparsed	?	other	gap		
+html	rules for parsing floating-point number values	9	branch	embedded-local	value	other	notread		
+html	rules for parsing floating-point number values	13.5	assign	collection	value	other	gap		
+html	rules for parsing floating-point number values	16	assign	local	rounded-value	other	gap		
+html	parse a URL	1	assign	local	baseURL	other	gap		
+html	encoding-parse a URL	1	assign	local	encoding	other	gap		
+html	encoding-parse a URL	2	branch	embedded-local	encoding	other	notread		
+html	encoding-parse a URL	4	assign	local	baseURL	other	gap		
+html	encoding-parse-and-serialize a URL	1	assign	local	url	other	gap		
+html	set the URL	1	assign	field	URL	other	notread		
+html	respond to base URL changes	3.1.1	assign	local	oldResult	other	gap		
+html	respond to base URL changes	3.1.2	assign	local	newResult	other	gap		
+html	respond to base URL changes	3.1.3	assign	collection	?	other	gap		
+html	match integrity metadata	1	assign	local	parsedConsumerIntegrityMetadata	other	gap		
+html	match integrity metadata	2	assign	local	parsedExistingIntegrityMetadata	other	gap		
+html	stop intersection-observing a lazy loading element	1	assign	local	doc	other	gap		
+html	blocking tokens set	1	assign	local	value	other	gap		
+html	blocking tokens set	2	assign	local	value	other	gap		
+html	blocking tokens set	3	assign	local	rawTokens	other	gap		
+html	StructuredSerializeInternal	3	assign	local	deep	other	gap		
+html	StructuredSerializeInternal	4	assign	local	sameAgentCluster	other	gap		
+html	StructuredSerializeInternal	7	assign	local	serialized	other	gap		
+html	StructuredSerializeInternal	8	branch	embedded-local	serialized	other	notread		
+html	StructuredSerializeInternal	9	branch	embedded-local	serialized	other	notread		
+html	StructuredSerializeInternal	10	branch	embedded-local	serialized	other	notread		
+html	StructuredSerializeInternal	11	branch	embedded-local	serialized	other	notread		
+html	StructuredSerializeInternal	12	branch	embedded-local	serialized	other	notread		
+html	StructuredSerializeInternal	13	branch	embedded-local	serialized	other	notread		
+html	StructuredSerializeInternal	14.1.2	branch	embedded-local	serialized	other	notread		
+html	StructuredSerializeInternal	14.1.3	branch	embedded-local	serialized	other	notread		
+html	StructuredSerializeInternal	14.1.4	assign	local	sameAgentCluster	other	gap		
+html	StructuredSerializeInternal	14.2.2	assign	local	size	other	gap		
+html	StructuredSerializeInternal	14.2.3	assign	local	dataCopy	other	gap		
+html	StructuredSerializeInternal	14.2.5	branch	embedded-local	serialized	other	notread		
+html	StructuredSerializeInternal	14.2.6	branch	embedded-local	serialized	other	notread		
+html	StructuredSerializeInternal	15.2	assign	local	buffer	other	gap		
+html	StructuredSerializeInternal	15.3	assign	local	bufferSerialized	other	gap		
+html	StructuredSerializeInternal	15.5	branch	embedded-local	serialized	other	notread		
+html	StructuredSerializeInternal	15.6.2	assign	local	serialized	other	gap		
+html	StructuredSerializeInternal	16.1	assign	local	serialized	other	gap		
+html	StructuredSerializeInternal	16.2	assign	local	deep	other	gap		
+html	StructuredSerializeInternal	17.1	assign	local	serialized	other	gap		
+html	StructuredSerializeInternal	17.2	assign	local	deep	other	gap		
+html	StructuredSerializeInternal	18.1	assign	local	name	other	gap		
+html	StructuredSerializeInternal	18.2	branch	embedded-local	name	other	notread		
+html	StructuredSerializeInternal	18.3	assign	local	valueMessageDesc	other	gap		
+html	StructuredSerializeInternal	18.4	assign	local	message	other	gap		
+html	StructuredSerializeInternal	18.5	assign	local	stack	other	gap		
+html	StructuredSerializeInternal	18.6	assign	local	serialized	other	gap		
+html	StructuredSerializeInternal	19.1	assign	local	valueLenDescriptor	other	gap		
+html	StructuredSerializeInternal	19.2	assign	local	valueLen	other	gap		
+html	StructuredSerializeInternal	19.3	assign	local	serialized	other	gap		
+html	StructuredSerializeInternal	19.4	assign	local	deep	other	gap		
+html	StructuredSerializeInternal	20.2	assign	local	typeString	other	gap		
+html	StructuredSerializeInternal	20.3	assign	local	serialized	other	gap		
+html	StructuredSerializeInternal	20.4	branch	embedded-local	sameAgentCluster	other	notread		
+html	StructuredSerializeInternal	20.5	assign	local	deep	other	gap		
+html	StructuredSerializeInternal	25.1	assign	local	serialized	other	gap		
+html	StructuredSerializeInternal	25.2	assign	local	deep	other	gap		
+html	StructuredSerializeInternal	27	assign	field	memoryvalue	other	notread		
+html	StructuredSerializeInternal	28.1.1	assign	local	copiedList	other	gap		
+html	StructuredSerializeInternal	28.1.2.1	assign	local	copiedEntry	other	gap		
+html	StructuredSerializeInternal	28.1.3.1	assign	local	serializedKey	other	gap		
+html	StructuredSerializeInternal	28.1.3.2	assign	local	serializedValue	other	gap		
+html	StructuredSerializeInternal	28.1.3.3	assign	collection	serialized	other	gap		
+html	StructuredSerializeInternal	28.2.1	assign	local	copiedList	other	gap		
+html	StructuredSerializeInternal	28.2.3.1	assign	local	serializedEntry	other	gap		
+html	StructuredSerializeInternal	28.2.3.2	assign	collection	serialized	other	gap		
+html	StructuredSerializeInternal	28.4.1.1	assign	local	inputValue	other	gap		
+html	StructuredSerializeInternal	28.4.1.2	assign	local	outputValue	other	gap		
+html	StructuredSerializeInternal	28.4.1.3	assign	collection	serialized	other	gap		
+html	StructuredDeserialize	5	assign	local	deep	other	gap		
+html	StructuredDeserialize	6	assign	local	value	other	gap		
+html	StructuredDeserialize	7	branch	embedded-local	value	other	notread		
+html	StructuredDeserialize	8	branch	embedded-local	value	other	notread		
+html	StructuredDeserialize	9	branch	embedded-local	value	other	notread		
+html	StructuredDeserialize	10	branch	embedded-local	value	other	notread		
+html	StructuredDeserialize	11	branch	embedded-local	value	other	notread		
+html	StructuredDeserialize	12	branch	embedded-local	value	other	notread		
+html	StructuredDeserialize	13	branch	embedded-local	value	other	notread		
+html	StructuredDeserialize	14	branch	embedded-local	value	other	notread		
+html	StructuredDeserialize	15	branch	embedded-local	value	other	notread		
+html	StructuredDeserialize	16	branch	embedded-local	value	other	notread		
+html	StructuredDeserialize	17.1	assign	local	deserializedArrayBuffer	other	gap		
+html	StructuredDeserialize	17.2	branch	embedded-local	value	other	notread		
+html	StructuredDeserialize	17.3	branch	embedded-local	value	other	notread		
+html	StructuredDeserialize	18.1	assign	local	value	other	gap		
+html	StructuredDeserialize	18.2	assign	local	deep	other	gap		
+html	StructuredDeserialize	19.1	assign	local	value	other	gap		
+html	StructuredDeserialize	19.2	assign	local	deep	other	gap		
+html	StructuredDeserialize	20.1	assign	local	outputProto	other	gap		
+html	StructuredDeserialize	20.2	assign	local	value	other	gap		
+html	StructuredDeserialize	20.3	assign	local	deep	other	gap		
+html	StructuredDeserialize	21.1	assign	local	value	other	gap		
+html	StructuredDeserialize	21.2	assign	local	deep	other	gap		
+html	StructuredDeserialize	22.1	assign	local	prototype	other	gap		
+html	StructuredDeserialize	22.2	branch	embedded-local	prototype	other	notread		
+html	StructuredDeserialize	22.3	branch	embedded-local	prototype	other	notread		
+html	StructuredDeserialize	22.4	branch	embedded-local	prototype	other	notread		
+html	StructuredDeserialize	22.5	branch	embedded-local	prototype	other	notread		
+html	StructuredDeserialize	22.6	branch	embedded-local	prototype	other	notread		
+html	StructuredDeserialize	22.7	branch	embedded-local	prototype	other	notread		
+html	StructuredDeserialize	22.8	assign	local	message	other	gap		
+html	StructuredDeserialize	22.9	assign	local	value	other	gap		
+html	StructuredDeserialize	22.10	assign	local	messageDesc	other	gap		
+html	StructuredDeserialize	22.12	assign	field	value.Stack	other	notread		
+html	StructuredDeserialize	23.1	assign	local	interfaceName	other	gap		
+html	StructuredDeserialize	23.3	assign	local	value	other	gap		
+html	StructuredDeserialize	23.4	assign	local	deep	other	gap		
+html	StructuredDeserialize	24	assign	field	memoryserialized	other	notread		
+html	StructuredDeserialize	25.1.1.1	assign	local	deserializedKey	other	gap		
+html	StructuredDeserialize	25.1.1.2	assign	local	deserializedValue	other	gap		
+html	StructuredDeserialize	25.1.1.3	assign	collection	value	other	gap		
+html	StructuredDeserialize	25.2.1.1	assign	local	deserializedEntry	other	gap		
+html	StructuredDeserialize	25.2.1.2	assign	collection	value	other	gap		
+html	StructuredDeserialize	25.3.1.1	assign	local	deserializedValue	other	gap		
+html	StructuredDeserialize	25.3.1.2	assign	local	result	other	gap		
+html	internal ancestor origin objects list	1	assign	local	output	other	gap		
+html	internal ancestor origin objects list	2	assign	local	parentDoc	other	gap		
+html	internal ancestor origin objects list	5	assign	local	ancestorOrigins	other	notread	origin not read by model	
+html	internal ancestor origin objects list	7	assign	local	masked	other	gap		
+html	internal ancestor origin objects list	8	branch	embedded-local	masked	other	notread		
+html	internal ancestor origin objects list	9	branch	embedded-local	masked	other	notread		
+html	internal ancestor origin objects list	10	branch	embedded-collection	output	other	notread		
+html	internal ancestor origin objects list	12.1	branch	embedded-collection	output and continue	other	notread		
+html	internal ancestor origin objects list	12.2	assign	collection	output and set masked to false	other	gap		
+html	ancestor origins list	1	assign	local	ancestorOrigins	other	notread	origin not read by model	
+html	ancestor origins list	3	assign	local	output	other	gap		
+html	ancestor origins list	4.1	assign	collection	output	other	gap		
+html	update the current document readiness	2	assign	field	current document readiness	other	notread		
+html	update the current document readiness	3.1	assign	local	now	other	gap		
+html	update the current document readiness	3.2	branch	embedded-field	DOM complete time	timing	notread		
+html	update the current document readiness	3.3	branch	embedded-field	DOM interactive time	timing	notread		
+html	block rendering	1	assign	local	document	other	gap		
+html	block rendering	2	branch	embedded-collection	render-blocking element set	other	notread		
+html	unblock rendering	1	assign	local	document	other	gap		
+html	unblock rendering	2	assign	collection	render-blocking element set	other	gap		
+html	extract links from headers	1	assign	local	links	other	gap		
+html	extract links from headers	2	assign	local	rawLinkHeaders	other	gap		
+html	extract links from headers	3.1	assign	local	linkObject	other	gap		
+html	extract links from headers	3.3	assign	collection	links	other	gap		
+html	process link headers	1	assign	local	links	other	gap		
+html	process link headers	2.1	assign	local	rel	other	gap		
+html	process link headers	2.2	assign	local	attribs	other	gap		
+html	process link headers	2.3	assign	local	expectedPhase	other	gap		
+html	process link headers	2.6	assign	local	options	other	gap		
+html	process link headers	2.8	branch	embedded-field	source set	other	notread		
+html	apply link options from parsed header attributes	1.2	assign	local	destination	other	gap		
+html	apply link options from parsed header attributes	1.4	assign	field	destination	other	notread		
+html	apply link options from parsed header attributes	2	branch	embedded-field	crossorigin	other	notread	origin not read by model	
+html	apply link options from parsed header attributes	3	branch	embedded-field	integrity	other	notread		
+html	apply link options from parsed header attributes	4	branch	embedded-field	referrer policy	other	notread		
+html	apply link options from parsed header attributes	5	branch	embedded-field	nonce	other	notread		
+html	apply link options from parsed header attributes	6	branch	embedded-field	type	other	notread		
+html	apply link options from parsed header attributes	7	branch	embedded-field	fetch priority	other	notread		
+html	process early hint headers	1	assign	local	earlyPolicyContainer	coep	notread	early hints preload	
+html	process early hint headers	2	assign	local	links	other	gap		
+html	process early hint headers	3	assign	local	earlyHints	other	gap		
+html	process early hint headers	4.1	assign	local	rel	other	gap		
+html	process early hint headers	4.2	assign	local	options	other	gap		
+html	process early hint headers	4.3	assign	local	attribs	other	gap		
+html	process early hint headers	4.6	assign	collection	earlyHints	other	gap		
+html	process early hint headers	5.1	branch	embedded-field	document	other	notread		
+html	has a style sheet that is blocking scripts	3	assign	local	containerDocument	other	gap		
+html	download the hyperlink	3	assign	local	urlString	other	gap		
+html	download the hyperlink	5	branch	embedded-collection	urlString	other	notread		
+html	download the hyperlink	6.2	assign	local	navigation	other	gap		
+html	download the hyperlink	6.3	assign	local	filename	other	gap		
+html	download the hyperlink	6.4	assign	local	continue	other	gap		
+html	download the hyperlink	8	assign	local	request	other	gap		
+html	handle as a download	1	assign	local	suggestedFilename	other	gap		
+html	handle as a download	2	assign	unparsed	?	other	gap		
+html	get the suggested filename	1	assign	local	filename	other	gap		
+html	get the suggested filename	3	assign	unparsed	?	other	gap		
+html	get the suggested filename	4	assign	unparsed	?	other	gap		
+html	get the suggested filename	8	assign	unparsed	?	other	gap		
+html	get the suggested filename	12	assign	local	filename	other	gap		
+html	get the suggested filename	16	assign	unparsed	?	other	gap		
+html	process internal resource link	1	assign	local	doc	other	gap		
+html	process internal resource link	2	assign	local	url	other	gap		
+html	process internal resource link	4	assign	local	indicatedElement	other	gap		
+html	consume a preloaded resource	1	assign	local	key	other	notread	other key	
+html	consume a preloaded resource	2	assign	local	preloads	other	gap		
+html	consume a preloaded resource	4	assign	local	entry	other	gap		
+html	consume a preloaded resource	6	assign	collection	?	other	gap		
+html	consume a preloaded resource	7	branch	embedded-field	on response available	other	notread		
+html	create a source set	1	assign	unparsed	?	other	gap		
+html	create a source set	2	branch	embedded-local	source set	other	notread		
+html	create a source set	3	assign	field	source size	other	notread		
+html	parse a srcset attribute	1	assign	local	input	other	gap		
+html	parse a srcset attribute	2	assign	local	position	other	gap		
+html	parse a srcset attribute	3	assign	local	candidates	other	gap		
+html	parse a srcset attribute	7	assign	local	descriptors	other	gap		
+html	parse a srcset attribute	8.1	assign	collection	url	other	gap		
+html	parse a srcset attribute	8.3	assign	unparsed	?	other	gap		
+html	parse a srcset attribute	8.4	assign	local	state	other	gap		
+html	parse a srcset attribute	8.5	assign	local	c	other	gap		
+html	parse a srcset attribute	10	assign	local	width	other	gap		
+html	parse a srcset attribute	11	assign	local	density	other	gap		
+html	parse a srcset attribute	12	assign	local	future-compat-h	other	gap		
+html	parse a srcset attribute	15	branch	embedded-collection	candidates whose URL is url	other	notread		
+html	parse a sizes attribute	1	assign	unparsed	?	other	gap		
+html	parse a sizes attribute	2	assign	local	size	other	gap		
+html	parse a sizes attribute	3.1	assign	collection	the end of unparsed size	other	gap		
+html	parse a sizes attribute	3.2	branch	embedded-local	size	other	notread		
+html	parse a sizes attribute	3.3.1	branch	embedded-local	size	other	notread		
+html	parse a sizes attribute	3.3.2	branch	embedded-local	size	other	notread		
+html	parse a sizes attribute	3.4	assign	collection	the end of unparsed size	other	gap		
+html	normalize the source densities	1	assign	unparsed	?	other	gap		
+html	iframe load event steps	2	assign	local	childDocument	other	gap		
+html	iframe load event steps	4.2	assign	local	global	other	gap		
+html	iframe load event steps	4.3	assign	local	fallbackTimingInfo	timing	notread		
+html	iframe load event steps	4.5	assign	field	pending resource-timing start time	timing	notread		
+html	iframe load event steps	4.6	assign	field	pending resource-timing URL	timing	notread		
+html	iframe load event steps	5	assign	unparsed	?	other	gap		
+html	iframe load event steps	7	assign	collection	progress flag	other	gap		
+html	execute the script element	1	assign	local	document	other	gap		
+html	execute the script element	6.1	assign	local	oldCurrentScript	other	gap		
+html	execute the script element	6.2	branch	embedded-field	currentScript attribute	other	notread		
+html	execute the script element	6.4	assign	field	currentScript attribute	other	notread		
+html	execute the script element	7	assign	collection	the earlier step	other	gap		
+html	ancestor revealing algorithm	1	assign	local	ancestorsToReveal	other	gap		
+html	ancestor revealing algorithm	2	assign	local	ancestor	other	gap		
+html	ancestor revealing algorithm	3.1	branch	embedded-collection	ancestorsToReveal	other	notread		
+html	ancestor revealing algorithm	3.2	branch	embedded-collection	ancestorsToReveal	other	notread		
+html	ancestor revealing algorithm	3.3	assign	local	ancestor	other	gap		
+html	ancestor revealing algorithm	4.2.5	assign	collection	ancestorToReveal	other	gap		
+html	ancestor revealing algorithm	4.3.3	assign	field	open attribute	other	notread		
+html	update the visibility state	2	assign	field	visibility state	other	notread		
+html	set the initial visibility state	1	assign	field	visibility state	other	notread		
+html	consume history-action user activation	2	assign	local	top	other	gap		
+html	consume history-action user activation	3	assign	local	navigables	other	gap		
+html	consume history-action user activation	4	assign	local	windows	other	gap		
+html	currently focused area of a top-level traversable	2	assign	local	candidate	other	gap		
+html	focus chain	1	assign	local	output	other	gap		
+html	focus chain	2	assign	local	currentObject	other	gap		
+html	focus chain	3.1	assign	collection	output	other	gap		
+html	focus chain	3.2	branch	embedded-collection	output	other	notread		
+html	focus chain	3.3	branch	embedded-local	currentObject	other	notread		
+html	get the focusable area	1	assign	local	focusedElement	other	gap		
+html	focus delegate	2	assign	local	whereToLook	other	gap		
+html	focus delegate	3	branch	embedded-local	whereToLook	other	notread		
+html	focus delegate	4	assign	local	autofocusDelegate	other	gap		
+html	focus delegate	6.1	assign	local	focusableArea	other	gap		
+html	focus delegate	6.2	branch	embedded-local	focusableArea	other	notread		
+html	focus delegate	6.4	branch	embedded-local	focusableArea	other	notread		
+html	autofocus delegate	1.2	assign	unparsed	?	other	gap		
+html	focusing steps	1	branch	embedded-local	new focus target	other	notread		
+html	focusing steps	2.2	branch	embedded-local	new focus target	other	notread		
+html	focusing steps	3	branch	embedded-local	new focus target	other	notread		
+html	focusing steps	6	assign	unparsed	?	other	gap		
+html	focusing steps	7	assign	unparsed	?	other	gap		
+html	focus update steps	2.1.1	assign	field	user validity	other	notread		
+html	focus update steps	4.1.1	assign	field	focus changed during ongoing navigation	other	notread		
+html	fire a focus event	1	assign	local	view	other	gap		
+html	serialization of an origin	3	assign	collection	result	other	gap		
+html	serialization of an origin	4	assign	collection	result	other	gap		
+html	same origin	1	branch	embedded-return	result	origin	modeled	SameOrigin/SameSite	
+html	same origin	2	branch	embedded-return	result	origin	modeled	SameOrigin/SameSite	
+html	same origin	3	return	return	result	origin	modeled	SameOrigin/SameSite	
+html	obtain a site	1	branch	embedded-return	result	origin	modeled	SameOrigin/SameSite	
+html	obtain a site	2	branch	embedded-return	result	origin	modeled	SameOrigin/SameSite	
+html	obtain a site	3	return	return	result	origin	modeled	SameOrigin/SameSite	
+html	same site	1	branch	embedded-return	result	origin	modeled	SameOrigin/SameSite	
+html	same site	2	branch	embedded-return	result	origin	modeled	SameOrigin/SameSite	
+html	same site	3	branch	embedded-return	result	origin	modeled	SameOrigin/SameSite	
+html	same site	4	branch	embedded-return	result	origin	modeled	SameOrigin/SameSite	
+html	same site	5	return	return	result	origin	modeled	SameOrigin/SameSite	
+html	schemelessly same site	1	branch	embedded-return	result	origin	modeled	SameOrigin/SameSite	
+html	schemelessly same site	2.1	assign	local	hostA	other	gap		
+html	schemelessly same site	2.2	branch	embedded-return	result	origin	modeled	SameOrigin/SameSite	
+html	schemelessly same site	2.3	branch	embedded-return	result	origin	modeled	SameOrigin/SameSite	
+html	schemelessly same site	3	return	return	result	origin	modeled	SameOrigin/SameSite	
+html	same site	1	assign	local	siteA	other	gap		
+html	same site	2	assign	local	siteB	other	gap		
+html	same site	3	branch	embedded-return	result	origin	modeled	SameOrigin/SameSite	
+html	same site	4	return	return	result	origin	modeled	SameOrigin/SameSite	
+html	domain	1	assign	local	effectiveDomain	other	gap		
+html	match opener policy values	1	branch	embedded-return	result	bcgswitch	nocone	MatchCOOP/PopupSevered	h-popup
+html	match opener policy values	2	branch	embedded-return	result	bcgswitch	nocone	MatchCOOP/PopupSevered	h-popup
+html	match opener policy values	3	branch	embedded-return	result	bcgswitch	nocone	MatchCOOP/PopupSevered	h-popup
+html	match opener policy values	4	return	return	result	bcgswitch	nocone	MatchCOOP/PopupSevered	h-popup
+html	obtain an opener policy	1	assign	local	policy	coop	modeled	ParsedCOOP default	
+html	obtain an opener policy	2	branch	embedded-return	result	coop	modeled	coi-insecure	
+html	obtain an opener policy	3	assign	local	parsedItem	other	gap		
+html	obtain an opener policy	4.1.1	assign	local	coep	coep	modeled	coi-coep-compat	
+html	obtain an opener policy	4.1.2	branch	embedded-field	value	coop	modeled	coi-coop-so/coi-coep-compat	
+html	obtain an opener policy	4.1.3	branch	embedded-field	value	coop	modeled	ParsedCOOP	
+html	obtain an opener policy	4.2	branch	embedded-field	value	coop	modeled	ParsedCOOP	
+html	obtain an opener policy	4.3	branch	embedded-field	value	coop	unmodeled	noopener-allow-popups	h-coop
+html	obtain an opener policy	4.4	branch	embedded-field	reporting endpoint	report	notread		
+html	obtain an opener policy	5	assign	local	parsedItem	other	gap		
+html	obtain an opener policy	6.1.1	assign	local	coep	report	notread	report-only	
+html	obtain an opener policy	6.1.2	branch	embedded-field	report-only value	report	notread		
+html	obtain an opener policy	6.1.3	branch	embedded-field	report-only value	report	notread		
+html	obtain an opener policy	6.2	branch	embedded-field	report-only value	report	notread		
+html	obtain an opener policy	6.3	branch	embedded-field	report-only reporting endpoint	report	notread		
+html	obtain an opener policy	7	return	return	result	coop	modeled	ParsedCOOP	
+html	check if popup COOP values require a browsing context group switch	1	branch	embedded-return	result	bcgswitch	nocone	MatchCOOP/PopupSevered	h-popup
+html	check if popup COOP values require a browsing context group switch	2	branch	embedded-return	result	bcgswitch	nocone	MatchCOOP/PopupSevered	h-popup
+html	check if popup COOP values require a browsing context group switch	3	branch	embedded-return	result	bcgswitch	nocone	MatchCOOP/PopupSevered	h-popup
+html	check if popup COOP values require a browsing context group switch	4	return	return	result	bcgswitch	nocone	MatchCOOP/PopupSevered	h-popup
+html	check if COOP values require a browsing context group switch	1	branch	embedded-return	result	bcgswitch	nocone	MatchCOOP/PopupSevered	h-popup
+html	check if COOP values require a browsing context group switch	2	branch	embedded-return	result	bcgswitch	nocone	MatchCOOP/PopupSevered	h-popup
+html	check if COOP values require a browsing context group switch	3	return	return	result	bcgswitch	nocone	MatchCOOP/PopupSevered	h-popup
+html	enforce a response's opener policy	1	assign	local	newCOOPEnforcementResult	bcgswitch	nocone	MatchCOOP/PopupSevered	h-popup
+html	enforce a response's opener policy	2	assign	local	isInitialAboutBlank	other	gap		
+html	enforce a response's opener policy	4.1	assign	field	needs a browsing context group switch	bcgswitch	nocone	MatchCOOP/PopupSevered	h-popup
+html	enforce a response's opener policy	5.1	assign	field	would need a browsing context group	bcgswitch	nocone	MatchCOOP/PopupSevered	h-popup
+html	enforce a response's opener policy	6	return	return	result	bcgswitch	nocone	MatchCOOP/PopupSevered	h-popup
+html	obtain a browsing context to use for a navigation response	1	assign	local	browsingContext	other	gap		
+html	obtain a browsing context to use for a navigation response	2	branch	embedded-return	result	coimode	unmodeled	non-top-level keeps group	h-coimode
+html	obtain a browsing context to use for a navigation response	3	assign	local	coopEnforcementResult	bcgswitch	nocone	MatchCOOP/PopupSevered	h-popup
+html	obtain a browsing context to use for a navigation response	4	assign	local	swapGroup	bcgswitch	nocone	MatchCOOP/PopupSevered	h-popup
+html	obtain a browsing context to use for a navigation response	5	assign	local	sourceOrigin	origin	input	document origin o quantified	
+html	obtain a browsing context to use for a navigation response	6	assign	local	destinationOrigin	origin	input	document origin o quantified	
+html	obtain a browsing context to use for a navigation response	9.2	return	return	result	coimode	unmodeled	no swap keeps group	h-coimode
+html	obtain a browsing context to use for a navigation response	10	assign	local	newBrowsingContext	coimode	unmodeled	new group	h-coimode
+html	obtain a browsing context to use for a navigation response	11	assign	local	navigationCOOP	bcgswitch	nocone	MatchCOOP/PopupSevered	h-popup
+html	obtain a browsing context to use for a navigation response	12	branch	embedded-field	cross-origin isolation mode	coimode	modeled	coi-mode / COIChoice	h-coimode
+html	obtain a browsing context to use for a navigation response	13	assign	local	sandboxFlags	sandbox	notread		
+html	obtain a browsing context to use for a navigation response	14.3	assign	field	popup sandboxing flag set	sandbox	notread		
+html	obtain a browsing context to use for a navigation response	15	return	return	result	coimode	modeled	COIMode	
+html	sanitize a URL to send in a report	1	assign	local	sanitizedURL	other	gap		
+html	sanitize a URL to send in a report	2	assign	unparsed	?	other	gap		
+html	sanitize a URL to send in a report	3	assign	unparsed	?	other	gap		
+html	queue a violation report for browsing context group switch when navigating to a COOP response	2	assign	local	coopValue	other	gap		
+html	queue a violation report for browsing context group switch when navigating to a COOP response	3	branch	embedded-local	coopValue	other	notread		
+html	queue a violation report for browsing context group switch when navigating to a COOP response	4	assign	local	serializedReferrer	other	gap		
+html	queue a violation report for browsing context group switch when navigating to a COOP response	6	assign	local	body	other	gap		
+html	queue a violation report for browsing context group switch when navigating away from a COOP response	2	assign	local	coopValue	other	gap		
+html	queue a violation report for browsing context group switch when navigating away from a COOP response	3	branch	embedded-local	coopValue	other	notread		
+html	queue a violation report for browsing context group switch when navigating away from a COOP response	4	assign	local	body	other	gap		
+html	obtain an embedder policy	1	assign	local	policy	coep	modeled	EffectiveCOEP default	h-ecoep-insecure
+html	obtain an embedder policy	2	branch	embedded-return	result	coep	modeled	coep-insecure	h-ecoep-insecure
+html	obtain an embedder policy	3	assign	local	parsedItem	coep	modeled	coep argument	
+html	obtain an embedder policy	4.1	assign	field	value	coep	modeled	coep argument	
+html	obtain an embedder policy	4.2	branch	embedded-field	reporting endpoint	report	notread		
+html	obtain an embedder policy	5	assign	local	parsedItem	report	notread		
+html	obtain an embedder policy	6.1	assign	field	report-only value	report	notread		
+html	obtain an embedder policy	6.2	branch	embedded-field	report-only reporting endpoint	report	notread		
+html	obtain an embedder policy	7	return	return	result	coep	modeled	EffectiveCOEP	
+html	check a navigation response's adherence to its embedder policy	2	assign	local	parentPolicy	coep	unmodeled-guard	child adherence check	h-coimode-adh
+html	queue a cross-origin embedder policy inheritance violation	1	assign	local	serialized	other	gap		
+html	queue a cross-origin embedder policy inheritance violation	2	assign	local	body	other	gap		
+html	parse a sandboxing directive	2	assign	local	output	other	gap		
+html	parse a sandboxing directive	3	assign	collection	output: The sandboxed navigation browsing context	sandbox	notread		
+html	CSP-derived sandboxing flags	1	assign	local	directives	other	gap		
+html	CSP-derived sandboxing flags	2.2	branch	embedded-collection	directives	other	notread		
+html	CSP-derived sandboxing flags	4	assign	local	directive	other	gap		
+html	clone a policy container	1	assign	local	clone	coep	unmodeled		h-ecoep-inherit
+html	clone a policy container	3	assign	field	embedder policy	coep	unmodeled		h-ecoep-inherit
+html	clone a policy container	4	assign	field	referrer policy	other	notread		
+html	clone a policy container	5	assign	field	integrity policy	other	notread		
+html	clone a policy container	6	return	return	result	coep	unmodeled		h-ecoep-inherit
+html	create a policy container from a fetch response	1	branch	embedded-return	result	coep	unmodeled		h-ecoep-inherit
+html	create a policy container from a fetch response	2	assign	local	result	coep	modeled	EffectiveCOEP	
+html	create a policy container from a fetch response	3	assign	field	CSP list	other	notread		
+html	create a policy container from a fetch response	4	branch	embedded-field	embedder policy	coep	modeled	EffectiveCOEP	
+html	create a policy container from a fetch response	5	assign	field	referrer policy	other	notread		
+html	create a policy container from a fetch response	7	return	return	result	coep	modeled	EffectiveCOEP	
+html	determine navigation params policy container	1.2	return	return	result	coep	unmodeled		h-ecoep-inherit
+html	determine navigation params policy container	2.2	return	return	result	coep	unmodeled		h-ecoep-inherit
+html	determine navigation params policy container	3	branch	embedded-return	result	coep	unmodeled		h-ecoep-inherit
+html	determine navigation params policy container	4	branch	embedded-return	result	coep	modeled	EffectiveCOEP	
+html	determine navigation params policy container	5	return	return	result	coep	unmodeled		h-ecoep-inherit
+html	set up a window environment settings object	1	assign	local	realm	other	gap		
+html	set up a window environment settings object	2	assign	local	window	other	gap		
+html	set up a window environment settings object	3	assign	unparsed	?	other	gap		
+html	set up a window environment settings object	3.2	assign	local	parentDocument	other	gap		
+html	set up a window environment settings object	4.1	assign	field	id	other	notread		
+html	set up a window environment settings object	4.2	assign	field	id	other	notread		
+html	set up a window environment settings object	5	branch	embedded-field	id	other	notread		
+html	set up a window environment settings object	6	assign	field	creation URL	secure	unmodeled	top-level creation URL	h-secure
+html	set up a window environment settings object	7	assign	field	HostDefined field	other	notread		
+html	can have its URL rewritten	1	assign	local	documentURL	other	gap		
+html	has entries and events disabled	1	assign	local	document	other	gap		
+html	get the navigation API entry index	1	assign	local	index	other	gap		
+html	get the navigation API entry index	2.2	assign	collection	?	other	gap		
+html	initialize the navigation API entries for a new document	4.1	assign	local	newNHE	other	gap		
+html	initialize the navigation API entries for a new document	4.2	assign	field	session history entry	other	notread		
+html	initialize the navigation API entries for a new document	4.3	assign	collection	entry list	other	gap		
+html	initialize the navigation API entries for a new document	5	assign	field	current entry index	other	notread		
+html	update the navigation API entries for reactivation	2	assign	local	newNHEs	other	gap		
+html	update the navigation API entries for reactivation	3	assign	local	oldNHEs	other	gap		
+html	update the navigation API entries for reactivation	4.1	assign	local	newNHE	other	gap		
+html	update the navigation API entries for reactivation	4.2.1	assign	local	newNHE	other	gap		
+html	update the navigation API entries for reactivation	4.2.2	assign	collection	oldNHEs	other	gap		
+html	update the navigation API entries for reactivation	4.3.1	assign	local	newNHE	other	gap		
+html	update the navigation API entries for reactivation	4.3.2	assign	field	session history entry	other	notread		
+html	update the navigation API entries for reactivation	4.4	assign	collection	newNHEs	other	gap		
+html	update the navigation API entries for reactivation	5	assign	field	entry list	other	notread		
+html	update the navigation API entries for reactivation	6	assign	field	current entry index	other	notread		
+html	update the navigation API entries for a same-document navigation	2	assign	local	oldCurrentNHE	other	gap		
+html	update the navigation API entries for a same-document navigation	3	assign	local	disposedNHEs	other	gap		
+html	update the navigation API entries for a same-document navigation	4.1	assign	field	current entry index	other	notread		
+html	update the navigation API entries for a same-document navigation	5.1	assign	field	current entry index	other	notread		
+html	update the navigation API entries for a same-document navigation	5.2	assign	local	i	other	gap		
+html	update the navigation API entries for a same-document navigation	5.3.1	assign	collection	disposedNHEs	other	gap		
+html	update the navigation API entries for a same-document navigation	5.3.2	assign	local	i	other	gap		
+html	update the navigation API entries for a same-document navigation	5.4	assign	collection	entry list	other	gap		
+html	update the navigation API entries for a same-document navigation	6.1	assign	collection	disposedNHEs	other	gap		
+html	update the navigation API entries for a same-document navigation	7.1	assign	local	newNHE	other	gap		
+html	update the navigation API entries for a same-document navigation	7.2	assign	field	session history entry	other	notread		
+html	update the navigation API entries for a same-document navigation	7.3	assign	field	current entry index	other	notread		
+html	update the navigation API entries for a same-document navigation	9	assign	local	navigateEvent	other	gap		
+html	update the navigation API entries for a same-document navigation	10	assign	local	apiMethodTracker	other	gap		
+html	clean up	1	assign	local	navigation	other	gap		
+html	clean up	2	branch	embedded-field	ongoing API method tracker	other	notread		
+html	clean up	3.1	assign	local	key	other	notread	other key	
+html	clean up	3.4	assign	collection	?	other	gap		
+html	notify about the committed-to entry	1	assign	field	committed-to entry	other	notread		
+html	notify about the committed-to entry	2	branch	embedded-field	navigation API state	other	notread		
+html	abort the ongoing navigation	1	assign	local	event	other	gap		
+html	abort the ongoing navigation	3	assign	field	focus changed during ongoing navigation	other	notread		
+html	abort the ongoing navigation	4	assign	field	suppress normal scroll restoration during ongoing	other	notread		
+html	abort the ongoing navigation	6	branch	embedded-field	canceled flag	other	notread		
+html	abort the ongoing navigation	8	assign	local	navigation	other	gap		
+html	abort the ongoing navigation	9	assign	field	ongoing navigate event	other	notread		
+html	abort the ongoing navigation	11	assign	local	errorInfo	other	gap		
+html	abort the ongoing navigation	12	assign	local	apiMethodTracker	other	gap		
+html	abort the ongoing navigation	18	assign	field	transition	other	notread		
+html	inform the navigation API about aborting navigation	2	assign	local	navigation	other	gap		
+html	fire a traverse navigate event	1	assign	local	event	other	gap		
+html	fire a traverse navigate event	2	assign	field	classic history API state	other	notread		
+html	fire a traverse navigate event	3	assign	local	destination	other	gap		
+html	fire a traverse navigate event	4	assign	field	URL	other	notread		
+html	fire a traverse navigate event	5	assign	local	destinationNHE	other	gap		
+html	fire a traverse navigate event	6.1	assign	field	entry	other	notread		
+html	fire a traverse navigate event	6.2	assign	field	state	other	notread		
+html	fire a traverse navigate event	7.1	assign	field	entry	other	notread		
+html	fire a traverse navigate event	7.2	assign	field	state	other	notread		
+html	fire a traverse navigate event	8	assign	field	is same document	other	notread		
+html	fire a push/replace/reload navigate event	1	assign	local	document	other	gap		
+html	fire a push/replace/reload navigate event	3.1	assign	field	pending	other	notread		
+html	fire a push/replace/reload navigate event	3.2	assign	local	apiMethodTracker	other	gap		
+html	fire a push/replace/reload navigate event	5	assign	local	event	other	gap		
+html	fire a push/replace/reload navigate event	6	assign	field	classic history API state	other	notread		
+html	fire a push/replace/reload navigate event	7	assign	local	destination	other	gap		
+html	fire a push/replace/reload navigate event	8	assign	field	URL	other	notread		
+html	fire a push/replace/reload navigate event	9	assign	field	entry	other	notread		
+html	fire a push/replace/reload navigate event	10	assign	field	state	other	notread		
+html	fire a push/replace/reload navigate event	11	assign	field	is same document	other	notread		
+html	fire a download request navigate event	1	assign	local	event	other	gap		
+html	fire a download request navigate event	2	assign	field	classic history API state	other	notread		
+html	fire a download request navigate event	3	assign	local	destination	other	gap		
+html	fire a download request navigate event	4	assign	field	URL	other	notread		
+html	fire a download request navigate event	5	assign	field	entry	other	notread		
+html	fire a download request navigate event	6	assign	field	state	other	notread		
+html	fire a download request navigate event	7	assign	field	is same document	other	notread		
+html	inner navigate event firing algorithm	3.2	assign	local	destinationKey	other	gap		
+html	inner navigate event firing algorithm	3.4.1	assign	local	apiMethodTracker	other	gap		
+html	inner navigate event firing algorithm	3.4.2	assign	collection	?	other	gap		
+html	inner navigate event firing algorithm	4.1	assign	field	ongoing API method tracker	other	notread		
+html	inner navigate event firing algorithm	4.2	assign	field	pending	other	notread		
+html	inner navigate event firing algorithm	5	assign	local	navigable	other	gap		
+html	inner navigate event firing algorithm	6	assign	local	document	other	gap		
+html	inner navigate event firing algorithm	7	branch	embedded-collection	true	other	notread		
+html	inner navigate event firing algorithm	8	assign	local	traverseCanBeCanceled	other	gap		
+html	inner navigate event firing algorithm	9	branch	embedded-collection	true	other	notread		
+html	inner navigate event firing algorithm	10	assign	collection	"""navigate"""	other	gap		
+html	inner navigate event firing algorithm	11	assign	collection	navigationType	other	gap		
+html	inner navigate event firing algorithm	12	assign	collection	destination	other	gap		
+html	inner navigate event firing algorithm	13	assign	collection	downloadRequestFilename	other	gap		
+html	inner navigate event firing algorithm	14	branch	embedded-collection	info	other	notread		
+html	inner navigate event firing algorithm	15	assign	collection	true if a visual transition	other	gap		
+html	inner navigate event firing algorithm	16	assign	collection	sourceElement	other	gap		
+html	inner navigate event firing algorithm	17	assign	field	abort controller	other	notread		
+html	inner navigate event firing algorithm	18	assign	collection	signal	other	gap		
+html	inner navigate event firing algorithm	19	assign	local	currentURL	other	gap		
+html	inner navigate event firing algorithm	21	branch	embedded-collection	true	other	notread		
+html	inner navigate event firing algorithm	22	branch	embedded-collection	relevant realm	other	notread		
+html	inner navigate event firing algorithm	24	assign	field	ongoing navigate event	other	notread		
+html	inner navigate event firing algorithm	25	assign	field	focus changed during ongoing navigation	other	notread		
+html	inner navigate event firing algorithm	26	assign	field	suppress normal scroll restoration during ongoing	other	notread		
+html	inner navigate event firing algorithm	27	assign	local	dispatchResult	other	gap		
+html	inner navigate event firing algorithm	29.1	assign	local	fromNHE	other	gap		
+html	inner navigate event firing algorithm	29.3	assign	field	transition	other	notread		
+html	inner navigate event firing algorithm	31.1	assign	local	precommitController	other	gap		
+html	inner navigate event firing algorithm	31.2	assign	local	precommitPromisesList	other	gap		
+html	inner navigate event firing algorithm	31.3.1	assign	collection	precommitPromisesList	other	gap		
+html	navigate event intercept commit handler steps	1	assign	local	promisesList	other	gap		
+html	navigate event intercept commit handler steps	2.1	assign	collection	promisesList	other	gap		
+html	navigate event intercept commit handler steps	3	branch	embedded-local	promisesList	other	notread		
+html	navigate event intercept commit handler steps	4.4	assign	field	ongoing navigate event	other	notread		
+html	navigate event intercept commit handler steps	4.9	assign	field	transition	other	notread		
+html	commit a navigate event	1	assign	local	navigation	other	gap		
+html	commit a navigate event	2	assign	local	navigable	other	gap		
+html	commit a navigate event	5	assign	local	endResultIsSameDocument	other	gap		
+html	commit a navigate event	7.1	assign	field	interception state	other	notread		
+html	commit a navigate event	7.2.1	assign	field	suppress normal scroll restoration during ongoing	other	notread		
+html	commit a navigate event	7.2.2	assign	local	userInvolvement	other	gap		
+html	commit a navigate event	7.2.3	branch	embedded-local	userInvolvement	other	notread		
+html	commit a navigate event	7.2.4	assign	collection	?	other	gap		
+html	finish	2.3	assign	field	interception state	other	notread		
+html	finish	6	assign	field	interception state	other	notread		
+html	potentially reset the focus	2	assign	local	navigation	other	gap		
+html	potentially reset the focus	3	assign	local	focusChanged	other	gap		
+html	potentially reset the focus	4	assign	field	focus changed during ongoing navigation	other	notread		
+html	potentially reset the focus	7	assign	local	document	other	gap		
+html	potentially reset the focus	8	assign	local	focusTarget	other	gap		
+html	potentially reset the focus	9	branch	embedded-local	focusTarget	other	notread		
+html	potentially reset the focus	10	branch	embedded-local	focusTarget	other	notread		
+html	process scroll behavior	2	assign	field	interception state	other	notread		
+html	process scroll behavior	4.1	assign	local	document	other	gap		
+html	traversable navigable	1	assign	local	navigable	other	gap		
+html	top-level traversable	1	assign	local	navigable	other	gap		
+html	ancestor navigables	1	assign	local	navigable	other	gap		
+html	ancestor navigables	2	assign	local	ancestors	other	gap		
+html	ancestor navigables	3.1	assign	collection	ancestors	other	gap		
+html	ancestor navigables	3.2	assign	local	navigable	other	gap		
+html	descendant navigables	1	assign	local	navigables	other	gap		
+html	descendant navigables	2	assign	local	navigableContainers	other	gap		
+html	descendant navigables	3.2	assign	collection	?	other	gap		
+html	inclusive descendant navigables	1	assign	local	navigables	other	gap		
+html	inclusive descendant navigables	2	assign	collection	?	other	gap		
+html	document-tree child navigables	2	assign	local	navigables	other	gap		
+html	document-tree child navigables	3	assign	local	navigableContainers	other	gap		
+html	document-tree child navigables	4.2	assign	collection	navigables	other	gap		
+html	create a new browsing context and document	1	assign	local	browsingContext	other	gap		
+html	create a new browsing context and document	2	assign	local	unsafeContextCreationTime	timing	notread		
+html	create a new browsing context and document	3	assign	local	creatorOrigin	origin	input	document origin o quantified	
+html	create a new browsing context and document	4	assign	local	creatorBaseURL	other	gap		
+html	create a new browsing context and document	5.1	assign	local	creatorOrigin	origin	input	document origin o quantified	
+html	create a new browsing context and document	5.2	assign	local	creatorBaseURL	other	gap		
+html	create a new browsing context and document	5.3	assign	field	virtual browsing context group ID	other	notread		
+html	create a new browsing context and document	6	assign	local	sandboxFlags	sandbox	notread		
+html	create a new browsing context and document	7	assign	local	origin	origin	input	document origin o quantified	
+html	create a new browsing context and document	8	assign	local	permissionsPolicy	other	gap		
+html	create a new browsing context and document	9	assign	local	agent	other	notread	other key	
+html	create a new browsing context and document	10	assign	unparsed	?	other	gap		
+html	create a new browsing context and document	11	assign	local	topLevelCreationURL	other	gap		
+html	create a new browsing context and document	11.1	branch	embedded	?	secure	unmodeled	top-level creation URL	h-secure
+html	create a new browsing context and document	11.2	branch	embedded	?	secure	unmodeled	top-level creation URL	h-secure
+html	create a new browsing context and document	12	assign	local	topLevelOrigin	other	gap		
+html	create a new browsing context and document	13	assign	unparsed	?	other	gap		
+html	create a new browsing context and document	14	assign	local	loadTimingInfo	timing	notread		
+html	create a new browsing context and document	15	assign	local	document	other	gap		
+html	create a new browsing context and document	16	assign	local	iframeReferrerPolicy	other	gap		
+html	create a new browsing context and document	17	assign	field	internal ancestor origin objects list	other	notread		
+html	create a new browsing context and document	18	assign	field	ancestor origins list	other	notread		
+html	create a new browsing context and document	19.1	assign	field	referrer	other	notread		
+html	create a new browsing context and document	19.2	assign	field	policy container	coep	unmodeled		h-ecoep-inherit
+html	create a new browsing context and document	19.3	branch	embedded-field	opener policy	coop	modeled	popup carries opener COOP	
+html	create a new top-level browsing context and document	1	assign	local	group and document	other	gap		
+html	determine the origin	1	branch	embedded-return	result	origin	input	document origin o quantified	
+html	determine the origin	2	branch	embedded-return	result	origin	input	document origin o quantified	
+html	determine the origin	3.2	return	return	result	origin	input	document origin o quantified	
+html	determine the origin	4	branch	embedded-return	result	origin	input	document origin o quantified	
+html	determine the origin	5	return	return	result	origin	input	document origin o quantified	
+html	top-level browsing context	2	assign	local	navigable	other	gap		
+html	create a new browsing context group and document	1	assign	local	group	other	gap		
+html	create a new browsing context group and document	2	assign	collection	browsing context group set	other	gap		
+html	create a new browsing context group and document	3	assign	local	browsingContext and document	other	gap		
+html	create a new browsing context group and document	4	assign	collection	group	other	gap		
+html	append	1	assign	collection	browsing context set	other	gap		
+html	append	2	assign	field	group	other	notread		
+html	get session history entries	1	assign	local	traversable	other	gap		
+html	get session history entries	4	assign	local	docStates	other	gap		
+html	get session history entries for the navigation API	1	assign	local	rawEntries	other	gap		
+html	get session history entries for the navigation API	2	assign	local	entriesForNavigationAPI	other	gap		
+html	get session history entries for the navigation API	3	assign	local	startingIndex	other	gap		
+html	get session history entries for the navigation API	4	assign	collection	entriesForNavigationAPI	other	gap		
+html	get session history entries for the navigation API	5	assign	local	startingOrigin	origin	input	document origin o quantified	
+html	get session history entries for the navigation API	6	assign	local	i	other	gap		
+html	get session history entries for the navigation API	7.2	assign	collection	entriesForNavigationAPI	other	gap		
+html	get session history entries for the navigation API	7.3	assign	local	i	other	gap		
+html	get session history entries for the navigation API	8	assign	local	i	other	gap		
+html	get session history entries for the navigation API	9.2	assign	collection	entriesForNavigationAPI	other	gap		
+html	get session history entries for the navigation API	9.3	assign	local	i	other	gap		
+html	clear the forward session history	2	assign	local	step	other	gap		
+html	clear the forward session history	3	assign	local	entryLists	other	gap		
+html	clear the forward session history	4.1	assign	collection	entryList that has a step greater	other	gap		
+html	get all used history steps	2	assign	local	steps	other	gap		
+html	get all used history steps	3	assign	local	entryLists	other	gap		
+html	get all used history steps	4.1.1	assign	collection	steps	other	gap		
+html	navigate	1	assign	local	cspNavigationType	other	gap		
+html	navigate	2	assign	local	sourceSnapshotParams	other	gap		
+html	navigate	3	assign	local	initiatorOriginSnapshot	origin	input	document origin o quantified	
+html	navigate	4	assign	local	initiatorBaseURLSnapshot	other	gap		
+html	navigate	5.2	branch	embedded-local	initiatorOriginSnapshot	origin	input	document origin o quantified	
+html	navigate	6.3	assign	local	initiatorOriginSnapshot	origin	input	document origin o quantified	
+html	navigate	6.4	assign	local	initiatorBaseURLSnapshot	other	gap		
+html	navigate	7	assign	local	navigationId	other	gap		
+html	navigate	10	assign	local	container	other	gap		
+html	navigate	13.1	branch	embedded-local	historyHandling	other	notread		
+html	navigate	13.2	branch	embedded-local	historyHandling	other	notread		
+html	navigate	14	branch	embedded-local	historyHandling	other	notread		
+html	navigate	16	branch	embedded-field	is delaying load events	other	notread		
+html	navigate	17	assign	local	targetSnapshotParams	other	gap		
+html	navigate	20	assign	local	the ongoing navigation for navigable	other	gap		
+html	navigate	21.1	assign	local	request	other	gap		
+html	navigate	22.1	assign	local	navigation	other	gap		
+html	navigate	22.2	assign	local	entryListForFiring	other	gap		
+html	navigate	22.3	assign	local	navigationAPIStateForFiring	other	gap		
+html	navigate	22.4	assign	local	continue	other	gap		
+html	navigate	24.1	assign	local	unloadPromptCanceled	other	gap		
+html	navigate	24.4	assign	local	documentState	other	gap		
+html	navigate	24.5.1	assign	field	origin	origin	input	document origin o quantified	
+html	navigate	24.5.2	assign	field	about base URL	other	notread		
+html	navigate	24.6	assign	local	historyEntry	other	gap		
+html	navigate	24.7	assign	local	navigationParams	other	gap		
+html	navigate	24.8.1	assign	local	sourcePolicyContainer	coep	unmodeled		h-ecoep-inherit
+html	navigate	24.8.2	assign	local	policyContainer	coep	unmodeled		h-ecoep-inherit
+html	navigate	24.8.3	assign	local	finalSandboxFlags	sandbox	notread		
+html	navigate	24.8.4	assign	local	responseOrigin	origin	input	document origin o quantified	
+html	navigate	24.8.5	assign	local	coop	coop	unmodeled	new default COOP	h-coop
+html	navigate	24.8.6	assign	local	coopEnforcementResult	bcgswitch	nocone	MatchCOOP/PopupSevered	h-popup
+html	navigate	24.8.7	assign	local	navigationParams	other	gap		
+html	navigate	24.9.1	assign	collection	traversable navigable to finalize a cross-document	other	gap		
+html	finalize a cross-document navigation	2	assign	field	is delaying load events	other	notread		
+html	finalize a cross-document navigation	5	assign	local	entryToReplace	other	gap		
+html	finalize a cross-document navigation	6	assign	local	traversable	other	gap		
+html	finalize a cross-document navigation	7	assign	local	targetStep	other	gap		
+html	finalize a cross-document navigation	8	assign	local	targetEntries	other	gap		
+html	finalize a cross-document navigation	9.1	assign	collection	?	other	gap		
+html	finalize a cross-document navigation	9.2	assign	local	targetStep	other	gap		
+html	finalize a cross-document navigation	9.3	assign	field	step	other	notread		
+html	finalize a cross-document navigation	9.4	assign	collection	targetEntries	other	gap		
+html	finalize a cross-document navigation	9.5	assign	collection	targetEntries	other	gap		
+html	finalize a cross-document navigation	9.6	assign	field	step	other	notread		
+html	finalize a cross-document navigation	9.7	branch	embedded-field	navigation API key	other	notread		
+html	finalize a cross-document navigation	9.8	assign	local	targetStep	other	gap		
+html	navigate to a javascript: URL	3	assign	local	the ongoing navigation for targetNavigable	other	gap		
+html	navigate to a javascript: URL	6	assign	local	newDocument	other	gap		
+html	navigate to a javascript: URL	7.1	assign	local	container	other	gap		
+html	navigate to a javascript: URL	9	assign	local	entryToReplace	other	gap		
+html	navigate to a javascript: URL	10	assign	local	oldDocState	other	gap		
+html	navigate to a javascript: URL	11	assign	local	documentState	other	gap		
+html	navigate to a javascript: URL	12	assign	local	historyEntry	other	gap		
+html	navigate to a javascript: URL	13	assign	collection	traversable navigable to finalize a cross-document	other	gap		
+html	evaluate a javascript: URL	1	assign	local	encodedScriptSource	other	gap		
+html	evaluate a javascript: URL	2	assign	local	scriptSource	other	gap		
+html	evaluate a javascript: URL	3	assign	local	settings	other	gap		
+html	evaluate a javascript: URL	4	assign	local	baseURL	other	gap		
+html	evaluate a javascript: URL	5	assign	local	script	other	gap		
+html	evaluate a javascript: URL	6	assign	local	evaluationStatus	other	gap		
+html	evaluate a javascript: URL	7	assign	local	result	other	gap		
+html	evaluate a javascript: URL	8	branch	embedded-local	result	other	notread		
+html	evaluate a javascript: URL	10	assign	local	response	response	composite	r quantified	
+html	evaluate a javascript: URL	11	assign	local	policyContainer	coep	unmodeled		h-ecoep-inherit
+html	evaluate a javascript: URL	12	assign	local	finalSandboxFlags	sandbox	notread		
+html	evaluate a javascript: URL	13	assign	local	coop	coop	unmodeled	javascript: URL	h-coop
+html	evaluate a javascript: URL	14	assign	local	coopEnforcementResult	bcgswitch	nocone	MatchCOOP/PopupSevered	h-popup
+html	evaluate a javascript: URL	15	assign	local	navigationParams	other	gap		
+html	navigate to a fragment	1	assign	local	navigation	other	gap		
+html	navigate to a fragment	2	assign	local	destinationNavigationAPIState	other	gap		
+html	navigate to a fragment	3	branch	embedded-local	destinationNavigationAPIState	other	notread		
+html	navigate to a fragment	4	assign	local	continue	other	gap		
+html	navigate to a fragment	5.1	branch	embedded-local	the ongoing navigation of navigable	other	notread		
+html	navigate to a fragment	6	assign	local	historyEntry	other	gap		
+html	navigate to a fragment	7	assign	local	entryToReplace	other	gap		
+html	navigate to a fragment	8	branch	embedded-field	navigation API key	other	notread		
+html	navigate to a fragment	9	assign	local	history	other	gap		
+html	navigate to a fragment	10	assign	local	scriptHistoryIndex	other	gap		
+html	navigate to a fragment	11	assign	local	scriptHistoryLength	other	gap		
+html	navigate to a fragment	12.1	assign	field	state	other	notread		
+html	navigate to a fragment	12.2	assign	collection	?	other	gap		
+html	navigate to a fragment	12.3	assign	local	scriptHistoryLength	other	gap		
+html	navigate to a fragment	13	assign	field	URL	other	notread		
+html	navigate to a fragment	14	assign	field	active session history entry	other	notread		
+html	navigate to a fragment	15	assign	collection	?	other	gap		
+html	navigate to a fragment	17	assign	local	traversable	other	gap		
+html	navigate to a fragment	18	assign	collection	?	other	gap		
+html	finalize a same-document navigation	3	assign	local	targetStep	other	gap		
+html	finalize a same-document navigation	4	assign	local	targetEntries	other	gap		
+html	finalize a same-document navigation	5.1	assign	collection	?	other	gap		
+html	finalize a same-document navigation	5.2	assign	local	targetStep	other	gap		
+html	finalize a same-document navigation	5.3	assign	field	step	other	notread		
+html	finalize a same-document navigation	5.4	assign	collection	targetEntries	other	gap		
+html	finalize a same-document navigation	5.5	assign	collection	targetEntries	other	gap		
+html	finalize a same-document navigation	5.6	assign	field	step	other	notread		
+html	finalize a same-document navigation	5.7	assign	local	targetStep	other	gap		
+html	attempt to create a non-fetch scheme document	1	assign	local	url	other	gap		
+html	attempt to create a non-fetch scheme document	2	assign	local	navigable	other	gap		
+html	check if unloading is canceled	1	assign	local	documentsToFireBeforeunload	other	gap		
+html	check if unloading is canceled	2	assign	local	unloadPromptShown	other	gap		
+html	check if unloading is canceled	3	assign	local	finalStatus	other	gap		
+html	check if unloading is canceled	4.2	assign	local	targetEntry	other	gap		
+html	check if unloading is canceled	4.3.1	assign	local	eventsFired	other	gap		
+html	check if unloading is canceled	4.3.2	assign	local	needsBeforeunload	other	gap		
+html	check if unloading is canceled	4.3.3	branch	embedded-collection	documentsToFireBeforeunload	other	notread		
+html	check if unloading is canceled	4.3.4.1.1	assign	unparsed	?	other	gap		
+html	check if unloading is canceled	4.3.4.1.2	branch	embedded-local	unloadPromptShown	other	notread		
+html	check if unloading is canceled	4.3.4.1.3	branch	embedded-local	finalStatus	other	notread		
+html	check if unloading is canceled	4.3.4.3	assign	local	navigation	other	gap		
+html	check if unloading is canceled	4.3.4.4	assign	local	navigateEventResult	other	gap		
+html	check if unloading is canceled	4.3.4.5	branch	embedded-local	finalStatus	other	notread		
+html	check if unloading is canceled	4.3.4.6	assign	local	eventsFired	other	gap		
+html	check if unloading is canceled	5	assign	local	totalTasks	other	gap		
+html	check if unloading is canceled	6	assign	local	completedTasks	other	gap		
+html	check if unloading is canceled	7.1	assign	unparsed	?	other	gap		
+html	check if unloading is canceled	7.2	branch	embedded-local	unloadPromptShown	other	notread		
+html	check if unloading is canceled	7.3	branch	embedded-local	finalStatus	other	notread		
+html	check if unloading is canceled	7.4	assign	collection	?	other	gap		
+html	steps to fire beforeunload	1	assign	local	unloadPromptCanceled	other	gap		
+html	steps to fire beforeunload	4	assign	local	eventFiringResult	other	gap		
+html	steps to fire beforeunload	6.1	assign	local	unloadPromptShown	other	gap		
+html	steps to fire beforeunload	6.2	assign	local	userPromptHandler	other	gap		
+html	steps to fire beforeunload	6.3	branch	embedded-local	unloadPromptCanceled	other	notread		
+html	steps to fire beforeunload	6.4.2	branch	embedded-local	unloadPromptCanceled	other	notread		
+html	set the ongoing navigation	3	assign	field	ongoing navigation	other	notread		
+html	URL and history update steps	1	assign	local	navigable	other	gap		
+html	URL and history update steps	2	assign	local	activeEntry	other	gap		
+html	URL and history update steps	3	assign	local	newEntry	other	gap		
+html	URL and history update steps	4	branch	embedded-local	historyHandling	other	notread		
+html	URL and history update steps	5	assign	local	entryToReplace	other	gap		
+html	URL and history update steps	6	branch	embedded-field	navigation API key	other	notread		
+html	URL and history update steps	7.1	assign	collection	?	other	gap		
+html	URL and history update steps	7.2	assign	field	length	other	notread		
+html	URL and history update steps	9	assign	local	the URL given document	other	gap		
+html	URL and history update steps	10	assign	field	latest entry	other	notread		
+html	URL and history update steps	11	assign	field	active session history entry	other	notread		
+html	URL and history update steps	12	assign	collection	?	other	gap		
+html	URL and history update steps	13	assign	local	traversable	other	gap		
+html	URL and history update steps	14	assign	collection	?	other	gap		
+html	attempt to populate the history entry's document	3	assign	local	documentResource	other	gap		
+html	attempt to populate the history entry's document	4.1	branch	embedded-local	navigationParams	other	notread		
+html	attempt to populate the history entry's document	4.2	branch	embedded-local	navigationParams	other	notread		
+html	attempt to populate the history entry's document	4.3	branch	embedded-local	navigationParams	other	notread		
+html	attempt to populate the history entry's document	5.2	assign	local	saveExtraDocumentState	other	gap		
+html	attempt to populate the history entry's document	5.3.1	assign	field	document	other	notread		
+html	attempt to populate the history entry's document	5.3.2	assign	local	saveExtraDocumentState	other	gap		
+html	attempt to populate the history entry's document	5.4.1	assign	field	document	other	notread		
+html	attempt to populate the history entry's document	5.4.3	assign	local	saveExtraDocumentState	other	gap		
+html	attempt to populate the history entry's document	5.5.1	assign	local	sourceAllowsDownloading	other	gap		
+html	attempt to populate the history entry's document	5.5.2	assign	local	targetAllowsDownloading	other	gap		
+html	attempt to populate the history entry's document	5.5.3	assign	local	uaAllowsDownloading	other	gap		
+html	attempt to populate the history entry's document	5.6	branch	embedded-field	document	other	notread		
+html	attempt to populate the history entry's document	5.7.1	assign	field	ever populated	other	notread		
+html	attempt to populate the history entry's document	5.7.2	branch	embedded-field	was created via cross-origin redirects	origin	input	document origin o quantified	
+html	attempt to populate the history entry's document	5.7.3.1	assign	local	document	other	gap		
+html	attempt to populate the history entry's document	5.7.3.2	assign	field	origin	origin	input	document origin o quantified	
+html	attempt to populate the history entry's document	5.7.3.3.2	assign	field	history policy container	coep	unmodeled		h-ecoep-inherit
+html	attempt to populate the history entry's document	5.7.4.2	assign	field	request referrer	other	notread		
+html	create navigation params from a srcdoc resource	1	assign	local	documentResource	other	gap		
+html	create navigation params from a srcdoc resource	2	assign	local	response	response	composite	r quantified	
+html	create navigation params from a srcdoc resource	3	assign	local	responseOrigin	origin	input	document origin o quantified	
+html	create navigation params from a srcdoc resource	4	assign	local	coop	coop	unmodeled	srcdoc default	h-coop
+html	create navigation params from a srcdoc resource	5	assign	local	coopEnforcementResult	bcgswitch	nocone	MatchCOOP/PopupSevered	h-popup
+html	create navigation params from a srcdoc resource	6	assign	local	policyContainer	coep	unmodeled		h-ecoep-inherit
+html	create navigation params by fetching	2	assign	local	documentResource	other	gap		
+html	create navigation params by fetching	3	assign	local	request	other	gap		
+html	create navigation params by fetching	4	branch	embedded-field	top-level navigation initiator origin	origin	input	document origin o quantified	
+html	create navigation params by fetching	5.1	assign	field	origin	origin	outscope	navigation request	h-reqorigin
+html	create navigation params by fetching	5.2	assign	field	service-workers mode	other	notread		
+html	create navigation params by fetching	5.3	assign	field	referrer	other	notread		
+html	create navigation params by fetching	6.1	assign	field	method	other	notread		
+html	create navigation params by fetching	6.2	assign	field	body	other	notread		
+html	create navigation params by fetching	6.3	assign	local	`Content-Type`	other	gap		
+html	create navigation params by fetching	9	branch	embedded-field	user-activation	other	notread		
+html	create navigation params by fetching	10.1	branch	embedded-field	origin	origin	outscope	navigation request	h-reqorigin
+html	create navigation params by fetching	10.2	assign	field	destination	other	notread		
+html	create navigation params by fetching	10.3	branch	embedded-field	initiator type	other	notread		
+html	create navigation params by fetching	11	assign	local	response	response	composite	r quantified	
+html	create navigation params by fetching	12	assign	local	responseOrigin	origin	input	document origin o quantified	
+html	create navigation params by fetching	13	assign	local	fetchController	other	gap		
+html	create navigation params by fetching	14	assign	local	coopEnforcementResult	bcgswitch	nocone	MatchCOOP/PopupSevered	h-popup
+html	create navigation params by fetching	15	assign	local	finalSandboxFlags	sandbox	notread		
+html	create navigation params by fetching	16	assign	local	responsePolicyContainer	coep	modeled	EffectiveCOEP	
+html	create navigation params by fetching	17	assign	local	responseCOOP	coop	unmodeled	default before response	h-coop
+html	create navigation params by fetching	18	assign	local	locationURL	other	gap		
+html	create navigation params by fetching	19	assign	local	currentURL	other	gap		
+html	create navigation params by fetching	20	assign	local	commitEarlyHints	other	gap		
+html	create navigation params by fetching	21.1.2	assign	field	reserved client	other	notread		
+html	create navigation params by fetching	21.1.3	assign	local	commitEarlyHints	other	gap		
+html	create navigation params by fetching	21.2.1	assign	local	topLevelCreationURL	other	gap		
+html	create navigation params by fetching	21.2.2	assign	local	topLevelOrigin	other	gap		
+html	create navigation params by fetching	21.2.3.1	assign	local	parentEnvironment	other	gap		
+html	create navigation params by fetching	21.2.3.2	assign	local	topLevelCreationURL	secure	unmodeled	top-level creation URL	h-secure
+html	create navigation params by fetching	21.2.3.3	assign	local	topLevelOrigin	other	gap		
+html	create navigation params by fetching	21.2.4	assign	field	reserved client	other	notread		
+html	create navigation params by fetching	21.3	branch	embedded-local	response	response	composite	r quantified	
+html	create navigation params by fetching	21.4	assign	local	response	response	composite	r quantified	
+html	create navigation params by fetching	21.5	branch	embedded-local	fetchController	other	notread		
+html	create navigation params by fetching	21.5.1	branch	embedded-local	commitEarlyHints	other	notread		
+html	create navigation params by fetching	21.5.2	assign	local	response	response	composite	r quantified	
+html	create navigation params by fetching	21.8	branch	embedded-field	resource	other	notread		
+html	create navigation params by fetching	21.9	assign	local	responsePolicyContainer	coep	modeled	EffectiveCOEP	
+html	create navigation params by fetching	21.10	assign	local	finalSandboxFlags	sandbox	notread		
+html	create navigation params by fetching	21.11	assign	local	responseOrigin	origin	input	document origin o quantified	
+html	create navigation params by fetching	21.12.1	assign	local	responseCOOP	coop	modeled	ParsedCOOP	
+html	create navigation params by fetching	21.12.2	assign	local	coopEnforcementResult	bcgswitch	nocone	MatchCOOP/PopupSevered	h-popup
+html	create navigation params by fetching	21.12.3	branch	embedded-local	response	response	composite	r quantified	
+html	create navigation params by fetching	21.14	assign	local	locationURL	other	gap		
+html	create navigation params by fetching	21.17	assign	field	classic history API state	other	notread		
+html	create navigation params by fetching	21.18	assign	local	oldDocState	other	gap		
+html	create navigation params by fetching	21.19	assign	field	document state	other	notread		
+html	create navigation params by fetching	21.20.1	assign	field	resource	other	notread		
+html	create navigation params by fetching	21.21	assign	local	currentURL	other	gap		
+html	create navigation params by fetching	21.22	assign	field	URL	other	notread		
+html	create navigation params by fetching	25	assign	local	resultPolicyContainer	coep	unmodeled		h-ecoep-inherit
+html	create navigation params by fetching	26	branch	embedded-field	pending resource-timing start time	timing	notread		
+html	load a document	1	assign	local	type	other	gap		
+html	apply the history step	2	assign	local	targetStep	other	gap		
+html	apply the history step	4	assign	local	navigablesCrossingDocuments	other	gap		
+html	apply the history step	6	assign	local	changingNavigables	other	gap		
+html	apply the history step	7	assign	local	nonchangingNavigablesThatStillNeedUpdates	other	gap		
+html	apply the history step	8.1	assign	local	targetEntry	other	gap		
+html	apply the history step	8.2	assign	field	current session history entry	other	notread		
+html	apply the history step	8.3.1	assign	local	navigation	other	gap		
+html	apply the history step	8.3.2	assign	field	ongoing navigate event	other	notread		
+html	apply the history step	8.3.3	assign	field	ongoing API method tracker	other	notread		
+html	apply the history step	8.4	assign	field	ongoing navigation	other	notread		
+html	apply the history step	9	assign	local	totalChangeJobs	other	gap		
+html	apply the history step	10	assign	local	completedChangeJobs	other	gap		
+html	apply the history step	11	assign	local	changingNavigableContinuations	other	gap		
+html	apply the history step	12.1	assign	local	displayedEntry	other	gap		
+html	apply the history step	12.2	assign	local	targetEntry	other	gap		
+html	apply the history step	12.3	assign	local	changingNavigableContinuation	other	gap		
+html	apply the history step	12.4.1	assign	field	update-only	other	notread		
+html	apply the history step	12.4.2	assign	collection	?	other	gap		
+html	apply the history step	12.6	assign	local	oldOrigin	origin	input	document origin o quantified	
+html	apply the history step	12.7.1	assign	local	navigation	other	gap		
+html	apply the history step	12.8.1	assign	local	navTimingType	timing	notread		
+html	apply the history step	12.8.2	assign	local	targetSnapshotParams	other	gap		
+html	apply the history step	12.8.3	assign	local	potentiallyTargetSpecificSourceSnapshotParams	other	gap		
+html	apply the history step	12.8.4	branch	embedded-local	it	other	notread		
+html	apply the history step	12.8.5	assign	field	reload pending	other	notread		
+html	apply the history step	12.8.6	assign	local	allowPOST	other	gap		
+html	apply the history step	12.8.8	branch	embedded-field	update-only	other	notread		
+html	apply the history step	12.8.9	branch	embedded-field	classic history API state	other	notread		
+html	apply the history step	12.8.11	assign	collection	?	other	gap		
+html	apply the history step	13	assign	local	navigablesThatMustWaitBeforeHandlingSyncNavigation	other	gap		
+html	apply the history step	14.1.1.1	assign	local	steps	other	gap		
+html	apply the history step	14.1.1.2	assign	collection	algorithm set	other	gap		
+html	apply the history step	14.1.1.3	assign	field	running nested apply history step	other	notread		
+html	apply the history step	14.1.1.5	assign	field	running nested apply history step	other	notread		
+html	apply the history step	14.2	assign	local	changingNavigableContinuation	other	gap		
+html	apply the history step	14.4	assign	local	displayedDocument	other	gap		
+html	apply the history step	14.5	assign	local	targetEntry	other	gap		
+html	apply the history step	14.6	assign	local	navigable	other	gap		
+html	apply the history step	14.7	assign	unparsed	?	other	gap		
+html	apply the history step	14.8	assign	collection	navigablesThatMustWaitBeforeHandlingSyncNavigation	other	gap		
+html	apply the history step	14.9	assign	local	entriesForNavigationAPI	other	gap		
+html	apply the history step	14.10	assign	local	stickyActivationToCarryOver	other	gap		
+html	apply the history step	14.11.1	assign	field	ongoing navigation	other	notread		
+html	apply the history step	14.13.1	assign	local	previousEntry	other	gap		
+html	apply the history step	14.13.3	assign	local	updateDocument	other	gap		
+html	apply the history step	14.13.6	assign	collection	?	other	gap		
+html	apply the history step	15	assign	local	totalNonchangingJobs	other	gap		
+html	apply the history step	16	assign	local	completedNonchangingJobs	other	gap		
+html	apply the history step	17	assign	unparsed	?	other	gap		
+html	apply the history step	18.1	assign	local	document	other	gap		
+html	apply the history step	18.2	assign	field	index	other	notread		
+html	apply the history step	18.3	assign	field	length	other	notread		
+html	apply the history step	18.4	assign	collection	?	other	gap		
+html	apply the history step	20	assign	field	current session history step	other	notread		
+html	deactivate a document for a cross-document navigation	1	assign	local	navigable	other	gap		
+html	deactivate a document for a cross-document navigation	2	assign	local	potentiallyTriggerViewTransition	other	gap		
+html	deactivate a document for a cross-document navigation	3	assign	local	isBrowserUINavigation	other	gap		
+html	deactivate a document for a cross-document navigation	4	assign	local	potentiallyTriggerViewTransition	other	gap		
+html	deactivate a document for a cross-document navigation	5.1	assign	local	firePageSwapBeforeUnload	other	gap		
+html	deactivate a document for a cross-document navigation	5.2	assign	field	ongoing navigation	other	notread		
+html	deactivate a document for a cross-document navigation	6.1	assign	local	proceedWithNavigationAfterViewTransitionCapture	other	gap		
+html	deactivate a document for a cross-document navigation	6.1.1	assign	collection	?	other	gap		
+html	deactivate a document for a cross-document navigation	6.1.1.1	assign	field	ongoing navigation	other	notread		
+html	deactivate a document for a cross-document navigation	6.2	assign	local	viewTransition	other	gap		
+html	fire the pageswap event	2	assign	local	navigation	other	gap		
+html	fire the pageswap event	3	assign	local	activation	other	gap		
+html	fire the pageswap event	4.1	assign	local	destinationEntry	other	gap		
+html	fire the pageswap event	4.2	assign	local	activation	other	gap		
+html	activate history entry	2	assign	local	newDocument	other	gap		
+html	activate history entry	4	assign	field	active session history entry	other	notread		
+html	activate history entry	6	assign	local	the initial visibility state of newDocument	other	gap		
+html	get the used step	1	assign	local	steps	other	gap		
+html	get the history object length and index	1	assign	local	steps	other	gap		
+html	get the history object length and index	2	assign	local	scriptHistoryLength	other	gap		
+html	get the history object length and index	4	assign	local	scriptHistoryIndex	other	gap		
+html	get all navigables whose current session history entry will change or reload	1	assign	local	results	other	gap		
+html	get all navigables whose current session history entry will change or reload	2	assign	local	navigablesToCheck	other	gap		
+html	get all navigables whose current session history entry will change or reload	3.1	assign	local	targetEntry	other	gap		
+html	get all navigables whose current session history entry will change or reload	3.2	branch	embedded-collection	results	other	notread		
+html	get all navigables that only need history object length/index update	1	assign	local	results	other	gap		
+html	get all navigables that only need history object length/index update	2	assign	local	navigablesToCheck	other	gap		
+html	get all navigables that only need history object length/index update	3.1	assign	local	targetEntry	other	gap		
+html	get all navigables that only need history object length/index update	3.2.1	assign	collection	results	other	gap		
+html	get all navigables that only need history object length/index update	3.2.2	assign	collection	?	other	gap		
+html	get the target history entry	1	assign	local	entries	other	gap		
+html	get all navigables that might experience a cross-document traversal	1	assign	local	results	other	gap		
+html	get all navigables that might experience a cross-document traversal	2	assign	local	navigablesToCheck	other	gap		
+html	get all navigables that might experience a cross-document traversal	3.1	assign	local	targetEntry	other	gap		
+html	get all navigables that might experience a cross-document traversal	3.2	branch	embedded-collection	results	other	notread		
+html	update document for history step application	1	assign	local	documentIsNew	other	gap		
+html	update document for history step application	2	assign	local	documentsEntryChanged	other	gap		
+html	update document for history step application	3	assign	field	index	other	notread		
+html	update document for history step application	4	assign	field	length	other	notread		
+html	update document for history step application	5	assign	local	navigation	other	gap		
+html	update document for history step application	6	branch	embedded-field	has sticky activation	other	notread		
+html	update document for history step application	7.1	assign	local	oldURL	other	gap		
+html	update document for history step application	7.2	assign	field	latest entry	other	notread		
+html	update document for history step application	7.4.2	assign	collection	?	other	gap		
+html	update document for history step application	7.5.3	assign	collection	?	other	gap		
+html	update document for history step application	8.1	branch	embedded-field	activation	other	notread		
+html	update document for history step application	8.2	assign	local	previousEntryIndex	other	gap		
+html	update document for history step application	8.3	branch	embedded-field	old entry	other	notread		
+html	update document for history step application	8.5	assign	field	new entry	other	notread		
+html	update document for history step application	8.6	assign	field	navigation type	other	notread		
+html	restore the history object state	1	assign	local	targetRealm	other	gap		
+html	restore the history object state	2	assign	local	state	other	gap		
+html	restore the history object state	3	assign	field	state	other	notread		
+html	make active	1	assign	local	window	other	gap		
+html	make active	2	assign	field	active document	other	notread		
+html	make active	3	assign	field	Window internal slot value	other	notread		
+html	make active	4	assign	unparsed	?	other	gap		
+html	reactivate	2.2	assign	local	suspendDuration	other	gap		
+html	reactivate	2.3	assign	local	activeTimers	timing	notread		
+html	reactivate	3	assign	collection	?	other	gap		
+html	reactivate	4.1	assign	field	page showing	other	notread		
+html	reactivate	4.2	assign	field	has been revealed	other	notread		
+html	reactivate	4.3	assign	collection	"""visible"""	other	gap		
+html	make document unsalvageable	1	assign	local	details	other	gap		
+html	make document unsalvageable	2	assign	collection	bfcache blocking details	other	gap		
+html	make document unsalvageable	3	assign	field	salvageable state	other	notread		
+html	build not restored reasons for document state	1	assign	local	notRestoredReasonsForDocument	other	gap		
+html	build not restored reasons for document state	2	assign	field	URL	other	notread		
+html	build not restored reasons for document state	3	assign	local	container	other	gap		
+html	build not restored reasons for document state	4.1	assign	local	src	other	gap		
+html	build not restored reasons for document state	4.2.1	assign	local	src	other	gap		
+html	build not restored reasons for document state	4.2.2	branch	embedded-local	src	other	notread		
+html	build not restored reasons for document state	4.3	assign	field	src	other	notread		
+html	build not restored reasons for document state	4.4	assign	field	id	other	notread		
+html	build not restored reasons for document state	4.5	assign	field	name	other	notread		
+html	build not restored reasons for document state	5	assign	field	reasons	other	notread		
+html	build not restored reasons for document state	6.1	assign	local	childDocument	other	gap		
+html	build not restored reasons for document state	6.3	assign	collection	children	other	gap		
+html	build not restored reasons for document state	7	assign	field	not restored reasons	other	notread		
+html	build not restored reasons for a top-level traversable and its descendants	2	assign	local	crossOriginDescendants	other	notread	origin not read by model	
+html	build not restored reasons for a top-level traversable and its descendants	3.1	branch	embedded-collection	crossOriginDescendants	other	notread	origin not read by model	
+html	build not restored reasons for a top-level traversable and its descendants	4	assign	local	crossOriginDescendantsPreventsBfcache	other	notread	origin not read by model	
+html	build not restored reasons for a top-level traversable and its descendants	5.1	assign	local	reasonsForCrossOriginChild	other	notread	origin not read by model	
+html	build not restored reasons for a top-level traversable and its descendants	5.3	assign	field	URL	other	notread	origin not read by model	
+html	build not restored reasons for a top-level traversable and its descendants	5.4	assign	field	reasons	other	notread	origin not read by model	
+html	build not restored reasons for a top-level traversable and its descendants	5.5	assign	field	children	other	notread	origin not read by model	
+html	scroll to the fragment	1	branch	embedded-field	target element	other	notread		
+html	scroll to the fragment	2.1	assign	field	target element	other	notread		
+html	scroll to the fragment	3.2	assign	local	target	other	gap		
+html	scroll to the fragment	3.3	assign	field	target element	other	notread		
+html	select the indicated part	2	assign	local	fragment	other	gap		
+html	select the indicated part	4	assign	local	potentialIndicatedElement	other	gap		
+html	select the indicated part	6	assign	local	fragmentBytes	other	gap		
+html	select the indicated part	7	assign	local	decodedFragment	other	gap		
+html	select the indicated part	8	assign	local	potentialIndicatedElement	other	gap		
+html	save persisted state	1	assign	local	the scroll position data of entry	other	gap		
+html	restore scroll position data	1	assign	local	document	other	gap		
+html	create and initialize a Document object	1	assign	local	navigable	other	gap		
+html	create and initialize a Document object	2	assign	local	browsingContext	other	gap		
+html	create and initialize a Document object	3	assign	local	permissionsPolicy	other	gap		
+html	create and initialize a Document object	4	assign	local	creationURL	other	gap		
+html	create and initialize a Document object	5	branch	embedded-local	creationURL	other	notread		
+html	create and initialize a Document object	6	assign	local	window	other	gap		
+html	create and initialize a Document object	7	branch	embedded-local	window	other	notread		
+html	create and initialize a Document object	8.1	assign	local	oacHeader	other	gap		
+html	create and initialize a Document object	8.2	assign	local	requestsOAC	other	gap		
+html	create and initialize a Document object	8.3	branch	embedded-local	requestsOAC	other	notread		
+html	create and initialize a Document object	8.4	assign	local	agent	other	notread	other key	
+html	create and initialize a Document object	8.5	assign	local	realmExecutionContext	other	gap		
+html	create and initialize a Document object	8.6	assign	local	window	other	gap		
+html	create and initialize a Document object	8.7	assign	local	topLevelCreationURL	other	gap		
+html	create and initialize a Document object	8.8	assign	local	topLevelOrigin	other	gap		
+html	create and initialize a Document object	8.9.1	assign	local	parentEnvironment	other	gap		
+html	create and initialize a Document object	8.9.2	assign	local	topLevelCreationURL	secure	unmodeled	top-level creation URL	h-secure
+html	create and initialize a Document object	8.9.3	assign	local	topLevelOrigin	other	gap		
+html	create and initialize a Document object	8.10	assign	unparsed	?	other	gap		
+html	create and initialize a Document object	9	assign	local	loadTimingInfo	timing	notread		
+html	create and initialize a Document object	10	assign	local	document	other	gap		
+html	create and initialize a Document object	11	assign	field	associated Document	other	notread		
+html	create and initialize a Document object	12	assign	field	internal ancestor origin objects list	other	notread		
+html	create and initialize a Document object	13	assign	field	ancestor origins list	other	notread		
+html	create and initialize a Document object	15.1	assign	field	referrer	other	notread		
+html	create and initialize a Document object	15.2	assign	local	referrer	other	gap		
+html	create and initialize a Document object	15.3	branch	embedded-field	referrer	other	notread		
+html	create and initialize a Document object	16.1	assign	local	fullTimingInfo	timing	notread		
+html	create and initialize a Document object	16.2	assign	local	redirectCount	other	gap		
+html	create and initialize a Document object	18.1	assign	local	value	other	gap		
+html	populate with html/head/body	1	assign	local	html	other	gap		
+html	populate with html/head/body	2	assign	local	head	other	gap		
+html	populate with html/head/body	3	assign	local	body	other	gap		
+html	populate with html/head/body	4	assign	collection	document	other	gap		
+html	populate with html/head/body	5	assign	collection	html	other	gap		
+html	populate with html/head/body	6	assign	collection	html	other	gap		
+html	load an HTML document	1	assign	local	document	other	gap		
+html	load a text document	1	assign	local	document	other	gap		
+html	load a text document	2	assign	field	parser cannot change the mode flag	other	notread		
+html	load a text document	3	assign	field	mode	other	notread		
+html	load a multipart/x-mixed-replace document	2	assign	local	firstPartNavigationParams	other	gap		
+html	load a multipart/x-mixed-replace document	3	assign	field	response	response	composite	r quantified	
+html	load a multipart/x-mixed-replace document	4	assign	local	document	other	gap		
+html	load a media document	1	assign	local	document	other	gap		
+html	load a media document	2	assign	field	mode	other	notread		
+html	load a media document	4	assign	collection	the body element	other	gap		
+html	load a media document	5	assign	local	the appropriate attribute of the element	other	gap		
+html	create a document to display a user agent page or PDF viewer inline	1	assign	local	origin	origin	input	document origin o quantified	
+html	create a document to display a user agent page or PDF viewer inline	2	assign	local	coop	coop	unmodeled	UA page	h-coop
+html	create a document to display a user agent page or PDF viewer inline	3	assign	local	coopEnforcementResult	bcgswitch	nocone	MatchCOOP/PopupSevered	h-popup
+html	create a document to display a user agent page or PDF viewer inline	4	assign	local	navigationParams	other	gap		
+html	create a document to display a user agent page or PDF viewer inline	5	assign	local	document	other	gap		
+html	completely finish loading	2	assign	field	completely loaded time	timing	notread		
+html	completely finish loading	3	assign	local	container	other	gap		
+html	unload	2	assign	local	unloadTimingInfo	timing	notread		
+html	unload	3	branch	embedded-local	unloadTimingInfo	timing	notread		
+html	unload	5	assign	local	intendToKeepInBfcache	other	gap		
+html	unload	6	assign	local	eventLoop	other	gap		
+html	unload	9	branch	embedded-field	salvageable state	other	notread		
+html	unload	10.1	assign	field	page showing	other	notread		
+html	unload	10.3	assign	collection	"""hidden"""	other	gap		
+html	unload	11	branch	embedded-field	unload event start time	timing	notread		
+html	unload	13	branch	embedded-field	unload event end time	timing	notread		
+html	unload	15	assign	field	suspension time	timing	notread		
+html	unload	16	assign	field	suspended timer handles	timing	notread		
+html	unload	17	assign	field	has been scrolled by the user	other	notread		
+html	unload	22	branch	embedded-field	previous document unload timing	timing	notread		
+html	unload a document and its descendants	2	assign	local	childNavigables	other	gap		
+html	unload a document and its descendants	3	assign	local	numberUnloaded	other	gap		
+html	unload a document and its descendants	4.1	assign	local	incrementUnloaded	other	gap		
+html	unloading document cleanup steps	1	assign	local	window	other	gap		
+html	unloading document cleanup steps	4.2	assign	collection	?	other	gap		
+html	destroy	3	assign	field	salvageable state	other	notread		
+html	destroy	5	assign	collection	any task queue (without running those	other	gap		
+html	destroy	6	assign	field	browsing context	other	notread		
+html	destroy	7	assign	field	document	other	notread		
+html	destroy	8	assign	collection	the owner set of each WorkerGlobalScope	other	gap		
+html	abort	3.2	assign	field	during-loading navigation ID for WebDriver BiDi	other	notread		
+html	abort	4.1	assign	field	active parser was aborted	other	notread		
+html	abort a document and its descendants	2	assign	local	descendantNavigables	other	gap		
+html	abort a document and its descendants	3.2	branch	embedded-field	salvageable	other	notread		
+html	parse a speculation rule set string	1	assign	local	parsed	other	gap		
+html	parse a speculation rule set string	3	assign	local	result	other	gap		
+html	parse a speculation rule set string	4	assign	local	tag	other	gap		
+html	parse a speculation rule set string	5.2	assign	local	tag	other	gap		
+html	parse a speculation rule set string	6	assign	local	typesToTreatAsPrefetch	other	gap		
+html	parse a speculation rule set string	8.1.1.1	assign	local	rule	other	gap		
+html	parse a speculation rule set string	8.1.1.3	assign	collection	prefetch rules	other	gap		
+html	parse a speculation rule	3	assign	local	source	other	gap		
+html	parse a speculation rule	4	branch	embedded-local	source	other	notread		
+html	parse a speculation rule	5	branch	embedded-local	source	other	notread		
+html	parse a speculation rule	6	branch	embedded-local	source	other	notread		
+html	parse a speculation rule	8	assign	local	urls	other	gap		
+html	parse a speculation rule	9	assign	local	predicate	other	gap		
+html	parse a speculation rule	10.2.2	branch	embedded-local	baseURL	other	notread		
+html	parse a speculation rule	10.4.2	assign	local	parsedURL	other	gap		
+html	parse a speculation rule	10.4.4	assign	collection	urls	other	gap		
+html	parse a speculation rule	11.2	branch	embedded-local	predicate	other	notread		
+html	parse a speculation rule	11.3	branch	embedded-local	predicate	other	notread		
+html	parse a speculation rule	12	assign	local	eagerness	other	gap		
+html	parse a speculation rule	13.2	assign	local	eagerness	other	gap		
+html	parse a speculation rule	14	assign	local	referrerPolicy	other	gap		
+html	parse a speculation rule	15.2	assign	local	referrerPolicy	other	gap		
+html	parse a speculation rule	16	assign	local	tags	other	gap		
+html	parse a speculation rule	17	branch	embedded-collection	tags	other	notread		
+html	parse a speculation rule	18.2	assign	collection	tags	other	gap		
+html	parse a speculation rule	19	branch	embedded-collection	tags	other	notread		
+html	parse a speculation rule	21	assign	local	requirements	other	gap		
+html	parse a speculation rule	22.2.2	assign	collection	requirements	other	gap		
+html	parse a speculation rule	23	assign	local	noVarySearchHint	other	gap		
+html	parse a speculation rule	24.2	assign	local	noVarySearchHint	other	gap		
+html	parse a document rule predicate	3	assign	local	predicateType	other	gap		
+html	parse a document rule predicate	4.3	assign	local	clauses	other	gap		
+html	parse a document rule predicate	4.4.1	assign	local	clause	other	gap		
+html	parse a document rule predicate	4.4.3	assign	collection	clauses	other	gap		
+html	parse a document rule predicate	5.2	assign	local	clause	other	gap		
+html	parse a document rule predicate	6.2.2	branch	embedded-local	baseURL	other	notread		
+html	parse a document rule predicate	6.3	assign	local	rawPatterns	other	gap		
+html	parse a document rule predicate	6.4	branch	embedded-local	rawPatterns	other	notread		
+html	parse a document rule predicate	6.5	assign	local	patterns	other	gap		
+html	parse a document rule predicate	6.6.1	assign	local	pattern	other	gap		
+html	parse a document rule predicate	6.6.3	assign	collection	patterns	other	gap		
+html	parse a document rule predicate	7.2	assign	local	rawSelectors	other	gap		
+html	parse a document rule predicate	7.3	branch	embedded-local	rawSelectors	other	notread		
+html	parse a document rule predicate	7.4	assign	local	selectors	other	gap		
+html	parse a document rule predicate	7.5.1	assign	local	parsedSelectorList	other	gap		
+html	parse a document rule predicate	7.5.2	branch	embedded-local	parsedSelectorList	other	notread		
+html	consider speculative loads	3	assign	field	consider speculative loads microtask queued	other	notread		
+html	consider speculative loads	4.1	assign	field	consider speculative loads microtask queued	other	notread		
+html	inner consider speculative loads steps	2	assign	local	prefetchCandidates	other	gap		
+html	inner consider speculative loads steps	3.1.1	assign	local	anonymizationPolicy	other	gap		
+html	inner consider speculative loads steps	3.1.2	branch	embedded-local	anonymizationPolicy	other	notread		
+html	inner consider speculative loads steps	3.1.3.1	assign	local	referrerPolicy	other	gap		
+html	inner consider speculative loads steps	3.1.3.2	assign	collection	prefetchCandidates	other	gap		
+html	inner consider speculative loads steps	3.1.4.1	assign	local	links	other	gap		
+html	inner consider speculative loads steps	3.1.4.2.1	assign	local	referrerPolicy	other	gap		
+html	inner consider speculative loads steps	3.1.4.2.2	assign	collection	prefetchCandidates	other	gap		
+html	inner consider speculative loads steps	5	assign	local	prefetchCandidateGroups	other	gap		
+html	inner consider speculative loads steps	6.1	assign	local	group	other	gap		
+html	inner consider speculative loads steps	6.2	assign	collection	prefetchCandidates	other	gap		
+html	inner consider speculative loads steps	6.4	assign	collection	prefetchCandidateGroups	other	gap		
+html	inner consider speculative loads steps	7.1.1	assign	local	prefetchCandidate	other	gap		
+html	inner consider speculative loads steps	7.1.2	assign	local	tagsToSend	other	gap		
+html	inner consider speculative loads steps	7.1.3	assign	local	prefetchRecord	other	gap		
+html	collect tags from speculative load candidates	1	assign	local	tags	other	gap		
+html	find matching links	1	assign	local	links	other	gap		
+html	find matching links	2.4	branch	embedded-collection	links	other	notread		
+html	process the `Speculation-Rules` header	1	assign	local	parsedList	other	gap		
+html	process the `Speculation-Rules` header	3.2	assign	local	url	other	gap		
+html	process the `Speculation-Rules` header	3.4.2.1	assign	local	request	other	gap		
+html	process the `Speculation-Rules` header	3.4.2.2.4	assign	local	bodyText	other	gap		
+html	process the `Speculation-Rules` header	3.4.2.2.5	assign	local	ruleSet	other	gap		
+html	process the `Speculation-Rules` header	3.4.2.2.6	assign	collection	speculation rule sets	other	gap		
+html	check a navigation response's adherence to `X-Frame-Options`	3	assign	local	rawXFrameOptions	other	gap		
+html	check a navigation response's adherence to `X-Frame-Options`	4	assign	local	xFrameOptions	other	gap		
+html	check a navigation response's adherence to `X-Frame-Options`	9.1	assign	local	containerDocument	other	gap		
+html	check a navigation response's adherence to `X-Frame-Options`	9.2.2	assign	local	containerDocument	other	gap		
+html	create an agent	1	assign	local	signifier	other	gap		
+html	create an agent	2	assign	local	candidateExecution	other	gap		
+html	create an agent	3	assign	local	agent	other	notread	other key	
+html	create an agent	4	assign	field	event loop	other	notread		
+html	obtain a similar-origin window agent	1	assign	local	site	akey	nocone	KeyKind	h-keykind
+html	obtain a similar-origin window agent	2	assign	local	key	akey	nocone	KeyKind	h-keykind
+html	obtain a similar-origin window agent	3	branch	embedded-local	key	akey	nocone	KeyKind	h-keykind
+html	obtain a similar-origin window agent	4	branch	embedded-local	key	akey	nocone	KeyKind	h-keykind
+html	obtain a similar-origin window agent	5.1	branch	embedded-local	key	akey	nocone	KeyKind	h-keykind
+html	obtain a similar-origin window agent	5.2	assign	field	historical agent cluster key maporigin	akey	nocone	KeyKind	h-keykind
+html	obtain a similar-origin window agent	6.1	assign	local	agentCluster	other	gap		
+html	obtain a similar-origin window agent	6.2	assign	field	cross-origin isolation mode	coimode	modeled	identity (group mode)	
+html	obtain a similar-origin window agent	6.3.2	assign	field	is origin-keyed	akey	nocone	KeyKind	h-keykind
+html	obtain a similar-origin window agent	6.4	assign	collection	agentCluster	other	gap		
+html	obtain a similar-origin window agent	6.5	assign	field	agent cluster mapkey	akey	nocone	KeyKind	h-keykind
+html	obtain a similar-origin window agent	7	return	return	result	akey	nocone	KeyKind	h-keykind
+html	create a new realm	2	assign	unparsed	?	other	gap		
+html	create a new realm	3	assign	collection	the JavaScript execution context stack	other	gap		
+html	create a new realm	4	assign	local	realm	other	gap		
+html	create a new realm	5.1	assign	local	global	other	gap		
+html	create a new realm	5.2	assign	local	status	other	gap		
+html	secure context	1.1	assign	local	global	other	gap		
+html	secure context	1.2.1	branch	embedded-return	result	secure	unmodeled	worker owner	h-secure
+html	secure context	1.2.2	return	return	result	secure	unmodeled	worker owner	h-secure
+html	secure context	1.3	branch	embedded-return	result	secure	unmodeled	worklet	h-secure
+html	secure context	2	branch	embedded-return	result	secure	unmodeled	data: URL	h-secure
+html	secure context	3	branch	embedded-return	result	secure	modeled	Secure(o)	
+html	secure context	4	return	return	result	secure	modeled	Secure(o)	
+html	create a classic script	1	branch	embedded-local	baseURL	other	notread		
+html	create a classic script	2	branch	embedded-local	source	other	notread		
+html	create a classic script	3	assign	local	script	other	gap		
+html	create a classic script	4	assign	field	settings object	other	notread		
+html	create a classic script	5	assign	field	base URL	other	notread		
+html	create a classic script	6	assign	field	fetch options	other	notread		
+html	create a classic script	7	assign	field	muted errors	other	notread		
+html	create a classic script	8	assign	field	parse error and error	other	notread		
+html	create a classic script	10	assign	local	result	other	gap		
+html	create a classic script	11.1	assign	field	parse error and its error	other	notread		
+html	create a classic script	12	assign	field	record	other	notread		
+html	run a classic script	1	assign	local	settings	other	gap		
+html	run a classic script	5	assign	local	evaluationStatus	other	gap		
+html	run a classic script	6	branch	embedded-local	evaluationStatus	other	notread		
+html	run a classic script	7	branch	embedded-local	evaluationStatus	other	notread		
+html	run a module script	1	assign	local	settings	other	gap		
+html	run a module script	5	assign	local	evaluationPromise	other	gap		
+html	run a module script	6	branch	embedded-local	evaluationPromise	other	notread		
+html	run a module script	7.1	assign	local	record	other	gap		
+html	run a module script	7.2	assign	local	evaluationPromise	other	gap		
+html	prepare to run script	1	assign	collection	?	other	gap		
+html	prepare to run script	2	assign	collection	script evaluation environment settings object set	other	gap		
+html	clean up after running script	2	assign	collection	the JavaScript execution context stack	other	gap		
+html	extract error information	1	assign	local	attributes	other	gap		
+html	extract error information	2	assign	field	attributeserror	other	notread		
+html	extract error information	3	assign	field	attributesmessage, attributesfilename, attributeslineno, and attributescolno	other	notread		
+html	report an exception	1	assign	local	notHandled	other	gap		
+html	report an exception	2	assign	local	errorInfo	other	gap		
+html	report an exception	3	assign	local	script	other	gap		
+html	report an exception	4	branch	embedded-field	errorInfoerror	other	notread		
+html	report an exception	5	branch	embedded-field	errorInfoerror	other	notread		
+html	report an exception	6.1	assign	field	in error reporting mode	report	notread		
+html	report an exception	6.2	branch	embedded-local	notHandled	other	notread		
+html	report an exception	6.3	assign	field	in error reporting mode	report	notread		
+html	report an exception	7.1	assign	field	errorInfoerror	other	notread		
+html	report an exception	7.2.1	assign	local	workerObject	other	gap		
+html	report an exception	7.2.2	assign	local	notHandled	other	gap		
+html	notify about rejected promises	1	assign	local	list	other	gap		
+html	notify about rejected promises	3	assign	collection	?	other	gap		
+html	notify about rejected promises	4.1.2	assign	local	notCanceled	other	gap		
+html	notify about rejected promises	4.1.4	branch	embedded-collection	outstanding rejected promises weak set	other	notread		
+html	create a speculation rules parse result	1	assign	local	result	other	gap		
+html	create a speculation rules parse result	2	call	embedded-field	error	other	notread		
+html	register speculation rules	2	assign	collection	speculation rule sets	other	gap		
+html	update speculation rules	1	assign	collection	speculation rule sets	other	gap		
+html	merge module specifier maps	1	assign	local	mergedMap	other	gap		
+html	merge module specifier maps	2.2	assign	field	mergedMapspecifier	other	notread		
+html	merge existing and new import maps	1	assign	local	newImportMapScopes	other	gap		
+html	merge existing and new import maps	2	assign	local	oldImportMap	other	gap		
+html	merge existing and new import maps	3	assign	local	newImportMapImports	other	gap		
+html	merge existing and new import maps	4.1.1.1.1.2	assign	collection	?	other	gap		
+html	merge existing and new import maps	4.2	branch	embedded-field	scopesscopePrefix	other	notread		
+html	merge existing and new import maps	4.3	branch	embedded-field	scopesscopePrefix	other	notread		
+html	merge existing and new import maps	5.2	assign	field	integrityurl	other	notread		
+html	merge existing and new import maps	6.1.1.2	assign	collection	?	other	gap		
+html	merge existing and new import maps	7	assign	field	imports	other	notread		
+html	queue a task	3	assign	local	task	other	gap		
+html	queue a task	4	assign	field	steps	other	notread		
+html	queue a task	5	assign	field	source	other	notread		
+html	queue a task	6	assign	field	document	other	notread		
+html	queue a task	7	assign	field	script evaluation environment settings object set	other	notread		
+html	queue a task	8	assign	local	queue	other	gap		
+html	queue a task	9	assign	collection	queue	other	gap		
+html	queue a global task	1	assign	unparsed	?	other	gap		
+html	queue a global task	2	assign	local	document	other	gap		
+html	queue an element task	1	assign	local	global	other	gap		
+html	queue a microtask	2	assign	local	eventLoop	other	gap		
+html	queue a microtask	4	assign	local	microtask	other	gap		
+html	queue a microtask	5	assign	field	steps	other	notread		
+html	queue a microtask	6	assign	field	source	other	notread		
+html	queue a microtask	7	assign	field	document	other	notread		
+html	queue a microtask	8	assign	field	script evaluation environment settings object set	other	notread		
+html	queue a microtask	9	assign	collection	?	other	gap		
+html	perform a microtask checkpoint	2	assign	field	performing a microtask checkpoint	other	notread		
+html	perform a microtask checkpoint	3.1	assign	local	oldestMicrotask	other	gap		
+html	perform a microtask checkpoint	3.2	assign	field	currently running task	other	notread		
+html	perform a microtask checkpoint	3.4	assign	field	currently running task back	other	notread		
+html	perform a microtask checkpoint	7	assign	field	performing a microtask checkpoint	other	notread		
+html	spin the event loop	1	assign	local	task	other	gap		
+html	spin the event loop	2	assign	unparsed	?	other	gap		
+html	spin the event loop	3	assign	unparsed	?	other	gap		
+html	spin the event loop	4	assign	collection	?	other	gap		
+html	spin the event loop	6.2.1	assign	collection	?	other	gap		
+html	pause	1	assign	local	global	other	gap		
+html	pause	2	assign	local	timeBeforePause	timing	notread		
+html	terminate a worklet global scope	1	assign	local	eventLoop	other	gap		
+html	terminate a worklet global scope	6	assign	collection	the global scopes of the Worklet	other	gap		
+html	terminate a worklet global scope	7	assign	collection	the worklet global scopes of the	other	gap		
+html	remove an element from the stack of open elements	1	assign	collection	the stack of open elements	other	gap		
+html	flush pending text	2	assign	unparsed	?	other	gap		
+html	flush pending text	3	assign	field	pending text	other	notread		
+html	flush pending text	4	assign	unparsed	?	other	gap		
+html	flush pending text	5	assign	local	previousSibling	other	gap		
+html	stops parsing	3	assign	local	the insertion point	other	gap		
+html	stops parsing	4	assign	collection	"""interactive"""	other	gap		
+html	stops parsing	8.1	assign	field	DOM content loaded event start time	timing	notread		
+html	stops parsing	8.3	assign	field	DOM content loaded event end time	timing	notread		
+html	stops parsing	11.1	assign	collection	"""complete"""	other	gap		
+html	stops parsing	11.3	assign	local	window	other	gap		
+html	stops parsing	11.4	assign	field	load event start time	timing	notread		
+html	stops parsing	11.7	assign	field	during-loading navigation ID for WebDriver BiDi	other	notread		
+html	stops parsing	11.8	assign	field	load event end time	timing	notread		
+html	stops parsing	11.10	assign	field	page showing	other	notread		
+html	execute the deferred scripts	1.3	assign	collection	list of scripts that will execute	other	gap		
+html	abort a parser	2	assign	field	aborted	other	notread		
+html	abort a parser	7	assign	collection	"""interactive"""	other	gap		
+html	abort a parser	9	assign	collection	"""complete"""	other	gap		
+html	stop the speculative HTML parser	1	assign	local	speculativeParser	other	gap		
+html	stop the speculative HTML parser	4	assign	field	active speculative HTML parser	other	notread		
