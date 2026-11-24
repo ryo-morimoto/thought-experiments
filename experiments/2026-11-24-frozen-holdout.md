@@ -1,6 +1,6 @@
 # モデルを凍結してから新しい筋書きで動かしても、ブラウザの値はモデルの許す値に入るか
 
-- 状態: 設定中
+- 状態: 検討中
 - 開始: 2026-11-24
 - 更新: 2026-11-24
 - 関連: [plan/browser-semantics-soundness/TREE.md](../plan/browser-semantics-soundness/TREE.md)、[experiments/2026-11-24-axis-generated-scenarios.md](2026-11-24-axis-generated-scenarios.md)、[experiments/2026-11-24-finite-domain-adequacy.md](2026-11-24-finite-domain-adequacy.md)（関係の型の穴）
@@ -29,7 +29,33 @@
 
 ## 条件を変える
 
-（段階B で書く）
+subagent が、モデル（コミット 94deed8）と各モジュールと道具の sha256、パラメータ（Origin-Agent-Cluster の既定は Chrome が #7617、Firefox が仕様の時点）、cross-origin isolation mode の集合、変異体の集合、観測の写し方、包含と殺し方の規則、外れの分類、生成の種と選び方を事前登録で固定し、コミットした（[experiments/prereg/2026-11-24-frozen-holdout.md](prereg/2026-11-24-frozen-holdout.md)、コミット bf5e9f9、タグ prereg-frozen-holdout-2026-11-24）。それより前の殺した変異体の和は、登録の前に計算した。そのあとで新しい種の筋書きを作り、Chrome 158.0.8127.88 と Firefox 160.0.1 に 2 回ずつ動かした（[holdout/](models/site-isolation/holdout/RESULTS.md)）。筆者は報告を読んだ。
+
+**関係の型の穴**: 入れ子の 3 つのオリジンの 66 型すべてと、リダイレクトの型（A と 0〜2 段で 5 + 33 + 269）すべてを、両方のブラウザの行で実現した（互いに別サイトの 3 つ、別の http のオリジン、http の段、別の別サイトの段を含む）。3 つめと 4 つめのサイトは、コンテナの中だけで試験のサーバーの設定を足した。
+
+**費用**: 入れ子は 19,008 からの選別で 1,190、リダイレクトは 19,488 からの選別で 880。選別は約 19 分。1 回の繰り返しは、入れ子がブラウザごとに約 18 分、リダイレクトが Chrome 27 分・Firefox 55 分。すべての行が繰り返しで一致。
+
+**包含**（登録した主な設定）
+
+<!-- data-source: original（subagent の観測と TLC の検査の集計） -->
+| 家族 | Chrome | Firefox |
+| --- | --- | --- |
+| 入れ子 | 6,759 / 6,759 が内側 | 6,595 が内側、164 が外 |
+| リダイレクト | 3,520 / 3,520 が内側 | 3,470 が内側、50 が外 |
+
+- Firefox の 164 行: 隔離された最上位の中の別オリジンの段が crossOriginIsolated を真と返す（モデルは偽）。公開の失敗 cross-origin-isolated-permission-iframe と同じ型。
+- Firefox の 50 行（25 の筋書き）: same-origin-allow-popups の開いた側を空の popup から切らない。すべて「直前ではなく起点と比べる」変異体の内側。公開の失敗 popup-redirect-same-origin-allow-popups と同じ型で、http と 3 つめのサイトの段を通しても同じ。
+- 登録した分類の、モデルの欠落・試験の作り・新しい型などは無かった。保留に回すものも無し。
+
+**殺し方**: 入れ子は 115 個のうち 59（両方）、リダイレクトは 141 個のうち Chrome 54・Firefox 52。前の和に無かったもの 2 つ（安全でない文脈の隔離を無視する変異体 2 つ、http の最後の文書から）を、主な設定でだけ殺した（concrete だけの設定では新しいものは無い）。前の同じ家族の実行と比べて失ったものは無い。
+
+**登録からのずれ**: モデル、規則、パラメータ、種、選び方には無い。採点だけの補助（HoldRescue.tla ほか）を登録のあとで足した。登録の前に、採点の道具を確かめるときに試し走り（種 1）の殺した数を見てしまった（前の和の外の 2 つを含む）。包含の数は見ておらず、そのあと何も変えていない（登録の記録に書いた）。
+
+読み取れること:
+
+- R1（保たれる）が当たった。凍結したモデルで、関係の型の穴を埋めた新しい筋書きでも、Chrome はすべて内側、Firefox の外れは既知の公開の 2 つの型だけ。前の「すべて内側」は当てはめだけではなかった。
+- R2（新しい外れ）は当たらなかった。
+- R3（殺し方が変わる）は、狭く当たった（2 つ）。
 
 ## 結果を攻撃する
 
@@ -46,7 +72,9 @@
 ## 経過
 
 - 2026-11-24 段階A。問いと対立仮説を置いた。
+- 2026-11-24 段階B。モデルと判定を事前登録で固定し（bf5e9f9）、関係の型の穴を埋めた新しい種の筋書きを動かした。Chrome はすべて内側、Firefox の外れは既知の公開の 2 つの型だけ。登録からのずれは無し。
 
 ## 具体
 
-（段階B で書く）
+- 事前登録: [experiments/prereg/2026-11-24-frozen-holdout.md](prereg/2026-11-24-frozen-holdout.md)（コミット bf5e9f9、タグ prereg-frozen-holdout-2026-11-24）。
+- 生成器、試験、観測した値、採点: [holdout/](models/site-isolation/holdout/RESULTS.md)。生のログ（sha256 は RESULTS.md）と TLC の出力は、ジョブの一時ディレクトリの holdout/w2/。

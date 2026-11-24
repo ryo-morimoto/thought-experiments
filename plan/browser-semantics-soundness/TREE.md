@@ -69,10 +69,10 @@
     - **C1** [済] 値を記録する観測（効き: mid）
       - 完了の条件: 合否ではなく値を出す観測の仕組みがある
       - 根拠: [2026-11-23-observed-values-inclusion.md](../../experiments/2026-11-23-observed-values-inclusion.md)、[RESULTS.md](../../experiments/models/site-isolation/observe/RESULTS.md)
-    - **C2** [一部] 入力の空間の網羅（効き: high）
+    - **C2** [済] 入力の空間の網羅（効き: high）
       - 完了の条件: 性質が量化する入力の構造（リダイレクト、popup の系譜、sandbox、about:blank、履歴）を軸として覆い、等価のまま残る変異体が軸の外だけになる
-      - 今: 入れ子・スキーム・COEP、popup の系譜・Origin-Agent-Cluster・sandbox・CORP same-site と画像、リダイレクトの段数、履歴の移動と bfcache、バグの履歴が示した 5 つの軸は済。関係の型の穴（W2）が残る
-      - 根拠: [2026-11-24-axis-generated-scenarios.md](../../experiments/2026-11-24-axis-generated-scenarios.md)、[2026-11-24-frozen-holdout.md](../../experiments/2026-11-24-frozen-holdout.md)、[2026-11-24-history-bfcache-sequence.md](../../experiments/2026-11-24-history-bfcache-sequence.md)、[2026-11-24-popup-sandbox-axes.md](../../experiments/2026-11-24-popup-sandbox-axes.md)、[2026-11-24-redirect-sequence-model.md](../../experiments/2026-11-24-redirect-sequence-model.md)、[RESULTS.md](../../experiments/models/site-isolation/gen/RESULTS.md)、[RESULTS.md](../../experiments/models/site-isolation/gen2/RESULTS.md)、[RESULTS.md](../../experiments/models/site-isolation/redirect/RESULTS.md)、[RESULTS.md](../../experiments/models/site-isolation/history/RESULTS.md)
+      - 今: 入れ子・スキーム・COEP、popup の系譜・Origin-Agent-Cluster・sandbox・CORP same-site と画像、リダイレクトの段数、履歴の移動と bfcache、バグの履歴が示した 5 つの軸を覆い、関係の型の穴も取り置きの実行で閉じた。等価のまま残る変異体は、軸の外（logical の選択、共有 worker、利用者の操作）だけ
+      - 根拠: [2026-11-24-axis-generated-scenarios.md](../../experiments/2026-11-24-axis-generated-scenarios.md)、[2026-11-24-frozen-holdout.md](../../experiments/2026-11-24-frozen-holdout.md)、[2026-11-24-history-bfcache-sequence.md](../../experiments/2026-11-24-history-bfcache-sequence.md)、[2026-11-24-popup-sandbox-axes.md](../../experiments/2026-11-24-popup-sandbox-axes.md)、[2026-11-24-redirect-sequence-model.md](../../experiments/2026-11-24-redirect-sequence-model.md)、[RESULTS.md](../../experiments/models/site-isolation/gen/RESULTS.md)、[RESULTS.md](../../experiments/models/site-isolation/gen2/RESULTS.md)、[RESULTS.md](../../experiments/models/site-isolation/redirect/RESULTS.md)、[RESULTS.md](../../experiments/models/site-isolation/history/RESULTS.md)、[RESULTS.md](../../experiments/models/site-isolation/holdout/RESULTS.md)
     - **C3** [済] 判別の力の測り方（効き: mid）
       - 完了の条件: 観測が変異体を見分ける数を測り、ブラウザで動かす筋書きをモデルの上で先に選べる
       - 根拠: [2026-11-23-observed-values-inclusion.md](../../experiments/2026-11-23-observed-values-inclusion.md)、[2026-11-24-axis-generated-scenarios.md](../../experiments/2026-11-24-axis-generated-scenarios.md)
@@ -95,10 +95,10 @@
       - 完了の条件: 軸と変異体を、モデルの語彙ではなく、ブラウザのバグの履歴や実装の欠陥の型から作り、それで包含を確かめている
       - 今: 公開で直った 58 件から型を作り、66 個の変異体を殺す率は作者の変異体と同じ。欠陥の 88% は軸の外。段で書ける欠けた軸は C11、モデルの外の型は C5 に入れた
       - 根拠: [2026-11-24-bug-history-mutants.md](../../experiments/2026-11-24-bug-history-mutants.md)、[RESULTS.md](../../experiments/models/site-isolation/bugmut/RESULTS.md)
-    - **C10** [未] 凍結したモデルでの取り置きの実行（効き: high）
+    - **C10** [済] 凍結したモデルでの取り置きの実行（効き: high）
       - 完了の条件: モデル・軸・パラメータ・判定を事前に固定してから、新しい種の筋書きをブラウザで動かし、包含を数えている
-      - 今: これまでモデルはデータと一緒に育った（軸ごとに段を足し、#7617 のパラメータを合わせた）
-      - 根拠: [2026-11-24-frozen-holdout.md](../../experiments/2026-11-24-frozen-holdout.md)
+      - 今: 事前登録（bf5e9f9）で固定してから新しい種の筋書きを動かした。Chrome はすべて内側、Firefox の外れは既知の公開の 2 つの型だけ。登録からのずれは無し
+      - 根拠: [2026-11-24-frozen-holdout.md](../../experiments/2026-11-24-frozen-holdout.md)、[RESULTS.md](../../experiments/models/site-isolation/holdout/RESULTS.md)
     - **C11** [済] バグの履歴が示す、モデルの段で書けるのに欠けた軸（効き: mid）
       - 完了の条件: sandbox の旗、リダイレクトで運ばれる COOP 以外の値、document.domain のオリジンの領域の検査と Window の再利用、worker の方策の容れ物、別オリジンの cors の取得を、モデルの段と軸として足し、包含を確かめている
       - 今: 5 つの軸の段と筋書きを足し（gen3/）、新しい変異体の 80 個中 79 個を殺した。段の欠けていた 15 件の欠陥のうち 11 件が殺された変異体に当たった
@@ -150,8 +150,6 @@
 
 未完了（未・一部）の葉を、効きの大きい順に並べた。
 
-- **C2** [一部・効き high] 入力の空間の網羅: 性質が量化する入力の構造（リダイレクト、popup の系譜、sandbox、about:blank、履歴）を軸として覆い、等価のまま残る変異体が軸の外だけになる
-- **C10** [未・効き high] 凍結したモデルでの取り置きの実行: モデル・軸・パラメータ・判定を事前に固定してから、新しい種の筋書きをブラウザで動かし、包含を数えている
 - **A3** [一部・効き low] 性質が空でない（前提を満たす証人がある）: 各性質に、前提を満たす証人がある
 - **C6** [一部・効き low] 観測の仕組みの妥当性: 手元のコンテナと wpt.fyi の条件の違いと、試験の作りの影響が切り分けられている
 - **E2** [一部・効き low] 方法の対照: 各方法に、無作為な基準と、方法を使わずに読む対照がある

@@ -177,11 +177,11 @@ evidence = ["experiments/models/site-isolation/observe/RESULTS.md"]
 id = "C2"
 parent = "C"
 title = "入力の空間の網羅"
-status = "partial"
+status = "done"
 impact = "high"
 done_when = "性質が量化する入力の構造（リダイレクト、popup の系譜、sandbox、about:blank、履歴）を軸として覆い、等価のまま残る変異体が軸の外だけになる"
-note = "入れ子・スキーム・COEP、popup の系譜・Origin-Agent-Cluster・sandbox・CORP same-site と画像、リダイレクトの段数、履歴の移動と bfcache、バグの履歴が示した 5 つの軸は済。関係の型の穴（W2）が残る"
-evidence = ["experiments/models/site-isolation/gen/RESULTS.md", "experiments/models/site-isolation/gen2/RESULTS.md", "experiments/models/site-isolation/redirect/RESULTS.md", "experiments/models/site-isolation/history/RESULTS.md"]
+note = "入れ子・スキーム・COEP、popup の系譜・Origin-Agent-Cluster・sandbox・CORP same-site と画像、リダイレクトの段数、履歴の移動と bfcache、バグの履歴が示した 5 つの軸を覆い、関係の型の穴も取り置きの実行で閉じた。等価のまま残る変異体は、軸の外（logical の選択、共有 worker、利用者の操作）だけ"
+evidence = ["experiments/models/site-isolation/gen/RESULTS.md", "experiments/models/site-isolation/gen2/RESULTS.md", "experiments/models/site-isolation/redirect/RESULTS.md", "experiments/models/site-isolation/history/RESULTS.md", "experiments/models/site-isolation/holdout/RESULTS.md"]
 
 [[node]]
 id = "C3"
@@ -242,10 +242,11 @@ evidence = ["experiments/models/site-isolation/bugmut/RESULTS.md"]
 id = "C10"
 parent = "C"
 title = "凍結したモデルでの取り置きの実行"
-status = "todo"
+status = "done"
 impact = "high"
 done_when = "モデル・軸・パラメータ・判定を事前に固定してから、新しい種の筋書きをブラウザで動かし、包含を数えている"
-note = "これまでモデルはデータと一緒に育った（軸ごとに段を足し、#7617 のパラメータを合わせた）"
+note = "事前登録（bf5e9f9）で固定してから新しい種の筋書きを動かした。Chrome はすべて内側、Firefox の外れは既知の公開の 2 つの型だけ。登録からのずれは無し"
+evidence = ["experiments/models/site-isolation/holdout/RESULTS.md"]
 
 [[node]]
 id = "C11"

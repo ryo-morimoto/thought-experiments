@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=timeout content=long>
+<title>holdout redirect chains, opener COOP same-origin</title>
+<script src="/resources/testharness.js"></script>
+<script src="/resources/testharnessreport.js"></script>
+<script src="/common/dispatcher/dispatcher.js"></script>
+<script src="/common/utils.js"></script>
+<script src="resources/hrobs.js"></script>
+<body>
+<script>
+const HOSTS = {
+  a: "{{host}}", aw: "{{hosts[][www]}}", a1: "{{hosts[][www1]}}", a2: "{{hosts[][www2]}}",
+  b: "{{hosts[alt][]}}", bw: "{{hosts[alt][www]}}", b1: "{{hosts[alt][www1]}}", b2: "{{hosts[alt][www2]}}",
+  c: "{{hosts[alt2][]}}", cw: "{{hosts[alt2][www]}}", c1: "{{hosts[alt2][www1]}}", c2: "{{hosts[alt2][www2]}}",
+  d: "{{hosts[alt3][]}}", dw: "{{hosts[alt3][www]}}", d1: "{{hosts[alt3][www1]}}", d2: "{{hosts[alt3][www2]}}"};
+const PORTS = {http: {{ports[http][0]}}, https: {{ports[https][0]}}};
+const OPENER = {coop: "same-origin", coep: "unsafe-none"};
+const SCEN = [
+  {id: "r00027", st: "blank", hops: [], fin: {s: "http", h: "c", coop: "same-origin-allow-popups", coep: "unsafe-none"}},
+  {id: "r00034", st: "doc", hops: [], fin: {s: "http", h: "c", coop: "same-origin-allow-popups", coep: "require-corp"}},
+  {id: "r00035", st: "doc", hops: [], fin: {s: "http", h: "c", coop: "same-origin", coep: "unsafe-none"}},
+  {id: "r00036", st: "doc", hops: [], fin: {s: "http", h: "c", coop: "same-origin", coep: "require-corp"}},
+  {id: "r00078", st: "blank", hops: [], fin: {s: "http", h: "a2", coop: "same-origin", coep: "require-corp"}},
+  {id: "r00079", st: "doc", hops: [], fin: {s: "http", h: "a2", coop: "unsafe-none", coep: "unsafe-none"}},
+  {id: "r00084", st: "doc", hops: [], fin: {s: "http", h: "a2", coop: "same-origin", coep: "require-corp"}},
+  {id: "r00122", st: "blank", hops: [], fin: {s: "https", h: "d", coop: "unsafe-none", coep: "require-corp"}},
+  {id: "r00123", st: "blank", hops: [], fin: {s: "https", h: "d", coop: "same-origin-allow-popups", coep: "unsafe-none"}},
+  {id: "r00125", st: "blank", hops: [], fin: {s: "https", h: "d", coop: "same-origin", coep: "unsafe-none"}},
+  {id: "r00129", st: "doc", hops: [], fin: {s: "https", h: "d", coop: "same-origin-allow-popups", coep: "unsafe-none"}},
+  {id: "r00130", st: "doc", hops: [], fin: {s: "https", h: "d", coop: "same-origin-allow-popups", coep: "require-corp"}},
+  {id: "r00131", st: "doc", hops: [], fin: {s: "https", h: "d", coop: "same-origin", coep: "unsafe-none"}},
+  {id: "r00169", st: "blank", hops: [], fin: {s: "https", h: "a1", coop: "unsafe-none", coep: "unsafe-none"}},
+  {id: "r00173", st: "blank", hops: [], fin: {s: "https", h: "a1", coop: "same-origin", coep: "unsafe-none"}},
+  {id: "r00178", st: "doc", hops: [], fin: {s: "https", h: "a1", coop: "same-origin-allow-popups", coep: "require-corp"}},
+  {id: "r00179", st: "doc", hops: [], fin: {s: "https", h: "a1", coop: "same-origin", coep: "unsafe-none"}},
+  {id: "r00219", st: "blank", hops: [], fin: {s: "https", h: "a", coop: "same-origin-allow-popups", coep: "unsafe-none"}},
+  {id: "r00220", st: "blank", hops: [], fin: {s: "https", h: "a", coop: "same-origin-allow-popups", coep: "require-corp"}},
+  {id: "r00221", st: "blank", hops: [], fin: {s: "https", h: "a", coop: "same-origin", coep: "unsafe-none"}},
+  {id: "r00222", st: "blank", hops: [], fin: {s: "https", h: "a", coop: "same-origin", coep: "require-corp"}},
+  {id: "r00225", st: "doc", hops: [], fin: {s: "https", h: "a", coop: "same-origin-allow-popups", coep: "unsafe-none"}},
+  {id: "r00226", st: "doc", hops: [], fin: {s: "https", h: "a", coop: "same-origin-allow-popups", coep: "require-corp"}},
+  {id: "r00227", st: "doc", hops: [], fin: {s: "https", h: "a", coop: "same-origin", coep: "unsafe-none"}},
+  {id: "r00228", st: "doc", hops: [], fin: {s: "https", h: "a", coop: "same-origin", coep: "require-corp"}},
+  {id: "r00378", st: "doc", hops: [{s: "http", h: "bw", coop: "same-origin", coep: "unsafe-none"}], fin: {s: "http", h: "c1", coop: "same-origin", coep: "require-corp"}},
+  {id: "r00951", st: "doc", hops: [{s: "http", h: "cw", coop: "same-origin", coep: "unsafe-none"}], fin: {s: "http", h: "aw", coop: "same-origin-allow-popups", coep: "unsafe-none"}},
+  {id: "r01136", st: "doc", hops: [{s: "http", h: "a1", coop: "same-origin-allow-popups", coep: "unsafe-none"}], fin: {s: "http", h: "dw", coop: "unsafe-none", coep: "require-corp"}},
+  {id: "r01697", st: "blank", hops: [{s: "http", h: "d2", coop: "same-origin", coep: "unsafe-none"}], fin: {s: "https", h: "bw", coop: "same-origin", coep: "unsafe-none"}},
+  {id: "r01708", st: "doc", hops: [{s: "http", h: "d2", coop: "unsafe-none", coep: "unsafe-none"}], fin: {s: "https", h: "bw", coop: "same-origin-allow-popups", coep: "require-corp"}},
+  {id: "r02297", st: "doc", hops: [{s: "http", h: "cw", coop: "same-origin", coep: "unsafe-none"}], fin: {s: "https", h: "a", coop: "same-origin", coep: "unsafe-none"}},
+  {id: "r02849", st: "blank", hops: [{s: "http", h: "a1", coop: "same-origin", coep: "unsafe-none"}], fin: {s: "https", h: "a", coop: "same-origin", coep: "unsafe-none"}},
+  {id: "r02855", st: "blank", hops: [{s: "http", h: "a1", coop: "same-origin", coep: "require-corp"}], fin: {s: "https", h: "a", coop: "same-origin", coep: "unsafe-none"}},
+  {id: "r02867", st: "doc", hops: [{s: "http", h: "a1", coop: "same-origin-allow-popups", coep: "unsafe-none"}], fin: {s: "https", h: "a", coop: "same-origin", coep: "unsafe-none"}},
+  {id: "r03804", st: "blank", hops: [{s: "https", h: "a1", coop: "same-origin-allow-popups", coep: "unsafe-none"}], fin: {s: "http", h: "aw", coop: "same-origin", coep: "require-corp"}},
+  {id: "r03991", st: "blank", hops: [{s: "https", h: "a", coop: "same-origin-allow-popups", coep: "unsafe-none"}], fin: {s: "http", h: "bw", coop: "unsafe-none", coep: "unsafe-none"}},
+  {id: "r03996", st: "blank", hops: [{s: "https", h: "a", coop: "same-origin-allow-popups", coep: "unsafe-none"}], fin: {s: "http", h: "bw", coop: "same-origin", coep: "require-corp"}},
+  {id: "r04002", st: "blank", hops: [{s: "https", h: "a", coop: "same-origin", coep: "unsafe-none"}], fin: {s: "http", h: "bw", coop: "same-origin", coep: "require-corp"}},
+  {id: "r04024", st: "doc", hops: [{s: "https", h: "a", coop: "same-origin", coep: "unsafe-none"}], fin: {s: "http", h: "bw", coop: "same-origin-allow-popups", coep: "require-corp"}},
+  {id: "r04026", st: "doc", hops: [{s: "https", h: "a", coop: "same-origin", coep: "unsafe-none"}], fin: {s: "http", h: "bw", coop: "same-origin", coep: "require-corp"}},
+  {id: "r04186", st: "blank", hops: [{s: "https", h: "a", coop: "same-origin-allow-popups", coep: "unsafe-none"}], fin: {s: "http", h: "a", coop: "same-origin-allow-popups", coep: "require-corp"}},
+  {id: "r04188", st: "blank", hops: [{s: "https", h: "a", coop: "same-origin-allow-popups", coep: "unsafe-none"}], fin: {s: "http", h: "a", coop: "same-origin", coep: "require-corp"}},
+  {id: "r04190", st: "blank", hops: [{s: "https", h: "a", coop: "same-origin", coep: "unsafe-none"}], fin: {s: "http", h: "a", coop: "unsafe-none", coep: "require-corp"}},
+  {id: "r04191", st: "blank", hops: [{s: "https", h: "a", coop: "same-origin", coep: "unsafe-none"}], fin: {s: "http", h: "a", coop: "same-origin-allow-popups", coep: "unsafe-none"}},
+  {id: "r04200", st: "blank", hops: [{s: "https", h: "a", coop: "same-origin", coep: "require-corp"}], fin: {s: "http", h: "a", coop: "same-origin", coep: "require-corp"}},
+  {id: "r04409", st: "doc", hops: [{s: "https", h: "b", coop: "same-origin", coep: "unsafe-none"}], fin: {s: "https", h: "cw", coop: "same-origin", coep: "unsafe-none"}},
+  {id: "r04577", st: "blank", hops: [{s: "https", h: "d1", coop: "same-origin", coep: "unsafe-none"}], fin: {s: "https", h: "d2", coop: "same-origin", coep: "unsafe-none"}},
+  {id: "r04769", st: "blank", hops: [{s: "https", h: "d", coop: "same-origin", coep: "unsafe-none"}], fin: {s: "https", h: "d", coop: "same-origin", coep: "unsafe-none"}},
+  {id: "r04773", st: "blank", hops: [{s: "https", h: "d", coop: "same-origin", coep: "require-corp"}], fin: {s: "https", h: "d", coop: "same-origin-allow-popups", coep: "unsafe-none"}},
+  {id: "r04786", st: "doc", hops: [{s: "https", h: "d", coop: "same-origin-allow-popups", coep: "unsafe-none"}], fin: {s: "https", h: "d", coop: "same-origin-allow-popups", coep: "require-corp"}},
+  {id: "r04793", st: "doc", hops: [{s: "https", h: "d", coop: "same-origin", coep: "unsafe-none"}], fin: {s: "https", h: "d", coop: "same-origin", coep: "unsafe-none"}},
+  {id: "r04946", st: "blank", hops: [{s: "https", h: "c", coop: "unsafe-none", coep: "unsafe-none"}], fin: {s: "https", h: "a2", coop: "unsafe-none", coep: "require-corp"}},
+  {id: "r05153", st: "blank", hops: [{s: "https", h: "dw", coop: "same-origin", coep: "unsafe-none"}], fin: {s: "https", h: "a", coop: "same-origin", coep: "unsafe-none"}},
+  {id: "r05159", st: "blank", hops: [{s: "https", h: "dw", coop: "same-origin", coep: "require-corp"}], fin: {s: "https", h: "a", coop: "same-origin", coep: "unsafe-none"}},
+  {id: "r05177", st: "doc", hops: [{s: "https", h: "dw", coop: "same-origin", coep: "unsafe-none"}], fin: {s: "https", h: "a", coop: "same-origin", coep: "unsafe-none"}},
+  {id: "r05345", st: "blank", hops: [{s: "https", h: "a1", coop: "same-origin", coep: "unsafe-none"}], fin: {s: "https", h: "b", coop: "same-origin", coep: "unsafe-none"}},
+  {id: "r05741", st: "doc", hops: [{s: "https", h: "aw", coop: "unsafe-none", coep: "unsafe-none"}], fin: {s: "https", h: "aw", coop: "same-origin", coep: "unsafe-none"}},
+  {id: "r05753", st: "doc", hops: [{s: "https", h: "aw", coop: "same-origin", coep: "unsafe-none"}], fin: {s: "https", h: "aw", coop: "same-origin", coep: "unsafe-none"}},
+  {id: "r05921", st: "blank", hops: [{s: "https", h: "a2", coop: "same-origin", coep: "unsafe-none"}], fin: {s: "https", h: "a", coop: "same-origin", coep: "unsafe-none"}},
+  {id: "r05945", st: "doc", hops: [{s: "https", h: "a2", coop: "same-origin", coep: "unsafe-none"}], fin: {s: "https", h: "a", coop: "same-origin", coep: "unsafe-none"}},
+];
+runRedirect(SCEN).then(done);
+</script>

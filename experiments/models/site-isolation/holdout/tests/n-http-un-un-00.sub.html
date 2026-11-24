@@ -1,0 +1,87 @@
+<!doctype html>
+<meta charset=utf-8>
+<meta name=timeout content=long>
+<title>holdout nested scenarios n-http-un-un-00.sub.html</title>
+<script src=/resources/testharness.js></script>
+<script src=/resources/testharnessreport.js></script>
+<script src=resources/hobs.js></script>
+<body>
+<script>
+const HOSTS = {
+  a: "{{host}}", aw: "{{hosts[][www]}}", a1: "{{hosts[][www1]}}", a2: "{{hosts[][www2]}}",
+  b: "{{hosts[alt][]}}", bw: "{{hosts[alt][www]}}", b1: "{{hosts[alt][www1]}}", b2: "{{hosts[alt][www2]}}",
+  c: "{{hosts[alt2][]}}", cw: "{{hosts[alt2][www]}}", c1: "{{hosts[alt2][www1]}}", c2: "{{hosts[alt2][www2]}}",
+  d: "{{hosts[alt3][]}}", dw: "{{hosts[alt3][www]}}", d1: "{{hosts[alt3][www1]}}", d2: "{{hosts[alt3][www2]}}"};
+const PORTS = {http: {{ports[http][0]}}, https: {{ports[https][0]}}};
+const TOP_ID = "n-http-un-un-00.sub.html";
+const SCEN = [
+{id:"n00006",t:{s:"https",h:"c1"},lv:[{s:"http",h:"b",coep:"unsafe-none",corp:"same-origin"},{s:"http",h:"c",coep:"unsafe-none",corp:"same-origin"}]},
+{id:"n00039",t:{s:"https",h:"d"},lv:[{s:"http",h:"b",coep:"credentialless",corp:"none"},{s:"http",h:"c",coep:"credentialless",corp:"cross-origin"}]},
+{id:"n00296",t:{s:"http",h:"c1"},lv:[{s:"http",h:"cw",coep:"unsafe-none",corp:"same-origin"},{s:"http",h:"c1",coep:"unsafe-none",corp:"none"}]},
+{id:"n00322",t:{s:"https",h:"d"},lv:[{s:"http",h:"cw",coep:"require-corp",corp:"same-origin"},{s:"http",h:"c1",coep:"credentialless",corp:"cross-origin"}]},
+{id:"n00616",t:{s:"https",h:"c"},lv:[{s:"http",h:"c2",coep:"credentialless",corp:"cross-origin"},{s:"http",h:"c2",coep:"unsafe-none",corp:"cross-origin"}]},
+{id:"n00621",t:{s:"http",h:"c2"},lv:[{s:"http",h:"c2",coep:"credentialless",corp:"cross-origin"},{s:"http",h:"c2",coep:"require-corp",corp:"same-origin"}]},
+{id:"n00870",t:{s:"https",h:"a"},lv:[{s:"http",h:"c1",coep:"unsafe-none",corp:"same-origin"},{s:"http",h:"a2",coep:"require-corp",corp:"none"}]},
+{id:"n00881",t:{s:"http",h:"a2"},lv:[{s:"http",h:"c1",coep:"require-corp",corp:"none"},{s:"http",h:"a2",coep:"unsafe-none",corp:"same-origin"}]},
+{id:"n01160",t:{s:"http",h:"a"},lv:[{s:"http",h:"cw",coep:"unsafe-none",corp:"same-origin"},{s:"http",h:"a",coep:"unsafe-none",corp:"none"}]},
+{id:"n01163",t:{s:"http",h:"a"},lv:[{s:"http",h:"cw",coep:"unsafe-none",corp:"cross-origin"},{s:"http",h:"a",coep:"unsafe-none",corp:"none"}]},
+{id:"n01447",t:{s:"https",h:"d"},lv:[{s:"http",h:"aw",coep:"unsafe-none",corp:"none"},{s:"http",h:"c",coep:"credentialless",corp:"none"}]},
+{id:"n01486",t:{s:"http",h:"c"},lv:[{s:"http",h:"aw",coep:"credentialless",corp:"same-origin"},{s:"http",h:"c",coep:"credentialless",corp:"none"}]},
+{id:"n01733",t:{s:"https",h:"d"},lv:[{s:"http",h:"a2",coep:"unsafe-none",corp:"none"},{s:"http",h:"aw",coep:"credentialless",corp:"same-origin"}]},
+{id:"n01737",t:{s:"http",h:"aw"},lv:[{s:"http",h:"a2",coep:"unsafe-none",corp:"same-origin"},{s:"http",h:"aw",coep:"require-corp",corp:"none"}]},
+{id:"n02022",t:{s:"https",h:"a"},lv:[{s:"http",h:"a1",coep:"unsafe-none",corp:"same-origin"},{s:"http",h:"a1",coep:"unsafe-none",corp:"cross-origin"}]},
+{id:"n02029",t:{s:"https",h:"a"},lv:[{s:"http",h:"a1",coep:"unsafe-none",corp:"cross-origin"},{s:"http",h:"a1",coep:"require-corp",corp:"same-origin"}]},
+{id:"n02310",t:{s:"http",h:"a"},lv:[{s:"http",h:"aw",coep:"unsafe-none",corp:"none"},{s:"http",h:"a",coep:"credentialless",corp:"cross-origin"}]},
+{id:"n02350",t:{s:"https",h:"d"},lv:[{s:"http",h:"aw",coep:"credentialless",corp:"same-origin"},{s:"http",h:"a",coep:"credentialless",corp:"cross-origin"}]},
+{id:"n02620",t:{s:"https",h:"d"},lv:[{s:"http",h:"a",coep:"require-corp",corp:"cross-origin"},{s:"http",h:"c2",coep:"unsafe-none",corp:"same-origin"}]},
+{id:"n02636",t:{s:"http",h:"c2"},lv:[{s:"http",h:"a",coep:"credentialless",corp:"same-origin"},{s:"http",h:"c2",coep:"credentialless",corp:"cross-origin"}]},
+{id:"n02881",t:{s:"https",h:"d"},lv:[{s:"http",h:"a",coep:"unsafe-none",corp:"none"},{s:"http",h:"aw",coep:"unsafe-none",corp:"same-origin"}]},
+{id:"n02904",t:{s:"https",h:"a"},lv:[{s:"http",h:"a",coep:"require-corp",corp:"same-origin"},{s:"http",h:"aw",coep:"require-corp",corp:"same-origin"}]},
+{id:"n03203",t:{s:"https",h:"d"},lv:[{s:"http",h:"a",coep:"credentialless",corp:"same-origin"},{s:"http",h:"a",coep:"require-corp",corp:"cross-origin"}]},
+{id:"n03210",t:{s:"http",h:"a"},lv:[{s:"http",h:"a",coep:"credentialless",corp:"cross-origin"},{s:"http",h:"a",coep:"require-corp",corp:"same-origin"}]},
+{id:"n03464",t:{s:"https",h:"d"},lv:[{s:"http",h:"c2",coep:"unsafe-none",corp:"same-origin"},{s:"https",h:"b",coep:"unsafe-none",corp:"none"}]},
+{id:"n03466",t:{s:"https",h:"d"},lv:[{s:"http",h:"c2",coep:"unsafe-none",corp:"same-origin"},{s:"https",h:"b",coep:"credentialless",corp:"same-origin"}]},
+{id:"n03752",t:{s:"https",h:"d"},lv:[{s:"http",h:"b",coep:"unsafe-none",corp:"same-origin"},{s:"https",h:"b2",coep:"unsafe-none",corp:"same-origin"}]},
+{id:"n03760",t:{s:"https",h:"b"},lv:[{s:"http",h:"b",coep:"unsafe-none",corp:"cross-origin"},{s:"https",h:"b2",coep:"credentialless",corp:"cross-origin"}]},
+{id:"n04073",t:{s:"https",h:"d"},lv:[{s:"http",h:"b1",coep:"credentialless",corp:"none"},{s:"https",h:"a2",coep:"require-corp",corp:"same-origin"}]},
+{id:"n04074",t:{s:"https",h:"a"},lv:[{s:"http",h:"b1",coep:"credentialless",corp:"none"},{s:"https",h:"a2",coep:"require-corp",corp:"cross-origin"}]},
+{id:"n04344",t:{s:"https",h:"d"},lv:[{s:"http",h:"a2",coep:"require-corp",corp:"same-origin"},{s:"https",h:"b1",coep:"credentialless",corp:"same-origin"}]},
+{id:"n04356",t:{s:"http",h:"b1"},lv:[{s:"http",h:"a2",coep:"credentialless",corp:"none"},{s:"https",h:"b1",coep:"require-corp",corp:"cross-origin"}]},
+{id:"n04609",t:{s:"https",h:"a"},lv:[{s:"http",h:"a2",coep:"unsafe-none",corp:"none"},{s:"https",h:"a2",coep:"unsafe-none",corp:"same-origin"}]},
+{id:"n04622",t:{s:"https",h:"a"},lv:[{s:"http",h:"a2",coep:"unsafe-none",corp:"cross-origin"},{s:"https",h:"a2",coep:"require-corp",corp:"none"}]},
+{id:"n04898",t:{s:"http",h:"b"},lv:[{s:"http",h:"a",coep:"unsafe-none",corp:"none"},{s:"https",h:"b",coep:"require-corp",corp:"none"}]},
+{id:"n04926",t:{s:"https",h:"b1"},lv:[{s:"http",h:"a",coep:"credentialless",corp:"none"},{s:"https",h:"b",coep:"unsafe-none",corp:"none"}]},
+{id:"n05192",t:{s:"https",h:"a1"},lv:[{s:"http",h:"a",coep:"unsafe-none",corp:"same-origin"},{s:"https",h:"a",coep:"require-corp",corp:"cross-origin"}]},
+{id:"n05229",t:{s:"https",h:"d"},lv:[{s:"http",h:"a",coep:"credentialless",corp:"same-origin"},{s:"https",h:"a",coep:"credentialless",corp:"same-origin"}]},
+{id:"n05488",t:{s:"https",h:"c"},lv:[{s:"https",h:"b1",coep:"require-corp",corp:"none"},{s:"http",h:"c1",coep:"unsafe-none",corp:"same-origin"}]},
+{id:"n05513",t:{s:"http",h:"c1"},lv:[{s:"https",h:"b1",coep:"credentialless",corp:"same-origin"},{s:"http",h:"c1",coep:"credentialless",corp:"cross-origin"}]},
+{id:"n05761",t:{s:"http",h:"b2"},lv:[{s:"https",h:"bw",coep:"unsafe-none",corp:"none"},{s:"http",h:"b2",coep:"unsafe-none",corp:"none"}]},
+{id:"n05765",t:{s:"http",h:"b2"},lv:[{s:"https",h:"bw",coep:"unsafe-none",corp:"same-origin"},{s:"http",h:"b2",coep:"require-corp",corp:"same-origin"}]},
+{id:"n06054",t:{s:"https",h:"d"},lv:[{s:"https",h:"b2",coep:"unsafe-none",corp:"none"},{s:"http",h:"a1",coep:"credentialless",corp:"same-origin"}]},
+{id:"n06074",t:{s:"http",h:"a1"},lv:[{s:"https",h:"b2",coep:"require-corp",corp:"same-origin"},{s:"http",h:"a1",coep:"unsafe-none",corp:"none"}]},
+{id:"n06354",t:{s:"https",h:"d"},lv:[{s:"https",h:"c",coep:"unsafe-none",corp:"cross-origin"},{s:"http",h:"a",coep:"require-corp",corp:"same-origin"}]},
+{id:"n06378",t:{s:"https",h:"a1"},lv:[{s:"https",h:"c",coep:"credentialless",corp:"none"},{s:"http",h:"a",coep:"require-corp",corp:"cross-origin"}]},
+{id:"n06639",t:{s:"https",h:"c"},lv:[{s:"https",h:"aw",coep:"unsafe-none",corp:"cross-origin"},{s:"http",h:"c2",coep:"require-corp",corp:"cross-origin"}]},
+{id:"n06649",t:{s:"http",h:"c2"},lv:[{s:"https",h:"aw",coep:"require-corp",corp:"cross-origin"},{s:"http",h:"c2",coep:"require-corp",corp:"same-origin"}]},
+{id:"n06924",t:{s:"http",h:"a1"},lv:[{s:"https",h:"aw",coep:"unsafe-none",corp:"cross-origin"},{s:"http",h:"a1",coep:"unsafe-none",corp:"same-origin"}]},
+{id:"n06957",t:{s:"https",h:"a"},lv:[{s:"https",h:"aw",coep:"credentialless",corp:"cross-origin"},{s:"http",h:"a1",coep:"credentialless",corp:"none"}]},
+{id:"n07212",t:{s:"https",h:"d"},lv:[{s:"https",h:"a2",coep:"unsafe-none",corp:"cross-origin"},{s:"http",h:"a",coep:"unsafe-none",corp:"none"}]},
+{id:"n07213",t:{s:"https",h:"a1"},lv:[{s:"https",h:"a2",coep:"unsafe-none",corp:"cross-origin"},{s:"http",h:"a",coep:"unsafe-none",corp:"none"}]},
+{id:"n07493",t:{s:"https",h:"b1"},lv:[{s:"https",h:"c1",coep:"unsafe-none",corp:"none"},{s:"https",h:"b",coep:"credentialless",corp:"same-origin"}]},
+{id:"n07500",t:{s:"https",h:"b1"},lv:[{s:"https",h:"c1",coep:"unsafe-none",corp:"cross-origin"},{s:"https",h:"b",coep:"unsafe-none",corp:"none"}]},
+{id:"n07790",t:{s:"https",h:"d"},lv:[{s:"https",h:"bw",coep:"unsafe-none",corp:"cross-origin"},{s:"https",h:"b1",coep:"require-corp",corp:"none"}]},
+{id:"n07809",t:{s:"https",h:"b"},lv:[{s:"https",h:"bw",coep:"require-corp",corp:"cross-origin"},{s:"https",h:"b1",coep:"credentialless",corp:"none"}]},
+{id:"n08093",t:{s:"https",h:"c"},lv:[{s:"https",h:"c1",coep:"require-corp",corp:"cross-origin"},{s:"https",h:"c1",coep:"credentialless",corp:"none"}]},
+{id:"n08100",t:{s:"https",h:"d"},lv:[{s:"https",h:"c1",coep:"credentialless",corp:"none"},{s:"https",h:"c1",coep:"credentialless",corp:"none"}]},
+{id:"n08364",t:{s:"http",h:"a2"},lv:[{s:"https",h:"c1",coep:"unsafe-none",corp:"same-origin"},{s:"https",h:"a2",coep:"credentialless",corp:"none"}]},
+{id:"n08367",t:{s:"https",h:"a"},lv:[{s:"https",h:"c1",coep:"unsafe-none",corp:"cross-origin"},{s:"https",h:"a2",coep:"unsafe-none",corp:"same-origin"}]},
+{id:"n08382",t:{s:"https",h:"d"},lv:[{s:"https",h:"c1",coep:"require-corp",corp:"cross-origin"},{s:"https",h:"a2",coep:"credentialless",corp:"cross-origin"}]},
+{id:"n08656",t:{s:"https",h:"d"},lv:[{s:"https",h:"a1",coep:"unsafe-none",corp:"cross-origin"},{s:"https",h:"c",coep:"require-corp",corp:"cross-origin"}]},
+{id:"n08675",t:{s:"https",h:"c1"},lv:[{s:"https",h:"a1",coep:"require-corp",corp:"same-origin"},{s:"https",h:"c",coep:"credentialless",corp:"cross-origin"}]},
+{id:"n08949",t:{s:"https",h:"a1"},lv:[{s:"https",h:"a2",coep:"require-corp",corp:"same-origin"},{s:"https",h:"a",coep:"unsafe-none",corp:"same-origin"}]},
+{id:"n08965",t:{s:"http",h:"a"},lv:[{s:"https",h:"a2",coep:"credentialless",corp:"same-origin"},{s:"https",h:"a",coep:"require-corp",corp:"same-origin"}]},
+{id:"n09224",t:{s:"https",h:"a"},lv:[{s:"https",h:"a1",coep:"unsafe-none",corp:"same-origin"},{s:"https",h:"a1",coep:"credentialless",corp:"same-origin"}]},
+{id:"n09241",t:{s:"https",h:"d"},lv:[{s:"https",h:"a1",coep:"require-corp",corp:"same-origin"},{s:"https",h:"a1",coep:"credentialless",corp:"none"}]}
+];
+runNest();
+</script>
