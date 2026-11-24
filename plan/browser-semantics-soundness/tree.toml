@@ -121,10 +121,11 @@ note = "依存する入力を明示した関数。仕様の水準では非決定
 id = "B4"
 parent = "B"
 title = "拡張点と支配の条件"
-status = "partial"
+status = "done"
 impact = "mid"
 done_when = "経路ごとに支配の条件が確かめられている"
-note = "止めるだけの差し込みはアクセス制御を保つ。支配の条件は経路ごとに確かめるしかなく、2 つの経路は本文が保証しない（詳細は伏せた）"
+note = "機械的に作った経路の一覧の 139 行すべてに、仕様の本文で判定を付けた（保証する 110、保証しない 24、決まらない 5）。経路ごとの判定はリポジトリの外"
+evidence = ["experiments/models/site-isolation/dominance-all/RESULTS.md"]
 
 [[node]]
 id = "B5"
@@ -354,6 +355,15 @@ title = "直した性質の書き方（CorpPermits、KeyHTML、入れ子の COI 
 status = "todo"
 impact = "low"
 done_when = "SpecIsolation.tla の性質が直した書き方で、既存の検査が通る"
+
+[[node]]
+id = "F8"
+parent = "F"
+title = "新しく見つかった、本文が支配の条件を保証しない構造の扱い"
+status = "parked"
+impact = "low"
+done_when = "エンジンでの確認と、公開・上流への報告の扱いを、ユーザーが決めている"
+note = "B4 で見つかった新しい 2 つの構造と、一覧の外の 1 つ。中身はリポジトリの外"
 
 [[node]]
 id = "F5"

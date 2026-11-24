@@ -1,0 +1,4 @@
+# 経路の一覧のすべての経路で支配の条件を確かめた結果の要約（方法と件数だけ。経路ごとの判定と仕様の本文は含まない）。subagent が書いた。
+id = "site-isolation-dominance-all"
+title = "機械的に作った経路の一覧のすべての経路での支配の条件の判定の要約"
+origin = "original"
