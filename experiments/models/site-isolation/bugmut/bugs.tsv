@@ -1,0 +1,61 @@
+id	set	source_url	engine	fixed_version	type	step_and_error	maps	new_mutant_id
+CVE-2025-3071	A1	https://issues.chromium.org/issues/40051596	Chromium	135	M6	history traversal: same-document navigation after about:blank and back reused a document state, keeping the wrong origin	step	needs:hist-doc-reuse
+CVE-2025-6556	A3	https://issues.chromium.org/issues/40062462	Chromium	138	M3	Mixed Content: about:blank popup / data: frame judged on its opaque origin, not the creator's (precursor) origin	existing	false:mc-ancestor
+CVE-2026-5903	A4	https://issues.chromium.org/issues/483771899	Chromium	147	N5	sandbox without allow-popups still created an auxiliary context from an untrusted Ctrl+click	no	-
+CVE-2026-9903	A5	https://issues.chromium.org/issues/498783665	Chromium	2026-05-27 stable	N1	browser accepted a renderer-provided origin for an MHTML subframe	no	-
+CVE-2026-11174	A6	https://issues.chromium.org/issues/502348223	Chromium	2026-06-02 stable	N2	error-page opaque origin kept the victim precursor; sandboxed srcdoc child placed in the victim's SiteInstance	no	-
+CVE-2026-11220	A7	https://issues.chromium.org/issues/487300831	Chromium	2026-06-02 stable	N1	initiator-origin verification skipped the process-lock check for opaque origins	no	-
+CVE-2026-11217	A8	https://issues.chromium.org/issues/487564032	Chromium	2026-06-02 stable	N7	fenced frame _unfencedTop navigation used a non-opaque initiator origin (Sec-Fetch-Site)	no	-
+CVE-2026-84355	A9	https://issues.chromium.org/issues/511774376	Chromium	2026-09-01 stable	M3	Navigation API entry state: origin check derived the origin from the URL, not the entry's committed origin	step	needs:entry-origin-from-url
+CVE-2026-87516	A10	https://issues.chromium.org/issues/513608513	Chromium	2026-09-08 stable	N6	history replacement of error pages without origin comparison gave a URL-detection oracle	no	-
+CVE-2026-13024	A11	https://issues.chromium.org/issues/517148260	Chromium	2026-06-23 stable	N3	commit accepted from a bfcached subframe	no	-
+CVE-2026-11025	A14	https://issues.chromium.org/issues/497595264	Chromium	2026-06-02 stable	N4	initiator policies (CSP, LNA) lost when a keep-alive handle was dropped in a deferred popup navigation	no	-
+CVE-2026-87432	A15	https://issues.chromium.org/issues/511820041	Chromium	2026-09-08 stable	N1	renderer-supplied client-side redirect URL injected a cross-origin history entry	no	-
+CVE-2026-87541	A17	https://issues.chromium.org/issues/517156678	Chromium	2026-09-08 stable	N2	final redirect URL of a blocked subframe navigation sent to a cross-origin process	no	-
+CVE-2026-5918	A18	https://issues.chromium.org/issues/490139441	Chromium	147	N1	redirect chain not sanitized for an error-page commit; compromised renderer reads it	no	-
+CVE-2026-5876	A20	https://issues.chromium.org/issues/41485206	Chromium	147	N6	load-event count of repeated navigations reveals a cross-origin iframe URL	no	-
+CVE-2026-3930	A22	https://issues.chromium.org/issues/476898368	Chromium (iOS)	2026-03-10 stable	N7	iOS shell: reload plus server redirect reached a privileged chrome:// URL	no	-
+CVE-2024-3840	A25	https://issues.chromium.org/issues/41493458	Chromium (Android)	124	M1	CSP sandbox allow-top-navigation let a cross-origin iframe navigate top without the framebusting check	step	needs:top-nav-check
+CVE-2025-4083	A26	https://bugzilla.mozilla.org/show_bug.cgi?id=1958350	Firefox	138	N2	javascript: URL from a cross-origin frame ran in the top-level document's process	no	-
+CVE-2026-0877	A29	https://bugzilla.mozilla.org/show_bug.cgi?id=1999257	Firefox	147	M4	Permissions Policy not inherited after a cross-origin iframe navigates to blob:	existing	false:g2-pp-self
+CVE-2026-8962	A30	https://bugzilla.mozilla.org/show_bug.cgi?id=2004804	Firefox	151	M3	Mixed Content for data: iframe content judged without the ancestor's origin	existing	false:mc-ancestor
+CVE-2026-12302	A31	https://bugzilla.mozilla.org/show_bug.cgi?id=2034489	Firefox	152	M6	SharedWorker constructor saved before a same-origin navigation used the old document's CSP	step	needs:worker-policy-container
+bmo-2059205	A42	https://bugzilla.mozilla.org/show_bug.cgi?id=2059205	Firefox	155	M6	EventSource message origin computed once before a cross-origin redirect, not updated per hop	existing	neg:hop-update
+CVE-2026-8950	A43	https://bugzilla.mozilla.org/show_bug.cgi?id=1965430	Firefox	151	M6	Fetch request origin not tainted to null after a cross-origin redirect (inverted condition)	step	needs:origin-taint
+CVE-2026-130990	B:site isolation	https://nvd.nist.gov/vuln/detail/CVE-2026-130990	Chromium	158.0.8127.36	N3	PersistentCache missing authorization; compromised renderer reads cross-site data via PDF	no	-
+CVE-2019-11711	B:document.domain	https://nvd.nist.gov/vuln/detail/CVE-2019-11711	Firefox	68	M6	reused inner window ignored an earlier document.domain change in cross-origin checks	step	needs:window-reuse-domain
+CVE-2026-64728	B:sandbox iframe	https://nvd.nist.gov/vuln/detail/CVE-2026-64728	WebKit	Safari 26.6	M1	iframe sandbox policy not enforced (advisory gives no step)	unknown	-
+CVE-2020-15677	B:redirect origin	https://nvd.nist.gov/vuln/detail/CVE-2020-15677	Firefox	81	N5	download dialog showed the pre-redirect site	no	-
+CVE-2026-103417	B:navigation origin	https://nvd.nist.gov/vuln/detail/CVE-2026-103417	Firefox (iOS)	iOS 157.1	N5	saved-login autofill not bound to the origin after a cross-origin navigation	no	-
+CVE-2026-13034	B:site isolation	https://nvd.nist.gov/vuln/detail/CVE-2026-13034	Chromium	149.0.7827.197	N1	password affiliations leaked to a compromised renderer of another site	no	-
+CVE-2019-11762	B:document.domain	https://nvd.nist.gov/vuln/detail/CVE-2019-11762	Firefox	70	M2	DOM bindings compared origins, not origin-domains, after document.domain diverged	step	needs:origin-domain-compare
+CVE-2025-11716	B:sandbox iframe	https://nvd.nist.gov/vuln/detail/CVE-2025-11716	Firefox (Android)	144	M1	sandboxed iframe link opened an external app without the allow- keyword	step	needs:sb-custom-protocol
+CVE-2021-23971	B:redirect origin	https://nvd.nist.gov/vuln/detail/CVE-2021-23971	Firefox	86	M6	referrer policy taken from the redirect response instead of the original	step	needs:referrer-policy-hop
+CVE-2026-81267	B:navigation origin	https://nvd.nist.gov/vuln/detail/CVE-2026-81267	Firefox (iOS)	iOS 155.0	N5	address bar showed the destination while the stalled popup kept old content	no	-
+CVE-2026-7966	B:site isolation	https://nvd.nist.gov/vuln/detail/CVE-2026-7966	Chromium	148.0.7778.96	N1	missing frame check in a browser-side host for renderer input	no	-
+CVE-2023-6869	B:sandbox iframe	https://nvd.nist.gov/vuln/detail/CVE-2023-6869	Firefox	121	N5	dialog element painted outside a sandboxed iframe	no	-
+CVE-2017-5466	B:redirect origin	https://nvd.nist.gov/vuln/detail/CVE-2017-5466	Firefox	53	M6	reload of a data: document reached by redirect ran with the linking site's origin instead of opaque	existing	false:g2-sb-opaque
+CVE-2018-20067	B:navigation origin	https://nvd.nist.gov/vuln/detail/CVE-2018-20067	Chromium	71.0.3578.80	N4	renderer back navigation cancelled a browser-initiated one (URL spoof)	no	-
+CVE-2026-79002	B:site isolation	https://nvd.nist.gov/vuln/detail/CVE-2026-79002	Chromium	152.0.7977.65	N1	opener change resolved a speculative frame token from the renderer	no	-
+CVE-2022-34474	B:sandbox iframe	https://nvd.nist.gov/vuln/detail/CVE-2022-34474	Firefox	102	M6	sandbox top-navigation check not re-applied when a redirect led to an external protocol	existing	first-hop-only
+CVE-2026-115683	B:redirect origin	https://nvd.nist.gov/vuln/detail/CVE-2026-115683	WebKitGTK (Epiphany)	none tagged	N4	out: no fixed release; race in registering an error-page handler	out	-
+CVE-2017-7791	B:navigation origin	https://nvd.nist.gov/vuln/detail/CVE-2017-7791	Firefox	55	N5	data: modal alert shown over another domain after navigation	no	-
+CVE-2026-121029	B:site isolation	https://nvd.nist.gov/vuln/detail/CVE-2026-121029	Chromium	157.0.8103.38	M1	ORB (opaque response blocking) authorization check incomplete (bug restricted)	step	needs:orb
+CVE-2019-25154	B:sandbox iframe	https://issues.chromium.org/issues/40094752	Chromium	77.0.3865.75	M4	sandbox flags partly not propagated to popups opened from a sandboxed frame	step	needs:sb-popup-inherit
+CVE-2021-23968	B:redirect origin	https://nvd.nist.gov/vuln/detail/CVE-2021-23968	Firefox	86	M3	CSP violation report used the post-redirect URL instead of the original	step	needs:csp-report-url
+CVE-2022-0111	B:navigation origin	https://nvd.nist.gov/vuln/detail/CVE-2022-0111	Chromium	97.0.4692.71	M?	navigation set an incorrect origin (bug restricted, no step known)	unknown	-
+CVE-2026-14033	B:site isolation	https://nvd.nist.gov/vuln/detail/CVE-2026-14033	Chromium (Windows)	150.0.7871.47	N7	media pipeline policy enforcement (bug restricted)	no	-
+CVE-2020-6526	B:sandbox iframe	https://nvd.nist.gov/vuln/detail/CVE-2020-6526	Chromium	84.0.4147.89	M1	iframe sandbox navigation restriction bypassed (bug restricted)	step	needs:sb-nav-flags
+CVE-2016-9078	B:redirect origin	https://nvd.nist.gov/vuln/detail/CVE-2016-9078	Firefox	50.0.1	M4	data: URL reached by HTTP redirect inherited the referring site's origin instead of opaque	existing	false:g2-sb-opaque
+CVE-2018-17468	B:navigation origin	https://nvd.nist.gov/vuln/detail/CVE-2018-17468	Chromium	70.0.3538.67	N6	timer information during navigation exposed cross-origin URLs	no	-
+CVE-2026-7360	B:site isolation	https://issues.chromium.org/issues/495852034	Chromium	147.0.7727.138	N1	unvalidated FrameSinkId in hit testing redirected input cross-origin	no	-
+CVE-2023-29540	B:sandbox iframe	https://nvd.nist.gov/vuln/detail/CVE-2023-29540	Firefox	112	N7	devtools sourceMappingURL redirect opened external protocol from a sandboxed iframe	no	-
+CVE-2025-25300	B:redirect origin	https://nvd.nist.gov/vuln/detail/CVE-2025-25300	smartbanner.js	1.14.1	-	out: a web library, not a browser defect	out	-
+CVE-2018-20069	B:navigation origin	https://nvd.nist.gov/vuln/detail/CVE-2018-20069	Chromium (iOS)	71.0.3578.80	N7	iOS shell did not block top-level navigation to data: URLs	no	-
+CVE-2026-17748	B:site isolation	https://issues.chromium.org/issues/500494349	Chromium	151.0.7922.72	N7	isolated web app content-script source leaked to other renderers	no	-
+CVE-2022-4908	B:sandbox iframe	https://nvd.nist.gov/vuln/detail/CVE-2022-4908	Chromium	107.0.5304.62	M?	iframe sandbox leaked cross-origin data (bug restricted, no step known)	unknown	-
+CVE-2021-23969	B:redirect origin	https://nvd.nist.gov/vuln/detail/CVE-2021-23969	Firefox	86	M3	CSP violation report source file was the post-redirect URL	step	needs:csp-report-url
+CVE-2019-5802	B:navigation origin	https://nvd.nist.gov/vuln/detail/CVE-2019-5802	Chromium	73.0.3683.75	N5	download origin shown wrongly (domain spoof)	no	-
+CVE-2026-7944	B:site isolation	https://nvd.nist.gov/vuln/detail/CVE-2026-7944	Chromium	148.0.7778.96	N3	persistent cache accepted untrusted renderer input across sites	no	-
+CVE-2022-29911	B:sandbox iframe	https://nvd.nist.gov/vuln/detail/CVE-2022-29911	Firefox	100	M5	sandbox keyword allow-top-navigation-by-user-activation parsed so scripts ran without allow-scripts	step	needs:sb-flag-parse
+CVE-2025-0239	B:redirect origin	https://nvd.nist.gov/vuln/detail/CVE-2025-0239	Firefox	134	N7	Alt-Svc ALPN certificate not validated after redirect to an insecure site (network layer)	no	-

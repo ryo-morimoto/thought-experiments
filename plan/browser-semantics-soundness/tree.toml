@@ -192,7 +192,7 @@ title = "API より下の層（プロセスへの配置、Spectre）"
 status = "out"
 impact = "low"
 done_when = "範囲の外と記録に明記している"
-note = "観測できる値はプロセスの隔離を映さない"
+note = "観測できる値はプロセスの隔離を映さない。C9 で集めた欠陥のうち、レンダラーへの信頼・UI・Web の外の面・プロセス・サイドチャネル・競合の型も、この範囲の外に入れる"
 
 [[node]]
 id = "C6"
@@ -217,10 +217,11 @@ evidence = ["experiments/models/site-isolation/catalog/RESULTS.md"]
 id = "C9"
 parent = "C"
 title = "モデルから独立した軸と変異体"
-status = "todo"
+status = "done"
 impact = "high"
 done_when = "軸と変異体を、モデルの語彙ではなく、ブラウザのバグの履歴や実装の欠陥の型から作り、それで包含を確かめている"
-note = "今の軸と変異体はモデルの作者が選んだもので、モデルにも変異体にも無い振る舞い（キャッシュの使い回しなど）は試されない"
+note = "公開で直った 58 件から型を作り、66 個の変異体を殺す率は作者の変異体と同じ。欠陥の 88% は軸の外。段で書ける欠けた軸は C11、モデルの外の型は C5 に入れた"
+evidence = ["experiments/models/site-isolation/bugmut/RESULTS.md"]
 
 [[node]]
 id = "C10"
@@ -230,6 +231,15 @@ status = "todo"
 impact = "high"
 done_when = "モデル・軸・パラメータ・判定を事前に固定してから、新しい種の筋書きをブラウザで動かし、包含を数えている"
 note = "これまでモデルはデータと一緒に育った（軸ごとに段を足し、#7617 のパラメータを合わせた）"
+
+[[node]]
+id = "C11"
+parent = "C"
+title = "バグの履歴が示す、モデルの段で書けるのに欠けた軸"
+status = "todo"
+impact = "mid"
+done_when = "sandbox の旗、リダイレクトで運ばれる COOP 以外の値、document.domain のオリジンの領域の検査と Window の再利用、worker の方策の容れ物、別オリジンの cors の取得を、モデルの段と軸として足し、包含を確かめている"
+note = "C9 の欠けた軸の 3 番目（15 件）と、cors の取得の行の欠け"
 
 [[node]]
 id = "C8"
