@@ -1,0 +1,84 @@
+property	module	concept	how the model represents it	spec definition anchor	match	note
+*	SpecIsolation	origin	record [scheme, host, site]; tuple only; no port, no domain	HTML#concept-origin (html.src:94612)	narrower	ports null and document.domain unset everywhere; Gen2 adds one opaque origin
+*	SpecIsolation	same origin	SameOrigin(x, y) == x = y	HTML#same-origin (html.src:94707)	exact	on the domain: scheme and host equal, port null
+*	SpecIsolation	same site (operator SameSite)	x.site = y.site, scheme ignored	HTML#schemelessly-same-site (html.src:94870)	exact	exact to schemelessly same site; broader than HTML#concept-site-same-site (html.src:94821), which needs equal schemes. Name only; see M2
+*	SpecIsolation	requester origin	ctx.self (document origin)	Fetch#concept-request-origin; CORP check takes request's origin (fetch.bs:5900)	exact	documents only; no workers
+*	SpecIsolation	response origin	r.origin	Fetch CORP internal check: response's URL's origin (fetch.bs:4459)	exact	no redirects, so URL list has one entry
+*	SpecIsolation	request mode	mode in {cors, no-cors}	Fetch#concept-request-mode (fetch.bs:2063)	narrower	same-origin and navigate modes not modelled for subresources
+WPTAgree	SpecIsolation	expected value	WPTCases.want	none (WPT files, not spec)	none	test oracle, not a spec concept; definition of the analysis
+OptInOnly	SpecIsolation	COEP require-corp (premise)	header argument; EffectiveCOEP demotes on non-secure	HTML#obtain-an-embedder-policy (html.src:96928)	none	premise ignores step 2 (non-secure context); FALSE by design; fixed by OptInOnlySecure
+OptInOnly	SpecIsolation	opaque (premise)	FetchResult = "opaque"	Fetch#concept-filtered-response-opaque (fetch.bs:2716)	exact	no opaque-redirect
+OptInOnly	SpecIsolation	opt-in (conclusion)	corp cross-origin, or same-site and SameSite	Fetch#cross-origin-resource-policy-header (fetch.bs:4399); internal check (fetch.bs:4459)	broader	omits the https-to-non-https scheme condition; see M1
+OptInOnlySecure	SpecIsolation	secure context (premise)	Secure(o): o.scheme = "https", top-level doc	HTML#secure-context (html.src:119312)	narrower	top-level creation URL = document URL; no data:, localhost, file:, about:, workers, worklets
+OptInOnlySecure	SpecIsolation	COEP require-corp (premise)	header require-corp, secure so not demoted	HTML#obtain-an-embedder-policy (html.src:96928)	narrower	header only; policy-container inheritance and report-only value not modelled
+OptInOnlySecure	SpecIsolation	opaque (premise)	FetchResult = "opaque" (includes Mixed Content step)	Fetch#concept-filtered-response-opaque (fetch.bs:2716)	exact	
+OptInOnlySecure	SpecIsolation	opt-in (conclusion)	as OptInOnly	Fetch internal check (fetch.bs:4459)	broader	M1; strict form TLC TRUE
+OptInOnlySecureLifted	SpecIsolation	secure (premise)	Secure(ctx.self) on nested contexts	HTML#secure-context (html.src:119312)	none	origin of the document, not its top-level creation URL; known (FIXES.md G1), FALSE; superseded by OptInOnlySecureCtx
+OptInOnlySecureLifted	SpecIsolation	opt-in (conclusion)	HasOptIn	Fetch internal check (fetch.bs:4459)	broader	M1
+OptInOnlySecureCtx	SpecIsolation	secure context (premise)	SecureCtx(ctx) = Secure(ctx.top)	HTML#secure-context (html.src:119312)	narrower	as OptInOnlySecure; Contexts includes unreachable http-under-https pairs (over-approximation, sound)
+OptInOnlySecureCtx	SpecIsolation	document context	ctx = [self, top]; ChildCtx inherits top	HTML environment top-level creation URL (html.src:119348)	narrower	one nesting level
+OptInOnlySecureCtx	SpecIsolation	COEP require-corp (premise)	header, demoted by EffectiveCOEPCtx	HTML#obtain-an-embedder-policy (html.src:96928)	narrower	header, not policy container; see OptInOnlyPC
+OptInOnlySecureCtx	SpecIsolation	Mixed Content	ProhibitsMixed, mc-upgrade, mc-block	none in HTML/Fetch pinned; W3C Mixed Content ED 4.1, 4.3, 4.4	none	external spec; fixes/FIXES.md G3 gives the reference and sha256
+OptInOnlySecureCtx	SpecIsolation	opt-in (conclusion)	HasOptIn	Fetch internal check (fetch.bs:4459)	broader	M1; CorpPermits form TLC TRUE
+OptInOnlyPC	SpecIsolation	policy container embedder policy (premise)	ecoep argument of FetchResultPC	HTML#policy-container (html.src:97504); CORP check reads it (fetch.bs:4415)	exact	no Mixed Content layer in FetchResultPC
+OptInOnlyPC	SpecIsolation	opt-in (conclusion)	HasOptIn	Fetch internal check (fetch.bs:4459)	broader	M1; with HTML same site it is FALSE (M2)
+COIOnlyWithOptInTop	SpecIsolation	cross-origin isolated (premise)	CrossOriginIsolated = COIMode "concrete"	HTML#bcg-cross-origin-isolation (html.src:107808); #concept-settings-object-cross-origin-isolated-capability (html.src:99265)	broader	group mode; capability also needs "allowed to use" cross-origin-isolated; top-level default 'self' always allowed; Permissions-Policy header not modelled (benign)
+COIOnlyWithOptInTop	SpecIsolation	same-origin-plus-COEP	ParsedCOOP	HTML#obtain-coop (html.src:95545); #coop-same-origin-plus-coep (html.src:95416)	exact	top-level: reserved environment top-level creation URL = response URL
+COIOnlyWithOptInTop	SpecIsolation	implementation-defined logical/concrete	COIChoice parameter	HTML#obtain-browsing-context-navigation (html.src:96005)	exact	parameter, not mutant
+COIOnlyWithOptInTop	SpecIsolation	request-includes-credentials (conclusion)	ss.creds after DocCreds	Fetch#response-request-includes-credentials (fetch.bs:2611); set at fetch.bs:6521	exact	r.creds is includeCredentials before the COEP step (fetch.bs:6152)
+COIOnlyWithOptInTop	SpecIsolation	COEP allows credentials	DocCreds	Fetch#cross-origin-embedder-policy-allows-credentials (fetch.bs:2500)	exact	redirect-taint always same-origin (no redirects)
+COIOnlyWithOptInTop	SpecIsolation	opt-in (conclusion)	HasOptIn	Fetch internal check (fetch.bs:4459)	broader	M1; strict TLC TRUE
+COIOnlyWithOptInNested	SpecIsolation	cross-origin isolated (premise)	top document's group mode	HTML#bcg-cross-origin-isolation (html.src:107808)	broader	M3: child's capability needs same origin with parent (default 'self'); strict premise TLC TRUE
+COIOnlyWithOptInNested	SpecIsolation	child loaded (premise)	NavChild = "loaded"	HTML#create-navigation-params-by-fetching (html.src:111574); #check-a-navigation-response's-adherence-to-its-embedder-policy (html.src:96990)	exact	one level; CORP check forNavigation against container document
+COIOnlyWithOptInNested	SpecIsolation	child embedder policy	EffectiveCOEPCtx(ChildCtx, header)	HTML#obtain-an-embedder-policy (html.src:96928)	narrower	no inheritance (srcdoc, about:blank)
+COIOnlyWithOptInNested	SpecIsolation	opt-in (conclusion)	HasOptIn for nav response and child fetch	Fetch internal check (fetch.bs:4459)	broader	M1; strict TLC TRUE
+NoHeaderLeak	SpecIsolation	what a page observes	FetchResult value	none	none	definition of the analysis; expected FALSE (CORP error vs opaque); motivates Declared
+NoUndeclaredLeak	SpecIsolation	observation	Observe: read body, error, opaque	Fetch#concept-filtered-response-opaque (fetch.bs:2716); #concept-network-error (fetch.bs:2647)	none	definition of the analysis: opaque filtered response has status 0, empty headers, null body; timing and size channels excluded
+NoUndeclaredLeak	SpecIsolation	Declared channels (premise)	<<corp, creds, acao, body if CORS-allowed>>	none	none	definition of the analysis: CORP header and CORS headers are the target's opt-ins (fetch.bs:4399, 7274); includeCredentials is fixed by the request (fetch.bs:6152), not by cookies
+NoUndeclaredLeak	SpecIsolation	CORS-allowed	r.acao	Fetch#concept-cors-check (fetch.bs:7274)	exact	abstracts the check's result; credentials mode and ACAC folded in
+NoUndeclaredLeak	SpecIsolation	secret body	Bodies {x, yy}	none	none	definition of the analysis
+BodyOnlyByOptIn	SpecIsolation	body readable	Observe[1] = "read"	Fetch#concept-filtered-response-basic, #concept-filtered-response-cors (fetch.bs:2694, 2704)	exact	
+BodyOnlyByOptIn	SpecIsolation	CORS opt-in (conclusion)	r.acao	Fetch#concept-cors-check (fetch.bs:7274)	exact	
+Signature	SpecIsolation	cors response	FetchResult = "cors" for every cors fetch	Fetch#concept-filtered-response-cors (fetch.bs:2704)	broader	no CORS-check failure; used only in Signature and DIP Conservative, no premise
+Signature	SpecIsolation	operator output vector	SignatureSeq	none	none	tool for mutant equivalence, not a claim about browsers
+Conservative	DIPExtension	DIP none equals base model	FetchResultD vs FetchResult	none	none	meta property of the model; FALSE since Mixed Content (FIXES.md)
+OptInOnlySecureD	DIPExtension	document isolation policy	EffectiveDIP, DIPAsCOEP, second CORP check	none in HTML/Fetch pinned; WICG Document-Isolation-Policy ED	none	external spec; non-secure check uses Secure(o), exact for top-level as above
+OptInOnlySecureD	DIPExtension	secure context, opt-in	as OptInOnlySecure	HTML#secure-context; Fetch internal check	narrower / broader	as OptInOnlySecure
+COIOnlyByCOOPCOEP	DIPExtension	cross-origin isolated with DIP	CrossOriginIsolatedD	WICG DIP ED	none	expected FALSE (DIP isolates without COOP)
+COIOnlyByCOOPCOEP	DIPExtension	compatible COEP (conclusion)	coep in {require-corp, credentialless}	HTML#compatible-with-cross-origin-isolation (html.src:96824)	exact	
+COIOnlyWithOptIn	DIPExtension	cross-origin isolated (premise)	CrossOriginIsolatedD	HTML#bcg-cross-origin-isolation; WICG DIP ED	broader	as COIOnlyWithOptInTop plus DIP key override (external)
+COIOnlyWithOptIn	DIPExtension	credentials, opt-in	ReqD creds; corp	Fetch (fetch.bs:2500, 2611, 4459); DIP ED	broader	M1
+NoUndeclaredLeakD	DIPExtension	Declared, ObserveD	as NoUndeclaredLeak	none	none	definition of the analysis
+ACMonotone	ExtensionHooks	block-only hook	blk boolean	none	none	definition of the analysis: any spec that only adds network errors
+ACMonotone	ExtensionHooks	secure context, opt-in	Secure(o); corp	HTML#secure-context; Fetch internal check	narrower / broader	as OptInOnlySecure
+FlowMonotone	ExtensionHooks	HookReads contract, Twin	declared/any; body swap	none	none	definition of the analysis
+ACSubstitute	ExtensionHooks	response-supplying hook	SubChoices	none	none	definition of the analysis (e.g. a service worker); CORS opt-in r.acao exact
+FlowSubstitute	ExtensionHooks	Kind of substitution	none/own/target	none	none	definition of the analysis
+ACSub	DominanceRetry	internal retry	second response, same origin	Fetch#concept-http-network-or-cache-fetch 401 step (fetch.bs:6525)	narrower	401 retry needs includeCredentials and a prompt; other retries not distinguished
+ACSub	DominanceRetry	CORP check placement	Placement "after"	Fetch#http-fetch CORP step on internalResponse (fetch.bs:5897)	exact	"before" is a hypothetical spec (analysis)
+ACSub	DominanceRetry	secure context, opt-in	Secure(o); OptIn	HTML#secure-context; Fetch internal check	narrower / broader	as OptInOnlySecure
+ACNav	DominanceRetry	navigation retry	CorpCheck forNav; cc # unsafe-none	Fetch CORP check forNavigation (fetch.bs:4415); HTML adherence (html.src:96990)	exact	cc not unsafe-none = compatible on the COEP domain
+NI(D*)	ORBExtension	opaque-response-safelist check	ORBHeaderStage, ORBBodyStage	none in Fetch d7fc0fd; whatwg/fetch PR #1442 (whatpr.org/fetch/1442.html#orb-algorithm)	none	external, unmerged; ORB-NOTES.md
+NI(D*)	ORBExtension	no-cors media request state	MediaStates	PR #1442	none	external
+NI(D*)	ORBExtension	Declared variants	D0 ... DHdrBodyBit	none	none	definition of the analysis
+SecretIrrelevant	ORBExtension	body predicates	head, parse	PR #1442 sniffing steps	none	abstraction of the analysis
+ORBOnlyBlocks	ORBExtension	ORB adds only errors	ObserveORB vs Observe	PR #1442	none	external
+OptInOnlySecureORB	ORBExtension	secure context, opt-in	Secure(o); corp	HTML#secure-context; Fetch internal check	narrower / broader	as OptInOnlySecure
+BodyOnlyByOptInORB	ORBExtension	CORS opt-in	r.acao	Fetch#concept-cors-check (fetch.bs:7274)	exact	
+P1	RedirectSeq	COOP mismatch at a step	StepCheck: CheckSwitch vs predecessor	HTML#coop-enforce (html.src:95784); #check-browsing-context-group-switch-coop-value (html.src:95692)	exact	the current result is the previous response; isInitialAboutBlank constant
+P1	RedirectSeq	popup check	SI!PopupSevered	HTML#check-browsing-context-group-switch-coop-value-popup (html.src:95659)	narrower	noopener-allow-popups not in COOPs
+P1	RedirectSeq	severed	Swap0 or Swap1 (final needs-switch)	HTML#coop-enforcement-bcg-switch (html.src:95759); #obtain-browsing-context-navigation (html.src:95913)	exact	swapGroup; report-only flag not modelled
+P1c	RedirectSeq	as P1		as P1	exact	
+P2	RedirectSeq	mismatch against the source	SrcCheck	none	none	definition of the analysis: a hypothetical comparison; the spec compares with the previous response
+P2c	RedirectSeq	as P2		none	none	expected FALSE
+P3	RedirectSeq	final document isolated	FinalMode = "concrete"	HTML#bcg-cross-origin-isolation (html.src:107808)	exact	mode from the final response's COOP
+P3	RedirectSeq	same-origin-plus-COEP	Parsed(final)	HTML#obtain-coop (html.src:95545)	exact	all https
+P4	RedirectSeq	opener's group mode	OpenerMode	HTML#bcg-cross-origin-isolation (html.src:107808)	exact	
+GenModel!Allowed	gen/GenModel	crossOriginIsolated getter	group mode and PP (same origin chain)	HTML capability (html.src:99265); #cross-origin-isolated-feature (html.src:5570)	exact	allowlist rule is Permissions Policy (external); no allow attribute
+GenModel!Allowed	gen/GenModel	isSecureContext row	SecureCtx	HTML#secure-context (html.src:119312)	narrower	as above
+GenModel!Allowed	gen/GenModel	load, fetch rows	NavChild, FetchResultCtx	as COIOnlyWithOptInNested, OptInOnlySecureCtx	exact	two levels
+Gen2Model!Allowed	gen2/Gen2Model	sandboxed origin	Opaque record	HTML#sandboxed-origin-browsing-context-flag (html.src:97182)	exact	one opaque origin
+Gen2Model!Allowed	gen2/Gen2Model	noopener	new top-level, severed	HTML#window-open-steps (html.src:98260)	exact	
+Gen2Model!Allowed	gen2/Gen2Model	requestsOAC	HB(h): ?1 (spec) or absent too (7617)	HTML Document creation steps (html.src:114480)	exact	"7617" is an unmerged PR, a parameter (none)
+Gen2Model!Allowed	gen2/Gen2Model	agent cluster key	Key: host or registrable domain, no scheme	HTML#agent-cluster-key (html.src:118245); #obtain-a-site (html.src:94802)	narrower	M4: 48 collisions over AllOrigins; no effect on the 81 O scenarios (TLC)
+Gen2Model!Allowed	gen2/Gen2Model	document.domain no-op	kind = "origin"	HTML document.domain setter, is origin-keyed (html.src:95075, 118237)	exact	

@@ -1,0 +1,6 @@
+# 思考実験 experiments/2026-11-24-property-premises.md（作業の木の A1）のための自作の表と TLA+ モジュール。
+# モデルの性質の前提と結論の概念を、HTML 0e292f4 と Fetch d7fc0fd の定義に対応づけた表、結果の要約、直した言い方の検査。subagent が書いた。
+# 仕様の本文は写さない（15 語以下の短い句と、行番号・アンカーの参照だけ）。
+id = "site-isolation-premises"
+title = "サイト分離モデルの性質の前提と結論の概念と、仕様の定義との対応"
+origin = "original"

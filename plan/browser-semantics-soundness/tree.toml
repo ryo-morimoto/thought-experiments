@@ -24,11 +24,11 @@ title = "モデルの中で P が正しく示されている"
 id = "A1"
 parent = "A"
 title = "性質の書き方が正しい（前提を仕様の概念で書く）"
-status = "partial"
+status = "done"
 impact = "mid"
 done_when = "各性質の前提の概念が、仕様の定義に対応づいている"
-note = "前提を安全な文脈と方策の容れ物の COEP で書き直した。理由の形の性質は拡張に耐えた。NoUndeclaredLeak などの前提は未点検"
-evidence = ["experiments/models/site-isolation/fixes/FIXES.md"]
+note = "36 の性質の 83 の概念を仕様に対応づけた。食い違い 4 つは直した書き方を PremisesFix.tla で確かめた（本体への取り込みは F7）。定義の無いものは分析の定義と外部の仕様として印をつけた"
+evidence = ["experiments/models/site-isolation/fixes/FIXES.md", "experiments/models/site-isolation/premises/RESULTS.md"]
 
 [[node]]
 id = "A2"
@@ -334,6 +334,14 @@ title = "popup の最初の about:blank の COOP の受け継ぎに条件を足�
 status = "todo"
 impact = "low"
 done_when = "作った側のオリジンが最上位と同じときだけ受け継ぎ、iframe の中の開いた側の筋書きで確かめている"
+
+[[node]]
+id = "F7"
+parent = "F"
+title = "直した性質の書き方（CorpPermits、KeyHTML、入れ子の COI の前提）を SpecIsolation.tla に取り込む"
+status = "todo"
+impact = "low"
+done_when = "SpecIsolation.tla の性質が直した書き方で、既存の検査が通る"
 
 [[node]]
 id = "F5"
