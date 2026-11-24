@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=timeout content=long>
+<title>OBS redirect chains, opener COOP so+rc</title>
+<script src="/resources/testharness.js"></script>
+<script src="/resources/testharnessreport.js"></script>
+<script src="/common/dispatcher/dispatcher.js"></script>
+<script src="/common/get-host-info.sub.js"></script>
+<script src="/common/utils.js"></script>
+<script src="resources/robs.js"></script>
+<body>
+<script>
+const OPENER = {coop: "same-origin", coep: "require-corp"};
+const SCEN = [
+  {id: "c_d_Xs-Op_Suu", st: "doc", hops: [{rel: "cross-site", coop: "same-origin", coep: "unsafe-none"}, {rel: "same-origin", coop: "same-origin-allow-popups", coep: "unsafe-none"}], fin: {rel: "same-site", coop: "unsafe-none", coep: "unsafe-none"}},
+  {id: "c_d_Xc-Oc_Osr", st: "doc", hops: [{rel: "cross-site", coop: "same-origin", coep: "require-corp"}, {rel: "same-origin", coop: "same-origin", coep: "require-corp"}], fin: {rel: "same-origin", coop: "same-origin", coep: "require-corp"}},
+  {id: "c_d_Xc-Oc_Ssr", st: "doc", hops: [{rel: "cross-site", coop: "same-origin", coep: "require-corp"}, {rel: "same-origin", coop: "same-origin", coep: "require-corp"}], fin: {rel: "same-site", coop: "same-origin", coep: "require-corp"}},
+  {id: "c_d_Xc-Xp_Ssr", st: "doc", hops: [{rel: "cross-site", coop: "same-origin", coep: "require-corp"}, {rel: "cross-site", coop: "same-origin-allow-popups", coep: "unsafe-none"}], fin: {rel: "same-site", coop: "same-origin", coep: "require-corp"}},
+  {id: "c_d_Xc-Xc_Xsr", st: "doc", hops: [{rel: "cross-site", coop: "same-origin", coep: "require-corp"}, {rel: "cross-site", coop: "same-origin", coep: "require-corp"}], fin: {rel: "cross-site", coop: "same-origin", coep: "require-corp"}},
+];
+runRedirect(SCEN).then(done);
+</script>

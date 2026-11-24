@@ -1,0 +1,3 @@
+/html/cross-origin-opener-policy/coep-redirect.https.html
+/html/cross-origin-opener-policy/popup-redirect-same-origin-allow-popups.https.html
+/html/cross-origin-opener-policy/popup-redirect-cache.https.html

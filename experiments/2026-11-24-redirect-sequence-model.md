@@ -1,6 +1,6 @@
 # リダイレクトの連鎖を状態の遷移として写すと、1 回きりの筋書きでは支えられなかった列の性質に、ブラウザの値で根拠を与えられるか
 
-- 状態: 設定中
+- 状態: 検討中
 - 開始: 2026-11-24
 - 更新: 2026-11-24
 - 関連: [plan/browser-semantics-soundness/TREE.md](../plan/browser-semantics-soundness/TREE.md)、[experiments/2026-11-23-observed-values-inclusion.md](2026-11-23-observed-values-inclusion.md)（反例: 途中の応答の COOP を無視するモデルでも 109 件はすべて内側）、[experiments/2026-11-24-axis-generated-scenarios.md](2026-11-24-axis-generated-scenarios.md)、[SpecIsolation.tla](models/site-isolation/SpecIsolation.tla)
@@ -34,7 +34,47 @@
 
 ## 条件を変える
 
-（段階B で書く）
+固定: 直したモデル（SpecIsolation.tla）の演算子。変える: リダイレクトの扱い（1 回きりの関数 → 段ごとの状態の遷移）と、筋書きの軸（段数と各段の COOP・COEP・オリジン）。
+
+subagent が仕様の本文を読み、モデルと生成器と試験を書き、モデルの上で全体を先に調べてから、Chrome 158.0.8127.88 と Firefox 160.0.1 に 2 回ずつ動かした（[redirect/](models/site-isolation/redirect/RESULTS.md)）。筆者は報告を読んだ。
+
+**仕様の本文で、段ごとに更新されるもの**（HTML 0e292f4）
+
+- create navigation params by fetching: リダイレクトを含むすべての応答が、opener policy の施行を通る（最上位の traversable だけ）。
+- obtain a cross-origin opener policy は、その段の応答の COEP を使う。リダイレクトの応答も same-origin-plus-COEP になりうる。
+- enforce a response's cross-origin opener policy: 「グループの切り替えが要る」の旗は前の結果から受け継がれ、積み上がって消えない。各応答は、ナビゲーションの起点ではなく、直前の応答のオリジンと COOP と比べる。最初の about:blank かどうかは連鎖の間ずっと同じなので、popup では same-origin-allow-popups の免除が各段で効く。
+- obtain a browsing context to use for a navigation response: 切り替えは最後の旗で決まる。cross-origin isolation mode は最後の応答の COOP から来るので、隔離できるのは最後の応答の COEP だけ。
+- report-only の COOP も同じように更新されるが、仮のグループの id を立てるだけで、写していない。
+
+**モデル**: RedirectSeq.tla（1 段の施行、連鎖への畳み込み、最後の判断。SpecIsolation の演算子を使う）と、同じ連鎖を状態機械として動かす RedirectMachine.tla（22,608 の筋書き、11 万の状態、13 秒）。新しい判断の点 8 つ（それぞれ neg: の変異体）と、途中の段を無視する変異体 2 つ（最初の段だけ、最後の段だけ）を足し、SpecIsolation の 55 と合わせて 65 個。列の性質（どこかの段で不一致があれば開いた側と切れる、旗は消えない、など）はすべて成り立った。逆向きの「起点と比べれば決まる」は成り立たず、TLC の反例（same-origin-allow-popups の開いた側 → unsafe-none の段 → same-origin-allow-popups の最後）は、上流の WPT の試験の連鎖と同じだった。
+
+**筋書きと費用**: 開いた側の COOP 4 × 始まり（空の popup か読み込んだ文書）2 × 段数 0〜2 × 最後の構成 18 で、22,608。モデルの上での選別（TLC で 9.5 分）で 290 の類に分かれ、565 の筋書き（ブラウザごとに 2,260 行）を動かした。1 回の繰り返しは Chrome 約 9 分、Firefox 約 18 分。2 回の繰り返しで全行一致。
+
+**包含**: Chrome は 2,260 行すべてが内側。Firefox は 2,236 が内側で、24 行（12 の筋書き）が外。
+
+**判別の力**（殺した行の数、Chrome / Firefox）
+
+<!-- data-source: original（subagent の観測と TLC の検査の集計） -->
+| 変異体 | 要る段数 | Chrome | Firefox |
+| --- | --- | --- | --- |
+| 最初の段だけ | 1 | 385 | 361 |
+| 最後の段だけ | 1 | 408 | 384 |
+| 旗を積み上げない | 1 | 409 | 401 |
+| 直前ではなく起点と比べる | 1 | 24 | 0（生き残る） |
+| 段の COEP を使わない | 1 | 20 | 20 |
+| 最後の切り替えの判断を反転 | 0 | 717 | 693 |
+
+- Chrome は、見分けられる 24 個の変異体をすべて殺し、Firefox は 23 個を殺した。残る 41 個は、この全体の空間で等価。
+- 前の攻撃が挙げた反例（途中の応答の COOP を無視するモデル）は、最初の段だけ・最後の段だけの変異体として、どちらのブラウザの値でも殺された。WPT の 109 件は、作りからしてこの 10 個を 1 つも殺さない（1 回きりの演算子しか評価しない）。上流のリダイレクトの WPT の期待値（coep-redirect、popup-redirect-sap、popup-redirect-cache）を 11 の筋書きとして入れると、10 個のうち 8 個を殺した。
+
+**モデルの外の値**: Firefox の 24 行。same-origin-allow-popups の開いた側、空の popup、免除された unsafe-none の応答のあとに unsafe-none でない応答が来る連鎖で、Firefox は開いた側と切らない（モデルは切る）。隔離が緩む向きの外れ。12 の筋書きすべてで、Firefox の値は変異体「直前ではなく起点と比べる」と一致した（その変異体は Firefox のすべての行を含み、内側の行を 1 つも落とさない）。上流の試験 popup-redirect-same-origin-allow-popups は、wpt.fyi の stable（実行 5108994293891072、Firefox 160.0.1）で Firefox 0/2、Chrome 2/2 として公開の失敗になっている。12 のうち 2 つはその試験と同じ筋書きで、10 はその連鎖を 2 段に伸ばしたもの（仕組みは同じ）。扱い（ユーザーの判断）: 公開の失敗の範囲とみなし、伏せずに記録する。
+
+読み取れること:
+
+- R1（支えられる）は、Chrome で当たり、Firefox で一部当たった。途中の段を無視する 2 つの変異体は、どちらのブラウザでも殺された。列として写すと、1 回きりの筋書きでは見えなかった反例を、ブラウザの値で見分けられた。
+- R2（ブラウザと食い違う）は、Firefox の 1 つの型で当たった。食い違いは、仕様のどの段の読みの違いか（各応答を直前と比べるか、起点と比べるか）として、変異体の形で名前がついた。
+- R3（途中の段は観測に映らない）は当たらなかった。途中の段は opener と closed の値に、段の COEP を通して crossOriginIsolated にも映る。1 段で足りた。
+- R4（費用が律速）は、この上限では当たらなかった。
 
 ## 結果を攻撃する
 
@@ -51,7 +91,9 @@
 ## 経過
 
 - 2026-11-24 段階A。問い、軸、対立仮説 R1〜R4 を置いた。
+- 2026-11-24 段階B。リダイレクトの連鎖を状態の遷移として写し、22,608 の筋書きからモデルの上で選んだ 565 を動かした。途中の段を無視する変異体はどちらのブラウザでも殺された。Chrome は全行内側、Firefox は 1 つの型（各応答を起点と比べる読み）で外れ、wpt.fyi の公開の失敗の範囲とみなして記録した（ユーザーの判断）。
 
 ## 具体
 
-（段階B で書く）
+- モデル、生成器、試験、観測した値: [redirect/](models/site-isolation/redirect/RESULTS.md)（RedirectSeq.tla、RedirectMachine.tla、RedirectEnum.tla、RedirectAllowed.tla、gen.py、scenarios.tsv、observed.tsv、driver/）。生のログと TLC の出力は、ジョブの一時ディレクトリの redirect/。
+- wpt.fyi の stable の実行 5108994293891072（Firefox 160.0.1、rev e00a7b14e8）で、html/cross-origin-opener-policy/popup-redirect-same-origin-allow-popups が Firefox 0/2、Chrome 2/2。

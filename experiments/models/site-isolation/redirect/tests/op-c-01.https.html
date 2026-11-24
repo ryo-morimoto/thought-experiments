@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=timeout content=long>
+<title>OBS redirect chains, opener COOP so+rc</title>
+<script src="/resources/testharness.js"></script>
+<script src="/resources/testharnessreport.js"></script>
+<script src="/common/dispatcher/dispatcher.js"></script>
+<script src="/common/get-host-info.sub.js"></script>
+<script src="/common/utils.js"></script>
+<script src="resources/robs.js"></script>
+<body>
+<script>
+const OPENER = {coop: "same-origin", coep: "require-corp"};
+const SCEN = [
+  {id: "c_b_Xp-Oc_Osr", st: "blank", hops: [{rel: "cross-site", coop: "same-origin-allow-popups", coep: "unsafe-none"}, {rel: "same-origin", coop: "same-origin", coep: "require-corp"}], fin: {rel: "same-origin", coop: "same-origin", coep: "require-corp"}},
+  {id: "c_b_Xp-Su_Osr", st: "blank", hops: [{rel: "cross-site", coop: "same-origin-allow-popups", coep: "unsafe-none"}, {rel: "same-site", coop: "unsafe-none", coep: "unsafe-none"}], fin: {rel: "same-origin", coop: "same-origin", coep: "require-corp"}},
+  {id: "c_b_Xc-Oc_Osr", st: "blank", hops: [{rel: "cross-site", coop: "same-origin", coep: "require-corp"}, {rel: "same-origin", coop: "same-origin", coep: "require-corp"}], fin: {rel: "same-origin", coop: "same-origin", coep: "require-corp"}},
+  {id: "c_b_Xc-Oc_Ssr", st: "blank", hops: [{rel: "cross-site", coop: "same-origin", coep: "require-corp"}, {rel: "same-origin", coop: "same-origin", coep: "require-corp"}], fin: {rel: "same-site", coop: "same-origin", coep: "require-corp"}},
+  {id: "c_b_Xc-Su_Suu", st: "blank", hops: [{rel: "cross-site", coop: "same-origin", coep: "require-corp"}, {rel: "same-site", coop: "unsafe-none", coep: "unsafe-none"}], fin: {rel: "same-site", coop: "unsafe-none", coep: "unsafe-none"}},
+  {id: "c_b_Xc-Sc_Our", st: "blank", hops: [{rel: "cross-site", coop: "same-origin", coep: "require-corp"}, {rel: "same-site", coop: "same-origin", coep: "require-corp"}], fin: {rel: "same-origin", coop: "unsafe-none", coep: "require-corp"}},
+  {id: "c_b_Xc-Sc_Osr", st: "blank", hops: [{rel: "cross-site", coop: "same-origin", coep: "require-corp"}, {rel: "same-site", coop: "same-origin", coep: "require-corp"}], fin: {rel: "same-origin", coop: "same-origin", coep: "require-corp"}},
+  {id: "c_b_Xc-Xp_Our", st: "blank", hops: [{rel: "cross-site", coop: "same-origin", coep: "require-corp"}, {rel: "cross-site", coop: "same-origin-allow-popups", coep: "unsafe-none"}], fin: {rel: "same-origin", coop: "unsafe-none", coep: "require-corp"}},
+  {id: "c_b_Xc-Xc_Osr", st: "blank", hops: [{rel: "cross-site", coop: "same-origin", coep: "require-corp"}, {rel: "cross-site", coop: "same-origin", coep: "require-corp"}], fin: {rel: "same-origin", coop: "same-origin", coep: "require-corp"}},
+  {id: "c_b_Xc-Xc_Ssr", st: "blank", hops: [{rel: "cross-site", coop: "same-origin", coep: "require-corp"}, {rel: "cross-site", coop: "same-origin", coep: "require-corp"}], fin: {rel: "same-site", coop: "same-origin", coep: "require-corp"}},
+  {id: "c_b_Xc-Xc_Xsr", st: "blank", hops: [{rel: "cross-site", coop: "same-origin", coep: "require-corp"}, {rel: "cross-site", coop: "same-origin", coep: "require-corp"}], fin: {rel: "cross-site", coop: "same-origin", coep: "require-corp"}},
+  {id: "c_d_0_Opu", st: "doc", hops: [], fin: {rel: "same-origin", coop: "same-origin-allow-popups", coep: "unsafe-none"}},
+  {id: "c_d_0_Osr", st: "doc", hops: [], fin: {rel: "same-origin", coop: "same-origin", coep: "require-corp"}},
+  {id: "c_d_0_Sur", st: "doc", hops: [], fin: {rel: "same-site", coop: "unsafe-none", coep: "require-corp"}},
+  {id: "c_d_0_Ssu", st: "doc", hops: [], fin: {rel: "same-site", coop: "same-origin", coep: "unsafe-none"}},
+  {id: "c_d_0_Ssr", st: "doc", hops: [], fin: {rel: "same-site", coop: "same-origin", coep: "require-corp"}},
+  {id: "c_d_0_Xsr", st: "doc", hops: [], fin: {rel: "cross-site", coop: "same-origin", coep: "require-corp"}},
+  {id: "c_d_Os_Osr", st: "doc", hops: [{rel: "same-origin", coop: "same-origin", coep: "unsafe-none"}], fin: {rel: "same-origin", coop: "same-origin", coep: "require-corp"}},
+  {id: "c_d_Oc_Osr", st: "doc", hops: [{rel: "same-origin", coop: "same-origin", coep: "require-corp"}], fin: {rel: "same-origin", coop: "same-origin", coep: "require-corp"}},
+  {id: "c_d_Oc_Ssr", st: "doc", hops: [{rel: "same-origin", coop: "same-origin", coep: "require-corp"}], fin: {rel: "same-site", coop: "same-origin", coep: "require-corp"}},
+  {id: "c_d_Ou-Ou_Xsr", st: "doc", hops: [{rel: "same-origin", coop: "unsafe-none", coep: "unsafe-none"}, {rel: "same-origin", coop: "unsafe-none", coep: "unsafe-none"}], fin: {rel: "cross-site", coop: "same-origin", coep: "require-corp"}},
+  {id: "c_d_Ou-Xu_Osu", st: "doc", hops: [{rel: "same-origin", coop: "unsafe-none", coep: "unsafe-none"}, {rel: "cross-site", coop: "unsafe-none", coep: "unsafe-none"}], fin: {rel: "same-origin", coop: "same-origin", coep: "unsafe-none"}},
+  {id: "c_d_Ou-Xs_Osr", st: "doc", hops: [{rel: "same-origin", coop: "unsafe-none", coep: "unsafe-none"}, {rel: "cross-site", coop: "same-origin", coep: "unsafe-none"}], fin: {rel: "same-origin", coop: "same-origin", coep: "require-corp"}},
+  {id: "c_d_Op-Os_Ssr", st: "doc", hops: [{rel: "same-origin", coop: "same-origin-allow-popups", coep: "unsafe-none"}, {rel: "same-origin", coop: "same-origin", coep: "unsafe-none"}], fin: {rel: "same-site", coop: "same-origin", coep: "require-corp"}},
+  {id: "c_d_Op-Oc_Opr", st: "doc", hops: [{rel: "same-origin", coop: "same-origin-allow-popups", coep: "unsafe-none"}, {rel: "same-origin", coop: "same-origin", coep: "require-corp"}], fin: {rel: "same-origin", coop: "same-origin-allow-popups", coep: "require-corp"}},
+  {id: "c_d_Os-Os_Osr", st: "doc", hops: [{rel: "same-origin", coop: "same-origin", coep: "unsafe-none"}, {rel: "same-origin", coop: "same-origin", coep: "unsafe-none"}], fin: {rel: "same-origin", coop: "same-origin", coep: "require-corp"}},
+  {id: "c_d_Os-Oc_Osr", st: "doc", hops: [{rel: "same-origin", coop: "same-origin", coep: "unsafe-none"}, {rel: "same-origin", coop: "same-origin", coep: "require-corp"}], fin: {rel: "same-origin", coop: "same-origin", coep: "require-corp"}},
+  {id: "c_d_Os-Xp_Osr", st: "doc", hops: [{rel: "same-origin", coop: "same-origin", coep: "unsafe-none"}, {rel: "cross-site", coop: "same-origin-allow-popups", coep: "unsafe-none"}], fin: {rel: "same-origin", coop: "same-origin", coep: "require-corp"}},
+  {id: "c_d_Oc-Ou_Ssr", st: "doc", hops: [{rel: "same-origin", coop: "same-origin", coep: "require-corp"}, {rel: "same-origin", coop: "unsafe-none", coep: "unsafe-none"}], fin: {rel: "same-site", coop: "same-origin", coep: "require-corp"}},
+  {id: "c_d_Oc-Os_Osu", st: "doc", hops: [{rel: "same-origin", coop: "same-origin", coep: "require-corp"}, {rel: "same-origin", coop: "same-origin", coep: "unsafe-none"}], fin: {rel: "same-origin", coop: "same-origin", coep: "unsafe-none"}},
+  {id: "c_d_Oc-Os_Osr", st: "doc", hops: [{rel: "same-origin", coop: "same-origin", coep: "require-corp"}, {rel: "same-origin", coop: "same-origin", coep: "unsafe-none"}], fin: {rel: "same-origin", coop: "same-origin", coep: "require-corp"}},
+  {id: "c_d_Oc-Oc_Osr", st: "doc", hops: [{rel: "same-origin", coop: "same-origin", coep: "require-corp"}, {rel: "same-origin", coop: "same-origin", coep: "require-corp"}], fin: {rel: "same-origin", coop: "same-origin", coep: "require-corp"}},
+  {id: "c_d_Oc-Su_Spu", st: "doc", hops: [{rel: "same-origin", coop: "same-origin", coep: "require-corp"}, {rel: "same-site", coop: "unsafe-none", coep: "unsafe-none"}], fin: {rel: "same-site", coop: "same-origin-allow-popups", coep: "unsafe-none"}},
+  {id: "c_d_Oc-Su_Ssr", st: "doc", hops: [{rel: "same-origin", coop: "same-origin", coep: "require-corp"}, {rel: "same-site", coop: "unsafe-none", coep: "unsafe-none"}], fin: {rel: "same-site", coop: "same-origin", coep: "require-corp"}},
+  {id: "c_d_Oc-Su_Xur", st: "doc", hops: [{rel: "same-origin", coop: "same-origin", coep: "require-corp"}, {rel: "same-site", coop: "unsafe-none", coep: "unsafe-none"}], fin: {rel: "cross-site", coop: "unsafe-none", coep: "require-corp"}},
+  {id: "c_d_Oc-Sp_Osr", st: "doc", hops: [{rel: "same-origin", coop: "same-origin", coep: "require-corp"}, {rel: "same-site", coop: "same-origin-allow-popups", coep: "unsafe-none"}], fin: {rel: "same-origin", coop: "same-origin", coep: "require-corp"}},
+  {id: "c_d_Oc-Sp_Spr", st: "doc", hops: [{rel: "same-origin", coop: "same-origin", coep: "require-corp"}, {rel: "same-site", coop: "same-origin-allow-popups", coep: "unsafe-none"}], fin: {rel: "same-site", coop: "same-origin-allow-popups", coep: "require-corp"}},
+  {id: "c_d_Oc-Sc_Osr", st: "doc", hops: [{rel: "same-origin", coop: "same-origin", coep: "require-corp"}, {rel: "same-site", coop: "same-origin", coep: "require-corp"}], fin: {rel: "same-origin", coop: "same-origin", coep: "require-corp"}},
+  {id: "c_d_Oc-Sc_Ssr", st: "doc", hops: [{rel: "same-origin", coop: "same-origin", coep: "require-corp"}, {rel: "same-site", coop: "same-origin", coep: "require-corp"}], fin: {rel: "same-site", coop: "same-origin", coep: "require-corp"}},
+  {id: "c_d_Oc-Xu_Suu", st: "doc", hops: [{rel: "same-origin", coop: "same-origin", coep: "require-corp"}, {rel: "cross-site", coop: "unsafe-none", coep: "unsafe-none"}], fin: {rel: "same-site", coop: "unsafe-none", coep: "unsafe-none"}},
+  {id: "c_d_Oc-Xp_Osr", st: "doc", hops: [{rel: "same-origin", coop: "same-origin", coep: "require-corp"}, {rel: "cross-site", coop: "same-origin-allow-popups", coep: "unsafe-none"}], fin: {rel: "same-origin", coop: "same-origin", coep: "require-corp"}},
+  {id: "c_d_Oc-Xc_Osr", st: "doc", hops: [{rel: "same-origin", coop: "same-origin", coep: "require-corp"}, {rel: "cross-site", coop: "same-origin", coep: "require-corp"}], fin: {rel: "same-origin", coop: "same-origin", coep: "require-corp"}},
+  {id: "c_d_Oc-Xc_Ssr", st: "doc", hops: [{rel: "same-origin", coop: "same-origin", coep: "require-corp"}, {rel: "cross-site", coop: "same-origin", coep: "require-corp"}], fin: {rel: "same-site", coop: "same-origin", coep: "require-corp"}},
+  {id: "c_d_Oc-Xc_Xsr", st: "doc", hops: [{rel: "same-origin", coop: "same-origin", coep: "require-corp"}, {rel: "cross-site", coop: "same-origin", coep: "require-corp"}], fin: {rel: "cross-site", coop: "same-origin", coep: "require-corp"}},
+  {id: "c_d_Su-Su_Osr", st: "doc", hops: [{rel: "same-site", coop: "unsafe-none", coep: "unsafe-none"}, {rel: "same-site", coop: "unsafe-none", coep: "unsafe-none"}], fin: {rel: "same-origin", coop: "same-origin", coep: "require-corp"}},
+  {id: "c_d_Su-Xu_Ssr", st: "doc", hops: [{rel: "same-site", coop: "unsafe-none", coep: "unsafe-none"}, {rel: "cross-site", coop: "unsafe-none", coep: "unsafe-none"}], fin: {rel: "same-site", coop: "same-origin", coep: "require-corp"}},
+  {id: "c_d_Sp-Xs_Xsu", st: "doc", hops: [{rel: "same-site", coop: "same-origin-allow-popups", coep: "unsafe-none"}, {rel: "cross-site", coop: "same-origin", coep: "unsafe-none"}], fin: {rel: "cross-site", coop: "same-origin", coep: "unsafe-none"}},
+  {id: "c_d_Sp-Xc_Xsr", st: "doc", hops: [{rel: "same-site", coop: "same-origin-allow-popups", coep: "unsafe-none"}, {rel: "cross-site", coop: "same-origin", coep: "require-corp"}], fin: {rel: "cross-site", coop: "same-origin", coep: "require-corp"}},
+  {id: "c_d_Ss-Oc_Osr", st: "doc", hops: [{rel: "same-site", coop: "same-origin", coep: "unsafe-none"}, {rel: "same-origin", coop: "same-origin", coep: "require-corp"}], fin: {rel: "same-origin", coop: "same-origin", coep: "require-corp"}},
+  {id: "c_d_Sc-Oc_Osr", st: "doc", hops: [{rel: "same-site", coop: "same-origin", coep: "require-corp"}, {rel: "same-origin", coop: "same-origin", coep: "require-corp"}], fin: {rel: "same-origin", coop: "same-origin", coep: "require-corp"}},
+  {id: "c_d_Sc-Sc_Osr", st: "doc", hops: [{rel: "same-site", coop: "same-origin", coep: "require-corp"}, {rel: "same-site", coop: "same-origin", coep: "require-corp"}], fin: {rel: "same-origin", coop: "same-origin", coep: "require-corp"}},
+  {id: "c_d_Sc-Sc_Ssr", st: "doc", hops: [{rel: "same-site", coop: "same-origin", coep: "require-corp"}, {rel: "same-site", coop: "same-origin", coep: "require-corp"}], fin: {rel: "same-site", coop: "same-origin", coep: "require-corp"}},
+  {id: "c_d_Sc-Sc_Xsr", st: "doc", hops: [{rel: "same-site", coop: "same-origin", coep: "require-corp"}, {rel: "same-site", coop: "same-origin", coep: "require-corp"}], fin: {rel: "cross-site", coop: "same-origin", coep: "require-corp"}},
+  {id: "c_d_Sc-Xu_Sur", st: "doc", hops: [{rel: "same-site", coop: "same-origin", coep: "require-corp"}, {rel: "cross-site", coop: "unsafe-none", coep: "unsafe-none"}], fin: {rel: "same-site", coop: "unsafe-none", coep: "require-corp"}},
+  {id: "c_d_Sc-Xc_Osr", st: "doc", hops: [{rel: "same-site", coop: "same-origin", coep: "require-corp"}, {rel: "cross-site", coop: "same-origin", coep: "require-corp"}], fin: {rel: "same-origin", coop: "same-origin", coep: "require-corp"}},
+  {id: "c_d_Xu-Xu_Opr", st: "doc", hops: [{rel: "cross-site", coop: "unsafe-none", coep: "unsafe-none"}, {rel: "cross-site", coop: "unsafe-none", coep: "unsafe-none"}], fin: {rel: "same-origin", coop: "same-origin-allow-popups", coep: "require-corp"}},
+  {id: "c_d_Xu-Xu_Osr", st: "doc", hops: [{rel: "cross-site", coop: "unsafe-none", coep: "unsafe-none"}, {rel: "cross-site", coop: "unsafe-none", coep: "unsafe-none"}], fin: {rel: "same-origin", coop: "same-origin", coep: "require-corp"}},
+  {id: "c_d_Xu-Xc_Xsr", st: "doc", hops: [{rel: "cross-site", coop: "unsafe-none", coep: "unsafe-none"}, {rel: "cross-site", coop: "same-origin", coep: "require-corp"}], fin: {rel: "cross-site", coop: "same-origin", coep: "require-corp"}},
+  {id: "c_d_Xp-Oc_Osr", st: "doc", hops: [{rel: "cross-site", coop: "same-origin-allow-popups", coep: "unsafe-none"}, {rel: "same-origin", coop: "same-origin", coep: "require-corp"}], fin: {rel: "same-origin", coop: "same-origin", coep: "require-corp"}},
+  {id: "c_d_Xs-Ou_Suu", st: "doc", hops: [{rel: "cross-site", coop: "same-origin", coep: "unsafe-none"}, {rel: "same-origin", coop: "unsafe-none", coep: "unsafe-none"}], fin: {rel: "same-site", coop: "unsafe-none", coep: "unsafe-none"}},
+];
+runRedirect(SCEN).then(done);
+</script>

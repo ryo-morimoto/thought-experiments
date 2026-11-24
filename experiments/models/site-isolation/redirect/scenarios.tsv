@@ -1,0 +1,566 @@
+sid	index	opener	start	nhops	hops	final
+u_b_0_Ouu	1	unsafe-none	blank	0		same-origin/unsafe-none/unsafe-none
+u_b_0_Sur	8	unsafe-none	blank	0		same-site/unsafe-none/require-corp
+u_b_0_Spr	10	unsafe-none	blank	0		same-site/same-origin-allow-popups/require-corp
+u_b_0_Ssr	12	unsafe-none	blank	0		same-site/same-origin/require-corp
+u_b_0_Xpu	15	unsafe-none	blank	0		cross-site/same-origin-allow-popups/unsafe-none
+u_b_Ou_Spr	28	unsafe-none	blank	1	same-origin/unsafe-none	same-site/same-origin-allow-popups/require-corp
+u_b_Xu_Ouu	163	unsafe-none	blank	1	cross-site/unsafe-none	same-origin/unsafe-none/unsafe-none
+u_b_Xu_Our	164	unsafe-none	blank	1	cross-site/unsafe-none	same-origin/unsafe-none/require-corp
+u_b_Xu_Xsu	179	unsafe-none	blank	1	cross-site/unsafe-none	cross-site/same-origin/unsafe-none
+u_b_Ou-Os_Xuu	283	unsafe-none	blank	2	same-origin/unsafe-none,same-origin/same-origin	cross-site/unsafe-none/unsafe-none
+u_b_Ou-Sp_Spr	334	unsafe-none	blank	2	same-origin/unsafe-none,same-site/same-origin-allow-popups	same-site/same-origin-allow-popups/require-corp
+u_b_Ou-Sc_Ssr	372	unsafe-none	blank	2	same-origin/unsafe-none,same-site/so+rc	same-site/same-origin/require-corp
+u_b_Ou-Xp_Xpu	411	unsafe-none	blank	2	same-origin/unsafe-none,cross-site/same-origin-allow-popups	cross-site/same-origin-allow-popups/unsafe-none
+u_b_Ou-Xc_Our	434	unsafe-none	blank	2	same-origin/unsafe-none,cross-site/so+rc	same-origin/unsafe-none/require-corp
+u_b_Ou-Xc_Xuu	445	unsafe-none	blank	2	same-origin/unsafe-none,cross-site/so+rc	cross-site/unsafe-none/unsafe-none
+u_b_Op-Op_Our	470	unsafe-none	blank	2	same-origin/same-origin-allow-popups,same-origin/same-origin-allow-popups	same-origin/unsafe-none/require-corp
+u_b_Op-Su_Xsu	539	unsafe-none	blank	2	same-origin/same-origin-allow-popups,same-site/unsafe-none	cross-site/same-origin/unsafe-none
+u_b_Su-Os_Sur	1142	unsafe-none	blank	2	same-site/unsafe-none,same-origin/same-origin	same-site/unsafe-none/require-corp
+u_b_Su-Ss_Ssu	1217	unsafe-none	blank	2	same-site/unsafe-none,same-site/same-origin	same-site/same-origin/unsafe-none
+u_b_Su-Xp_Sur	1268	unsafe-none	blank	2	same-site/unsafe-none,cross-site/same-origin-allow-popups	same-site/unsafe-none/require-corp
+u_b_Su-Xp_Xur	1274	unsafe-none	blank	2	same-site/unsafe-none,cross-site/same-origin-allow-popups	cross-site/unsafe-none/require-corp
+u_b_Sp-Ou_Opu	1317	unsafe-none	blank	2	same-site/same-origin-allow-popups,same-origin/unsafe-none	same-origin/same-origin-allow-popups/unsafe-none
+u_b_Sp-Sp_Xsr	1422	unsafe-none	blank	2	same-site/same-origin-allow-popups,same-site/same-origin-allow-popups	cross-site/same-origin/require-corp
+u_b_Ss-Os_Osu	1571	unsafe-none	blank	2	same-site/same-origin,same-origin/same-origin	same-origin/same-origin/unsafe-none
+u_b_Ss-Su_Xuu	1615	unsafe-none	blank	2	same-site/same-origin,same-site/unsafe-none	cross-site/unsafe-none/unsafe-none
+u_b_Sc-Ss_Xur	1868	unsafe-none	blank	2	same-site/so+rc,same-site/same-origin	cross-site/unsafe-none/require-corp
+u_b_Xu-Op_Xuu	1993	unsafe-none	blank	2	cross-site/unsafe-none,same-origin/same-origin-allow-popups	cross-site/unsafe-none/unsafe-none
+u_b_Xu-Os_Osu	2003	unsafe-none	blank	2	cross-site/unsafe-none,same-origin/same-origin	same-origin/same-origin/unsafe-none
+u_b_Xu-Os_Xsu	2015	unsafe-none	blank	2	cross-site/unsafe-none,same-origin/same-origin	cross-site/same-origin/unsafe-none
+u_b_Xu-Xp_Suu	2131	unsafe-none	blank	2	cross-site/unsafe-none,cross-site/same-origin-allow-popups	same-site/unsafe-none/unsafe-none
+u_b_Xp-Ou_Xpu	2193	unsafe-none	blank	2	cross-site/same-origin-allow-popups,same-origin/unsafe-none	cross-site/same-origin-allow-popups/unsafe-none
+u_b_Xs-Su_Xur	2480	unsafe-none	blank	2	cross-site/same-origin,same-site/unsafe-none	cross-site/unsafe-none/require-corp
+u_b_Xs-Ss_Xur	2516	unsafe-none	blank	2	cross-site/same-origin,same-site/same-origin	cross-site/unsafe-none/require-corp
+u_b_Xs-Xs_Our	2576	unsafe-none	blank	2	cross-site/same-origin,cross-site/same-origin	same-origin/unsafe-none/require-corp
+u_b_Xc-Su_Suu	2689	unsafe-none	blank	2	cross-site/so+rc,same-site/unsafe-none	same-site/unsafe-none/unsafe-none
+u_b_Xc-Xc_Xuu	2821	unsafe-none	blank	2	cross-site/so+rc,cross-site/so+rc	cross-site/unsafe-none/unsafe-none
+u_d_0_Ouu	2827	unsafe-none	doc	0		same-origin/unsafe-none/unsafe-none
+u_d_0_Our	2828	unsafe-none	doc	0		same-origin/unsafe-none/require-corp
+u_d_0_Opu	2829	unsafe-none	doc	0		same-origin/same-origin-allow-popups/unsafe-none
+u_d_0_Osu	2831	unsafe-none	doc	0		same-origin/same-origin/unsafe-none
+u_d_0_Spu	2835	unsafe-none	doc	0		same-site/same-origin-allow-popups/unsafe-none
+u_d_0_Spr	2836	unsafe-none	doc	0		same-site/same-origin-allow-popups/require-corp
+u_d_0_Ssu	2837	unsafe-none	doc	0		same-site/same-origin/unsafe-none
+u_d_0_Xpr	2842	unsafe-none	doc	0		cross-site/same-origin-allow-popups/require-corp
+u_d_Su_Opr	2920	unsafe-none	doc	1	same-site/unsafe-none	same-origin/same-origin-allow-popups/require-corp
+u_d_Su_Suu	2923	unsafe-none	doc	1	same-site/unsafe-none	same-site/unsafe-none/unsafe-none
+u_d_Sc_Spr	2980	unsafe-none	doc	1	same-site/so+rc	same-site/same-origin-allow-popups/require-corp
+u_d_Ou-Oc_Osr	3120	unsafe-none	doc	2	same-origin/unsafe-none,same-origin/so+rc	same-origin/same-origin/require-corp
+u_d_Ou-Xc_Spu	3267	unsafe-none	doc	2	same-origin/unsafe-none,cross-site/so+rc	same-site/same-origin-allow-popups/unsafe-none
+u_d_Op-Os_Xur	3326	unsafe-none	doc	2	same-origin/same-origin-allow-popups,same-origin/same-origin	cross-site/unsafe-none/require-corp
+u_d_Op-Oc_Opr	3334	unsafe-none	doc	2	same-origin/same-origin-allow-popups,same-origin/so+rc	same-origin/same-origin-allow-popups/require-corp
+u_d_Op-Xp_Xpu	3453	unsafe-none	doc	2	same-origin/same-origin-allow-popups,cross-site/same-origin-allow-popups	cross-site/same-origin-allow-popups/unsafe-none
+u_d_Os-Op_Opu	3513	unsafe-none	doc	2	same-origin/same-origin,same-origin/same-origin-allow-popups	same-origin/same-origin-allow-popups/unsafe-none
+u_d_Os-Os_Osu	3533	unsafe-none	doc	2	same-origin/same-origin,same-origin/same-origin	same-origin/same-origin/unsafe-none
+u_d_Oc-Ou_Ouu	3709	unsafe-none	doc	2	same-origin/so+rc,same-origin/unsafe-none	same-origin/unsafe-none/unsafe-none
+u_d_Su-Sc_Xuu	4063	unsafe-none	doc	2	same-site/unsafe-none,same-site/so+rc	cross-site/unsafe-none/unsafe-none
+u_d_Su-Xu_Osu	4073	unsafe-none	doc	2	same-site/unsafe-none,cross-site/unsafe-none	same-origin/same-origin/unsafe-none
+u_d_Su-Xp_Xpu	4101	unsafe-none	doc	2	same-site/unsafe-none,cross-site/same-origin-allow-popups	cross-site/same-origin-allow-popups/unsafe-none
+u_d_Su-Xp_Xpr	4102	unsafe-none	doc	2	same-site/unsafe-none,cross-site/same-origin-allow-popups	cross-site/same-origin-allow-popups/require-corp
+u_d_Su-Xs_Xsu	4121	unsafe-none	doc	2	same-site/unsafe-none,cross-site/same-origin	cross-site/same-origin/unsafe-none
+u_d_Sp-Sp_Xsu	4247	unsafe-none	doc	2	same-site/same-origin-allow-popups,same-site/same-origin-allow-popups	cross-site/same-origin/unsafe-none
+u_d_Sp-Xp_Suu	4309	unsafe-none	doc	2	same-site/same-origin-allow-popups,cross-site/same-origin-allow-popups	same-site/unsafe-none/unsafe-none
+u_d_Ss-Xu_Suu	4507	unsafe-none	doc	2	same-site/same-origin,cross-site/unsafe-none	same-site/unsafe-none/unsafe-none
+u_d_Sc-Su_Our	4646	unsafe-none	doc	2	same-site/so+rc,same-site/unsafe-none	same-origin/unsafe-none/require-corp
+u_d_Sc-Su_Sur	4652	unsafe-none	doc	2	same-site/so+rc,same-site/unsafe-none	same-site/unsafe-none/require-corp
+u_d_Sc-Sp_Xur	4676	unsafe-none	doc	2	same-site/so+rc,same-site/same-origin-allow-popups	cross-site/unsafe-none/require-corp
+u_d_Xu-Ou_Ssr	4800	unsafe-none	doc	2	cross-site/unsafe-none,same-origin/unsafe-none	same-site/same-origin/require-corp
+u_d_Xu-Os_Osu	4829	unsafe-none	doc	2	cross-site/unsafe-none,same-origin/same-origin	same-origin/same-origin/unsafe-none
+u_d_Xu-Os_Sur	4832	unsafe-none	doc	2	cross-site/unsafe-none,same-origin/same-origin	same-site/unsafe-none/require-corp
+u_d_Xu-Os_Ssu	4835	unsafe-none	doc	2	cross-site/unsafe-none,same-origin/same-origin	same-site/same-origin/unsafe-none
+u_d_Xu-Ss_Our	4898	unsafe-none	doc	2	cross-site/unsafe-none,same-site/same-origin	same-origin/unsafe-none/require-corp
+u_d_Xu-Ss_Opu	4899	unsafe-none	doc	2	cross-site/unsafe-none,same-site/same-origin	same-origin/same-origin-allow-popups/unsafe-none
+u_d_Xu-Sc_Xuu	4927	unsafe-none	doc	2	cross-site/unsafe-none,same-site/so+rc	cross-site/unsafe-none/unsafe-none
+u_d_Xu-Xu_Sur	4940	unsafe-none	doc	2	cross-site/unsafe-none,cross-site/unsafe-none	same-site/unsafe-none/require-corp
+u_d_Xu-Xc_Spr	4996	unsafe-none	doc	2	cross-site/unsafe-none,cross-site/so+rc	same-site/same-origin-allow-popups/require-corp
+u_d_Xp-Oc_Xsu	5075	unsafe-none	doc	2	cross-site/same-origin-allow-popups,same-origin/so+rc	cross-site/same-origin/unsafe-none
+u_d_Xp-Xs_Xuu	5197	unsafe-none	doc	2	cross-site/same-origin-allow-popups,cross-site/same-origin	cross-site/unsafe-none/unsafe-none
+u_d_Xp-Xs_Xsu	5201	unsafe-none	doc	2	cross-site/same-origin-allow-popups,cross-site/same-origin	cross-site/same-origin/unsafe-none
+u_d_Xs-Xp_Spu	5391	unsafe-none	doc	2	cross-site/same-origin,cross-site/same-origin-allow-popups	same-site/same-origin-allow-popups/unsafe-none
+u_d_Xc-Xc_Xpu	5649	unsafe-none	doc	2	cross-site/so+rc,cross-site/so+rc	cross-site/same-origin-allow-popups/unsafe-none
+p_b_0_Our	5654	same-origin-allow-popups	blank	0		same-origin/unsafe-none/require-corp
+p_b_0_Opu	5655	same-origin-allow-popups	blank	0		same-origin/same-origin-allow-popups/unsafe-none
+p_b_0_Opr	5656	same-origin-allow-popups	blank	0		same-origin/same-origin-allow-popups/require-corp
+p_b_0_Osu	5657	same-origin-allow-popups	blank	0		same-origin/same-origin/unsafe-none
+p_b_0_Osr	5658	same-origin-allow-popups	blank	0		same-origin/same-origin/require-corp
+p_b_0_Suu	5659	same-origin-allow-popups	blank	0		same-site/unsafe-none/unsafe-none
+p_b_0_Sur	5660	same-origin-allow-popups	blank	0		same-site/unsafe-none/require-corp
+p_b_0_Spu	5661	same-origin-allow-popups	blank	0		same-site/same-origin-allow-popups/unsafe-none
+p_b_0_Spr	5662	same-origin-allow-popups	blank	0		same-site/same-origin-allow-popups/require-corp
+p_b_0_Ssu	5663	same-origin-allow-popups	blank	0		same-site/same-origin/unsafe-none
+p_b_0_Ssr	5664	same-origin-allow-popups	blank	0		same-site/same-origin/require-corp
+p_b_0_Xuu	5665	same-origin-allow-popups	blank	0		cross-site/unsafe-none/unsafe-none
+p_b_0_Xpu	5667	same-origin-allow-popups	blank	0		cross-site/same-origin-allow-popups/unsafe-none
+p_b_0_Xpr	5668	same-origin-allow-popups	blank	0		cross-site/same-origin-allow-popups/require-corp
+p_b_0_Xsu	5669	same-origin-allow-popups	blank	0		cross-site/same-origin/unsafe-none
+p_b_0_Xsr	5670	same-origin-allow-popups	blank	0		cross-site/same-origin/require-corp
+p_b_Ou_Opr	5674	same-origin-allow-popups	blank	1	same-origin/unsafe-none	same-origin/same-origin-allow-popups/require-corp
+p_b_Op_Opr	5692	same-origin-allow-popups	blank	1	same-origin/same-origin-allow-popups	same-origin/same-origin-allow-popups/require-corp
+p_b_Op_Osr	5694	same-origin-allow-popups	blank	1	same-origin/same-origin-allow-popups	same-origin/same-origin/require-corp
+p_b_Op_Sur	5696	same-origin-allow-popups	blank	1	same-origin/same-origin-allow-popups	same-site/unsafe-none/require-corp
+p_b_Op_Ssu	5699	same-origin-allow-popups	blank	1	same-origin/same-origin-allow-popups	same-site/same-origin/unsafe-none
+p_b_Op_Xsu	5705	same-origin-allow-popups	blank	1	same-origin/same-origin-allow-popups	cross-site/same-origin/unsafe-none
+p_b_Os_Opu	5709	same-origin-allow-popups	blank	1	same-origin/same-origin	same-origin/same-origin-allow-popups/unsafe-none
+p_b_Os_Opr	5710	same-origin-allow-popups	blank	1	same-origin/same-origin	same-origin/same-origin-allow-popups/require-corp
+p_b_Oc_Ouu	5725	same-origin-allow-popups	blank	1	same-origin/so+rc	same-origin/unsafe-none/unsafe-none
+p_b_Su_Opr	5746	same-origin-allow-popups	blank	1	same-site/unsafe-none	same-origin/same-origin-allow-popups/require-corp
+p_b_Sp_Our	5762	same-origin-allow-popups	blank	1	same-site/same-origin-allow-popups	same-origin/unsafe-none/require-corp
+p_b_Sp_Opr	5764	same-origin-allow-popups	blank	1	same-site/same-origin-allow-popups	same-origin/same-origin-allow-popups/require-corp
+p_b_Sp_Suu	5767	same-origin-allow-popups	blank	1	same-site/same-origin-allow-popups	same-site/unsafe-none/unsafe-none
+p_b_Xu_Xuu	5827	same-origin-allow-popups	blank	1	cross-site/unsafe-none	cross-site/unsafe-none/unsafe-none
+p_b_Xp_Opr	5836	same-origin-allow-popups	blank	1	cross-site/same-origin-allow-popups	same-origin/same-origin-allow-popups/require-corp
+p_b_Xp_Sur	5840	same-origin-allow-popups	blank	1	cross-site/same-origin-allow-popups	same-site/unsafe-none/require-corp
+p_b_Xp_Spu	5841	same-origin-allow-popups	blank	1	cross-site/same-origin-allow-popups	same-site/same-origin-allow-popups/unsafe-none
+p_b_Xp_Ssr	5844	same-origin-allow-popups	blank	1	cross-site/same-origin-allow-popups	same-site/same-origin/require-corp
+p_b_Xp_Xpu	5847	same-origin-allow-popups	blank	1	cross-site/same-origin-allow-popups	cross-site/same-origin-allow-popups/unsafe-none
+p_b_Xp_Xpr	5848	same-origin-allow-popups	blank	1	cross-site/same-origin-allow-popups	cross-site/same-origin-allow-popups/require-corp
+p_b_Xs_Xsu	5867	same-origin-allow-popups	blank	1	cross-site/same-origin	cross-site/same-origin/unsafe-none
+p_b_Xc_Xsr	5886	same-origin-allow-popups	blank	1	cross-site/so+rc	cross-site/same-origin/require-corp
+p_b_Ou-Oc_Osr	5946	same-origin-allow-popups	blank	2	same-origin/unsafe-none,same-origin/so+rc	same-origin/same-origin/require-corp
+p_b_Ou-Su_Ssr	5970	same-origin-allow-popups	blank	2	same-origin/unsafe-none,same-site/unsafe-none	same-site/same-origin/require-corp
+p_b_Ou-Sp_Opr	5980	same-origin-allow-popups	blank	2	same-origin/unsafe-none,same-site/same-origin-allow-popups	same-origin/same-origin-allow-popups/require-corp
+p_b_Ou-Sp_Xuu	5989	same-origin-allow-popups	blank	2	same-origin/unsafe-none,same-site/same-origin-allow-popups	cross-site/unsafe-none/unsafe-none
+p_b_Ou-Xu_Opr	6034	same-origin-allow-popups	blank	2	same-origin/unsafe-none,cross-site/unsafe-none	same-origin/same-origin-allow-popups/require-corp
+p_b_Ou-Xu_Sur	6038	same-origin-allow-popups	blank	2	same-origin/unsafe-none,cross-site/unsafe-none	same-site/unsafe-none/require-corp
+p_b_Ou-Xc_Opu	6087	same-origin-allow-popups	blank	2	same-origin/unsafe-none,cross-site/so+rc	same-origin/same-origin-allow-popups/unsafe-none
+p_b_Op-Ou_Xur	6116	same-origin-allow-popups	blank	2	same-origin/same-origin-allow-popups,same-origin/unsafe-none	cross-site/unsafe-none/require-corp
+p_b_Op-Op_Opu	6123	same-origin-allow-popups	blank	2	same-origin/same-origin-allow-popups,same-origin/same-origin-allow-popups	same-origin/same-origin-allow-popups/unsafe-none
+p_b_Op-Op_Opr	6124	same-origin-allow-popups	blank	2	same-origin/same-origin-allow-popups,same-origin/same-origin-allow-popups	same-origin/same-origin-allow-popups/require-corp
+p_b_Op-Op_Suu	6127	same-origin-allow-popups	blank	2	same-origin/same-origin-allow-popups,same-origin/same-origin-allow-popups	same-site/unsafe-none/unsafe-none
+p_b_Op-Op_Spu	6129	same-origin-allow-popups	blank	2	same-origin/same-origin-allow-popups,same-origin/same-origin-allow-popups	same-site/same-origin-allow-popups/unsafe-none
+p_b_Op-Op_Spr	6130	same-origin-allow-popups	blank	2	same-origin/same-origin-allow-popups,same-origin/same-origin-allow-popups	same-site/same-origin-allow-popups/require-corp
+p_b_Op-Op_Xuu	6133	same-origin-allow-popups	blank	2	same-origin/same-origin-allow-popups,same-origin/same-origin-allow-popups	cross-site/unsafe-none/unsafe-none
+p_b_Op-Op_Xur	6134	same-origin-allow-popups	blank	2	same-origin/same-origin-allow-popups,same-origin/same-origin-allow-popups	cross-site/unsafe-none/require-corp
+p_b_Op-Op_Xpu	6135	same-origin-allow-popups	blank	2	same-origin/same-origin-allow-popups,same-origin/same-origin-allow-popups	cross-site/same-origin-allow-popups/unsafe-none
+p_b_Op-Op_Xpr	6136	same-origin-allow-popups	blank	2	same-origin/same-origin-allow-popups,same-origin/same-origin-allow-popups	cross-site/same-origin-allow-popups/require-corp
+p_b_Op-Oc_Osr	6162	same-origin-allow-popups	blank	2	same-origin/same-origin-allow-popups,same-origin/so+rc	same-origin/same-origin/require-corp
+p_b_Op-Oc_Xpr	6172	same-origin-allow-popups	blank	2	same-origin/same-origin-allow-popups,same-origin/so+rc	cross-site/same-origin-allow-popups/require-corp
+p_b_Op-Su_Ouu	6175	same-origin-allow-popups	blank	2	same-origin/same-origin-allow-popups,same-site/unsafe-none	same-origin/unsafe-none/unsafe-none
+p_b_Op-Su_Opu	6177	same-origin-allow-popups	blank	2	same-origin/same-origin-allow-popups,same-site/unsafe-none	same-origin/same-origin-allow-popups/unsafe-none
+p_b_Op-Su_Suu	6181	same-origin-allow-popups	blank	2	same-origin/same-origin-allow-popups,same-site/unsafe-none	same-site/unsafe-none/unsafe-none
+p_b_Op-Su_Xur	6188	same-origin-allow-popups	blank	2	same-origin/same-origin-allow-popups,same-site/unsafe-none	cross-site/unsafe-none/require-corp
+p_b_Op-Sp_Opu	6195	same-origin-allow-popups	blank	2	same-origin/same-origin-allow-popups,same-site/same-origin-allow-popups	same-origin/same-origin-allow-popups/unsafe-none
+p_b_Op-Sp_Opr	6196	same-origin-allow-popups	blank	2	same-origin/same-origin-allow-popups,same-site/same-origin-allow-popups	same-origin/same-origin-allow-popups/require-corp
+p_b_Op-Sp_Suu	6199	same-origin-allow-popups	blank	2	same-origin/same-origin-allow-popups,same-site/same-origin-allow-popups	same-site/unsafe-none/unsafe-none
+p_b_Op-Sp_Spu	6201	same-origin-allow-popups	blank	2	same-origin/same-origin-allow-popups,same-site/same-origin-allow-popups	same-site/same-origin-allow-popups/unsafe-none
+p_b_Op-Sp_Spr	6202	same-origin-allow-popups	blank	2	same-origin/same-origin-allow-popups,same-site/same-origin-allow-popups	same-site/same-origin-allow-popups/require-corp
+p_b_Op-Ss_Ssu	6221	same-origin-allow-popups	blank	2	same-origin/same-origin-allow-popups,same-site/same-origin	same-site/same-origin/unsafe-none
+p_b_Op-Xu_Opu	6249	same-origin-allow-popups	blank	2	same-origin/same-origin-allow-popups,cross-site/unsafe-none	same-origin/same-origin-allow-popups/unsafe-none
+p_b_Op-Xp_Opu	6267	same-origin-allow-popups	blank	2	same-origin/same-origin-allow-popups,cross-site/same-origin-allow-popups	same-origin/same-origin-allow-popups/unsafe-none
+p_b_Op-Xp_Opr	6268	same-origin-allow-popups	blank	2	same-origin/same-origin-allow-popups,cross-site/same-origin-allow-popups	same-origin/same-origin-allow-popups/require-corp
+p_b_Op-Xp_Suu	6271	same-origin-allow-popups	blank	2	same-origin/same-origin-allow-popups,cross-site/same-origin-allow-popups	same-site/unsafe-none/unsafe-none
+p_b_Op-Xp_Sur	6272	same-origin-allow-popups	blank	2	same-origin/same-origin-allow-popups,cross-site/same-origin-allow-popups	same-site/unsafe-none/require-corp
+p_b_Op-Xp_Ssr	6276	same-origin-allow-popups	blank	2	same-origin/same-origin-allow-popups,cross-site/same-origin-allow-popups	same-site/same-origin/require-corp
+p_b_Op-Xp_Xur	6278	same-origin-allow-popups	blank	2	same-origin/same-origin-allow-popups,cross-site/same-origin-allow-popups	cross-site/unsafe-none/require-corp
+p_b_Op-Xp_Xpu	6279	same-origin-allow-popups	blank	2	same-origin/same-origin-allow-popups,cross-site/same-origin-allow-popups	cross-site/same-origin-allow-popups/unsafe-none
+p_b_Op-Xp_Xpr	6280	same-origin-allow-popups	blank	2	same-origin/same-origin-allow-popups,cross-site/same-origin-allow-popups	cross-site/same-origin-allow-popups/require-corp
+p_b_Op-Xs_Xsu	6299	same-origin-allow-popups	blank	2	same-origin/same-origin-allow-popups,cross-site/same-origin	cross-site/same-origin/unsafe-none
+p_b_Op-Xc_Opr	6304	same-origin-allow-popups	blank	2	same-origin/same-origin-allow-popups,cross-site/so+rc	same-origin/same-origin-allow-popups/require-corp
+p_b_Op-Xc_Ssu	6311	same-origin-allow-popups	blank	2	same-origin/same-origin-allow-popups,cross-site/so+rc	same-site/same-origin/unsafe-none
+p_b_Op-Xc_Xsr	6318	same-origin-allow-popups	blank	2	same-origin/same-origin-allow-popups,cross-site/so+rc	cross-site/same-origin/require-corp
+p_b_Os-Op_Sur	6344	same-origin-allow-popups	blank	2	same-origin/same-origin,same-origin/same-origin-allow-popups	same-site/unsafe-none/require-corp
+p_b_Os-Op_Xur	6350	same-origin-allow-popups	blank	2	same-origin/same-origin,same-origin/same-origin-allow-popups	cross-site/unsafe-none/require-corp
+p_b_Os-Os_Xsu	6371	same-origin-allow-popups	blank	2	same-origin/same-origin,same-origin/same-origin	cross-site/same-origin/unsafe-none
+p_b_Os-Oc_Opu	6375	same-origin-allow-popups	blank	2	same-origin/same-origin,same-origin/so+rc	same-origin/same-origin-allow-popups/unsafe-none
+p_b_Os-Xu_Xur	6476	same-origin-allow-popups	blank	2	same-origin/same-origin,cross-site/unsafe-none	cross-site/unsafe-none/require-corp
+p_b_Oc-Op_Suu	6559	same-origin-allow-popups	blank	2	same-origin/so+rc,same-origin/same-origin-allow-popups	same-site/unsafe-none/unsafe-none
+p_b_Oc-Op_Xuu	6565	same-origin-allow-popups	blank	2	same-origin/so+rc,same-origin/same-origin-allow-popups	cross-site/unsafe-none/unsafe-none
+p_b_Oc-Os_Opr	6574	same-origin-allow-popups	blank	2	same-origin/so+rc,same-origin/same-origin	same-origin/same-origin-allow-popups/require-corp
+p_b_Oc-Oc_Our	6590	same-origin-allow-popups	blank	2	same-origin/so+rc,same-origin/so+rc	same-origin/unsafe-none/require-corp
+p_b_Oc-Xs_Xpu	6729	same-origin-allow-popups	blank	2	same-origin/so+rc,cross-site/same-origin	cross-site/same-origin-allow-popups/unsafe-none
+p_b_Su-Ou_Ouu	6751	same-origin-allow-popups	blank	2	same-site/unsafe-none,same-origin/unsafe-none	same-origin/unsafe-none/unsafe-none
+p_b_Su-Op_Our	6770	same-origin-allow-popups	blank	2	same-site/unsafe-none,same-origin/same-origin-allow-popups	same-origin/unsafe-none/require-corp
+p_b_Su-Op_Opu	6771	same-origin-allow-popups	blank	2	same-site/unsafe-none,same-origin/same-origin-allow-popups	same-origin/same-origin-allow-popups/unsafe-none
+p_b_Su-Op_Sur	6776	same-origin-allow-popups	blank	2	same-site/unsafe-none,same-origin/same-origin-allow-popups	same-site/unsafe-none/require-corp
+p_b_Su-Oc_Osr	6810	same-origin-allow-popups	blank	2	same-site/unsafe-none,same-origin/so+rc	same-origin/same-origin/require-corp
+p_b_Su-Su_Opu	6825	same-origin-allow-popups	blank	2	same-site/unsafe-none,same-site/unsafe-none	same-origin/same-origin-allow-popups/unsafe-none
+p_b_Su-Su_Xpu	6837	same-origin-allow-popups	blank	2	same-site/unsafe-none,same-site/unsafe-none	cross-site/same-origin-allow-popups/unsafe-none
+p_b_Su-Xu_Xpr	6910	same-origin-allow-popups	blank	2	same-site/unsafe-none,cross-site/unsafe-none	cross-site/same-origin-allow-popups/require-corp
+p_b_Su-Xp_Sur	6920	same-origin-allow-popups	blank	2	same-site/unsafe-none,cross-site/same-origin-allow-popups	same-site/unsafe-none/require-corp
+p_b_Su-Xs_Xsu	6947	same-origin-allow-popups	blank	2	same-site/unsafe-none,cross-site/same-origin	cross-site/same-origin/unsafe-none
+p_b_Su-Xc_Xpu	6963	same-origin-allow-popups	blank	2	same-site/unsafe-none,cross-site/so+rc	cross-site/same-origin-allow-popups/unsafe-none
+p_b_Sp-Ou_Suu	6973	same-origin-allow-popups	blank	2	same-site/same-origin-allow-popups,same-origin/unsafe-none	same-site/unsafe-none/unsafe-none
+p_b_Sp-Ou_Ssr	6978	same-origin-allow-popups	blank	2	same-site/same-origin-allow-popups,same-origin/unsafe-none	same-site/same-origin/require-corp
+p_b_Sp-Op_Opu	6987	same-origin-allow-popups	blank	2	same-site/same-origin-allow-popups,same-origin/same-origin-allow-popups	same-origin/same-origin-allow-popups/unsafe-none
+p_b_Sp-Op_Opr	6988	same-origin-allow-popups	blank	2	same-site/same-origin-allow-popups,same-origin/same-origin-allow-popups	same-origin/same-origin-allow-popups/require-corp
+p_b_Sp-Op_Osu	6989	same-origin-allow-popups	blank	2	same-site/same-origin-allow-popups,same-origin/same-origin-allow-popups	same-origin/same-origin/unsafe-none
+p_b_Sp-Op_Osr	6990	same-origin-allow-popups	blank	2	same-site/same-origin-allow-popups,same-origin/same-origin-allow-popups	same-origin/same-origin/require-corp
+p_b_Sp-Op_Spr	6994	same-origin-allow-popups	blank	2	same-site/same-origin-allow-popups,same-origin/same-origin-allow-popups	same-site/same-origin-allow-popups/require-corp
+p_b_Sp-Oc_Osr	7026	same-origin-allow-popups	blank	2	same-site/same-origin-allow-popups,same-origin/so+rc	same-origin/same-origin/require-corp
+p_b_Sp-Sp_Opu	7059	same-origin-allow-popups	blank	2	same-site/same-origin-allow-popups,same-site/same-origin-allow-popups	same-origin/same-origin-allow-popups/unsafe-none
+p_b_Sp-Sp_Opr	7060	same-origin-allow-popups	blank	2	same-site/same-origin-allow-popups,same-site/same-origin-allow-popups	same-origin/same-origin-allow-popups/require-corp
+p_b_Sp-Sp_Osu	7061	same-origin-allow-popups	blank	2	same-site/same-origin-allow-popups,same-site/same-origin-allow-popups	same-origin/same-origin/unsafe-none
+p_b_Sp-Sp_Osr	7062	same-origin-allow-popups	blank	2	same-site/same-origin-allow-popups,same-site/same-origin-allow-popups	same-origin/same-origin/require-corp
+p_b_Sp-Sp_Xuu	7069	same-origin-allow-popups	blank	2	same-site/same-origin-allow-popups,same-site/same-origin-allow-popups	cross-site/unsafe-none/unsafe-none
+p_b_Sp-Sp_Xur	7070	same-origin-allow-popups	blank	2	same-site/same-origin-allow-popups,same-site/same-origin-allow-popups	cross-site/unsafe-none/require-corp
+p_b_Sp-Sp_Xpu	7071	same-origin-allow-popups	blank	2	same-site/same-origin-allow-popups,same-site/same-origin-allow-popups	cross-site/same-origin-allow-popups/unsafe-none
+p_b_Sp-Sp_Xpr	7072	same-origin-allow-popups	blank	2	same-site/same-origin-allow-popups,same-site/same-origin-allow-popups	cross-site/same-origin-allow-popups/require-corp
+p_b_Sp-Xu_Sur	7118	same-origin-allow-popups	blank	2	same-site/same-origin-allow-popups,cross-site/unsafe-none	same-site/unsafe-none/require-corp
+p_b_Sp-Xp_Opu	7131	same-origin-allow-popups	blank	2	same-site/same-origin-allow-popups,cross-site/same-origin-allow-popups	same-origin/same-origin-allow-popups/unsafe-none
+p_b_Sp-Xp_Spu	7137	same-origin-allow-popups	blank	2	same-site/same-origin-allow-popups,cross-site/same-origin-allow-popups	same-site/same-origin-allow-popups/unsafe-none
+p_b_Sp-Xp_Xpu	7143	same-origin-allow-popups	blank	2	same-site/same-origin-allow-popups,cross-site/same-origin-allow-popups	cross-site/same-origin-allow-popups/unsafe-none
+p_b_Sp-Xp_Xpr	7144	same-origin-allow-popups	blank	2	same-site/same-origin-allow-popups,cross-site/same-origin-allow-popups	cross-site/same-origin-allow-popups/require-corp
+p_b_Ss-Sp_Ouu	7273	same-origin-allow-popups	blank	2	same-site/same-origin,same-site/same-origin-allow-popups	same-origin/unsafe-none/unsafe-none
+p_b_Sc-Su_Opu	7473	same-origin-allow-popups	blank	2	same-site/so+rc,same-site/unsafe-none	same-origin/same-origin-allow-popups/unsafe-none
+p_b_Sc-Su_Osu	7475	same-origin-allow-popups	blank	2	same-site/so+rc,same-site/unsafe-none	same-origin/same-origin/unsafe-none
+p_b_Sc-Xp_Our	7562	same-origin-allow-popups	blank	2	same-site/so+rc,cross-site/same-origin-allow-popups	same-origin/unsafe-none/require-corp
+p_b_Sc-Xp_Xuu	7573	same-origin-allow-popups	blank	2	same-site/so+rc,cross-site/same-origin-allow-popups	cross-site/unsafe-none/unsafe-none
+p_b_Xu-Ou_Opu	7617	same-origin-allow-popups	blank	2	cross-site/unsafe-none,same-origin/unsafe-none	same-origin/same-origin-allow-popups/unsafe-none
+p_b_Xu-Ou_Opr	7618	same-origin-allow-popups	blank	2	cross-site/unsafe-none,same-origin/unsafe-none	same-origin/same-origin-allow-popups/require-corp
+p_b_Xu-Ou_Xur	7628	same-origin-allow-popups	blank	2	cross-site/unsafe-none,same-origin/unsafe-none	cross-site/unsafe-none/require-corp
+p_b_Xu-Op_Suu	7639	same-origin-allow-popups	blank	2	cross-site/unsafe-none,same-origin/same-origin-allow-popups	same-site/unsafe-none/unsafe-none
+p_b_Xu-Su_Xpu	7701	same-origin-allow-popups	blank	2	cross-site/unsafe-none,same-site/unsafe-none	cross-site/same-origin-allow-popups/unsafe-none
+p_b_Xu-Sp_Spr	7714	same-origin-allow-popups	blank	2	cross-site/unsafe-none,same-site/same-origin-allow-popups	same-site/same-origin-allow-popups/require-corp
+p_b_Xu-Sp_Xuu	7717	same-origin-allow-popups	blank	2	cross-site/unsafe-none,same-site/same-origin-allow-popups	cross-site/unsafe-none/unsafe-none
+p_b_Xu-Ss_Ssu	7733	same-origin-allow-popups	blank	2	cross-site/unsafe-none,same-site/same-origin	same-site/same-origin/unsafe-none
+p_b_Xu-Xp_Our	7778	same-origin-allow-popups	blank	2	cross-site/unsafe-none,cross-site/same-origin-allow-popups	same-origin/unsafe-none/require-corp
+p_b_Xu-Xc_Opu	7815	same-origin-allow-popups	blank	2	cross-site/unsafe-none,cross-site/so+rc	same-origin/same-origin-allow-popups/unsafe-none
+p_b_Xp-Op_Opu	7851	same-origin-allow-popups	blank	2	cross-site/same-origin-allow-popups,same-origin/same-origin-allow-popups	same-origin/same-origin-allow-popups/unsafe-none
+p_b_Xp-Op_Opr	7852	same-origin-allow-popups	blank	2	cross-site/same-origin-allow-popups,same-origin/same-origin-allow-popups	same-origin/same-origin-allow-popups/require-corp
+p_b_Xp-Op_Osu	7853	same-origin-allow-popups	blank	2	cross-site/same-origin-allow-popups,same-origin/same-origin-allow-popups	same-origin/same-origin/unsafe-none
+p_b_Xp-Op_Suu	7855	same-origin-allow-popups	blank	2	cross-site/same-origin-allow-popups,same-origin/same-origin-allow-popups	same-site/unsafe-none/unsafe-none
+p_b_Xp-Op_Spr	7858	same-origin-allow-popups	blank	2	cross-site/same-origin-allow-popups,same-origin/same-origin-allow-popups	same-site/same-origin-allow-popups/require-corp
+p_b_Xp-Su_Our	7904	same-origin-allow-popups	blank	2	cross-site/same-origin-allow-popups,same-site/unsafe-none	same-origin/unsafe-none/require-corp
+p_b_Xp-Su_Xuu	7915	same-origin-allow-popups	blank	2	cross-site/same-origin-allow-popups,same-site/unsafe-none	cross-site/unsafe-none/unsafe-none
+p_b_Xp-Sp_Opu	7923	same-origin-allow-popups	blank	2	cross-site/same-origin-allow-popups,same-site/same-origin-allow-popups	same-origin/same-origin-allow-popups/unsafe-none
+p_b_Xp-Xp_Opu	7995	same-origin-allow-popups	blank	2	cross-site/same-origin-allow-popups,cross-site/same-origin-allow-popups	same-origin/same-origin-allow-popups/unsafe-none
+p_b_Xp-Xp_Opr	7996	same-origin-allow-popups	blank	2	cross-site/same-origin-allow-popups,cross-site/same-origin-allow-popups	same-origin/same-origin-allow-popups/require-corp
+p_b_Xp-Xp_Osr	7998	same-origin-allow-popups	blank	2	cross-site/same-origin-allow-popups,cross-site/same-origin-allow-popups	same-origin/same-origin/require-corp
+p_b_Xp-Xp_Suu	7999	same-origin-allow-popups	blank	2	cross-site/same-origin-allow-popups,cross-site/same-origin-allow-popups	same-site/unsafe-none/unsafe-none
+p_b_Xp-Xp_Sur	8000	same-origin-allow-popups	blank	2	cross-site/same-origin-allow-popups,cross-site/same-origin-allow-popups	same-site/unsafe-none/require-corp
+p_b_Xp-Xp_Spu	8001	same-origin-allow-popups	blank	2	cross-site/same-origin-allow-popups,cross-site/same-origin-allow-popups	same-site/same-origin-allow-popups/unsafe-none
+p_b_Xp-Xp_Spr	8002	same-origin-allow-popups	blank	2	cross-site/same-origin-allow-popups,cross-site/same-origin-allow-popups	same-site/same-origin-allow-popups/require-corp
+p_b_Xp-Xp_Xsu	8009	same-origin-allow-popups	blank	2	cross-site/same-origin-allow-popups,cross-site/same-origin-allow-popups	cross-site/same-origin/unsafe-none
+p_b_Xs-Xs_Xpr	8242	same-origin-allow-popups	blank	2	cross-site/same-origin,cross-site/same-origin	cross-site/same-origin-allow-popups/require-corp
+p_b_Xs-Xs_Xsu	8243	same-origin-allow-popups	blank	2	cross-site/same-origin,cross-site/same-origin	cross-site/same-origin/unsafe-none
+p_b_Xc-Xc_Ouu	8461	same-origin-allow-popups	blank	2	cross-site/so+rc,cross-site/so+rc	same-origin/unsafe-none/unsafe-none
+p_d_0_Ouu	8479	same-origin-allow-popups	doc	0		same-origin/unsafe-none/unsafe-none
+p_d_0_Opu	8481	same-origin-allow-popups	doc	0		same-origin/same-origin-allow-popups/unsafe-none
+p_d_0_Opr	8482	same-origin-allow-popups	doc	0		same-origin/same-origin-allow-popups/require-corp
+p_d_0_Osu	8483	same-origin-allow-popups	doc	0		same-origin/same-origin/unsafe-none
+p_d_0_Osr	8484	same-origin-allow-popups	doc	0		same-origin/same-origin/require-corp
+p_d_0_Sur	8486	same-origin-allow-popups	doc	0		same-site/unsafe-none/require-corp
+p_d_0_Spu	8487	same-origin-allow-popups	doc	0		same-site/same-origin-allow-popups/unsafe-none
+p_d_0_Spr	8488	same-origin-allow-popups	doc	0		same-site/same-origin-allow-popups/require-corp
+p_d_0_Ssr	8490	same-origin-allow-popups	doc	0		same-site/same-origin/require-corp
+p_d_0_Xuu	8491	same-origin-allow-popups	doc	0		cross-site/unsafe-none/unsafe-none
+p_d_0_Xur	8492	same-origin-allow-popups	doc	0		cross-site/unsafe-none/require-corp
+p_d_0_Xpu	8493	same-origin-allow-popups	doc	0		cross-site/same-origin-allow-popups/unsafe-none
+p_d_0_Xpr	8494	same-origin-allow-popups	doc	0		cross-site/same-origin-allow-popups/require-corp
+p_d_0_Xsu	8495	same-origin-allow-popups	doc	0		cross-site/same-origin/unsafe-none
+p_d_Ou_Xuu	8509	same-origin-allow-popups	doc	1	same-origin/unsafe-none	cross-site/unsafe-none/unsafe-none
+p_d_Op_Xuu	8527	same-origin-allow-popups	doc	1	same-origin/same-origin-allow-popups	cross-site/unsafe-none/unsafe-none
+p_d_Op_Xur	8528	same-origin-allow-popups	doc	1	same-origin/same-origin-allow-popups	cross-site/unsafe-none/require-corp
+p_d_Os_Osu	8537	same-origin-allow-popups	doc	1	same-origin/same-origin	same-origin/same-origin/unsafe-none
+p_d_Os_Osr	8538	same-origin-allow-popups	doc	1	same-origin/same-origin	same-origin/same-origin/require-corp
+p_d_Su_Xur	8582	same-origin-allow-popups	doc	1	same-site/unsafe-none	cross-site/unsafe-none/require-corp
+p_d_Sp_Spu	8595	same-origin-allow-popups	doc	1	same-site/same-origin-allow-popups	same-site/same-origin-allow-popups/unsafe-none
+p_d_Sp_Xpu	8601	same-origin-allow-popups	doc	1	same-site/same-origin-allow-popups	cross-site/same-origin-allow-popups/unsafe-none
+p_d_Xp_Xpr	8674	same-origin-allow-popups	doc	1	cross-site/same-origin-allow-popups	cross-site/same-origin-allow-popups/require-corp
+p_d_Op-Ou_Opu	8931	same-origin-allow-popups	doc	2	same-origin/same-origin-allow-popups,same-origin/unsafe-none	same-origin/same-origin-allow-popups/unsafe-none
+p_d_Op-Ou_Opr	8932	same-origin-allow-popups	doc	2	same-origin/same-origin-allow-popups,same-origin/unsafe-none	same-origin/same-origin-allow-popups/require-corp
+p_d_Op-Ou_Xuu	8941	same-origin-allow-popups	doc	2	same-origin/same-origin-allow-popups,same-origin/unsafe-none	cross-site/unsafe-none/unsafe-none
+p_d_Op-Op_Opu	8949	same-origin-allow-popups	doc	2	same-origin/same-origin-allow-popups,same-origin/same-origin-allow-popups	same-origin/same-origin-allow-popups/unsafe-none
+p_d_Op-Op_Suu	8953	same-origin-allow-popups	doc	2	same-origin/same-origin-allow-popups,same-origin/same-origin-allow-popups	same-site/unsafe-none/unsafe-none
+p_d_Op-Op_Sur	8954	same-origin-allow-popups	doc	2	same-origin/same-origin-allow-popups,same-origin/same-origin-allow-popups	same-site/unsafe-none/require-corp
+p_d_Op-Op_Spu	8955	same-origin-allow-popups	doc	2	same-origin/same-origin-allow-popups,same-origin/same-origin-allow-popups	same-site/same-origin-allow-popups/unsafe-none
+p_d_Op-Op_Spr	8956	same-origin-allow-popups	doc	2	same-origin/same-origin-allow-popups,same-origin/same-origin-allow-popups	same-site/same-origin-allow-popups/require-corp
+p_d_Op-Op_Xpu	8961	same-origin-allow-popups	doc	2	same-origin/same-origin-allow-popups,same-origin/same-origin-allow-popups	cross-site/same-origin-allow-popups/unsafe-none
+p_d_Op-Os_Osu	8969	same-origin-allow-popups	doc	2	same-origin/same-origin-allow-popups,same-origin/same-origin	same-origin/same-origin/unsafe-none
+p_d_Op-Os_Xpr	8980	same-origin-allow-popups	doc	2	same-origin/same-origin-allow-popups,same-origin/same-origin	cross-site/same-origin-allow-popups/require-corp
+p_d_Op-Oc_Suu	8989	same-origin-allow-popups	doc	2	same-origin/same-origin-allow-popups,same-origin/so+rc	same-site/unsafe-none/unsafe-none
+p_d_Op-Su_Sur	9008	same-origin-allow-popups	doc	2	same-origin/same-origin-allow-popups,same-site/unsafe-none	same-site/unsafe-none/require-corp
+p_d_Op-Sp_Opu	9021	same-origin-allow-popups	doc	2	same-origin/same-origin-allow-popups,same-site/same-origin-allow-popups	same-origin/same-origin-allow-popups/unsafe-none
+p_d_Op-Sp_Opr	9022	same-origin-allow-popups	doc	2	same-origin/same-origin-allow-popups,same-site/same-origin-allow-popups	same-origin/same-origin-allow-popups/require-corp
+p_d_Op-Sp_Osr	9024	same-origin-allow-popups	doc	2	same-origin/same-origin-allow-popups,same-site/same-origin-allow-popups	same-origin/same-origin/require-corp
+p_d_Op-Sp_Spu	9027	same-origin-allow-popups	doc	2	same-origin/same-origin-allow-popups,same-site/same-origin-allow-popups	same-site/same-origin-allow-popups/unsafe-none
+p_d_Op-Sp_Spr	9028	same-origin-allow-popups	doc	2	same-origin/same-origin-allow-popups,same-site/same-origin-allow-popups	same-site/same-origin-allow-popups/require-corp
+p_d_Op-Sc_Opr	9058	same-origin-allow-popups	doc	2	same-origin/same-origin-allow-popups,same-site/so+rc	same-origin/same-origin-allow-popups/require-corp
+p_d_Op-Xu_Opu	9075	same-origin-allow-popups	doc	2	same-origin/same-origin-allow-popups,cross-site/unsafe-none	same-origin/same-origin-allow-popups/unsafe-none
+p_d_Op-Xu_Suu	9079	same-origin-allow-popups	doc	2	same-origin/same-origin-allow-popups,cross-site/unsafe-none	same-site/unsafe-none/unsafe-none
+p_d_Op-Xu_Sur	9080	same-origin-allow-popups	doc	2	same-origin/same-origin-allow-popups,cross-site/unsafe-none	same-site/unsafe-none/require-corp
+p_d_Op-Xu_Ssr	9084	same-origin-allow-popups	doc	2	same-origin/same-origin-allow-popups,cross-site/unsafe-none	same-site/same-origin/require-corp
+p_d_Op-Xp_Opu	9093	same-origin-allow-popups	doc	2	same-origin/same-origin-allow-popups,cross-site/same-origin-allow-popups	same-origin/same-origin-allow-popups/unsafe-none
+p_d_Op-Xp_Opr	9094	same-origin-allow-popups	doc	2	same-origin/same-origin-allow-popups,cross-site/same-origin-allow-popups	same-origin/same-origin-allow-popups/require-corp
+p_d_Op-Xp_Sur	9098	same-origin-allow-popups	doc	2	same-origin/same-origin-allow-popups,cross-site/same-origin-allow-popups	same-site/unsafe-none/require-corp
+p_d_Op-Xp_Spr	9100	same-origin-allow-popups	doc	2	same-origin/same-origin-allow-popups,cross-site/same-origin-allow-popups	same-site/same-origin-allow-popups/require-corp
+p_d_Op-Xp_Ssu	9101	same-origin-allow-popups	doc	2	same-origin/same-origin-allow-popups,cross-site/same-origin-allow-popups	same-site/same-origin/unsafe-none
+p_d_Op-Xp_Xpu	9105	same-origin-allow-popups	doc	2	same-origin/same-origin-allow-popups,cross-site/same-origin-allow-popups	cross-site/same-origin-allow-popups/unsafe-none
+p_d_Op-Xp_Xpr	9106	same-origin-allow-popups	doc	2	same-origin/same-origin-allow-popups,cross-site/same-origin-allow-popups	cross-site/same-origin-allow-popups/require-corp
+p_d_Op-Xs_Xsu	9125	same-origin-allow-popups	doc	2	same-origin/same-origin-allow-popups,cross-site/same-origin	cross-site/same-origin/unsafe-none
+p_d_Oc-Ou_Opu	9363	same-origin-allow-popups	doc	2	same-origin/so+rc,same-origin/unsafe-none	same-origin/same-origin-allow-popups/unsafe-none
+p_d_Oc-Os_Osr	9402	same-origin-allow-popups	doc	2	same-origin/so+rc,same-origin/same-origin	same-origin/same-origin/require-corp
+p_d_Oc-Xu_Xur	9518	same-origin-allow-popups	doc	2	same-origin/so+rc,cross-site/unsafe-none	cross-site/unsafe-none/require-corp
+p_d_Su-Op_Opu	9597	same-origin-allow-popups	doc	2	same-site/unsafe-none,same-origin/same-origin-allow-popups	same-origin/same-origin-allow-popups/unsafe-none
+p_d_Su-Op_Opr	9598	same-origin-allow-popups	doc	2	same-site/unsafe-none,same-origin/same-origin-allow-popups	same-origin/same-origin-allow-popups/require-corp
+p_d_Su-Sc_Ssr	9714	same-origin-allow-popups	doc	2	same-site/unsafe-none,same-site/so+rc	same-site/same-origin/require-corp
+p_d_Sp-Op_Opu	9813	same-origin-allow-popups	doc	2	same-site/same-origin-allow-popups,same-origin/same-origin-allow-popups	same-origin/same-origin-allow-popups/unsafe-none
+p_d_Sp-Op_Opr	9814	same-origin-allow-popups	doc	2	same-site/same-origin-allow-popups,same-origin/same-origin-allow-popups	same-origin/same-origin-allow-popups/require-corp
+p_d_Sp-Sp_Opr	9886	same-origin-allow-popups	doc	2	same-site/same-origin-allow-popups,same-site/same-origin-allow-popups	same-origin/same-origin-allow-popups/require-corp
+p_d_Sp-Sp_Xpr	9898	same-origin-allow-popups	doc	2	same-site/same-origin-allow-popups,same-site/same-origin-allow-popups	cross-site/same-origin-allow-popups/require-corp
+p_d_Sp-Xc_Spr	10000	same-origin-allow-popups	doc	2	same-site/same-origin-allow-popups,cross-site/so+rc	same-site/same-origin-allow-popups/require-corp
+p_d_Ss-Ou_Our	10010	same-origin-allow-popups	doc	2	same-site/same-origin,same-origin/unsafe-none	same-origin/unsafe-none/require-corp
+p_d_Ss-Su_Opr	10084	same-origin-allow-popups	doc	2	same-site/same-origin,same-site/unsafe-none	same-origin/same-origin-allow-popups/require-corp
+p_d_Sc-Op_Opu	10245	same-origin-allow-popups	doc	2	same-site/so+rc,same-origin/same-origin-allow-popups	same-origin/same-origin-allow-popups/unsafe-none
+p_d_Sc-Os_Osu	10265	same-origin-allow-popups	doc	2	same-site/so+rc,same-origin/same-origin	same-origin/same-origin/unsafe-none
+p_d_Xu-Ou_Ouu	10441	same-origin-allow-popups	doc	2	cross-site/unsafe-none,same-origin/unsafe-none	same-origin/unsafe-none/unsafe-none
+p_d_Xu-Ou_Our	10442	same-origin-allow-popups	doc	2	cross-site/unsafe-none,same-origin/unsafe-none	same-origin/unsafe-none/require-corp
+p_d_Xu-Xp_Suu	10609	same-origin-allow-popups	doc	2	cross-site/unsafe-none,cross-site/same-origin-allow-popups	same-site/unsafe-none/unsafe-none
+p_d_Xu-Xs_Opr	10624	same-origin-allow-popups	doc	2	cross-site/unsafe-none,cross-site/same-origin	same-origin/same-origin-allow-popups/require-corp
+p_d_Xp-Op_Opu	10677	same-origin-allow-popups	doc	2	cross-site/same-origin-allow-popups,same-origin/same-origin-allow-popups	same-origin/same-origin-allow-popups/unsafe-none
+p_d_Xp-Op_Opr	10678	same-origin-allow-popups	doc	2	cross-site/same-origin-allow-popups,same-origin/same-origin-allow-popups	same-origin/same-origin-allow-popups/require-corp
+p_d_Xp-Op_Xpu	10689	same-origin-allow-popups	doc	2	cross-site/same-origin-allow-popups,same-origin/same-origin-allow-popups	cross-site/same-origin-allow-popups/unsafe-none
+p_d_Xp-Oc_Osr	10716	same-origin-allow-popups	doc	2	cross-site/same-origin-allow-popups,same-origin/so+rc	same-origin/same-origin/require-corp
+p_d_Xp-Sp_Opu	10749	same-origin-allow-popups	doc	2	cross-site/same-origin-allow-popups,same-site/same-origin-allow-popups	same-origin/same-origin-allow-popups/unsafe-none
+p_d_Xp-Sp_Opr	10750	same-origin-allow-popups	doc	2	cross-site/same-origin-allow-popups,same-site/same-origin-allow-popups	same-origin/same-origin-allow-popups/require-corp
+p_d_Xp-Sp_Spu	10755	same-origin-allow-popups	doc	2	cross-site/same-origin-allow-popups,same-site/same-origin-allow-popups	same-site/same-origin-allow-popups/unsafe-none
+p_d_Xp-Sp_Spr	10756	same-origin-allow-popups	doc	2	cross-site/same-origin-allow-popups,same-site/same-origin-allow-popups	same-site/same-origin-allow-popups/require-corp
+p_d_Xp-Sp_Xpr	10762	same-origin-allow-popups	doc	2	cross-site/same-origin-allow-popups,same-site/same-origin-allow-popups	cross-site/same-origin-allow-popups/require-corp
+p_d_Xp-Xu_Xsu	10817	same-origin-allow-popups	doc	2	cross-site/same-origin-allow-popups,cross-site/unsafe-none	cross-site/same-origin/unsafe-none
+p_d_Xp-Xp_Opu	10821	same-origin-allow-popups	doc	2	cross-site/same-origin-allow-popups,cross-site/same-origin-allow-popups	same-origin/same-origin-allow-popups/unsafe-none
+p_d_Xp-Xs_Opu	10839	same-origin-allow-popups	doc	2	cross-site/same-origin-allow-popups,cross-site/same-origin	same-origin/same-origin-allow-popups/unsafe-none
+p_d_Xs-Op_Opr	10894	same-origin-allow-popups	doc	2	cross-site/same-origin,same-origin/same-origin-allow-popups	same-origin/same-origin-allow-popups/require-corp
+p_d_Xs-Oc_Xur	10940	same-origin-allow-popups	doc	2	cross-site/same-origin,same-origin/so+rc	cross-site/unsafe-none/require-corp
+p_d_Xs-Xp_Xpu	11049	same-origin-allow-popups	doc	2	cross-site/same-origin,cross-site/same-origin-allow-popups	cross-site/same-origin-allow-popups/unsafe-none
+p_d_Xc-Sp_Ssr	11190	same-origin-allow-popups	doc	2	cross-site/so+rc,same-site/same-origin-allow-popups	same-site/same-origin/require-corp
+s_b_0_Opu	11307	same-origin	blank	0		same-origin/same-origin-allow-popups/unsafe-none
+s_b_0_Opr	11308	same-origin	blank	0		same-origin/same-origin-allow-popups/require-corp
+s_b_0_Osu	11309	same-origin	blank	0		same-origin/same-origin/unsafe-none
+s_b_0_Osr	11310	same-origin	blank	0		same-origin/same-origin/require-corp
+s_b_0_Spu	11313	same-origin	blank	0		same-site/same-origin-allow-popups/unsafe-none
+s_b_0_Ssu	11315	same-origin	blank	0		same-site/same-origin/unsafe-none
+s_b_0_Xuu	11317	same-origin	blank	0		cross-site/unsafe-none/unsafe-none
+s_b_0_Xsu	11321	same-origin	blank	0		cross-site/same-origin/unsafe-none
+s_b_Ou_Sur	11330	same-origin	blank	1	same-origin/unsafe-none	same-site/unsafe-none/require-corp
+s_b_Ou_Xur	11336	same-origin	blank	1	same-origin/unsafe-none	cross-site/unsafe-none/require-corp
+s_b_Op_Sur	11348	same-origin	blank	1	same-origin/same-origin-allow-popups	same-site/unsafe-none/require-corp
+s_b_Op_Xuu	11353	same-origin	blank	1	same-origin/same-origin-allow-popups	cross-site/unsafe-none/unsafe-none
+s_b_Os_Xsu	11375	same-origin	blank	1	same-origin/same-origin	cross-site/same-origin/unsafe-none
+s_b_Oc_Osu	11381	same-origin	blank	1	same-origin/so+rc	same-origin/same-origin/unsafe-none
+s_b_Ss_Xsu	11447	same-origin	blank	1	same-site/same-origin	cross-site/same-origin/unsafe-none
+s_b_Xu_Ouu	11467	same-origin	blank	1	cross-site/unsafe-none	same-origin/unsafe-none/unsafe-none
+s_b_Xs_Xsu	11519	same-origin	blank	1	cross-site/same-origin	cross-site/same-origin/unsafe-none
+s_b_Ou-Os_Osu	11579	same-origin	blank	2	same-origin/unsafe-none,same-origin/same-origin	same-origin/same-origin/unsafe-none
+s_b_Op-Ou_Osu	11759	same-origin	blank	2	same-origin/same-origin-allow-popups,same-origin/unsafe-none	same-origin/same-origin/unsafe-none
+s_b_Op-Ou_Sur	11762	same-origin	blank	2	same-origin/same-origin-allow-popups,same-origin/unsafe-none	same-site/unsafe-none/require-corp
+s_b_Op-Oc_Osu	11813	same-origin	blank	2	same-origin/same-origin-allow-popups,same-origin/so+rc	same-origin/same-origin/unsafe-none
+s_b_Op-Su_Osu	11831	same-origin	blank	2	same-origin/same-origin-allow-popups,same-site/unsafe-none	same-origin/same-origin/unsafe-none
+s_b_Op-Su_Suu	11833	same-origin	blank	2	same-origin/same-origin-allow-popups,same-site/unsafe-none	same-site/unsafe-none/unsafe-none
+s_b_Op-Xu_Xuu	11911	same-origin	blank	2	same-origin/same-origin-allow-popups,cross-site/unsafe-none	cross-site/unsafe-none/unsafe-none
+s_b_Os-Ou_Sur	11978	same-origin	blank	2	same-origin/same-origin,same-origin/unsafe-none	same-site/unsafe-none/require-corp
+s_b_Os-Ou_Xuu	11983	same-origin	blank	2	same-origin/same-origin,same-origin/unsafe-none	cross-site/unsafe-none/unsafe-none
+s_b_Os-Op_Osu	11993	same-origin	blank	2	same-origin/same-origin,same-origin/same-origin-allow-popups	same-origin/same-origin/unsafe-none
+s_b_Os-Os_Xsu	12023	same-origin	blank	2	same-origin/same-origin,same-origin/same-origin	cross-site/same-origin/unsafe-none
+s_b_Os-Oc_Osu	12029	same-origin	blank	2	same-origin/same-origin,same-origin/so+rc	same-origin/same-origin/unsafe-none
+s_b_Os-Oc_Osr	12030	same-origin	blank	2	same-origin/same-origin,same-origin/so+rc	same-origin/same-origin/require-corp
+s_b_Os-Sp_Osu	12065	same-origin	blank	2	same-origin/same-origin,same-site/same-origin-allow-popups	same-origin/same-origin/unsafe-none
+s_b_Os-Ss_Osu	12083	same-origin	blank	2	same-origin/same-origin,same-site/same-origin	same-origin/same-origin/unsafe-none
+s_b_Os-Ss_Ssu	12089	same-origin	blank	2	same-origin/same-origin,same-site/same-origin	same-site/same-origin/unsafe-none
+s_b_Os-Xu_Our	12116	same-origin	blank	2	same-origin/same-origin,cross-site/unsafe-none	same-origin/unsafe-none/require-corp
+s_b_Os-Xu_Opr	12118	same-origin	blank	2	same-origin/same-origin,cross-site/unsafe-none	same-origin/same-origin-allow-popups/require-corp
+s_b_Os-Xs_Osu	12155	same-origin	blank	2	same-origin/same-origin,cross-site/same-origin	same-origin/same-origin/unsafe-none
+s_b_Os-Xs_Xsu	12167	same-origin	blank	2	same-origin/same-origin,cross-site/same-origin	cross-site/same-origin/unsafe-none
+s_b_Oc-Op_Osu	12209	same-origin	blank	2	same-origin/so+rc,same-origin/same-origin-allow-popups	same-origin/same-origin/unsafe-none
+s_b_Oc-Op_Suu	12211	same-origin	blank	2	same-origin/so+rc,same-origin/same-origin-allow-popups	same-site/unsafe-none/unsafe-none
+s_b_Oc-Os_Opr	12226	same-origin	blank	2	same-origin/so+rc,same-origin/same-origin	same-origin/same-origin-allow-popups/require-corp
+s_b_Oc-Os_Osu	12227	same-origin	blank	2	same-origin/so+rc,same-origin/same-origin	same-origin/same-origin/unsafe-none
+s_b_Oc-Os_Osr	12228	same-origin	blank	2	same-origin/so+rc,same-origin/same-origin	same-origin/same-origin/require-corp
+s_b_Oc-Oc_Osu	12245	same-origin	blank	2	same-origin/so+rc,same-origin/so+rc	same-origin/same-origin/unsafe-none
+s_b_Su-Op_Opr	12424	same-origin	blank	2	same-site/unsafe-none,same-origin/same-origin-allow-popups	same-origin/same-origin-allow-popups/require-corp
+s_b_Su-Os_Osu	12443	same-origin	blank	2	same-site/unsafe-none,same-origin/same-origin	same-origin/same-origin/unsafe-none
+s_b_Su-Sc_Our	12530	same-origin	blank	2	same-site/unsafe-none,same-site/so+rc	same-origin/unsafe-none/require-corp
+s_b_Sp-Ou_Our	12620	same-origin	blank	2	same-site/same-origin-allow-popups,same-origin/unsafe-none	same-origin/unsafe-none/require-corp
+s_b_Ss-Os_Osu	12875	same-origin	blank	2	same-site/same-origin,same-origin/same-origin	same-origin/same-origin/unsafe-none
+s_b_Ss-Os_Ssu	12881	same-origin	blank	2	same-site/same-origin,same-origin/same-origin	same-site/same-origin/unsafe-none
+s_b_Ss-Ss_Osu	12947	same-origin	blank	2	same-site/same-origin,same-site/same-origin	same-origin/same-origin/unsafe-none
+s_b_Ss-Ss_Ssu	12953	same-origin	blank	2	same-site/same-origin,same-site/same-origin	same-site/same-origin/unsafe-none
+s_b_Ss-Ss_Xsu	12959	same-origin	blank	2	same-site/same-origin,same-site/same-origin	cross-site/same-origin/unsafe-none
+s_b_Ss-Xu_Osu	12983	same-origin	blank	2	same-site/same-origin,cross-site/unsafe-none	same-origin/same-origin/unsafe-none
+s_b_Ss-Xs_Osu	13019	same-origin	blank	2	same-site/same-origin,cross-site/same-origin	same-origin/same-origin/unsafe-none
+s_b_Xu-Ou_Osu	13271	same-origin	blank	2	cross-site/unsafe-none,same-origin/unsafe-none	same-origin/same-origin/unsafe-none
+s_b_Xu-Sp_Spu	13365	same-origin	blank	2	cross-site/unsafe-none,same-site/same-origin-allow-popups	same-site/same-origin-allow-popups/unsafe-none
+s_b_Xu-Xu_Osu	13415	same-origin	blank	2	cross-site/unsafe-none,cross-site/unsafe-none	same-origin/same-origin/unsafe-none
+s_b_Xu-Xu_Xsr	13428	same-origin	blank	2	cross-site/unsafe-none,cross-site/unsafe-none	cross-site/same-origin/require-corp
+s_b_Xs-Os_Osu	13739	same-origin	blank	2	cross-site/same-origin,same-origin/same-origin	same-origin/same-origin/unsafe-none
+s_b_Xs-Ss_Osu	13811	same-origin	blank	2	cross-site/same-origin,same-site/same-origin	same-origin/same-origin/unsafe-none
+s_b_Xs-Xs_Osu	13883	same-origin	blank	2	cross-site/same-origin,cross-site/same-origin	same-origin/same-origin/unsafe-none
+s_b_Xs-Xs_Ssu	13889	same-origin	blank	2	cross-site/same-origin,cross-site/same-origin	same-site/same-origin/unsafe-none
+s_b_Xc-Sc_Osu	14045	same-origin	blank	2	cross-site/so+rc,same-site/so+rc	same-origin/same-origin/unsafe-none
+s_d_0_Our	14132	same-origin	doc	0		same-origin/unsafe-none/require-corp
+s_d_0_Osu	14135	same-origin	doc	0		same-origin/same-origin/unsafe-none
+s_d_0_Osr	14136	same-origin	doc	0		same-origin/same-origin/require-corp
+s_d_0_Suu	14137	same-origin	doc	0		same-site/unsafe-none/unsafe-none
+s_d_0_Ssu	14141	same-origin	doc	0		same-site/same-origin/unsafe-none
+s_d_0_Xpu	14145	same-origin	doc	0		cross-site/same-origin-allow-popups/unsafe-none
+s_d_0_Xpr	14146	same-origin	doc	0		cross-site/same-origin-allow-popups/require-corp
+s_d_0_Xsu	14147	same-origin	doc	0		cross-site/same-origin/unsafe-none
+s_d_Op_Opr	14170	same-origin	doc	1	same-origin/same-origin-allow-popups	same-origin/same-origin-allow-popups/require-corp
+s_d_Os_Osu	14189	same-origin	doc	1	same-origin/same-origin	same-origin/same-origin/unsafe-none
+s_d_Os_Ssu	14195	same-origin	doc	1	same-origin/same-origin	same-site/same-origin/unsafe-none
+s_d_Oc_Osu	14207	same-origin	doc	1	same-origin/so+rc	same-origin/same-origin/unsafe-none
+s_d_Oc_Osr	14208	same-origin	doc	1	same-origin/so+rc	same-origin/same-origin/require-corp
+s_d_Xs_Osu	14333	same-origin	doc	1	cross-site/same-origin	same-origin/same-origin/unsafe-none
+s_d_Ou-Su_Xsr	14454	same-origin	doc	2	same-origin/unsafe-none,same-site/unsafe-none	cross-site/same-origin/require-corp
+s_d_Op-Op_Opu	14601	same-origin	doc	2	same-origin/same-origin-allow-popups,same-origin/same-origin-allow-popups	same-origin/same-origin-allow-popups/unsafe-none
+s_d_Os-Ou_Ouu	14797	same-origin	doc	2	same-origin/same-origin,same-origin/unsafe-none	same-origin/unsafe-none/unsafe-none
+s_d_Os-Ou_Osu	14801	same-origin	doc	2	same-origin/same-origin,same-origin/unsafe-none	same-origin/same-origin/unsafe-none
+s_d_Os-Ou_Sur	14804	same-origin	doc	2	same-origin/same-origin,same-origin/unsafe-none	same-site/unsafe-none/require-corp
+s_d_Os-Op_Opr	14818	same-origin	doc	2	same-origin/same-origin,same-origin/same-origin-allow-popups	same-origin/same-origin-allow-popups/require-corp
+s_d_Os-Os_Osu	14837	same-origin	doc	2	same-origin/same-origin,same-origin/same-origin	same-origin/same-origin/unsafe-none
+s_d_Os-Oc_Osu	14855	same-origin	doc	2	same-origin/same-origin,same-origin/so+rc	same-origin/same-origin/unsafe-none
+s_d_Os-Sp_Osu	14891	same-origin	doc	2	same-origin/same-origin,same-site/same-origin-allow-popups	same-origin/same-origin/unsafe-none
+s_d_Os-Sp_Spu	14895	same-origin	doc	2	same-origin/same-origin,same-site/same-origin-allow-popups	same-site/same-origin-allow-popups/unsafe-none
+s_d_Os-Sp_Xpu	14901	same-origin	doc	2	same-origin/same-origin,same-site/same-origin-allow-popups	cross-site/same-origin-allow-popups/unsafe-none
+s_d_Os-Ss_Osu	14909	same-origin	doc	2	same-origin/same-origin,same-site/same-origin	same-origin/same-origin/unsafe-none
+s_d_Os-Ss_Ssu	14915	same-origin	doc	2	same-origin/same-origin,same-site/same-origin	same-site/same-origin/unsafe-none
+s_d_Os-Sc_Xsu	14939	same-origin	doc	2	same-origin/same-origin,same-site/so+rc	cross-site/same-origin/unsafe-none
+s_d_Os-Xp_Xpu	14973	same-origin	doc	2	same-origin/same-origin,cross-site/same-origin-allow-popups	cross-site/same-origin-allow-popups/unsafe-none
+s_d_Os-Xp_Xpr	14974	same-origin	doc	2	same-origin/same-origin,cross-site/same-origin-allow-popups	cross-site/same-origin-allow-popups/require-corp
+s_d_Os-Xs_Osu	14981	same-origin	doc	2	same-origin/same-origin,cross-site/same-origin	same-origin/same-origin/unsafe-none
+s_d_Os-Xs_Ssu	14987	same-origin	doc	2	same-origin/same-origin,cross-site/same-origin	same-site/same-origin/unsafe-none
+s_d_Os-Xs_Xsu	14993	same-origin	doc	2	same-origin/same-origin,cross-site/same-origin	cross-site/same-origin/unsafe-none
+s_d_Oc-Os_Osu	15053	same-origin	doc	2	same-origin/so+rc,same-origin/same-origin	same-origin/same-origin/unsafe-none
+s_d_Oc-Oc_Osu	15071	same-origin	doc	2	same-origin/so+rc,same-origin/so+rc	same-origin/same-origin/unsafe-none
+s_d_Oc-Oc_Osr	15072	same-origin	doc	2	same-origin/so+rc,same-origin/so+rc	same-origin/same-origin/require-corp
+s_d_Su-Ou_Osu	15233	same-origin	doc	2	same-site/unsafe-none,same-origin/unsafe-none	same-origin/same-origin/unsafe-none
+s_d_Su-Xu_Osu	15377	same-origin	doc	2	same-site/unsafe-none,cross-site/unsafe-none	same-origin/same-origin/unsafe-none
+s_d_Sp-Sc_Osu	15575	same-origin	doc	2	same-site/same-origin-allow-popups,same-site/so+rc	same-origin/same-origin/unsafe-none
+s_d_Sp-Xp_Ssu	15617	same-origin	doc	2	same-site/same-origin-allow-popups,cross-site/same-origin-allow-popups	same-site/same-origin/unsafe-none
+s_d_Ss-Os_Osu	15701	same-origin	doc	2	same-site/same-origin,same-origin/same-origin	same-origin/same-origin/unsafe-none
+s_d_Ss-Ss_Ssu	15779	same-origin	doc	2	same-site/same-origin,same-site/same-origin	same-site/same-origin/unsafe-none
+s_d_Ss-Ss_Xsu	15785	same-origin	doc	2	same-site/same-origin,same-site/same-origin	cross-site/same-origin/unsafe-none
+s_d_Ss-Sc_Osu	15791	same-origin	doc	2	same-site/same-origin,same-site/so+rc	same-origin/same-origin/unsafe-none
+s_d_Ss-Xs_Osu	15845	same-origin	doc	2	same-site/same-origin,cross-site/same-origin	same-origin/same-origin/unsafe-none
+s_d_Ss-Xs_Ssu	15851	same-origin	doc	2	same-site/same-origin,cross-site/same-origin	same-site/same-origin/unsafe-none
+s_d_Sc-Op_Opr	15898	same-origin	doc	2	same-site/so+rc,same-origin/same-origin-allow-popups	same-origin/same-origin-allow-popups/require-corp
+s_d_Xp-Os_Osu	16349	same-origin	doc	2	cross-site/same-origin-allow-popups,same-origin/same-origin	same-origin/same-origin/unsafe-none
+s_d_Xs-Os_Osu	16565	same-origin	doc	2	cross-site/same-origin,same-origin/same-origin	same-origin/same-origin/unsafe-none
+s_d_Xs-Su_Xpu	16611	same-origin	doc	2	cross-site/same-origin,same-site/unsafe-none	cross-site/same-origin-allow-popups/unsafe-none
+s_d_Xs-Ss_Ssu	16643	same-origin	doc	2	cross-site/same-origin,same-site/same-origin	same-site/same-origin/unsafe-none
+s_d_Xc-Os_Osu	16781	same-origin	doc	2	cross-site/so+rc,same-origin/same-origin	same-origin/same-origin/unsafe-none
+c_b_0_Our	16958	so+rc	blank	0		same-origin/unsafe-none/require-corp
+c_b_0_Opr	16960	so+rc	blank	0		same-origin/same-origin-allow-popups/require-corp
+c_b_0_Osr	16962	so+rc	blank	0		same-origin/same-origin/require-corp
+c_b_0_Suu	16963	so+rc	blank	0		same-site/unsafe-none/unsafe-none
+c_b_0_Sur	16964	so+rc	blank	0		same-site/unsafe-none/require-corp
+c_b_0_Ssu	16967	so+rc	blank	0		same-site/same-origin/unsafe-none
+c_b_0_Ssr	16968	so+rc	blank	0		same-site/same-origin/require-corp
+c_b_0_Xsr	16974	so+rc	blank	0		cross-site/same-origin/require-corp
+c_b_Op_Our	16994	so+rc	blank	1	same-origin/same-origin-allow-popups	same-origin/unsafe-none/require-corp
+c_b_Op_Osu	16997	so+rc	blank	1	same-origin/same-origin-allow-popups	same-origin/same-origin/unsafe-none
+c_b_Op_Osr	16998	so+rc	blank	1	same-origin/same-origin-allow-popups	same-origin/same-origin/require-corp
+c_b_Os_Opu	17013	so+rc	blank	1	same-origin/same-origin	same-origin/same-origin-allow-popups/unsafe-none
+c_b_Os_Osr	17016	so+rc	blank	1	same-origin/same-origin	same-origin/same-origin/require-corp
+c_b_Oc_Osu	17033	so+rc	blank	1	same-origin/so+rc	same-origin/same-origin/unsafe-none
+c_b_Oc_Suu	17035	so+rc	blank	1	same-origin/so+rc	same-site/unsafe-none/unsafe-none
+c_b_Oc_Sur	17036	so+rc	blank	1	same-origin/so+rc	same-site/unsafe-none/require-corp
+c_b_Oc_Xuu	17041	so+rc	blank	1	same-origin/so+rc	cross-site/unsafe-none/unsafe-none
+c_b_Oc_Xsr	17046	so+rc	blank	1	same-origin/so+rc	cross-site/same-origin/require-corp
+c_b_Xc_Osr	17178	so+rc	blank	1	cross-site/so+rc	same-origin/same-origin/require-corp
+c_b_Ou-Ou_Ouu	17191	so+rc	blank	2	same-origin/unsafe-none,same-origin/unsafe-none	same-origin/unsafe-none/unsafe-none
+c_b_Ou-Su_Spu	17271	so+rc	blank	2	same-origin/unsafe-none,same-site/unsafe-none	same-site/same-origin-allow-popups/unsafe-none
+c_b_Ou-Xu_Xpr	17350	so+rc	blank	2	same-origin/unsafe-none,cross-site/unsafe-none	cross-site/same-origin-allow-popups/require-corp
+c_b_Op-Oc_Osu	17465	so+rc	blank	2	same-origin/same-origin-allow-popups,same-origin/so+rc	same-origin/same-origin/unsafe-none
+c_b_Op-Su_Sur	17486	so+rc	blank	2	same-origin/same-origin-allow-popups,same-site/unsafe-none	same-site/unsafe-none/require-corp
+c_b_Os-Op_Osr	17646	so+rc	blank	2	same-origin/same-origin,same-origin/same-origin-allow-popups	same-origin/same-origin/require-corp
+c_b_Os-Os_Osr	17664	so+rc	blank	2	same-origin/same-origin,same-origin/same-origin	same-origin/same-origin/require-corp
+c_b_Os-Oc_Opu	17679	so+rc	blank	2	same-origin/same-origin,same-origin/so+rc	same-origin/same-origin-allow-popups/unsafe-none
+c_b_Os-Oc_Osu	17681	so+rc	blank	2	same-origin/same-origin,same-origin/so+rc	same-origin/same-origin/unsafe-none
+c_b_Os-Oc_Osr	17682	so+rc	blank	2	same-origin/same-origin,same-origin/so+rc	same-origin/same-origin/require-corp
+c_b_Os-Xc_Ssu	17831	so+rc	blank	2	same-origin/same-origin,cross-site/so+rc	same-site/same-origin/unsafe-none
+c_b_Oc-Ou_Xuu	17851	so+rc	blank	2	same-origin/so+rc,same-origin/unsafe-none	cross-site/unsafe-none/unsafe-none
+c_b_Oc-Op_Opu	17859	so+rc	blank	2	same-origin/so+rc,same-origin/same-origin-allow-popups	same-origin/same-origin-allow-popups/unsafe-none
+c_b_Oc-Os_Osr	17880	so+rc	blank	2	same-origin/so+rc,same-origin/same-origin	same-origin/same-origin/require-corp
+c_b_Oc-Oc_Osu	17897	so+rc	blank	2	same-origin/so+rc,same-origin/so+rc	same-origin/same-origin/unsafe-none
+c_b_Oc-Oc_Sur	17900	so+rc	blank	2	same-origin/so+rc,same-origin/so+rc	same-site/unsafe-none/require-corp
+c_b_Oc-Ss_Xsu	17963	so+rc	blank	2	same-origin/so+rc,same-site/same-origin	cross-site/same-origin/unsafe-none
+c_b_Oc-Sc_Osr	17970	so+rc	blank	2	same-origin/so+rc,same-site/so+rc	same-origin/same-origin/require-corp
+c_b_Oc-Sc_Ssr	17976	so+rc	blank	2	same-origin/so+rc,same-site/so+rc	same-site/same-origin/require-corp
+c_b_Oc-Xu_Osr	17988	so+rc	blank	2	same-origin/so+rc,cross-site/unsafe-none	same-origin/same-origin/require-corp
+c_b_Oc-Xp_Osr	18006	so+rc	blank	2	same-origin/so+rc,cross-site/same-origin-allow-popups	same-origin/same-origin/require-corp
+c_b_Oc-Xp_Xpu	18015	so+rc	blank	2	same-origin/so+rc,cross-site/same-origin-allow-popups	cross-site/same-origin-allow-popups/unsafe-none
+c_b_Oc-Xc_Osr	18042	so+rc	blank	2	same-origin/so+rc,cross-site/so+rc	same-origin/same-origin/require-corp
+c_b_Oc-Xc_Ssr	18048	so+rc	blank	2	same-origin/so+rc,cross-site/so+rc	same-site/same-origin/require-corp
+c_b_Oc-Xc_Xsr	18054	so+rc	blank	2	same-origin/so+rc,cross-site/so+rc	cross-site/same-origin/require-corp
+c_b_Su-Ou_Ssu	18065	so+rc	blank	2	same-site/unsafe-none,same-origin/unsafe-none	same-site/same-origin/unsafe-none
+c_b_Su-Oc_Osr	18114	so+rc	blank	2	same-site/unsafe-none,same-origin/so+rc	same-origin/same-origin/require-corp
+c_b_Su-Xu_Osr	18204	so+rc	blank	2	same-site/unsafe-none,cross-site/unsafe-none	same-origin/same-origin/require-corp
+c_b_Su-Xu_Xpu	18213	so+rc	blank	2	same-site/unsafe-none,cross-site/unsafe-none	cross-site/same-origin-allow-popups/unsafe-none
+c_b_Su-Xc_Osr	18258	so+rc	blank	2	same-site/unsafe-none,cross-site/so+rc	same-origin/same-origin/require-corp
+c_b_Sp-Oc_Ssr	18336	so+rc	blank	2	same-site/same-origin-allow-popups,same-origin/so+rc	same-site/same-origin/require-corp
+c_b_Sp-Su_Osr	18348	so+rc	blank	2	same-site/same-origin-allow-popups,same-site/unsafe-none	same-origin/same-origin/require-corp
+c_b_Sp-Su_Spr	18352	so+rc	blank	2	same-site/same-origin-allow-popups,same-site/unsafe-none	same-site/same-origin-allow-popups/require-corp
+c_b_Ss-Ou_Osr	18492	so+rc	blank	2	same-site/same-origin,same-origin/unsafe-none	same-origin/same-origin/require-corp
+c_b_Sc-Oc_Osr	18762	so+rc	blank	2	same-site/so+rc,same-origin/so+rc	same-origin/same-origin/require-corp
+c_b_Sc-Sc_Osr	18834	so+rc	blank	2	same-site/so+rc,same-site/so+rc	same-origin/same-origin/require-corp
+c_b_Sc-Sc_Ssr	18840	so+rc	blank	2	same-site/so+rc,same-site/so+rc	same-site/same-origin/require-corp
+c_b_Sc-Sc_Xsr	18846	so+rc	blank	2	same-site/so+rc,same-site/so+rc	cross-site/same-origin/require-corp
+c_b_Sc-Xp_Xpu	18879	so+rc	blank	2	same-site/so+rc,cross-site/same-origin-allow-popups	cross-site/same-origin-allow-popups/unsafe-none
+c_b_Sc-Xc_Ssr	18912	so+rc	blank	2	same-site/so+rc,cross-site/so+rc	same-site/same-origin/require-corp
+c_b_Xu-Su_Osr	18996	so+rc	blank	2	cross-site/unsafe-none,same-site/unsafe-none	same-origin/same-origin/require-corp
+c_b_Xp-Oc_Osr	19194	so+rc	blank	2	cross-site/same-origin-allow-popups,same-origin/so+rc	same-origin/same-origin/require-corp
+c_b_Xp-Su_Osr	19212	so+rc	blank	2	cross-site/same-origin-allow-popups,same-site/unsafe-none	same-origin/same-origin/require-corp
+c_b_Xc-Oc_Osr	19626	so+rc	blank	2	cross-site/so+rc,same-origin/so+rc	same-origin/same-origin/require-corp
+c_b_Xc-Oc_Ssr	19632	so+rc	blank	2	cross-site/so+rc,same-origin/so+rc	same-site/same-origin/require-corp
+c_b_Xc-Su_Suu	19645	so+rc	blank	2	cross-site/so+rc,same-site/unsafe-none	same-site/unsafe-none/unsafe-none
+c_b_Xc-Sc_Our	19694	so+rc	blank	2	cross-site/so+rc,same-site/so+rc	same-origin/unsafe-none/require-corp
+c_b_Xc-Sc_Osr	19698	so+rc	blank	2	cross-site/so+rc,same-site/so+rc	same-origin/same-origin/require-corp
+c_b_Xc-Xp_Our	19730	so+rc	blank	2	cross-site/so+rc,cross-site/same-origin-allow-popups	same-origin/unsafe-none/require-corp
+c_b_Xc-Xc_Osr	19770	so+rc	blank	2	cross-site/so+rc,cross-site/so+rc	same-origin/same-origin/require-corp
+c_b_Xc-Xc_Ssr	19776	so+rc	blank	2	cross-site/so+rc,cross-site/so+rc	same-site/same-origin/require-corp
+c_b_Xc-Xc_Xsr	19782	so+rc	blank	2	cross-site/so+rc,cross-site/so+rc	cross-site/same-origin/require-corp
+c_d_0_Opu	19785	so+rc	doc	0		same-origin/same-origin-allow-popups/unsafe-none
+c_d_0_Osr	19788	so+rc	doc	0		same-origin/same-origin/require-corp
+c_d_0_Sur	19790	so+rc	doc	0		same-site/unsafe-none/require-corp
+c_d_0_Ssu	19793	so+rc	doc	0		same-site/same-origin/unsafe-none
+c_d_0_Ssr	19794	so+rc	doc	0		same-site/same-origin/require-corp
+c_d_0_Xsr	19800	so+rc	doc	0		cross-site/same-origin/require-corp
+c_d_Os_Osr	19842	so+rc	doc	1	same-origin/same-origin	same-origin/same-origin/require-corp
+c_d_Oc_Osr	19860	so+rc	doc	1	same-origin/so+rc	same-origin/same-origin/require-corp
+c_d_Oc_Ssr	19866	so+rc	doc	1	same-origin/so+rc	same-site/same-origin/require-corp
+c_d_Ou-Ou_Xsr	20034	so+rc	doc	2	same-origin/unsafe-none,same-origin/unsafe-none	cross-site/same-origin/require-corp
+c_d_Ou-Xu_Osu	20165	so+rc	doc	2	same-origin/unsafe-none,cross-site/unsafe-none	same-origin/same-origin/unsafe-none
+c_d_Ou-Xs_Osr	20202	so+rc	doc	2	same-origin/unsafe-none,cross-site/same-origin	same-origin/same-origin/require-corp
+c_d_Op-Os_Ssr	20280	so+rc	doc	2	same-origin/same-origin-allow-popups,same-origin/same-origin	same-site/same-origin/require-corp
+c_d_Op-Oc_Opr	20290	so+rc	doc	2	same-origin/same-origin-allow-popups,same-origin/so+rc	same-origin/same-origin-allow-popups/require-corp
+c_d_Os-Os_Osr	20490	so+rc	doc	2	same-origin/same-origin,same-origin/same-origin	same-origin/same-origin/require-corp
+c_d_Os-Oc_Osr	20508	so+rc	doc	2	same-origin/same-origin,same-origin/so+rc	same-origin/same-origin/require-corp
+c_d_Os-Xp_Osr	20616	so+rc	doc	2	same-origin/same-origin,cross-site/same-origin-allow-popups	same-origin/same-origin/require-corp
+c_d_Oc-Ou_Ssr	20676	so+rc	doc	2	same-origin/so+rc,same-origin/unsafe-none	same-site/same-origin/require-corp
+c_d_Oc-Os_Osu	20705	so+rc	doc	2	same-origin/so+rc,same-origin/same-origin	same-origin/same-origin/unsafe-none
+c_d_Oc-Os_Osr	20706	so+rc	doc	2	same-origin/so+rc,same-origin/same-origin	same-origin/same-origin/require-corp
+c_d_Oc-Oc_Osr	20724	so+rc	doc	2	same-origin/so+rc,same-origin/so+rc	same-origin/same-origin/require-corp
+c_d_Oc-Su_Spu	20745	so+rc	doc	2	same-origin/so+rc,same-site/unsafe-none	same-site/same-origin-allow-popups/unsafe-none
+c_d_Oc-Su_Ssr	20748	so+rc	doc	2	same-origin/so+rc,same-site/unsafe-none	same-site/same-origin/require-corp
+c_d_Oc-Su_Xur	20750	so+rc	doc	2	same-origin/so+rc,same-site/unsafe-none	cross-site/unsafe-none/require-corp
+c_d_Oc-Sp_Osr	20760	so+rc	doc	2	same-origin/so+rc,same-site/same-origin-allow-popups	same-origin/same-origin/require-corp
+c_d_Oc-Sp_Spr	20764	so+rc	doc	2	same-origin/so+rc,same-site/same-origin-allow-popups	same-site/same-origin-allow-popups/require-corp
+c_d_Oc-Sc_Osr	20796	so+rc	doc	2	same-origin/so+rc,same-site/so+rc	same-origin/same-origin/require-corp
+c_d_Oc-Sc_Ssr	20802	so+rc	doc	2	same-origin/so+rc,same-site/so+rc	same-site/same-origin/require-corp
+c_d_Oc-Xu_Suu	20815	so+rc	doc	2	same-origin/so+rc,cross-site/unsafe-none	same-site/unsafe-none/unsafe-none
+c_d_Oc-Xp_Osr	20832	so+rc	doc	2	same-origin/so+rc,cross-site/same-origin-allow-popups	same-origin/same-origin/require-corp
+c_d_Oc-Xc_Osr	20868	so+rc	doc	2	same-origin/so+rc,cross-site/so+rc	same-origin/same-origin/require-corp
+c_d_Oc-Xc_Ssr	20874	so+rc	doc	2	same-origin/so+rc,cross-site/so+rc	same-site/same-origin/require-corp
+c_d_Oc-Xc_Xsr	20880	so+rc	doc	2	same-origin/so+rc,cross-site/so+rc	cross-site/same-origin/require-corp
+c_d_Su-Su_Osr	20958	so+rc	doc	2	same-site/unsafe-none,same-site/unsafe-none	same-origin/same-origin/require-corp
+c_d_Su-Xu_Ssr	21036	so+rc	doc	2	same-site/unsafe-none,cross-site/unsafe-none	same-site/same-origin/require-corp
+c_d_Sp-Xs_Xsu	21293	so+rc	doc	2	same-site/same-origin-allow-popups,cross-site/same-origin	cross-site/same-origin/unsafe-none
+c_d_Sp-Xc_Xsr	21312	so+rc	doc	2	same-site/same-origin-allow-popups,cross-site/so+rc	cross-site/same-origin/require-corp
+c_d_Ss-Oc_Osr	21372	so+rc	doc	2	same-site/same-origin,same-origin/so+rc	same-origin/same-origin/require-corp
+c_d_Sc-Oc_Osr	21588	so+rc	doc	2	same-site/so+rc,same-origin/so+rc	same-origin/same-origin/require-corp
+c_d_Sc-Sc_Osr	21660	so+rc	doc	2	same-site/so+rc,same-site/so+rc	same-origin/same-origin/require-corp
+c_d_Sc-Sc_Ssr	21666	so+rc	doc	2	same-site/so+rc,same-site/so+rc	same-site/same-origin/require-corp
+c_d_Sc-Sc_Xsr	21672	so+rc	doc	2	same-site/so+rc,same-site/so+rc	cross-site/same-origin/require-corp
+c_d_Sc-Xu_Sur	21680	so+rc	doc	2	same-site/so+rc,cross-site/unsafe-none	same-site/unsafe-none/require-corp
+c_d_Sc-Xc_Osr	21732	so+rc	doc	2	same-site/so+rc,cross-site/so+rc	same-origin/same-origin/require-corp
+c_d_Xu-Xu_Opr	21892	so+rc	doc	2	cross-site/unsafe-none,cross-site/unsafe-none	same-origin/same-origin-allow-popups/require-corp
+c_d_Xu-Xu_Osr	21894	so+rc	doc	2	cross-site/unsafe-none,cross-site/unsafe-none	same-origin/same-origin/require-corp
+c_d_Xu-Xc_Xsr	21960	so+rc	doc	2	cross-site/unsafe-none,cross-site/so+rc	cross-site/same-origin/require-corp
+c_d_Xp-Oc_Osr	22020	so+rc	doc	2	cross-site/same-origin-allow-popups,same-origin/so+rc	same-origin/same-origin/require-corp
+c_d_Xs-Ou_Suu	22183	so+rc	doc	2	cross-site/same-origin,same-origin/unsafe-none	same-site/unsafe-none/unsafe-none
+c_d_Xs-Op_Suu	22201	so+rc	doc	2	cross-site/same-origin,same-origin/same-origin-allow-popups	same-site/unsafe-none/unsafe-none
+c_d_Xc-Oc_Osr	22452	so+rc	doc	2	cross-site/so+rc,same-origin/so+rc	same-origin/same-origin/require-corp
+c_d_Xc-Oc_Ssr	22458	so+rc	doc	2	cross-site/so+rc,same-origin/so+rc	same-site/same-origin/require-corp
+c_d_Xc-Xp_Ssr	22566	so+rc	doc	2	cross-site/so+rc,cross-site/same-origin-allow-popups	same-site/same-origin/require-corp
+c_d_Xc-Xc_Xsr	22608	so+rc	doc	2	cross-site/so+rc,cross-site/so+rc	cross-site/same-origin/require-corp

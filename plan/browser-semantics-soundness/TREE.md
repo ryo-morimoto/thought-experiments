@@ -66,8 +66,8 @@
       - 根拠: [2026-11-23-observed-values-inclusion.md](../../experiments/2026-11-23-observed-values-inclusion.md)、[RESULTS.md](../../experiments/models/site-isolation/observe/RESULTS.md)
     - **C2** [一部] 入力の空間の網羅（効き: high）
       - 完了の条件: 性質が量化する入力の構造（リダイレクト、popup の系譜、sandbox、about:blank、履歴）を軸として覆い、等価のまま残る変異体が軸の外だけになる
-      - 今: 入れ子・スキーム・COEP の軸は済
-      - 根拠: [2026-11-24-axis-generated-scenarios.md](../../experiments/2026-11-24-axis-generated-scenarios.md)、[2026-11-24-popup-sandbox-axes.md](../../experiments/2026-11-24-popup-sandbox-axes.md)、[2026-11-24-redirect-sequence-model.md](../../experiments/2026-11-24-redirect-sequence-model.md)、[RESULTS.md](../../experiments/models/site-isolation/gen/RESULTS.md)
+      - 今: 入れ子・スキーム・COEP、popup の系譜・Origin-Agent-Cluster・sandbox・CORP same-site と画像、リダイレクトの段数の軸は済。和で SpecIsolation の変異体 55 個すべてを殺した（concrete に限ると）。履歴の移動と bfcache の軸が未
+      - 根拠: [2026-11-24-axis-generated-scenarios.md](../../experiments/2026-11-24-axis-generated-scenarios.md)、[2026-11-24-popup-sandbox-axes.md](../../experiments/2026-11-24-popup-sandbox-axes.md)、[2026-11-24-redirect-sequence-model.md](../../experiments/2026-11-24-redirect-sequence-model.md)、[RESULTS.md](../../experiments/models/site-isolation/gen/RESULTS.md)、[RESULTS.md](../../experiments/models/site-isolation/gen2/RESULTS.md)、[RESULTS.md](../../experiments/models/site-isolation/redirect/RESULTS.md)
     - **C3** [済] 判別の力の測り方（効き: mid）
       - 完了の条件: 観測が変異体を見分ける数を測り、ブラウザで動かす筋書きをモデルの上で先に選べる
       - 根拠: [2026-11-23-observed-values-inclusion.md](../../experiments/2026-11-23-observed-values-inclusion.md)、[2026-11-24-axis-generated-scenarios.md](../../experiments/2026-11-24-axis-generated-scenarios.md)
@@ -92,7 +92,7 @@
   - **D** [一部] 列と合成の性質
     - **D1** [一部] 列の性質（ナビゲーションの列、リダイレクト、bfcache、履歴の移動）（効き: high）
       - 完了の条件: 列を状態の遷移として写したモデルと、列の筋書きでの包含がある
-      - 今: モデルの多くは 1 回きりの関数。1 回きりの筋書きの包含は列の性質を支えない
+      - 今: リダイレクトの連鎖は状態の遷移として写し、列の筋書きでの包含を確かめた（途中の段を無視する変異体はブラウザの値で殺された）。履歴の移動と bfcache の列は未
       - 根拠: [2026-11-24-redirect-sequence-model.md](../../experiments/2026-11-24-redirect-sequence-model.md)、[NestedHistory.tla](../../experiments/models/site-isolation/NestedHistory.tla)
     - **D2** [一部] 断片をまたぐ合成（assume-guarantee）（効き: mid）
       - 完了の条件: 断片の間の仮定と保証が書かれ、循環が扱われている

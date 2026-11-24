@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=timeout content=long>
+<title>OBS redirect chains, opener COOP same-origin-allow-popups</title>
+<script src="/resources/testharness.js"></script>
+<script src="/resources/testharnessreport.js"></script>
+<script src="/common/dispatcher/dispatcher.js"></script>
+<script src="/common/get-host-info.sub.js"></script>
+<script src="/common/utils.js"></script>
+<script src="resources/robs.js"></script>
+<body>
+<script>
+const OPENER = {coop: "same-origin-allow-popups", coep: "unsafe-none"};
+const SCEN = [
+  {id: "p_b_Sp-Xp_Xpu", st: "blank", hops: [{rel: "same-site", coop: "same-origin-allow-popups", coep: "unsafe-none"}, {rel: "cross-site", coop: "same-origin-allow-popups", coep: "unsafe-none"}], fin: {rel: "cross-site", coop: "same-origin-allow-popups", coep: "unsafe-none"}},
+  {id: "p_b_Sp-Xp_Xpr", st: "blank", hops: [{rel: "same-site", coop: "same-origin-allow-popups", coep: "unsafe-none"}, {rel: "cross-site", coop: "same-origin-allow-popups", coep: "unsafe-none"}], fin: {rel: "cross-site", coop: "same-origin-allow-popups", coep: "require-corp"}},
+  {id: "p_b_Ss-Sp_Ouu", st: "blank", hops: [{rel: "same-site", coop: "same-origin", coep: "unsafe-none"}, {rel: "same-site", coop: "same-origin-allow-popups", coep: "unsafe-none"}], fin: {rel: "same-origin", coop: "unsafe-none", coep: "unsafe-none"}},
+  {id: "p_b_Sc-Su_Opu", st: "blank", hops: [{rel: "same-site", coop: "same-origin", coep: "require-corp"}, {rel: "same-site", coop: "unsafe-none", coep: "unsafe-none"}], fin: {rel: "same-origin", coop: "same-origin-allow-popups", coep: "unsafe-none"}},
+  {id: "p_b_Sc-Su_Osu", st: "blank", hops: [{rel: "same-site", coop: "same-origin", coep: "require-corp"}, {rel: "same-site", coop: "unsafe-none", coep: "unsafe-none"}], fin: {rel: "same-origin", coop: "same-origin", coep: "unsafe-none"}},
+  {id: "p_b_Sc-Xp_Our", st: "blank", hops: [{rel: "same-site", coop: "same-origin", coep: "require-corp"}, {rel: "cross-site", coop: "same-origin-allow-popups", coep: "unsafe-none"}], fin: {rel: "same-origin", coop: "unsafe-none", coep: "require-corp"}},
+  {id: "p_b_Sc-Xp_Xuu", st: "blank", hops: [{rel: "same-site", coop: "same-origin", coep: "require-corp"}, {rel: "cross-site", coop: "same-origin-allow-popups", coep: "unsafe-none"}], fin: {rel: "cross-site", coop: "unsafe-none", coep: "unsafe-none"}},
+  {id: "p_b_Xu-Ou_Opu", st: "blank", hops: [{rel: "cross-site", coop: "unsafe-none", coep: "unsafe-none"}, {rel: "same-origin", coop: "unsafe-none", coep: "unsafe-none"}], fin: {rel: "same-origin", coop: "same-origin-allow-popups", coep: "unsafe-none"}},
+  {id: "p_b_Xu-Ou_Opr", st: "blank", hops: [{rel: "cross-site", coop: "unsafe-none", coep: "unsafe-none"}, {rel: "same-origin", coop: "unsafe-none", coep: "unsafe-none"}], fin: {rel: "same-origin", coop: "same-origin-allow-popups", coep: "require-corp"}},
+  {id: "p_b_Xu-Ou_Xur", st: "blank", hops: [{rel: "cross-site", coop: "unsafe-none", coep: "unsafe-none"}, {rel: "same-origin", coop: "unsafe-none", coep: "unsafe-none"}], fin: {rel: "cross-site", coop: "unsafe-none", coep: "require-corp"}},
+  {id: "p_b_Xu-Op_Suu", st: "blank", hops: [{rel: "cross-site", coop: "unsafe-none", coep: "unsafe-none"}, {rel: "same-origin", coop: "same-origin-allow-popups", coep: "unsafe-none"}], fin: {rel: "same-site", coop: "unsafe-none", coep: "unsafe-none"}},
+  {id: "p_b_Xu-Su_Xpu", st: "blank", hops: [{rel: "cross-site", coop: "unsafe-none", coep: "unsafe-none"}, {rel: "same-site", coop: "unsafe-none", coep: "unsafe-none"}], fin: {rel: "cross-site", coop: "same-origin-allow-popups", coep: "unsafe-none"}},
+  {id: "p_b_Xu-Sp_Spr", st: "blank", hops: [{rel: "cross-site", coop: "unsafe-none", coep: "unsafe-none"}, {rel: "same-site", coop: "same-origin-allow-popups", coep: "unsafe-none"}], fin: {rel: "same-site", coop: "same-origin-allow-popups", coep: "require-corp"}},
+  {id: "p_b_Xu-Sp_Xuu", st: "blank", hops: [{rel: "cross-site", coop: "unsafe-none", coep: "unsafe-none"}, {rel: "same-site", coop: "same-origin-allow-popups", coep: "unsafe-none"}], fin: {rel: "cross-site", coop: "unsafe-none", coep: "unsafe-none"}},
+  {id: "p_b_Xu-Ss_Ssu", st: "blank", hops: [{rel: "cross-site", coop: "unsafe-none", coep: "unsafe-none"}, {rel: "same-site", coop: "same-origin", coep: "unsafe-none"}], fin: {rel: "same-site", coop: "same-origin", coep: "unsafe-none"}},
+  {id: "p_b_Xu-Xp_Our", st: "blank", hops: [{rel: "cross-site", coop: "unsafe-none", coep: "unsafe-none"}, {rel: "cross-site", coop: "same-origin-allow-popups", coep: "unsafe-none"}], fin: {rel: "same-origin", coop: "unsafe-none", coep: "require-corp"}},
+  {id: "p_b_Xu-Xc_Opu", st: "blank", hops: [{rel: "cross-site", coop: "unsafe-none", coep: "unsafe-none"}, {rel: "cross-site", coop: "same-origin", coep: "require-corp"}], fin: {rel: "same-origin", coop: "same-origin-allow-popups", coep: "unsafe-none"}},
+  {id: "p_b_Xp-Op_Opu", st: "blank", hops: [{rel: "cross-site", coop: "same-origin-allow-popups", coep: "unsafe-none"}, {rel: "same-origin", coop: "same-origin-allow-popups", coep: "unsafe-none"}], fin: {rel: "same-origin", coop: "same-origin-allow-popups", coep: "unsafe-none"}},
+  {id: "p_b_Xp-Op_Opr", st: "blank", hops: [{rel: "cross-site", coop: "same-origin-allow-popups", coep: "unsafe-none"}, {rel: "same-origin", coop: "same-origin-allow-popups", coep: "unsafe-none"}], fin: {rel: "same-origin", coop: "same-origin-allow-popups", coep: "require-corp"}},
+  {id: "p_b_Xp-Op_Osu", st: "blank", hops: [{rel: "cross-site", coop: "same-origin-allow-popups", coep: "unsafe-none"}, {rel: "same-origin", coop: "same-origin-allow-popups", coep: "unsafe-none"}], fin: {rel: "same-origin", coop: "same-origin", coep: "unsafe-none"}},
+  {id: "p_b_Xp-Op_Suu", st: "blank", hops: [{rel: "cross-site", coop: "same-origin-allow-popups", coep: "unsafe-none"}, {rel: "same-origin", coop: "same-origin-allow-popups", coep: "unsafe-none"}], fin: {rel: "same-site", coop: "unsafe-none", coep: "unsafe-none"}},
+  {id: "p_b_Xp-Op_Spr", st: "blank", hops: [{rel: "cross-site", coop: "same-origin-allow-popups", coep: "unsafe-none"}, {rel: "same-origin", coop: "same-origin-allow-popups", coep: "unsafe-none"}], fin: {rel: "same-site", coop: "same-origin-allow-popups", coep: "require-corp"}},
+  {id: "p_b_Xp-Su_Our", st: "blank", hops: [{rel: "cross-site", coop: "same-origin-allow-popups", coep: "unsafe-none"}, {rel: "same-site", coop: "unsafe-none", coep: "unsafe-none"}], fin: {rel: "same-origin", coop: "unsafe-none", coep: "require-corp"}},
+  {id: "p_b_Xp-Su_Xuu", st: "blank", hops: [{rel: "cross-site", coop: "same-origin-allow-popups", coep: "unsafe-none"}, {rel: "same-site", coop: "unsafe-none", coep: "unsafe-none"}], fin: {rel: "cross-site", coop: "unsafe-none", coep: "unsafe-none"}},
+  {id: "p_b_Xp-Sp_Opu", st: "blank", hops: [{rel: "cross-site", coop: "same-origin-allow-popups", coep: "unsafe-none"}, {rel: "same-site", coop: "same-origin-allow-popups", coep: "unsafe-none"}], fin: {rel: "same-origin", coop: "same-origin-allow-popups", coep: "unsafe-none"}},
+  {id: "p_b_Xp-Xp_Opu", st: "blank", hops: [{rel: "cross-site", coop: "same-origin-allow-popups", coep: "unsafe-none"}, {rel: "cross-site", coop: "same-origin-allow-popups", coep: "unsafe-none"}], fin: {rel: "same-origin", coop: "same-origin-allow-popups", coep: "unsafe-none"}},
+  {id: "p_b_Xp-Xp_Opr", st: "blank", hops: [{rel: "cross-site", coop: "same-origin-allow-popups", coep: "unsafe-none"}, {rel: "cross-site", coop: "same-origin-allow-popups", coep: "unsafe-none"}], fin: {rel: "same-origin", coop: "same-origin-allow-popups", coep: "require-corp"}},
+  {id: "p_b_Xp-Xp_Osr", st: "blank", hops: [{rel: "cross-site", coop: "same-origin-allow-popups", coep: "unsafe-none"}, {rel: "cross-site", coop: "same-origin-allow-popups", coep: "unsafe-none"}], fin: {rel: "same-origin", coop: "same-origin", coep: "require-corp"}},
+  {id: "p_b_Xp-Xp_Suu", st: "blank", hops: [{rel: "cross-site", coop: "same-origin-allow-popups", coep: "unsafe-none"}, {rel: "cross-site", coop: "same-origin-allow-popups", coep: "unsafe-none"}], fin: {rel: "same-site", coop: "unsafe-none", coep: "unsafe-none"}},
+  {id: "p_b_Xp-Xp_Sur", st: "blank", hops: [{rel: "cross-site", coop: "same-origin-allow-popups", coep: "unsafe-none"}, {rel: "cross-site", coop: "same-origin-allow-popups", coep: "unsafe-none"}], fin: {rel: "same-site", coop: "unsafe-none", coep: "require-corp"}},
+  {id: "p_b_Xp-Xp_Spu", st: "blank", hops: [{rel: "cross-site", coop: "same-origin-allow-popups", coep: "unsafe-none"}, {rel: "cross-site", coop: "same-origin-allow-popups", coep: "unsafe-none"}], fin: {rel: "same-site", coop: "same-origin-allow-popups", coep: "unsafe-none"}},
+  {id: "p_b_Xp-Xp_Spr", st: "blank", hops: [{rel: "cross-site", coop: "same-origin-allow-popups", coep: "unsafe-none"}, {rel: "cross-site", coop: "same-origin-allow-popups", coep: "unsafe-none"}], fin: {rel: "same-site", coop: "same-origin-allow-popups", coep: "require-corp"}},
+  {id: "p_b_Xp-Xp_Xsu", st: "blank", hops: [{rel: "cross-site", coop: "same-origin-allow-popups", coep: "unsafe-none"}, {rel: "cross-site", coop: "same-origin-allow-popups", coep: "unsafe-none"}], fin: {rel: "cross-site", coop: "same-origin", coep: "unsafe-none"}},
+  {id: "p_b_Xs-Xs_Xpr", st: "blank", hops: [{rel: "cross-site", coop: "same-origin", coep: "unsafe-none"}, {rel: "cross-site", coop: "same-origin", coep: "unsafe-none"}], fin: {rel: "cross-site", coop: "same-origin-allow-popups", coep: "require-corp"}},
+  {id: "p_b_Xs-Xs_Xsu", st: "blank", hops: [{rel: "cross-site", coop: "same-origin", coep: "unsafe-none"}, {rel: "cross-site", coop: "same-origin", coep: "unsafe-none"}], fin: {rel: "cross-site", coop: "same-origin", coep: "unsafe-none"}},
+  {id: "p_b_Xc-Xc_Ouu", st: "blank", hops: [{rel: "cross-site", coop: "same-origin", coep: "require-corp"}, {rel: "cross-site", coop: "same-origin", coep: "require-corp"}], fin: {rel: "same-origin", coop: "unsafe-none", coep: "unsafe-none"}},
+  {id: "p_d_0_Ouu", st: "doc", hops: [], fin: {rel: "same-origin", coop: "unsafe-none", coep: "unsafe-none"}},
+  {id: "p_d_0_Opu", st: "doc", hops: [], fin: {rel: "same-origin", coop: "same-origin-allow-popups", coep: "unsafe-none"}},
+  {id: "p_d_0_Opr", st: "doc", hops: [], fin: {rel: "same-origin", coop: "same-origin-allow-popups", coep: "require-corp"}},
+  {id: "p_d_0_Osu", st: "doc", hops: [], fin: {rel: "same-origin", coop: "same-origin", coep: "unsafe-none"}},
+  {id: "p_d_0_Osr", st: "doc", hops: [], fin: {rel: "same-origin", coop: "same-origin", coep: "require-corp"}},
+  {id: "p_d_0_Sur", st: "doc", hops: [], fin: {rel: "same-site", coop: "unsafe-none", coep: "require-corp"}},
+  {id: "p_d_0_Spu", st: "doc", hops: [], fin: {rel: "same-site", coop: "same-origin-allow-popups", coep: "unsafe-none"}},
+  {id: "p_d_0_Spr", st: "doc", hops: [], fin: {rel: "same-site", coop: "same-origin-allow-popups", coep: "require-corp"}},
+  {id: "p_d_0_Ssr", st: "doc", hops: [], fin: {rel: "same-site", coop: "same-origin", coep: "require-corp"}},
+  {id: "p_d_0_Xuu", st: "doc", hops: [], fin: {rel: "cross-site", coop: "unsafe-none", coep: "unsafe-none"}},
+  {id: "p_d_0_Xur", st: "doc", hops: [], fin: {rel: "cross-site", coop: "unsafe-none", coep: "require-corp"}},
+  {id: "p_d_0_Xpu", st: "doc", hops: [], fin: {rel: "cross-site", coop: "same-origin-allow-popups", coep: "unsafe-none"}},
+  {id: "p_d_0_Xpr", st: "doc", hops: [], fin: {rel: "cross-site", coop: "same-origin-allow-popups", coep: "require-corp"}},
+  {id: "p_d_0_Xsu", st: "doc", hops: [], fin: {rel: "cross-site", coop: "same-origin", coep: "unsafe-none"}},
+  {id: "p_d_Ou_Xuu", st: "doc", hops: [{rel: "same-origin", coop: "unsafe-none", coep: "unsafe-none"}], fin: {rel: "cross-site", coop: "unsafe-none", coep: "unsafe-none"}},
+  {id: "p_d_Op_Xuu", st: "doc", hops: [{rel: "same-origin", coop: "same-origin-allow-popups", coep: "unsafe-none"}], fin: {rel: "cross-site", coop: "unsafe-none", coep: "unsafe-none"}},
+  {id: "p_d_Op_Xur", st: "doc", hops: [{rel: "same-origin", coop: "same-origin-allow-popups", coep: "unsafe-none"}], fin: {rel: "cross-site", coop: "unsafe-none", coep: "require-corp"}},
+  {id: "p_d_Os_Osu", st: "doc", hops: [{rel: "same-origin", coop: "same-origin", coep: "unsafe-none"}], fin: {rel: "same-origin", coop: "same-origin", coep: "unsafe-none"}},
+  {id: "p_d_Os_Osr", st: "doc", hops: [{rel: "same-origin", coop: "same-origin", coep: "unsafe-none"}], fin: {rel: "same-origin", coop: "same-origin", coep: "require-corp"}},
+  {id: "p_d_Su_Xur", st: "doc", hops: [{rel: "same-site", coop: "unsafe-none", coep: "unsafe-none"}], fin: {rel: "cross-site", coop: "unsafe-none", coep: "require-corp"}},
+  {id: "p_d_Sp_Spu", st: "doc", hops: [{rel: "same-site", coop: "same-origin-allow-popups", coep: "unsafe-none"}], fin: {rel: "same-site", coop: "same-origin-allow-popups", coep: "unsafe-none"}},
+  {id: "p_d_Sp_Xpu", st: "doc", hops: [{rel: "same-site", coop: "same-origin-allow-popups", coep: "unsafe-none"}], fin: {rel: "cross-site", coop: "same-origin-allow-popups", coep: "unsafe-none"}},
+  {id: "p_d_Xp_Xpr", st: "doc", hops: [{rel: "cross-site", coop: "same-origin-allow-popups", coep: "unsafe-none"}], fin: {rel: "cross-site", coop: "same-origin-allow-popups", coep: "require-corp"}},
+  {id: "p_d_Op-Ou_Opu", st: "doc", hops: [{rel: "same-origin", coop: "same-origin-allow-popups", coep: "unsafe-none"}, {rel: "same-origin", coop: "unsafe-none", coep: "unsafe-none"}], fin: {rel: "same-origin", coop: "same-origin-allow-popups", coep: "unsafe-none"}},
+];
+runRedirect(SCEN).then(done);
+</script>

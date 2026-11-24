@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=timeout content=long>
+<title>OBS redirect chains, opener COOP same-origin-allow-popups</title>
+<script src="/resources/testharness.js"></script>
+<script src="/resources/testharnessreport.js"></script>
+<script src="/common/dispatcher/dispatcher.js"></script>
+<script src="/common/get-host-info.sub.js"></script>
+<script src="/common/utils.js"></script>
+<script src="resources/robs.js"></script>
+<body>
+<script>
+const OPENER = {coop: "same-origin-allow-popups", coep: "unsafe-none"};
+const SCEN = [
+  {id: "p_d_Xp-Xs_Opu", st: "doc", hops: [{rel: "cross-site", coop: "same-origin-allow-popups", coep: "unsafe-none"}, {rel: "cross-site", coop: "same-origin", coep: "unsafe-none"}], fin: {rel: "same-origin", coop: "same-origin-allow-popups", coep: "unsafe-none"}},
+  {id: "p_d_Xs-Op_Opr", st: "doc", hops: [{rel: "cross-site", coop: "same-origin", coep: "unsafe-none"}, {rel: "same-origin", coop: "same-origin-allow-popups", coep: "unsafe-none"}], fin: {rel: "same-origin", coop: "same-origin-allow-popups", coep: "require-corp"}},
+  {id: "p_d_Xs-Oc_Xur", st: "doc", hops: [{rel: "cross-site", coop: "same-origin", coep: "unsafe-none"}, {rel: "same-origin", coop: "same-origin", coep: "require-corp"}], fin: {rel: "cross-site", coop: "unsafe-none", coep: "require-corp"}},
+  {id: "p_d_Xs-Xp_Xpu", st: "doc", hops: [{rel: "cross-site", coop: "same-origin", coep: "unsafe-none"}, {rel: "cross-site", coop: "same-origin-allow-popups", coep: "unsafe-none"}], fin: {rel: "cross-site", coop: "same-origin-allow-popups", coep: "unsafe-none"}},
+  {id: "p_d_Xc-Sp_Ssr", st: "doc", hops: [{rel: "cross-site", coop: "same-origin", coep: "require-corp"}, {rel: "same-site", coop: "same-origin-allow-popups", coep: "unsafe-none"}], fin: {rel: "same-site", coop: "same-origin", coep: "require-corp"}},
+];
+runRedirect(SCEN).then(done);
+</script>

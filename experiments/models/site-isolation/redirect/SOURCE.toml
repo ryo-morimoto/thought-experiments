@@ -1,0 +1,4 @@
+# リダイレクトの連鎖を状態の遷移として写したモデル（TLA+）、軸から生成した popup の筋書き、実行の手順、観測値の表と結果の要約。subagent が書いた。WPT のヘルパーは写さない（実行時に clone から読み込む）。
+id = "site-isolation-redirect"
+title = "リダイレクトの連鎖の筋書きでのブラウザの値とモデルが許す値の比較"
+origin = "original"
