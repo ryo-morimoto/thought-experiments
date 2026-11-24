@@ -1,0 +1,4 @@
+# popup の系譜、sandbox、Origin-Agent-Cluster、CORP same-site、画像の軸で機械的に作った筋書き（生成器、生成した試験、TLA+ の許容集合、実行の手順、観測値の表と結果の要約）。subagent が書いた。WPT のヘルパーは写さない（実行時に clone から読み込む）。
+id = "site-isolation-gen2"
+title = "popup・sandbox・Origin-Agent-Cluster・CORP same-site の軸で生成した筋書きでのブラウザの値とモデルが許す値の比較"
+origin = "original"

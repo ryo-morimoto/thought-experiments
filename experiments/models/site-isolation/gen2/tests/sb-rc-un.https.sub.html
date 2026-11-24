@@ -1,0 +1,36 @@
+<!doctype html>
+<meta charset=utf-8>
+<meta name=timeout content=long>
+<title>gen2 sb-rc-un.https.sub.html</title>
+<script src=/resources/testharness.js></script>
+<script src=/resources/testharnessreport.js></script>
+<script src=/common/get-host-info.sub.js></script>
+<script src=/common/utils.js></script>
+<script src=/common/dispatcher/dispatcher.js></script>
+<script src=/html/cross-origin-opener-policy/resources/popup-test.js></script>
+<script src=resources/gobs2.js></script>
+<body>
+<script>
+const HOSTS = {a: "{{host}}", a1: "{{hosts[][www1]}}", b: "{{hosts[alt][]}}", b1: "{{hosts[alt][www1]}}"};
+const PORTS = {http: {{ports[http][0]}}, https: {{ports[https][0]}}};
+const SCEN = [
+{"id":"S109","sb":"none","h":"a","o":"b","coep":"unsafe-none","corp":"none"},
+{"id":"S110","sb":"none","h":"a","o":"b","coep":"unsafe-none","corp":"same-origin"},
+{"id":"S111","sb":"none","h":"a","o":"b","coep":"unsafe-none","corp":"cross-origin"},
+{"id":"S117","sb":"none","h":"a1","o":"b","coep":"unsafe-none","corp":"cross-origin"},
+{"id":"S121","sb":"none","h":"b","o":"a","coep":"unsafe-none","corp":"none"},
+{"id":"S124","sb":"none","h":"b","o":"a","coep":"require-corp","corp":"none"},
+{"id":"S127","sb":"scripts","h":"a","o":"b","coep":"unsafe-none","corp":"none"},
+{"id":"S129","sb":"scripts","h":"a","o":"b","coep":"unsafe-none","corp":"cross-origin"},
+{"id":"S130","sb":"scripts","h":"a","o":"b","coep":"require-corp","corp":"none"},
+{"id":"S138","sb":"scripts","h":"a1","o":"b","coep":"require-corp","corp":"cross-origin"},
+{"id":"S139","sb":"scripts","h":"b","o":"a","coep":"unsafe-none","corp":"none"},
+{"id":"S140","sb":"scripts","h":"b","o":"a","coep":"unsafe-none","corp":"same-origin"},
+{"id":"S144","sb":"scripts","h":"b","o":"a","coep":"require-corp","corp":"cross-origin"},
+{"id":"S146","sb":"scripts-so","h":"a","o":"b","coep":"unsafe-none","corp":"same-origin"},
+{"id":"S151","sb":"scripts-so","h":"a1","o":"b","coep":"unsafe-none","corp":"none"},
+{"id":"S160","sb":"scripts-so","h":"b","o":"a","coep":"require-corp","corp":"none"},
+{"id":"S161","sb":"scripts-so","h":"b","o":"a","coep":"require-corp","corp":"same-origin"},
+{"id":"S162","sb":"scripts-so","h":"b","o":"a","coep":"require-corp","corp":"cross-origin"}];
+runSandbox(SCEN);
+</script>

@@ -1,0 +1,35 @@
+<!doctype html>
+<meta charset=utf-8>
+<meta name=timeout content=long>
+<title>gen2 popup-sap.https.sub.html</title>
+<script src=/resources/testharness.js></script>
+<script src=/resources/testharnessreport.js></script>
+<script src=/common/get-host-info.sub.js></script>
+<script src=/common/utils.js></script>
+<script src=/common/dispatcher/dispatcher.js></script>
+<script src=/html/cross-origin-opener-policy/resources/popup-test.js></script>
+<script src=resources/gobs2.js></script>
+<body>
+<script>
+const HOSTS = {a: "{{host}}", a1: "{{hosts[][www1]}}", b: "{{hosts[alt][]}}", b1: "{{hosts[alt][www1]}}"};
+const PORTS = {http: {{ports[http][0]}}, https: {{ports[https][0]}}};
+const SCEN = [
+{"id":"P038","s":"https","h":"a","pc":"unsafe-none","mode":"blank"},
+{"id":"P043","s":"https","h":"b","pc":"unsafe-none","mode":"direct"},
+{"id":"P045","s":"https","h":"b","pc":"unsafe-none","mode":"noopener"},
+{"id":"P046","s":"http","h":"b","pc":"unsafe-none","mode":"direct"},
+{"id":"P048","s":"http","h":"b","pc":"unsafe-none","mode":"noopener"},
+{"id":"P049","s":"https","h":"a","pc":"same-origin-allow-popups","mode":"direct"},
+{"id":"P050","s":"https","h":"a","pc":"same-origin-allow-popups","mode":"blank"},
+{"id":"P052","s":"https","h":"a1","pc":"same-origin-allow-popups","mode":"direct"},
+{"id":"P053","s":"https","h":"a1","pc":"same-origin-allow-popups","mode":"blank"},
+{"id":"P056","s":"https","h":"b","pc":"same-origin-allow-popups","mode":"blank"},
+{"id":"P057","s":"https","h":"b","pc":"same-origin-allow-popups","mode":"noopener"},
+{"id":"P058","s":"http","h":"b","pc":"same-origin-allow-popups","mode":"direct"},
+{"id":"P059","s":"http","h":"b","pc":"same-origin-allow-popups","mode":"blank"},
+{"id":"P063","s":"https","h":"a","pc":"same-origin","mode":"noopener"},
+{"id":"P064","s":"https","h":"a1","pc":"same-origin","mode":"direct"},
+{"id":"P065","s":"https","h":"a1","pc":"same-origin","mode":"blank"},
+{"id":"P070","s":"http","h":"b","pc":"same-origin","mode":"direct"}];
+runPopup(SCEN);
+</script>

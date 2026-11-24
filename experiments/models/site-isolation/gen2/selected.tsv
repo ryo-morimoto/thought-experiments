@@ -1,0 +1,286 @@
+sid	fam	oc	pc	rel	mode	top	h0	h1	h2	te	tc	sb	ce	corp	ts	rs	dest	idx	why
+P001	P	unsafe-none	unsafe-none	so	direct													1	cover
+P002	P	unsafe-none	unsafe-none	so	blank													2	cover
+P003	P	unsafe-none	unsafe-none	so	noopener													3	cover
+P006	P	unsafe-none	unsafe-none	ss	noopener													6	cover
+P011	P	unsafe-none	unsafe-none	xshttp	blank													11	sample
+P016	P	unsafe-none	same-origin-allow-popups	ss	direct													16	sample
+P018	P	unsafe-none	same-origin-allow-popups	ss	noopener													18	sample
+P021	P	unsafe-none	same-origin-allow-popups	xs	noopener													21	sample
+P024	P	unsafe-none	same-origin-allow-popups	xshttp	noopener													24	sample
+P029	P	unsafe-none	same-origin	ss	blank													29	sample
+P031	P	unsafe-none	same-origin	xs	direct													31	sample
+P032	P	unsafe-none	same-origin	xs	blank													32	sample
+P033	P	unsafe-none	same-origin	xs	noopener													33	sample
+P034	P	unsafe-none	same-origin	xshttp	direct													34	sample
+P038	P	same-origin-allow-popups	unsafe-none	so	blank													38	sample
+P043	P	same-origin-allow-popups	unsafe-none	xs	direct													43	sample
+P045	P	same-origin-allow-popups	unsafe-none	xs	noopener													45	sample
+P046	P	same-origin-allow-popups	unsafe-none	xshttp	direct													46	sample
+P048	P	same-origin-allow-popups	unsafe-none	xshttp	noopener													48	sample
+P049	P	same-origin-allow-popups	same-origin-allow-popups	so	direct													49	cover
+P050	P	same-origin-allow-popups	same-origin-allow-popups	so	blank													50	cover
+P052	P	same-origin-allow-popups	same-origin-allow-popups	ss	direct													52	cover
+P053	P	same-origin-allow-popups	same-origin-allow-popups	ss	blank													53	cover
+P056	P	same-origin-allow-popups	same-origin-allow-popups	xs	blank													56	sample
+P057	P	same-origin-allow-popups	same-origin-allow-popups	xs	noopener													57	sample
+P058	P	same-origin-allow-popups	same-origin-allow-popups	xshttp	direct													58	cover
+P059	P	same-origin-allow-popups	same-origin-allow-popups	xshttp	blank													59	cover
+P063	P	same-origin-allow-popups	same-origin	so	noopener													63	sample
+P064	P	same-origin-allow-popups	same-origin	ss	direct													64	sample
+P065	P	same-origin-allow-popups	same-origin	ss	blank													65	sample
+P070	P	same-origin-allow-popups	same-origin	xshttp	direct													70	sample
+P075	P	same-origin	unsafe-none	so	noopener													75	sample
+P082	P	same-origin	unsafe-none	xshttp	direct													82	sample
+P083	P	same-origin	unsafe-none	xshttp	blank													83	sample
+P085	P	same-origin	same-origin-allow-popups	so	direct													85	sample
+P086	P	same-origin	same-origin-allow-popups	so	blank													86	sample
+P088	P	same-origin	same-origin-allow-popups	ss	direct													88	sample
+P090	P	same-origin	same-origin-allow-popups	ss	noopener													90	sample
+P095	P	same-origin	same-origin-allow-popups	xshttp	blank													95	sample
+P096	P	same-origin	same-origin-allow-popups	xshttp	noopener													96	sample
+P103	P	same-origin	same-origin	xs	direct													103	sample
+P107	P	same-origin	same-origin	xshttp	blank													107	sample
+P108	P	same-origin	same-origin	xshttp	noopener													108	sample
+O001	O					https	absent	absent	absent									109	sample
+O002	O					https	absent	absent	?0									110	cover
+O003	O					https	absent	absent	?1									111	cover
+O007	O					https	absent	?1	absent									115	sample
+O015	O					https	?0	?0	?1									123	sample
+O017	O					https	?0	?1	?0									125	sample
+O018	O					https	?0	?1	?1									126	sample
+O023	O					https	?1	?0	?0									131	sample
+O028	O					https-coi	absent	absent	absent									136	cover
+O029	O					https-coi	absent	absent	?0									137	cover
+O034	O					https-coi	absent	?1	absent									142	sample
+O037	O					https-coi	?0	absent	absent									145	sample
+O038	O					https-coi	?0	absent	?0									146	sample
+O040	O					https-coi	?0	?0	absent									148	sample
+O042	O					https-coi	?0	?0	?1									150	sample
+O043	O					https-coi	?0	?1	absent									151	sample
+O049	O					https-coi	?1	?0	absent									157	sample
+O051	O					https-coi	?1	?0	?1									159	sample
+O055	O					http	absent	absent	absent									163	cover
+O056	O					http	absent	absent	?0									164	cover
+O057	O					http	absent	absent	?1									165	sample
+O059	O					http	absent	?0	?0									167	sample
+O062	O					http	absent	?1	?0									170	sample
+O063	O					http	absent	?1	?1									171	sample
+O068	O					http	?0	?0	?0									176	sample
+O072	O					http	?0	?1	?1									180	sample
+O081	O					http	?1	?1	?1									189	sample
+S001	S			same-host						unsafe-none	unsafe-none	none	unsafe-none	none				190	sample
+S012	S			same-site						unsafe-none	unsafe-none	none	require-corp	cross-origin				201	sample
+S015	S			cross-site						unsafe-none	unsafe-none	none	unsafe-none	cross-origin				204	sample
+S019	S			same-host						unsafe-none	unsafe-none	scripts	unsafe-none	none				208	cover
+S020	S			same-host						unsafe-none	unsafe-none	scripts	unsafe-none	same-origin				209	cover
+S023	S			same-host						unsafe-none	unsafe-none	scripts	require-corp	same-origin				212	sample
+S024	S			same-host						unsafe-none	unsafe-none	scripts	require-corp	cross-origin				213	sample
+S026	S			same-site						unsafe-none	unsafe-none	scripts	unsafe-none	same-origin				215	sample
+S028	S			same-site						unsafe-none	unsafe-none	scripts	require-corp	none				217	sample
+S030	S			same-site						unsafe-none	unsafe-none	scripts	require-corp	cross-origin				219	sample
+S032	S			cross-site						unsafe-none	unsafe-none	scripts	unsafe-none	same-origin				221	sample
+S036	S			cross-site						unsafe-none	unsafe-none	scripts	require-corp	cross-origin				225	sample
+S040	S			same-host						unsafe-none	unsafe-none	scripts-so	require-corp	none				229	sample
+S042	S			same-host						unsafe-none	unsafe-none	scripts-so	require-corp	cross-origin				231	sample
+S051	S			cross-site						unsafe-none	unsafe-none	scripts-so	unsafe-none	cross-origin				240	sample
+S052	S			cross-site						unsafe-none	unsafe-none	scripts-so	require-corp	none				241	sample
+S053	S			cross-site						unsafe-none	unsafe-none	scripts-so	require-corp	same-origin				242	sample
+S055	S			same-host						unsafe-none	same-origin	none	unsafe-none	none				244	cover
+S056	S			same-host						unsafe-none	same-origin	none	unsafe-none	same-origin				245	cover
+S057	S			same-host						unsafe-none	same-origin	none	unsafe-none	cross-origin				246	sample
+S058	S			same-host						unsafe-none	same-origin	none	require-corp	none				247	sample
+S059	S			same-host						unsafe-none	same-origin	none	require-corp	same-origin				248	sample
+S067	S			cross-site						unsafe-none	same-origin	none	unsafe-none	none				256	sample
+S074	S			same-host						unsafe-none	same-origin	scripts	unsafe-none	same-origin				263	sample
+S076	S			same-host						unsafe-none	same-origin	scripts	require-corp	none				265	sample
+S086	S			cross-site						unsafe-none	same-origin	scripts	unsafe-none	same-origin				275	sample
+S087	S			cross-site						unsafe-none	same-origin	scripts	unsafe-none	cross-origin				276	sample
+S092	S			same-host						unsafe-none	same-origin	scripts-so	unsafe-none	same-origin				281	sample
+S093	S			same-host						unsafe-none	same-origin	scripts-so	unsafe-none	cross-origin				282	sample
+S095	S			same-host						unsafe-none	same-origin	scripts-so	require-corp	same-origin				284	sample
+S096	S			same-host						unsafe-none	same-origin	scripts-so	require-corp	cross-origin				285	sample
+S097	S			same-site						unsafe-none	same-origin	scripts-so	unsafe-none	none				286	sample
+S100	S			same-site						unsafe-none	same-origin	scripts-so	require-corp	none				289	sample
+S102	S			same-site						unsafe-none	same-origin	scripts-so	require-corp	cross-origin				291	sample
+S108	S			cross-site						unsafe-none	same-origin	scripts-so	require-corp	cross-origin				297	sample
+S109	S			same-host						require-corp	unsafe-none	none	unsafe-none	none				298	cover
+S110	S			same-host						require-corp	unsafe-none	none	unsafe-none	same-origin				299	cover
+S111	S			same-host						require-corp	unsafe-none	none	unsafe-none	cross-origin				300	sample
+S117	S			same-site						require-corp	unsafe-none	none	unsafe-none	cross-origin				306	sample
+S121	S			cross-site						require-corp	unsafe-none	none	unsafe-none	none				310	sample
+S124	S			cross-site						require-corp	unsafe-none	none	require-corp	none				313	sample
+S127	S			same-host						require-corp	unsafe-none	scripts	unsafe-none	none				316	sample
+S129	S			same-host						require-corp	unsafe-none	scripts	unsafe-none	cross-origin				318	sample
+S130	S			same-host						require-corp	unsafe-none	scripts	require-corp	none				319	sample
+S138	S			same-site						require-corp	unsafe-none	scripts	require-corp	cross-origin				327	sample
+S139	S			cross-site						require-corp	unsafe-none	scripts	unsafe-none	none				328	sample
+S140	S			cross-site						require-corp	unsafe-none	scripts	unsafe-none	same-origin				329	sample
+S144	S			cross-site						require-corp	unsafe-none	scripts	require-corp	cross-origin				333	sample
+S146	S			same-host						require-corp	unsafe-none	scripts-so	unsafe-none	same-origin				335	sample
+S151	S			same-site						require-corp	unsafe-none	scripts-so	unsafe-none	none				340	sample
+S160	S			cross-site						require-corp	unsafe-none	scripts-so	require-corp	none				349	sample
+S161	S			cross-site						require-corp	unsafe-none	scripts-so	require-corp	same-origin				350	sample
+S162	S			cross-site						require-corp	unsafe-none	scripts-so	require-corp	cross-origin				351	sample
+S163	S			same-host						require-corp	same-origin	none	unsafe-none	none				352	sample
+S171	S			same-site						require-corp	same-origin	none	unsafe-none	cross-origin				360	sample
+S174	S			same-site						require-corp	same-origin	none	require-corp	cross-origin				363	sample
+S177	S			cross-site						require-corp	same-origin	none	unsafe-none	cross-origin				366	sample
+S184	S			same-host						require-corp	same-origin	scripts	require-corp	none				373	sample
+S185	S			same-host						require-corp	same-origin	scripts	require-corp	same-origin				374	sample
+S190	S			same-site						require-corp	same-origin	scripts	require-corp	none				379	sample
+S191	S			same-site						require-corp	same-origin	scripts	require-corp	same-origin				380	sample
+S196	S			cross-site						require-corp	same-origin	scripts	require-corp	none				385	sample
+S204	S			same-host						require-corp	same-origin	scripts-so	require-corp	cross-origin				393	sample
+S207	S			same-site						require-corp	same-origin	scripts-so	unsafe-none	cross-origin				396	sample
+S210	S			same-site						require-corp	same-origin	scripts-so	require-corp	cross-origin				399	sample
+S211	S			cross-site						require-corp	same-origin	scripts-so	unsafe-none	none				400	sample
+S212	S			cross-site						require-corp	same-origin	scripts-so	unsafe-none	same-origin				401	sample
+S213	S			cross-site						require-corp	same-origin	scripts-so	unsafe-none	cross-origin				402	sample
+S215	S			cross-site						require-corp	same-origin	scripts-so	require-corp	same-origin				404	sample
+S218	S			same-host						credentialless	unsafe-none	none	unsafe-none	same-origin				407	sample
+S219	S			same-host						credentialless	unsafe-none	none	unsafe-none	cross-origin				408	sample
+S225	S			same-site						credentialless	unsafe-none	none	unsafe-none	cross-origin				414	sample
+S226	S			same-site						credentialless	unsafe-none	none	require-corp	none				415	cover
+S231	S			cross-site						credentialless	unsafe-none	none	unsafe-none	cross-origin				420	sample
+S232	S			cross-site						credentialless	unsafe-none	none	require-corp	none				421	cover
+S234	S			cross-site						credentialless	unsafe-none	none	require-corp	cross-origin				423	sample
+S236	S			same-host						credentialless	unsafe-none	scripts	unsafe-none	same-origin				425	sample
+S241	S			same-site						credentialless	unsafe-none	scripts	unsafe-none	none				430	sample
+S242	S			same-site						credentialless	unsafe-none	scripts	unsafe-none	same-origin				431	sample
+S244	S			same-site						credentialless	unsafe-none	scripts	require-corp	none				433	sample
+S245	S			same-site						credentialless	unsafe-none	scripts	require-corp	same-origin				434	sample
+S249	S			cross-site						credentialless	unsafe-none	scripts	unsafe-none	cross-origin				438	sample
+S251	S			cross-site						credentialless	unsafe-none	scripts	require-corp	same-origin				440	sample
+S253	S			same-host						credentialless	unsafe-none	scripts-so	unsafe-none	none				442	sample
+S260	S			same-site						credentialless	unsafe-none	scripts-so	unsafe-none	same-origin				449	sample
+S262	S			same-site						credentialless	unsafe-none	scripts-so	require-corp	none				451	sample
+S265	S			cross-site						credentialless	unsafe-none	scripts-so	unsafe-none	none				454	sample
+S274	S			same-host						credentialless	same-origin	none	require-corp	none				463	cover
+S275	S			same-host						credentialless	same-origin	none	require-corp	same-origin				464	cover
+S276	S			same-host						credentialless	same-origin	none	require-corp	cross-origin				465	sample
+S279	S			same-site						credentialless	same-origin	none	unsafe-none	cross-origin				468	sample
+S280	S			same-site						credentialless	same-origin	none	require-corp	none				469	sample
+S283	S			cross-site						credentialless	same-origin	none	unsafe-none	none				472	sample
+S284	S			cross-site						credentialless	same-origin	none	unsafe-none	same-origin				473	sample
+S288	S			cross-site						credentialless	same-origin	none	require-corp	cross-origin				477	sample
+S290	S			same-host						credentialless	same-origin	scripts	unsafe-none	same-origin				479	sample
+S291	S			same-host						credentialless	same-origin	scripts	unsafe-none	cross-origin				480	sample
+S304	S			cross-site						credentialless	same-origin	scripts	require-corp	none				493	sample
+S307	S			same-host						credentialless	same-origin	scripts-so	unsafe-none	none				496	sample
+S309	S			same-host						credentialless	same-origin	scripts-so	unsafe-none	cross-origin				498	sample
+S316	S			same-site						credentialless	same-origin	scripts-so	require-corp	none				505	sample
+S319	S			cross-site						credentialless	same-origin	scripts-so	unsafe-none	none				508	sample
+S321	S			cross-site						credentialless	same-origin	scripts-so	unsafe-none	cross-origin				510	sample
+S323	S			cross-site						credentialless	same-origin	scripts-so	require-corp	same-origin				512	sample
+C003	C			same-host						unsafe-none				same-origin	https	https	fetch	516	sample
+C005	C			same-host						unsafe-none				same-site	https	https	fetch	518	sample
+C013	C			same-host						unsafe-none				same-site	https	http	fetch	526	sample
+C017	C			same-host						unsafe-none				none	https	http-tls	fetch	530	sample
+C019	C			same-host						unsafe-none				same-origin	https	http-tls	fetch	532	sample
+C021	C			same-host						unsafe-none				same-site	https	http-tls	fetch	534	sample
+C022	C			same-host						unsafe-none				same-site	https	http-tls	img	535	sample
+C023	C			same-host						unsafe-none				cross-origin	https	http-tls	fetch	536	sample
+C025	C			same-site						unsafe-none				none	https	https	fetch	538	sample
+C026	C			same-site						unsafe-none				none	https	https	img	539	sample
+C028	C			same-site						unsafe-none				same-origin	https	https	img	541	sample
+C029	C			same-site						unsafe-none				same-site	https	https	fetch	542	cover
+C033	C			same-site						unsafe-none				none	https	http	fetch	546	sample
+C038	C			same-site						unsafe-none				same-site	https	http	img	551	sample
+C041	C			same-site						unsafe-none				none	https	http-tls	fetch	554	sample
+C044	C			same-site						unsafe-none				same-origin	https	http-tls	img	557	sample
+C047	C			same-site						unsafe-none				cross-origin	https	http-tls	fetch	560	sample
+C052	C			cross-site						unsafe-none				same-origin	https	https	img	565	sample
+C055	C			cross-site						unsafe-none				cross-origin	https	https	fetch	568	sample
+C060	C			cross-site						unsafe-none				same-origin	https	http	img	573	sample
+C061	C			cross-site						unsafe-none				same-site	https	http	fetch	574	sample
+C063	C			cross-site						unsafe-none				cross-origin	https	http	fetch	576	sample
+C064	C			cross-site						unsafe-none				cross-origin	https	http	img	577	sample
+C075	C			same-host						require-corp				same-origin	https	https	fetch	588	sample
+C079	C			same-host						require-corp				cross-origin	https	https	fetch	592	sample
+C082	C			same-host						require-corp				none	https	http	img	595	sample
+C083	C			same-host						require-corp				same-origin	https	http	fetch	596	sample
+C088	C			same-host						require-corp				cross-origin	https	http	img	601	sample
+C096	C			same-host						require-corp				cross-origin	https	http-tls	img	609	sample
+C097	C			same-site						require-corp				none	https	https	fetch	610	sample
+C098	C			same-site						require-corp				none	https	https	img	611	sample
+C099	C			same-site						require-corp				same-origin	https	https	fetch	612	sample
+C100	C			same-site						require-corp				same-origin	https	https	img	613	sample
+C101	C			same-site						require-corp				same-site	https	https	fetch	614	cover
+C102	C			same-site						require-corp				same-site	https	https	img	615	sample
+C103	C			same-site						require-corp				cross-origin	https	https	fetch	616	sample
+C104	C			same-site						require-corp				cross-origin	https	https	img	617	sample
+C111	C			same-site						require-corp				cross-origin	https	http	fetch	624	sample
+C113	C			same-site						require-corp				none	https	http-tls	fetch	626	sample
+C121	C			cross-site						require-corp				none	https	https	fetch	634	sample
+C123	C			cross-site						require-corp				same-origin	https	https	fetch	636	sample
+C130	C			cross-site						require-corp				none	https	http	img	643	sample
+C135	C			cross-site						require-corp				cross-origin	https	http	fetch	648	sample
+C137	C			cross-site						require-corp				none	https	http-tls	fetch	650	sample
+C139	C			cross-site						require-corp				same-origin	https	http-tls	fetch	652	sample
+C143	C			cross-site						require-corp				cross-origin	https	http-tls	fetch	656	sample
+C148	C			same-host						credentialless				same-origin	https	https	img	661	sample
+C150	C			same-host						credentialless				same-site	https	https	img	663	sample
+C158	C			same-host						credentialless				same-site	https	http	img	671	sample
+C162	C			same-host						credentialless				none	https	http-tls	img	675	sample
+C164	C			same-host						credentialless				same-origin	https	http-tls	img	677	sample
+C170	C			same-site						credentialless				none	https	https	img	683	cover
+C172	C			same-site						credentialless				same-origin	https	https	img	685	sample
+C174	C			same-site						credentialless				same-site	https	https	img	687	sample
+C175	C			same-site						credentialless				cross-origin	https	https	fetch	688	sample
+C177	C			same-site						credentialless				none	https	http	fetch	690	sample
+C178	C			same-site						credentialless				none	https	http	img	691	sample
+C181	C			same-site						credentialless				same-site	https	http	fetch	694	sample
+C183	C			same-site						credentialless				cross-origin	https	http	fetch	696	sample
+C186	C			same-site						credentialless				none	https	http-tls	img	699	cover
+C187	C			same-site						credentialless				same-origin	https	http-tls	fetch	700	sample
+C192	C			same-site						credentialless				cross-origin	https	http-tls	img	705	sample
+C194	C			cross-site						credentialless				none	https	https	img	707	sample
+C195	C			cross-site						credentialless				same-origin	https	https	fetch	708	sample
+C203	C			cross-site						credentialless				same-origin	https	http	fetch	716	sample
+C209	C			cross-site						credentialless				none	https	http-tls	fetch	722	sample
+C212	C			cross-site						credentialless				same-origin	https	http-tls	img	725	sample
+C213	C			cross-site						credentialless				same-site	https	http-tls	fetch	726	sample
+C221	C			same-host						unsafe-none				same-site	http	https	fetch	734	cover
+C222	C			same-host						unsafe-none				same-site	http	https	img	735	cover
+C227	C			same-host						unsafe-none				same-origin	http	http	fetch	740	sample
+C231	C			same-host						unsafe-none				cross-origin	http	http	fetch	744	sample
+C233	C			same-site						unsafe-none				none	http	https	fetch	746	sample
+C234	C			same-site						unsafe-none				none	http	https	img	747	sample
+C237	C			same-site						unsafe-none				same-site	http	https	fetch	750	sample
+C240	C			same-site						unsafe-none				cross-origin	http	https	img	753	sample
+C245	C			same-site						unsafe-none				same-site	http	http	fetch	758	sample
+C250	C			cross-site						unsafe-none				none	http	https	img	763	sample
+C252	C			cross-site						unsafe-none				same-origin	http	https	img	765	sample
+C254	C			cross-site						unsafe-none				same-site	http	https	img	767	sample
+C255	C			cross-site						unsafe-none				cross-origin	http	https	fetch	768	sample
+C258	C			cross-site						unsafe-none				none	http	http	img	771	sample
+C262	C			cross-site						unsafe-none				same-site	http	http	img	775	sample
+C265	C			same-host						require-corp				none	http	https	fetch	778	sample
+C266	C			same-host						require-corp				none	http	https	img	779	sample
+C268	C			same-host						require-corp				same-origin	http	https	img	781	sample
+C269	C			same-host						require-corp				same-site	http	https	fetch	782	sample
+C274	C			same-host						require-corp				none	http	http	img	787	sample
+C281	C			same-site						require-corp				none	http	https	fetch	794	sample
+C283	C			same-site						require-corp				same-origin	http	https	fetch	796	sample
+C287	C			same-site						require-corp				cross-origin	http	https	fetch	800	sample
+C293	C			same-site						require-corp				same-site	http	http	fetch	806	sample
+C299	C			cross-site						require-corp				same-origin	http	https	fetch	812	sample
+C300	C			cross-site						require-corp				same-origin	http	https	img	813	sample
+C302	C			cross-site						require-corp				same-site	http	https	img	815	sample
+C305	C			cross-site						require-corp				none	http	http	fetch	818	sample
+C311	C			cross-site						require-corp				cross-origin	http	http	fetch	824	sample
+C313	C			same-host						credentialless				none	http	https	fetch	826	sample
+C315	C			same-host						credentialless				same-origin	http	https	fetch	828	sample
+C317	C			same-host						credentialless				same-site	http	https	fetch	830	sample
+C321	C			same-host						credentialless				none	http	http	fetch	834	sample
+C323	C			same-host						credentialless				same-origin	http	http	fetch	836	sample
+C324	C			same-host						credentialless				same-origin	http	http	img	837	sample
+C328	C			same-host						credentialless				cross-origin	http	http	img	841	sample
+C340	C			same-site						credentialless				same-origin	http	http	img	853	sample
+C341	C			same-site						credentialless				same-site	http	http	fetch	854	sample
+C342	C			same-site						credentialless				same-site	http	http	img	855	sample
+C344	C			same-site						credentialless				cross-origin	http	http	img	857	sample
+C351	C			cross-site						credentialless				cross-origin	http	https	fetch	864	sample
+C356	C			cross-site						credentialless				same-origin	http	http	img	869	sample
+C359	C			cross-site						credentialless				cross-origin	http	http	fetch	872	sample

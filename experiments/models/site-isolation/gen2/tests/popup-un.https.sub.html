@@ -1,0 +1,32 @@
+<!doctype html>
+<meta charset=utf-8>
+<meta name=timeout content=long>
+<title>gen2 popup-un.https.sub.html</title>
+<script src=/resources/testharness.js></script>
+<script src=/resources/testharnessreport.js></script>
+<script src=/common/get-host-info.sub.js></script>
+<script src=/common/utils.js></script>
+<script src=/common/dispatcher/dispatcher.js></script>
+<script src=/html/cross-origin-opener-policy/resources/popup-test.js></script>
+<script src=resources/gobs2.js></script>
+<body>
+<script>
+const HOSTS = {a: "{{host}}", a1: "{{hosts[][www1]}}", b: "{{hosts[alt][]}}", b1: "{{hosts[alt][www1]}}"};
+const PORTS = {http: {{ports[http][0]}}, https: {{ports[https][0]}}};
+const SCEN = [
+{"id":"P001","s":"https","h":"a","pc":"unsafe-none","mode":"direct"},
+{"id":"P002","s":"https","h":"a","pc":"unsafe-none","mode":"blank"},
+{"id":"P003","s":"https","h":"a","pc":"unsafe-none","mode":"noopener"},
+{"id":"P006","s":"https","h":"a1","pc":"unsafe-none","mode":"noopener"},
+{"id":"P011","s":"http","h":"b","pc":"unsafe-none","mode":"blank"},
+{"id":"P016","s":"https","h":"a1","pc":"same-origin-allow-popups","mode":"direct"},
+{"id":"P018","s":"https","h":"a1","pc":"same-origin-allow-popups","mode":"noopener"},
+{"id":"P021","s":"https","h":"b","pc":"same-origin-allow-popups","mode":"noopener"},
+{"id":"P024","s":"http","h":"b","pc":"same-origin-allow-popups","mode":"noopener"},
+{"id":"P029","s":"https","h":"a1","pc":"same-origin","mode":"blank"},
+{"id":"P031","s":"https","h":"b","pc":"same-origin","mode":"direct"},
+{"id":"P032","s":"https","h":"b","pc":"same-origin","mode":"blank"},
+{"id":"P033","s":"https","h":"b","pc":"same-origin","mode":"noopener"},
+{"id":"P034","s":"http","h":"b","pc":"same-origin","mode":"direct"}];
+runPopup(SCEN);
+</script>

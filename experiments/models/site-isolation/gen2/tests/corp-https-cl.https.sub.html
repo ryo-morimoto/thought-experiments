@@ -1,0 +1,40 @@
+<!doctype html>
+<meta charset=utf-8>
+<meta name=timeout content=long>
+<title>gen2 corp-https-cl.https.sub.html</title>
+<script src=/resources/testharness.js></script>
+<script src=/resources/testharnessreport.js></script>
+<script src=/common/get-host-info.sub.js></script>
+<script src=/common/utils.js></script>
+<script src=/common/dispatcher/dispatcher.js></script>
+<script src=/html/cross-origin-opener-policy/resources/popup-test.js></script>
+<script src=resources/gobs2.js></script>
+<body>
+<script>
+const HOSTS = {a: "{{host}}", a1: "{{hosts[][www1]}}", b: "{{hosts[alt][]}}", b1: "{{hosts[alt][www1]}}"};
+const PORTS = {http: {{ports[http][0]}}, https: {{ports[https][0]}}};
+const SCEN = [
+{"id":"C148","h":"a","rs":"https","corp":"same-origin","dest":"img"},
+{"id":"C150","h":"a","rs":"https","corp":"same-site","dest":"img"},
+{"id":"C158","h":"a","rs":"http","corp":"same-site","dest":"img"},
+{"id":"C162","h":"a","rs":"http-tls","corp":"none","dest":"img"},
+{"id":"C164","h":"a","rs":"http-tls","corp":"same-origin","dest":"img"},
+{"id":"C170","h":"a1","rs":"https","corp":"none","dest":"img"},
+{"id":"C172","h":"a1","rs":"https","corp":"same-origin","dest":"img"},
+{"id":"C174","h":"a1","rs":"https","corp":"same-site","dest":"img"},
+{"id":"C175","h":"a1","rs":"https","corp":"cross-origin","dest":"fetch"},
+{"id":"C177","h":"a1","rs":"http","corp":"none","dest":"fetch"},
+{"id":"C178","h":"a1","rs":"http","corp":"none","dest":"img"},
+{"id":"C181","h":"a1","rs":"http","corp":"same-site","dest":"fetch"},
+{"id":"C183","h":"a1","rs":"http","corp":"cross-origin","dest":"fetch"},
+{"id":"C186","h":"a1","rs":"http-tls","corp":"none","dest":"img"},
+{"id":"C187","h":"a1","rs":"http-tls","corp":"same-origin","dest":"fetch"},
+{"id":"C192","h":"a1","rs":"http-tls","corp":"cross-origin","dest":"img"},
+{"id":"C194","h":"b","rs":"https","corp":"none","dest":"img"},
+{"id":"C195","h":"b","rs":"https","corp":"same-origin","dest":"fetch"},
+{"id":"C203","h":"b","rs":"http","corp":"same-origin","dest":"fetch"},
+{"id":"C209","h":"b","rs":"http-tls","corp":"none","dest":"fetch"},
+{"id":"C212","h":"b","rs":"http-tls","corp":"same-origin","dest":"img"},
+{"id":"C213","h":"b","rs":"http-tls","corp":"same-site","dest":"fetch"}];
+runCorp(SCEN);
+</script>

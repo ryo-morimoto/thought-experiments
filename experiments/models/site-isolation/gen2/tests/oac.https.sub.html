@@ -1,0 +1,45 @@
+<!doctype html>
+<meta charset=utf-8>
+<meta name=timeout content=long>
+<title>gen2 oac.https.sub.html</title>
+<script src=/resources/testharness.js></script>
+<script src=/resources/testharnessreport.js></script>
+<script src=/common/get-host-info.sub.js></script>
+<script src=/common/utils.js></script>
+<script src=/common/dispatcher/dispatcher.js></script>
+<script src=/html/cross-origin-opener-policy/resources/popup-test.js></script>
+<script src=resources/gobs2.js></script>
+<body>
+<script>
+const HOSTS = {a: "{{host}}", a1: "{{hosts[][www1]}}", b: "{{hosts[alt][]}}", b1: "{{hosts[alt][www1]}}"};
+const PORTS = {http: {{ports[http][0]}}, https: {{ports[https][0]}}};
+const SCEN = [
+{"id":"O001","s":"https","coi":false,"h":["absent","absent","absent"]},
+{"id":"O002","s":"https","coi":false,"h":["absent","absent","?0"]},
+{"id":"O003","s":"https","coi":false,"h":["absent","absent","?1"]},
+{"id":"O007","s":"https","coi":false,"h":["absent","?1","absent"]},
+{"id":"O015","s":"https","coi":false,"h":["?0","?0","?1"]},
+{"id":"O017","s":"https","coi":false,"h":["?0","?1","?0"]},
+{"id":"O018","s":"https","coi":false,"h":["?0","?1","?1"]},
+{"id":"O023","s":"https","coi":false,"h":["?1","?0","?0"]},
+{"id":"O028","s":"https","coi":true,"h":["absent","absent","absent"]},
+{"id":"O029","s":"https","coi":true,"h":["absent","absent","?0"]},
+{"id":"O034","s":"https","coi":true,"h":["absent","?1","absent"]},
+{"id":"O037","s":"https","coi":true,"h":["?0","absent","absent"]},
+{"id":"O038","s":"https","coi":true,"h":["?0","absent","?0"]},
+{"id":"O040","s":"https","coi":true,"h":["?0","?0","absent"]},
+{"id":"O042","s":"https","coi":true,"h":["?0","?0","?1"]},
+{"id":"O043","s":"https","coi":true,"h":["?0","?1","absent"]},
+{"id":"O049","s":"https","coi":true,"h":["?1","?0","absent"]},
+{"id":"O051","s":"https","coi":true,"h":["?1","?0","?1"]},
+{"id":"O055","s":"http","coi":false,"h":["absent","absent","absent"]},
+{"id":"O056","s":"http","coi":false,"h":["absent","absent","?0"]},
+{"id":"O057","s":"http","coi":false,"h":["absent","absent","?1"]},
+{"id":"O059","s":"http","coi":false,"h":["absent","?0","?0"]},
+{"id":"O062","s":"http","coi":false,"h":["absent","?1","?0"]},
+{"id":"O063","s":"http","coi":false,"h":["absent","?1","?1"]},
+{"id":"O068","s":"http","coi":false,"h":["?0","?0","?0"]},
+{"id":"O072","s":"http","coi":false,"h":["?0","?1","?1"]},
+{"id":"O081","s":"http","coi":false,"h":["?1","?1","?1"]}];
+runOAC(SCEN);
+</script>

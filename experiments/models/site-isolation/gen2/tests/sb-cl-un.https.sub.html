@@ -1,0 +1,36 @@
+<!doctype html>
+<meta charset=utf-8>
+<meta name=timeout content=long>
+<title>gen2 sb-cl-un.https.sub.html</title>
+<script src=/resources/testharness.js></script>
+<script src=/resources/testharnessreport.js></script>
+<script src=/common/get-host-info.sub.js></script>
+<script src=/common/utils.js></script>
+<script src=/common/dispatcher/dispatcher.js></script>
+<script src=/html/cross-origin-opener-policy/resources/popup-test.js></script>
+<script src=resources/gobs2.js></script>
+<body>
+<script>
+const HOSTS = {a: "{{host}}", a1: "{{hosts[][www1]}}", b: "{{hosts[alt][]}}", b1: "{{hosts[alt][www1]}}"};
+const PORTS = {http: {{ports[http][0]}}, https: {{ports[https][0]}}};
+const SCEN = [
+{"id":"S218","sb":"none","h":"a","o":"b","coep":"unsafe-none","corp":"same-origin"},
+{"id":"S219","sb":"none","h":"a","o":"b","coep":"unsafe-none","corp":"cross-origin"},
+{"id":"S225","sb":"none","h":"a1","o":"b","coep":"unsafe-none","corp":"cross-origin"},
+{"id":"S226","sb":"none","h":"a1","o":"b","coep":"require-corp","corp":"none"},
+{"id":"S231","sb":"none","h":"b","o":"a","coep":"unsafe-none","corp":"cross-origin"},
+{"id":"S232","sb":"none","h":"b","o":"a","coep":"require-corp","corp":"none"},
+{"id":"S234","sb":"none","h":"b","o":"a","coep":"require-corp","corp":"cross-origin"},
+{"id":"S236","sb":"scripts","h":"a","o":"b","coep":"unsafe-none","corp":"same-origin"},
+{"id":"S241","sb":"scripts","h":"a1","o":"b","coep":"unsafe-none","corp":"none"},
+{"id":"S242","sb":"scripts","h":"a1","o":"b","coep":"unsafe-none","corp":"same-origin"},
+{"id":"S244","sb":"scripts","h":"a1","o":"b","coep":"require-corp","corp":"none"},
+{"id":"S245","sb":"scripts","h":"a1","o":"b","coep":"require-corp","corp":"same-origin"},
+{"id":"S249","sb":"scripts","h":"b","o":"a","coep":"unsafe-none","corp":"cross-origin"},
+{"id":"S251","sb":"scripts","h":"b","o":"a","coep":"require-corp","corp":"same-origin"},
+{"id":"S253","sb":"scripts-so","h":"a","o":"b","coep":"unsafe-none","corp":"none"},
+{"id":"S260","sb":"scripts-so","h":"a1","o":"b","coep":"unsafe-none","corp":"same-origin"},
+{"id":"S262","sb":"scripts-so","h":"a1","o":"b","coep":"require-corp","corp":"none"},
+{"id":"S265","sb":"scripts-so","h":"b","o":"a","coep":"unsafe-none","corp":"none"}];
+runSandbox(SCEN);
+</script>

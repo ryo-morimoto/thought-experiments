@@ -1,0 +1,874 @@
+sid	fam	oc	pc	rel	mode	top	h0	h1	h2	te	tc	sb	ce	corp	ts	rs	dest
+P001	P	unsafe-none	unsafe-none	so	direct												
+P002	P	unsafe-none	unsafe-none	so	blank												
+P003	P	unsafe-none	unsafe-none	so	noopener												
+P004	P	unsafe-none	unsafe-none	ss	direct												
+P005	P	unsafe-none	unsafe-none	ss	blank												
+P006	P	unsafe-none	unsafe-none	ss	noopener												
+P007	P	unsafe-none	unsafe-none	xs	direct												
+P008	P	unsafe-none	unsafe-none	xs	blank												
+P009	P	unsafe-none	unsafe-none	xs	noopener												
+P010	P	unsafe-none	unsafe-none	xshttp	direct												
+P011	P	unsafe-none	unsafe-none	xshttp	blank												
+P012	P	unsafe-none	unsafe-none	xshttp	noopener												
+P013	P	unsafe-none	same-origin-allow-popups	so	direct												
+P014	P	unsafe-none	same-origin-allow-popups	so	blank												
+P015	P	unsafe-none	same-origin-allow-popups	so	noopener												
+P016	P	unsafe-none	same-origin-allow-popups	ss	direct												
+P017	P	unsafe-none	same-origin-allow-popups	ss	blank												
+P018	P	unsafe-none	same-origin-allow-popups	ss	noopener												
+P019	P	unsafe-none	same-origin-allow-popups	xs	direct												
+P020	P	unsafe-none	same-origin-allow-popups	xs	blank												
+P021	P	unsafe-none	same-origin-allow-popups	xs	noopener												
+P022	P	unsafe-none	same-origin-allow-popups	xshttp	direct												
+P023	P	unsafe-none	same-origin-allow-popups	xshttp	blank												
+P024	P	unsafe-none	same-origin-allow-popups	xshttp	noopener												
+P025	P	unsafe-none	same-origin	so	direct												
+P026	P	unsafe-none	same-origin	so	blank												
+P027	P	unsafe-none	same-origin	so	noopener												
+P028	P	unsafe-none	same-origin	ss	direct												
+P029	P	unsafe-none	same-origin	ss	blank												
+P030	P	unsafe-none	same-origin	ss	noopener												
+P031	P	unsafe-none	same-origin	xs	direct												
+P032	P	unsafe-none	same-origin	xs	blank												
+P033	P	unsafe-none	same-origin	xs	noopener												
+P034	P	unsafe-none	same-origin	xshttp	direct												
+P035	P	unsafe-none	same-origin	xshttp	blank												
+P036	P	unsafe-none	same-origin	xshttp	noopener												
+P037	P	same-origin-allow-popups	unsafe-none	so	direct												
+P038	P	same-origin-allow-popups	unsafe-none	so	blank												
+P039	P	same-origin-allow-popups	unsafe-none	so	noopener												
+P040	P	same-origin-allow-popups	unsafe-none	ss	direct												
+P041	P	same-origin-allow-popups	unsafe-none	ss	blank												
+P042	P	same-origin-allow-popups	unsafe-none	ss	noopener												
+P043	P	same-origin-allow-popups	unsafe-none	xs	direct												
+P044	P	same-origin-allow-popups	unsafe-none	xs	blank												
+P045	P	same-origin-allow-popups	unsafe-none	xs	noopener												
+P046	P	same-origin-allow-popups	unsafe-none	xshttp	direct												
+P047	P	same-origin-allow-popups	unsafe-none	xshttp	blank												
+P048	P	same-origin-allow-popups	unsafe-none	xshttp	noopener												
+P049	P	same-origin-allow-popups	same-origin-allow-popups	so	direct												
+P050	P	same-origin-allow-popups	same-origin-allow-popups	so	blank												
+P051	P	same-origin-allow-popups	same-origin-allow-popups	so	noopener												
+P052	P	same-origin-allow-popups	same-origin-allow-popups	ss	direct												
+P053	P	same-origin-allow-popups	same-origin-allow-popups	ss	blank												
+P054	P	same-origin-allow-popups	same-origin-allow-popups	ss	noopener												
+P055	P	same-origin-allow-popups	same-origin-allow-popups	xs	direct												
+P056	P	same-origin-allow-popups	same-origin-allow-popups	xs	blank												
+P057	P	same-origin-allow-popups	same-origin-allow-popups	xs	noopener												
+P058	P	same-origin-allow-popups	same-origin-allow-popups	xshttp	direct												
+P059	P	same-origin-allow-popups	same-origin-allow-popups	xshttp	blank												
+P060	P	same-origin-allow-popups	same-origin-allow-popups	xshttp	noopener												
+P061	P	same-origin-allow-popups	same-origin	so	direct												
+P062	P	same-origin-allow-popups	same-origin	so	blank												
+P063	P	same-origin-allow-popups	same-origin	so	noopener												
+P064	P	same-origin-allow-popups	same-origin	ss	direct												
+P065	P	same-origin-allow-popups	same-origin	ss	blank												
+P066	P	same-origin-allow-popups	same-origin	ss	noopener												
+P067	P	same-origin-allow-popups	same-origin	xs	direct												
+P068	P	same-origin-allow-popups	same-origin	xs	blank												
+P069	P	same-origin-allow-popups	same-origin	xs	noopener												
+P070	P	same-origin-allow-popups	same-origin	xshttp	direct												
+P071	P	same-origin-allow-popups	same-origin	xshttp	blank												
+P072	P	same-origin-allow-popups	same-origin	xshttp	noopener												
+P073	P	same-origin	unsafe-none	so	direct												
+P074	P	same-origin	unsafe-none	so	blank												
+P075	P	same-origin	unsafe-none	so	noopener												
+P076	P	same-origin	unsafe-none	ss	direct												
+P077	P	same-origin	unsafe-none	ss	blank												
+P078	P	same-origin	unsafe-none	ss	noopener												
+P079	P	same-origin	unsafe-none	xs	direct												
+P080	P	same-origin	unsafe-none	xs	blank												
+P081	P	same-origin	unsafe-none	xs	noopener												
+P082	P	same-origin	unsafe-none	xshttp	direct												
+P083	P	same-origin	unsafe-none	xshttp	blank												
+P084	P	same-origin	unsafe-none	xshttp	noopener												
+P085	P	same-origin	same-origin-allow-popups	so	direct												
+P086	P	same-origin	same-origin-allow-popups	so	blank												
+P087	P	same-origin	same-origin-allow-popups	so	noopener												
+P088	P	same-origin	same-origin-allow-popups	ss	direct												
+P089	P	same-origin	same-origin-allow-popups	ss	blank												
+P090	P	same-origin	same-origin-allow-popups	ss	noopener												
+P091	P	same-origin	same-origin-allow-popups	xs	direct												
+P092	P	same-origin	same-origin-allow-popups	xs	blank												
+P093	P	same-origin	same-origin-allow-popups	xs	noopener												
+P094	P	same-origin	same-origin-allow-popups	xshttp	direct												
+P095	P	same-origin	same-origin-allow-popups	xshttp	blank												
+P096	P	same-origin	same-origin-allow-popups	xshttp	noopener												
+P097	P	same-origin	same-origin	so	direct												
+P098	P	same-origin	same-origin	so	blank												
+P099	P	same-origin	same-origin	so	noopener												
+P100	P	same-origin	same-origin	ss	direct												
+P101	P	same-origin	same-origin	ss	blank												
+P102	P	same-origin	same-origin	ss	noopener												
+P103	P	same-origin	same-origin	xs	direct												
+P104	P	same-origin	same-origin	xs	blank												
+P105	P	same-origin	same-origin	xs	noopener												
+P106	P	same-origin	same-origin	xshttp	direct												
+P107	P	same-origin	same-origin	xshttp	blank												
+P108	P	same-origin	same-origin	xshttp	noopener												
+O001	O					https	absent	absent	absent								
+O002	O					https	absent	absent	?0								
+O003	O					https	absent	absent	?1								
+O004	O					https	absent	?0	absent								
+O005	O					https	absent	?0	?0								
+O006	O					https	absent	?0	?1								
+O007	O					https	absent	?1	absent								
+O008	O					https	absent	?1	?0								
+O009	O					https	absent	?1	?1								
+O010	O					https	?0	absent	absent								
+O011	O					https	?0	absent	?0								
+O012	O					https	?0	absent	?1								
+O013	O					https	?0	?0	absent								
+O014	O					https	?0	?0	?0								
+O015	O					https	?0	?0	?1								
+O016	O					https	?0	?1	absent								
+O017	O					https	?0	?1	?0								
+O018	O					https	?0	?1	?1								
+O019	O					https	?1	absent	absent								
+O020	O					https	?1	absent	?0								
+O021	O					https	?1	absent	?1								
+O022	O					https	?1	?0	absent								
+O023	O					https	?1	?0	?0								
+O024	O					https	?1	?0	?1								
+O025	O					https	?1	?1	absent								
+O026	O					https	?1	?1	?0								
+O027	O					https	?1	?1	?1								
+O028	O					https-coi	absent	absent	absent								
+O029	O					https-coi	absent	absent	?0								
+O030	O					https-coi	absent	absent	?1								
+O031	O					https-coi	absent	?0	absent								
+O032	O					https-coi	absent	?0	?0								
+O033	O					https-coi	absent	?0	?1								
+O034	O					https-coi	absent	?1	absent								
+O035	O					https-coi	absent	?1	?0								
+O036	O					https-coi	absent	?1	?1								
+O037	O					https-coi	?0	absent	absent								
+O038	O					https-coi	?0	absent	?0								
+O039	O					https-coi	?0	absent	?1								
+O040	O					https-coi	?0	?0	absent								
+O041	O					https-coi	?0	?0	?0								
+O042	O					https-coi	?0	?0	?1								
+O043	O					https-coi	?0	?1	absent								
+O044	O					https-coi	?0	?1	?0								
+O045	O					https-coi	?0	?1	?1								
+O046	O					https-coi	?1	absent	absent								
+O047	O					https-coi	?1	absent	?0								
+O048	O					https-coi	?1	absent	?1								
+O049	O					https-coi	?1	?0	absent								
+O050	O					https-coi	?1	?0	?0								
+O051	O					https-coi	?1	?0	?1								
+O052	O					https-coi	?1	?1	absent								
+O053	O					https-coi	?1	?1	?0								
+O054	O					https-coi	?1	?1	?1								
+O055	O					http	absent	absent	absent								
+O056	O					http	absent	absent	?0								
+O057	O					http	absent	absent	?1								
+O058	O					http	absent	?0	absent								
+O059	O					http	absent	?0	?0								
+O060	O					http	absent	?0	?1								
+O061	O					http	absent	?1	absent								
+O062	O					http	absent	?1	?0								
+O063	O					http	absent	?1	?1								
+O064	O					http	?0	absent	absent								
+O065	O					http	?0	absent	?0								
+O066	O					http	?0	absent	?1								
+O067	O					http	?0	?0	absent								
+O068	O					http	?0	?0	?0								
+O069	O					http	?0	?0	?1								
+O070	O					http	?0	?1	absent								
+O071	O					http	?0	?1	?0								
+O072	O					http	?0	?1	?1								
+O073	O					http	?1	absent	absent								
+O074	O					http	?1	absent	?0								
+O075	O					http	?1	absent	?1								
+O076	O					http	?1	?0	absent								
+O077	O					http	?1	?0	?0								
+O078	O					http	?1	?0	?1								
+O079	O					http	?1	?1	absent								
+O080	O					http	?1	?1	?0								
+O081	O					http	?1	?1	?1								
+S001	S			same-host						unsafe-none	unsafe-none	none	unsafe-none	none			
+S002	S			same-host						unsafe-none	unsafe-none	none	unsafe-none	same-origin			
+S003	S			same-host						unsafe-none	unsafe-none	none	unsafe-none	cross-origin			
+S004	S			same-host						unsafe-none	unsafe-none	none	require-corp	none			
+S005	S			same-host						unsafe-none	unsafe-none	none	require-corp	same-origin			
+S006	S			same-host						unsafe-none	unsafe-none	none	require-corp	cross-origin			
+S007	S			same-site						unsafe-none	unsafe-none	none	unsafe-none	none			
+S008	S			same-site						unsafe-none	unsafe-none	none	unsafe-none	same-origin			
+S009	S			same-site						unsafe-none	unsafe-none	none	unsafe-none	cross-origin			
+S010	S			same-site						unsafe-none	unsafe-none	none	require-corp	none			
+S011	S			same-site						unsafe-none	unsafe-none	none	require-corp	same-origin			
+S012	S			same-site						unsafe-none	unsafe-none	none	require-corp	cross-origin			
+S013	S			cross-site						unsafe-none	unsafe-none	none	unsafe-none	none			
+S014	S			cross-site						unsafe-none	unsafe-none	none	unsafe-none	same-origin			
+S015	S			cross-site						unsafe-none	unsafe-none	none	unsafe-none	cross-origin			
+S016	S			cross-site						unsafe-none	unsafe-none	none	require-corp	none			
+S017	S			cross-site						unsafe-none	unsafe-none	none	require-corp	same-origin			
+S018	S			cross-site						unsafe-none	unsafe-none	none	require-corp	cross-origin			
+S019	S			same-host						unsafe-none	unsafe-none	scripts	unsafe-none	none			
+S020	S			same-host						unsafe-none	unsafe-none	scripts	unsafe-none	same-origin			
+S021	S			same-host						unsafe-none	unsafe-none	scripts	unsafe-none	cross-origin			
+S022	S			same-host						unsafe-none	unsafe-none	scripts	require-corp	none			
+S023	S			same-host						unsafe-none	unsafe-none	scripts	require-corp	same-origin			
+S024	S			same-host						unsafe-none	unsafe-none	scripts	require-corp	cross-origin			
+S025	S			same-site						unsafe-none	unsafe-none	scripts	unsafe-none	none			
+S026	S			same-site						unsafe-none	unsafe-none	scripts	unsafe-none	same-origin			
+S027	S			same-site						unsafe-none	unsafe-none	scripts	unsafe-none	cross-origin			
+S028	S			same-site						unsafe-none	unsafe-none	scripts	require-corp	none			
+S029	S			same-site						unsafe-none	unsafe-none	scripts	require-corp	same-origin			
+S030	S			same-site						unsafe-none	unsafe-none	scripts	require-corp	cross-origin			
+S031	S			cross-site						unsafe-none	unsafe-none	scripts	unsafe-none	none			
+S032	S			cross-site						unsafe-none	unsafe-none	scripts	unsafe-none	same-origin			
+S033	S			cross-site						unsafe-none	unsafe-none	scripts	unsafe-none	cross-origin			
+S034	S			cross-site						unsafe-none	unsafe-none	scripts	require-corp	none			
+S035	S			cross-site						unsafe-none	unsafe-none	scripts	require-corp	same-origin			
+S036	S			cross-site						unsafe-none	unsafe-none	scripts	require-corp	cross-origin			
+S037	S			same-host						unsafe-none	unsafe-none	scripts-so	unsafe-none	none			
+S038	S			same-host						unsafe-none	unsafe-none	scripts-so	unsafe-none	same-origin			
+S039	S			same-host						unsafe-none	unsafe-none	scripts-so	unsafe-none	cross-origin			
+S040	S			same-host						unsafe-none	unsafe-none	scripts-so	require-corp	none			
+S041	S			same-host						unsafe-none	unsafe-none	scripts-so	require-corp	same-origin			
+S042	S			same-host						unsafe-none	unsafe-none	scripts-so	require-corp	cross-origin			
+S043	S			same-site						unsafe-none	unsafe-none	scripts-so	unsafe-none	none			
+S044	S			same-site						unsafe-none	unsafe-none	scripts-so	unsafe-none	same-origin			
+S045	S			same-site						unsafe-none	unsafe-none	scripts-so	unsafe-none	cross-origin			
+S046	S			same-site						unsafe-none	unsafe-none	scripts-so	require-corp	none			
+S047	S			same-site						unsafe-none	unsafe-none	scripts-so	require-corp	same-origin			
+S048	S			same-site						unsafe-none	unsafe-none	scripts-so	require-corp	cross-origin			
+S049	S			cross-site						unsafe-none	unsafe-none	scripts-so	unsafe-none	none			
+S050	S			cross-site						unsafe-none	unsafe-none	scripts-so	unsafe-none	same-origin			
+S051	S			cross-site						unsafe-none	unsafe-none	scripts-so	unsafe-none	cross-origin			
+S052	S			cross-site						unsafe-none	unsafe-none	scripts-so	require-corp	none			
+S053	S			cross-site						unsafe-none	unsafe-none	scripts-so	require-corp	same-origin			
+S054	S			cross-site						unsafe-none	unsafe-none	scripts-so	require-corp	cross-origin			
+S055	S			same-host						unsafe-none	same-origin	none	unsafe-none	none			
+S056	S			same-host						unsafe-none	same-origin	none	unsafe-none	same-origin			
+S057	S			same-host						unsafe-none	same-origin	none	unsafe-none	cross-origin			
+S058	S			same-host						unsafe-none	same-origin	none	require-corp	none			
+S059	S			same-host						unsafe-none	same-origin	none	require-corp	same-origin			
+S060	S			same-host						unsafe-none	same-origin	none	require-corp	cross-origin			
+S061	S			same-site						unsafe-none	same-origin	none	unsafe-none	none			
+S062	S			same-site						unsafe-none	same-origin	none	unsafe-none	same-origin			
+S063	S			same-site						unsafe-none	same-origin	none	unsafe-none	cross-origin			
+S064	S			same-site						unsafe-none	same-origin	none	require-corp	none			
+S065	S			same-site						unsafe-none	same-origin	none	require-corp	same-origin			
+S066	S			same-site						unsafe-none	same-origin	none	require-corp	cross-origin			
+S067	S			cross-site						unsafe-none	same-origin	none	unsafe-none	none			
+S068	S			cross-site						unsafe-none	same-origin	none	unsafe-none	same-origin			
+S069	S			cross-site						unsafe-none	same-origin	none	unsafe-none	cross-origin			
+S070	S			cross-site						unsafe-none	same-origin	none	require-corp	none			
+S071	S			cross-site						unsafe-none	same-origin	none	require-corp	same-origin			
+S072	S			cross-site						unsafe-none	same-origin	none	require-corp	cross-origin			
+S073	S			same-host						unsafe-none	same-origin	scripts	unsafe-none	none			
+S074	S			same-host						unsafe-none	same-origin	scripts	unsafe-none	same-origin			
+S075	S			same-host						unsafe-none	same-origin	scripts	unsafe-none	cross-origin			
+S076	S			same-host						unsafe-none	same-origin	scripts	require-corp	none			
+S077	S			same-host						unsafe-none	same-origin	scripts	require-corp	same-origin			
+S078	S			same-host						unsafe-none	same-origin	scripts	require-corp	cross-origin			
+S079	S			same-site						unsafe-none	same-origin	scripts	unsafe-none	none			
+S080	S			same-site						unsafe-none	same-origin	scripts	unsafe-none	same-origin			
+S081	S			same-site						unsafe-none	same-origin	scripts	unsafe-none	cross-origin			
+S082	S			same-site						unsafe-none	same-origin	scripts	require-corp	none			
+S083	S			same-site						unsafe-none	same-origin	scripts	require-corp	same-origin			
+S084	S			same-site						unsafe-none	same-origin	scripts	require-corp	cross-origin			
+S085	S			cross-site						unsafe-none	same-origin	scripts	unsafe-none	none			
+S086	S			cross-site						unsafe-none	same-origin	scripts	unsafe-none	same-origin			
+S087	S			cross-site						unsafe-none	same-origin	scripts	unsafe-none	cross-origin			
+S088	S			cross-site						unsafe-none	same-origin	scripts	require-corp	none			
+S089	S			cross-site						unsafe-none	same-origin	scripts	require-corp	same-origin			
+S090	S			cross-site						unsafe-none	same-origin	scripts	require-corp	cross-origin			
+S091	S			same-host						unsafe-none	same-origin	scripts-so	unsafe-none	none			
+S092	S			same-host						unsafe-none	same-origin	scripts-so	unsafe-none	same-origin			
+S093	S			same-host						unsafe-none	same-origin	scripts-so	unsafe-none	cross-origin			
+S094	S			same-host						unsafe-none	same-origin	scripts-so	require-corp	none			
+S095	S			same-host						unsafe-none	same-origin	scripts-so	require-corp	same-origin			
+S096	S			same-host						unsafe-none	same-origin	scripts-so	require-corp	cross-origin			
+S097	S			same-site						unsafe-none	same-origin	scripts-so	unsafe-none	none			
+S098	S			same-site						unsafe-none	same-origin	scripts-so	unsafe-none	same-origin			
+S099	S			same-site						unsafe-none	same-origin	scripts-so	unsafe-none	cross-origin			
+S100	S			same-site						unsafe-none	same-origin	scripts-so	require-corp	none			
+S101	S			same-site						unsafe-none	same-origin	scripts-so	require-corp	same-origin			
+S102	S			same-site						unsafe-none	same-origin	scripts-so	require-corp	cross-origin			
+S103	S			cross-site						unsafe-none	same-origin	scripts-so	unsafe-none	none			
+S104	S			cross-site						unsafe-none	same-origin	scripts-so	unsafe-none	same-origin			
+S105	S			cross-site						unsafe-none	same-origin	scripts-so	unsafe-none	cross-origin			
+S106	S			cross-site						unsafe-none	same-origin	scripts-so	require-corp	none			
+S107	S			cross-site						unsafe-none	same-origin	scripts-so	require-corp	same-origin			
+S108	S			cross-site						unsafe-none	same-origin	scripts-so	require-corp	cross-origin			
+S109	S			same-host						require-corp	unsafe-none	none	unsafe-none	none			
+S110	S			same-host						require-corp	unsafe-none	none	unsafe-none	same-origin			
+S111	S			same-host						require-corp	unsafe-none	none	unsafe-none	cross-origin			
+S112	S			same-host						require-corp	unsafe-none	none	require-corp	none			
+S113	S			same-host						require-corp	unsafe-none	none	require-corp	same-origin			
+S114	S			same-host						require-corp	unsafe-none	none	require-corp	cross-origin			
+S115	S			same-site						require-corp	unsafe-none	none	unsafe-none	none			
+S116	S			same-site						require-corp	unsafe-none	none	unsafe-none	same-origin			
+S117	S			same-site						require-corp	unsafe-none	none	unsafe-none	cross-origin			
+S118	S			same-site						require-corp	unsafe-none	none	require-corp	none			
+S119	S			same-site						require-corp	unsafe-none	none	require-corp	same-origin			
+S120	S			same-site						require-corp	unsafe-none	none	require-corp	cross-origin			
+S121	S			cross-site						require-corp	unsafe-none	none	unsafe-none	none			
+S122	S			cross-site						require-corp	unsafe-none	none	unsafe-none	same-origin			
+S123	S			cross-site						require-corp	unsafe-none	none	unsafe-none	cross-origin			
+S124	S			cross-site						require-corp	unsafe-none	none	require-corp	none			
+S125	S			cross-site						require-corp	unsafe-none	none	require-corp	same-origin			
+S126	S			cross-site						require-corp	unsafe-none	none	require-corp	cross-origin			
+S127	S			same-host						require-corp	unsafe-none	scripts	unsafe-none	none			
+S128	S			same-host						require-corp	unsafe-none	scripts	unsafe-none	same-origin			
+S129	S			same-host						require-corp	unsafe-none	scripts	unsafe-none	cross-origin			
+S130	S			same-host						require-corp	unsafe-none	scripts	require-corp	none			
+S131	S			same-host						require-corp	unsafe-none	scripts	require-corp	same-origin			
+S132	S			same-host						require-corp	unsafe-none	scripts	require-corp	cross-origin			
+S133	S			same-site						require-corp	unsafe-none	scripts	unsafe-none	none			
+S134	S			same-site						require-corp	unsafe-none	scripts	unsafe-none	same-origin			
+S135	S			same-site						require-corp	unsafe-none	scripts	unsafe-none	cross-origin			
+S136	S			same-site						require-corp	unsafe-none	scripts	require-corp	none			
+S137	S			same-site						require-corp	unsafe-none	scripts	require-corp	same-origin			
+S138	S			same-site						require-corp	unsafe-none	scripts	require-corp	cross-origin			
+S139	S			cross-site						require-corp	unsafe-none	scripts	unsafe-none	none			
+S140	S			cross-site						require-corp	unsafe-none	scripts	unsafe-none	same-origin			
+S141	S			cross-site						require-corp	unsafe-none	scripts	unsafe-none	cross-origin			
+S142	S			cross-site						require-corp	unsafe-none	scripts	require-corp	none			
+S143	S			cross-site						require-corp	unsafe-none	scripts	require-corp	same-origin			
+S144	S			cross-site						require-corp	unsafe-none	scripts	require-corp	cross-origin			
+S145	S			same-host						require-corp	unsafe-none	scripts-so	unsafe-none	none			
+S146	S			same-host						require-corp	unsafe-none	scripts-so	unsafe-none	same-origin			
+S147	S			same-host						require-corp	unsafe-none	scripts-so	unsafe-none	cross-origin			
+S148	S			same-host						require-corp	unsafe-none	scripts-so	require-corp	none			
+S149	S			same-host						require-corp	unsafe-none	scripts-so	require-corp	same-origin			
+S150	S			same-host						require-corp	unsafe-none	scripts-so	require-corp	cross-origin			
+S151	S			same-site						require-corp	unsafe-none	scripts-so	unsafe-none	none			
+S152	S			same-site						require-corp	unsafe-none	scripts-so	unsafe-none	same-origin			
+S153	S			same-site						require-corp	unsafe-none	scripts-so	unsafe-none	cross-origin			
+S154	S			same-site						require-corp	unsafe-none	scripts-so	require-corp	none			
+S155	S			same-site						require-corp	unsafe-none	scripts-so	require-corp	same-origin			
+S156	S			same-site						require-corp	unsafe-none	scripts-so	require-corp	cross-origin			
+S157	S			cross-site						require-corp	unsafe-none	scripts-so	unsafe-none	none			
+S158	S			cross-site						require-corp	unsafe-none	scripts-so	unsafe-none	same-origin			
+S159	S			cross-site						require-corp	unsafe-none	scripts-so	unsafe-none	cross-origin			
+S160	S			cross-site						require-corp	unsafe-none	scripts-so	require-corp	none			
+S161	S			cross-site						require-corp	unsafe-none	scripts-so	require-corp	same-origin			
+S162	S			cross-site						require-corp	unsafe-none	scripts-so	require-corp	cross-origin			
+S163	S			same-host						require-corp	same-origin	none	unsafe-none	none			
+S164	S			same-host						require-corp	same-origin	none	unsafe-none	same-origin			
+S165	S			same-host						require-corp	same-origin	none	unsafe-none	cross-origin			
+S166	S			same-host						require-corp	same-origin	none	require-corp	none			
+S167	S			same-host						require-corp	same-origin	none	require-corp	same-origin			
+S168	S			same-host						require-corp	same-origin	none	require-corp	cross-origin			
+S169	S			same-site						require-corp	same-origin	none	unsafe-none	none			
+S170	S			same-site						require-corp	same-origin	none	unsafe-none	same-origin			
+S171	S			same-site						require-corp	same-origin	none	unsafe-none	cross-origin			
+S172	S			same-site						require-corp	same-origin	none	require-corp	none			
+S173	S			same-site						require-corp	same-origin	none	require-corp	same-origin			
+S174	S			same-site						require-corp	same-origin	none	require-corp	cross-origin			
+S175	S			cross-site						require-corp	same-origin	none	unsafe-none	none			
+S176	S			cross-site						require-corp	same-origin	none	unsafe-none	same-origin			
+S177	S			cross-site						require-corp	same-origin	none	unsafe-none	cross-origin			
+S178	S			cross-site						require-corp	same-origin	none	require-corp	none			
+S179	S			cross-site						require-corp	same-origin	none	require-corp	same-origin			
+S180	S			cross-site						require-corp	same-origin	none	require-corp	cross-origin			
+S181	S			same-host						require-corp	same-origin	scripts	unsafe-none	none			
+S182	S			same-host						require-corp	same-origin	scripts	unsafe-none	same-origin			
+S183	S			same-host						require-corp	same-origin	scripts	unsafe-none	cross-origin			
+S184	S			same-host						require-corp	same-origin	scripts	require-corp	none			
+S185	S			same-host						require-corp	same-origin	scripts	require-corp	same-origin			
+S186	S			same-host						require-corp	same-origin	scripts	require-corp	cross-origin			
+S187	S			same-site						require-corp	same-origin	scripts	unsafe-none	none			
+S188	S			same-site						require-corp	same-origin	scripts	unsafe-none	same-origin			
+S189	S			same-site						require-corp	same-origin	scripts	unsafe-none	cross-origin			
+S190	S			same-site						require-corp	same-origin	scripts	require-corp	none			
+S191	S			same-site						require-corp	same-origin	scripts	require-corp	same-origin			
+S192	S			same-site						require-corp	same-origin	scripts	require-corp	cross-origin			
+S193	S			cross-site						require-corp	same-origin	scripts	unsafe-none	none			
+S194	S			cross-site						require-corp	same-origin	scripts	unsafe-none	same-origin			
+S195	S			cross-site						require-corp	same-origin	scripts	unsafe-none	cross-origin			
+S196	S			cross-site						require-corp	same-origin	scripts	require-corp	none			
+S197	S			cross-site						require-corp	same-origin	scripts	require-corp	same-origin			
+S198	S			cross-site						require-corp	same-origin	scripts	require-corp	cross-origin			
+S199	S			same-host						require-corp	same-origin	scripts-so	unsafe-none	none			
+S200	S			same-host						require-corp	same-origin	scripts-so	unsafe-none	same-origin			
+S201	S			same-host						require-corp	same-origin	scripts-so	unsafe-none	cross-origin			
+S202	S			same-host						require-corp	same-origin	scripts-so	require-corp	none			
+S203	S			same-host						require-corp	same-origin	scripts-so	require-corp	same-origin			
+S204	S			same-host						require-corp	same-origin	scripts-so	require-corp	cross-origin			
+S205	S			same-site						require-corp	same-origin	scripts-so	unsafe-none	none			
+S206	S			same-site						require-corp	same-origin	scripts-so	unsafe-none	same-origin			
+S207	S			same-site						require-corp	same-origin	scripts-so	unsafe-none	cross-origin			
+S208	S			same-site						require-corp	same-origin	scripts-so	require-corp	none			
+S209	S			same-site						require-corp	same-origin	scripts-so	require-corp	same-origin			
+S210	S			same-site						require-corp	same-origin	scripts-so	require-corp	cross-origin			
+S211	S			cross-site						require-corp	same-origin	scripts-so	unsafe-none	none			
+S212	S			cross-site						require-corp	same-origin	scripts-so	unsafe-none	same-origin			
+S213	S			cross-site						require-corp	same-origin	scripts-so	unsafe-none	cross-origin			
+S214	S			cross-site						require-corp	same-origin	scripts-so	require-corp	none			
+S215	S			cross-site						require-corp	same-origin	scripts-so	require-corp	same-origin			
+S216	S			cross-site						require-corp	same-origin	scripts-so	require-corp	cross-origin			
+S217	S			same-host						credentialless	unsafe-none	none	unsafe-none	none			
+S218	S			same-host						credentialless	unsafe-none	none	unsafe-none	same-origin			
+S219	S			same-host						credentialless	unsafe-none	none	unsafe-none	cross-origin			
+S220	S			same-host						credentialless	unsafe-none	none	require-corp	none			
+S221	S			same-host						credentialless	unsafe-none	none	require-corp	same-origin			
+S222	S			same-host						credentialless	unsafe-none	none	require-corp	cross-origin			
+S223	S			same-site						credentialless	unsafe-none	none	unsafe-none	none			
+S224	S			same-site						credentialless	unsafe-none	none	unsafe-none	same-origin			
+S225	S			same-site						credentialless	unsafe-none	none	unsafe-none	cross-origin			
+S226	S			same-site						credentialless	unsafe-none	none	require-corp	none			
+S227	S			same-site						credentialless	unsafe-none	none	require-corp	same-origin			
+S228	S			same-site						credentialless	unsafe-none	none	require-corp	cross-origin			
+S229	S			cross-site						credentialless	unsafe-none	none	unsafe-none	none			
+S230	S			cross-site						credentialless	unsafe-none	none	unsafe-none	same-origin			
+S231	S			cross-site						credentialless	unsafe-none	none	unsafe-none	cross-origin			
+S232	S			cross-site						credentialless	unsafe-none	none	require-corp	none			
+S233	S			cross-site						credentialless	unsafe-none	none	require-corp	same-origin			
+S234	S			cross-site						credentialless	unsafe-none	none	require-corp	cross-origin			
+S235	S			same-host						credentialless	unsafe-none	scripts	unsafe-none	none			
+S236	S			same-host						credentialless	unsafe-none	scripts	unsafe-none	same-origin			
+S237	S			same-host						credentialless	unsafe-none	scripts	unsafe-none	cross-origin			
+S238	S			same-host						credentialless	unsafe-none	scripts	require-corp	none			
+S239	S			same-host						credentialless	unsafe-none	scripts	require-corp	same-origin			
+S240	S			same-host						credentialless	unsafe-none	scripts	require-corp	cross-origin			
+S241	S			same-site						credentialless	unsafe-none	scripts	unsafe-none	none			
+S242	S			same-site						credentialless	unsafe-none	scripts	unsafe-none	same-origin			
+S243	S			same-site						credentialless	unsafe-none	scripts	unsafe-none	cross-origin			
+S244	S			same-site						credentialless	unsafe-none	scripts	require-corp	none			
+S245	S			same-site						credentialless	unsafe-none	scripts	require-corp	same-origin			
+S246	S			same-site						credentialless	unsafe-none	scripts	require-corp	cross-origin			
+S247	S			cross-site						credentialless	unsafe-none	scripts	unsafe-none	none			
+S248	S			cross-site						credentialless	unsafe-none	scripts	unsafe-none	same-origin			
+S249	S			cross-site						credentialless	unsafe-none	scripts	unsafe-none	cross-origin			
+S250	S			cross-site						credentialless	unsafe-none	scripts	require-corp	none			
+S251	S			cross-site						credentialless	unsafe-none	scripts	require-corp	same-origin			
+S252	S			cross-site						credentialless	unsafe-none	scripts	require-corp	cross-origin			
+S253	S			same-host						credentialless	unsafe-none	scripts-so	unsafe-none	none			
+S254	S			same-host						credentialless	unsafe-none	scripts-so	unsafe-none	same-origin			
+S255	S			same-host						credentialless	unsafe-none	scripts-so	unsafe-none	cross-origin			
+S256	S			same-host						credentialless	unsafe-none	scripts-so	require-corp	none			
+S257	S			same-host						credentialless	unsafe-none	scripts-so	require-corp	same-origin			
+S258	S			same-host						credentialless	unsafe-none	scripts-so	require-corp	cross-origin			
+S259	S			same-site						credentialless	unsafe-none	scripts-so	unsafe-none	none			
+S260	S			same-site						credentialless	unsafe-none	scripts-so	unsafe-none	same-origin			
+S261	S			same-site						credentialless	unsafe-none	scripts-so	unsafe-none	cross-origin			
+S262	S			same-site						credentialless	unsafe-none	scripts-so	require-corp	none			
+S263	S			same-site						credentialless	unsafe-none	scripts-so	require-corp	same-origin			
+S264	S			same-site						credentialless	unsafe-none	scripts-so	require-corp	cross-origin			
+S265	S			cross-site						credentialless	unsafe-none	scripts-so	unsafe-none	none			
+S266	S			cross-site						credentialless	unsafe-none	scripts-so	unsafe-none	same-origin			
+S267	S			cross-site						credentialless	unsafe-none	scripts-so	unsafe-none	cross-origin			
+S268	S			cross-site						credentialless	unsafe-none	scripts-so	require-corp	none			
+S269	S			cross-site						credentialless	unsafe-none	scripts-so	require-corp	same-origin			
+S270	S			cross-site						credentialless	unsafe-none	scripts-so	require-corp	cross-origin			
+S271	S			same-host						credentialless	same-origin	none	unsafe-none	none			
+S272	S			same-host						credentialless	same-origin	none	unsafe-none	same-origin			
+S273	S			same-host						credentialless	same-origin	none	unsafe-none	cross-origin			
+S274	S			same-host						credentialless	same-origin	none	require-corp	none			
+S275	S			same-host						credentialless	same-origin	none	require-corp	same-origin			
+S276	S			same-host						credentialless	same-origin	none	require-corp	cross-origin			
+S277	S			same-site						credentialless	same-origin	none	unsafe-none	none			
+S278	S			same-site						credentialless	same-origin	none	unsafe-none	same-origin			
+S279	S			same-site						credentialless	same-origin	none	unsafe-none	cross-origin			
+S280	S			same-site						credentialless	same-origin	none	require-corp	none			
+S281	S			same-site						credentialless	same-origin	none	require-corp	same-origin			
+S282	S			same-site						credentialless	same-origin	none	require-corp	cross-origin			
+S283	S			cross-site						credentialless	same-origin	none	unsafe-none	none			
+S284	S			cross-site						credentialless	same-origin	none	unsafe-none	same-origin			
+S285	S			cross-site						credentialless	same-origin	none	unsafe-none	cross-origin			
+S286	S			cross-site						credentialless	same-origin	none	require-corp	none			
+S287	S			cross-site						credentialless	same-origin	none	require-corp	same-origin			
+S288	S			cross-site						credentialless	same-origin	none	require-corp	cross-origin			
+S289	S			same-host						credentialless	same-origin	scripts	unsafe-none	none			
+S290	S			same-host						credentialless	same-origin	scripts	unsafe-none	same-origin			
+S291	S			same-host						credentialless	same-origin	scripts	unsafe-none	cross-origin			
+S292	S			same-host						credentialless	same-origin	scripts	require-corp	none			
+S293	S			same-host						credentialless	same-origin	scripts	require-corp	same-origin			
+S294	S			same-host						credentialless	same-origin	scripts	require-corp	cross-origin			
+S295	S			same-site						credentialless	same-origin	scripts	unsafe-none	none			
+S296	S			same-site						credentialless	same-origin	scripts	unsafe-none	same-origin			
+S297	S			same-site						credentialless	same-origin	scripts	unsafe-none	cross-origin			
+S298	S			same-site						credentialless	same-origin	scripts	require-corp	none			
+S299	S			same-site						credentialless	same-origin	scripts	require-corp	same-origin			
+S300	S			same-site						credentialless	same-origin	scripts	require-corp	cross-origin			
+S301	S			cross-site						credentialless	same-origin	scripts	unsafe-none	none			
+S302	S			cross-site						credentialless	same-origin	scripts	unsafe-none	same-origin			
+S303	S			cross-site						credentialless	same-origin	scripts	unsafe-none	cross-origin			
+S304	S			cross-site						credentialless	same-origin	scripts	require-corp	none			
+S305	S			cross-site						credentialless	same-origin	scripts	require-corp	same-origin			
+S306	S			cross-site						credentialless	same-origin	scripts	require-corp	cross-origin			
+S307	S			same-host						credentialless	same-origin	scripts-so	unsafe-none	none			
+S308	S			same-host						credentialless	same-origin	scripts-so	unsafe-none	same-origin			
+S309	S			same-host						credentialless	same-origin	scripts-so	unsafe-none	cross-origin			
+S310	S			same-host						credentialless	same-origin	scripts-so	require-corp	none			
+S311	S			same-host						credentialless	same-origin	scripts-so	require-corp	same-origin			
+S312	S			same-host						credentialless	same-origin	scripts-so	require-corp	cross-origin			
+S313	S			same-site						credentialless	same-origin	scripts-so	unsafe-none	none			
+S314	S			same-site						credentialless	same-origin	scripts-so	unsafe-none	same-origin			
+S315	S			same-site						credentialless	same-origin	scripts-so	unsafe-none	cross-origin			
+S316	S			same-site						credentialless	same-origin	scripts-so	require-corp	none			
+S317	S			same-site						credentialless	same-origin	scripts-so	require-corp	same-origin			
+S318	S			same-site						credentialless	same-origin	scripts-so	require-corp	cross-origin			
+S319	S			cross-site						credentialless	same-origin	scripts-so	unsafe-none	none			
+S320	S			cross-site						credentialless	same-origin	scripts-so	unsafe-none	same-origin			
+S321	S			cross-site						credentialless	same-origin	scripts-so	unsafe-none	cross-origin			
+S322	S			cross-site						credentialless	same-origin	scripts-so	require-corp	none			
+S323	S			cross-site						credentialless	same-origin	scripts-so	require-corp	same-origin			
+S324	S			cross-site						credentialless	same-origin	scripts-so	require-corp	cross-origin			
+C001	C			same-host						unsafe-none				none	https	https	fetch
+C002	C			same-host						unsafe-none				none	https	https	img
+C003	C			same-host						unsafe-none				same-origin	https	https	fetch
+C004	C			same-host						unsafe-none				same-origin	https	https	img
+C005	C			same-host						unsafe-none				same-site	https	https	fetch
+C006	C			same-host						unsafe-none				same-site	https	https	img
+C007	C			same-host						unsafe-none				cross-origin	https	https	fetch
+C008	C			same-host						unsafe-none				cross-origin	https	https	img
+C009	C			same-host						unsafe-none				none	https	http	fetch
+C010	C			same-host						unsafe-none				none	https	http	img
+C011	C			same-host						unsafe-none				same-origin	https	http	fetch
+C012	C			same-host						unsafe-none				same-origin	https	http	img
+C013	C			same-host						unsafe-none				same-site	https	http	fetch
+C014	C			same-host						unsafe-none				same-site	https	http	img
+C015	C			same-host						unsafe-none				cross-origin	https	http	fetch
+C016	C			same-host						unsafe-none				cross-origin	https	http	img
+C017	C			same-host						unsafe-none				none	https	http-tls	fetch
+C018	C			same-host						unsafe-none				none	https	http-tls	img
+C019	C			same-host						unsafe-none				same-origin	https	http-tls	fetch
+C020	C			same-host						unsafe-none				same-origin	https	http-tls	img
+C021	C			same-host						unsafe-none				same-site	https	http-tls	fetch
+C022	C			same-host						unsafe-none				same-site	https	http-tls	img
+C023	C			same-host						unsafe-none				cross-origin	https	http-tls	fetch
+C024	C			same-host						unsafe-none				cross-origin	https	http-tls	img
+C025	C			same-site						unsafe-none				none	https	https	fetch
+C026	C			same-site						unsafe-none				none	https	https	img
+C027	C			same-site						unsafe-none				same-origin	https	https	fetch
+C028	C			same-site						unsafe-none				same-origin	https	https	img
+C029	C			same-site						unsafe-none				same-site	https	https	fetch
+C030	C			same-site						unsafe-none				same-site	https	https	img
+C031	C			same-site						unsafe-none				cross-origin	https	https	fetch
+C032	C			same-site						unsafe-none				cross-origin	https	https	img
+C033	C			same-site						unsafe-none				none	https	http	fetch
+C034	C			same-site						unsafe-none				none	https	http	img
+C035	C			same-site						unsafe-none				same-origin	https	http	fetch
+C036	C			same-site						unsafe-none				same-origin	https	http	img
+C037	C			same-site						unsafe-none				same-site	https	http	fetch
+C038	C			same-site						unsafe-none				same-site	https	http	img
+C039	C			same-site						unsafe-none				cross-origin	https	http	fetch
+C040	C			same-site						unsafe-none				cross-origin	https	http	img
+C041	C			same-site						unsafe-none				none	https	http-tls	fetch
+C042	C			same-site						unsafe-none				none	https	http-tls	img
+C043	C			same-site						unsafe-none				same-origin	https	http-tls	fetch
+C044	C			same-site						unsafe-none				same-origin	https	http-tls	img
+C045	C			same-site						unsafe-none				same-site	https	http-tls	fetch
+C046	C			same-site						unsafe-none				same-site	https	http-tls	img
+C047	C			same-site						unsafe-none				cross-origin	https	http-tls	fetch
+C048	C			same-site						unsafe-none				cross-origin	https	http-tls	img
+C049	C			cross-site						unsafe-none				none	https	https	fetch
+C050	C			cross-site						unsafe-none				none	https	https	img
+C051	C			cross-site						unsafe-none				same-origin	https	https	fetch
+C052	C			cross-site						unsafe-none				same-origin	https	https	img
+C053	C			cross-site						unsafe-none				same-site	https	https	fetch
+C054	C			cross-site						unsafe-none				same-site	https	https	img
+C055	C			cross-site						unsafe-none				cross-origin	https	https	fetch
+C056	C			cross-site						unsafe-none				cross-origin	https	https	img
+C057	C			cross-site						unsafe-none				none	https	http	fetch
+C058	C			cross-site						unsafe-none				none	https	http	img
+C059	C			cross-site						unsafe-none				same-origin	https	http	fetch
+C060	C			cross-site						unsafe-none				same-origin	https	http	img
+C061	C			cross-site						unsafe-none				same-site	https	http	fetch
+C062	C			cross-site						unsafe-none				same-site	https	http	img
+C063	C			cross-site						unsafe-none				cross-origin	https	http	fetch
+C064	C			cross-site						unsafe-none				cross-origin	https	http	img
+C065	C			cross-site						unsafe-none				none	https	http-tls	fetch
+C066	C			cross-site						unsafe-none				none	https	http-tls	img
+C067	C			cross-site						unsafe-none				same-origin	https	http-tls	fetch
+C068	C			cross-site						unsafe-none				same-origin	https	http-tls	img
+C069	C			cross-site						unsafe-none				same-site	https	http-tls	fetch
+C070	C			cross-site						unsafe-none				same-site	https	http-tls	img
+C071	C			cross-site						unsafe-none				cross-origin	https	http-tls	fetch
+C072	C			cross-site						unsafe-none				cross-origin	https	http-tls	img
+C073	C			same-host						require-corp				none	https	https	fetch
+C074	C			same-host						require-corp				none	https	https	img
+C075	C			same-host						require-corp				same-origin	https	https	fetch
+C076	C			same-host						require-corp				same-origin	https	https	img
+C077	C			same-host						require-corp				same-site	https	https	fetch
+C078	C			same-host						require-corp				same-site	https	https	img
+C079	C			same-host						require-corp				cross-origin	https	https	fetch
+C080	C			same-host						require-corp				cross-origin	https	https	img
+C081	C			same-host						require-corp				none	https	http	fetch
+C082	C			same-host						require-corp				none	https	http	img
+C083	C			same-host						require-corp				same-origin	https	http	fetch
+C084	C			same-host						require-corp				same-origin	https	http	img
+C085	C			same-host						require-corp				same-site	https	http	fetch
+C086	C			same-host						require-corp				same-site	https	http	img
+C087	C			same-host						require-corp				cross-origin	https	http	fetch
+C088	C			same-host						require-corp				cross-origin	https	http	img
+C089	C			same-host						require-corp				none	https	http-tls	fetch
+C090	C			same-host						require-corp				none	https	http-tls	img
+C091	C			same-host						require-corp				same-origin	https	http-tls	fetch
+C092	C			same-host						require-corp				same-origin	https	http-tls	img
+C093	C			same-host						require-corp				same-site	https	http-tls	fetch
+C094	C			same-host						require-corp				same-site	https	http-tls	img
+C095	C			same-host						require-corp				cross-origin	https	http-tls	fetch
+C096	C			same-host						require-corp				cross-origin	https	http-tls	img
+C097	C			same-site						require-corp				none	https	https	fetch
+C098	C			same-site						require-corp				none	https	https	img
+C099	C			same-site						require-corp				same-origin	https	https	fetch
+C100	C			same-site						require-corp				same-origin	https	https	img
+C101	C			same-site						require-corp				same-site	https	https	fetch
+C102	C			same-site						require-corp				same-site	https	https	img
+C103	C			same-site						require-corp				cross-origin	https	https	fetch
+C104	C			same-site						require-corp				cross-origin	https	https	img
+C105	C			same-site						require-corp				none	https	http	fetch
+C106	C			same-site						require-corp				none	https	http	img
+C107	C			same-site						require-corp				same-origin	https	http	fetch
+C108	C			same-site						require-corp				same-origin	https	http	img
+C109	C			same-site						require-corp				same-site	https	http	fetch
+C110	C			same-site						require-corp				same-site	https	http	img
+C111	C			same-site						require-corp				cross-origin	https	http	fetch
+C112	C			same-site						require-corp				cross-origin	https	http	img
+C113	C			same-site						require-corp				none	https	http-tls	fetch
+C114	C			same-site						require-corp				none	https	http-tls	img
+C115	C			same-site						require-corp				same-origin	https	http-tls	fetch
+C116	C			same-site						require-corp				same-origin	https	http-tls	img
+C117	C			same-site						require-corp				same-site	https	http-tls	fetch
+C118	C			same-site						require-corp				same-site	https	http-tls	img
+C119	C			same-site						require-corp				cross-origin	https	http-tls	fetch
+C120	C			same-site						require-corp				cross-origin	https	http-tls	img
+C121	C			cross-site						require-corp				none	https	https	fetch
+C122	C			cross-site						require-corp				none	https	https	img
+C123	C			cross-site						require-corp				same-origin	https	https	fetch
+C124	C			cross-site						require-corp				same-origin	https	https	img
+C125	C			cross-site						require-corp				same-site	https	https	fetch
+C126	C			cross-site						require-corp				same-site	https	https	img
+C127	C			cross-site						require-corp				cross-origin	https	https	fetch
+C128	C			cross-site						require-corp				cross-origin	https	https	img
+C129	C			cross-site						require-corp				none	https	http	fetch
+C130	C			cross-site						require-corp				none	https	http	img
+C131	C			cross-site						require-corp				same-origin	https	http	fetch
+C132	C			cross-site						require-corp				same-origin	https	http	img
+C133	C			cross-site						require-corp				same-site	https	http	fetch
+C134	C			cross-site						require-corp				same-site	https	http	img
+C135	C			cross-site						require-corp				cross-origin	https	http	fetch
+C136	C			cross-site						require-corp				cross-origin	https	http	img
+C137	C			cross-site						require-corp				none	https	http-tls	fetch
+C138	C			cross-site						require-corp				none	https	http-tls	img
+C139	C			cross-site						require-corp				same-origin	https	http-tls	fetch
+C140	C			cross-site						require-corp				same-origin	https	http-tls	img
+C141	C			cross-site						require-corp				same-site	https	http-tls	fetch
+C142	C			cross-site						require-corp				same-site	https	http-tls	img
+C143	C			cross-site						require-corp				cross-origin	https	http-tls	fetch
+C144	C			cross-site						require-corp				cross-origin	https	http-tls	img
+C145	C			same-host						credentialless				none	https	https	fetch
+C146	C			same-host						credentialless				none	https	https	img
+C147	C			same-host						credentialless				same-origin	https	https	fetch
+C148	C			same-host						credentialless				same-origin	https	https	img
+C149	C			same-host						credentialless				same-site	https	https	fetch
+C150	C			same-host						credentialless				same-site	https	https	img
+C151	C			same-host						credentialless				cross-origin	https	https	fetch
+C152	C			same-host						credentialless				cross-origin	https	https	img
+C153	C			same-host						credentialless				none	https	http	fetch
+C154	C			same-host						credentialless				none	https	http	img
+C155	C			same-host						credentialless				same-origin	https	http	fetch
+C156	C			same-host						credentialless				same-origin	https	http	img
+C157	C			same-host						credentialless				same-site	https	http	fetch
+C158	C			same-host						credentialless				same-site	https	http	img
+C159	C			same-host						credentialless				cross-origin	https	http	fetch
+C160	C			same-host						credentialless				cross-origin	https	http	img
+C161	C			same-host						credentialless				none	https	http-tls	fetch
+C162	C			same-host						credentialless				none	https	http-tls	img
+C163	C			same-host						credentialless				same-origin	https	http-tls	fetch
+C164	C			same-host						credentialless				same-origin	https	http-tls	img
+C165	C			same-host						credentialless				same-site	https	http-tls	fetch
+C166	C			same-host						credentialless				same-site	https	http-tls	img
+C167	C			same-host						credentialless				cross-origin	https	http-tls	fetch
+C168	C			same-host						credentialless				cross-origin	https	http-tls	img
+C169	C			same-site						credentialless				none	https	https	fetch
+C170	C			same-site						credentialless				none	https	https	img
+C171	C			same-site						credentialless				same-origin	https	https	fetch
+C172	C			same-site						credentialless				same-origin	https	https	img
+C173	C			same-site						credentialless				same-site	https	https	fetch
+C174	C			same-site						credentialless				same-site	https	https	img
+C175	C			same-site						credentialless				cross-origin	https	https	fetch
+C176	C			same-site						credentialless				cross-origin	https	https	img
+C177	C			same-site						credentialless				none	https	http	fetch
+C178	C			same-site						credentialless				none	https	http	img
+C179	C			same-site						credentialless				same-origin	https	http	fetch
+C180	C			same-site						credentialless				same-origin	https	http	img
+C181	C			same-site						credentialless				same-site	https	http	fetch
+C182	C			same-site						credentialless				same-site	https	http	img
+C183	C			same-site						credentialless				cross-origin	https	http	fetch
+C184	C			same-site						credentialless				cross-origin	https	http	img
+C185	C			same-site						credentialless				none	https	http-tls	fetch
+C186	C			same-site						credentialless				none	https	http-tls	img
+C187	C			same-site						credentialless				same-origin	https	http-tls	fetch
+C188	C			same-site						credentialless				same-origin	https	http-tls	img
+C189	C			same-site						credentialless				same-site	https	http-tls	fetch
+C190	C			same-site						credentialless				same-site	https	http-tls	img
+C191	C			same-site						credentialless				cross-origin	https	http-tls	fetch
+C192	C			same-site						credentialless				cross-origin	https	http-tls	img
+C193	C			cross-site						credentialless				none	https	https	fetch
+C194	C			cross-site						credentialless				none	https	https	img
+C195	C			cross-site						credentialless				same-origin	https	https	fetch
+C196	C			cross-site						credentialless				same-origin	https	https	img
+C197	C			cross-site						credentialless				same-site	https	https	fetch
+C198	C			cross-site						credentialless				same-site	https	https	img
+C199	C			cross-site						credentialless				cross-origin	https	https	fetch
+C200	C			cross-site						credentialless				cross-origin	https	https	img
+C201	C			cross-site						credentialless				none	https	http	fetch
+C202	C			cross-site						credentialless				none	https	http	img
+C203	C			cross-site						credentialless				same-origin	https	http	fetch
+C204	C			cross-site						credentialless				same-origin	https	http	img
+C205	C			cross-site						credentialless				same-site	https	http	fetch
+C206	C			cross-site						credentialless				same-site	https	http	img
+C207	C			cross-site						credentialless				cross-origin	https	http	fetch
+C208	C			cross-site						credentialless				cross-origin	https	http	img
+C209	C			cross-site						credentialless				none	https	http-tls	fetch
+C210	C			cross-site						credentialless				none	https	http-tls	img
+C211	C			cross-site						credentialless				same-origin	https	http-tls	fetch
+C212	C			cross-site						credentialless				same-origin	https	http-tls	img
+C213	C			cross-site						credentialless				same-site	https	http-tls	fetch
+C214	C			cross-site						credentialless				same-site	https	http-tls	img
+C215	C			cross-site						credentialless				cross-origin	https	http-tls	fetch
+C216	C			cross-site						credentialless				cross-origin	https	http-tls	img
+C217	C			same-host						unsafe-none				none	http	https	fetch
+C218	C			same-host						unsafe-none				none	http	https	img
+C219	C			same-host						unsafe-none				same-origin	http	https	fetch
+C220	C			same-host						unsafe-none				same-origin	http	https	img
+C221	C			same-host						unsafe-none				same-site	http	https	fetch
+C222	C			same-host						unsafe-none				same-site	http	https	img
+C223	C			same-host						unsafe-none				cross-origin	http	https	fetch
+C224	C			same-host						unsafe-none				cross-origin	http	https	img
+C225	C			same-host						unsafe-none				none	http	http	fetch
+C226	C			same-host						unsafe-none				none	http	http	img
+C227	C			same-host						unsafe-none				same-origin	http	http	fetch
+C228	C			same-host						unsafe-none				same-origin	http	http	img
+C229	C			same-host						unsafe-none				same-site	http	http	fetch
+C230	C			same-host						unsafe-none				same-site	http	http	img
+C231	C			same-host						unsafe-none				cross-origin	http	http	fetch
+C232	C			same-host						unsafe-none				cross-origin	http	http	img
+C233	C			same-site						unsafe-none				none	http	https	fetch
+C234	C			same-site						unsafe-none				none	http	https	img
+C235	C			same-site						unsafe-none				same-origin	http	https	fetch
+C236	C			same-site						unsafe-none				same-origin	http	https	img
+C237	C			same-site						unsafe-none				same-site	http	https	fetch
+C238	C			same-site						unsafe-none				same-site	http	https	img
+C239	C			same-site						unsafe-none				cross-origin	http	https	fetch
+C240	C			same-site						unsafe-none				cross-origin	http	https	img
+C241	C			same-site						unsafe-none				none	http	http	fetch
+C242	C			same-site						unsafe-none				none	http	http	img
+C243	C			same-site						unsafe-none				same-origin	http	http	fetch
+C244	C			same-site						unsafe-none				same-origin	http	http	img
+C245	C			same-site						unsafe-none				same-site	http	http	fetch
+C246	C			same-site						unsafe-none				same-site	http	http	img
+C247	C			same-site						unsafe-none				cross-origin	http	http	fetch
+C248	C			same-site						unsafe-none				cross-origin	http	http	img
+C249	C			cross-site						unsafe-none				none	http	https	fetch
+C250	C			cross-site						unsafe-none				none	http	https	img
+C251	C			cross-site						unsafe-none				same-origin	http	https	fetch
+C252	C			cross-site						unsafe-none				same-origin	http	https	img
+C253	C			cross-site						unsafe-none				same-site	http	https	fetch
+C254	C			cross-site						unsafe-none				same-site	http	https	img
+C255	C			cross-site						unsafe-none				cross-origin	http	https	fetch
+C256	C			cross-site						unsafe-none				cross-origin	http	https	img
+C257	C			cross-site						unsafe-none				none	http	http	fetch
+C258	C			cross-site						unsafe-none				none	http	http	img
+C259	C			cross-site						unsafe-none				same-origin	http	http	fetch
+C260	C			cross-site						unsafe-none				same-origin	http	http	img
+C261	C			cross-site						unsafe-none				same-site	http	http	fetch
+C262	C			cross-site						unsafe-none				same-site	http	http	img
+C263	C			cross-site						unsafe-none				cross-origin	http	http	fetch
+C264	C			cross-site						unsafe-none				cross-origin	http	http	img
+C265	C			same-host						require-corp				none	http	https	fetch
+C266	C			same-host						require-corp				none	http	https	img
+C267	C			same-host						require-corp				same-origin	http	https	fetch
+C268	C			same-host						require-corp				same-origin	http	https	img
+C269	C			same-host						require-corp				same-site	http	https	fetch
+C270	C			same-host						require-corp				same-site	http	https	img
+C271	C			same-host						require-corp				cross-origin	http	https	fetch
+C272	C			same-host						require-corp				cross-origin	http	https	img
+C273	C			same-host						require-corp				none	http	http	fetch
+C274	C			same-host						require-corp				none	http	http	img
+C275	C			same-host						require-corp				same-origin	http	http	fetch
+C276	C			same-host						require-corp				same-origin	http	http	img
+C277	C			same-host						require-corp				same-site	http	http	fetch
+C278	C			same-host						require-corp				same-site	http	http	img
+C279	C			same-host						require-corp				cross-origin	http	http	fetch
+C280	C			same-host						require-corp				cross-origin	http	http	img
+C281	C			same-site						require-corp				none	http	https	fetch
+C282	C			same-site						require-corp				none	http	https	img
+C283	C			same-site						require-corp				same-origin	http	https	fetch
+C284	C			same-site						require-corp				same-origin	http	https	img
+C285	C			same-site						require-corp				same-site	http	https	fetch
+C286	C			same-site						require-corp				same-site	http	https	img
+C287	C			same-site						require-corp				cross-origin	http	https	fetch
+C288	C			same-site						require-corp				cross-origin	http	https	img
+C289	C			same-site						require-corp				none	http	http	fetch
+C290	C			same-site						require-corp				none	http	http	img
+C291	C			same-site						require-corp				same-origin	http	http	fetch
+C292	C			same-site						require-corp				same-origin	http	http	img
+C293	C			same-site						require-corp				same-site	http	http	fetch
+C294	C			same-site						require-corp				same-site	http	http	img
+C295	C			same-site						require-corp				cross-origin	http	http	fetch
+C296	C			same-site						require-corp				cross-origin	http	http	img
+C297	C			cross-site						require-corp				none	http	https	fetch
+C298	C			cross-site						require-corp				none	http	https	img
+C299	C			cross-site						require-corp				same-origin	http	https	fetch
+C300	C			cross-site						require-corp				same-origin	http	https	img
+C301	C			cross-site						require-corp				same-site	http	https	fetch
+C302	C			cross-site						require-corp				same-site	http	https	img
+C303	C			cross-site						require-corp				cross-origin	http	https	fetch
+C304	C			cross-site						require-corp				cross-origin	http	https	img
+C305	C			cross-site						require-corp				none	http	http	fetch
+C306	C			cross-site						require-corp				none	http	http	img
+C307	C			cross-site						require-corp				same-origin	http	http	fetch
+C308	C			cross-site						require-corp				same-origin	http	http	img
+C309	C			cross-site						require-corp				same-site	http	http	fetch
+C310	C			cross-site						require-corp				same-site	http	http	img
+C311	C			cross-site						require-corp				cross-origin	http	http	fetch
+C312	C			cross-site						require-corp				cross-origin	http	http	img
+C313	C			same-host						credentialless				none	http	https	fetch
+C314	C			same-host						credentialless				none	http	https	img
+C315	C			same-host						credentialless				same-origin	http	https	fetch
+C316	C			same-host						credentialless				same-origin	http	https	img
+C317	C			same-host						credentialless				same-site	http	https	fetch
+C318	C			same-host						credentialless				same-site	http	https	img
+C319	C			same-host						credentialless				cross-origin	http	https	fetch
+C320	C			same-host						credentialless				cross-origin	http	https	img
+C321	C			same-host						credentialless				none	http	http	fetch
+C322	C			same-host						credentialless				none	http	http	img
+C323	C			same-host						credentialless				same-origin	http	http	fetch
+C324	C			same-host						credentialless				same-origin	http	http	img
+C325	C			same-host						credentialless				same-site	http	http	fetch
+C326	C			same-host						credentialless				same-site	http	http	img
+C327	C			same-host						credentialless				cross-origin	http	http	fetch
+C328	C			same-host						credentialless				cross-origin	http	http	img
+C329	C			same-site						credentialless				none	http	https	fetch
+C330	C			same-site						credentialless				none	http	https	img
+C331	C			same-site						credentialless				same-origin	http	https	fetch
+C332	C			same-site						credentialless				same-origin	http	https	img
+C333	C			same-site						credentialless				same-site	http	https	fetch
+C334	C			same-site						credentialless				same-site	http	https	img
+C335	C			same-site						credentialless				cross-origin	http	https	fetch
+C336	C			same-site						credentialless				cross-origin	http	https	img
+C337	C			same-site						credentialless				none	http	http	fetch
+C338	C			same-site						credentialless				none	http	http	img
+C339	C			same-site						credentialless				same-origin	http	http	fetch
+C340	C			same-site						credentialless				same-origin	http	http	img
+C341	C			same-site						credentialless				same-site	http	http	fetch
+C342	C			same-site						credentialless				same-site	http	http	img
+C343	C			same-site						credentialless				cross-origin	http	http	fetch
+C344	C			same-site						credentialless				cross-origin	http	http	img
+C345	C			cross-site						credentialless				none	http	https	fetch
+C346	C			cross-site						credentialless				none	http	https	img
+C347	C			cross-site						credentialless				same-origin	http	https	fetch
+C348	C			cross-site						credentialless				same-origin	http	https	img
+C349	C			cross-site						credentialless				same-site	http	https	fetch
+C350	C			cross-site						credentialless				same-site	http	https	img
+C351	C			cross-site						credentialless				cross-origin	http	https	fetch
+C352	C			cross-site						credentialless				cross-origin	http	https	img
+C353	C			cross-site						credentialless				none	http	http	fetch
+C354	C			cross-site						credentialless				none	http	http	img
+C355	C			cross-site						credentialless				same-origin	http	http	fetch
+C356	C			cross-site						credentialless				same-origin	http	http	img
+C357	C			cross-site						credentialless				same-site	http	http	fetch
+C358	C			cross-site						credentialless				same-site	http	http	img
+C359	C			cross-site						credentialless				cross-origin	http	http	fetch
+C360	C			cross-site						credentialless				cross-origin	http	http	img

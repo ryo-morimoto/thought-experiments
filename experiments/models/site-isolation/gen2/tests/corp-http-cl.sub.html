@@ -1,0 +1,32 @@
+<!doctype html>
+<meta charset=utf-8>
+<meta name=timeout content=long>
+<title>gen2 corp-http-cl.sub.html</title>
+<script src=/resources/testharness.js></script>
+<script src=/resources/testharnessreport.js></script>
+<script src=/common/get-host-info.sub.js></script>
+<script src=/common/utils.js></script>
+<script src=/common/dispatcher/dispatcher.js></script>
+<script src=/html/cross-origin-opener-policy/resources/popup-test.js></script>
+<script src=resources/gobs2.js></script>
+<body>
+<script>
+const HOSTS = {a: "{{host}}", a1: "{{hosts[][www1]}}", b: "{{hosts[alt][]}}", b1: "{{hosts[alt][www1]}}"};
+const PORTS = {http: {{ports[http][0]}}, https: {{ports[https][0]}}};
+const SCEN = [
+{"id":"C313","h":"a","rs":"https","corp":"none","dest":"fetch"},
+{"id":"C315","h":"a","rs":"https","corp":"same-origin","dest":"fetch"},
+{"id":"C317","h":"a","rs":"https","corp":"same-site","dest":"fetch"},
+{"id":"C321","h":"a","rs":"http","corp":"none","dest":"fetch"},
+{"id":"C323","h":"a","rs":"http","corp":"same-origin","dest":"fetch"},
+{"id":"C324","h":"a","rs":"http","corp":"same-origin","dest":"img"},
+{"id":"C328","h":"a","rs":"http","corp":"cross-origin","dest":"img"},
+{"id":"C340","h":"a1","rs":"http","corp":"same-origin","dest":"img"},
+{"id":"C341","h":"a1","rs":"http","corp":"same-site","dest":"fetch"},
+{"id":"C342","h":"a1","rs":"http","corp":"same-site","dest":"img"},
+{"id":"C344","h":"a1","rs":"http","corp":"cross-origin","dest":"img"},
+{"id":"C351","h":"b","rs":"https","corp":"cross-origin","dest":"fetch"},
+{"id":"C356","h":"b","rs":"http","corp":"same-origin","dest":"img"},
+{"id":"C359","h":"b","rs":"http","corp":"cross-origin","dest":"fetch"}];
+runCorp(SCEN);
+</script>
