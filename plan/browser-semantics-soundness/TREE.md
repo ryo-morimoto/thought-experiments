@@ -74,7 +74,7 @@
       - 根拠: [2026-11-23-observed-values-inclusion.md](../../experiments/2026-11-23-observed-values-inclusion.md)、[2026-11-24-axis-generated-scenarios.md](../../experiments/2026-11-24-axis-generated-scenarios.md)
     - **C4** [一部] 仕様の時点とブラウザの食い違いの扱い（効き: mid）
       - 完了の条件: 食い違いごとに、モデルのパラメータ（配備の仮定）にするか、ブラウザの欠陥とするかが決まっている
-      - 今: Chrome の Origin-Agent-Cluster は未統合の whatwg/html#7617
+      - 今: 10 件を集め、段階A の規則で 6 件が決まった。データを見たあとに規則を追補するとすべて決まるが、追補は段階C の攻撃にかける
       - 根拠: [2026-11-23-observed-values-inclusion.md](../../experiments/2026-11-23-observed-values-inclusion.md)、[2026-11-24-divergence-config-catalog.md](../../experiments/2026-11-24-divergence-config-catalog.md)
     - **C5** [外] API より下の層（プロセスへの配置、Spectre）（効き: low）
       - 完了の条件: 範囲の外と記録に明記している
@@ -83,9 +83,10 @@
       - 完了の条件: 手元のコンテナと wpt.fyi の条件の違いと、試験の作りの影響が切り分けられている
       - 今: w014 はポートの作りが原因と分かった
       - 根拠: [2026-11-23-observed-values-inclusion.md](../../experiments/2026-11-23-observed-values-inclusion.md)
-    - **C7** [一部] 版と構成の違い（効き: mid）
+    - **C7** [済] 版と構成の違い（効き: mid）
       - 完了の条件: 版や構成で変わる選択が、モデルのパラメータか前提として書かれている
-      - 根拠: [2026-11-21-toe-optional-feature.md](../../experiments/2026-11-21-toe-optional-feature.md)、[2026-11-24-divergence-config-catalog.md](../../experiments/2026-11-24-divergence-config-catalog.md)
+      - 今: 16 の選択を Params.tla と configs.tsv にパラメータか前提として書いた
+      - 根拠: [2026-11-21-toe-optional-feature.md](../../experiments/2026-11-21-toe-optional-feature.md)、[2026-11-24-divergence-config-catalog.md](../../experiments/2026-11-24-divergence-config-catalog.md)、[RESULTS.md](../../experiments/models/site-isolation/catalog/RESULTS.md)
     - **C9** [未] モデルから独立した軸と変異体（効き: high）
       - 完了の条件: 軸と変異体を、モデルの語彙ではなく、ブラウザのバグの履歴や実装の欠陥の型から作り、それで包含を確かめている
       - 今: 今の軸と変異体はモデルの作者が選んだもので、モデルにも変異体にも無い振る舞い（キャッシュの使い回しなど）は試されない
@@ -146,7 +147,6 @@
 - **B4** [一部・効き mid] 拡張点と支配の条件: 経路ごとに支配の条件が確かめられている
 - **B5** [一部・効き mid] 情報流（hyperproperty）: 攻撃者が入力を選び問い合わせを繰り返す形の検査（自己合成）で、漏らすものの一覧を確かめている
 - **C4** [一部・効き mid] 仕様の時点とブラウザの食い違いの扱い: 食い違いごとに、モデルのパラメータ（配備の仮定）にするか、ブラウザの欠陥とするかが決まっている
-- **C7** [一部・効き mid] 版と構成の違い: 版や構成で変わる選択が、モデルのパラメータか前提として書かれている
 - **D2** [一部・効き mid] 断片をまたぐ合成（assume-guarantee）: 断片の間の仮定と保証が書かれ、循環が扱われている
 - **E1** [未・効き mid] 別の断片への適用: 2 つ目の断片で、方法の手間と効き目を測っている
 - **A3** [一部・効き low] 性質が空でない（前提を満たす証人がある）: 各性質に、前提を満たす証人がある

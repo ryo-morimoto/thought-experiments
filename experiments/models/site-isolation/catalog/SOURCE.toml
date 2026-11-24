@@ -1,0 +1,5 @@
+# 食い違いと版・構成の選択の一覧（divergences.tsv、configs.tsv）、配備の値の TLA+ モジュール（Params.tla、Params.cfg）、結果の要約（subagent が書いた）。
+# 外部データは含まない。wpt.fyi の応答や仕様の写しは含めず、URL と sha256 の参照だけを残す。
+id = "site-isolation-catalog"
+title = "サイト分離モデルについての、ブラウザとの食い違いと版・構成で変わる選択の分類"
+origin = "original"

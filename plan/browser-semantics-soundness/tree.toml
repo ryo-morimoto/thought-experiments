@@ -183,7 +183,7 @@ title = "仕様の時点とブラウザの食い違いの扱い"
 status = "partial"
 impact = "mid"
 done_when = "食い違いごとに、モデルのパラメータ（配備の仮定）にするか、ブラウザの欠陥とするかが決まっている"
-note = "Chrome の Origin-Agent-Cluster は未統合の whatwg/html#7617"
+note = "10 件を集め、段階A の規則で 6 件が決まった。データを見たあとに規則を追補するとすべて決まるが、追補は段階C の攻撃にかける"
 
 [[node]]
 id = "C5"
@@ -207,9 +207,11 @@ note = "w014 はポートの作りが原因と分かった"
 id = "C7"
 parent = "C"
 title = "版と構成の違い"
-status = "partial"
+status = "done"
 impact = "mid"
 done_when = "版や構成で変わる選択が、モデルのパラメータか前提として書かれている"
+note = "16 の選択を Params.tla と configs.tsv にパラメータか前提として書いた"
+evidence = ["experiments/models/site-isolation/catalog/RESULTS.md"]
 
 [[node]]
 id = "C9"
