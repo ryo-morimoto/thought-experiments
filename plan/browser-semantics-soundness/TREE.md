@@ -13,7 +13,7 @@
     - **A1** [一部] 性質の書き方が正しい（前提を仕様の概念で書く）（効き: mid）
       - 完了の条件: 各性質の前提の概念が、仕様の定義に対応づいている
       - 今: 前提を安全な文脈と方策の容れ物の COEP で書き直した。理由の形の性質は拡張に耐えた。NoUndeclaredLeak などの前提は未点検
-      - 根拠: [FIXES.md](../../experiments/models/site-isolation/fixes/FIXES.md)
+      - 根拠: [2026-11-24-property-premises.md](../../experiments/2026-11-24-property-premises.md)、[FIXES.md](../../experiments/models/site-isolation/fixes/FIXES.md)
     - **A2** [一部] 有限の領域での検査が、無限の領域で何を言うか（効き: high）
       - 完了の条件: 領域（オリジンの数、値の種類）を増やしても結果が変わらないことの確かめか、小さなモデルで足りる理由の議論
       - 今: オリジンはデータ独立の議論で条件つきで移せ（Key と不透明なオリジンを使わない性質に限る）、深さはリダイレクト 2 段・入れ子 3 段で飽和した。生成した筋書きの空間に関係の型の穴がある。段階C が未
@@ -31,19 +31,19 @@
       - **B2a** [一部] 閉包の境界（効き: mid）
         - 完了の条件: 閉包の境界を、手で選ばずに決める規則がある
         - 今: 取り出しで 415 算法を決めた。境界は手で選んだ（他の仕様からの差し込みは原稿に現れない）
-        - 根拠: [README.md](../../experiments/models/site-isolation/extract/README.md)
+        - 根拠: [2026-11-24-closure-boundary-rule.md](../../experiments/2026-11-24-closure-boundary-rule.md)、[README.md](../../experiments/models/site-isolation/extract/README.md)
       - **B2b** [一部] 写していない段の発見（効き: high）
         - 完了の条件: 写していない段のうち、性質に効くものの一覧が閉じている
         - 今: 落とした段を足して性質が変わるかで確かめる。型の全体での置き換えは空、契約で範囲を限ると前提の見直しにはなる
-        - 根拠: [2026-11-21-fsp-correspondence.md](../../experiments/2026-11-21-fsp-correspondence.md)、[2026-11-23-havoc-unmodeled-steps.md](../../experiments/2026-11-23-havoc-unmodeled-steps.md)
+        - 根拠: [2026-11-21-fsp-correspondence.md](../../experiments/2026-11-21-fsp-correspondence.md)、[2026-11-23-havoc-unmodeled-steps.md](../../experiments/2026-11-23-havoc-unmodeled-steps.md)、[2026-11-24-write-target-semantics.md](../../experiments/2026-11-24-write-target-semantics.md)
       - **B2c** [一部] 書き先の決定（効き: high）
         - 完了の条件: 性質に効く値を書く段を、規則で決められる
         - 今: 書き先の 57% が規則で決まらない。段の中の条件の文の意味を決める必要があるか
-        - 根拠: [2026-11-23-havoc-unmodeled-steps.md](../../experiments/2026-11-23-havoc-unmodeled-steps.md)
+        - 根拠: [2026-11-23-havoc-unmodeled-steps.md](../../experiments/2026-11-23-havoc-unmodeled-steps.md)、[2026-11-24-write-target-semantics.md](../../experiments/2026-11-24-write-target-semantics.md)
       - **B2d** [一部] 中身が文書に入る経路の一覧（効き: mid）
         - 完了の条件: 経路の一覧が機械的に作れ、手で選んだ経路の再現率が測れている
         - 今: 取得の呼び出しは機械的に拾え、再利用は一部手で。段階C が未
-        - 根拠: [2026-11-22-sink-path-inventory.md](../../experiments/2026-11-22-sink-path-inventory.md)
+        - 根拠: [2026-11-22-sink-path-inventory.md](../../experiments/2026-11-22-sink-path-inventory.md)、[2026-11-24-closure-boundary-rule.md](../../experiments/2026-11-24-closure-boundary-rule.md)
     - **B3** [済] 実装の選択を過近似として扱う（効き: mid）
       - 完了の条件: 実装定義・列挙・任意の段の扱いが決まっている
       - 今: 依存する入力を明示した関数。仕様の水準では非決定の包み
@@ -55,7 +55,7 @@
     - **B5** [一部] 情報流（hyperproperty）（効き: mid）
       - 完了の条件: 攻撃者が入力を選び問い合わせを繰り返す形の検査（自己合成）で、漏らすものの一覧を確かめている
       - 今: 詳細化は保たない。ORB の漏れの量は議論で受け入れただけで、動かしていない
-      - 根拠: [2026-11-21-dominance-declassification.md](../../experiments/2026-11-21-dominance-declassification.md)
+      - 根拠: [2026-11-21-dominance-declassification.md](../../experiments/2026-11-21-dominance-declassification.md)、[2026-11-24-selfcomp-orb-leak.md](../../experiments/2026-11-24-selfcomp-orb-leak.md)
     - **B6** [済] 厳密な健全性への道（効き: low）
       - 完了の条件: 厳密な健全性に要る条件と、HTML がそれを満たすかが記録されている
       - 今: 正文が形式的か、証明の成果物から生成されるか、検証つきの変換があるとき。HTML には無い
@@ -68,14 +68,14 @@
     - **C2** [一部] 入力の空間の網羅（効き: high）
       - 完了の条件: 性質が量化する入力の構造（リダイレクト、popup の系譜、sandbox、about:blank、履歴）を軸として覆い、等価のまま残る変異体が軸の外だけになる
       - 今: 入れ子・スキーム・COEP、popup の系譜・Origin-Agent-Cluster・sandbox・CORP same-site と画像、リダイレクトの段数の軸は済。和で SpecIsolation の変異体 55 個すべてを殺した（concrete に限ると）。履歴の移動と bfcache の軸が未
-      - 根拠: [2026-11-24-axis-generated-scenarios.md](../../experiments/2026-11-24-axis-generated-scenarios.md)、[2026-11-24-popup-sandbox-axes.md](../../experiments/2026-11-24-popup-sandbox-axes.md)、[2026-11-24-redirect-sequence-model.md](../../experiments/2026-11-24-redirect-sequence-model.md)、[RESULTS.md](../../experiments/models/site-isolation/gen/RESULTS.md)、[RESULTS.md](../../experiments/models/site-isolation/gen2/RESULTS.md)、[RESULTS.md](../../experiments/models/site-isolation/redirect/RESULTS.md)
+      - 根拠: [2026-11-24-axis-generated-scenarios.md](../../experiments/2026-11-24-axis-generated-scenarios.md)、[2026-11-24-frozen-holdout.md](../../experiments/2026-11-24-frozen-holdout.md)、[2026-11-24-history-bfcache-sequence.md](../../experiments/2026-11-24-history-bfcache-sequence.md)、[2026-11-24-popup-sandbox-axes.md](../../experiments/2026-11-24-popup-sandbox-axes.md)、[2026-11-24-redirect-sequence-model.md](../../experiments/2026-11-24-redirect-sequence-model.md)、[RESULTS.md](../../experiments/models/site-isolation/gen/RESULTS.md)、[RESULTS.md](../../experiments/models/site-isolation/gen2/RESULTS.md)、[RESULTS.md](../../experiments/models/site-isolation/redirect/RESULTS.md)
     - **C3** [済] 判別の力の測り方（効き: mid）
       - 完了の条件: 観測が変異体を見分ける数を測り、ブラウザで動かす筋書きをモデルの上で先に選べる
       - 根拠: [2026-11-23-observed-values-inclusion.md](../../experiments/2026-11-23-observed-values-inclusion.md)、[2026-11-24-axis-generated-scenarios.md](../../experiments/2026-11-24-axis-generated-scenarios.md)
     - **C4** [一部] 仕様の時点とブラウザの食い違いの扱い（効き: mid）
       - 完了の条件: 食い違いごとに、モデルのパラメータ（配備の仮定）にするか、ブラウザの欠陥とするかが決まっている
       - 今: Chrome の Origin-Agent-Cluster は未統合の whatwg/html#7617
-      - 根拠: [2026-11-23-observed-values-inclusion.md](../../experiments/2026-11-23-observed-values-inclusion.md)
+      - 根拠: [2026-11-23-observed-values-inclusion.md](../../experiments/2026-11-23-observed-values-inclusion.md)、[2026-11-24-divergence-config-catalog.md](../../experiments/2026-11-24-divergence-config-catalog.md)
     - **C5** [外] API より下の層（プロセスへの配置、Spectre）（効き: low）
       - 完了の条件: 範囲の外と記録に明記している
       - 今: 観測できる値はプロセスの隔離を映さない
@@ -85,13 +85,15 @@
       - 根拠: [2026-11-23-observed-values-inclusion.md](../../experiments/2026-11-23-observed-values-inclusion.md)
     - **C7** [一部] 版と構成の違い（効き: mid）
       - 完了の条件: 版や構成で変わる選択が、モデルのパラメータか前提として書かれている
-      - 根拠: [2026-11-21-toe-optional-feature.md](../../experiments/2026-11-21-toe-optional-feature.md)
+      - 根拠: [2026-11-21-toe-optional-feature.md](../../experiments/2026-11-21-toe-optional-feature.md)、[2026-11-24-divergence-config-catalog.md](../../experiments/2026-11-24-divergence-config-catalog.md)
     - **C9** [未] モデルから独立した軸と変異体（効き: high）
       - 完了の条件: 軸と変異体を、モデルの語彙ではなく、ブラウザのバグの履歴や実装の欠陥の型から作り、それで包含を確かめている
       - 今: 今の軸と変異体はモデルの作者が選んだもので、モデルにも変異体にも無い振る舞い（キャッシュの使い回しなど）は試されない
+      - 根拠: [2026-11-24-bug-history-mutants.md](../../experiments/2026-11-24-bug-history-mutants.md)
     - **C10** [未] 凍結したモデルでの取り置きの実行（効き: high）
       - 完了の条件: モデル・軸・パラメータ・判定を事前に固定してから、新しい種の筋書きをブラウザで動かし、包含を数えている
       - 今: これまでモデルはデータと一緒に育った（軸ごとに段を足し、#7617 のパラメータを合わせた）
+      - 根拠: [2026-11-24-frozen-holdout.md](../../experiments/2026-11-24-frozen-holdout.md)
     - **C8** [済] モデルからブラウザへの向き（反例・判定基準・引き金）（効き: low）
       - 完了の条件: モデルの判定基準でブラウザの誤りを予測・再現できるかが記録されている
       - 今: 判定基準は値の決まりを与えるが、引き金は与えない。証明の向きの根拠にはならない
@@ -100,13 +102,14 @@
     - **D1** [一部] 列の性質（ナビゲーションの列、リダイレクト、bfcache、履歴の移動）（効き: high）
       - 完了の条件: 列を状態の遷移として写したモデルと、列の筋書きでの包含がある
       - 今: リダイレクトの連鎖は状態の遷移として写し、列の筋書きでの包含を確かめた（途中の段を無視する変異体はブラウザの値で殺された）。履歴の移動と bfcache の列は未
-      - 根拠: [2026-11-24-redirect-sequence-model.md](../../experiments/2026-11-24-redirect-sequence-model.md)、[NestedHistory.tla](../../experiments/models/site-isolation/NestedHistory.tla)
+      - 根拠: [2026-11-24-history-bfcache-sequence.md](../../experiments/2026-11-24-history-bfcache-sequence.md)、[2026-11-24-redirect-sequence-model.md](../../experiments/2026-11-24-redirect-sequence-model.md)、[NestedHistory.tla](../../experiments/models/site-isolation/NestedHistory.tla)
     - **D2** [一部] 断片をまたぐ合成（assume-guarantee）（効き: mid）
       - 完了の条件: 断片の間の仮定と保証が書かれ、循環が扱われている
-      - 根拠: [2026-11-20-browser-semantics-soundness.md](../../experiments/2026-11-20-browser-semantics-soundness.md)
+      - 根拠: [2026-11-20-browser-semantics-soundness.md](../../experiments/2026-11-20-browser-semantics-soundness.md)、[2026-11-24-cross-fragment-assume-guarantee.md](../../experiments/2026-11-24-cross-fragment-assume-guarantee.md)
   - **E** [一部] 方法の一般性
     - **E1** [未] 別の断片への適用（効き: mid）
       - 完了の条件: 2 つ目の断片で、方法の手間と効き目を測っている
+      - 根拠: [2026-11-24-history-bfcache-sequence.md](../../experiments/2026-11-24-history-bfcache-sequence.md)
     - **E2** [一部] 方法の対照（効き: low）
       - 完了の条件: 各方法に、無作為な基準と、方法を使わずに読む対照がある
       - 今: 無作為な基準は済、置き換え無しで読む対照は未
