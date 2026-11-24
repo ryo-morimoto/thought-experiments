@@ -212,6 +212,24 @@ impact = "mid"
 done_when = "版や構成で変わる選択が、モデルのパラメータか前提として書かれている"
 
 [[node]]
+id = "C9"
+parent = "C"
+title = "モデルから独立した軸と変異体"
+status = "todo"
+impact = "high"
+done_when = "軸と変異体を、モデルの語彙ではなく、ブラウザのバグの履歴や実装の欠陥の型から作り、それで包含を確かめている"
+note = "今の軸と変異体はモデルの作者が選んだもので、モデルにも変異体にも無い振る舞い（キャッシュの使い回しなど）は試されない"
+
+[[node]]
+id = "C10"
+parent = "C"
+title = "凍結したモデルでの取り置きの実行"
+status = "todo"
+impact = "high"
+done_when = "モデル・軸・パラメータ・判定を事前に固定してから、新しい種の筋書きをブラウザで動かし、包含を数えている"
+note = "これまでモデルはデータと一緒に育った（軸ごとに段を足し、#7617 のパラメータを合わせた）"
+
+[[node]]
 id = "C8"
 parent = "C"
 title = "モデルからブラウザへの向き（反例・判定基準・引き金）"
@@ -294,10 +312,10 @@ done_when = "DIPExtension.tla と havoc/HavocSpec.tla の Conservative が真"
 [[node]]
 id = "F3"
 parent = "F"
-title = "段階C の残り（経路の一覧、軸の生成）"
+title = "段階C の残り（経路の一覧）"
 status = "todo"
 impact = "low"
-done_when = "2 つの記録が結論済み"
+done_when = "経路の一覧の記録が結論済み"
 
 [[node]]
 id = "F4"
@@ -306,6 +324,14 @@ title = "Permissions Policy の段を SpecIsolation.tla に取り込む"
 status = "todo"
 impact = "low"
 done_when = "SpecIsolation.tla にあり、gen の包含が変わらない"
+
+[[node]]
+id = "F6"
+parent = "F"
+title = "popup の最初の about:blank の COOP の受け継ぎに条件を足す"
+status = "todo"
+impact = "low"
+done_when = "作った側のオリジンが最上位と同じときだけ受け継ぎ、iframe の中の開いた側の筋書きで確かめている"
 
 [[node]]
 id = "F5"
