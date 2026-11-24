@@ -1,0 +1,4 @@
+# 断片の間の仮定と保証（assume-guarantee）を書いた TLA+ モジュール、段ごとの帰納の検査と全体の状態機械の検査の設定、契約の表、実行の手順と結果の要約。subagent が書いた。外部データは含まない。
+id = "site-isolation-compose"
+title = "サイト分離のモデルの断片をまたぐ仮定と保証、循環の扱い"
+origin = "original"

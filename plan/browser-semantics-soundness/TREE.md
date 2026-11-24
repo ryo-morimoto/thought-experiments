@@ -107,9 +107,10 @@
       - 完了の条件: 列を状態の遷移として写したモデルと、列の筋書きでの包含がある
       - 今: リダイレクトの連鎖は状態の遷移として写し、列の筋書きでの包含を確かめた（途中の段を無視する変異体はブラウザの値で殺された）。履歴の移動と bfcache の列は未
       - 根拠: [2026-11-24-history-bfcache-sequence.md](../../experiments/2026-11-24-history-bfcache-sequence.md)、[2026-11-24-redirect-sequence-model.md](../../experiments/2026-11-24-redirect-sequence-model.md)、[NestedHistory.tla](../../experiments/models/site-isolation/NestedHistory.tla)
-    - **D2** [一部] 断片をまたぐ合成（assume-guarantee）（効き: mid）
+    - **D2** [済] 断片をまたぐ合成（assume-guarantee）（効き: mid）
       - 完了の条件: 断片の間の仮定と保証が書かれ、循環が扱われている
-      - 根拠: [2026-11-20-browser-semantics-soundness.md](../../experiments/2026-11-20-browser-semantics-soundness.md)、[2026-11-24-cross-fragment-assume-guarantee.md](../../experiments/2026-11-24-cross-fragment-assume-guarantee.md)
+      - 今: 7 つの断片の仮定と保証を書き、循環を時間に沿った帰納と整礎の再帰で解いた（TLC）。合成はエージェントクラスタの鍵が DIP を含む前提に依る（草案に根拠、モデルへの取り込みは F9）
+      - 根拠: [2026-11-20-browser-semantics-soundness.md](../../experiments/2026-11-20-browser-semantics-soundness.md)、[2026-11-24-cross-fragment-assume-guarantee.md](../../experiments/2026-11-24-cross-fragment-assume-guarantee.md)、[RESULTS.md](../../experiments/models/site-isolation/compose/RESULTS.md)
   - **E** [一部] 方法の一般性
     - **E1** [未] 別の断片への適用（効き: mid）
       - 完了の条件: 2 つ目の断片で、方法の手間と効き目を測っている
@@ -135,6 +136,8 @@
     - **F8** [保留] 新しく見つかった、本文が支配の条件を保証しない構造の扱い（効き: low）
       - 完了の条件: エンジンでの確認と、公開・上流への報告の扱いを、ユーザーが決めている
       - 今: B4 で見つかった新しい 2 つの構造と、一覧の外の 1 つ。中身はリポジトリの外
+    - **F9** [未] DIPExtension.tla にエージェントクラスタの鍵（文書の DIP）を足す（効き: low）
+      - 完了の条件: DIP の文書の鍵をモデルが写し、compose/ の合成が前提なしで成り立つ
     - **F5** [保留] ブランチの PR（効き: low）
       - 完了の条件: ユーザーが求めたときに開く
 
@@ -150,7 +153,6 @@
 - **C10** [未・効き high] 凍結したモデルでの取り置きの実行: モデル・軸・パラメータ・判定を事前に固定してから、新しい種の筋書きをブラウザで動かし、包含を数えている
 - **B5** [一部・効き mid] 情報流（hyperproperty）: 攻撃者が入力を選び問い合わせを繰り返す形の検査（自己合成）で、漏らすものの一覧を確かめている
 - **C4** [一部・効き mid] 仕様の時点とブラウザの食い違いの扱い: 食い違いごとに、モデルのパラメータ（配備の仮定）にするか、ブラウザの欠陥とするかが決まっている
-- **D2** [一部・効き mid] 断片をまたぐ合成（assume-guarantee）: 断片の間の仮定と保証が書かれ、循環が扱われている
 - **C11** [未・効き mid] バグの履歴が示す、モデルの段で書けるのに欠けた軸: sandbox の旗、リダイレクトで運ばれる COOP 以外の値、document.domain のオリジンの領域の検査と Window の再利用、worker の方策の容れ物、別オリジンの cors の取得を、モデルの段と軸として足し、包含を確かめている
 - **E1** [未・効き mid] 別の断片への適用: 2 つ目の断片で、方法の手間と効き目を測っている
 - **A3** [一部・効き low] 性質が空でない（前提を満たす証人がある）: 各性質に、前提を満たす証人がある
@@ -161,3 +163,4 @@
 - **F4** [未・効き low] Permissions Policy の段を SpecIsolation.tla に取り込む: SpecIsolation.tla にあり、gen の包含が変わらない
 - **F6** [未・効き low] popup の最初の about:blank の COOP の受け継ぎに条件を足す: 作った側のオリジンが最上位と同じときだけ受け継ぎ、iframe の中の開いた側の筋書きで確かめている
 - **F7** [未・効き low] 直した性質の書き方（CorpPermits、KeyHTML、入れ子の COI の前提）を SpecIsolation.tla に取り込む: SpecIsolation.tla の性質が直した書き方で、既存の検査が通る
+- **F9** [未・効き low] DIPExtension.tla にエージェントクラスタの鍵（文書の DIP）を足す: DIP の文書の鍵をモデルが写し、compose/ の合成が前提なしで成り立つ

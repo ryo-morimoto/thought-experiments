@@ -274,11 +274,14 @@ evidence = ["experiments/models/site-isolation/NestedHistory.tla"]
 id = "D2"
 parent = "D"
 title = "断片をまたぐ合成（assume-guarantee）"
-status = "partial"
+status = "done"
 impact = "mid"
 done_when = "断片の間の仮定と保証が書かれ、循環が扱われている"
 
 # ---- E ----
+note = "7 つの断片の仮定と保証を書き、循環を時間に沿った帰納と整礎の再帰で解いた（TLC）。合成はエージェントクラスタの鍵が DIP を含む前提に依る（草案に根拠、モデルへの取り込みは F9）"
+evidence = ["experiments/models/site-isolation/compose/RESULTS.md"]
+
 [[node]]
 id = "E"
 parent = "ROOT"
@@ -364,6 +367,14 @@ status = "parked"
 impact = "low"
 done_when = "エンジンでの確認と、公開・上流への報告の扱いを、ユーザーが決めている"
 note = "B4 で見つかった新しい 2 つの構造と、一覧の外の 1 つ。中身はリポジトリの外"
+
+[[node]]
+id = "F9"
+parent = "F"
+title = "DIPExtension.tla にエージェントクラスタの鍵（文書の DIP）を足す"
+status = "todo"
+impact = "low"
+done_when = "DIP の文書の鍵をモデルが写し、compose/ の合成が前提なしで成り立つ"
 
 [[node]]
 id = "F5"
