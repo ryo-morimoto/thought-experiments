@@ -1,0 +1,4 @@
+# 思考実験 experiments/2026-11-24-selfcomp-orb-leak.md のための自作の TLA+ モデル（自己合成で ORB の判定の漏れを数える）、設定、実行の手順、TLC の出力と結果の要約。subagent が書いた。外部データは含まない。
+id = "site-isolation-selfcomp-orb"
+title = "攻撃者が本文の一部を選び問い合わせを繰り返すときの ORB の判定の漏れの自己合成による検査"
+origin = "original"

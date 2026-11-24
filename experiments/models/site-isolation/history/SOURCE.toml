@@ -1,0 +1,4 @@
+# セッション履歴の移動と bfcache からの復元を状態の遷移として写したモデル（TLA+）、軸から生成した筋書き、実行の手順、観測値の表と結果の要約。subagent が書いた。WPT のヘルパーは写さない（実行時に clone から読み込む）。
+id = "site-isolation-history"
+title = "セッション履歴と bfcache の筋書きでのブラウザの値とモデルが許す値の比較"
+origin = "original"

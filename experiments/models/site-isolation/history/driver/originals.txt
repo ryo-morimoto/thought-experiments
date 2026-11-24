@@ -1,0 +1,3 @@
+/html/cross-origin-opener-policy/coop-navigated-history-popup.https.html
+/websockets/back-forward-cache-with-open-websocket-connection.window.html
+/websockets/back-forward-cache-closes-open-websocket-connection.tentative.window.html

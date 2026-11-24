@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=timeout content=long>
+<title>OBS session history and bfcache, popup, opener COOP same-origin-allow-popups</title>
+<script src="/resources/testharness.js"></script>
+<script src="/resources/testharnessreport.js"></script>
+<script src="/common/dispatcher/dispatcher.js"></script>
+<script src="/common/get-host-info.sub.js"></script>
+<script src="/common/utils.js"></script>
+<script src="resources/hws.sub.js"></script>
+<script src="resources/hobs.js"></script>
+<body>
+<script>
+const SCEN = [
+  {id: "pp_NNB_Op-Xs-Xc", st: "popup", ops: [0, 0, -1], docs: [{rel: "same-origin", coop: "same-origin-allow-popups", coep: "unsafe-none", ws: false}, {rel: "cross-site", coop: "same-origin", coep: "unsafe-none", ws: false}, {rel: "cross-site", coop: "same-origin", coep: "require-corp", ws: false}]},
+  {id: "pp_NNB_Os-Op-Xc", st: "popup", ops: [0, 0, -1], docs: [{rel: "same-origin", coop: "same-origin", coep: "unsafe-none", ws: false}, {rel: "same-origin", coop: "same-origin-allow-popups", coep: "unsafe-none", ws: false}, {rel: "cross-site", coop: "same-origin", coep: "require-corp", ws: false}]},
+  {id: "pp_NNB_Os-Os-Xp", st: "popup", ops: [0, 0, -1], docs: [{rel: "same-origin", coop: "same-origin", coep: "unsafe-none", ws: false}, {rel: "same-origin", coop: "same-origin", coep: "unsafe-none", ws: false}, {rel: "cross-site", coop: "same-origin-allow-popups", coep: "unsafe-none", ws: false}]},
+  {id: "pp_NNB_Os-Os-Xc", st: "popup", ops: [0, 0, -1], docs: [{rel: "same-origin", coop: "same-origin", coep: "unsafe-none", ws: false}, {rel: "same-origin", coop: "same-origin", coep: "unsafe-none", ws: false}, {rel: "cross-site", coop: "same-origin", coep: "require-corp", ws: false}]},
+  {id: "pp_NNB_Os-Ocw-Xc", st: "popup", ops: [0, 0, -1], docs: [{rel: "same-origin", coop: "same-origin", coep: "unsafe-none", ws: false}, {rel: "same-origin", coop: "same-origin", coep: "require-corp", ws: true}, {rel: "cross-site", coop: "same-origin", coep: "require-corp", ws: false}]},
+  {id: "pp_NNB_Oc-Op-Xs", st: "popup", ops: [0, 0, -1], docs: [{rel: "same-origin", coop: "same-origin", coep: "require-corp", ws: false}, {rel: "same-origin", coop: "same-origin-allow-popups", coep: "unsafe-none", ws: false}, {rel: "cross-site", coop: "same-origin", coep: "unsafe-none", ws: false}]},
+  {id: "pp_NNB_Oc-Opw-Os", st: "popup", ops: [0, 0, -1], docs: [{rel: "same-origin", coop: "same-origin", coep: "require-corp", ws: false}, {rel: "same-origin", coop: "same-origin-allow-popups", coep: "unsafe-none", ws: true}, {rel: "same-origin", coop: "same-origin", coep: "unsafe-none", ws: false}]},
+  {id: "pp_NNB_Oc-Os-Op", st: "popup", ops: [0, 0, -1], docs: [{rel: "same-origin", coop: "same-origin", coep: "require-corp", ws: false}, {rel: "same-origin", coop: "same-origin", coep: "unsafe-none", ws: false}, {rel: "same-origin", coop: "same-origin-allow-popups", coep: "unsafe-none", ws: false}]},
+];
+runHistory(SCEN).then(done);
+</script>

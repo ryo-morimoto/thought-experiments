@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<meta name=timeout content=long>
+<title>OBS session history and bfcache, popup, opener COOP so+rc</title>
+<script src="/resources/testharness.js"></script>
+<script src="/resources/testharnessreport.js"></script>
+<script src="/common/dispatcher/dispatcher.js"></script>
+<script src="/common/get-host-info.sub.js"></script>
+<script src="/common/utils.js"></script>
+<script src="resources/hws.sub.js"></script>
+<script src="resources/hobs.js"></script>
+<body>
+<script>
+const SCEN = [
+  {id: "pc_NNB2_Oc-Xu-Oc", st: "popup", ops: [0, 0, -2], docs: [{rel: "same-origin", coop: "same-origin", coep: "require-corp", ws: false}, {rel: "cross-site", coop: "unsafe-none", coep: "unsafe-none", ws: false}, {rel: "same-origin", coop: "same-origin", coep: "require-corp", ws: false}]},
+  {id: "pc_NNB2_Oc-Xs-Xc", st: "popup", ops: [0, 0, -2], docs: [{rel: "same-origin", coop: "same-origin", coep: "require-corp", ws: false}, {rel: "cross-site", coop: "same-origin", coep: "unsafe-none", ws: false}, {rel: "cross-site", coop: "same-origin", coep: "require-corp", ws: false}]},
+  {id: "pc_NNB2_Oc-Xc-Oc", st: "popup", ops: [0, 0, -2], docs: [{rel: "same-origin", coop: "same-origin", coep: "require-corp", ws: false}, {rel: "cross-site", coop: "same-origin", coep: "require-corp", ws: false}, {rel: "same-origin", coop: "same-origin", coep: "require-corp", ws: false}]},
+  {id: "pc_NNB2_Ocw-Ou-Op", st: "popup", ops: [0, 0, -2], docs: [{rel: "same-origin", coop: "same-origin", coep: "require-corp", ws: true}, {rel: "same-origin", coop: "unsafe-none", coep: "unsafe-none", ws: false}, {rel: "same-origin", coop: "same-origin-allow-popups", coep: "unsafe-none", ws: false}]},
+  {id: "pc_NNB2_Ocw-Ou-Oc", st: "popup", ops: [0, 0, -2], docs: [{rel: "same-origin", coop: "same-origin", coep: "require-corp", ws: true}, {rel: "same-origin", coop: "unsafe-none", coep: "unsafe-none", ws: false}, {rel: "same-origin", coop: "same-origin", coep: "require-corp", ws: false}]},
+  {id: "pc_NNB2_Ocw-Os-Xu", st: "popup", ops: [0, 0, -2], docs: [{rel: "same-origin", coop: "same-origin", coep: "require-corp", ws: true}, {rel: "same-origin", coop: "same-origin", coep: "unsafe-none", ws: false}, {rel: "cross-site", coop: "unsafe-none", coep: "unsafe-none", ws: false}]},
+  {id: "pc_NNB2_Ocw-Oc-Oc", st: "popup", ops: [0, 0, -2], docs: [{rel: "same-origin", coop: "same-origin", coep: "require-corp", ws: true}, {rel: "same-origin", coop: "same-origin", coep: "require-corp", ws: false}, {rel: "same-origin", coop: "same-origin", coep: "require-corp", ws: false}]},
+  {id: "pc_NNB2_Ocw-Xc-Oc", st: "popup", ops: [0, 0, -2], docs: [{rel: "same-origin", coop: "same-origin", coep: "require-corp", ws: true}, {rel: "cross-site", coop: "same-origin", coep: "require-corp", ws: false}, {rel: "same-origin", coop: "same-origin", coep: "require-corp", ws: false}]},
+];
+runHistory(SCEN).then(done);
+</script>

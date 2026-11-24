@@ -1,0 +1,4 @@
+# 凍結したモデルでの取り置きの実行（事前登録 experiments/prereg/2026-11-24-frozen-holdout.md）の生成器、TLA+ の符号化と許容集合、実行の手順、観測値の表と結果の要約。subagent が書いた。WPT のヘルパーは写さない（実行時に clone から読み込む）。
+id = "site-isolation-holdout"
+title = "凍結したモデルでの取り置きの筋書きでのブラウザの値とモデルが許す値の比較"
+origin = "original"
