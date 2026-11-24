@@ -1,17 +1,17 @@
 == SC-all-nothing-k1
 TLC2 Version 2026.10.28.014557 (rev: 56d37a9)
-Running breadth-first search Model-Checking with fp 24 and seed -3881846582655582739 with 1 worker on 8 cores with 3538MB heap and 64MB offheap memory [pid: 2] (Linux 7.3.5-arch1-1 amd64, Eclipse Adoptium 21.0.12.1 64bit, MSBDiskFPSet, DiskStateQueue).
+Running breadth-first search Model-Checking with fp 29 and seed -8876206766369570954 with 1 worker on 8 cores with 3538MB heap and 64MB offheap memory [pid: 2] (Linux 7.3.5-arch1-1 amd64, Eclipse Adoptium 21.0.12.1 64bit, MSBDiskFPSet, DiskStateQueue).
 Parsing file /spec/selfcomp/SelfCompRun.tla
 Parsing file /spec/selfcomp/SelfCompORB.tla
-Parsing file /tmp/tlc-11917317240187565997/_TLCTrace.tla (jar:file:/opt/tla2tools.jar!/tla2sany/StandardModules/_TLCTrace.tla)
+Parsing file /tmp/tlc-8323500647830179004/_TLCTrace.tla (jar:file:/opt/tla2tools.jar!/tla2sany/StandardModules/_TLCTrace.tla)
 Parsing file /spec/ORBExtension.tla
 Parsing file /spec/SpecIsolation.tla
-Parsing file /tmp/tlc-11917317240187565997/FiniteSets.tla (jar:file:/opt/tla2tools.jar!/tla2sany/StandardModules/FiniteSets.tla)
-Parsing file /tmp/tlc-11917317240187565997/Naturals.tla (jar:file:/opt/tla2tools.jar!/tla2sany/StandardModules/Naturals.tla)
-Parsing file /tmp/tlc-11917317240187565997/Sequences.tla (jar:file:/opt/tla2tools.jar!/tla2sany/StandardModules/Sequences.tla)
-Parsing file /tmp/tlc-11917317240187565997/TLC.tla (jar:file:/opt/tla2tools.jar!/tla2sany/StandardModules/TLC.tla)
-Parsing file /tmp/tlc-11917317240187565997/TLCExt.tla (jar:file:/opt/tla2tools.jar!/tla2sany/StandardModules/TLCExt.tla)
-Parsing file /tmp/tlc-11917317240187565997/Integers.tla (jar:file:/opt/tla2tools.jar!/tla2sany/StandardModules/Integers.tla)
+Parsing file /tmp/tlc-8323500647830179004/FiniteSets.tla (jar:file:/opt/tla2tools.jar!/tla2sany/StandardModules/FiniteSets.tla)
+Parsing file /tmp/tlc-8323500647830179004/Naturals.tla (jar:file:/opt/tla2tools.jar!/tla2sany/StandardModules/Naturals.tla)
+Parsing file /tmp/tlc-8323500647830179004/Sequences.tla (jar:file:/opt/tla2tools.jar!/tla2sany/StandardModules/Sequences.tla)
+Parsing file /tmp/tlc-8323500647830179004/TLC.tla (jar:file:/opt/tla2tools.jar!/tla2sany/StandardModules/TLC.tla)
+Parsing file /tmp/tlc-8323500647830179004/TLCExt.tla (jar:file:/opt/tla2tools.jar!/tla2sany/StandardModules/TLCExt.tla)
+Parsing file /tmp/tlc-8323500647830179004/Integers.tla (jar:file:/opt/tla2tools.jar!/tla2sany/StandardModules/Integers.tla)
 Semantic processing of module Naturals
 Semantic processing of module Sequences
 Semantic processing of module FiniteSets
@@ -29,7 +29,7 @@ Linting of module SelfCompORB
 Linting of module TLCExt
 Linting of module _TLCTrace
 Linting of module SelfCompRun
-Starting... (2026-11-24 07:16:05)
+Starting... (2026-11-24 08:12:28)
 << "optin-witness",
    << [scheme |-> "http", host |-> "a.test", site |-> "a.test"],
       [ origin |-> [scheme |-> "https", host |-> "a.test", site |-> "a.test"],
@@ -1403,7 +1403,7 @@ Computed 4 initial states...
 Computed 8 initial states...
 Computed 16 initial states...
 Computed 32 initial states...
-Finished computing initial states: 56 distinct states generated at 2026-11-24 07:17:44.
+Finished computing initial states: 56 distinct states generated at 2026-11-24 08:13:59.
 Error: Invariant SCNI is violated.
 Error: The behavior up to this point is:
 State 1: <Initial predicate>
@@ -1424,5 +1424,5 @@ State 2: <SCNext line 19, col 11 to line 24, col 40 of module SelfCompRun>
 
 57 states generated, 57 distinct states found, 55 states left on queue.
 The depth of the complete state graph search is 2.
-Finished in 01min 39s at (2026-11-24 07:17:44)
-Trace exploration spec path: selfcomp/SelfCompRun_TTrace_1795504565.tla
+Finished in 01min 31s at (2026-11-24 08:13:59)
+Trace exploration spec path: selfcomp/SelfCompRun_TTrace_1795507948.tla

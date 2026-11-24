@@ -1,17 +1,17 @@
 == SC-all-kernel-k3
 TLC2 Version 2026.10.28.014557 (rev: 56d37a9)
-Running breadth-first search Model-Checking with fp 39 and seed -3982474224020766008 with 1 worker on 8 cores with 3538MB heap and 64MB offheap memory [pid: 2] (Linux 7.3.5-arch1-1 amd64, Eclipse Adoptium 21.0.12.1 64bit, MSBDiskFPSet, DiskStateQueue).
+Running breadth-first search Model-Checking with fp 46 and seed -4906663563540331739 with 1 worker on 8 cores with 3538MB heap and 64MB offheap memory [pid: 2] (Linux 7.3.5-arch1-1 amd64, Eclipse Adoptium 21.0.12.1 64bit, MSBDiskFPSet, DiskStateQueue).
 Parsing file /spec/selfcomp/SelfCompRun.tla
 Parsing file /spec/selfcomp/SelfCompORB.tla
-Parsing file /tmp/tlc-3693400852728685475/_TLCTrace.tla (jar:file:/opt/tla2tools.jar!/tla2sany/StandardModules/_TLCTrace.tla)
+Parsing file /tmp/tlc-13525050521127575774/_TLCTrace.tla (jar:file:/opt/tla2tools.jar!/tla2sany/StandardModules/_TLCTrace.tla)
 Parsing file /spec/ORBExtension.tla
 Parsing file /spec/SpecIsolation.tla
-Parsing file /tmp/tlc-3693400852728685475/FiniteSets.tla (jar:file:/opt/tla2tools.jar!/tla2sany/StandardModules/FiniteSets.tla)
-Parsing file /tmp/tlc-3693400852728685475/Naturals.tla (jar:file:/opt/tla2tools.jar!/tla2sany/StandardModules/Naturals.tla)
-Parsing file /tmp/tlc-3693400852728685475/Sequences.tla (jar:file:/opt/tla2tools.jar!/tla2sany/StandardModules/Sequences.tla)
-Parsing file /tmp/tlc-3693400852728685475/TLC.tla (jar:file:/opt/tla2tools.jar!/tla2sany/StandardModules/TLC.tla)
-Parsing file /tmp/tlc-3693400852728685475/TLCExt.tla (jar:file:/opt/tla2tools.jar!/tla2sany/StandardModules/TLCExt.tla)
-Parsing file /tmp/tlc-3693400852728685475/Integers.tla (jar:file:/opt/tla2tools.jar!/tla2sany/StandardModules/Integers.tla)
+Parsing file /tmp/tlc-13525050521127575774/FiniteSets.tla (jar:file:/opt/tla2tools.jar!/tla2sany/StandardModules/FiniteSets.tla)
+Parsing file /tmp/tlc-13525050521127575774/Naturals.tla (jar:file:/opt/tla2tools.jar!/tla2sany/StandardModules/Naturals.tla)
+Parsing file /tmp/tlc-13525050521127575774/Sequences.tla (jar:file:/opt/tla2tools.jar!/tla2sany/StandardModules/Sequences.tla)
+Parsing file /tmp/tlc-13525050521127575774/TLC.tla (jar:file:/opt/tla2tools.jar!/tla2sany/StandardModules/TLC.tla)
+Parsing file /tmp/tlc-13525050521127575774/TLCExt.tla (jar:file:/opt/tla2tools.jar!/tla2sany/StandardModules/TLCExt.tla)
+Parsing file /tmp/tlc-13525050521127575774/Integers.tla (jar:file:/opt/tla2tools.jar!/tla2sany/StandardModules/Integers.tla)
 Semantic processing of module Naturals
 Semantic processing of module Sequences
 Semantic processing of module FiniteSets
@@ -29,7 +29,7 @@ Linting of module SelfCompORB
 Linting of module TLCExt
 Linting of module _TLCTrace
 Linting of module SelfCompRun
-Starting... (2026-11-24 07:14:03)
+Starting... (2026-11-24 08:10:41)
 << "optin-witness",
    << [scheme |-> "http", host |-> "a.test", site |-> "a.test"],
       [ origin |-> [scheme |-> "https", host |-> "a.test", site |-> "a.test"],
@@ -1398,11 +1398,11 @@ Starting... (2026-11-24 07:14:03)
    <<"optin-only-secure", TRUE>>,
    <<"body-only-by-optin", TRUE>> >>
 Computing initial states...
-Finished computing initial states: 0 distinct states generated at 2026-11-24 07:16:04.
+Finished computing initial states: 0 distinct states generated at 2026-11-24 08:12:27.
 Model checking completed. No error has been found.
   Estimates of the probability that TLC did not check all reachable states
   because two distinct states had the same fingerprint:
   calculated (optimistic):  val = 0.0
 0 states generated, 0 distinct states found, 0 states left on queue.
 The depth of the complete state graph search is 0.
-Finished in 02min 01s at (2026-11-24 07:16:04)
+Finished in 01min 46s at (2026-11-24 08:12:27)

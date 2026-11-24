@@ -24,4 +24,6 @@ SCNext == /\ Len(h1) < K /\ h1 = h2
           /\ UNCHANGED <<dummy, s1, s2>>
 SCSpec == SCInit /\ [][SCNext]_scvars
 SCNI == h1 = h2
+\* lastq is only for reading traces; states are identified without it.
+scview == <<s1, s2, h1, h2>>
 ===============================================================================

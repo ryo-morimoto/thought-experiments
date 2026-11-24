@@ -1,16 +1,16 @@
 == Count-N2
 TLC2 Version 2026.10.28.014557 (rev: 56d37a9)
-Running breadth-first search Model-Checking with fp 120 and seed 1584657177569639590 with 1 worker on 8 cores with 3538MB heap and 64MB offheap memory [pid: 2] (Linux 7.3.5-arch1-1 amd64, Eclipse Adoptium 21.0.12.1 64bit, MSBDiskFPSet, DiskStateQueue).
+Running breadth-first search Model-Checking with fp 37 and seed 8798658206901877421 with 1 worker on 8 cores with 3538MB heap and 64MB offheap memory [pid: 2] (Linux 7.3.5-arch1-1 amd64, Eclipse Adoptium 21.0.12.1 64bit, MSBDiskFPSet, DiskStateQueue).
 Parsing file /spec/selfcomp/SelfCompORB.tla
 Parsing file /spec/ORBExtension.tla
-Parsing file /tmp/tlc-11678837586923064830/_TLCTrace.tla (jar:file:/opt/tla2tools.jar!/tla2sany/StandardModules/_TLCTrace.tla)
+Parsing file /tmp/tlc-2455304688791508816/_TLCTrace.tla (jar:file:/opt/tla2tools.jar!/tla2sany/StandardModules/_TLCTrace.tla)
 Parsing file /spec/SpecIsolation.tla
-Parsing file /tmp/tlc-11678837586923064830/FiniteSets.tla (jar:file:/opt/tla2tools.jar!/tla2sany/StandardModules/FiniteSets.tla)
-Parsing file /tmp/tlc-11678837586923064830/Naturals.tla (jar:file:/opt/tla2tools.jar!/tla2sany/StandardModules/Naturals.tla)
-Parsing file /tmp/tlc-11678837586923064830/Sequences.tla (jar:file:/opt/tla2tools.jar!/tla2sany/StandardModules/Sequences.tla)
-Parsing file /tmp/tlc-11678837586923064830/TLC.tla (jar:file:/opt/tla2tools.jar!/tla2sany/StandardModules/TLC.tla)
-Parsing file /tmp/tlc-11678837586923064830/TLCExt.tla (jar:file:/opt/tla2tools.jar!/tla2sany/StandardModules/TLCExt.tla)
-Parsing file /tmp/tlc-11678837586923064830/Integers.tla (jar:file:/opt/tla2tools.jar!/tla2sany/StandardModules/Integers.tla)
+Parsing file /tmp/tlc-2455304688791508816/FiniteSets.tla (jar:file:/opt/tla2tools.jar!/tla2sany/StandardModules/FiniteSets.tla)
+Parsing file /tmp/tlc-2455304688791508816/Naturals.tla (jar:file:/opt/tla2tools.jar!/tla2sany/StandardModules/Naturals.tla)
+Parsing file /tmp/tlc-2455304688791508816/Sequences.tla (jar:file:/opt/tla2tools.jar!/tla2sany/StandardModules/Sequences.tla)
+Parsing file /tmp/tlc-2455304688791508816/TLC.tla (jar:file:/opt/tla2tools.jar!/tla2sany/StandardModules/TLC.tla)
+Parsing file /tmp/tlc-2455304688791508816/TLCExt.tla (jar:file:/opt/tla2tools.jar!/tla2sany/StandardModules/TLCExt.tla)
+Parsing file /tmp/tlc-2455304688791508816/Integers.tla (jar:file:/opt/tla2tools.jar!/tla2sany/StandardModules/Integers.tla)
 Semantic processing of module Naturals
 Semantic processing of module Sequences
 Semantic processing of module FiniteSets
@@ -26,7 +26,7 @@ Linting of module ORBExtension
 Linting of module TLCExt
 Linting of module _TLCTrace
 Linting of module SelfCompORB
-Starting... (2026-11-24 06:42:18)
+Starting... (2026-11-24 08:24:05)
 << "optin-witness",
    << [scheme |-> "http", host |-> "a.test", site |-> "a.test"],
       [ origin |-> [scheme |-> "https", host |-> "a.test", site |-> "a.test"],
@@ -1475,11 +1475,12 @@ Starting... (2026-11-24 06:42:18)
         <<"plain", FALSE, "200">>,
         <<"plain", FALSE, "206">>,
         <<"other", FALSE, "200">>,
-        <<"other", FALSE, "206">> } >> >>
+        <<"other", FALSE, "206">> } >>,
+   <<"ends-merged", {}>> >>
 Warning: The invariant PrintCounts is a constant-level formula (i.e., it contains no variables, primes, or temporal operators) and evaluates to TRUE. To assert constant-level formulas in your spec, use ASSUME ConstInv. If you optionally want to give the assumption a name, write ASSUME YourAssumption == ConstInv instead. See https://explain.tlapl.us/assumptions-and-invariants for additional details.
 (Use the -nowarning option to disable this warning.)
 Computing initial states...
-Finished computing initial states: 1 distinct state generated at 2026-11-24 06:43:43.
+Finished computing initial states: 1 distinct state generated at 2026-11-24 08:25:23.
 Model checking completed. No error has been found.
   Estimates of the probability that TLC did not check all reachable states
   because two distinct states had the same fingerprint:
@@ -1487,4 +1488,4 @@ Model checking completed. No error has been found.
 2 states generated, 1 distinct states found, 0 states left on queue.
 The depth of the complete state graph search is 1.
 The average outdegree of the complete state graph is 0 (minimum is 0, the maximum 0 and the 95th percentile is 0).
-Finished in 01min 25s at (2026-11-24 06:43:43)
+Finished in 01min 18s at (2026-11-24 08:25:23)

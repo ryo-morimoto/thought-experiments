@@ -132,10 +132,11 @@ evidence = ["experiments/models/site-isolation/dominance-all/RESULTS.md"]
 id = "B5"
 parent = "B"
 title = "情報流（hyperproperty）"
-status = "partial"
+status = "done"
 impact = "mid"
 done_when = "攻撃者が入力を選び問い合わせを繰り返す形の検査（自己合成）で、漏らすものの一覧を確かめている"
-note = "詳細化は保たない。ORB の漏れの量は議論で受け入れただけで、動かしていない"
+note = "自己合成と攻撃者の判断の木で数えた: 攻撃者が秘密の間に挟めると ORB の判定は N 回で N ビットの秘密を全部漏らす。漏らす一覧が秘密の固定した関数になるのは、攻撃者の中身が無いか、15 段目を外したときだけ"
+evidence = ["experiments/models/site-isolation/selfcomp/RESULTS.md"]
 
 [[node]]
 id = "B7"

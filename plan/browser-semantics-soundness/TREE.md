@@ -22,7 +22,7 @@
       - 完了の条件: 各性質に、前提を満たす証人がある
       - 今: OptInWitness など一部だけ
       - 根拠: [SpecIsolation.tla](../../experiments/models/site-isolation/SpecIsolation.tla)
-  - **B** [一部] 仕様の振る舞い ⊆ モデルの振る舞い（対象 (a)）
+  - **B** [済] 仕様の振る舞い ⊆ モデルの振る舞い（対象 (a)）
     - **B1** [済] 「仕様」の範囲を決める（効き: mid）
       - 完了の条件: 範囲が記録に書かれている
       - 今: 取り込まれた本文の固定したコミット。取り込まれていない書き換えは配備の仮定
@@ -52,10 +52,10 @@
       - 完了の条件: 経路ごとに支配の条件が確かめられている
       - 今: 機械的に作った経路の一覧の 139 行すべてに、仕様の本文で判定を付けた（保証する 110、保証しない 24、決まらない 5）。経路ごとの判定はリポジトリの外
       - 根拠: [2026-11-21-dominance-declassification.md](../../experiments/2026-11-21-dominance-declassification.md)、[2026-11-21-informal-extension.md](../../experiments/2026-11-21-informal-extension.md)、[2026-11-24-per-path-dominance.md](../../experiments/2026-11-24-per-path-dominance.md)、[RESULTS.md](../../experiments/models/site-isolation/dominance-all/RESULTS.md)
-    - **B5** [一部] 情報流（hyperproperty）（効き: mid）
+    - **B5** [済] 情報流（hyperproperty）（効き: mid）
       - 完了の条件: 攻撃者が入力を選び問い合わせを繰り返す形の検査（自己合成）で、漏らすものの一覧を確かめている
-      - 今: 詳細化は保たない。ORB の漏れの量は議論で受け入れただけで、動かしていない
-      - 根拠: [2026-11-21-dominance-declassification.md](../../experiments/2026-11-21-dominance-declassification.md)、[2026-11-24-selfcomp-orb-leak.md](../../experiments/2026-11-24-selfcomp-orb-leak.md)
+      - 今: 自己合成と攻撃者の判断の木で数えた: 攻撃者が秘密の間に挟めると ORB の判定は N 回で N ビットの秘密を全部漏らす。漏らす一覧が秘密の固定した関数になるのは、攻撃者の中身が無いか、15 段目を外したときだけ
+      - 根拠: [2026-11-21-dominance-declassification.md](../../experiments/2026-11-21-dominance-declassification.md)、[2026-11-24-selfcomp-orb-leak.md](../../experiments/2026-11-24-selfcomp-orb-leak.md)、[RESULTS.md](../../experiments/models/site-isolation/selfcomp/RESULTS.md)
     - **B7** [済] モデルが写していないオリジンの構造（ポート、登録可能なドメイン、localhost の安全な文脈、不透明なオリジンの継承）（効き: mid）
       - 完了の条件: これらをモデルに入れるか、入れない理由と、入れないことで結論がどの範囲に限られるかを書き、入れた場合は関係の型と領域の十分さを確かめ直している
       - 今: ポート、公開の接尾辞の一覧、localhost、不透明なオリジンの継承を入れ、仕様の演算子で書き直した性質は 63 個の領域で真。前の読みを持ち越した演算子は崩れた（A1 の KeyHTML もポートが要る）。入れていないものと範囲は記録に書いた
@@ -153,7 +153,6 @@
 - **C2** [一部・効き high] 入力の空間の網羅: 性質が量化する入力の構造（リダイレクト、popup の系譜、sandbox、about:blank、履歴）を軸として覆い、等価のまま残る変異体が軸の外だけになる
 - **D1** [一部・効き high] 列の性質（ナビゲーションの列、リダイレクト、bfcache、履歴の移動）: 列を状態の遷移として写したモデルと、列の筋書きでの包含がある
 - **C10** [未・効き high] 凍結したモデルでの取り置きの実行: モデル・軸・パラメータ・判定を事前に固定してから、新しい種の筋書きをブラウザで動かし、包含を数えている
-- **B5** [一部・効き mid] 情報流（hyperproperty）: 攻撃者が入力を選び問い合わせを繰り返す形の検査（自己合成）で、漏らすものの一覧を確かめている
 - **E1** [未・効き mid] 別の断片への適用: 2 つ目の断片で、方法の手間と効き目を測っている
 - **A3** [一部・効き low] 性質が空でない（前提を満たす証人がある）: 各性質に、前提を満たす証人がある
 - **C6** [一部・効き low] 観測の仕組みの妥当性: 手元のコンテナと wpt.fyi の条件の違いと、試験の作りの影響が切り分けられている
