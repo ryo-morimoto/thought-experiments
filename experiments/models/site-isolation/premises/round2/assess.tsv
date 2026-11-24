@@ -1,0 +1,25 @@
+r1 row	property	concept	match	risk checked	class	argument or TLC
+2	*	origin (no port, domain, opaque)	narrower	excludes spec cases	harmless	PortLikeWww TRUE: a ported origin gives the same FetchResult as a same-site host. ExtContexts add ports and an opaque requester: optin-ctx-ext, optin-pc-ext and coi-top-ext are TRUE. CORP, COEP and COOP read same origin, not same origin-domain
+7	*	request mode	narrower	excludes spec cases	harmless	a same-origin-mode cross-origin request is a network error in main fetch, so it delivers no bytes. Navigate mode is NavChild. cors mode is BodyOnlyByOptIn
+11	OptInOnly	opt-in	broader	weaker claim	harmless	superseded: OptInOnly is FALSE for its premise anyway, so the strict form is moot
+15	OptInOnlySecure	opt-in	broader	weaker claim	harmless	the requester is a top-level https document, so the scheme condition always holds. Round 1: strict = original, unmutated and under samesite-scheme
+17	OptInOnlySecureLifted	opt-in	broader	weaker claim	harmless	the property is superseded (wrong premise, FIXES.md G1)
+22	OptInOnlySecureCtx	opt-in	broader	weaker claim	must fix	round 1: under samesite-scheme the strict form is FALSE while the original stays TRUE. An http document under an https top is a secure context, and the original conclusion cannot see the scheme condition. Fix: CorpPermits
+24	OptInOnlyPC	opt-in	broader	weaker claim	must fix	as 22: optin-pc-strict is FALSE under samesite-scheme, the original TRUE. Fix: CorpPermits
+30	COIOnlyWithOptInTop	opt-in	broader	weaker claim	harmless	as 15: coi-top-strict is TRUE under samesite-scheme, like the original
+34	COIOnlyWithOptInNested	opt-in	broader	weaker claim	harmless	round 1: both strict nested forms are TRUE under samesite-scheme, like the original. coi-nested-ext and depth 2 are TRUE
+50	COIOnlyWithOptIn (DIP)	credentials, opt-in	broader	weaker claim	harmless	PremisesExt: dip-coi-strict = orig-dip-coi = TRUE, unmutated and under samesite-scheme. The same holds for dip-optin, acsub, acnav, acmono and orb-optin
+12	OptInOnlySecure	secure context	narrower	vacuity, excluded cases	restricts scope	Secure(o) leaves out localhost; SpecIsolationPT adds it and the properties hold. Scope: documents, with no data:/about: top-level URLs and no workers. data: top is non-secure in the spec too, so the premise is false in both
+18	OptInOnlySecureCtx	secure context	narrower	vacuity, excluded cases	restricts scope	with localhost added the property holds (optin-ctx-ext TRUE). It is not vacuous: 1162 premise cases, 166 with an http://localhost top. Latent: corp-ss-scheme uses Secure where Fetch uses the literal scheme (RESULTS 2b)
+78	GenModel!Allowed	isSecureContext row	narrower	excluded cases	restricts scope	the generated scenarios have no localhost or data:, so the rows are exact on them
+13	OptInOnlySecure	COEP header	narrower	excluded cases	harmless	OptInOnlyPC quantifies over the slot whatever wrote it, and it is TRUE (also over ExtContexts)
+20	OptInOnlySecureCtx	COEP header	narrower	excluded cases	harmless	as 13
+33	COIOnlyWithOptInNested	child embedder policy	narrower	excluded cases	harmless	ccoep ranges over every value. An inheriting child (srcdoc, about:blank) is same origin, so clause 1 holds by SameOrigin. FIXES.md h-ecoep-inherit-p row: COI-nested is T
+19	OptInOnlySecureCtx	one nesting level	narrower	excluded cases	harmless at depth 2	COINested2 (PremisesExt) is TRUE. Deeper levels are not checked (scope)
+25	COIOnlyWithOptInTop	cross-origin isolated	broader	failure outside spec	harmless	holds over the superset. A Permissions-Policy header can only remove the capability
+31	COIOnlyWithOptInNested	cross-origin isolated	broader	failure outside spec	harmless	holds; the round 1 M3 capability premise is TRUE
+49	COIOnlyWithOptIn (DIP)	cross-origin isolated	broader	failure outside spec	harmless	holds (orig-dip-coi)
+42	Signature	cors response	broader	hides mutants	restricts scope	Signature cannot separate CORS-check readings. No premise uses it
+57	ACSub	internal retry	narrower	excluded cases	harmless	the second response ranges over all same-origin responses, a superset of 401 retries
+69	P1..P4	popup check	narrower	excluded cases	restricts scope	no noopener-allow-popups (html.src:95659 step 1); P1 to P4 say nothing about it
+83	Gen2Model!Allowed	agent cluster key	narrower	excluded cases	harmless	round 1 M4: 48 collisions, none reached by the 81 O scenarios

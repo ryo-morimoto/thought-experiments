@@ -24,11 +24,11 @@ title = "モデルの中で P が正しく示されている"
 id = "A1"
 parent = "A"
 title = "性質の書き方が正しい（前提を仕様の概念で書く）"
-status = "partial"
+status = "done"
 impact = "mid"
 done_when = "各性質の前提の概念が、仕様の定義に対応づいている"
-note = "83 の概念を対応づけ、食い違い 4 つを直した書き方で確かめた。攻撃を受けて戻した: 狭い・広い対応の 24 組が性質を空にするか、仕様の外の理由で崩すかを確かめていない。2 巡目が進行中"
-evidence = ["experiments/models/site-isolation/fixes/FIXES.md", "experiments/models/site-isolation/premises/RESULTS.md"]
+note = "83 の概念を仕様か印のついた分析の定義に対応づけ、一致しない 24 組をすべて評価した（害なし 17、範囲を狭める 5、直すべき 2 は直した書き方で成り立つ、取り込みは F7）。分析の定義 2 つには暴く試験が無い"
+evidence = ["experiments/models/site-isolation/fixes/FIXES.md", "experiments/models/site-isolation/premises/RESULTS.md", "experiments/models/site-isolation/premises/round2/RESULTS.md"]
 
 [[node]]
 id = "A2"
