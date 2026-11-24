@@ -1,0 +1,825 @@
+{
+ "steps_parsed_total": 10198,
+ "steps_without_tokens": 0,
+ "closure_steps_matched": 3445,
+ "closure_steps_tsv": 3445,
+ "closure_algorithms": 312,
+ "closure_algorithms_with_params": 283,
+ "closure_call_sites_by_mapping": {
+  "positional": 640,
+  "fallback": 87
+ },
+ "criteria": [
+  [
+   "coep",
+   "html:policy container/embedder policy",
+   3
+  ],
+  [
+   "coep",
+   "html:embedder policy/value",
+   1
+  ],
+  [
+   "coop",
+   "html:opener policy",
+   2
+  ],
+  [
+   "coop",
+   "html:navigation params/opener policy",
+   5
+  ],
+  [
+   "coop",
+   "html:value",
+   4
+  ],
+  [
+   "corp",
+   "RET(cross-origin resource policy check)",
+   3
+  ],
+  [
+   "corp",
+   "RET(cross-origin resource policy internal check)",
+   6
+  ],
+  [
+   "creds",
+   "RET(Cross-Origin-Embedder-Policy allows credentials)",
+   5
+  ],
+  [
+   "secure",
+   "RET(secure context)",
+   6
+  ],
+  [
+   "origin",
+   "fetch:request/origin",
+   7
+  ],
+  [
+   "origin",
+   "fetch:response/URL list",
+   3
+  ],
+  [
+   "origin",
+   "html:origin",
+   0
+  ],
+  [
+   "origin",
+   "RET(determine the origin)",
+   5
+  ],
+  [
+   "akey",
+   "RET(obtain a similar-origin window agent)",
+   1
+  ],
+  [
+   "coimode",
+   "html:cross-origin isolation mode",
+   1
+  ],
+  [
+   "coimode",
+   "RET(obtain a browsing context to use for a navigation response)",
+   4
+  ],
+  [
+   "coicap",
+   "html:environment settings object/cross-origin isolated capability",
+   3
+  ],
+  [
+   "tainting",
+   "fetch:request/response tainting",
+   6
+  ],
+  [
+   "mode",
+   "fetch:request/mode",
+   14
+  ],
+  [
+   "bcgswitch",
+   "RET(check if COOP values require a browsing context group switch)",
+   3
+  ],
+  [
+   "bcgswitch",
+   "RET(check if popup COOP values require a browsing context group switch)",
+   4
+  ],
+  [
+   "bcgswitch",
+   "RET(match opener policy values)",
+   4
+  ],
+  [
+   "response",
+   "fetch:response/type",
+   0
+  ],
+  [
+   "response",
+   "fetch response handover::response",
+   3
+  ]
+ ],
+ "relevant_cells_thin": 1422,
+ "relevant_cells_full": 4955,
+ "slice_thin_closure": 917,
+ "slice_full_closure": 2469,
+ "slice_full_outside_closure": 3306,
+ "slice_algorithms_closure": 253,
+ "roles": {
+  "def": 1269,
+  "control": 379,
+  "control,def": 411,
+  "arg,def": 220,
+  "arg": 130,
+  "arg,control,def": 51,
+  "arg,control": 9
+ },
+ "verdicts_full": {
+  "unmodeled-gap": 749,
+  "unmodeled-nonwrite": 1113,
+  "excluded:notread": 396,
+  "modeled": 126,
+  "excluded:nocone": 32,
+  "unmodeled-known": 48,
+  "excluded:outscope": 5
+ },
+ "slice_ctrl_closure": 2218,
+ "verdicts_thin": {
+  "unmodeled-nonwrite": 266,
+  "unmodeled-gap": 317,
+  "excluded:notread": 167,
+  "modeled": 97,
+  "excluded:nocone": 29,
+  "unmodeled-known": 37,
+  "excluded:outscope": 4
+ },
+ "verdicts_ctrl": {
+  "unmodeled-gap": 674,
+  "unmodeled-nonwrite": 1006,
+  "excluded:notread": 337,
+  "modeled": 120,
+  "excluded:nocone": 30,
+  "unmodeled-known": 47,
+  "excluded:outscope": 4
+ },
+ "unmodeled_groups_thin": {
+  "url-and-parsing": 194,
+  "document-and-bc-creation": 87,
+  "script-and-events": 10,
+  "other": 45,
+  "policy-coep-coop": 14,
+  "navigation-history": 130,
+  "redirect-and-network": 104,
+  "fetch-core": 36
+ },
+ "per_concept_thin": {
+  "akey": [
+   877,
+   ".x"
+  ],
+  "bcgswitch": [
+   11,
+   ".."
+  ],
+  "coep": [
+   882,
+   "xx"
+  ],
+  "coicap": [
+   7,
+   ".."
+  ],
+  "coimode": [
+   876,
+   ".x"
+  ],
+  "coop": [
+   20,
+   ".."
+  ],
+  "corp": [
+   5,
+   ".."
+  ],
+  "creds": [
+   5,
+   ".."
+  ],
+  "mode": [
+   5,
+   ".."
+  ],
+  "origin": [
+   876,
+   ".x"
+  ],
+  "response": [
+   879,
+   ".x"
+  ],
+  "secure": [
+   6,
+   ".."
+  ],
+  "tainting": [
+   6,
+   ".."
+  ]
+ },
+ "ctrl_dist_hist": {
+  "0": 128,
+  "1": 327,
+  "2": 370,
+  "3": 326,
+  "4": 283,
+  "5": 281,
+  "6": 166,
+  "7": 108,
+  "8": 54,
+  "9": 44,
+  "10": 131
+ },
+ "ctrl_unmodeled_by_dist": {
+  "0": 78,
+  "1": 219,
+  "2": 275,
+  "3": 262,
+  "4": 229,
+  "5": 246,
+  "6": 138,
+  "7": 101,
+  "8": 47,
+  "9": 33,
+  "10": 99
+ },
+ "ctrl_unmodeled_dist_le2_groups": {
+  "url-and-parsing": 65,
+  "document-and-bc-creation": 90,
+  "policy-coep-coop": 57,
+  "other": 28,
+  "script-and-events": 6,
+  "redirect-and-network": 132,
+  "navigation-history": 148,
+  "fetch-core": 46
+ },
+ "ctrl_unmodeled_dist_le2_algos": [
+  [
+   "HTTP-network-or-cache fetch",
+   42
+  ],
+  [
+   "navigate",
+   37
+  ],
+  [
+   "create navigation params by fetching",
+   31
+  ],
+  [
+   "scheme fetch",
+   27
+  ],
+  [
+   "apply the history step",
+   20
+  ],
+  [
+   "main fetch",
+   20
+  ],
+  [
+   "HTTP-network fetch",
+   19
+  ],
+  [
+   "fetch",
+   16
+  ],
+  [
+   "create a new browsing context and document",
+   14
+  ],
+  [
+   "attempt to populate the history entry's document",
+   14
+  ],
+  [
+   "HTTP-redirect fetch",
+   14
+  ],
+  [
+   "allowed by sandboxing to navigate",
+   13
+  ],
+  [
+   "HTTP fetch",
+   13
+  ],
+  [
+   "download the hyperlink",
+   11
+  ],
+  [
+   "check a navigation response's adherence to `X-Frame-Options`",
+   11
+  ],
+  [
+   "process the `Speculation-Rules` header",
+   10
+  ],
+  [
+   "obtain a browsing context to use for a navigation response",
+   9
+  ],
+  [
+   "handle as a download",
+   8
+  ],
+  [
+   "create and initialize a Document object",
+   8
+  ],
+  [
+   "obtain an opener policy",
+   7
+  ],
+  [
+   "set up a window environment settings object",
+   7
+  ],
+  [
+   "navigate to a javascript: URL",
+   7
+  ],
+  [
+   "evaluate a javascript: URL",
+   7
+  ],
+  [
+   "secure context",
+   7
+  ],
+  [
+   "redirect-taint",
+   7
+  ],
+  [
+   "determine navigation params policy container",
+   6
+  ],
+  [
+   "deactivate a document for a cross-document navigation",
+   6
+  ],
+  [
+   "same origin-domain",
+   5
+  ],
+  [
+   "check if unloading is canceled",
+   5
+  ],
+  [
+   "process link headers",
+   4
+  ],
+  [
+   "process early hint headers",
+   4
+  ],
+  [
+   "allowed to use",
+   4
+  ],
+  [
+   "clone a policy container",
+   4
+  ],
+  [
+   "commit a navigate event",
+   4
+  ],
+  [
+   "navigate to a fragment",
+   4
+  ],
+  [
+   "attempt to create a non-fetch scheme document",
+   4
+  ],
+  [
+   "create navigation params from a srcdoc resource",
+   4
+  ],
+  [
+   "load a document",
+   4
+  ],
+  [
+   "create a document to display a user agent page or PDF viewer inline",
+   4
+  ],
+  [
+   "unloading document cleanup steps",
+   4
+  ]
+ ],
+ "per_concept_ctrl": {
+  "akey": [
+   2217,
+   "xx"
+  ],
+  "bcgswitch": [
+   2217,
+   "xx"
+  ],
+  "coep": [
+   2218,
+   "xx"
+  ],
+  "coicap": [
+   2217,
+   "xx"
+  ],
+  "coimode": [
+   2217,
+   "xx"
+  ],
+  "coop": [
+   2217,
+   "xx"
+  ],
+  "corp": [
+   2217,
+   "xx"
+  ],
+  "creds": [
+   2217,
+   "xx"
+  ],
+  "mode": [
+   2217,
+   "xx"
+  ],
+  "origin": [
+   2217,
+   "xx"
+  ],
+  "response": [
+   2217,
+   "xx"
+  ],
+  "secure": [
+   2217,
+   "xx"
+  ],
+  "tainting": [
+   2217,
+   "xx"
+  ]
+ },
+ "unmodeled_groups_full": {
+  "other": 145,
+  "url-and-parsing": 548,
+  "document-and-bc-creation": 183,
+  "script-and-events": 115,
+  "policy-coep-coop": 71,
+  "navigation-history": 504,
+  "redirect-and-network": 261,
+  "fetch-core": 83
+ },
+ "n_concepts_hist_full": {
+  "13": 2469
+ },
+ "gap_rows": {
+  "local": 746,
+  "collection": 152,
+  "unparsed": 56
+ },
+ "gap_resolution": {
+  "local/resolved": 701,
+  "collection/resolved": 104,
+  "unparsed/unresolved": 24,
+  "collection/unresolved": 48,
+  "local/unresolved": 45,
+  "unparsed/resolved": 32
+ },
+ "gap_relevance": {
+  "local/irrelevant": 114,
+  "local/relevant-data": 226,
+  "collection/relevant-data": 31,
+  "local/relevant-control-only": 361,
+  "unparsed/irrelevant": 13,
+  "unparsed/relevant-data": 6,
+  "unparsed/relevant-control-only": 13,
+  "collection/relevant-control-only": 50,
+  "collection/irrelevant": 23
+ },
+ "holes_full": {
+  "steps_with_hole_closure": 174,
+  "on_relevant_paths": 151,
+  "kinds_closure": {
+   "indirect-call": 43,
+   "prose-only": 36,
+   "other-write-verb": 12,
+   "collection-unresolved-target": 44,
+   "unresolved-link": 9,
+   "callback-bound": 2,
+   "collection-no-target": 23,
+   "untagged-let": 1,
+   "unresolved-target": 1,
+   "local?": 5
+  },
+  "kinds_on_path": {
+   "indirect-call": 35,
+   "other-write-verb": 12,
+   "prose-only": 28,
+   "collection-unresolved-target": 37,
+   "unresolved-link": 9,
+   "callback-bound": 2,
+   "collection-no-target": 23,
+   "untagged-let": 1,
+   "unresolved-target": 1,
+   "local?": 3
+  },
+  "unbound_relevant_locals": 61,
+  "entry_params_without_callers": 5
+ },
+ "holes_ctrl": {
+  "steps_with_hole_closure": 172,
+  "on_relevant_paths": 144,
+  "kinds_closure": {
+   "indirect-call": 43,
+   "prose-only": 36,
+   "other-write-verb": 12,
+   "collection-unresolved-target": 44,
+   "unresolved-link": 8,
+   "callback-bound": 1,
+   "collection-no-target": 23,
+   "untagged-let": 1,
+   "unresolved-target": 1,
+   "local?": 5
+  },
+  "kinds_on_path": {
+   "indirect-call": 34,
+   "other-write-verb": 12,
+   "prose-only": 28,
+   "collection-unresolved-target": 35,
+   "unresolved-link": 8,
+   "callback-bound": 1,
+   "collection-no-target": 21,
+   "untagged-let": 1,
+   "unresolved-target": 1,
+   "local?": 3
+  },
+  "unbound_relevant_locals": 48,
+  "entry_params_without_callers": 5
+ },
+ "holes_thin": {
+  "steps_with_hole_closure": 167,
+  "on_relevant_paths": 93,
+  "kinds_closure": {
+   "indirect-call": 43,
+   "prose-only": 36,
+   "other-write-verb": 12,
+   "collection-unresolved-target": 44,
+   "callback-bound": 1,
+   "collection-no-target": 23,
+   "untagged-let": 1,
+   "unresolved-link": 3,
+   "unresolved-target": 1,
+   "local?": 5
+  },
+  "kinds_on_path": {
+   "collection-unresolved-target": 20,
+   "indirect-call": 31,
+   "callback-bound": 1,
+   "prose-only": 13,
+   "collection-no-target": 18,
+   "other-write-verb": 3,
+   "unresolved-link": 3,
+   "unresolved-target": 1,
+   "local?": 3
+  },
+  "unbound_relevant_locals": 16,
+  "entry_params_without_callers": 3
+ },
+ "unbound_examples": [
+  "CORS-safelisted request-header::name",
+  "CORS-safelisted request-header::value",
+  "CSP-derived sandboxing flags::cspList",
+  "CSP-derived sandboxing flags::policy",
+  "HTTP-network fetch::body",
+  "Should response to request be blocked due to its MIME type?::request",
+  "Should response to request be blocked due to nosniff?::request",
+  "StructuredDeserialize::subSerialized",
+  "StructuredSerializeInternal::subValue",
+  "abort the ongoing navigation::reason",
+  "allowed by sandboxing to navigate::source",
+  "allowed to use::document",
+  "append a request `Origin` header::scheme",
+  "autofocus delegate::descendant",
+  "available deferred-fetch quota::deferredRecord",
+  "can have its URL rewritten::document",
+  "create a document to display a user agent page or PDF viewer inline::response",
+  "create navigation params by fetching::earlyResponse",
+  "create navigation params by fetching::fetchedResponse",
+  "data: URL processor::position",
+  "environment default `User-Agent` value::environment",
+  "evaluate a javascript: URL::targetSnapshotParams",
+  "extract header list values::header",
+  "fetch response handover::global",
+  "fetch::response",
+  "focus update steps::document",
+  "get a structured field value::header_type",
+  "get a structured field value::input_string",
+  "has a style sheet that is blocking scripts::document",
+  "has entries and events disabled::navigation",
+  "inner navigate event firing algorithm::reason",
+  "merge existing and new import maps::integrity",
+  "merge existing and new import maps::scopeImports",
+  "navigate event intercept commit handler steps::reason",
+  "process early hint headers::doc",
+  "process internal resource links::link",
+  "process the `Speculation-Rules` header::bodyBytes",
+  "requires storing the policy container in history::url",
+  "respond to base URL changes::element",
+  "rules for parsing floating-point number values::divisor"
+ ],
+ "entry_params": [
+  "append::browsingContext",
+  "append::group",
+  "set::list",
+  "set::name",
+  "set::value"
+ ],
+ "boundary_steps_in_slice": 401,
+ "boundary_targets": [
+  [
+   "infra.spec.whatwg.org",
+   133
+  ],
+  [
+   "?",
+   99
+  ],
+  [
+   "w3c.github.io",
+   59
+  ],
+  [
+   "tc39.es",
+   50
+  ],
+  [
+   "dom.spec.whatwg.org",
+   49
+  ],
+  [
+   "webidl.spec.whatwg.org",
+   40
+  ],
+  [
+   "url.spec.whatwg.org",
+   33
+  ],
+  [
+   "drafts.csswg.org",
+   11
+  ],
+  [
+   "httpwg.org",
+   9
+  ],
+  [
+   "mimesniff.spec.whatwg.org",
+   7
+  ],
+  [
+   "encoding.spec.whatwg.org",
+   6
+  ],
+  [
+   "datatracker.ietf.org",
+   1
+  ]
+ ],
+ "havoc_read_rows": 173,
+ "havoc_read_rows_missed_by_full_slice": 1,
+ "havoc_read_rows_in_thin_slice": 134,
+ "havoc_read_rows_in_ctrl_slice": 165,
+ "missed": [
+  [
+   "cross-origin resource policy check",
+   "2",
+   "modeled",
+   "coep",
+   "",
+   ""
+  ]
+ ],
+ "control html/obtain an embedder policy/2": {
+  "full_roles": [
+   "control",
+   "def"
+  ],
+  "thin": true,
+  "ctrl_dist": 0,
+  "thin_dist": 1,
+  "ctrl": true,
+  "defs": [
+   [
+    "return",
+    "RET(obtain an embedder policy)"
+   ]
+  ],
+  "concepts": [
+   "akey",
+   "bcgswitch",
+   "coep",
+   "coicap",
+   "coimode",
+   "coop",
+   "corp",
+   "creds",
+   "mode",
+   "origin",
+   "response",
+   "secure",
+   "tainting"
+  ]
+ },
+ "control fetch/HTTP-network-or-cache fetch/8.4": {
+  "full_roles": [
+   "arg",
+   "def"
+  ],
+  "thin": true,
+  "ctrl_dist": 2,
+  "thin_dist": 14,
+  "ctrl": true,
+  "defs": [
+   [
+    "local",
+    "HTTP-network-or-cache fetch::includeCredentials"
+   ]
+  ],
+  "concepts": [
+   "akey",
+   "bcgswitch",
+   "coep",
+   "coicap",
+   "coimode",
+   "coop",
+   "corp",
+   "creds",
+   "mode",
+   "origin",
+   "response",
+   "secure",
+   "tainting"
+  ]
+ },
+ "control fetch/HTTP-network-or-cache fetch/8.3": {
+  "full_roles": [
+   "def"
+  ],
+  "thin": true,
+  "ctrl_dist": 2,
+  "thin_dist": 14,
+  "ctrl": true,
+  "defs": [
+   [
+    "local",
+    "HTTP-network-or-cache fetch::includeCredentials"
+   ]
+  ],
+  "concepts": [
+   "akey",
+   "bcgswitch",
+   "coep",
+   "coicap",
+   "coimode",
+   "coop",
+   "corp",
+   "creds",
+   "mode",
+   "origin",
+   "response",
+   "secure",
+   "tainting"
+  ]
+ }
+}

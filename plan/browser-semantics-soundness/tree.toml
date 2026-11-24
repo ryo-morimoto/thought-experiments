@@ -95,7 +95,8 @@ title = "書き先の決定"
 status = "partial"
 impact = "high"
 done_when = "性質に効く値を書く段を、規則で決められる"
-note = "書き先の 57% が規則で決まらない。段の中の条件の文の意味を決める必要があるか"
+note = "データの流れの解析で、決まらなかった書き先の 87.7% が決まった（残り 117）。2 巡目が進行中"
+evidence = ["experiments/models/site-isolation/dataflow/RESULTS.md"]
 
 [[node]]
 id = "B2d"

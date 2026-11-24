@@ -38,8 +38,8 @@
         - 根拠: [2026-11-21-fsp-correspondence.md](../../experiments/2026-11-21-fsp-correspondence.md)、[2026-11-23-havoc-unmodeled-steps.md](../../experiments/2026-11-23-havoc-unmodeled-steps.md)、[2026-11-24-write-target-semantics.md](../../experiments/2026-11-24-write-target-semantics.md)
       - **B2c** [一部] 書き先の決定（効き: high）
         - 完了の条件: 性質に効く値を書く段を、規則で決められる
-        - 今: 書き先の 57% が規則で決まらない。段の中の条件の文の意味を決める必要があるか
-        - 根拠: [2026-11-23-havoc-unmodeled-steps.md](../../experiments/2026-11-23-havoc-unmodeled-steps.md)、[2026-11-24-write-target-semantics.md](../../experiments/2026-11-24-write-target-semantics.md)
+        - 今: データの流れの解析で、決まらなかった書き先の 87.7% が決まった（残り 117）。2 巡目が進行中
+        - 根拠: [2026-11-23-havoc-unmodeled-steps.md](../../experiments/2026-11-23-havoc-unmodeled-steps.md)、[2026-11-24-write-target-semantics.md](../../experiments/2026-11-24-write-target-semantics.md)、[RESULTS.md](../../experiments/models/site-isolation/dataflow/RESULTS.md)
       - **B2d** [済] 中身が文書に入る経路の一覧（効き: mid）
         - 完了の条件: 経路の一覧が機械的に作れ、手で選んだ経路の再現率が測れている
         - 今: 規則の閉包の中で機械的に作り直した（再利用の精度 50%、参照の経路の再現率 9 のうち 8）。見つからないのは散文の裁量と他の仕様の中

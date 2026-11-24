@@ -1,0 +1,223 @@
+spec	algorithm	step	line	hole_kinds	on_relevant_path_ctrl	in_ctrl_slice	ctrl_dist	detail
+html	start a new parallel queue	2.1.2	1612	indirect-call	yes	no		
+html	valid floating-point number	2	5840	prose-only	no	no		
+html	valid floating-point number	2.1	5844	prose-only	no	no		
+html	valid floating-point number	2.2	5846	prose-only	no	no		
+html	valid floating-point number	2.2.1	5850	prose-only	no	no		
+html	valid floating-point number	2.2.2	5852	prose-only	no	no		
+html	valid floating-point number	3.1	5862	prose-only	no	no		
+html	valid floating-point number	3.3	5868	prose-only	no	no		
+html	rules for parsing floating-point number values	8.1	5936	other-write-verb	yes	no		
+html	rules for parsing floating-point number values	13	5970	prose-only	yes	yes	9	
+html	rules for parsing floating-point number values	13.4	5985	prose-only	yes	no		
+html	rules for parsing floating-point number values	14.3.1	6014	other-write-verb	yes	no		
+html	rules for parsing floating-point number values	14.6	6040	prose-only	yes	no		
+html	respond to base URL changes	2	8040	prose-only	yes	no		
+html	stop intersection-observing a lazy loading element	3	8612	indirect-call	no	no		
+html	StructuredSerializeInternal	1	10680	collection-unresolved-target	yes	yes	4	
+html	StructuredSerializeInternal	16.1	10836	collection-unresolved-target	yes	yes	4	
+html	StructuredSerializeInternal	17.1	10847	collection-unresolved-target	yes	yes	4	
+html	StructuredSerializeInternal	19.3	10896	collection-unresolved-target	yes	yes	4	
+html	StructuredSerializeInternal	25.1	10950	collection-unresolved-target	yes	yes	4	
+html	StructuredSerializeInternal	28.1.1	10976	collection-unresolved-target	yes	yes	5	
+html	StructuredSerializeInternal	28.2.1	11015	collection-unresolved-target	yes	yes	5	
+html	StructuredSerializeInternal	28.3	11041	indirect-call	yes	yes	4	
+html	StructuredDeserialize	1	11150	collection-unresolved-target	yes	yes	11	
+html	StructuredDeserialize	18.1	11267	collection-unresolved-target	yes	yes	11	
+html	StructuredDeserialize	19.1	11278	collection-unresolved-target	yes	yes	11	
+html	StructuredDeserialize	22.13	11348	prose-only	yes	no		
+html	process link headers	2.9	17700	indirect-call	yes	no		
+html	process early hint headers	3	17854	collection-unresolved-target	yes	yes	3	
+html	process early hint headers	4.5	17915	indirect-call	yes	no		
+html	process early hint headers	5.2	17933	indirect-call	yes	no		
+html	hyperlink referrer policy	1	27614	unresolved-link	yes	yes	2	link types
+html	download the hyperlink	9	27713	callback-bound	yes	yes	2	
+html	get the suggested filename	14	27919	prose-only	yes	no		
+html	get the suggested filename	19	27946	collection-no-target	yes	yes	4	
+html	consume a preloaded resource	8	29796	indirect-call	yes	no		
+html	parse a srcset attribute	4	34191	prose-only	yes	no		
+html	parse a srcset attribute	8.2	34216	prose-only	yes	no		
+html	parse a sizes attribute	3.1	34438	collection-no-target	yes	yes	9	
+html	parse a sizes attribute	3.2	34444	unresolved-link	yes	yes	9	<source-size-value>
+html	parse a sizes attribute	3.4	34470	collection-no-target	yes	yes	9	
+html	parse a sizes attribute	3.5	34483	prose-only	yes	yes	9	
+html	focus chain	1	87233	collection-unresolved-target	yes	yes	6	
+html	focus update steps	4.1.2	88017	prose-only	yes	no		
+html	CSP-derived sandboxing flags	1	97431	collection-unresolved-target	yes	yes	3	
+html	update the navigation API entries for reactivation	2	101525	collection-unresolved-target	yes	no		
+html	update the navigation API entries for a same-document navigation	3	101628	collection-unresolved-target	yes	yes	5	
+html	update the navigation API entries for a same-document navigation	5	101648	collection-no-target	yes	yes	4	
+html	update the navigation API entries for a same-document navigation	7	101688	collection-no-target	yes	yes	4	
+html	fire a download request navigate event	8	104374	collection-no-target	yes	yes	3	
+html	inner navigate event firing algorithm	8	104478	untagged-let	yes	no		
+html	inner navigate event firing algorithm	10	104509	other-write-verb	yes	no		
+html	inner navigate event firing algorithm	11	104512	other-write-verb	yes	no		
+html	inner navigate event firing algorithm	12	104516	other-write-verb	yes	no		
+html	inner navigate event firing algorithm	13	104519	other-write-verb	yes	no		
+html	inner navigate event firing algorithm	15	104535	other-write-verb	yes	no		
+html	inner navigate event firing algorithm	16	104540	other-write-verb	yes	no		
+html	inner navigate event firing algorithm	18	104548	other-write-verb	yes	no		
+html	inner navigate event firing algorithm	31.2	104690	collection-unresolved-target	yes	yes	8	
+html	navigate event intercept commit handler steps	1	104725	collection-unresolved-target	yes	yes	4	
+html	potentially reset the focus	6	105050	unresolved-link	yes	yes	4	manual
+html	potentially reset the focus	12	105075	prose-only	yes	no		
+html	potentially process scroll behavior	3	105092	unresolved-link	no	no		manual
+html	create a new browsing context and document	21	107573	other-write-verb	yes	no		
+html	create a new browsing context group and document	2	107848	collection-no-target	yes	no		
+html	get session history entries	4	108657	collection-unresolved-target	yes	yes	6	
+html	get session history entries for the navigation API	2	108701	collection-unresolved-target	yes	yes	9	
+html	get all used history steps	2	108805	collection-unresolved-target	yes	yes	6	
+html	navigate	13.2	109334	collection-no-target	yes	yes	6	
+html	navigate to a javascript: URL	11	109912	unresolved-link	yes	yes	1	or should this be
+html	evaluate a javascript: URL	15	110070	unresolved-link	yes	yes	0	this will cause the
+html	navigate to a fragment	12	110234	collection-no-target	yes	yes	10	
+html	steps to fire beforeunload	2	110746	prose-only	yes	no		
+html	steps to fire beforeunload	7	110816	prose-only	yes	no		
+html	URL and history update steps	7	111031	collection-no-target	yes	yes	11	
+html	attempt to populate the history entry's document	5.1	111214	indirect-call	yes	yes	1	
+html	attempt to populate the history entry's document	5.4.4.1	111307	indirect-call	yes	no		
+html	attempt to populate the history entry's document	5.8	111447	indirect-call	yes	no		
+html	create navigation params by fetching	3	111593	unresolved-link	yes	yes	0	the destination is updated
+html	create navigation params by fetching	6.3	111676	unresolved-target	yes	no		
+html	create navigation params by fetching	21.1.1	111781	indirect-call	yes	no		
+html	apply the history step	11	112608	collection-unresolved-target	yes	yes	3	
+html	apply the history step	12.4.2	112664	collection-no-target	yes	no		
+html	apply the history step	12.5	112675	collection-no-target	yes	no		
+html	apply the history step	12.8	112735	indirect-call	yes	yes	1	
+html	apply the history step	12.8.7	112774	indirect-call	yes	yes	2	
+html	apply the history step	12.8.11	112847	collection-no-target	yes	no		
+html	apply the history step	14.1.1.4	112903	indirect-call	yes	no		
+html	apply the history step	14.11.2	112976	indirect-call	yes	no		
+html	apply the history step	14.13.4	113063	indirect-call	yes	no		
+html	apply the history step	14.13.5	113066	indirect-call	yes	no		
+html	deactivate a document for a cross-document navigation	6.4	113214	indirect-call	yes	no		
+html	get all navigables whose current session history entry will change or reload	1	113399	collection-unresolved-target	yes	yes	3	
+html	get all navigables that only need history object length/index update	1	113457	collection-unresolved-target	yes	yes	6	
+html	get all navigables that might experience a cross-document traversal	1	113559	collection-unresolved-target	yes	yes	8	
+html	update document for history step application	9.4	113782	prose-only	yes	no		
+html	reactivate	1	113856	indirect-call	yes	no		
+html	build not restored reasons for document state	4.2	113976	unresolved-link	yes	yes	4	src
+html	build not restored reasons for a top-level traversable and its descendants	2	114038	collection-unresolved-target	no	no		
+html	scroll to the fragment	3.7	114180	prose-only	yes	no		
+html	create and initialize a Document object	18.2	114707	indirect-call	yes	no		
+html	create and initialize a Document object	19	114716	indirect-call	yes	no		
+html	load a text document	5	114963	collection-no-target	yes	no		
+html	load a multipart/x-mixed-replace document	1	114992	prose-only	yes	no		
+html	load a media document	4	115052	collection-no-target	yes	no		
+html	create a document to display a user agent page or PDF viewer inline	6	115192	prose-only	yes	no		
+html	unload	5	115326	unresolved-link	yes	yes	4	used for history traversal
+html	unload	7	115341	prose-only	yes	no		
+html	unload	8	115343	prose-only	yes	no		
+html	unload	14	115383	prose-only	yes	no		
+html	unload	21	115404	prose-only	yes	no		
+html	unload a document and its descendants	6.1	115457	indirect-call	yes	no		
+html	destroy	5	115543	collection-no-target	yes	no		
+html	parse a speculation rule	8	116235	collection-unresolved-target	yes	yes	6	
+html	parse a speculation rule	11.2	116344	collection-unresolved-target	yes	yes	6	
+html	parse a speculation rule	16	116411	collection-unresolved-target	yes	yes	6	
+html	parse a speculation rule	21	116444	collection-unresolved-target	yes	yes	6	
+html	parse a document rule predicate	4.3	116598	collection-unresolved-target	yes	yes	8	
+html	parse a document rule predicate	6.5	116698	collection-unresolved-target	yes	yes	8	
+html	parse a document rule predicate	7.4	116753	collection-unresolved-target	yes	yes	8	
+html	inner consider speculative loads steps	2	116984	collection-unresolved-target	no	no		
+html	inner consider speculative loads steps	5	117110	collection-unresolved-target	no	no		
+html	collect tags from speculative load candidates	1	117255	collection-unresolved-target	no	no		
+html	find matching links	1	117283	collection-unresolved-target	no	no		
+html	process the `Speculation-Rules` header	3.4.2.2	117512	callback-bound	no	yes	2	
+html	create a new realm	3	118710	collection-unresolved-target	yes	no		
+html	run a classic script	8.1.2	120982	prose-only	yes	no		
+html	prepare to run script	1	121099	collection-unresolved-target	no	no		
+html	clean up after running script	2	121117	collection-unresolved-target	no	no		
+html	extract error information	1	121199	collection-unresolved-target	yes	yes	12	
+html	queue a microtask	9	124097	collection-no-target	no	no		
+html	perform a microtask checkpoint	3.3	124688	indirect-call	no	no		
+html	spin the event loop	4	124763	collection-unresolved-target	no	no		
+html	spin the event loop	6.2.1	124782	collection-unresolved-target	no	no		
+html	spin the event loop	7	124796	prose-only	no	no		
+html	terminate a worklet global scope	5	140278	prose-only	yes	no		
+html	stops parsing	13	152558	prose-only	yes	no		
+fetch	process the next manual redirect	2	288	indirect-call	no	no		
+fetch	get, decode, and split	5.3	846	collection-no-target	yes	no		
+fetch	set	1	894	collection-no-target	yes	yes	2	
+fetch	extract header list values	3	1327	collection-unresolved-target	yes	yes	5	
+fetch	incrementally-read loop	1.2	1560	indirect-call	no	no		
+fetch	incrementally-read loop	1.3.2.1	1579	indirect-call	no	no		
+fetch	incrementally-read loop	1.6	1596	indirect-call	no	no		
+fetch	fully read	2	1617	local?,indirect-call	no	no		
+fetch	fully read	3	1621	local?,indirect-call	no	no		
+fetch	fully read	4	1625	indirect-call	no	no		
+fetch	obtain a connection	4.8	3141	collection-no-target	yes	no		
+fetch	main fetch	20	5136	local?	yes	no		
+fetch	main fetch	21	5152	local?	yes	no		
+fetch	main fetch	23.2	5194	indirect-call	yes	yes	0	
+fetch	main fetch	23.3.1	5201	indirect-call	yes	yes	0	
+fetch	fetch response handover	4.3.2	5314	indirect-call	yes	no		
+fetch	fetch response handover	4.3.3	5318	indirect-call	yes	no		
+fetch	fetch response handover	4.4	5328	indirect-call	yes	no		
+fetch	fetch response handover	5	5332	indirect-call	yes	no		
+fetch	fetch response handover	8	5346	indirect-call	yes	no		
+fetch	fetch response handover	10.1	5377	indirect-call	yes	no		
+fetch	fetch response handover	10.2	5381	indirect-call	yes	no		
+fetch	fetch response handover	10.3	5384	indirect-call	yes	no		
+fetch	HTTP fetch	3.2.2.3	5760	collection-no-target,collection-no-target,collection-no-target	yes	no		
+fetch	HTTP fetch	4.3	5881	local?	yes	yes	2	
+fetch	HTTP-redirect fetch	8	5992	prose-only	yes	no		
+fetch	HTTP-network-or-cache fetch	8.20	6299	collection-no-target	yes	no		
+fetch	HTTP-network-or-cache fetch	11.4.1	6483	other-write-verb	yes	no		
+fetch	HTTP-network-or-cache fetch	11.5.2	6502	other-write-verb	yes	no		
+fetch	HTTP-network-or-cache fetch	15.1	6531	prose-only	yes	no		
+fetch	HTTP-network-or-cache fetch	16.2	6576	prose-only	yes	no		
+fetch	HTTP-network-or-cache fetch	16.4	6582	prose-only	yes	no		
+fetch	HTTP-network fetch	8.5.5.3	6752	indirect-call	yes	no		
+fetch	HTTP-network fetch	8.5.10.1.3	6803	indirect-call	yes	no		
+fetch	HTTP-network fetch	8.5.10.2.2	6816	indirect-call	yes	no		
+fetch	HTTP-network fetch	10	6855	collection-unresolved-target	yes	no		
+fetch	create a new cache entry	2	7222	collection-no-target	no	no		
+fetch	CORS-safelisted request-header	-	-	unbound-relevant-local	yes	-		name
+fetch	CORS-safelisted request-header	-	-	unbound-relevant-local	yes	-		value
+html	CSP-derived sandboxing flags	-	-	unbound-relevant-local	yes	-		cspList
+fetch	HTTP-network fetch	-	-	unbound-relevant-local	yes	-		body
+html	StructuredDeserialize	-	-	unbound-relevant-local	yes	-		subSerialized
+html	StructuredSerializeInternal	-	-	unbound-relevant-local	yes	-		subValue
+html	abort the ongoing navigation	-	-	unbound-relevant-local	yes	-		reason
+html	allowed by sandboxing to navigate	-	-	unbound-relevant-local	yes	-		source
+html	allowed to use	-	-	unbound-relevant-local	yes	-		document
+fetch	append a request `Origin` header	-	-	unbound-relevant-local	yes	-		scheme
+html	autofocus delegate	-	-	unbound-relevant-local	yes	-		descendant
+fetch	available deferred-fetch quota	-	-	unbound-relevant-local	yes	-		deferredRecord
+html	create navigation params by fetching	-	-	unbound-relevant-local	yes	-		earlyResponse
+html	create navigation params by fetching	-	-	unbound-relevant-local	yes	-		fetchedResponse
+fetch	data: URL processor	-	-	unbound-relevant-local	yes	-		position
+fetch	environment default `User-Agent` value	-	-	unbound-relevant-local	yes	-		environment
+fetch	extract header list values	-	-	unbound-relevant-local	yes	-		header
+fetch	fetch response handover	-	-	unbound-relevant-local	yes	-		global
+fetch	fetch	-	-	unbound-relevant-local	yes	-		response
+fetch	get a structured field value	-	-	unbound-relevant-local	yes	-		header_type
+fetch	get a structured field value	-	-	unbound-relevant-local	yes	-		input_string
+html	inner navigate event firing algorithm	-	-	unbound-relevant-local	yes	-		reason
+html	merge existing and new import maps	-	-	unbound-relevant-local	yes	-		integrity
+html	merge existing and new import maps	-	-	unbound-relevant-local	yes	-		scopeImports
+html	navigate event intercept commit handler steps	-	-	unbound-relevant-local	yes	-		reason
+html	process early hint headers	-	-	unbound-relevant-local	yes	-		doc
+html	process the `Speculation-Rules` header	-	-	unbound-relevant-local	yes	-		bodyBytes
+html	requires storing the policy container in history	-	-	unbound-relevant-local	yes	-		url
+html	rules for parsing floating-point number values	-	-	unbound-relevant-local	yes	-		divisor
+html	run a module script	-	-	unbound-relevant-local	yes	-		reason
+html	same origin-domain	-	-	unbound-relevant-local	yes	-		A
+html	same origin-domain	-	-	unbound-relevant-local	yes	-		B
+html	same origin	-	-	unbound-relevant-local	yes	-		A
+html	same origin	-	-	unbound-relevant-local	yes	-		B
+html	same site	-	-	unbound-relevant-local	yes	-		A
+html	same site	-	-	unbound-relevant-local	yes	-		A
+html	same site	-	-	unbound-relevant-local	yes	-		B
+html	same site	-	-	unbound-relevant-local	yes	-		B
+html	schemelessly same site	-	-	unbound-relevant-local	yes	-		A
+html	schemelessly same site	-	-	unbound-relevant-local	yes	-		B
+html	secure context	-	-	unbound-relevant-local	yes	-		environment
+html	steps to fire beforeunload	-	-	unbound-relevant-local	yes	-		event
+fetch	total request length	-	-	unbound-relevant-local	yes	-		name
+fetch	total request length	-	-	unbound-relevant-local	yes	-		value
+html	unloading document cleanup steps	-	-	unbound-relevant-local	yes	-		eventSource
+html	unloading document cleanup steps	-	-	unbound-relevant-local	yes	-		transport
+html	unloading document cleanup steps	-	-	unbound-relevant-local	yes	-		webSocket
+html	update the navigation API entries for reactivation	-	-	unbound-relevant-local	yes	-		matchingOldNHE
