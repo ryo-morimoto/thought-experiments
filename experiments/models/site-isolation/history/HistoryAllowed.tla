@@ -26,8 +26,8 @@ NW == Len(WptRows)
 AllH(sc) == R("none")!Hs(sc)
 WA(m, w) == LET sc == R(m)!Decode(WptRows[w].sc) IN R(m)!Allowed(sc, WptRows[w].k, COIChoices, AllH(sc))
 WptOut == {WptRows[w].id : w \in {v \in 1..NW : WptRows[v].want \notin WA("none", v)}}
-WptKilled == {<<WptRows[w].id, m>> : w \in 1..NW, m \in {y \in Ms : WptRows[w].want \in WA("none", w)
-                                                          /\ WptRows[w].want \notin WA(y, w)}}
+WptKilled == UNION {{<<WptRows[w].id, m>> : m \in {y \in Ms : WptRows[w].want \in WA("none", w)
+                                                    /\ WptRows[w].want \notin WA(y, w)}} : w \in 1..NW}
 Focus == R("none")!LocalMutants
 PrintAllowed ==
   /\ PrintT(<<"cfg", COIChoices, "rows", N, "mutants", Cardinality(Ms)>>)

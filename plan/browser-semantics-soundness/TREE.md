@@ -71,8 +71,8 @@
       - 根拠: [2026-11-23-observed-values-inclusion.md](../../experiments/2026-11-23-observed-values-inclusion.md)、[RESULTS.md](../../experiments/models/site-isolation/observe/RESULTS.md)
     - **C2** [一部] 入力の空間の網羅（効き: high）
       - 完了の条件: 性質が量化する入力の構造（リダイレクト、popup の系譜、sandbox、about:blank、履歴）を軸として覆い、等価のまま残る変異体が軸の外だけになる
-      - 今: 入れ子・スキーム・COEP、popup の系譜・Origin-Agent-Cluster・sandbox・CORP same-site と画像、リダイレクトの段数の軸は済。和で SpecIsolation の変異体 55 個すべてを殺した（concrete に限ると）。履歴の移動と bfcache の軸が未
-      - 根拠: [2026-11-24-axis-generated-scenarios.md](../../experiments/2026-11-24-axis-generated-scenarios.md)、[2026-11-24-frozen-holdout.md](../../experiments/2026-11-24-frozen-holdout.md)、[2026-11-24-history-bfcache-sequence.md](../../experiments/2026-11-24-history-bfcache-sequence.md)、[2026-11-24-popup-sandbox-axes.md](../../experiments/2026-11-24-popup-sandbox-axes.md)、[2026-11-24-redirect-sequence-model.md](../../experiments/2026-11-24-redirect-sequence-model.md)、[RESULTS.md](../../experiments/models/site-isolation/gen/RESULTS.md)、[RESULTS.md](../../experiments/models/site-isolation/gen2/RESULTS.md)、[RESULTS.md](../../experiments/models/site-isolation/redirect/RESULTS.md)
+      - 今: 入れ子・スキーム・COEP、popup の系譜・Origin-Agent-Cluster・sandbox・CORP same-site と画像、リダイレクトの段数、履歴の移動と bfcache、バグの履歴が示した 5 つの軸は済。関係の型の穴（W2）が残る
+      - 根拠: [2026-11-24-axis-generated-scenarios.md](../../experiments/2026-11-24-axis-generated-scenarios.md)、[2026-11-24-frozen-holdout.md](../../experiments/2026-11-24-frozen-holdout.md)、[2026-11-24-history-bfcache-sequence.md](../../experiments/2026-11-24-history-bfcache-sequence.md)、[2026-11-24-popup-sandbox-axes.md](../../experiments/2026-11-24-popup-sandbox-axes.md)、[2026-11-24-redirect-sequence-model.md](../../experiments/2026-11-24-redirect-sequence-model.md)、[RESULTS.md](../../experiments/models/site-isolation/gen/RESULTS.md)、[RESULTS.md](../../experiments/models/site-isolation/gen2/RESULTS.md)、[RESULTS.md](../../experiments/models/site-isolation/redirect/RESULTS.md)、[RESULTS.md](../../experiments/models/site-isolation/history/RESULTS.md)
     - **C3** [済] 判別の力の測り方（効き: mid）
       - 完了の条件: 観測が変異体を見分ける数を測り、ブラウザで動かす筋書きをモデルの上で先に選べる
       - 根拠: [2026-11-23-observed-values-inclusion.md](../../experiments/2026-11-23-observed-values-inclusion.md)、[2026-11-24-axis-generated-scenarios.md](../../experiments/2026-11-24-axis-generated-scenarios.md)
@@ -107,19 +107,19 @@
       - 完了の条件: モデルの判定基準でブラウザの誤りを予測・再現できるかが記録されている
       - 今: 判定基準は値の決まりを与えるが、引き金は与えない。証明の向きの根拠にはならない
       - 根拠: [2026-11-21-blind-origin-oracle.md](../../experiments/2026-11-21-blind-origin-oracle.md)、[2026-11-21-origin-oracle.md](../../experiments/prereg/2026-11-21-origin-oracle.md)
-  - **D** [一部] 列と合成の性質
-    - **D1** [一部] 列の性質（ナビゲーションの列、リダイレクト、bfcache、履歴の移動）（効き: high）
+  - **D** [済] 列と合成の性質
+    - **D1** [済] 列の性質（ナビゲーションの列、リダイレクト、bfcache、履歴の移動）（効き: high）
       - 完了の条件: 列を状態の遷移として写したモデルと、列の筋書きでの包含がある
-      - 今: リダイレクトの連鎖は状態の遷移として写し、列の筋書きでの包含を確かめた（途中の段を無視する変異体はブラウザの値で殺された）。履歴の移動と bfcache の列は未
-      - 根拠: [2026-11-24-history-bfcache-sequence.md](../../experiments/2026-11-24-history-bfcache-sequence.md)、[2026-11-24-redirect-sequence-model.md](../../experiments/2026-11-24-redirect-sequence-model.md)、[NestedHistory.tla](../../experiments/models/site-isolation/NestedHistory.tla)
+      - 今: リダイレクトの連鎖と、履歴の移動と bfcache を状態の遷移として写し、生成した列の筋書きで包含を確かめた。bfcache で開いた側のグループに戻る分岐は、ブラウザが取らないので観測できない
+      - 根拠: [2026-11-24-history-bfcache-sequence.md](../../experiments/2026-11-24-history-bfcache-sequence.md)、[2026-11-24-redirect-sequence-model.md](../../experiments/2026-11-24-redirect-sequence-model.md)、[NestedHistory.tla](../../experiments/models/site-isolation/NestedHistory.tla)、[RESULTS.md](../../experiments/models/site-isolation/history/RESULTS.md)
     - **D2** [済] 断片をまたぐ合成（assume-guarantee）（効き: mid）
       - 完了の条件: 断片の間の仮定と保証が書かれ、循環が扱われている
       - 今: 7 つの断片の契約を書き、循環を時間に沿った帰納と整礎の再帰で解いた（安全性だけ、TLC）。合成は鍵が文書の cross-origin isolation の鍵を含む前提に依る（草案に根拠、モデルへの取り込みは F9）。文書の数の打ち切りは未
       - 根拠: [2026-11-20-browser-semantics-soundness.md](../../experiments/2026-11-20-browser-semantics-soundness.md)、[2026-11-24-cross-fragment-assume-guarantee.md](../../experiments/2026-11-24-cross-fragment-assume-guarantee.md)、[RESULTS.md](../../experiments/models/site-isolation/compose/RESULTS.md)
   - **E** [一部] 方法の一般性
-    - **E1** [未] 別の断片への適用（効き: mid）
+    - **E1** [済] 別の断片への適用（効き: mid）
       - 完了の条件: 2 つ目の断片で、方法の手間と効き目を測っている
-      - 根拠: [2026-11-24-history-bfcache-sequence.md](../../experiments/2026-11-24-history-bfcache-sequence.md)
+      - 根拠: [2026-11-24-history-bfcache-sequence.md](../../experiments/2026-11-24-history-bfcache-sequence.md)、[RESULTS.md](../../experiments/models/site-isolation/history/RESULTS.md)
     - **E2** [一部] 方法の対照（効き: low）
       - 完了の条件: 各方法に、無作為な基準と、方法を使わずに読む対照がある
       - 今: 無作為な基準は済、置き換え無しで読む対照は未
@@ -151,9 +151,7 @@
 未完了（未・一部）の葉を、効きの大きい順に並べた。
 
 - **C2** [一部・効き high] 入力の空間の網羅: 性質が量化する入力の構造（リダイレクト、popup の系譜、sandbox、about:blank、履歴）を軸として覆い、等価のまま残る変異体が軸の外だけになる
-- **D1** [一部・効き high] 列の性質（ナビゲーションの列、リダイレクト、bfcache、履歴の移動）: 列を状態の遷移として写したモデルと、列の筋書きでの包含がある
 - **C10** [未・効き high] 凍結したモデルでの取り置きの実行: モデル・軸・パラメータ・判定を事前に固定してから、新しい種の筋書きをブラウザで動かし、包含を数えている
-- **E1** [未・効き mid] 別の断片への適用: 2 つ目の断片で、方法の手間と効き目を測っている
 - **A3** [一部・効き low] 性質が空でない（前提を満たす証人がある）: 各性質に、前提を満たす証人がある
 - **C6** [一部・効き low] 観測の仕組みの妥当性: 手元のコンテナと wpt.fyi の条件の違いと、試験の作りの影響が切り分けられている
 - **E2** [一部・効き low] 方法の対照: 各方法に、無作為な基準と、方法を使わずに読む対照がある

@@ -180,8 +180,8 @@ title = "入力の空間の網羅"
 status = "partial"
 impact = "high"
 done_when = "性質が量化する入力の構造（リダイレクト、popup の系譜、sandbox、about:blank、履歴）を軸として覆い、等価のまま残る変異体が軸の外だけになる"
-note = "入れ子・スキーム・COEP、popup の系譜・Origin-Agent-Cluster・sandbox・CORP same-site と画像、リダイレクトの段数の軸は済。和で SpecIsolation の変異体 55 個すべてを殺した（concrete に限ると）。履歴の移動と bfcache の軸が未"
-evidence = ["experiments/models/site-isolation/gen/RESULTS.md", "experiments/models/site-isolation/gen2/RESULTS.md", "experiments/models/site-isolation/redirect/RESULTS.md"]
+note = "入れ子・スキーム・COEP、popup の系譜・Origin-Agent-Cluster・sandbox・CORP same-site と画像、リダイレクトの段数、履歴の移動と bfcache、バグの履歴が示した 5 つの軸は済。関係の型の穴（W2）が残る"
+evidence = ["experiments/models/site-isolation/gen/RESULTS.md", "experiments/models/site-isolation/gen2/RESULTS.md", "experiments/models/site-isolation/redirect/RESULTS.md", "experiments/models/site-isolation/history/RESULTS.md"]
 
 [[node]]
 id = "C3"
@@ -277,11 +277,11 @@ title = "列と合成の性質"
 id = "D1"
 parent = "D"
 title = "列の性質（ナビゲーションの列、リダイレクト、bfcache、履歴の移動）"
-status = "partial"
+status = "done"
 impact = "high"
 done_when = "列を状態の遷移として写したモデルと、列の筋書きでの包含がある"
-note = "リダイレクトの連鎖は状態の遷移として写し、列の筋書きでの包含を確かめた（途中の段を無視する変異体はブラウザの値で殺された）。履歴の移動と bfcache の列は未"
-evidence = ["experiments/models/site-isolation/NestedHistory.tla"]
+note = "リダイレクトの連鎖と、履歴の移動と bfcache を状態の遷移として写し、生成した列の筋書きで包含を確かめた。bfcache で開いた側のグループに戻る分岐は、ブラウザが取らないので観測できない"
+evidence = ["experiments/models/site-isolation/NestedHistory.tla", "experiments/models/site-isolation/history/RESULTS.md"]
 
 [[node]]
 id = "D2"
@@ -304,9 +304,10 @@ title = "方法の一般性"
 id = "E1"
 parent = "E"
 title = "別の断片への適用"
-status = "todo"
+status = "done"
 impact = "mid"
 done_when = "2 つ目の断片で、方法の手間と効き目を測っている"
+evidence = ["experiments/models/site-isolation/history/RESULTS.md"]
 
 [[node]]
 id = "E2"
