@@ -1,0 +1,6 @@
+# 思考実験 experiments/2026-11-24-origin-structure.md（作業の木の B7）のための自作の TLA+ モジュール、検査の設定、関係の型を数えるスクリプトと結果の要約。subagent が書いた。
+# ポート、公開の接尾辞の一覧（パラメータ）、localhost の安全な文脈、不透明なオリジンの作り方と継承を SpecIsolation に足す。外部データは含まない。
+# 仕様の本文は写さない（15 語以下の短い句と、行番号・アンカーの参照だけ）。
+id = "site-isolation-originstruct"
+title = "オリジンの構造（ポート、登録可能なドメイン、localhost、不透明なオリジン）を足したサイト分離モデル"
+origin = "original"

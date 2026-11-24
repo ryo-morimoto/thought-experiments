@@ -141,10 +141,11 @@ note = "詳細化は保たない。ORB の漏れの量は議論で受け入れ�
 id = "B7"
 parent = "B"
 title = "モデルが写していないオリジンの構造（ポート、登録可能なドメイン、localhost の安全な文脈、不透明なオリジンの継承）"
-status = "todo"
+status = "done"
 impact = "mid"
 done_when = "これらをモデルに入れるか、入れない理由と、入れないことで結論がどの範囲に限られるかを書き、入れた場合は関係の型と領域の十分さを確かめ直している"
-note = "A2 の段階C の攻撃で、データ独立の議論の条件の外として見つかった"
+note = "ポート、公開の接尾辞の一覧、localhost、不透明なオリジンの継承を入れ、仕様の演算子で書き直した性質は 63 個の領域で真。前の読みを持ち越した演算子は崩れた（A1 の KeyHTML もポートが要る）。入れていないものと範囲は記録に書いた"
+evidence = ["experiments/models/site-isolation/originstruct/RESULTS.md"]
 
 [[node]]
 id = "B6"
@@ -365,7 +366,7 @@ done_when = "作った側のオリジンが最上位と同じときだけ受け�
 [[node]]
 id = "F7"
 parent = "F"
-title = "直した性質の書き方（CorpPermits、KeyHTML、入れ子の COI の前提）を SpecIsolation.tla に取り込む"
+title = "直した性質の書き方（CorpPermits、ポートを含む鍵、入れ子の COI の前提、SchemeHttps）を SpecIsolation.tla に取り込む"
 status = "todo"
 impact = "low"
 done_when = "SpecIsolation.tla の性質が直した書き方で、既存の検査が通る"
@@ -377,7 +378,7 @@ title = "新しく見つかった、本文が支配の条件を保証しない�
 status = "parked"
 impact = "low"
 done_when = "エンジンでの確認と、公開・上流への報告の扱いを、ユーザーが決めている"
-note = "B4 で見つかった新しい 2 つの構造と、一覧の外の 1 つ。中身はリポジトリの外"
+note = "B4 で見つかった新しい 2 つの構造と一覧の外の 1 つ、B7 で見つかった仕様をまたぐ読みの 1 つ。中身はリポジトリの外"
 
 [[node]]
 id = "F9"
