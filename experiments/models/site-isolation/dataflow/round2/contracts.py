@@ -35,7 +35,8 @@ STEPS = {
     ('focus update steps', '4.1.2'): ('C5', 'y', 'n', 'focus state'),
     ('get the suggested filename', '14'): ('C5', 'y', 'n', 'download filename'),
     ('load a multipart/x-mixed-replace document', '1'):
-        ('reading', 'y', '?', 'body parts become documents; whether part headers set new policies is not stated'),
+        ('reading', 'y', 'n', 'parses the body into parts; part documents reuse the copied navigation params '
+                              '(step 3) or go through navigate (step 5); checked in html.src'),
     ('parse a sizes attribute', '3.5'): ('C5', 'y', 'n', 'media condition evaluation (CSS)'),
     ('parse a srcset attribute', '4'): ('reading', 'y', 'n', 'parser position'),
     ('parse a srcset attribute', '8.2'): ('reading', 'y', 'n', 'parser position'),
@@ -61,8 +62,8 @@ STEPS = {
     ('process the `Speculation-Rules` header', '3.4.2.2'): ('reading', 'y', 'n', 'speculation rules body'),
     ('fully read', '2'): ('reading', 'y', 'n', 'body bytes to success steps'),
     ('HTTP fetch', '3.2.2'): ('reading', 'y', 'n', 'request body chunk callback'),
-    ('fetch', '11.2'): ('reading', 'y', '?', 'preloaded response becomes the request candidate (binding not by rule)'),
-    ('consume a preloaded resource', '8'): ('reading', 'y', '?', 'calls the preloaded-response callback (same flow)'),
+    ('fetch', '11.2'): ('reading', 'y', 'n', 'bound by the callback-argument rule in round 2'),
+    ('consume a preloaded resource', '8'): ('reading', 'y', 'n', 'bound by the callback-argument rule in round 2'),
     # collection ops and other write verbs
     ('load a media document', '4'): ('C5', 'y', 'n', 'DOM tree'),
     ('destroy', '5'): ('C5', 'y', 'n', 'task queues'),

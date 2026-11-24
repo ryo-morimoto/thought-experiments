@@ -1491,6 +1491,12 @@ with open(os.path.join(OUTDIR, 'inputs.tsv'), 'w', encoding='utf-8', newline='')
         EXT_ROWS.append((h, n, c, cl))
         w.writerow([h, n, c, len(EXT_STEPS[(h, n)])] + list(cl))
 
+S['unmodeled_groups_ctrl'] = dict(collections.Counter(
+    r['group'] for r in rows if r['slice'] in ('data', 'control') and r['verdict'].startswith('unmodeled')))
+S['unmodeled_ctrl'] = sum(1 for r in rows if r['slice'] in ('data', 'control') and r['verdict'].startswith('unmodeled'))
+S['unmodeled_data'] = sum(1 for r in rows if r['slice'] == 'data' and r['verdict'].startswith('unmodeled'))
+S['unmodeled_data_groups'] = dict(collections.Counter(
+    r['group'] for r in rows if r['slice'] == 'data' and r['verdict'].startswith('unmodeled')))
 S['residual_after_contracts'] = RESID
 S['residual_gap_rows'] = len(RESID_GAP)
 S['residual_gap_unexplained'] = [r for r in RESID_GAP if r[2] == 'none']
