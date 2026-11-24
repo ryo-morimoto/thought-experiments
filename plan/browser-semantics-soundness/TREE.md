@@ -51,7 +51,7 @@
     - **B4** [一部] 拡張点と支配の条件（効き: mid）
       - 完了の条件: 経路ごとに支配の条件が確かめられている
       - 今: 止めるだけの差し込みはアクセス制御を保つ。支配の条件は経路ごとに確かめるしかなく、2 つの経路は本文が保証しない（詳細は伏せた）
-      - 根拠: [2026-11-21-dominance-declassification.md](../../experiments/2026-11-21-dominance-declassification.md)、[2026-11-21-informal-extension.md](../../experiments/2026-11-21-informal-extension.md)
+      - 根拠: [2026-11-21-dominance-declassification.md](../../experiments/2026-11-21-dominance-declassification.md)、[2026-11-21-informal-extension.md](../../experiments/2026-11-21-informal-extension.md)、[2026-11-24-per-path-dominance.md](../../experiments/2026-11-24-per-path-dominance.md)
     - **B5** [一部] 情報流（hyperproperty）（効き: mid）
       - 完了の条件: 攻撃者が入力を選び問い合わせを繰り返す形の検査（自己合成）で、漏らすものの一覧を確かめている
       - 今: 詳細化は保たない。ORB の漏れの量は議論で受け入れただけで、動かしていない
