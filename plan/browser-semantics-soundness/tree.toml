@@ -34,10 +34,10 @@ evidence = ["experiments/models/site-isolation/fixes/FIXES.md"]
 id = "A2"
 parent = "A"
 title = "有限の領域での検査が、無限の領域で何を言うか"
-status = "todo"
+status = "partial"
 impact = "high"
 done_when = "領域（オリジンの数、値の種類）を増やしても結果が変わらないことの確かめか、小さなモデルで足りる理由の議論"
-note = "B と C のどちらにも効く前提。まだ手を付けていない"
+note = "オリジンはデータ独立の議論で条件つきで移せ（Key と不透明なオリジンを使わない性質に限る）、深さはリダイレクト 2 段・入れ子 3 段で飽和した。生成した筋書きの空間に関係の型の穴がある。段階C が未"
 
 [[node]]
 id = "A3"
