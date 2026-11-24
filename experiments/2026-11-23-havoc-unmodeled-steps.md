@@ -4,6 +4,7 @@
 - 開始: 2026-11-23
 - 更新: 2026-11-23
 - 関連: [experiments/2026-11-20-browser-semantics-soundness.md](2026-11-20-browser-semantics-soundness.md)（元の問いと結論 (a)）、[experiments/2026-11-21-fsp-correspondence.md](2026-11-21-fsp-correspondence.md)（落とした段を足して性質が変わるかで確かめる）、[experiments/2026-11-21-informal-extension.md](2026-11-21-informal-extension.md)（契約つきの差し込み）、[SpecIsolation.tla](models/site-isolation/SpecIsolation.tla)、[extract/README.md](models/site-isolation/extract/README.md)
+- 木の節: browser-semantics-soundness/B2b、browser-semantics-soundness/B2c、browser-semantics-soundness/E2
 
 ## 問い
 

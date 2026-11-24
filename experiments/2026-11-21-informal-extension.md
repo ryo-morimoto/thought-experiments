@@ -4,6 +4,7 @@
 - 開始: 2026-11-21
 - 更新: 2026-11-21
 - 関連: [maps/browser-semantics-soundness/map.toml](../maps/browser-semantics-soundness/map.toml) のセル「非形式 × 拡張」、[experiments/2026-11-20-browser-semantics-soundness.md](2026-11-20-browser-semantics-soundness.md)、[experiments/2026-11-21-informal-enumerated-choice.md](2026-11-21-informal-enumerated-choice.md)、[SpecIsolation.tla](models/site-isolation/SpecIsolation.tla)
+- 木の節: browser-semantics-soundness/B1、browser-semantics-soundness/B4
 
 ## 問い
 

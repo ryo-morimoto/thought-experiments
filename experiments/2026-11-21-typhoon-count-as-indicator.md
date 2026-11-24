@@ -4,6 +4,7 @@
 - 開始: 2026-11-21
 - 更新: 2026-11-21
 - 関連: [data/jma-typhoon-generation/](../data/jma-typhoon-generation/SOURCE.toml)
+- 木の節: なし
 
 ## 問い
 

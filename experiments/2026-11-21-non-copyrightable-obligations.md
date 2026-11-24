@@ -4,6 +4,7 @@
 - 開始: 2026-11-21
 - 更新: 2026-11-21（さかのぼって記録）
 - 関連: [前の問い：データポリシーの規約準拠は証明できるか](2026-11-20-data-policy-provability.md)、[data-policy.toml](../data-policy.toml) の `[terms]`・`[terms_policy]`・`[third_party]`
+- 木の節: なし
 
 ## 問い
 

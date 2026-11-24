@@ -1,0 +1,143 @@
+<!-- 自動生成: python3 tools/plan.py render。手で編集しない（元は plan/browser-semantics-soundness/tree.toml と記録の「木の節」）。 -->
+# 作業の木: ブラウザの意味論から検証モデルへの変換に、健全性の根拠を与えることができるか
+
+今の答え: 厳密な健全性は、(a) 仕様（WHATWG の HTML・Fetch の固定したコミット）にも (b) 出荷中のブラウザにも無い。残る仕事は、厳密でない根拠を、どの条件のもとでどこまで強くできるかを示すこと。根拠は、A（モデルの中）、B（仕様 ⊆ モデル）、C（ブラウザ ⊆ モデル）が揃って初めて立つ
+
+状態の印: [済] 結論が出た、[一部] 進めたが完了の条件を満たしていない、[未] 手を付けていない、[外] 範囲の外、[保留] 止めている。子を持つ節の状態は子から計算する。
+
+## 木
+
+- **ROOT** [一部] モデル ⊨ P ⇒ 対象 ⊨ P の根拠（対象は仕様と出荷中のブラウザ）
+  - 根拠: [2026-11-20-browser-semantics-soundness.md](../../experiments/2026-11-20-browser-semantics-soundness.md)
+  - **A** [一部] モデルの中で P が正しく示されている
+    - **A1** [一部] 性質の書き方が正しい（前提を仕様の概念で書く）（効き: mid）
+      - 完了の条件: 各性質の前提の概念が、仕様の定義に対応づいている
+      - 今: 前提を安全な文脈と方策の容れ物の COEP で書き直した。理由の形の性質は拡張に耐えた。NoUndeclaredLeak などの前提は未点検
+      - 根拠: [FIXES.md](../../experiments/models/site-isolation/fixes/FIXES.md)
+    - **A2** [未] 有限の領域での検査が、無限の領域で何を言うか（効き: high）
+      - 完了の条件: 領域（オリジンの数、値の種類）を増やしても結果が変わらないことの確かめか、小さなモデルで足りる理由の議論
+      - 今: B と C のどちらにも効く前提。まだ手を付けていない
+    - **A3** [一部] 性質が空でない（前提を満たす証人がある）（効き: low）
+      - 完了の条件: 各性質に、前提を満たす証人がある
+      - 今: OptInWitness など一部だけ
+      - 根拠: [SpecIsolation.tla](../../experiments/models/site-isolation/SpecIsolation.tla)
+  - **B** [一部] 仕様の振る舞い ⊆ モデルの振る舞い（対象 (a)）
+    - **B1** [済] 「仕様」の範囲を決める（効き: mid）
+      - 完了の条件: 範囲が記録に書かれている
+      - 今: 取り込まれた本文の固定したコミット。取り込まれていない書き換えは配備の仮定
+      - 根拠: [2026-11-21-informal-extension.md](../../experiments/2026-11-21-informal-extension.md)
+    - **B2** [一部] 段の網羅（P に効く段が写されているか過近似されている）
+      - **B2a** [一部] 閉包の境界（効き: mid）
+        - 完了の条件: 閉包の境界を、手で選ばずに決める規則がある
+        - 今: 取り出しで 415 算法を決めた。境界は手で選んだ（他の仕様からの差し込みは原稿に現れない）
+        - 根拠: [README.md](../../experiments/models/site-isolation/extract/README.md)
+      - **B2b** [一部] 写していない段の発見（効き: high）
+        - 完了の条件: 写していない段のうち、性質に効くものの一覧が閉じている
+        - 今: 落とした段を足して性質が変わるかで確かめる。型の全体での置き換えは空、契約で範囲を限ると前提の見直しにはなる
+        - 根拠: [2026-11-21-fsp-correspondence.md](../../experiments/2026-11-21-fsp-correspondence.md)、[2026-11-23-havoc-unmodeled-steps.md](../../experiments/2026-11-23-havoc-unmodeled-steps.md)
+      - **B2c** [一部] 書き先の決定（効き: high）
+        - 完了の条件: 性質に効く値を書く段を、規則で決められる
+        - 今: 書き先の 57% が規則で決まらない。段の中の条件の文の意味を決める必要があるか
+        - 根拠: [2026-11-23-havoc-unmodeled-steps.md](../../experiments/2026-11-23-havoc-unmodeled-steps.md)
+      - **B2d** [一部] 中身が文書に入る経路の一覧（効き: mid）
+        - 完了の条件: 経路の一覧が機械的に作れ、手で選んだ経路の再現率が測れている
+        - 今: 取得の呼び出しは機械的に拾え、再利用は一部手で。段階C が未
+        - 根拠: [2026-11-22-sink-path-inventory.md](../../experiments/2026-11-22-sink-path-inventory.md)
+    - **B3** [済] 実装の選択を過近似として扱う（効き: mid）
+      - 完了の条件: 実装定義・列挙・任意の段の扱いが決まっている
+      - 今: 依存する入力を明示した関数。仕様の水準では非決定の包み
+      - 根拠: [2026-11-21-informal-enumerated-choice.md](../../experiments/2026-11-21-informal-enumerated-choice.md)
+    - **B4** [一部] 拡張点と支配の条件（効き: mid）
+      - 完了の条件: 経路ごとに支配の条件が確かめられている
+      - 今: 止めるだけの差し込みはアクセス制御を保つ。支配の条件は経路ごとに確かめるしかなく、2 つの経路は本文が保証しない（詳細は伏せた）
+      - 根拠: [2026-11-21-dominance-declassification.md](../../experiments/2026-11-21-dominance-declassification.md)、[2026-11-21-informal-extension.md](../../experiments/2026-11-21-informal-extension.md)
+    - **B5** [一部] 情報流（hyperproperty）（効き: mid）
+      - 完了の条件: 攻撃者が入力を選び問い合わせを繰り返す形の検査（自己合成）で、漏らすものの一覧を確かめている
+      - 今: 詳細化は保たない。ORB の漏れの量は議論で受け入れただけで、動かしていない
+      - 根拠: [2026-11-21-dominance-declassification.md](../../experiments/2026-11-21-dominance-declassification.md)
+    - **B6** [済] 厳密な健全性への道（効き: low）
+      - 完了の条件: 厳密な健全性に要る条件と、HTML がそれを満たすかが記録されている
+      - 今: 正文が形式的か、証明の成果物から生成されるか、検証つきの変換があるとき。HTML には無い
+      - 根拠: [2026-11-21-formal-source-soundness.md](../../experiments/2026-11-21-formal-source-soundness.md)
+  - **C** [一部] ブラウザの振る舞い ⊆ モデルの振る舞い（対象 (b)）
+    - 根拠: [2026-11-23-model-fidelity-survey.md](../../research_notes/2026-11-23-model-fidelity-survey.md)
+    - **C1** [済] 値を記録する観測（効き: mid）
+      - 完了の条件: 合否ではなく値を出す観測の仕組みがある
+      - 根拠: [2026-11-23-observed-values-inclusion.md](../../experiments/2026-11-23-observed-values-inclusion.md)、[RESULTS.md](../../experiments/models/site-isolation/observe/RESULTS.md)
+    - **C2** [一部] 入力の空間の網羅（効き: high）
+      - 完了の条件: 性質が量化する入力の構造（リダイレクト、popup の系譜、sandbox、about:blank、履歴）を軸として覆い、等価のまま残る変異体が軸の外だけになる
+      - 今: 入れ子・スキーム・COEP の軸は済
+      - 根拠: [2026-11-24-axis-generated-scenarios.md](../../experiments/2026-11-24-axis-generated-scenarios.md)、[RESULTS.md](../../experiments/models/site-isolation/gen/RESULTS.md)
+    - **C3** [済] 判別の力の測り方（効き: mid）
+      - 完了の条件: 観測が変異体を見分ける数を測り、ブラウザで動かす筋書きをモデルの上で先に選べる
+      - 根拠: [2026-11-23-observed-values-inclusion.md](../../experiments/2026-11-23-observed-values-inclusion.md)、[2026-11-24-axis-generated-scenarios.md](../../experiments/2026-11-24-axis-generated-scenarios.md)
+    - **C4** [一部] 仕様の時点とブラウザの食い違いの扱い（効き: mid）
+      - 完了の条件: 食い違いごとに、モデルのパラメータ（配備の仮定）にするか、ブラウザの欠陥とするかが決まっている
+      - 今: Chrome の Origin-Agent-Cluster は未統合の whatwg/html#7617
+      - 根拠: [2026-11-23-observed-values-inclusion.md](../../experiments/2026-11-23-observed-values-inclusion.md)
+    - **C5** [外] API より下の層（プロセスへの配置、Spectre）（効き: low）
+      - 完了の条件: 範囲の外と記録に明記している
+      - 今: 観測できる値はプロセスの隔離を映さない
+    - **C6** [一部] 観測の仕組みの妥当性（効き: low）
+      - 完了の条件: 手元のコンテナと wpt.fyi の条件の違いと、試験の作りの影響が切り分けられている
+      - 今: w014 はポートの作りが原因と分かった
+      - 根拠: [2026-11-23-observed-values-inclusion.md](../../experiments/2026-11-23-observed-values-inclusion.md)
+    - **C7** [一部] 版と構成の違い（効き: mid）
+      - 完了の条件: 版や構成で変わる選択が、モデルのパラメータか前提として書かれている
+      - 根拠: [2026-11-21-toe-optional-feature.md](../../experiments/2026-11-21-toe-optional-feature.md)
+    - **C8** [済] モデルからブラウザへの向き（反例・判定基準・引き金）（効き: low）
+      - 完了の条件: モデルの判定基準でブラウザの誤りを予測・再現できるかが記録されている
+      - 今: 判定基準は値の決まりを与えるが、引き金は与えない。証明の向きの根拠にはならない
+      - 根拠: [2026-11-21-blind-origin-oracle.md](../../experiments/2026-11-21-blind-origin-oracle.md)、[2026-11-21-origin-oracle.md](../../experiments/prereg/2026-11-21-origin-oracle.md)
+  - **D** [一部] 列と合成の性質
+    - **D1** [一部] 列の性質（ナビゲーションの列、リダイレクト、bfcache、履歴の移動）（効き: high）
+      - 完了の条件: 列を状態の遷移として写したモデルと、列の筋書きでの包含がある
+      - 今: モデルの多くは 1 回きりの関数。1 回きりの筋書きの包含は列の性質を支えない
+      - 根拠: [NestedHistory.tla](../../experiments/models/site-isolation/NestedHistory.tla)
+    - **D2** [一部] 断片をまたぐ合成（assume-guarantee）（効き: mid）
+      - 完了の条件: 断片の間の仮定と保証が書かれ、循環が扱われている
+      - 根拠: [2026-11-20-browser-semantics-soundness.md](../../experiments/2026-11-20-browser-semantics-soundness.md)
+  - **E** [一部] 方法の一般性
+    - **E1** [未] 別の断片への適用（効き: mid）
+      - 完了の条件: 2 つ目の断片で、方法の手間と効き目を測っている
+    - **E2** [一部] 方法の対照（効き: low）
+      - 完了の条件: 各方法に、無作為な基準と、方法を使わずに読む対照がある
+      - 今: 無作為な基準は済、置き換え無しで読む対照は未
+      - 根拠: [2026-11-23-havoc-unmodeled-steps.md](../../experiments/2026-11-23-havoc-unmodeled-steps.md)
+  - **F** [未] 保留と片付け（根には効かない）
+    - **F1** [保留] 伏せた 2 つの経路のエンジンでの確認（効き: low）
+      - 完了の条件: P1 と P2 の結果が出て、公開と報告の扱いをユーザーが決めている
+      - 今: 結果はリポジトリの外（~/private/thought-experiments-held/）
+    - **F2** [未] 直したモデルで偽になった「変わらない」の検査を追従させる（効き: low）
+      - 完了の条件: DIPExtension.tla と havoc/HavocSpec.tla の Conservative が真
+    - **F3** [未] 段階C の残り（経路の一覧、軸の生成）（効き: low）
+      - 完了の条件: 2 つの記録が結論済み
+    - **F4** [未] Permissions Policy の段を SpecIsolation.tla に取り込む（効き: low）
+      - 完了の条件: SpecIsolation.tla にあり、gen の包含が変わらない
+    - **F5** [保留] ブランチの PR（効き: low）
+      - 完了の条件: ユーザーが求めたときに開く
+
+## 次の候補
+
+未完了（未・一部）の葉を、効きの大きい順に並べた。
+
+- **B2b** [一部・効き high] 写していない段の発見: 写していない段のうち、性質に効くものの一覧が閉じている
+- **B2c** [一部・効き high] 書き先の決定: 性質に効く値を書く段を、規則で決められる
+- **C2** [一部・効き high] 入力の空間の網羅: 性質が量化する入力の構造（リダイレクト、popup の系譜、sandbox、about:blank、履歴）を軸として覆い、等価のまま残る変異体が軸の外だけになる
+- **D1** [一部・効き high] 列の性質（ナビゲーションの列、リダイレクト、bfcache、履歴の移動）: 列を状態の遷移として写したモデルと、列の筋書きでの包含がある
+- **A2** [未・効き high] 有限の領域での検査が、無限の領域で何を言うか: 領域（オリジンの数、値の種類）を増やしても結果が変わらないことの確かめか、小さなモデルで足りる理由の議論
+- **A1** [一部・効き mid] 性質の書き方が正しい（前提を仕様の概念で書く）: 各性質の前提の概念が、仕様の定義に対応づいている
+- **B2a** [一部・効き mid] 閉包の境界: 閉包の境界を、手で選ばずに決める規則がある
+- **B2d** [一部・効き mid] 中身が文書に入る経路の一覧: 経路の一覧が機械的に作れ、手で選んだ経路の再現率が測れている
+- **B4** [一部・効き mid] 拡張点と支配の条件: 経路ごとに支配の条件が確かめられている
+- **B5** [一部・効き mid] 情報流（hyperproperty）: 攻撃者が入力を選び問い合わせを繰り返す形の検査（自己合成）で、漏らすものの一覧を確かめている
+- **C4** [一部・効き mid] 仕様の時点とブラウザの食い違いの扱い: 食い違いごとに、モデルのパラメータ（配備の仮定）にするか、ブラウザの欠陥とするかが決まっている
+- **C7** [一部・効き mid] 版と構成の違い: 版や構成で変わる選択が、モデルのパラメータか前提として書かれている
+- **D2** [一部・効き mid] 断片をまたぐ合成（assume-guarantee）: 断片の間の仮定と保証が書かれ、循環が扱われている
+- **E1** [未・効き mid] 別の断片への適用: 2 つ目の断片で、方法の手間と効き目を測っている
+- **A3** [一部・効き low] 性質が空でない（前提を満たす証人がある）: 各性質に、前提を満たす証人がある
+- **C6** [一部・効き low] 観測の仕組みの妥当性: 手元のコンテナと wpt.fyi の条件の違いと、試験の作りの影響が切り分けられている
+- **E2** [一部・効き low] 方法の対照: 各方法に、無作為な基準と、方法を使わずに読む対照がある
+- **F2** [未・効き low] 直したモデルで偽になった「変わらない」の検査を追従させる: DIPExtension.tla と havoc/HavocSpec.tla の Conservative が真
+- **F3** [未・効き low] 段階C の残り（経路の一覧、軸の生成）: 2 つの記録が結論済み
+- **F4** [未・効き low] Permissions Policy の段を SpecIsolation.tla に取り込む: SpecIsolation.tla にあり、gen の包含が変わらない

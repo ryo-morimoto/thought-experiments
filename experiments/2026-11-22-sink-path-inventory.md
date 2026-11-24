@@ -4,6 +4,7 @@
 - 開始: 2026-11-22
 - 更新: 2026-11-22
 - 関連: [experiments/2026-11-21-dominance-declassification.md](2026-11-21-dominance-declassification.md)（この問いを出した思考実験）、[maps/browser-semantics-soundness/map.toml](../maps/browser-semantics-soundness/map.toml) のセル「非形式 × 拡張」、[extract/README.md](models/site-isolation/extract/README.md)
+- 木の節: browser-semantics-soundness/B2d
 
 ## 問い
 

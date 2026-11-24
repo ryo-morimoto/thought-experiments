@@ -4,6 +4,7 @@
 - 開始: 2026-11-21
 - 更新: 2026-11-21
 - 関連: [maps/browser-implementation-correspondence/map.toml](../maps/browser-implementation-correspondence/map.toml) のセル「実装の表現 × 必須」、[experiments/2026-11-20-browser-semantics-soundness.md](2026-11-20-browser-semantics-soundness.md)、[OriginOracle.tla](models/site-isolation/OriginOracle.tla)
+- 木の節: browser-semantics-soundness/C8
 
 ## 問い
 

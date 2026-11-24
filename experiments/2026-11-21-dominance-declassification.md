@@ -4,6 +4,7 @@
 - 開始: 2026-11-21
 - 更新: 2026-11-22
 - 関連: [experiments/2026-11-21-informal-extension.md](2026-11-21-informal-extension.md)（この記録の前提を出した思考実験）、[maps/browser-semantics-soundness/map.toml](../maps/browser-semantics-soundness/map.toml) のセル「非形式 × 拡張」、[ExtensionHooks.tla](models/site-isolation/ExtensionHooks.tla)
+- 木の節: browser-semantics-soundness/B4、browser-semantics-soundness/B5
 
 ## 問い
 

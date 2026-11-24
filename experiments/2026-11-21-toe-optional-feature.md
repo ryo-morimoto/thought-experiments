@@ -5,6 +5,7 @@
 - 更新: 2026-11-21
 - ゴール: 手書きの検証モデル（SpecIsolation.tla など）で出荷中のブラウザを確かめる人が、試験をどの構成（機能を支援する版・しない版、フィールドトライアルの群）に当てるか、また「確かめた」と言える範囲をどう書くかの判断を変えうる
 - 関連: [maps/browser-implementation-correspondence/map.toml](../maps/browser-implementation-correspondence/map.toml) のセル「評価対象そのもの × 機能を支援するかの選択」（toe/opt-feature）、前提のセル toe/mandatory の記録 [experiments/2026-11-20-browser-semantics-soundness.md](2026-11-20-browser-semantics-soundness.md)
+- 木の節: browser-semantics-soundness/C7
 
 ## 問い
 

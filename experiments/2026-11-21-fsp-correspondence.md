@@ -4,6 +4,7 @@
 - 開始: 2026-11-21
 - 更新: 2026-11-21
 - 関連: [maps/browser-implementation-correspondence/map.toml](../maps/browser-implementation-correspondence/map.toml) のセル「機能仕様 × 必須」、[maps/browser-semantics-soundness/map.toml](../maps/browser-semantics-soundness/map.toml)、[experiments/2026-11-20-browser-semantics-soundness.md](2026-11-20-browser-semantics-soundness.md)
+- 木の節: browser-semantics-soundness/B2b
 
 ## 問い
 

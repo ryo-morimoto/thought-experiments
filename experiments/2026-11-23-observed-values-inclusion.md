@@ -4,6 +4,7 @@
 - 開始: 2026-11-23
 - 更新: 2026-11-23
 - 関連: [research_notes/2026-11-23-model-fidelity-survey.md](../research_notes/2026-11-23-model-fidelity-survey.md)（向きの区別と先行研究）、[experiments/2026-11-20-browser-semantics-soundness.md](2026-11-20-browser-semantics-soundness.md)（元の問いの結論 (b)）、[experiments/2026-11-23-havoc-unmodeled-steps.md](2026-11-23-havoc-unmodeled-steps.md)（並行して進める、仕様の側の取りこぼし）、[WPTBroad.tla](models/site-isolation/WPTBroad.tla)、[wpt-cases.tsv](models/site-isolation/wpt-cases.tsv)
+- 木の節: browser-semantics-soundness/C1、browser-semantics-soundness/C3、browser-semantics-soundness/C4、browser-semantics-soundness/C6
 
 ## 問い
 

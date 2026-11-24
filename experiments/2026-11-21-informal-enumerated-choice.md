@@ -4,6 +4,7 @@
 - 開始: 2026-11-21
 - 更新: 2026-11-21
 - 関連: [maps/browser-semantics-soundness/map.toml](../maps/browser-semantics-soundness/map.toml) のセル「非形式 × 列挙した選択肢からの選択」、[experiments/2026-11-20-browser-semantics-soundness.md](2026-11-20-browser-semantics-soundness.md)、[SpecIsolation.tla](models/site-isolation/SpecIsolation.tla)
+- 木の節: browser-semantics-soundness/B3
 
 ## 問い
 

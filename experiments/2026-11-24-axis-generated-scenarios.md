@@ -4,6 +4,7 @@
 - 開始: 2026-11-24
 - 更新: 2026-11-24
 - 関連: [experiments/2026-11-23-observed-values-inclusion.md](2026-11-23-observed-values-inclusion.md)（ブラウザの値との包含と、入れ子の枠の修正が見えなかったこと）、[experiments/2026-11-23-havoc-unmodeled-steps.md](2026-11-23-havoc-unmodeled-steps.md)、[research_notes/2026-11-23-model-fidelity-survey.md](../research_notes/2026-11-23-model-fidelity-survey.md)（litmus と herd）、[fixes/FIXES.md](models/site-isolation/fixes/FIXES.md)、[observe/](models/site-isolation/observe/RESULTS.md)
+- 木の節: browser-semantics-soundness/C2、browser-semantics-soundness/C3
 
 ## 問い
 
