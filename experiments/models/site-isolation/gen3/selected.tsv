@@ -1,0 +1,784 @@
+sid	fam	sb	fh	ph	mode	meth	rp	urls	hrp	ex	ch	set	csb	tgt	dd	how	tc	te	kind	wc	tg	acao	cred	corp	idx	why
+X0001	X	none	a	a																					1	whole
+X0002	X	none	a	b																					2	whole
+X0003	X	none	b	a																					3	whole
+X0004	X	none	b	b																					4	whole
+X0005	X	s	a	a																					5	cover
+X0006	X	s	a	b																					6	cover
+X0007	X	s	b	a																					7	whole
+X0008	X	s	b	b																					8	whole
+X0009	X	s-p	a	a																					9	cover
+X0010	X	s-p	a	b																					10	cover
+X0011	X	s-p	b	a																					11	whole
+X0012	X	s-p	b	b																					12	whole
+X0013	X	s-p-e	a	a																					13	cover
+X0014	X	s-p-e	a	b																					14	cover
+X0015	X	s-p-e	b	a																					15	whole
+X0016	X	s-p-e	b	b																					16	whole
+X0017	X	s-p-so	a	a																					17	cover
+X0018	X	s-p-so	a	b																					18	cover
+X0019	X	s-p-so	b	a																					19	whole
+X0020	X	s-p-so	b	b																					20	whole
+X0021	X	s-p-e-so	a	a																					21	whole
+X0022	X	s-p-e-so	a	b																					22	whole
+X0023	X	s-p-e-so	b	a																					23	whole
+X0024	X	s-p-e-so	b	b																					24	whole
+X0025	X	s-so	a	a																					25	whole
+X0026	X	s-so	a	b																					26	whole
+X0027	X	s-so	b	a																					27	whole
+X0028	X	s-so	b	b																					28	whole
+Y0001	Y	none	a																						29	whole
+Y0002	Y	none	b																						30	whole
+Y0003	Y	s	a																						31	whole
+Y0004	Y	s	b																						32	whole
+Y0005	Y	s-t	a																						33	cover
+Y0006	Y	s-t	b																						34	cover
+Y0007	Y	s-tu	a																						35	cover
+Y0008	Y	s-tu	b																						36	cover
+Y0009	Y	s-t-tu	a																						37	whole
+Y0010	Y	s-t-tu	b																						38	whole
+Y0011	Y	s-so-t	a																						39	whole
+Y0012	Y	s-so-t	b																						40	whole
+Y0013	Y	s-p	a																						41	whole
+Y0014	Y	s-p	b																						42	whole
+R0001	R				cors	GET		a																	43	cover
+R0004	R				cors	GET		a-a																	46	cover
+R0005	R				cors	GET		a-a	no-referrer																47	sample
+R0011	R				cors	GET		a-b	no-referrer																53	sample
+R0021	R				cors	GET		a1-b	unsafe-url																63	sample
+R0023	R				cors	GET		b-a	no-referrer																65	sample
+R0033	R				cors	GET		a-a-a	unsafe-url																75	sample
+R0035	R				cors	GET		a-a-a1	no-referrer																77	sample
+R0037	R				cors	GET		a-a-b																	79	sample
+R0040	R				cors	GET		a-a1-a																	82	sample
+R0044	R				cors	GET		a-a1-a1	no-referrer																86	sample
+R0048	R				cors	GET		a-a1-b	unsafe-url																90	sample
+R0049	R				cors	GET		a-b-a																	91	sample
+R0053	R				cors	GET		a-b-a1	no-referrer																95	sample
+R0059	R				cors	GET		a1-a-a	no-referrer																101	sample
+R0064	R				cors	GET		a1-a-b																	106	sample
+R0067	R				cors	GET		a1-a1-a																	109	sample
+R0070	R				cors	GET		a1-a1-a1																	112	sample
+R0073	R				cors	GET		a1-a1-b																	115	sample
+R0074	R				cors	GET		a1-a1-b	no-referrer																116	sample
+R0075	R				cors	GET		a1-a1-b	unsafe-url																117	sample
+R0079	R				cors	GET		a1-b-a1																	121	sample
+R0080	R				cors	GET		a1-b-a1	no-referrer																122	sample
+R0083	R				cors	GET		a1-b-b	no-referrer																125	sample
+R0087	R				cors	GET		b-a-a	unsafe-url																129	sample
+R0089	R				cors	GET		b-a-a1	no-referrer																131	sample
+R0090	R				cors	GET		b-a-a1	unsafe-url																132	sample
+R0097	R				cors	GET		b-a1-a1																	139	sample
+R0107	R				cors	GET		b-b-a1	no-referrer																149	sample
+R0124	R				cors	GET	no-referrer	a1-a																	166	sample
+R0131	R				cors	GET	no-referrer	a1-b	no-referrer																173	sample
+R0132	R				cors	GET	no-referrer	a1-b	unsafe-url																174	sample
+R0138	R				cors	GET	no-referrer	b-a1	unsafe-url																180	sample
+R0139	R				cors	GET	no-referrer	b-b																	181	sample
+R0142	R				cors	GET	no-referrer	a-a-a																	184	sample
+R0145	R				cors	GET	no-referrer	a-a-a1																	187	sample
+R0151	R				cors	GET	no-referrer	a-a1-a																	193	sample
+R0153	R				cors	GET	no-referrer	a-a1-a	unsafe-url																195	sample
+R0157	R				cors	GET	no-referrer	a-a1-b																	199	sample
+R0160	R				cors	GET	no-referrer	a-b-a																	202	sample
+R0165	R				cors	GET	no-referrer	a-b-a1	unsafe-url																207	sample
+R0166	R				cors	GET	no-referrer	a-b-b																	208	sample
+R0168	R				cors	GET	no-referrer	a-b-b	unsafe-url																210	sample
+R0174	R				cors	GET	no-referrer	a1-a-a1	unsafe-url																216	sample
+R0176	R				cors	GET	no-referrer	a1-a-b	no-referrer																218	sample
+R0185	R				cors	GET	no-referrer	a1-a1-b	no-referrer																227	sample
+R0187	R				cors	GET	no-referrer	a1-b-a																	229	sample
+R0190	R				cors	GET	no-referrer	a1-b-a1																	232	sample
+R0195	R				cors	GET	no-referrer	a1-b-b	unsafe-url																237	sample
+R0197	R				cors	GET	no-referrer	b-a-a	no-referrer																239	sample
+R0200	R				cors	GET	no-referrer	b-a-a1	no-referrer																242	sample
+R0201	R				cors	GET	no-referrer	b-a-a1	unsafe-url																243	sample
+R0202	R				cors	GET	no-referrer	b-a-b																	244	sample
+R0203	R				cors	GET	no-referrer	b-a-b	no-referrer																245	sample
+R0204	R				cors	GET	no-referrer	b-a-b	unsafe-url																246	sample
+R0216	R				cors	GET	no-referrer	b-b-a	unsafe-url																258	sample
+R0218	R				cors	GET	no-referrer	b-b-a1	no-referrer																260	sample
+R0227	R				cors	GET	same-origin	a-a	no-referrer																269	sample
+R0229	R				cors	GET	same-origin	a-a1																	271	sample
+R0237	R				cors	GET	same-origin	a1-a	unsafe-url																279	sample
+R0239	R				cors	GET	same-origin	a1-a1	no-referrer																281	sample
+R0242	R				cors	GET	same-origin	a1-b	no-referrer																284	sample
+R0243	R				cors	GET	same-origin	a1-b	unsafe-url																285	sample
+R0245	R				cors	GET	same-origin	b-a	no-referrer																287	sample
+R0250	R				cors	GET	same-origin	b-b																	292	sample
+R0255	R				cors	GET	same-origin	a-a-a	unsafe-url																297	sample
+R0257	R				cors	GET	same-origin	a-a-a1	no-referrer																299	sample
+R0260	R				cors	GET	same-origin	a-a-b	no-referrer																302	sample
+R0262	R				cors	GET	same-origin	a-a1-a																	304	cover
+R0263	R				cors	GET	same-origin	a-a1-a	no-referrer																305	sample
+R0264	R				cors	GET	same-origin	a-a1-a	unsafe-url																306	sample
+R0267	R				cors	GET	same-origin	a-a1-a1	unsafe-url																309	sample
+R0271	R				cors	GET	same-origin	a-b-a																	313	cover
+R0275	R				cors	GET	same-origin	a-b-a1	no-referrer																317	sample
+R0278	R				cors	GET	same-origin	a-b-b	no-referrer																320	sample
+R0282	R				cors	GET	same-origin	a1-a-a	unsafe-url																324	sample
+R0293	R				cors	GET	same-origin	a1-a1-a1	no-referrer																335	sample
+R0295	R				cors	GET	same-origin	a1-a1-b																	337	sample
+R0299	R				cors	GET	same-origin	a1-b-a	no-referrer																341	sample
+R0302	R				cors	GET	same-origin	a1-b-a1	no-referrer																344	sample
+R0310	R				cors	GET	same-origin	b-a-a1																	352	sample
+R0316	R				cors	GET	same-origin	b-a1-a																	358	sample
+R0322	R				cors	GET	same-origin	b-a1-b																	364	sample
+R0327	R				cors	GET	same-origin	b-b-a	unsafe-url																369	sample
+R0328	R				cors	GET	same-origin	b-b-a1																	370	sample
+R0333	R				cors	GET	same-origin	b-b-b	unsafe-url																375	sample
+R0338	R				cors	GET	unsafe-url	a-a	no-referrer																380	sample
+R0359	R				cors	GET	unsafe-url	b-a1	no-referrer																401	sample
+R0360	R				cors	GET	unsafe-url	b-a1	unsafe-url																402	sample
+R0364	R				cors	GET	unsafe-url	a-a-a																	406	sample
+R0368	R				cors	GET	unsafe-url	a-a-a1	no-referrer																410	sample
+R0369	R				cors	GET	unsafe-url	a-a-a1	unsafe-url																411	sample
+R0370	R				cors	GET	unsafe-url	a-a-b																	412	sample
+R0371	R				cors	GET	unsafe-url	a-a-b	no-referrer																413	sample
+R0377	R				cors	GET	unsafe-url	a-a1-a1	no-referrer																419	sample
+R0378	R				cors	GET	unsafe-url	a-a1-a1	unsafe-url																420	sample
+R0379	R				cors	GET	unsafe-url	a-a1-b																	421	sample
+R0382	R				cors	GET	unsafe-url	a-b-a																	424	sample
+R0393	R				cors	GET	unsafe-url	a1-a-a	unsafe-url																435	sample
+R0394	R				cors	GET	unsafe-url	a1-a-a1																	436	sample
+R0395	R				cors	GET	unsafe-url	a1-a-a1	no-referrer																437	sample
+R0408	R				cors	GET	unsafe-url	a1-a1-b	unsafe-url																450	sample
+R0409	R				cors	GET	unsafe-url	a1-b-a																	451	sample
+R0410	R				cors	GET	unsafe-url	a1-b-a	no-referrer																452	sample
+R0418	R				cors	GET	unsafe-url	b-a-a																	460	sample
+R0420	R				cors	GET	unsafe-url	b-a-a	unsafe-url																462	sample
+R0422	R				cors	GET	unsafe-url	b-a-a1	no-referrer																464	sample
+R0424	R				cors	GET	unsafe-url	b-a-b																	466	sample
+R0428	R				cors	GET	unsafe-url	b-a1-a	no-referrer																470	sample
+R0432	R				cors	GET	unsafe-url	b-a1-a1	unsafe-url																474	sample
+R0439	R				cors	GET	unsafe-url	b-b-a1																	481	sample
+R0441	R				cors	GET	unsafe-url	b-b-a1	unsafe-url																483	sample
+R0442	R				cors	GET	unsafe-url	b-b-b																	484	sample
+R0444	R				cors	GET	unsafe-url	b-b-b	unsafe-url																486	sample
+R0445	R				cors	POST		a																	487	sample
+R0453	R				cors	POST		a-a1	unsafe-url																495	sample
+R0457	R				cors	POST		a1-a																	499	sample
+R0463	R				cors	POST		a1-b																	505	sample
+R0465	R				cors	POST		a1-b	unsafe-url																507	sample
+R0473	R				cors	POST		b-b	no-referrer																515	sample
+R0476	R				cors	POST		a-a-a	no-referrer																518	sample
+R0479	R				cors	POST		a-a-a1	no-referrer																521	sample
+R0482	R				cors	POST		a-a-b	no-referrer																524	sample
+R0483	R				cors	POST		a-a-b	unsafe-url																525	sample
+R0486	R				cors	POST		a-a1-a	unsafe-url																528	sample
+R0488	R				cors	POST		a-a1-a1	no-referrer																530	sample
+R0492	R				cors	POST		a-a1-b	unsafe-url																534	sample
+R0494	R				cors	POST		a-b-a	no-referrer																536	sample
+R0498	R				cors	POST		a-b-a1	unsafe-url																540	sample
+R0499	R				cors	POST		a-b-b																	541	sample
+R0506	R				cors	POST		a1-a-a1	no-referrer																548	sample
+R0517	R				cors	POST		a1-a1-b																	559	sample
+R0522	R				cors	POST		a1-b-a	unsafe-url																564	sample
+R0534	R				cors	POST		b-a-a1	unsafe-url																576	sample
+R0538	R				cors	POST		b-a1-a																	580	sample
+R0540	R				cors	POST		b-a1-a	unsafe-url																582	sample
+R0543	R				cors	POST		b-a1-a1	unsafe-url																585	sample
+R0544	R				cors	POST		b-a1-b																	586	sample
+R0545	R				cors	POST		b-a1-b	no-referrer																587	sample
+R0550	R				cors	POST		b-b-a1																	592	sample
+R0552	R				cors	POST		b-b-a1	unsafe-url																594	sample
+R0554	R				cors	POST		b-b-b	no-referrer																596	sample
+R0558	R				cors	POST	no-referrer	b																	600	sample
+R0560	R				cors	POST	no-referrer	a-a	no-referrer																602	sample
+R0564	R				cors	POST	no-referrer	a-a1	unsafe-url																606	sample
+R0573	R				cors	POST	no-referrer	a1-a1	unsafe-url																615	sample
+R0575	R				cors	POST	no-referrer	a1-b	no-referrer																617	sample
+R0576	R				cors	POST	no-referrer	a1-b	unsafe-url																618	sample
+R0586	R				cors	POST	no-referrer	a-a-a																	628	sample
+R0587	R				cors	POST	no-referrer	a-a-a	no-referrer																629	sample
+R0592	R				cors	POST	no-referrer	a-a-b																	634	sample
+R0594	R				cors	POST	no-referrer	a-a-b	unsafe-url																636	sample
+R0597	R				cors	POST	no-referrer	a-a1-a	unsafe-url																639	sample
+R0599	R				cors	POST	no-referrer	a-a1-a1	no-referrer																641	sample
+R0603	R				cors	POST	no-referrer	a-a1-b	unsafe-url																645	sample
+R0607	R				cors	POST	no-referrer	a-b-a1																	649	sample
+R0609	R				cors	POST	no-referrer	a-b-a1	unsafe-url																651	sample
+R0614	R				cors	POST	no-referrer	a1-a-a	no-referrer																656	sample
+R0617	R				cors	POST	no-referrer	a1-a-a1	no-referrer																659	sample
+R0621	R				cors	POST	no-referrer	a1-a-b	unsafe-url																663	sample
+R0627	R				cors	POST	no-referrer	a1-a1-a1	unsafe-url																669	sample
+R0639	R				cors	POST	no-referrer	a1-b-b	unsafe-url																681	sample
+R0643	R				cors	POST	no-referrer	b-a-a1																	685	sample
+R0647	R				cors	POST	no-referrer	b-a-b	no-referrer																689	sample
+R0653	R				cors	POST	no-referrer	b-a1-a1	no-referrer																695	sample
+R0655	R				cors	POST	no-referrer	b-a1-b																	697	sample
+R0659	R				cors	POST	no-referrer	b-b-a	no-referrer																701	sample
+R0660	R				cors	POST	no-referrer	b-b-a	unsafe-url																702	sample
+R0661	R				cors	POST	no-referrer	b-b-a1																	703	sample
+R0666	R				cors	POST	no-referrer	b-b-b	unsafe-url																708	sample
+R0668	R				cors	POST	same-origin	a1																	710	sample
+R0670	R				cors	POST	same-origin	a-a																	712	sample
+R0672	R				cors	POST	same-origin	a-a	unsafe-url																714	sample
+R0677	R				cors	POST	same-origin	a-b	no-referrer																719	sample
+R0679	R				cors	POST	same-origin	a1-a																	721	sample
+R0687	R				cors	POST	same-origin	a1-b	unsafe-url																729	sample
+R0690	R				cors	POST	same-origin	b-a	unsafe-url																732	sample
+R0701	R				cors	POST	same-origin	a-a-a1	no-referrer																743	sample
+R0702	R				cors	POST	same-origin	a-a-a1	unsafe-url																744	sample
+R0711	R				cors	POST	same-origin	a-a1-a1	unsafe-url																753	sample
+R0715	R				cors	POST	same-origin	a-b-a																	757	sample
+R0718	R				cors	POST	same-origin	a-b-a1																	760	sample
+R0719	R				cors	POST	same-origin	a-b-a1	no-referrer																761	sample
+R0724	R				cors	POST	same-origin	a1-a-a																	766	sample
+R0728	R				cors	POST	same-origin	a1-a-a1	no-referrer																770	sample
+R0732	R				cors	POST	same-origin	a1-a-b	unsafe-url																774	sample
+R0733	R				cors	POST	same-origin	a1-a1-a																	775	sample
+R0738	R				cors	POST	same-origin	a1-a1-a1	unsafe-url																780	sample
+R0743	R				cors	POST	same-origin	a1-b-a	no-referrer																785	sample
+R0748	R				cors	POST	same-origin	a1-b-b																	790	sample
+R0749	R				cors	POST	same-origin	a1-b-b	no-referrer																791	sample
+R0750	R				cors	POST	same-origin	a1-b-b	unsafe-url																792	sample
+R0751	R				cors	POST	same-origin	b-a-a																	793	sample
+R0752	R				cors	POST	same-origin	b-a-a	no-referrer																794	sample
+R0764	R				cors	POST	same-origin	b-a1-a1	no-referrer																806	sample
+R0766	R				cors	POST	same-origin	b-a1-b																	808	sample
+R0767	R				cors	POST	same-origin	b-a1-b	no-referrer																809	sample
+R0769	R				cors	POST	same-origin	b-b-a																	811	sample
+R0779	R				cors	POST	unsafe-url	a1																	821	sample
+R0781	R				cors	POST	unsafe-url	a-a																	823	sample
+R0783	R				cors	POST	unsafe-url	a-a	unsafe-url																825	sample
+R0784	R				cors	POST	unsafe-url	a-a1																	826	sample
+R0787	R				cors	POST	unsafe-url	a-b																	829	sample
+R0791	R				cors	POST	unsafe-url	a1-a	no-referrer																833	sample
+R0798	R				cors	POST	unsafe-url	a1-b	unsafe-url																840	sample
+R0800	R				cors	POST	unsafe-url	b-a	no-referrer																842	sample
+R0803	R				cors	POST	unsafe-url	b-a1	no-referrer																845	sample
+R0805	R				cors	POST	unsafe-url	b-b																	847	sample
+R0807	R				cors	POST	unsafe-url	b-b	unsafe-url																849	sample
+R0808	R				cors	POST	unsafe-url	a-a-a																	850	sample
+R0814	R				cors	POST	unsafe-url	a-a-b																	856	sample
+R0817	R				cors	POST	unsafe-url	a-a1-a																	859	sample
+R0820	R				cors	POST	unsafe-url	a-a1-a1																	862	sample
+R0825	R				cors	POST	unsafe-url	a-a1-b	unsafe-url																867	sample
+R0831	R				cors	POST	unsafe-url	a-b-a1	unsafe-url																873	sample
+R0835	R				cors	POST	unsafe-url	a1-a-a																	877	sample
+R0840	R				cors	POST	unsafe-url	a1-a-a1	unsafe-url																882	sample
+R0847	R				cors	POST	unsafe-url	a1-a1-a1																	889	sample
+R0853	R				cors	POST	unsafe-url	a1-b-a																	895	sample
+R0856	R				cors	POST	unsafe-url	a1-b-a1																	898	sample
+R0858	R				cors	POST	unsafe-url	a1-b-a1	unsafe-url																900	sample
+R0861	R				cors	POST	unsafe-url	a1-b-b	unsafe-url																903	sample
+R0870	R				cors	POST	unsafe-url	b-a-b	unsafe-url																912	sample
+R0871	R				cors	POST	unsafe-url	b-a1-a																	913	sample
+R0885	R				cors	POST	unsafe-url	b-b-a1	unsafe-url																927	sample
+R0886	R				cors	POST	unsafe-url	b-b-b																	928	sample
+R0894	R				no-cors	GET		a-a	unsafe-url																936	sample
+R0896	R				no-cors	GET		a-a1	no-referrer																938	sample
+R0897	R				no-cors	GET		a-a1	unsafe-url																939	sample
+R0899	R				no-cors	GET		a-b	no-referrer																941	sample
+R0900	R				no-cors	GET		a-b	unsafe-url																942	sample
+R0905	R				no-cors	GET		a1-a1	no-referrer																947	sample
+R0910	R				no-cors	GET		b-a																	952	sample
+R0913	R				no-cors	GET		b-a1																	955	sample
+R0922	R				no-cors	GET		a-a-a1																	964	sample
+R0928	R				no-cors	GET		a-a1-a																	970	sample
+R0929	R				no-cors	GET		a-a1-a	no-referrer																971	sample
+R0933	R				no-cors	GET		a-a1-a1	unsafe-url																975	sample
+R0936	R				no-cors	GET		a-a1-b	unsafe-url																978	sample
+R0946	R				no-cors	GET		a1-a-a																	988	sample
+R0948	R				no-cors	GET		a1-a-a	unsafe-url																990	sample
+R0949	R				no-cors	GET		a1-a-a1																	991	sample
+R0954	R				no-cors	GET		a1-a-b	unsafe-url																996	sample
+R0955	R				no-cors	GET		a1-a1-a																	997	sample
+R0959	R				no-cors	GET		a1-a1-a1	no-referrer																1001	sample
+R0960	R				no-cors	GET		a1-a1-a1	unsafe-url																1002	sample
+R0964	R				no-cors	GET		a1-b-a																	1006	sample
+R0969	R				no-cors	GET		a1-b-a1	unsafe-url																1011	sample
+R0974	R				no-cors	GET		b-a-a	no-referrer																1016	sample
+R0975	R				no-cors	GET		b-a-a	unsafe-url																1017	sample
+R0979	R				no-cors	GET		b-a-b																	1021	sample
+R0980	R				no-cors	GET		b-a-b	no-referrer																1022	sample
+R0987	R				no-cors	GET		b-a1-a1	unsafe-url																1029	sample
+R0988	R				no-cors	GET		b-a1-b																	1030	sample
+R1004	R				no-cors	GET	no-referrer	a-a	no-referrer																1046	sample
+R1009	R				no-cors	GET	no-referrer	a-b																	1051	sample
+R1010	R				no-cors	GET	no-referrer	a-b	no-referrer																1052	sample
+R1011	R				no-cors	GET	no-referrer	a-b	unsafe-url																1053	sample
+R1012	R				no-cors	GET	no-referrer	a1-a																	1054	sample
+R1019	R				no-cors	GET	no-referrer	a1-b	no-referrer																1061	sample
+R1022	R				no-cors	GET	no-referrer	b-a	no-referrer																1064	sample
+R1036	R				no-cors	GET	no-referrer	a-a-b																	1078	sample
+R1038	R				no-cors	GET	no-referrer	a-a-b	unsafe-url																1080	sample
+R1040	R				no-cors	GET	no-referrer	a-a1-a	no-referrer																1082	sample
+R1041	R				no-cors	GET	no-referrer	a-a1-a	unsafe-url																1083	sample
+R1042	R				no-cors	GET	no-referrer	a-a1-a1																	1084	sample
+R1044	R				no-cors	GET	no-referrer	a-a1-a1	unsafe-url																1086	sample
+R1048	R				no-cors	GET	no-referrer	a-b-a																	1090	sample
+R1051	R				no-cors	GET	no-referrer	a-b-a1																	1093	sample
+R1053	R				no-cors	GET	no-referrer	a-b-a1	unsafe-url																1095	sample
+R1059	R				no-cors	GET	no-referrer	a1-a-a	unsafe-url																1101	sample
+R1069	R				no-cors	GET	no-referrer	a1-a1-a1																	1111	sample
+R1077	R				no-cors	GET	no-referrer	a1-b-a	unsafe-url																1119	sample
+R1078	R				no-cors	GET	no-referrer	a1-b-a1																	1120	sample
+R1085	R				no-cors	GET	no-referrer	b-a-a	no-referrer																1127	sample
+R1086	R				no-cors	GET	no-referrer	b-a-a	unsafe-url																1128	sample
+R1088	R				no-cors	GET	no-referrer	b-a-a1	no-referrer																1130	sample
+R1094	R				no-cors	GET	no-referrer	b-a1-a	no-referrer																1136	sample
+R1098	R				no-cors	GET	no-referrer	b-a1-a1	unsafe-url																1140	sample
+R1103	R				no-cors	GET	no-referrer	b-b-a	no-referrer																1145	sample
+R1104	R				no-cors	GET	no-referrer	b-b-a	unsafe-url																1146	sample
+R1105	R				no-cors	GET	no-referrer	b-b-a1																	1147	sample
+R1114	R				no-cors	GET	same-origin	a-a																	1156	sample
+R1115	R				no-cors	GET	same-origin	a-a	no-referrer																1157	sample
+R1119	R				no-cors	GET	same-origin	a-a1	unsafe-url																1161	sample
+R1120	R				no-cors	GET	same-origin	a-b																	1162	sample
+R1121	R				no-cors	GET	same-origin	a-b	no-referrer																1163	sample
+R1127	R				no-cors	GET	same-origin	a1-a1	no-referrer																1169	sample
+R1130	R				no-cors	GET	same-origin	a1-b	no-referrer																1172	sample
+R1132	R				no-cors	GET	same-origin	b-a																	1174	sample
+R1134	R				no-cors	GET	same-origin	b-a	unsafe-url																1176	sample
+R1139	R				no-cors	GET	same-origin	b-b	no-referrer																1181	sample
+R1140	R				no-cors	GET	same-origin	b-b	unsafe-url																1182	sample
+R1145	R				no-cors	GET	same-origin	a-a-a1	no-referrer																1187	sample
+R1146	R				no-cors	GET	same-origin	a-a-a1	unsafe-url																1188	sample
+R1147	R				no-cors	GET	same-origin	a-a-b																	1189	sample
+R1148	R				no-cors	GET	same-origin	a-a-b	no-referrer																1190	sample
+R1155	R				no-cors	GET	same-origin	a-a1-a1	unsafe-url																1197	sample
+R1166	R				no-cors	GET	same-origin	a-b-b	no-referrer																1208	sample
+R1170	R				no-cors	GET	same-origin	a1-a-a	unsafe-url																1212	sample
+R1176	R				no-cors	GET	same-origin	a1-a-b	unsafe-url																1218	sample
+R1177	R				no-cors	GET	same-origin	a1-a1-a																	1219	sample
+R1179	R				no-cors	GET	same-origin	a1-a1-a	unsafe-url																1221	sample
+R1189	R				no-cors	GET	same-origin	a1-b-a1																	1231	sample
+R1190	R				no-cors	GET	same-origin	a1-b-a1	no-referrer																1232	sample
+R1197	R				no-cors	GET	same-origin	b-a-a	unsafe-url																1239	sample
+R1213	R				no-cors	GET	same-origin	b-b-a																	1255	sample
+R1216	R				no-cors	GET	same-origin	b-b-a1																	1258	sample
+R1217	R				no-cors	GET	same-origin	b-b-a1	no-referrer																1259	sample
+R1220	R				no-cors	GET	same-origin	b-b-b	no-referrer																1262	sample
+R1224	R				no-cors	GET	unsafe-url	b																	1266	sample
+R1225	R				no-cors	GET	unsafe-url	a-a																	1267	sample
+R1226	R				no-cors	GET	unsafe-url	a-a	no-referrer																1268	sample
+R1230	R				no-cors	GET	unsafe-url	a-a1	unsafe-url																1272	sample
+R1231	R				no-cors	GET	unsafe-url	a-b																	1273	sample
+R1239	R				no-cors	GET	unsafe-url	a1-a1	unsafe-url																1281	sample
+R1240	R				no-cors	GET	unsafe-url	a1-b																	1282	sample
+R1244	R				no-cors	GET	unsafe-url	b-a	no-referrer																1286	sample
+R1246	R				no-cors	GET	unsafe-url	b-a1																	1288	sample
+R1247	R				no-cors	GET	unsafe-url	b-a1	no-referrer																1289	sample
+R1251	R				no-cors	GET	unsafe-url	b-b	unsafe-url																1293	sample
+R1253	R				no-cors	GET	unsafe-url	a-a-a	no-referrer																1295	sample
+R1256	R				no-cors	GET	unsafe-url	a-a-a1	no-referrer																1298	sample
+R1266	R				no-cors	GET	unsafe-url	a-a1-a1	unsafe-url																1308	sample
+R1270	R				no-cors	GET	unsafe-url	a-b-a																	1312	sample
+R1277	R				no-cors	GET	unsafe-url	a-b-b	no-referrer																1319	sample
+R1282	R				no-cors	GET	unsafe-url	a1-a-a1																	1324	sample
+R1284	R				no-cors	GET	unsafe-url	a1-a-a1	unsafe-url																1326	sample
+R1289	R				no-cors	GET	unsafe-url	a1-a1-a	no-referrer																1331	sample
+R1292	R				no-cors	GET	unsafe-url	a1-a1-a1	no-referrer																1334	sample
+R1293	R				no-cors	GET	unsafe-url	a1-a1-a1	unsafe-url																1335	sample
+R1299	R				no-cors	GET	unsafe-url	a1-b-a	unsafe-url																1341	sample
+R1302	R				no-cors	GET	unsafe-url	a1-b-a1	unsafe-url																1344	sample
+R1308	R				no-cors	GET	unsafe-url	b-a-a	unsafe-url																1350	sample
+R1315	R				no-cors	GET	unsafe-url	b-a1-a																	1357	sample
+R1324	R				no-cors	GET	unsafe-url	b-b-a																	1366	sample
+R1327	R				no-cors	GET	unsafe-url	b-b-a1																	1369	sample
+R1330	R				no-cors	GET	unsafe-url	b-b-b																	1372	sample
+R1335	R				no-cors	POST		b																	1377	sample
+R1337	R				no-cors	POST		a-a	no-referrer																1379	cover
+R1338	R				no-cors	POST		a-a	unsafe-url																1380	sample
+R1340	R				no-cors	POST		a-a1	no-referrer																1382	cover
+R1343	R				no-cors	POST		a-b	no-referrer																1385	sample
+R1349	R				no-cors	POST		a1-a1	no-referrer																1391	sample
+R1350	R				no-cors	POST		a1-a1	unsafe-url																1392	sample
+R1359	R				no-cors	POST		b-a1	unsafe-url																1401	sample
+R1366	R				no-cors	POST		a-a-a1																	1408	sample
+R1371	R				no-cors	POST		a-a-b	unsafe-url																1413	sample
+R1380	R				no-cors	POST		a-a1-b	unsafe-url																1422	sample
+R1382	R				no-cors	POST		a-b-a	no-referrer																1424	sample
+R1385	R				no-cors	POST		a-b-a1	no-referrer																1427	sample
+R1391	R				no-cors	POST		a1-a-a	no-referrer																1433	sample
+R1396	R				no-cors	POST		a1-a-b																	1438	sample
+R1405	R				no-cors	POST		a1-a1-b																	1447	sample
+R1408	R				no-cors	POST		a1-b-a																	1450	sample
+R1413	R				no-cors	POST		a1-b-a1	unsafe-url																1455	sample
+R1414	R				no-cors	POST		a1-b-b																	1456	sample
+R1419	R				no-cors	POST		b-a-a	unsafe-url																1461	sample
+R1421	R				no-cors	POST		b-a-a1	no-referrer																1463	sample
+R1424	R				no-cors	POST		b-a-b	no-referrer																1466	sample
+R1428	R				no-cors	POST		b-a1-a	unsafe-url																1470	sample
+R1432	R				no-cors	POST		b-a1-b																	1474	sample
+R1434	R				no-cors	POST		b-a1-b	unsafe-url																1476	sample
+R1435	R				no-cors	POST		b-b-a																	1477	sample
+R1436	R				no-cors	POST		b-b-a	no-referrer																1478	sample
+R1437	R				no-cors	POST		b-b-a	unsafe-url																1479	sample
+R1440	R				no-cors	POST		b-b-a1	unsafe-url																1482	sample
+R1443	R				no-cors	POST		b-b-b	unsafe-url																1485	sample
+R1445	R				no-cors	POST	no-referrer	a1																	1487	sample
+R1446	R				no-cors	POST	no-referrer	b																	1488	sample
+R1447	R				no-cors	POST	no-referrer	a-a																	1489	sample
+R1450	R				no-cors	POST	no-referrer	a-a1																	1492	sample
+R1451	R				no-cors	POST	no-referrer	a-a1	no-referrer																1493	sample
+R1452	R				no-cors	POST	no-referrer	a-a1	unsafe-url																1494	cover
+R1455	R				no-cors	POST	no-referrer	a-b	unsafe-url																1497	cover
+R1460	R				no-cors	POST	no-referrer	a1-a1	no-referrer																1502	sample
+R1462	R				no-cors	POST	no-referrer	a1-b																	1504	sample
+R1466	R				no-cors	POST	no-referrer	b-a	no-referrer																1508	sample
+R1468	R				no-cors	POST	no-referrer	b-a1																	1510	sample
+R1471	R				no-cors	POST	no-referrer	b-b																	1513	sample
+R1477	R				no-cors	POST	no-referrer	a-a-a1																	1519	sample
+R1486	R				no-cors	POST	no-referrer	a-a1-a1																	1528	sample
+R1489	R				no-cors	POST	no-referrer	a-a1-b																	1531	sample
+R1492	R				no-cors	POST	no-referrer	a-b-a																	1534	sample
+R1497	R				no-cors	POST	no-referrer	a-b-a1	unsafe-url																1539	sample
+R1498	R				no-cors	POST	no-referrer	a-b-b																	1540	sample
+R1502	R				no-cors	POST	no-referrer	a1-a-a	no-referrer																1544	sample
+R1504	R				no-cors	POST	no-referrer	a1-a-a1																	1546	sample
+R1507	R				no-cors	POST	no-referrer	a1-a-b																	1549	sample
+R1508	R				no-cors	POST	no-referrer	a1-a-b	no-referrer																1550	sample
+R1513	R				no-cors	POST	no-referrer	a1-a1-a1																	1555	sample
+R1515	R				no-cors	POST	no-referrer	a1-a1-a1	unsafe-url																1557	sample
+R1521	R				no-cors	POST	no-referrer	a1-b-a	unsafe-url																1563	sample
+R1525	R				no-cors	POST	no-referrer	a1-b-b																	1567	sample
+R1529	R				no-cors	POST	no-referrer	b-a-a	no-referrer																1571	sample
+R1543	R				no-cors	POST	no-referrer	b-a1-b																	1585	sample
+R1553	R				no-cors	POST	no-referrer	b-b-b	no-referrer																1595	sample
+R1554	R				no-cors	POST	no-referrer	b-b-b	unsafe-url																1596	sample
+R1566	R				no-cors	POST	same-origin	a-b	unsafe-url																1608	sample
+R1571	R				no-cors	POST	same-origin	a1-a1	no-referrer																1613	sample
+R1572	R				no-cors	POST	same-origin	a1-a1	unsafe-url																1614	sample
+R1574	R				no-cors	POST	same-origin	a1-b	no-referrer																1616	sample
+R1575	R				no-cors	POST	same-origin	a1-b	unsafe-url																1617	sample
+R1580	R				no-cors	POST	same-origin	b-a1	no-referrer																1622	sample
+R1581	R				no-cors	POST	same-origin	b-a1	unsafe-url																1623	sample
+R1582	R				no-cors	POST	same-origin	b-b																	1624	sample
+R1583	R				no-cors	POST	same-origin	b-b	no-referrer																1625	sample
+R1592	R				no-cors	POST	same-origin	a-a-b	no-referrer																1634	sample
+R1603	R				no-cors	POST	same-origin	a-b-a																	1645	sample
+R1606	R				no-cors	POST	same-origin	a-b-a1																	1648	sample
+R1616	R				no-cors	POST	same-origin	a1-a-a1	no-referrer																1658	sample
+R1618	R				no-cors	POST	same-origin	a1-a-b																	1660	sample
+R1619	R				no-cors	POST	same-origin	a1-a-b	no-referrer																1661	sample
+R1621	R				no-cors	POST	same-origin	a1-a1-a																	1663	sample
+R1624	R				no-cors	POST	same-origin	a1-a1-a1																	1666	sample
+R1625	R				no-cors	POST	same-origin	a1-a1-a1	no-referrer																1667	sample
+R1627	R				no-cors	POST	same-origin	a1-a1-b																	1669	sample
+R1628	R				no-cors	POST	same-origin	a1-a1-b	no-referrer																1670	sample
+R1637	R				no-cors	POST	same-origin	a1-b-b	no-referrer																1679	sample
+R1641	R				no-cors	POST	same-origin	b-a-a	unsafe-url																1683	sample
+R1650	R				no-cors	POST	same-origin	b-a1-a	unsafe-url																1692	sample
+R1653	R				no-cors	POST	same-origin	b-a1-a1	unsafe-url																1695	sample
+R1654	R				no-cors	POST	same-origin	b-a1-b																	1696	sample
+R1657	R				no-cors	POST	same-origin	b-b-a																	1699	sample
+R1659	R				no-cors	POST	same-origin	b-b-a	unsafe-url																1701	sample
+R1662	R				no-cors	POST	same-origin	b-b-a1	unsafe-url																1704	sample
+R1674	R				no-cors	POST	unsafe-url	a-a1	unsafe-url																1716	sample
+R1675	R				no-cors	POST	unsafe-url	a-b																	1717	sample
+R1678	R				no-cors	POST	unsafe-url	a1-a																	1720	sample
+R1679	R				no-cors	POST	unsafe-url	a1-a	no-referrer																1721	sample
+R1680	R				no-cors	POST	unsafe-url	a1-a	unsafe-url																1722	sample
+R1688	R				no-cors	POST	unsafe-url	b-a	no-referrer																1730	sample
+R1698	R				no-cors	POST	unsafe-url	a-a-a	unsafe-url																1740	sample
+R1699	R				no-cors	POST	unsafe-url	a-a-a1																	1741	sample
+R1701	R				no-cors	POST	unsafe-url	a-a-a1	unsafe-url																1743	sample
+R1707	R				no-cors	POST	unsafe-url	a-a1-a	unsafe-url																1749	sample
+R1708	R				no-cors	POST	unsafe-url	a-a1-a1																	1750	sample
+R1709	R				no-cors	POST	unsafe-url	a-a1-a1	no-referrer																1751	sample
+R1710	R				no-cors	POST	unsafe-url	a-a1-a1	unsafe-url																1752	sample
+R1712	R				no-cors	POST	unsafe-url	a-a1-b	no-referrer																1754	sample
+R1715	R				no-cors	POST	unsafe-url	a-b-a	no-referrer																1757	sample
+R1717	R				no-cors	POST	unsafe-url	a-b-a1																	1759	sample
+R1719	R				no-cors	POST	unsafe-url	a-b-a1	unsafe-url																1761	sample
+R1722	R				no-cors	POST	unsafe-url	a-b-b	unsafe-url																1764	sample
+R1731	R				no-cors	POST	unsafe-url	a1-a-b	unsafe-url																1773	sample
+R1732	R				no-cors	POST	unsafe-url	a1-a1-a																	1774	sample
+R1737	R				no-cors	POST	unsafe-url	a1-a1-a1	unsafe-url																1779	sample
+R1740	R				no-cors	POST	unsafe-url	a1-a1-b	unsafe-url																1782	sample
+R1743	R				no-cors	POST	unsafe-url	a1-b-a	unsafe-url																1785	sample
+R1751	R				no-cors	POST	unsafe-url	b-a-a	no-referrer																1793	sample
+R1752	R				no-cors	POST	unsafe-url	b-a-a	unsafe-url																1794	sample
+R1765	R				no-cors	POST	unsafe-url	b-a1-b																	1807	sample
+R1770	R				no-cors	POST	unsafe-url	b-b-a	unsafe-url																1812	sample
+R1776	R				no-cors	POST	unsafe-url	b-b-b	unsafe-url																1818	sample
+K0001	K							a		none															1819	whole
+K0002	K							a		a1															1820	whole
+K0003	K							a		b															1821	whole
+K0004	K							a1		none															1822	whole
+K0005	K							a1		a1															1823	whole
+K0006	K							a1		b															1824	whole
+K0007	K							b		none															1825	whole
+K0008	K							b		a1															1826	whole
+K0009	K							b		b															1827	whole
+K0010	K							a-a		none															1828	whole
+K0011	K							a-a		a1															1829	whole
+K0012	K							a-a		b															1830	whole
+K0013	K							a-a1		none															1831	cover
+K0014	K							a-a1		a1															1832	whole
+K0015	K							a-a1		b															1833	cover
+K0016	K							a-b		none															1834	whole
+K0017	K							a-b		a1															1835	whole
+K0018	K							a-b		b															1836	whole
+K0019	K							a1-a		none															1837	whole
+K0020	K							a1-a		a1															1838	whole
+K0021	K							a1-a		b															1839	whole
+K0022	K							a1-a1		none															1840	whole
+K0023	K							a1-a1		a1															1841	whole
+K0024	K							a1-a1		b															1842	whole
+K0025	K							a1-b		none															1843	whole
+K0026	K							a1-b		a1															1844	whole
+K0027	K							a1-b		b															1845	whole
+K0028	K							b-a		none															1846	whole
+K0029	K							b-a		a1															1847	whole
+K0030	K							b-a		b															1848	whole
+K0031	K							b-a1		none															1849	whole
+K0032	K							b-a1		a1															1850	whole
+K0033	K							b-a1		b															1851	whole
+K0034	K							b-b		none															1852	whole
+K0035	K							b-b		a1															1853	whole
+K0036	K							b-b		b															1854	whole
+K0037	K							a-a-a		none															1855	whole
+K0038	K							a-a-a		a1															1856	whole
+K0039	K							a-a-a		b															1857	whole
+K0040	K							a-a-a1		none															1858	whole
+K0041	K							a-a-a1		a1															1859	whole
+K0042	K							a-a-a1		b															1860	whole
+K0043	K							a-a-b		none															1861	whole
+K0044	K							a-a-b		a1															1862	whole
+K0045	K							a-a-b		b															1863	whole
+K0046	K							a-a1-a		none															1864	whole
+K0047	K							a-a1-a		a1															1865	whole
+K0048	K							a-a1-a		b															1866	whole
+K0049	K							a-a1-a1		none															1867	whole
+K0050	K							a-a1-a1		a1															1868	whole
+K0051	K							a-a1-a1		b															1869	whole
+K0052	K							a-a1-b		none															1870	whole
+K0053	K							a-a1-b		a1															1871	whole
+K0054	K							a-a1-b		b															1872	whole
+K0055	K							a-b-a		none															1873	whole
+K0056	K							a-b-a		a1															1874	whole
+K0057	K							a-b-a		b															1875	whole
+K0058	K							a-b-a1		none															1876	whole
+K0059	K							a-b-a1		a1															1877	whole
+K0060	K							a-b-a1		b															1878	whole
+K0061	K							a-b-b		none															1879	whole
+K0062	K							a-b-b		a1															1880	whole
+K0063	K							a-b-b		b															1881	whole
+K0064	K							a1-a-a		none															1882	whole
+K0065	K							a1-a-a		a1															1883	whole
+K0066	K							a1-a-a		b															1884	whole
+K0067	K							a1-a-a1		none															1885	whole
+K0068	K							a1-a-a1		a1															1886	whole
+K0069	K							a1-a-a1		b															1887	whole
+K0070	K							a1-a-b		none															1888	whole
+K0071	K							a1-a-b		a1															1889	whole
+K0072	K							a1-a-b		b															1890	whole
+K0073	K							a1-a1-a		none															1891	whole
+K0074	K							a1-a1-a		a1															1892	whole
+K0075	K							a1-a1-a		b															1893	whole
+K0076	K							a1-a1-a1		none															1894	whole
+K0077	K							a1-a1-a1		a1															1895	whole
+K0078	K							a1-a1-a1		b															1896	whole
+K0079	K							a1-a1-b		none															1897	whole
+K0080	K							a1-a1-b		a1															1898	whole
+K0081	K							a1-a1-b		b															1899	whole
+K0082	K							a1-b-a		none															1900	whole
+K0083	K							a1-b-a		a1															1901	whole
+K0084	K							a1-b-a		b															1902	whole
+K0085	K							a1-b-a1		none															1903	whole
+K0086	K							a1-b-a1		a1															1904	whole
+K0087	K							a1-b-a1		b															1905	whole
+K0088	K							a1-b-b		none															1906	whole
+K0089	K							a1-b-b		a1															1907	whole
+K0090	K							a1-b-b		b															1908	whole
+K0091	K							b-a-a		none															1909	whole
+K0092	K							b-a-a		a1															1910	whole
+K0093	K							b-a-a		b															1911	whole
+K0094	K							b-a-a1		none															1912	whole
+K0095	K							b-a-a1		a1															1913	whole
+K0096	K							b-a-a1		b															1914	whole
+K0097	K							b-a-b		none															1915	whole
+K0098	K							b-a-b		a1															1916	whole
+K0099	K							b-a-b		b															1917	whole
+K0100	K							b-a1-a		none															1918	whole
+K0101	K							b-a1-a		a1															1919	whole
+K0102	K							b-a1-a		b															1920	whole
+K0103	K							b-a1-a1		none															1921	whole
+K0104	K							b-a1-a1		a1															1922	whole
+K0105	K							b-a1-a1		b															1923	whole
+K0106	K							b-a1-b		none															1924	whole
+K0107	K							b-a1-b		a1															1925	whole
+K0108	K							b-a1-b		b															1926	whole
+K0109	K							b-b-a		none															1927	whole
+K0110	K							b-b-a		a1															1928	whole
+K0111	K							b-b-a		b															1929	whole
+K0112	K							b-b-a1		none															1930	whole
+K0113	K							b-b-a1		a1															1931	whole
+K0114	K							b-b-a1		b															1932	whole
+K0115	K							b-b-b		none															1933	whole
+K0116	K							b-b-b		a1															1934	whole
+K0117	K							b-b-b		b															1935	whole
+D0001	D										a	none	no												1936	whole
+D0002	D										a	none	yes												1937	whole
+D0003	D										a	p	no												1938	whole
+D0004	D										a	p	yes												1939	whole
+D0005	D										a	c	no												1940	whole
+D0006	D										a	c	yes												1941	whole
+D0007	D										a	both	no												1942	cover
+D0008	D										a	both	yes												1943	whole
+D0009	D										a1	none	no												1944	whole
+D0010	D										a1	none	yes												1945	whole
+D0011	D										a1	p	no												1946	whole
+D0012	D										a1	p	yes												1947	whole
+D0013	D										a1	c	no												1948	whole
+D0014	D										a1	c	yes												1949	whole
+D0015	D										a1	both	no												1950	cover
+D0016	D										a1	both	yes												1951	whole
+D0017	D										b	none	no												1952	whole
+D0018	D										b	none	yes												1953	whole
+D0019	D										b	p	no												1954	whole
+D0020	D										b	p	yes												1955	whole
+D0021	D										b	c	no												1956	whole
+D0022	D										b	c	yes												1957	whole
+D0023	D										b	both	no												1958	whole
+D0024	D										b	both	yes												1959	whole
+N0001	N													a	none	ifr-after									1960	cover
+N0002	N													a	none	ifr-insert									1961	cover
+N0003	N													a	none	popup									1962	whole
+N0004	N													a	before	ifr-after									1963	cover
+N0005	N													a	before	ifr-insert									1964	cover
+N0006	N													a	before	popup									1965	whole
+N0007	N													a	after	ifr-after									1966	whole
+N0008	N													a	after	ifr-insert									1967	whole
+N0009	N													a	after	popup									1968	whole
+N0010	N													a1	none	ifr-after									1969	whole
+N0011	N													a1	none	ifr-insert									1970	whole
+N0012	N													a1	none	popup									1971	whole
+N0013	N													a1	before	ifr-after									1972	whole
+N0014	N													a1	before	ifr-insert									1973	whole
+N0015	N													a1	before	popup									1974	whole
+N0016	N													a1	after	ifr-after									1975	whole
+N0017	N													a1	after	ifr-insert									1976	whole
+N0018	N													a1	after	popup									1977	whole
+N0019	N													b	none	ifr-after									1978	whole
+N0020	N													b	none	ifr-insert									1979	whole
+N0021	N													b	none	popup									1980	whole
+N0022	N													b	before	ifr-after									1981	whole
+N0023	N													b	before	ifr-insert									1982	whole
+N0024	N													b	before	popup									1983	whole
+N0025	N													b	after	ifr-after									1984	whole
+N0026	N													b	after	ifr-insert									1985	whole
+N0027	N													b	after	popup									1986	whole
+W0001	W																unsafe-none	unsafe-none	ded	unsafe-none					1987	whole
+W0002	W																unsafe-none	unsafe-none	ded	require-corp					1988	whole
+W0003	W																unsafe-none	unsafe-none	ded	credentialless					1989	whole
+W0004	W																unsafe-none	unsafe-none	shared	unsafe-none					1990	cover
+W0005	W																unsafe-none	unsafe-none	shared	require-corp					1991	whole
+W0006	W																unsafe-none	unsafe-none	shared	credentialless					1992	cover
+W0007	W																unsafe-none	unsafe-none	blob	n/a					1993	whole
+W0008	W																same-origin	require-corp	ded	unsafe-none					1994	cover
+W0009	W																same-origin	require-corp	ded	require-corp					1995	whole
+W0010	W																same-origin	require-corp	ded	credentialless					1996	whole
+W0011	W																same-origin	require-corp	shared	unsafe-none					1997	cover
+W0012	W																same-origin	require-corp	shared	require-corp					1998	whole
+W0013	W																same-origin	require-corp	shared	credentialless					1999	cover
+W0014	W																same-origin	require-corp	blob	n/a					2000	cover
+W0015	W																same-origin	credentialless	ded	unsafe-none					2001	cover
+W0016	W																same-origin	credentialless	ded	require-corp					2002	cover
+W0017	W																same-origin	credentialless	ded	credentialless					2003	cover
+W0018	W																same-origin	credentialless	shared	unsafe-none					2004	whole
+W0019	W																same-origin	credentialless	shared	require-corp					2005	whole
+W0020	W																same-origin	credentialless	shared	credentialless					2006	whole
+W0021	W																same-origin	credentialless	blob	n/a					2007	whole
+W0022	W																unsafe-none	require-corp	ded	unsafe-none					2008	whole
+W0023	W																unsafe-none	require-corp	ded	require-corp					2009	cover
+W0024	W																unsafe-none	require-corp	ded	credentialless					2010	whole
+W0025	W																unsafe-none	require-corp	shared	unsafe-none					2011	whole
+W0026	W																unsafe-none	require-corp	shared	require-corp					2012	whole
+W0027	W																unsafe-none	require-corp	shared	credentialless					2013	whole
+W0028	W																unsafe-none	require-corp	blob	n/a					2014	cover
+F0001	F																	unsafe-none			a1	none	omit	none	2015	sample
+F0003	F																	unsafe-none			a1	none	omit	cross-origin	2017	sample
+F0005	F																	unsafe-none			a1	none	same-origin	same-origin	2019	sample
+F0006	F																	unsafe-none			a1	none	same-origin	cross-origin	2020	sample
+F0009	F																	unsafe-none			a1	none	include	cross-origin	2023	sample
+F0010	F																	unsafe-none			a1	*	omit	none	2024	cover
+F0011	F																	unsafe-none			a1	*	omit	same-origin	2025	cover
+F0013	F																	unsafe-none			a1	*	same-origin	none	2027	sample
+F0016	F																	unsafe-none			a1	*	include	none	2030	sample
+F0017	F																	unsafe-none			a1	*	include	same-origin	2031	sample
+F0018	F																	unsafe-none			a1	*	include	cross-origin	2032	sample
+F0019	F																	unsafe-none			a1	origin	omit	none	2033	sample
+F0021	F																	unsafe-none			a1	origin	omit	cross-origin	2035	sample
+F0022	F																	unsafe-none			a1	origin	same-origin	none	2036	sample
+F0023	F																	unsafe-none			a1	origin	same-origin	same-origin	2037	sample
+F0025	F																	unsafe-none			a1	origin	include	none	2039	cover
+F0026	F																	unsafe-none			a1	origin	include	same-origin	2040	cover
+F0028	F																	unsafe-none			a1	origin-acac	omit	none	2042	sample
+F0033	F																	unsafe-none			a1	origin-acac	same-origin	cross-origin	2047	sample
+F0034	F																	unsafe-none			a1	origin-acac	include	none	2048	cover
+F0035	F																	unsafe-none			a1	origin-acac	include	same-origin	2049	cover
+F0036	F																	unsafe-none			a1	origin-acac	include	cross-origin	2050	sample
+F0038	F																	unsafe-none			b	none	omit	same-origin	2052	sample
+F0041	F																	unsafe-none			b	none	same-origin	same-origin	2055	sample
+F0044	F																	unsafe-none			b	none	include	same-origin	2058	sample
+F0047	F																	unsafe-none			b	*	omit	same-origin	2061	sample
+F0050	F																	unsafe-none			b	*	same-origin	same-origin	2064	sample
+F0052	F																	unsafe-none			b	*	include	none	2066	sample
+F0055	F																	unsafe-none			b	origin	omit	none	2069	sample
+F0060	F																	unsafe-none			b	origin	same-origin	cross-origin	2074	sample
+F0061	F																	unsafe-none			b	origin	include	none	2075	sample
+F0063	F																	unsafe-none			b	origin	include	cross-origin	2077	sample
+F0064	F																	unsafe-none			b	origin-acac	omit	none	2078	sample
+F0075	F																	require-corp			a1	none	omit	cross-origin	2089	sample
+F0077	F																	require-corp			a1	none	same-origin	same-origin	2091	sample
+F0079	F																	require-corp			a1	none	include	none	2093	sample
+F0083	F																	require-corp			a1	*	omit	same-origin	2097	sample
+F0085	F																	require-corp			a1	*	same-origin	none	2099	sample
+F0088	F																	require-corp			a1	*	include	none	2102	sample
+F0096	F																	require-corp			a1	origin	same-origin	cross-origin	2110	sample
+F0097	F																	require-corp			a1	origin	include	none	2111	sample
+F0098	F																	require-corp			a1	origin	include	same-origin	2112	sample
+F0099	F																	require-corp			a1	origin	include	cross-origin	2113	sample
+F0100	F																	require-corp			a1	origin-acac	omit	none	2114	sample
+F0102	F																	require-corp			a1	origin-acac	omit	cross-origin	2116	sample
+F0103	F																	require-corp			a1	origin-acac	same-origin	none	2117	sample
+F0104	F																	require-corp			a1	origin-acac	same-origin	same-origin	2118	sample
+F0109	F																	require-corp			b	none	omit	none	2123	sample
+F0111	F																	require-corp			b	none	omit	cross-origin	2125	sample
+F0113	F																	require-corp			b	none	same-origin	same-origin	2127	sample
+F0114	F																	require-corp			b	none	same-origin	cross-origin	2128	sample
+F0120	F																	require-corp			b	*	omit	cross-origin	2134	sample
+F0124	F																	require-corp			b	*	include	none	2138	sample
+F0126	F																	require-corp			b	*	include	cross-origin	2140	sample
+F0127	F																	require-corp			b	origin	omit	none	2141	sample
+F0133	F																	require-corp			b	origin	include	none	2147	sample
+F0134	F																	require-corp			b	origin	include	same-origin	2148	sample
+F0136	F																	require-corp			b	origin-acac	omit	none	2150	sample
+F0138	F																	require-corp			b	origin-acac	omit	cross-origin	2152	sample
+F0139	F																	require-corp			b	origin-acac	same-origin	none	2153	sample
+F0141	F																	require-corp			b	origin-acac	same-origin	cross-origin	2155	sample
+F0142	F																	require-corp			b	origin-acac	include	none	2156	sample
+F0146	F																	credentialless			a1	none	omit	same-origin	2160	sample
+F0147	F																	credentialless			a1	none	omit	cross-origin	2161	sample
+F0153	F																	credentialless			a1	none	include	cross-origin	2167	sample
+F0154	F																	credentialless			a1	*	omit	none	2168	sample
+F0161	F																	credentialless			a1	*	include	same-origin	2175	sample
+F0162	F																	credentialless			a1	*	include	cross-origin	2176	sample
+F0163	F																	credentialless			a1	origin	omit	none	2177	sample
+F0164	F																	credentialless			a1	origin	omit	same-origin	2178	sample
+F0165	F																	credentialless			a1	origin	omit	cross-origin	2179	sample
+F0166	F																	credentialless			a1	origin	same-origin	none	2180	sample
+F0168	F																	credentialless			a1	origin	same-origin	cross-origin	2182	sample
+F0170	F																	credentialless			a1	origin	include	same-origin	2184	sample
+F0174	F																	credentialless			a1	origin-acac	omit	cross-origin	2188	sample
+F0175	F																	credentialless			a1	origin-acac	same-origin	none	2189	sample
+F0177	F																	credentialless			a1	origin-acac	same-origin	cross-origin	2191	sample
+F0178	F																	credentialless			a1	origin-acac	include	none	2192	sample
+F0181	F																	credentialless			b	none	omit	none	2195	sample
+F0182	F																	credentialless			b	none	omit	same-origin	2196	sample
+F0186	F																	credentialless			b	none	same-origin	cross-origin	2200	sample
+F0188	F																	credentialless			b	none	include	same-origin	2202	sample
+F0196	F																	credentialless			b	*	include	none	2210	sample
+F0197	F																	credentialless			b	*	include	same-origin	2211	sample
+F0202	F																	credentialless			b	origin	same-origin	none	2216	sample
+F0208	F																	credentialless			b	origin-acac	omit	none	2222	sample
+F0209	F																	credentialless			b	origin-acac	omit	same-origin	2223	sample
+F0212	F																	credentialless			b	origin-acac	same-origin	same-origin	2226	sample
+F0213	F																	credentialless			b	origin-acac	same-origin	cross-origin	2227	sample
+F0215	F																	credentialless			b	origin-acac	include	same-origin	2229	sample
+F0216	F																	credentialless			b	origin-acac	include	cross-origin	2230	sample

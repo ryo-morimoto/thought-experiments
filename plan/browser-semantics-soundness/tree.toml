@@ -249,10 +249,11 @@ note = "これまでモデルはデータと一緒に育った（軸ごとに段
 id = "C11"
 parent = "C"
 title = "バグの履歴が示す、モデルの段で書けるのに欠けた軸"
-status = "todo"
+status = "done"
 impact = "mid"
 done_when = "sandbox の旗、リダイレクトで運ばれる COOP 以外の値、document.domain のオリジンの領域の検査と Window の再利用、worker の方策の容れ物、別オリジンの cors の取得を、モデルの段と軸として足し、包含を確かめている"
-note = "C9 の欠けた軸の 3 番目（15 件）と、cors の取得の行の欠け"
+note = "5 つの軸の段と筋書きを足し（gen3/）、新しい変異体の 80 個中 79 個を殺した。段の欠けていた 15 件の欠陥のうち 11 件が殺された変異体に当たった"
+evidence = ["experiments/models/site-isolation/gen3/RESULTS.md"]
 
 [[node]]
 id = "C8"

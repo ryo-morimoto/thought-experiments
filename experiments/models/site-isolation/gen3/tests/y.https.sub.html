@@ -1,0 +1,30 @@
+<!doctype html>
+<meta charset=utf-8>
+<meta name=timeout content=long>
+<title>gen3 y.https.sub.html</title>
+<script src=/resources/testharness.js></script>
+<script src=/resources/testharnessreport.js></script>
+<script src=/common/utils.js></script>
+<script src=/common/dispatcher/dispatcher.js></script>
+<script src=resources/g3.js></script>
+<body>
+<script>
+const HOSTS = {a: "{{host}}", a1: "{{hosts[][www1]}}", b: "{{hosts[alt][]}}"};
+const PORT = {{ports[https][0]}};
+const SCEN = [
+{"sb":"none","fh":"a","id":"Y0001"},
+{"sb":"none","fh":"b","id":"Y0002"},
+{"sb":"s","fh":"a","id":"Y0003"},
+{"sb":"s","fh":"b","id":"Y0004"},
+{"sb":"s-t","fh":"a","id":"Y0005"},
+{"sb":"s-t","fh":"b","id":"Y0006"},
+{"sb":"s-tu","fh":"a","id":"Y0007"},
+{"sb":"s-tu","fh":"b","id":"Y0008"},
+{"sb":"s-t-tu","fh":"a","id":"Y0009"},
+{"sb":"s-t-tu","fh":"b","id":"Y0010"},
+{"sb":"s-so-t","fh":"a","id":"Y0011"},
+{"sb":"s-so-t","fh":"b","id":"Y0012"},
+{"sb":"s-p","fh":"a","id":"Y0013"},
+{"sb":"s-p","fh":"b","id":"Y0014"}];
+runY(SCEN);
+</script>

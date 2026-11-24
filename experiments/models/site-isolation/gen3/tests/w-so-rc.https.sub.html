@@ -1,0 +1,23 @@
+<!doctype html>
+<meta charset=utf-8>
+<meta name=timeout content=long>
+<title>gen3 w-so-rc.https.sub.html</title>
+<script src=/resources/testharness.js></script>
+<script src=/resources/testharnessreport.js></script>
+<script src=/common/utils.js></script>
+<script src=/common/dispatcher/dispatcher.js></script>
+<script src=resources/g3.js></script>
+<body>
+<script>
+const HOSTS = {a: "{{host}}", a1: "{{hosts[][www1]}}", b: "{{hosts[alt][]}}"};
+const PORT = {{ports[https][0]}};
+const SCEN = [
+{"tc":"same-origin","te":"require-corp","kind":"ded","wc":"unsafe-none","id":"W0008"},
+{"tc":"same-origin","te":"require-corp","kind":"ded","wc":"require-corp","id":"W0009"},
+{"tc":"same-origin","te":"require-corp","kind":"ded","wc":"credentialless","id":"W0010"},
+{"tc":"same-origin","te":"require-corp","kind":"shared","wc":"unsafe-none","id":"W0011"},
+{"tc":"same-origin","te":"require-corp","kind":"shared","wc":"require-corp","id":"W0012"},
+{"tc":"same-origin","te":"require-corp","kind":"shared","wc":"credentialless","id":"W0013"},
+{"tc":"same-origin","te":"require-corp","kind":"blob","wc":"n/a","id":"W0014"}];
+runW(SCEN);
+</script>

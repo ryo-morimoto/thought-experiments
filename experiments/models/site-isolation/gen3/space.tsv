@@ -1,0 +1,2231 @@
+sid	fam	sb	fh	ph	mode	meth	rp	urls	hrp	ex	ch	set	csb	tgt	dd	how	tc	te	kind	wc	tg	acao	cred	corp
+X0001	X	none	a	a																				
+X0002	X	none	a	b																				
+X0003	X	none	b	a																				
+X0004	X	none	b	b																				
+X0005	X	s	a	a																				
+X0006	X	s	a	b																				
+X0007	X	s	b	a																				
+X0008	X	s	b	b																				
+X0009	X	s-p	a	a																				
+X0010	X	s-p	a	b																				
+X0011	X	s-p	b	a																				
+X0012	X	s-p	b	b																				
+X0013	X	s-p-e	a	a																				
+X0014	X	s-p-e	a	b																				
+X0015	X	s-p-e	b	a																				
+X0016	X	s-p-e	b	b																				
+X0017	X	s-p-so	a	a																				
+X0018	X	s-p-so	a	b																				
+X0019	X	s-p-so	b	a																				
+X0020	X	s-p-so	b	b																				
+X0021	X	s-p-e-so	a	a																				
+X0022	X	s-p-e-so	a	b																				
+X0023	X	s-p-e-so	b	a																				
+X0024	X	s-p-e-so	b	b																				
+X0025	X	s-so	a	a																				
+X0026	X	s-so	a	b																				
+X0027	X	s-so	b	a																				
+X0028	X	s-so	b	b																				
+Y0001	Y	none	a																					
+Y0002	Y	none	b																					
+Y0003	Y	s	a																					
+Y0004	Y	s	b																					
+Y0005	Y	s-t	a																					
+Y0006	Y	s-t	b																					
+Y0007	Y	s-tu	a																					
+Y0008	Y	s-tu	b																					
+Y0009	Y	s-t-tu	a																					
+Y0010	Y	s-t-tu	b																					
+Y0011	Y	s-so-t	a																					
+Y0012	Y	s-so-t	b																					
+Y0013	Y	s-p	a																					
+Y0014	Y	s-p	b																					
+R0001	R				cors	GET		a																
+R0002	R				cors	GET		a1																
+R0003	R				cors	GET		b																
+R0004	R				cors	GET		a-a																
+R0005	R				cors	GET		a-a	no-referrer															
+R0006	R				cors	GET		a-a	unsafe-url															
+R0007	R				cors	GET		a-a1																
+R0008	R				cors	GET		a-a1	no-referrer															
+R0009	R				cors	GET		a-a1	unsafe-url															
+R0010	R				cors	GET		a-b																
+R0011	R				cors	GET		a-b	no-referrer															
+R0012	R				cors	GET		a-b	unsafe-url															
+R0013	R				cors	GET		a1-a																
+R0014	R				cors	GET		a1-a	no-referrer															
+R0015	R				cors	GET		a1-a	unsafe-url															
+R0016	R				cors	GET		a1-a1																
+R0017	R				cors	GET		a1-a1	no-referrer															
+R0018	R				cors	GET		a1-a1	unsafe-url															
+R0019	R				cors	GET		a1-b																
+R0020	R				cors	GET		a1-b	no-referrer															
+R0021	R				cors	GET		a1-b	unsafe-url															
+R0022	R				cors	GET		b-a																
+R0023	R				cors	GET		b-a	no-referrer															
+R0024	R				cors	GET		b-a	unsafe-url															
+R0025	R				cors	GET		b-a1																
+R0026	R				cors	GET		b-a1	no-referrer															
+R0027	R				cors	GET		b-a1	unsafe-url															
+R0028	R				cors	GET		b-b																
+R0029	R				cors	GET		b-b	no-referrer															
+R0030	R				cors	GET		b-b	unsafe-url															
+R0031	R				cors	GET		a-a-a																
+R0032	R				cors	GET		a-a-a	no-referrer															
+R0033	R				cors	GET		a-a-a	unsafe-url															
+R0034	R				cors	GET		a-a-a1																
+R0035	R				cors	GET		a-a-a1	no-referrer															
+R0036	R				cors	GET		a-a-a1	unsafe-url															
+R0037	R				cors	GET		a-a-b																
+R0038	R				cors	GET		a-a-b	no-referrer															
+R0039	R				cors	GET		a-a-b	unsafe-url															
+R0040	R				cors	GET		a-a1-a																
+R0041	R				cors	GET		a-a1-a	no-referrer															
+R0042	R				cors	GET		a-a1-a	unsafe-url															
+R0043	R				cors	GET		a-a1-a1																
+R0044	R				cors	GET		a-a1-a1	no-referrer															
+R0045	R				cors	GET		a-a1-a1	unsafe-url															
+R0046	R				cors	GET		a-a1-b																
+R0047	R				cors	GET		a-a1-b	no-referrer															
+R0048	R				cors	GET		a-a1-b	unsafe-url															
+R0049	R				cors	GET		a-b-a																
+R0050	R				cors	GET		a-b-a	no-referrer															
+R0051	R				cors	GET		a-b-a	unsafe-url															
+R0052	R				cors	GET		a-b-a1																
+R0053	R				cors	GET		a-b-a1	no-referrer															
+R0054	R				cors	GET		a-b-a1	unsafe-url															
+R0055	R				cors	GET		a-b-b																
+R0056	R				cors	GET		a-b-b	no-referrer															
+R0057	R				cors	GET		a-b-b	unsafe-url															
+R0058	R				cors	GET		a1-a-a																
+R0059	R				cors	GET		a1-a-a	no-referrer															
+R0060	R				cors	GET		a1-a-a	unsafe-url															
+R0061	R				cors	GET		a1-a-a1																
+R0062	R				cors	GET		a1-a-a1	no-referrer															
+R0063	R				cors	GET		a1-a-a1	unsafe-url															
+R0064	R				cors	GET		a1-a-b																
+R0065	R				cors	GET		a1-a-b	no-referrer															
+R0066	R				cors	GET		a1-a-b	unsafe-url															
+R0067	R				cors	GET		a1-a1-a																
+R0068	R				cors	GET		a1-a1-a	no-referrer															
+R0069	R				cors	GET		a1-a1-a	unsafe-url															
+R0070	R				cors	GET		a1-a1-a1																
+R0071	R				cors	GET		a1-a1-a1	no-referrer															
+R0072	R				cors	GET		a1-a1-a1	unsafe-url															
+R0073	R				cors	GET		a1-a1-b																
+R0074	R				cors	GET		a1-a1-b	no-referrer															
+R0075	R				cors	GET		a1-a1-b	unsafe-url															
+R0076	R				cors	GET		a1-b-a																
+R0077	R				cors	GET		a1-b-a	no-referrer															
+R0078	R				cors	GET		a1-b-a	unsafe-url															
+R0079	R				cors	GET		a1-b-a1																
+R0080	R				cors	GET		a1-b-a1	no-referrer															
+R0081	R				cors	GET		a1-b-a1	unsafe-url															
+R0082	R				cors	GET		a1-b-b																
+R0083	R				cors	GET		a1-b-b	no-referrer															
+R0084	R				cors	GET		a1-b-b	unsafe-url															
+R0085	R				cors	GET		b-a-a																
+R0086	R				cors	GET		b-a-a	no-referrer															
+R0087	R				cors	GET		b-a-a	unsafe-url															
+R0088	R				cors	GET		b-a-a1																
+R0089	R				cors	GET		b-a-a1	no-referrer															
+R0090	R				cors	GET		b-a-a1	unsafe-url															
+R0091	R				cors	GET		b-a-b																
+R0092	R				cors	GET		b-a-b	no-referrer															
+R0093	R				cors	GET		b-a-b	unsafe-url															
+R0094	R				cors	GET		b-a1-a																
+R0095	R				cors	GET		b-a1-a	no-referrer															
+R0096	R				cors	GET		b-a1-a	unsafe-url															
+R0097	R				cors	GET		b-a1-a1																
+R0098	R				cors	GET		b-a1-a1	no-referrer															
+R0099	R				cors	GET		b-a1-a1	unsafe-url															
+R0100	R				cors	GET		b-a1-b																
+R0101	R				cors	GET		b-a1-b	no-referrer															
+R0102	R				cors	GET		b-a1-b	unsafe-url															
+R0103	R				cors	GET		b-b-a																
+R0104	R				cors	GET		b-b-a	no-referrer															
+R0105	R				cors	GET		b-b-a	unsafe-url															
+R0106	R				cors	GET		b-b-a1																
+R0107	R				cors	GET		b-b-a1	no-referrer															
+R0108	R				cors	GET		b-b-a1	unsafe-url															
+R0109	R				cors	GET		b-b-b																
+R0110	R				cors	GET		b-b-b	no-referrer															
+R0111	R				cors	GET		b-b-b	unsafe-url															
+R0112	R				cors	GET	no-referrer	a																
+R0113	R				cors	GET	no-referrer	a1																
+R0114	R				cors	GET	no-referrer	b																
+R0115	R				cors	GET	no-referrer	a-a																
+R0116	R				cors	GET	no-referrer	a-a	no-referrer															
+R0117	R				cors	GET	no-referrer	a-a	unsafe-url															
+R0118	R				cors	GET	no-referrer	a-a1																
+R0119	R				cors	GET	no-referrer	a-a1	no-referrer															
+R0120	R				cors	GET	no-referrer	a-a1	unsafe-url															
+R0121	R				cors	GET	no-referrer	a-b																
+R0122	R				cors	GET	no-referrer	a-b	no-referrer															
+R0123	R				cors	GET	no-referrer	a-b	unsafe-url															
+R0124	R				cors	GET	no-referrer	a1-a																
+R0125	R				cors	GET	no-referrer	a1-a	no-referrer															
+R0126	R				cors	GET	no-referrer	a1-a	unsafe-url															
+R0127	R				cors	GET	no-referrer	a1-a1																
+R0128	R				cors	GET	no-referrer	a1-a1	no-referrer															
+R0129	R				cors	GET	no-referrer	a1-a1	unsafe-url															
+R0130	R				cors	GET	no-referrer	a1-b																
+R0131	R				cors	GET	no-referrer	a1-b	no-referrer															
+R0132	R				cors	GET	no-referrer	a1-b	unsafe-url															
+R0133	R				cors	GET	no-referrer	b-a																
+R0134	R				cors	GET	no-referrer	b-a	no-referrer															
+R0135	R				cors	GET	no-referrer	b-a	unsafe-url															
+R0136	R				cors	GET	no-referrer	b-a1																
+R0137	R				cors	GET	no-referrer	b-a1	no-referrer															
+R0138	R				cors	GET	no-referrer	b-a1	unsafe-url															
+R0139	R				cors	GET	no-referrer	b-b																
+R0140	R				cors	GET	no-referrer	b-b	no-referrer															
+R0141	R				cors	GET	no-referrer	b-b	unsafe-url															
+R0142	R				cors	GET	no-referrer	a-a-a																
+R0143	R				cors	GET	no-referrer	a-a-a	no-referrer															
+R0144	R				cors	GET	no-referrer	a-a-a	unsafe-url															
+R0145	R				cors	GET	no-referrer	a-a-a1																
+R0146	R				cors	GET	no-referrer	a-a-a1	no-referrer															
+R0147	R				cors	GET	no-referrer	a-a-a1	unsafe-url															
+R0148	R				cors	GET	no-referrer	a-a-b																
+R0149	R				cors	GET	no-referrer	a-a-b	no-referrer															
+R0150	R				cors	GET	no-referrer	a-a-b	unsafe-url															
+R0151	R				cors	GET	no-referrer	a-a1-a																
+R0152	R				cors	GET	no-referrer	a-a1-a	no-referrer															
+R0153	R				cors	GET	no-referrer	a-a1-a	unsafe-url															
+R0154	R				cors	GET	no-referrer	a-a1-a1																
+R0155	R				cors	GET	no-referrer	a-a1-a1	no-referrer															
+R0156	R				cors	GET	no-referrer	a-a1-a1	unsafe-url															
+R0157	R				cors	GET	no-referrer	a-a1-b																
+R0158	R				cors	GET	no-referrer	a-a1-b	no-referrer															
+R0159	R				cors	GET	no-referrer	a-a1-b	unsafe-url															
+R0160	R				cors	GET	no-referrer	a-b-a																
+R0161	R				cors	GET	no-referrer	a-b-a	no-referrer															
+R0162	R				cors	GET	no-referrer	a-b-a	unsafe-url															
+R0163	R				cors	GET	no-referrer	a-b-a1																
+R0164	R				cors	GET	no-referrer	a-b-a1	no-referrer															
+R0165	R				cors	GET	no-referrer	a-b-a1	unsafe-url															
+R0166	R				cors	GET	no-referrer	a-b-b																
+R0167	R				cors	GET	no-referrer	a-b-b	no-referrer															
+R0168	R				cors	GET	no-referrer	a-b-b	unsafe-url															
+R0169	R				cors	GET	no-referrer	a1-a-a																
+R0170	R				cors	GET	no-referrer	a1-a-a	no-referrer															
+R0171	R				cors	GET	no-referrer	a1-a-a	unsafe-url															
+R0172	R				cors	GET	no-referrer	a1-a-a1																
+R0173	R				cors	GET	no-referrer	a1-a-a1	no-referrer															
+R0174	R				cors	GET	no-referrer	a1-a-a1	unsafe-url															
+R0175	R				cors	GET	no-referrer	a1-a-b																
+R0176	R				cors	GET	no-referrer	a1-a-b	no-referrer															
+R0177	R				cors	GET	no-referrer	a1-a-b	unsafe-url															
+R0178	R				cors	GET	no-referrer	a1-a1-a																
+R0179	R				cors	GET	no-referrer	a1-a1-a	no-referrer															
+R0180	R				cors	GET	no-referrer	a1-a1-a	unsafe-url															
+R0181	R				cors	GET	no-referrer	a1-a1-a1																
+R0182	R				cors	GET	no-referrer	a1-a1-a1	no-referrer															
+R0183	R				cors	GET	no-referrer	a1-a1-a1	unsafe-url															
+R0184	R				cors	GET	no-referrer	a1-a1-b																
+R0185	R				cors	GET	no-referrer	a1-a1-b	no-referrer															
+R0186	R				cors	GET	no-referrer	a1-a1-b	unsafe-url															
+R0187	R				cors	GET	no-referrer	a1-b-a																
+R0188	R				cors	GET	no-referrer	a1-b-a	no-referrer															
+R0189	R				cors	GET	no-referrer	a1-b-a	unsafe-url															
+R0190	R				cors	GET	no-referrer	a1-b-a1																
+R0191	R				cors	GET	no-referrer	a1-b-a1	no-referrer															
+R0192	R				cors	GET	no-referrer	a1-b-a1	unsafe-url															
+R0193	R				cors	GET	no-referrer	a1-b-b																
+R0194	R				cors	GET	no-referrer	a1-b-b	no-referrer															
+R0195	R				cors	GET	no-referrer	a1-b-b	unsafe-url															
+R0196	R				cors	GET	no-referrer	b-a-a																
+R0197	R				cors	GET	no-referrer	b-a-a	no-referrer															
+R0198	R				cors	GET	no-referrer	b-a-a	unsafe-url															
+R0199	R				cors	GET	no-referrer	b-a-a1																
+R0200	R				cors	GET	no-referrer	b-a-a1	no-referrer															
+R0201	R				cors	GET	no-referrer	b-a-a1	unsafe-url															
+R0202	R				cors	GET	no-referrer	b-a-b																
+R0203	R				cors	GET	no-referrer	b-a-b	no-referrer															
+R0204	R				cors	GET	no-referrer	b-a-b	unsafe-url															
+R0205	R				cors	GET	no-referrer	b-a1-a																
+R0206	R				cors	GET	no-referrer	b-a1-a	no-referrer															
+R0207	R				cors	GET	no-referrer	b-a1-a	unsafe-url															
+R0208	R				cors	GET	no-referrer	b-a1-a1																
+R0209	R				cors	GET	no-referrer	b-a1-a1	no-referrer															
+R0210	R				cors	GET	no-referrer	b-a1-a1	unsafe-url															
+R0211	R				cors	GET	no-referrer	b-a1-b																
+R0212	R				cors	GET	no-referrer	b-a1-b	no-referrer															
+R0213	R				cors	GET	no-referrer	b-a1-b	unsafe-url															
+R0214	R				cors	GET	no-referrer	b-b-a																
+R0215	R				cors	GET	no-referrer	b-b-a	no-referrer															
+R0216	R				cors	GET	no-referrer	b-b-a	unsafe-url															
+R0217	R				cors	GET	no-referrer	b-b-a1																
+R0218	R				cors	GET	no-referrer	b-b-a1	no-referrer															
+R0219	R				cors	GET	no-referrer	b-b-a1	unsafe-url															
+R0220	R				cors	GET	no-referrer	b-b-b																
+R0221	R				cors	GET	no-referrer	b-b-b	no-referrer															
+R0222	R				cors	GET	no-referrer	b-b-b	unsafe-url															
+R0223	R				cors	GET	same-origin	a																
+R0224	R				cors	GET	same-origin	a1																
+R0225	R				cors	GET	same-origin	b																
+R0226	R				cors	GET	same-origin	a-a																
+R0227	R				cors	GET	same-origin	a-a	no-referrer															
+R0228	R				cors	GET	same-origin	a-a	unsafe-url															
+R0229	R				cors	GET	same-origin	a-a1																
+R0230	R				cors	GET	same-origin	a-a1	no-referrer															
+R0231	R				cors	GET	same-origin	a-a1	unsafe-url															
+R0232	R				cors	GET	same-origin	a-b																
+R0233	R				cors	GET	same-origin	a-b	no-referrer															
+R0234	R				cors	GET	same-origin	a-b	unsafe-url															
+R0235	R				cors	GET	same-origin	a1-a																
+R0236	R				cors	GET	same-origin	a1-a	no-referrer															
+R0237	R				cors	GET	same-origin	a1-a	unsafe-url															
+R0238	R				cors	GET	same-origin	a1-a1																
+R0239	R				cors	GET	same-origin	a1-a1	no-referrer															
+R0240	R				cors	GET	same-origin	a1-a1	unsafe-url															
+R0241	R				cors	GET	same-origin	a1-b																
+R0242	R				cors	GET	same-origin	a1-b	no-referrer															
+R0243	R				cors	GET	same-origin	a1-b	unsafe-url															
+R0244	R				cors	GET	same-origin	b-a																
+R0245	R				cors	GET	same-origin	b-a	no-referrer															
+R0246	R				cors	GET	same-origin	b-a	unsafe-url															
+R0247	R				cors	GET	same-origin	b-a1																
+R0248	R				cors	GET	same-origin	b-a1	no-referrer															
+R0249	R				cors	GET	same-origin	b-a1	unsafe-url															
+R0250	R				cors	GET	same-origin	b-b																
+R0251	R				cors	GET	same-origin	b-b	no-referrer															
+R0252	R				cors	GET	same-origin	b-b	unsafe-url															
+R0253	R				cors	GET	same-origin	a-a-a																
+R0254	R				cors	GET	same-origin	a-a-a	no-referrer															
+R0255	R				cors	GET	same-origin	a-a-a	unsafe-url															
+R0256	R				cors	GET	same-origin	a-a-a1																
+R0257	R				cors	GET	same-origin	a-a-a1	no-referrer															
+R0258	R				cors	GET	same-origin	a-a-a1	unsafe-url															
+R0259	R				cors	GET	same-origin	a-a-b																
+R0260	R				cors	GET	same-origin	a-a-b	no-referrer															
+R0261	R				cors	GET	same-origin	a-a-b	unsafe-url															
+R0262	R				cors	GET	same-origin	a-a1-a																
+R0263	R				cors	GET	same-origin	a-a1-a	no-referrer															
+R0264	R				cors	GET	same-origin	a-a1-a	unsafe-url															
+R0265	R				cors	GET	same-origin	a-a1-a1																
+R0266	R				cors	GET	same-origin	a-a1-a1	no-referrer															
+R0267	R				cors	GET	same-origin	a-a1-a1	unsafe-url															
+R0268	R				cors	GET	same-origin	a-a1-b																
+R0269	R				cors	GET	same-origin	a-a1-b	no-referrer															
+R0270	R				cors	GET	same-origin	a-a1-b	unsafe-url															
+R0271	R				cors	GET	same-origin	a-b-a																
+R0272	R				cors	GET	same-origin	a-b-a	no-referrer															
+R0273	R				cors	GET	same-origin	a-b-a	unsafe-url															
+R0274	R				cors	GET	same-origin	a-b-a1																
+R0275	R				cors	GET	same-origin	a-b-a1	no-referrer															
+R0276	R				cors	GET	same-origin	a-b-a1	unsafe-url															
+R0277	R				cors	GET	same-origin	a-b-b																
+R0278	R				cors	GET	same-origin	a-b-b	no-referrer															
+R0279	R				cors	GET	same-origin	a-b-b	unsafe-url															
+R0280	R				cors	GET	same-origin	a1-a-a																
+R0281	R				cors	GET	same-origin	a1-a-a	no-referrer															
+R0282	R				cors	GET	same-origin	a1-a-a	unsafe-url															
+R0283	R				cors	GET	same-origin	a1-a-a1																
+R0284	R				cors	GET	same-origin	a1-a-a1	no-referrer															
+R0285	R				cors	GET	same-origin	a1-a-a1	unsafe-url															
+R0286	R				cors	GET	same-origin	a1-a-b																
+R0287	R				cors	GET	same-origin	a1-a-b	no-referrer															
+R0288	R				cors	GET	same-origin	a1-a-b	unsafe-url															
+R0289	R				cors	GET	same-origin	a1-a1-a																
+R0290	R				cors	GET	same-origin	a1-a1-a	no-referrer															
+R0291	R				cors	GET	same-origin	a1-a1-a	unsafe-url															
+R0292	R				cors	GET	same-origin	a1-a1-a1																
+R0293	R				cors	GET	same-origin	a1-a1-a1	no-referrer															
+R0294	R				cors	GET	same-origin	a1-a1-a1	unsafe-url															
+R0295	R				cors	GET	same-origin	a1-a1-b																
+R0296	R				cors	GET	same-origin	a1-a1-b	no-referrer															
+R0297	R				cors	GET	same-origin	a1-a1-b	unsafe-url															
+R0298	R				cors	GET	same-origin	a1-b-a																
+R0299	R				cors	GET	same-origin	a1-b-a	no-referrer															
+R0300	R				cors	GET	same-origin	a1-b-a	unsafe-url															
+R0301	R				cors	GET	same-origin	a1-b-a1																
+R0302	R				cors	GET	same-origin	a1-b-a1	no-referrer															
+R0303	R				cors	GET	same-origin	a1-b-a1	unsafe-url															
+R0304	R				cors	GET	same-origin	a1-b-b																
+R0305	R				cors	GET	same-origin	a1-b-b	no-referrer															
+R0306	R				cors	GET	same-origin	a1-b-b	unsafe-url															
+R0307	R				cors	GET	same-origin	b-a-a																
+R0308	R				cors	GET	same-origin	b-a-a	no-referrer															
+R0309	R				cors	GET	same-origin	b-a-a	unsafe-url															
+R0310	R				cors	GET	same-origin	b-a-a1																
+R0311	R				cors	GET	same-origin	b-a-a1	no-referrer															
+R0312	R				cors	GET	same-origin	b-a-a1	unsafe-url															
+R0313	R				cors	GET	same-origin	b-a-b																
+R0314	R				cors	GET	same-origin	b-a-b	no-referrer															
+R0315	R				cors	GET	same-origin	b-a-b	unsafe-url															
+R0316	R				cors	GET	same-origin	b-a1-a																
+R0317	R				cors	GET	same-origin	b-a1-a	no-referrer															
+R0318	R				cors	GET	same-origin	b-a1-a	unsafe-url															
+R0319	R				cors	GET	same-origin	b-a1-a1																
+R0320	R				cors	GET	same-origin	b-a1-a1	no-referrer															
+R0321	R				cors	GET	same-origin	b-a1-a1	unsafe-url															
+R0322	R				cors	GET	same-origin	b-a1-b																
+R0323	R				cors	GET	same-origin	b-a1-b	no-referrer															
+R0324	R				cors	GET	same-origin	b-a1-b	unsafe-url															
+R0325	R				cors	GET	same-origin	b-b-a																
+R0326	R				cors	GET	same-origin	b-b-a	no-referrer															
+R0327	R				cors	GET	same-origin	b-b-a	unsafe-url															
+R0328	R				cors	GET	same-origin	b-b-a1																
+R0329	R				cors	GET	same-origin	b-b-a1	no-referrer															
+R0330	R				cors	GET	same-origin	b-b-a1	unsafe-url															
+R0331	R				cors	GET	same-origin	b-b-b																
+R0332	R				cors	GET	same-origin	b-b-b	no-referrer															
+R0333	R				cors	GET	same-origin	b-b-b	unsafe-url															
+R0334	R				cors	GET	unsafe-url	a																
+R0335	R				cors	GET	unsafe-url	a1																
+R0336	R				cors	GET	unsafe-url	b																
+R0337	R				cors	GET	unsafe-url	a-a																
+R0338	R				cors	GET	unsafe-url	a-a	no-referrer															
+R0339	R				cors	GET	unsafe-url	a-a	unsafe-url															
+R0340	R				cors	GET	unsafe-url	a-a1																
+R0341	R				cors	GET	unsafe-url	a-a1	no-referrer															
+R0342	R				cors	GET	unsafe-url	a-a1	unsafe-url															
+R0343	R				cors	GET	unsafe-url	a-b																
+R0344	R				cors	GET	unsafe-url	a-b	no-referrer															
+R0345	R				cors	GET	unsafe-url	a-b	unsafe-url															
+R0346	R				cors	GET	unsafe-url	a1-a																
+R0347	R				cors	GET	unsafe-url	a1-a	no-referrer															
+R0348	R				cors	GET	unsafe-url	a1-a	unsafe-url															
+R0349	R				cors	GET	unsafe-url	a1-a1																
+R0350	R				cors	GET	unsafe-url	a1-a1	no-referrer															
+R0351	R				cors	GET	unsafe-url	a1-a1	unsafe-url															
+R0352	R				cors	GET	unsafe-url	a1-b																
+R0353	R				cors	GET	unsafe-url	a1-b	no-referrer															
+R0354	R				cors	GET	unsafe-url	a1-b	unsafe-url															
+R0355	R				cors	GET	unsafe-url	b-a																
+R0356	R				cors	GET	unsafe-url	b-a	no-referrer															
+R0357	R				cors	GET	unsafe-url	b-a	unsafe-url															
+R0358	R				cors	GET	unsafe-url	b-a1																
+R0359	R				cors	GET	unsafe-url	b-a1	no-referrer															
+R0360	R				cors	GET	unsafe-url	b-a1	unsafe-url															
+R0361	R				cors	GET	unsafe-url	b-b																
+R0362	R				cors	GET	unsafe-url	b-b	no-referrer															
+R0363	R				cors	GET	unsafe-url	b-b	unsafe-url															
+R0364	R				cors	GET	unsafe-url	a-a-a																
+R0365	R				cors	GET	unsafe-url	a-a-a	no-referrer															
+R0366	R				cors	GET	unsafe-url	a-a-a	unsafe-url															
+R0367	R				cors	GET	unsafe-url	a-a-a1																
+R0368	R				cors	GET	unsafe-url	a-a-a1	no-referrer															
+R0369	R				cors	GET	unsafe-url	a-a-a1	unsafe-url															
+R0370	R				cors	GET	unsafe-url	a-a-b																
+R0371	R				cors	GET	unsafe-url	a-a-b	no-referrer															
+R0372	R				cors	GET	unsafe-url	a-a-b	unsafe-url															
+R0373	R				cors	GET	unsafe-url	a-a1-a																
+R0374	R				cors	GET	unsafe-url	a-a1-a	no-referrer															
+R0375	R				cors	GET	unsafe-url	a-a1-a	unsafe-url															
+R0376	R				cors	GET	unsafe-url	a-a1-a1																
+R0377	R				cors	GET	unsafe-url	a-a1-a1	no-referrer															
+R0378	R				cors	GET	unsafe-url	a-a1-a1	unsafe-url															
+R0379	R				cors	GET	unsafe-url	a-a1-b																
+R0380	R				cors	GET	unsafe-url	a-a1-b	no-referrer															
+R0381	R				cors	GET	unsafe-url	a-a1-b	unsafe-url															
+R0382	R				cors	GET	unsafe-url	a-b-a																
+R0383	R				cors	GET	unsafe-url	a-b-a	no-referrer															
+R0384	R				cors	GET	unsafe-url	a-b-a	unsafe-url															
+R0385	R				cors	GET	unsafe-url	a-b-a1																
+R0386	R				cors	GET	unsafe-url	a-b-a1	no-referrer															
+R0387	R				cors	GET	unsafe-url	a-b-a1	unsafe-url															
+R0388	R				cors	GET	unsafe-url	a-b-b																
+R0389	R				cors	GET	unsafe-url	a-b-b	no-referrer															
+R0390	R				cors	GET	unsafe-url	a-b-b	unsafe-url															
+R0391	R				cors	GET	unsafe-url	a1-a-a																
+R0392	R				cors	GET	unsafe-url	a1-a-a	no-referrer															
+R0393	R				cors	GET	unsafe-url	a1-a-a	unsafe-url															
+R0394	R				cors	GET	unsafe-url	a1-a-a1																
+R0395	R				cors	GET	unsafe-url	a1-a-a1	no-referrer															
+R0396	R				cors	GET	unsafe-url	a1-a-a1	unsafe-url															
+R0397	R				cors	GET	unsafe-url	a1-a-b																
+R0398	R				cors	GET	unsafe-url	a1-a-b	no-referrer															
+R0399	R				cors	GET	unsafe-url	a1-a-b	unsafe-url															
+R0400	R				cors	GET	unsafe-url	a1-a1-a																
+R0401	R				cors	GET	unsafe-url	a1-a1-a	no-referrer															
+R0402	R				cors	GET	unsafe-url	a1-a1-a	unsafe-url															
+R0403	R				cors	GET	unsafe-url	a1-a1-a1																
+R0404	R				cors	GET	unsafe-url	a1-a1-a1	no-referrer															
+R0405	R				cors	GET	unsafe-url	a1-a1-a1	unsafe-url															
+R0406	R				cors	GET	unsafe-url	a1-a1-b																
+R0407	R				cors	GET	unsafe-url	a1-a1-b	no-referrer															
+R0408	R				cors	GET	unsafe-url	a1-a1-b	unsafe-url															
+R0409	R				cors	GET	unsafe-url	a1-b-a																
+R0410	R				cors	GET	unsafe-url	a1-b-a	no-referrer															
+R0411	R				cors	GET	unsafe-url	a1-b-a	unsafe-url															
+R0412	R				cors	GET	unsafe-url	a1-b-a1																
+R0413	R				cors	GET	unsafe-url	a1-b-a1	no-referrer															
+R0414	R				cors	GET	unsafe-url	a1-b-a1	unsafe-url															
+R0415	R				cors	GET	unsafe-url	a1-b-b																
+R0416	R				cors	GET	unsafe-url	a1-b-b	no-referrer															
+R0417	R				cors	GET	unsafe-url	a1-b-b	unsafe-url															
+R0418	R				cors	GET	unsafe-url	b-a-a																
+R0419	R				cors	GET	unsafe-url	b-a-a	no-referrer															
+R0420	R				cors	GET	unsafe-url	b-a-a	unsafe-url															
+R0421	R				cors	GET	unsafe-url	b-a-a1																
+R0422	R				cors	GET	unsafe-url	b-a-a1	no-referrer															
+R0423	R				cors	GET	unsafe-url	b-a-a1	unsafe-url															
+R0424	R				cors	GET	unsafe-url	b-a-b																
+R0425	R				cors	GET	unsafe-url	b-a-b	no-referrer															
+R0426	R				cors	GET	unsafe-url	b-a-b	unsafe-url															
+R0427	R				cors	GET	unsafe-url	b-a1-a																
+R0428	R				cors	GET	unsafe-url	b-a1-a	no-referrer															
+R0429	R				cors	GET	unsafe-url	b-a1-a	unsafe-url															
+R0430	R				cors	GET	unsafe-url	b-a1-a1																
+R0431	R				cors	GET	unsafe-url	b-a1-a1	no-referrer															
+R0432	R				cors	GET	unsafe-url	b-a1-a1	unsafe-url															
+R0433	R				cors	GET	unsafe-url	b-a1-b																
+R0434	R				cors	GET	unsafe-url	b-a1-b	no-referrer															
+R0435	R				cors	GET	unsafe-url	b-a1-b	unsafe-url															
+R0436	R				cors	GET	unsafe-url	b-b-a																
+R0437	R				cors	GET	unsafe-url	b-b-a	no-referrer															
+R0438	R				cors	GET	unsafe-url	b-b-a	unsafe-url															
+R0439	R				cors	GET	unsafe-url	b-b-a1																
+R0440	R				cors	GET	unsafe-url	b-b-a1	no-referrer															
+R0441	R				cors	GET	unsafe-url	b-b-a1	unsafe-url															
+R0442	R				cors	GET	unsafe-url	b-b-b																
+R0443	R				cors	GET	unsafe-url	b-b-b	no-referrer															
+R0444	R				cors	GET	unsafe-url	b-b-b	unsafe-url															
+R0445	R				cors	POST		a																
+R0446	R				cors	POST		a1																
+R0447	R				cors	POST		b																
+R0448	R				cors	POST		a-a																
+R0449	R				cors	POST		a-a	no-referrer															
+R0450	R				cors	POST		a-a	unsafe-url															
+R0451	R				cors	POST		a-a1																
+R0452	R				cors	POST		a-a1	no-referrer															
+R0453	R				cors	POST		a-a1	unsafe-url															
+R0454	R				cors	POST		a-b																
+R0455	R				cors	POST		a-b	no-referrer															
+R0456	R				cors	POST		a-b	unsafe-url															
+R0457	R				cors	POST		a1-a																
+R0458	R				cors	POST		a1-a	no-referrer															
+R0459	R				cors	POST		a1-a	unsafe-url															
+R0460	R				cors	POST		a1-a1																
+R0461	R				cors	POST		a1-a1	no-referrer															
+R0462	R				cors	POST		a1-a1	unsafe-url															
+R0463	R				cors	POST		a1-b																
+R0464	R				cors	POST		a1-b	no-referrer															
+R0465	R				cors	POST		a1-b	unsafe-url															
+R0466	R				cors	POST		b-a																
+R0467	R				cors	POST		b-a	no-referrer															
+R0468	R				cors	POST		b-a	unsafe-url															
+R0469	R				cors	POST		b-a1																
+R0470	R				cors	POST		b-a1	no-referrer															
+R0471	R				cors	POST		b-a1	unsafe-url															
+R0472	R				cors	POST		b-b																
+R0473	R				cors	POST		b-b	no-referrer															
+R0474	R				cors	POST		b-b	unsafe-url															
+R0475	R				cors	POST		a-a-a																
+R0476	R				cors	POST		a-a-a	no-referrer															
+R0477	R				cors	POST		a-a-a	unsafe-url															
+R0478	R				cors	POST		a-a-a1																
+R0479	R				cors	POST		a-a-a1	no-referrer															
+R0480	R				cors	POST		a-a-a1	unsafe-url															
+R0481	R				cors	POST		a-a-b																
+R0482	R				cors	POST		a-a-b	no-referrer															
+R0483	R				cors	POST		a-a-b	unsafe-url															
+R0484	R				cors	POST		a-a1-a																
+R0485	R				cors	POST		a-a1-a	no-referrer															
+R0486	R				cors	POST		a-a1-a	unsafe-url															
+R0487	R				cors	POST		a-a1-a1																
+R0488	R				cors	POST		a-a1-a1	no-referrer															
+R0489	R				cors	POST		a-a1-a1	unsafe-url															
+R0490	R				cors	POST		a-a1-b																
+R0491	R				cors	POST		a-a1-b	no-referrer															
+R0492	R				cors	POST		a-a1-b	unsafe-url															
+R0493	R				cors	POST		a-b-a																
+R0494	R				cors	POST		a-b-a	no-referrer															
+R0495	R				cors	POST		a-b-a	unsafe-url															
+R0496	R				cors	POST		a-b-a1																
+R0497	R				cors	POST		a-b-a1	no-referrer															
+R0498	R				cors	POST		a-b-a1	unsafe-url															
+R0499	R				cors	POST		a-b-b																
+R0500	R				cors	POST		a-b-b	no-referrer															
+R0501	R				cors	POST		a-b-b	unsafe-url															
+R0502	R				cors	POST		a1-a-a																
+R0503	R				cors	POST		a1-a-a	no-referrer															
+R0504	R				cors	POST		a1-a-a	unsafe-url															
+R0505	R				cors	POST		a1-a-a1																
+R0506	R				cors	POST		a1-a-a1	no-referrer															
+R0507	R				cors	POST		a1-a-a1	unsafe-url															
+R0508	R				cors	POST		a1-a-b																
+R0509	R				cors	POST		a1-a-b	no-referrer															
+R0510	R				cors	POST		a1-a-b	unsafe-url															
+R0511	R				cors	POST		a1-a1-a																
+R0512	R				cors	POST		a1-a1-a	no-referrer															
+R0513	R				cors	POST		a1-a1-a	unsafe-url															
+R0514	R				cors	POST		a1-a1-a1																
+R0515	R				cors	POST		a1-a1-a1	no-referrer															
+R0516	R				cors	POST		a1-a1-a1	unsafe-url															
+R0517	R				cors	POST		a1-a1-b																
+R0518	R				cors	POST		a1-a1-b	no-referrer															
+R0519	R				cors	POST		a1-a1-b	unsafe-url															
+R0520	R				cors	POST		a1-b-a																
+R0521	R				cors	POST		a1-b-a	no-referrer															
+R0522	R				cors	POST		a1-b-a	unsafe-url															
+R0523	R				cors	POST		a1-b-a1																
+R0524	R				cors	POST		a1-b-a1	no-referrer															
+R0525	R				cors	POST		a1-b-a1	unsafe-url															
+R0526	R				cors	POST		a1-b-b																
+R0527	R				cors	POST		a1-b-b	no-referrer															
+R0528	R				cors	POST		a1-b-b	unsafe-url															
+R0529	R				cors	POST		b-a-a																
+R0530	R				cors	POST		b-a-a	no-referrer															
+R0531	R				cors	POST		b-a-a	unsafe-url															
+R0532	R				cors	POST		b-a-a1																
+R0533	R				cors	POST		b-a-a1	no-referrer															
+R0534	R				cors	POST		b-a-a1	unsafe-url															
+R0535	R				cors	POST		b-a-b																
+R0536	R				cors	POST		b-a-b	no-referrer															
+R0537	R				cors	POST		b-a-b	unsafe-url															
+R0538	R				cors	POST		b-a1-a																
+R0539	R				cors	POST		b-a1-a	no-referrer															
+R0540	R				cors	POST		b-a1-a	unsafe-url															
+R0541	R				cors	POST		b-a1-a1																
+R0542	R				cors	POST		b-a1-a1	no-referrer															
+R0543	R				cors	POST		b-a1-a1	unsafe-url															
+R0544	R				cors	POST		b-a1-b																
+R0545	R				cors	POST		b-a1-b	no-referrer															
+R0546	R				cors	POST		b-a1-b	unsafe-url															
+R0547	R				cors	POST		b-b-a																
+R0548	R				cors	POST		b-b-a	no-referrer															
+R0549	R				cors	POST		b-b-a	unsafe-url															
+R0550	R				cors	POST		b-b-a1																
+R0551	R				cors	POST		b-b-a1	no-referrer															
+R0552	R				cors	POST		b-b-a1	unsafe-url															
+R0553	R				cors	POST		b-b-b																
+R0554	R				cors	POST		b-b-b	no-referrer															
+R0555	R				cors	POST		b-b-b	unsafe-url															
+R0556	R				cors	POST	no-referrer	a																
+R0557	R				cors	POST	no-referrer	a1																
+R0558	R				cors	POST	no-referrer	b																
+R0559	R				cors	POST	no-referrer	a-a																
+R0560	R				cors	POST	no-referrer	a-a	no-referrer															
+R0561	R				cors	POST	no-referrer	a-a	unsafe-url															
+R0562	R				cors	POST	no-referrer	a-a1																
+R0563	R				cors	POST	no-referrer	a-a1	no-referrer															
+R0564	R				cors	POST	no-referrer	a-a1	unsafe-url															
+R0565	R				cors	POST	no-referrer	a-b																
+R0566	R				cors	POST	no-referrer	a-b	no-referrer															
+R0567	R				cors	POST	no-referrer	a-b	unsafe-url															
+R0568	R				cors	POST	no-referrer	a1-a																
+R0569	R				cors	POST	no-referrer	a1-a	no-referrer															
+R0570	R				cors	POST	no-referrer	a1-a	unsafe-url															
+R0571	R				cors	POST	no-referrer	a1-a1																
+R0572	R				cors	POST	no-referrer	a1-a1	no-referrer															
+R0573	R				cors	POST	no-referrer	a1-a1	unsafe-url															
+R0574	R				cors	POST	no-referrer	a1-b																
+R0575	R				cors	POST	no-referrer	a1-b	no-referrer															
+R0576	R				cors	POST	no-referrer	a1-b	unsafe-url															
+R0577	R				cors	POST	no-referrer	b-a																
+R0578	R				cors	POST	no-referrer	b-a	no-referrer															
+R0579	R				cors	POST	no-referrer	b-a	unsafe-url															
+R0580	R				cors	POST	no-referrer	b-a1																
+R0581	R				cors	POST	no-referrer	b-a1	no-referrer															
+R0582	R				cors	POST	no-referrer	b-a1	unsafe-url															
+R0583	R				cors	POST	no-referrer	b-b																
+R0584	R				cors	POST	no-referrer	b-b	no-referrer															
+R0585	R				cors	POST	no-referrer	b-b	unsafe-url															
+R0586	R				cors	POST	no-referrer	a-a-a																
+R0587	R				cors	POST	no-referrer	a-a-a	no-referrer															
+R0588	R				cors	POST	no-referrer	a-a-a	unsafe-url															
+R0589	R				cors	POST	no-referrer	a-a-a1																
+R0590	R				cors	POST	no-referrer	a-a-a1	no-referrer															
+R0591	R				cors	POST	no-referrer	a-a-a1	unsafe-url															
+R0592	R				cors	POST	no-referrer	a-a-b																
+R0593	R				cors	POST	no-referrer	a-a-b	no-referrer															
+R0594	R				cors	POST	no-referrer	a-a-b	unsafe-url															
+R0595	R				cors	POST	no-referrer	a-a1-a																
+R0596	R				cors	POST	no-referrer	a-a1-a	no-referrer															
+R0597	R				cors	POST	no-referrer	a-a1-a	unsafe-url															
+R0598	R				cors	POST	no-referrer	a-a1-a1																
+R0599	R				cors	POST	no-referrer	a-a1-a1	no-referrer															
+R0600	R				cors	POST	no-referrer	a-a1-a1	unsafe-url															
+R0601	R				cors	POST	no-referrer	a-a1-b																
+R0602	R				cors	POST	no-referrer	a-a1-b	no-referrer															
+R0603	R				cors	POST	no-referrer	a-a1-b	unsafe-url															
+R0604	R				cors	POST	no-referrer	a-b-a																
+R0605	R				cors	POST	no-referrer	a-b-a	no-referrer															
+R0606	R				cors	POST	no-referrer	a-b-a	unsafe-url															
+R0607	R				cors	POST	no-referrer	a-b-a1																
+R0608	R				cors	POST	no-referrer	a-b-a1	no-referrer															
+R0609	R				cors	POST	no-referrer	a-b-a1	unsafe-url															
+R0610	R				cors	POST	no-referrer	a-b-b																
+R0611	R				cors	POST	no-referrer	a-b-b	no-referrer															
+R0612	R				cors	POST	no-referrer	a-b-b	unsafe-url															
+R0613	R				cors	POST	no-referrer	a1-a-a																
+R0614	R				cors	POST	no-referrer	a1-a-a	no-referrer															
+R0615	R				cors	POST	no-referrer	a1-a-a	unsafe-url															
+R0616	R				cors	POST	no-referrer	a1-a-a1																
+R0617	R				cors	POST	no-referrer	a1-a-a1	no-referrer															
+R0618	R				cors	POST	no-referrer	a1-a-a1	unsafe-url															
+R0619	R				cors	POST	no-referrer	a1-a-b																
+R0620	R				cors	POST	no-referrer	a1-a-b	no-referrer															
+R0621	R				cors	POST	no-referrer	a1-a-b	unsafe-url															
+R0622	R				cors	POST	no-referrer	a1-a1-a																
+R0623	R				cors	POST	no-referrer	a1-a1-a	no-referrer															
+R0624	R				cors	POST	no-referrer	a1-a1-a	unsafe-url															
+R0625	R				cors	POST	no-referrer	a1-a1-a1																
+R0626	R				cors	POST	no-referrer	a1-a1-a1	no-referrer															
+R0627	R				cors	POST	no-referrer	a1-a1-a1	unsafe-url															
+R0628	R				cors	POST	no-referrer	a1-a1-b																
+R0629	R				cors	POST	no-referrer	a1-a1-b	no-referrer															
+R0630	R				cors	POST	no-referrer	a1-a1-b	unsafe-url															
+R0631	R				cors	POST	no-referrer	a1-b-a																
+R0632	R				cors	POST	no-referrer	a1-b-a	no-referrer															
+R0633	R				cors	POST	no-referrer	a1-b-a	unsafe-url															
+R0634	R				cors	POST	no-referrer	a1-b-a1																
+R0635	R				cors	POST	no-referrer	a1-b-a1	no-referrer															
+R0636	R				cors	POST	no-referrer	a1-b-a1	unsafe-url															
+R0637	R				cors	POST	no-referrer	a1-b-b																
+R0638	R				cors	POST	no-referrer	a1-b-b	no-referrer															
+R0639	R				cors	POST	no-referrer	a1-b-b	unsafe-url															
+R0640	R				cors	POST	no-referrer	b-a-a																
+R0641	R				cors	POST	no-referrer	b-a-a	no-referrer															
+R0642	R				cors	POST	no-referrer	b-a-a	unsafe-url															
+R0643	R				cors	POST	no-referrer	b-a-a1																
+R0644	R				cors	POST	no-referrer	b-a-a1	no-referrer															
+R0645	R				cors	POST	no-referrer	b-a-a1	unsafe-url															
+R0646	R				cors	POST	no-referrer	b-a-b																
+R0647	R				cors	POST	no-referrer	b-a-b	no-referrer															
+R0648	R				cors	POST	no-referrer	b-a-b	unsafe-url															
+R0649	R				cors	POST	no-referrer	b-a1-a																
+R0650	R				cors	POST	no-referrer	b-a1-a	no-referrer															
+R0651	R				cors	POST	no-referrer	b-a1-a	unsafe-url															
+R0652	R				cors	POST	no-referrer	b-a1-a1																
+R0653	R				cors	POST	no-referrer	b-a1-a1	no-referrer															
+R0654	R				cors	POST	no-referrer	b-a1-a1	unsafe-url															
+R0655	R				cors	POST	no-referrer	b-a1-b																
+R0656	R				cors	POST	no-referrer	b-a1-b	no-referrer															
+R0657	R				cors	POST	no-referrer	b-a1-b	unsafe-url															
+R0658	R				cors	POST	no-referrer	b-b-a																
+R0659	R				cors	POST	no-referrer	b-b-a	no-referrer															
+R0660	R				cors	POST	no-referrer	b-b-a	unsafe-url															
+R0661	R				cors	POST	no-referrer	b-b-a1																
+R0662	R				cors	POST	no-referrer	b-b-a1	no-referrer															
+R0663	R				cors	POST	no-referrer	b-b-a1	unsafe-url															
+R0664	R				cors	POST	no-referrer	b-b-b																
+R0665	R				cors	POST	no-referrer	b-b-b	no-referrer															
+R0666	R				cors	POST	no-referrer	b-b-b	unsafe-url															
+R0667	R				cors	POST	same-origin	a																
+R0668	R				cors	POST	same-origin	a1																
+R0669	R				cors	POST	same-origin	b																
+R0670	R				cors	POST	same-origin	a-a																
+R0671	R				cors	POST	same-origin	a-a	no-referrer															
+R0672	R				cors	POST	same-origin	a-a	unsafe-url															
+R0673	R				cors	POST	same-origin	a-a1																
+R0674	R				cors	POST	same-origin	a-a1	no-referrer															
+R0675	R				cors	POST	same-origin	a-a1	unsafe-url															
+R0676	R				cors	POST	same-origin	a-b																
+R0677	R				cors	POST	same-origin	a-b	no-referrer															
+R0678	R				cors	POST	same-origin	a-b	unsafe-url															
+R0679	R				cors	POST	same-origin	a1-a																
+R0680	R				cors	POST	same-origin	a1-a	no-referrer															
+R0681	R				cors	POST	same-origin	a1-a	unsafe-url															
+R0682	R				cors	POST	same-origin	a1-a1																
+R0683	R				cors	POST	same-origin	a1-a1	no-referrer															
+R0684	R				cors	POST	same-origin	a1-a1	unsafe-url															
+R0685	R				cors	POST	same-origin	a1-b																
+R0686	R				cors	POST	same-origin	a1-b	no-referrer															
+R0687	R				cors	POST	same-origin	a1-b	unsafe-url															
+R0688	R				cors	POST	same-origin	b-a																
+R0689	R				cors	POST	same-origin	b-a	no-referrer															
+R0690	R				cors	POST	same-origin	b-a	unsafe-url															
+R0691	R				cors	POST	same-origin	b-a1																
+R0692	R				cors	POST	same-origin	b-a1	no-referrer															
+R0693	R				cors	POST	same-origin	b-a1	unsafe-url															
+R0694	R				cors	POST	same-origin	b-b																
+R0695	R				cors	POST	same-origin	b-b	no-referrer															
+R0696	R				cors	POST	same-origin	b-b	unsafe-url															
+R0697	R				cors	POST	same-origin	a-a-a																
+R0698	R				cors	POST	same-origin	a-a-a	no-referrer															
+R0699	R				cors	POST	same-origin	a-a-a	unsafe-url															
+R0700	R				cors	POST	same-origin	a-a-a1																
+R0701	R				cors	POST	same-origin	a-a-a1	no-referrer															
+R0702	R				cors	POST	same-origin	a-a-a1	unsafe-url															
+R0703	R				cors	POST	same-origin	a-a-b																
+R0704	R				cors	POST	same-origin	a-a-b	no-referrer															
+R0705	R				cors	POST	same-origin	a-a-b	unsafe-url															
+R0706	R				cors	POST	same-origin	a-a1-a																
+R0707	R				cors	POST	same-origin	a-a1-a	no-referrer															
+R0708	R				cors	POST	same-origin	a-a1-a	unsafe-url															
+R0709	R				cors	POST	same-origin	a-a1-a1																
+R0710	R				cors	POST	same-origin	a-a1-a1	no-referrer															
+R0711	R				cors	POST	same-origin	a-a1-a1	unsafe-url															
+R0712	R				cors	POST	same-origin	a-a1-b																
+R0713	R				cors	POST	same-origin	a-a1-b	no-referrer															
+R0714	R				cors	POST	same-origin	a-a1-b	unsafe-url															
+R0715	R				cors	POST	same-origin	a-b-a																
+R0716	R				cors	POST	same-origin	a-b-a	no-referrer															
+R0717	R				cors	POST	same-origin	a-b-a	unsafe-url															
+R0718	R				cors	POST	same-origin	a-b-a1																
+R0719	R				cors	POST	same-origin	a-b-a1	no-referrer															
+R0720	R				cors	POST	same-origin	a-b-a1	unsafe-url															
+R0721	R				cors	POST	same-origin	a-b-b																
+R0722	R				cors	POST	same-origin	a-b-b	no-referrer															
+R0723	R				cors	POST	same-origin	a-b-b	unsafe-url															
+R0724	R				cors	POST	same-origin	a1-a-a																
+R0725	R				cors	POST	same-origin	a1-a-a	no-referrer															
+R0726	R				cors	POST	same-origin	a1-a-a	unsafe-url															
+R0727	R				cors	POST	same-origin	a1-a-a1																
+R0728	R				cors	POST	same-origin	a1-a-a1	no-referrer															
+R0729	R				cors	POST	same-origin	a1-a-a1	unsafe-url															
+R0730	R				cors	POST	same-origin	a1-a-b																
+R0731	R				cors	POST	same-origin	a1-a-b	no-referrer															
+R0732	R				cors	POST	same-origin	a1-a-b	unsafe-url															
+R0733	R				cors	POST	same-origin	a1-a1-a																
+R0734	R				cors	POST	same-origin	a1-a1-a	no-referrer															
+R0735	R				cors	POST	same-origin	a1-a1-a	unsafe-url															
+R0736	R				cors	POST	same-origin	a1-a1-a1																
+R0737	R				cors	POST	same-origin	a1-a1-a1	no-referrer															
+R0738	R				cors	POST	same-origin	a1-a1-a1	unsafe-url															
+R0739	R				cors	POST	same-origin	a1-a1-b																
+R0740	R				cors	POST	same-origin	a1-a1-b	no-referrer															
+R0741	R				cors	POST	same-origin	a1-a1-b	unsafe-url															
+R0742	R				cors	POST	same-origin	a1-b-a																
+R0743	R				cors	POST	same-origin	a1-b-a	no-referrer															
+R0744	R				cors	POST	same-origin	a1-b-a	unsafe-url															
+R0745	R				cors	POST	same-origin	a1-b-a1																
+R0746	R				cors	POST	same-origin	a1-b-a1	no-referrer															
+R0747	R				cors	POST	same-origin	a1-b-a1	unsafe-url															
+R0748	R				cors	POST	same-origin	a1-b-b																
+R0749	R				cors	POST	same-origin	a1-b-b	no-referrer															
+R0750	R				cors	POST	same-origin	a1-b-b	unsafe-url															
+R0751	R				cors	POST	same-origin	b-a-a																
+R0752	R				cors	POST	same-origin	b-a-a	no-referrer															
+R0753	R				cors	POST	same-origin	b-a-a	unsafe-url															
+R0754	R				cors	POST	same-origin	b-a-a1																
+R0755	R				cors	POST	same-origin	b-a-a1	no-referrer															
+R0756	R				cors	POST	same-origin	b-a-a1	unsafe-url															
+R0757	R				cors	POST	same-origin	b-a-b																
+R0758	R				cors	POST	same-origin	b-a-b	no-referrer															
+R0759	R				cors	POST	same-origin	b-a-b	unsafe-url															
+R0760	R				cors	POST	same-origin	b-a1-a																
+R0761	R				cors	POST	same-origin	b-a1-a	no-referrer															
+R0762	R				cors	POST	same-origin	b-a1-a	unsafe-url															
+R0763	R				cors	POST	same-origin	b-a1-a1																
+R0764	R				cors	POST	same-origin	b-a1-a1	no-referrer															
+R0765	R				cors	POST	same-origin	b-a1-a1	unsafe-url															
+R0766	R				cors	POST	same-origin	b-a1-b																
+R0767	R				cors	POST	same-origin	b-a1-b	no-referrer															
+R0768	R				cors	POST	same-origin	b-a1-b	unsafe-url															
+R0769	R				cors	POST	same-origin	b-b-a																
+R0770	R				cors	POST	same-origin	b-b-a	no-referrer															
+R0771	R				cors	POST	same-origin	b-b-a	unsafe-url															
+R0772	R				cors	POST	same-origin	b-b-a1																
+R0773	R				cors	POST	same-origin	b-b-a1	no-referrer															
+R0774	R				cors	POST	same-origin	b-b-a1	unsafe-url															
+R0775	R				cors	POST	same-origin	b-b-b																
+R0776	R				cors	POST	same-origin	b-b-b	no-referrer															
+R0777	R				cors	POST	same-origin	b-b-b	unsafe-url															
+R0778	R				cors	POST	unsafe-url	a																
+R0779	R				cors	POST	unsafe-url	a1																
+R0780	R				cors	POST	unsafe-url	b																
+R0781	R				cors	POST	unsafe-url	a-a																
+R0782	R				cors	POST	unsafe-url	a-a	no-referrer															
+R0783	R				cors	POST	unsafe-url	a-a	unsafe-url															
+R0784	R				cors	POST	unsafe-url	a-a1																
+R0785	R				cors	POST	unsafe-url	a-a1	no-referrer															
+R0786	R				cors	POST	unsafe-url	a-a1	unsafe-url															
+R0787	R				cors	POST	unsafe-url	a-b																
+R0788	R				cors	POST	unsafe-url	a-b	no-referrer															
+R0789	R				cors	POST	unsafe-url	a-b	unsafe-url															
+R0790	R				cors	POST	unsafe-url	a1-a																
+R0791	R				cors	POST	unsafe-url	a1-a	no-referrer															
+R0792	R				cors	POST	unsafe-url	a1-a	unsafe-url															
+R0793	R				cors	POST	unsafe-url	a1-a1																
+R0794	R				cors	POST	unsafe-url	a1-a1	no-referrer															
+R0795	R				cors	POST	unsafe-url	a1-a1	unsafe-url															
+R0796	R				cors	POST	unsafe-url	a1-b																
+R0797	R				cors	POST	unsafe-url	a1-b	no-referrer															
+R0798	R				cors	POST	unsafe-url	a1-b	unsafe-url															
+R0799	R				cors	POST	unsafe-url	b-a																
+R0800	R				cors	POST	unsafe-url	b-a	no-referrer															
+R0801	R				cors	POST	unsafe-url	b-a	unsafe-url															
+R0802	R				cors	POST	unsafe-url	b-a1																
+R0803	R				cors	POST	unsafe-url	b-a1	no-referrer															
+R0804	R				cors	POST	unsafe-url	b-a1	unsafe-url															
+R0805	R				cors	POST	unsafe-url	b-b																
+R0806	R				cors	POST	unsafe-url	b-b	no-referrer															
+R0807	R				cors	POST	unsafe-url	b-b	unsafe-url															
+R0808	R				cors	POST	unsafe-url	a-a-a																
+R0809	R				cors	POST	unsafe-url	a-a-a	no-referrer															
+R0810	R				cors	POST	unsafe-url	a-a-a	unsafe-url															
+R0811	R				cors	POST	unsafe-url	a-a-a1																
+R0812	R				cors	POST	unsafe-url	a-a-a1	no-referrer															
+R0813	R				cors	POST	unsafe-url	a-a-a1	unsafe-url															
+R0814	R				cors	POST	unsafe-url	a-a-b																
+R0815	R				cors	POST	unsafe-url	a-a-b	no-referrer															
+R0816	R				cors	POST	unsafe-url	a-a-b	unsafe-url															
+R0817	R				cors	POST	unsafe-url	a-a1-a																
+R0818	R				cors	POST	unsafe-url	a-a1-a	no-referrer															
+R0819	R				cors	POST	unsafe-url	a-a1-a	unsafe-url															
+R0820	R				cors	POST	unsafe-url	a-a1-a1																
+R0821	R				cors	POST	unsafe-url	a-a1-a1	no-referrer															
+R0822	R				cors	POST	unsafe-url	a-a1-a1	unsafe-url															
+R0823	R				cors	POST	unsafe-url	a-a1-b																
+R0824	R				cors	POST	unsafe-url	a-a1-b	no-referrer															
+R0825	R				cors	POST	unsafe-url	a-a1-b	unsafe-url															
+R0826	R				cors	POST	unsafe-url	a-b-a																
+R0827	R				cors	POST	unsafe-url	a-b-a	no-referrer															
+R0828	R				cors	POST	unsafe-url	a-b-a	unsafe-url															
+R0829	R				cors	POST	unsafe-url	a-b-a1																
+R0830	R				cors	POST	unsafe-url	a-b-a1	no-referrer															
+R0831	R				cors	POST	unsafe-url	a-b-a1	unsafe-url															
+R0832	R				cors	POST	unsafe-url	a-b-b																
+R0833	R				cors	POST	unsafe-url	a-b-b	no-referrer															
+R0834	R				cors	POST	unsafe-url	a-b-b	unsafe-url															
+R0835	R				cors	POST	unsafe-url	a1-a-a																
+R0836	R				cors	POST	unsafe-url	a1-a-a	no-referrer															
+R0837	R				cors	POST	unsafe-url	a1-a-a	unsafe-url															
+R0838	R				cors	POST	unsafe-url	a1-a-a1																
+R0839	R				cors	POST	unsafe-url	a1-a-a1	no-referrer															
+R0840	R				cors	POST	unsafe-url	a1-a-a1	unsafe-url															
+R0841	R				cors	POST	unsafe-url	a1-a-b																
+R0842	R				cors	POST	unsafe-url	a1-a-b	no-referrer															
+R0843	R				cors	POST	unsafe-url	a1-a-b	unsafe-url															
+R0844	R				cors	POST	unsafe-url	a1-a1-a																
+R0845	R				cors	POST	unsafe-url	a1-a1-a	no-referrer															
+R0846	R				cors	POST	unsafe-url	a1-a1-a	unsafe-url															
+R0847	R				cors	POST	unsafe-url	a1-a1-a1																
+R0848	R				cors	POST	unsafe-url	a1-a1-a1	no-referrer															
+R0849	R				cors	POST	unsafe-url	a1-a1-a1	unsafe-url															
+R0850	R				cors	POST	unsafe-url	a1-a1-b																
+R0851	R				cors	POST	unsafe-url	a1-a1-b	no-referrer															
+R0852	R				cors	POST	unsafe-url	a1-a1-b	unsafe-url															
+R0853	R				cors	POST	unsafe-url	a1-b-a																
+R0854	R				cors	POST	unsafe-url	a1-b-a	no-referrer															
+R0855	R				cors	POST	unsafe-url	a1-b-a	unsafe-url															
+R0856	R				cors	POST	unsafe-url	a1-b-a1																
+R0857	R				cors	POST	unsafe-url	a1-b-a1	no-referrer															
+R0858	R				cors	POST	unsafe-url	a1-b-a1	unsafe-url															
+R0859	R				cors	POST	unsafe-url	a1-b-b																
+R0860	R				cors	POST	unsafe-url	a1-b-b	no-referrer															
+R0861	R				cors	POST	unsafe-url	a1-b-b	unsafe-url															
+R0862	R				cors	POST	unsafe-url	b-a-a																
+R0863	R				cors	POST	unsafe-url	b-a-a	no-referrer															
+R0864	R				cors	POST	unsafe-url	b-a-a	unsafe-url															
+R0865	R				cors	POST	unsafe-url	b-a-a1																
+R0866	R				cors	POST	unsafe-url	b-a-a1	no-referrer															
+R0867	R				cors	POST	unsafe-url	b-a-a1	unsafe-url															
+R0868	R				cors	POST	unsafe-url	b-a-b																
+R0869	R				cors	POST	unsafe-url	b-a-b	no-referrer															
+R0870	R				cors	POST	unsafe-url	b-a-b	unsafe-url															
+R0871	R				cors	POST	unsafe-url	b-a1-a																
+R0872	R				cors	POST	unsafe-url	b-a1-a	no-referrer															
+R0873	R				cors	POST	unsafe-url	b-a1-a	unsafe-url															
+R0874	R				cors	POST	unsafe-url	b-a1-a1																
+R0875	R				cors	POST	unsafe-url	b-a1-a1	no-referrer															
+R0876	R				cors	POST	unsafe-url	b-a1-a1	unsafe-url															
+R0877	R				cors	POST	unsafe-url	b-a1-b																
+R0878	R				cors	POST	unsafe-url	b-a1-b	no-referrer															
+R0879	R				cors	POST	unsafe-url	b-a1-b	unsafe-url															
+R0880	R				cors	POST	unsafe-url	b-b-a																
+R0881	R				cors	POST	unsafe-url	b-b-a	no-referrer															
+R0882	R				cors	POST	unsafe-url	b-b-a	unsafe-url															
+R0883	R				cors	POST	unsafe-url	b-b-a1																
+R0884	R				cors	POST	unsafe-url	b-b-a1	no-referrer															
+R0885	R				cors	POST	unsafe-url	b-b-a1	unsafe-url															
+R0886	R				cors	POST	unsafe-url	b-b-b																
+R0887	R				cors	POST	unsafe-url	b-b-b	no-referrer															
+R0888	R				cors	POST	unsafe-url	b-b-b	unsafe-url															
+R0889	R				no-cors	GET		a																
+R0890	R				no-cors	GET		a1																
+R0891	R				no-cors	GET		b																
+R0892	R				no-cors	GET		a-a																
+R0893	R				no-cors	GET		a-a	no-referrer															
+R0894	R				no-cors	GET		a-a	unsafe-url															
+R0895	R				no-cors	GET		a-a1																
+R0896	R				no-cors	GET		a-a1	no-referrer															
+R0897	R				no-cors	GET		a-a1	unsafe-url															
+R0898	R				no-cors	GET		a-b																
+R0899	R				no-cors	GET		a-b	no-referrer															
+R0900	R				no-cors	GET		a-b	unsafe-url															
+R0901	R				no-cors	GET		a1-a																
+R0902	R				no-cors	GET		a1-a	no-referrer															
+R0903	R				no-cors	GET		a1-a	unsafe-url															
+R0904	R				no-cors	GET		a1-a1																
+R0905	R				no-cors	GET		a1-a1	no-referrer															
+R0906	R				no-cors	GET		a1-a1	unsafe-url															
+R0907	R				no-cors	GET		a1-b																
+R0908	R				no-cors	GET		a1-b	no-referrer															
+R0909	R				no-cors	GET		a1-b	unsafe-url															
+R0910	R				no-cors	GET		b-a																
+R0911	R				no-cors	GET		b-a	no-referrer															
+R0912	R				no-cors	GET		b-a	unsafe-url															
+R0913	R				no-cors	GET		b-a1																
+R0914	R				no-cors	GET		b-a1	no-referrer															
+R0915	R				no-cors	GET		b-a1	unsafe-url															
+R0916	R				no-cors	GET		b-b																
+R0917	R				no-cors	GET		b-b	no-referrer															
+R0918	R				no-cors	GET		b-b	unsafe-url															
+R0919	R				no-cors	GET		a-a-a																
+R0920	R				no-cors	GET		a-a-a	no-referrer															
+R0921	R				no-cors	GET		a-a-a	unsafe-url															
+R0922	R				no-cors	GET		a-a-a1																
+R0923	R				no-cors	GET		a-a-a1	no-referrer															
+R0924	R				no-cors	GET		a-a-a1	unsafe-url															
+R0925	R				no-cors	GET		a-a-b																
+R0926	R				no-cors	GET		a-a-b	no-referrer															
+R0927	R				no-cors	GET		a-a-b	unsafe-url															
+R0928	R				no-cors	GET		a-a1-a																
+R0929	R				no-cors	GET		a-a1-a	no-referrer															
+R0930	R				no-cors	GET		a-a1-a	unsafe-url															
+R0931	R				no-cors	GET		a-a1-a1																
+R0932	R				no-cors	GET		a-a1-a1	no-referrer															
+R0933	R				no-cors	GET		a-a1-a1	unsafe-url															
+R0934	R				no-cors	GET		a-a1-b																
+R0935	R				no-cors	GET		a-a1-b	no-referrer															
+R0936	R				no-cors	GET		a-a1-b	unsafe-url															
+R0937	R				no-cors	GET		a-b-a																
+R0938	R				no-cors	GET		a-b-a	no-referrer															
+R0939	R				no-cors	GET		a-b-a	unsafe-url															
+R0940	R				no-cors	GET		a-b-a1																
+R0941	R				no-cors	GET		a-b-a1	no-referrer															
+R0942	R				no-cors	GET		a-b-a1	unsafe-url															
+R0943	R				no-cors	GET		a-b-b																
+R0944	R				no-cors	GET		a-b-b	no-referrer															
+R0945	R				no-cors	GET		a-b-b	unsafe-url															
+R0946	R				no-cors	GET		a1-a-a																
+R0947	R				no-cors	GET		a1-a-a	no-referrer															
+R0948	R				no-cors	GET		a1-a-a	unsafe-url															
+R0949	R				no-cors	GET		a1-a-a1																
+R0950	R				no-cors	GET		a1-a-a1	no-referrer															
+R0951	R				no-cors	GET		a1-a-a1	unsafe-url															
+R0952	R				no-cors	GET		a1-a-b																
+R0953	R				no-cors	GET		a1-a-b	no-referrer															
+R0954	R				no-cors	GET		a1-a-b	unsafe-url															
+R0955	R				no-cors	GET		a1-a1-a																
+R0956	R				no-cors	GET		a1-a1-a	no-referrer															
+R0957	R				no-cors	GET		a1-a1-a	unsafe-url															
+R0958	R				no-cors	GET		a1-a1-a1																
+R0959	R				no-cors	GET		a1-a1-a1	no-referrer															
+R0960	R				no-cors	GET		a1-a1-a1	unsafe-url															
+R0961	R				no-cors	GET		a1-a1-b																
+R0962	R				no-cors	GET		a1-a1-b	no-referrer															
+R0963	R				no-cors	GET		a1-a1-b	unsafe-url															
+R0964	R				no-cors	GET		a1-b-a																
+R0965	R				no-cors	GET		a1-b-a	no-referrer															
+R0966	R				no-cors	GET		a1-b-a	unsafe-url															
+R0967	R				no-cors	GET		a1-b-a1																
+R0968	R				no-cors	GET		a1-b-a1	no-referrer															
+R0969	R				no-cors	GET		a1-b-a1	unsafe-url															
+R0970	R				no-cors	GET		a1-b-b																
+R0971	R				no-cors	GET		a1-b-b	no-referrer															
+R0972	R				no-cors	GET		a1-b-b	unsafe-url															
+R0973	R				no-cors	GET		b-a-a																
+R0974	R				no-cors	GET		b-a-a	no-referrer															
+R0975	R				no-cors	GET		b-a-a	unsafe-url															
+R0976	R				no-cors	GET		b-a-a1																
+R0977	R				no-cors	GET		b-a-a1	no-referrer															
+R0978	R				no-cors	GET		b-a-a1	unsafe-url															
+R0979	R				no-cors	GET		b-a-b																
+R0980	R				no-cors	GET		b-a-b	no-referrer															
+R0981	R				no-cors	GET		b-a-b	unsafe-url															
+R0982	R				no-cors	GET		b-a1-a																
+R0983	R				no-cors	GET		b-a1-a	no-referrer															
+R0984	R				no-cors	GET		b-a1-a	unsafe-url															
+R0985	R				no-cors	GET		b-a1-a1																
+R0986	R				no-cors	GET		b-a1-a1	no-referrer															
+R0987	R				no-cors	GET		b-a1-a1	unsafe-url															
+R0988	R				no-cors	GET		b-a1-b																
+R0989	R				no-cors	GET		b-a1-b	no-referrer															
+R0990	R				no-cors	GET		b-a1-b	unsafe-url															
+R0991	R				no-cors	GET		b-b-a																
+R0992	R				no-cors	GET		b-b-a	no-referrer															
+R0993	R				no-cors	GET		b-b-a	unsafe-url															
+R0994	R				no-cors	GET		b-b-a1																
+R0995	R				no-cors	GET		b-b-a1	no-referrer															
+R0996	R				no-cors	GET		b-b-a1	unsafe-url															
+R0997	R				no-cors	GET		b-b-b																
+R0998	R				no-cors	GET		b-b-b	no-referrer															
+R0999	R				no-cors	GET		b-b-b	unsafe-url															
+R1000	R				no-cors	GET	no-referrer	a																
+R1001	R				no-cors	GET	no-referrer	a1																
+R1002	R				no-cors	GET	no-referrer	b																
+R1003	R				no-cors	GET	no-referrer	a-a																
+R1004	R				no-cors	GET	no-referrer	a-a	no-referrer															
+R1005	R				no-cors	GET	no-referrer	a-a	unsafe-url															
+R1006	R				no-cors	GET	no-referrer	a-a1																
+R1007	R				no-cors	GET	no-referrer	a-a1	no-referrer															
+R1008	R				no-cors	GET	no-referrer	a-a1	unsafe-url															
+R1009	R				no-cors	GET	no-referrer	a-b																
+R1010	R				no-cors	GET	no-referrer	a-b	no-referrer															
+R1011	R				no-cors	GET	no-referrer	a-b	unsafe-url															
+R1012	R				no-cors	GET	no-referrer	a1-a																
+R1013	R				no-cors	GET	no-referrer	a1-a	no-referrer															
+R1014	R				no-cors	GET	no-referrer	a1-a	unsafe-url															
+R1015	R				no-cors	GET	no-referrer	a1-a1																
+R1016	R				no-cors	GET	no-referrer	a1-a1	no-referrer															
+R1017	R				no-cors	GET	no-referrer	a1-a1	unsafe-url															
+R1018	R				no-cors	GET	no-referrer	a1-b																
+R1019	R				no-cors	GET	no-referrer	a1-b	no-referrer															
+R1020	R				no-cors	GET	no-referrer	a1-b	unsafe-url															
+R1021	R				no-cors	GET	no-referrer	b-a																
+R1022	R				no-cors	GET	no-referrer	b-a	no-referrer															
+R1023	R				no-cors	GET	no-referrer	b-a	unsafe-url															
+R1024	R				no-cors	GET	no-referrer	b-a1																
+R1025	R				no-cors	GET	no-referrer	b-a1	no-referrer															
+R1026	R				no-cors	GET	no-referrer	b-a1	unsafe-url															
+R1027	R				no-cors	GET	no-referrer	b-b																
+R1028	R				no-cors	GET	no-referrer	b-b	no-referrer															
+R1029	R				no-cors	GET	no-referrer	b-b	unsafe-url															
+R1030	R				no-cors	GET	no-referrer	a-a-a																
+R1031	R				no-cors	GET	no-referrer	a-a-a	no-referrer															
+R1032	R				no-cors	GET	no-referrer	a-a-a	unsafe-url															
+R1033	R				no-cors	GET	no-referrer	a-a-a1																
+R1034	R				no-cors	GET	no-referrer	a-a-a1	no-referrer															
+R1035	R				no-cors	GET	no-referrer	a-a-a1	unsafe-url															
+R1036	R				no-cors	GET	no-referrer	a-a-b																
+R1037	R				no-cors	GET	no-referrer	a-a-b	no-referrer															
+R1038	R				no-cors	GET	no-referrer	a-a-b	unsafe-url															
+R1039	R				no-cors	GET	no-referrer	a-a1-a																
+R1040	R				no-cors	GET	no-referrer	a-a1-a	no-referrer															
+R1041	R				no-cors	GET	no-referrer	a-a1-a	unsafe-url															
+R1042	R				no-cors	GET	no-referrer	a-a1-a1																
+R1043	R				no-cors	GET	no-referrer	a-a1-a1	no-referrer															
+R1044	R				no-cors	GET	no-referrer	a-a1-a1	unsafe-url															
+R1045	R				no-cors	GET	no-referrer	a-a1-b																
+R1046	R				no-cors	GET	no-referrer	a-a1-b	no-referrer															
+R1047	R				no-cors	GET	no-referrer	a-a1-b	unsafe-url															
+R1048	R				no-cors	GET	no-referrer	a-b-a																
+R1049	R				no-cors	GET	no-referrer	a-b-a	no-referrer															
+R1050	R				no-cors	GET	no-referrer	a-b-a	unsafe-url															
+R1051	R				no-cors	GET	no-referrer	a-b-a1																
+R1052	R				no-cors	GET	no-referrer	a-b-a1	no-referrer															
+R1053	R				no-cors	GET	no-referrer	a-b-a1	unsafe-url															
+R1054	R				no-cors	GET	no-referrer	a-b-b																
+R1055	R				no-cors	GET	no-referrer	a-b-b	no-referrer															
+R1056	R				no-cors	GET	no-referrer	a-b-b	unsafe-url															
+R1057	R				no-cors	GET	no-referrer	a1-a-a																
+R1058	R				no-cors	GET	no-referrer	a1-a-a	no-referrer															
+R1059	R				no-cors	GET	no-referrer	a1-a-a	unsafe-url															
+R1060	R				no-cors	GET	no-referrer	a1-a-a1																
+R1061	R				no-cors	GET	no-referrer	a1-a-a1	no-referrer															
+R1062	R				no-cors	GET	no-referrer	a1-a-a1	unsafe-url															
+R1063	R				no-cors	GET	no-referrer	a1-a-b																
+R1064	R				no-cors	GET	no-referrer	a1-a-b	no-referrer															
+R1065	R				no-cors	GET	no-referrer	a1-a-b	unsafe-url															
+R1066	R				no-cors	GET	no-referrer	a1-a1-a																
+R1067	R				no-cors	GET	no-referrer	a1-a1-a	no-referrer															
+R1068	R				no-cors	GET	no-referrer	a1-a1-a	unsafe-url															
+R1069	R				no-cors	GET	no-referrer	a1-a1-a1																
+R1070	R				no-cors	GET	no-referrer	a1-a1-a1	no-referrer															
+R1071	R				no-cors	GET	no-referrer	a1-a1-a1	unsafe-url															
+R1072	R				no-cors	GET	no-referrer	a1-a1-b																
+R1073	R				no-cors	GET	no-referrer	a1-a1-b	no-referrer															
+R1074	R				no-cors	GET	no-referrer	a1-a1-b	unsafe-url															
+R1075	R				no-cors	GET	no-referrer	a1-b-a																
+R1076	R				no-cors	GET	no-referrer	a1-b-a	no-referrer															
+R1077	R				no-cors	GET	no-referrer	a1-b-a	unsafe-url															
+R1078	R				no-cors	GET	no-referrer	a1-b-a1																
+R1079	R				no-cors	GET	no-referrer	a1-b-a1	no-referrer															
+R1080	R				no-cors	GET	no-referrer	a1-b-a1	unsafe-url															
+R1081	R				no-cors	GET	no-referrer	a1-b-b																
+R1082	R				no-cors	GET	no-referrer	a1-b-b	no-referrer															
+R1083	R				no-cors	GET	no-referrer	a1-b-b	unsafe-url															
+R1084	R				no-cors	GET	no-referrer	b-a-a																
+R1085	R				no-cors	GET	no-referrer	b-a-a	no-referrer															
+R1086	R				no-cors	GET	no-referrer	b-a-a	unsafe-url															
+R1087	R				no-cors	GET	no-referrer	b-a-a1																
+R1088	R				no-cors	GET	no-referrer	b-a-a1	no-referrer															
+R1089	R				no-cors	GET	no-referrer	b-a-a1	unsafe-url															
+R1090	R				no-cors	GET	no-referrer	b-a-b																
+R1091	R				no-cors	GET	no-referrer	b-a-b	no-referrer															
+R1092	R				no-cors	GET	no-referrer	b-a-b	unsafe-url															
+R1093	R				no-cors	GET	no-referrer	b-a1-a																
+R1094	R				no-cors	GET	no-referrer	b-a1-a	no-referrer															
+R1095	R				no-cors	GET	no-referrer	b-a1-a	unsafe-url															
+R1096	R				no-cors	GET	no-referrer	b-a1-a1																
+R1097	R				no-cors	GET	no-referrer	b-a1-a1	no-referrer															
+R1098	R				no-cors	GET	no-referrer	b-a1-a1	unsafe-url															
+R1099	R				no-cors	GET	no-referrer	b-a1-b																
+R1100	R				no-cors	GET	no-referrer	b-a1-b	no-referrer															
+R1101	R				no-cors	GET	no-referrer	b-a1-b	unsafe-url															
+R1102	R				no-cors	GET	no-referrer	b-b-a																
+R1103	R				no-cors	GET	no-referrer	b-b-a	no-referrer															
+R1104	R				no-cors	GET	no-referrer	b-b-a	unsafe-url															
+R1105	R				no-cors	GET	no-referrer	b-b-a1																
+R1106	R				no-cors	GET	no-referrer	b-b-a1	no-referrer															
+R1107	R				no-cors	GET	no-referrer	b-b-a1	unsafe-url															
+R1108	R				no-cors	GET	no-referrer	b-b-b																
+R1109	R				no-cors	GET	no-referrer	b-b-b	no-referrer															
+R1110	R				no-cors	GET	no-referrer	b-b-b	unsafe-url															
+R1111	R				no-cors	GET	same-origin	a																
+R1112	R				no-cors	GET	same-origin	a1																
+R1113	R				no-cors	GET	same-origin	b																
+R1114	R				no-cors	GET	same-origin	a-a																
+R1115	R				no-cors	GET	same-origin	a-a	no-referrer															
+R1116	R				no-cors	GET	same-origin	a-a	unsafe-url															
+R1117	R				no-cors	GET	same-origin	a-a1																
+R1118	R				no-cors	GET	same-origin	a-a1	no-referrer															
+R1119	R				no-cors	GET	same-origin	a-a1	unsafe-url															
+R1120	R				no-cors	GET	same-origin	a-b																
+R1121	R				no-cors	GET	same-origin	a-b	no-referrer															
+R1122	R				no-cors	GET	same-origin	a-b	unsafe-url															
+R1123	R				no-cors	GET	same-origin	a1-a																
+R1124	R				no-cors	GET	same-origin	a1-a	no-referrer															
+R1125	R				no-cors	GET	same-origin	a1-a	unsafe-url															
+R1126	R				no-cors	GET	same-origin	a1-a1																
+R1127	R				no-cors	GET	same-origin	a1-a1	no-referrer															
+R1128	R				no-cors	GET	same-origin	a1-a1	unsafe-url															
+R1129	R				no-cors	GET	same-origin	a1-b																
+R1130	R				no-cors	GET	same-origin	a1-b	no-referrer															
+R1131	R				no-cors	GET	same-origin	a1-b	unsafe-url															
+R1132	R				no-cors	GET	same-origin	b-a																
+R1133	R				no-cors	GET	same-origin	b-a	no-referrer															
+R1134	R				no-cors	GET	same-origin	b-a	unsafe-url															
+R1135	R				no-cors	GET	same-origin	b-a1																
+R1136	R				no-cors	GET	same-origin	b-a1	no-referrer															
+R1137	R				no-cors	GET	same-origin	b-a1	unsafe-url															
+R1138	R				no-cors	GET	same-origin	b-b																
+R1139	R				no-cors	GET	same-origin	b-b	no-referrer															
+R1140	R				no-cors	GET	same-origin	b-b	unsafe-url															
+R1141	R				no-cors	GET	same-origin	a-a-a																
+R1142	R				no-cors	GET	same-origin	a-a-a	no-referrer															
+R1143	R				no-cors	GET	same-origin	a-a-a	unsafe-url															
+R1144	R				no-cors	GET	same-origin	a-a-a1																
+R1145	R				no-cors	GET	same-origin	a-a-a1	no-referrer															
+R1146	R				no-cors	GET	same-origin	a-a-a1	unsafe-url															
+R1147	R				no-cors	GET	same-origin	a-a-b																
+R1148	R				no-cors	GET	same-origin	a-a-b	no-referrer															
+R1149	R				no-cors	GET	same-origin	a-a-b	unsafe-url															
+R1150	R				no-cors	GET	same-origin	a-a1-a																
+R1151	R				no-cors	GET	same-origin	a-a1-a	no-referrer															
+R1152	R				no-cors	GET	same-origin	a-a1-a	unsafe-url															
+R1153	R				no-cors	GET	same-origin	a-a1-a1																
+R1154	R				no-cors	GET	same-origin	a-a1-a1	no-referrer															
+R1155	R				no-cors	GET	same-origin	a-a1-a1	unsafe-url															
+R1156	R				no-cors	GET	same-origin	a-a1-b																
+R1157	R				no-cors	GET	same-origin	a-a1-b	no-referrer															
+R1158	R				no-cors	GET	same-origin	a-a1-b	unsafe-url															
+R1159	R				no-cors	GET	same-origin	a-b-a																
+R1160	R				no-cors	GET	same-origin	a-b-a	no-referrer															
+R1161	R				no-cors	GET	same-origin	a-b-a	unsafe-url															
+R1162	R				no-cors	GET	same-origin	a-b-a1																
+R1163	R				no-cors	GET	same-origin	a-b-a1	no-referrer															
+R1164	R				no-cors	GET	same-origin	a-b-a1	unsafe-url															
+R1165	R				no-cors	GET	same-origin	a-b-b																
+R1166	R				no-cors	GET	same-origin	a-b-b	no-referrer															
+R1167	R				no-cors	GET	same-origin	a-b-b	unsafe-url															
+R1168	R				no-cors	GET	same-origin	a1-a-a																
+R1169	R				no-cors	GET	same-origin	a1-a-a	no-referrer															
+R1170	R				no-cors	GET	same-origin	a1-a-a	unsafe-url															
+R1171	R				no-cors	GET	same-origin	a1-a-a1																
+R1172	R				no-cors	GET	same-origin	a1-a-a1	no-referrer															
+R1173	R				no-cors	GET	same-origin	a1-a-a1	unsafe-url															
+R1174	R				no-cors	GET	same-origin	a1-a-b																
+R1175	R				no-cors	GET	same-origin	a1-a-b	no-referrer															
+R1176	R				no-cors	GET	same-origin	a1-a-b	unsafe-url															
+R1177	R				no-cors	GET	same-origin	a1-a1-a																
+R1178	R				no-cors	GET	same-origin	a1-a1-a	no-referrer															
+R1179	R				no-cors	GET	same-origin	a1-a1-a	unsafe-url															
+R1180	R				no-cors	GET	same-origin	a1-a1-a1																
+R1181	R				no-cors	GET	same-origin	a1-a1-a1	no-referrer															
+R1182	R				no-cors	GET	same-origin	a1-a1-a1	unsafe-url															
+R1183	R				no-cors	GET	same-origin	a1-a1-b																
+R1184	R				no-cors	GET	same-origin	a1-a1-b	no-referrer															
+R1185	R				no-cors	GET	same-origin	a1-a1-b	unsafe-url															
+R1186	R				no-cors	GET	same-origin	a1-b-a																
+R1187	R				no-cors	GET	same-origin	a1-b-a	no-referrer															
+R1188	R				no-cors	GET	same-origin	a1-b-a	unsafe-url															
+R1189	R				no-cors	GET	same-origin	a1-b-a1																
+R1190	R				no-cors	GET	same-origin	a1-b-a1	no-referrer															
+R1191	R				no-cors	GET	same-origin	a1-b-a1	unsafe-url															
+R1192	R				no-cors	GET	same-origin	a1-b-b																
+R1193	R				no-cors	GET	same-origin	a1-b-b	no-referrer															
+R1194	R				no-cors	GET	same-origin	a1-b-b	unsafe-url															
+R1195	R				no-cors	GET	same-origin	b-a-a																
+R1196	R				no-cors	GET	same-origin	b-a-a	no-referrer															
+R1197	R				no-cors	GET	same-origin	b-a-a	unsafe-url															
+R1198	R				no-cors	GET	same-origin	b-a-a1																
+R1199	R				no-cors	GET	same-origin	b-a-a1	no-referrer															
+R1200	R				no-cors	GET	same-origin	b-a-a1	unsafe-url															
+R1201	R				no-cors	GET	same-origin	b-a-b																
+R1202	R				no-cors	GET	same-origin	b-a-b	no-referrer															
+R1203	R				no-cors	GET	same-origin	b-a-b	unsafe-url															
+R1204	R				no-cors	GET	same-origin	b-a1-a																
+R1205	R				no-cors	GET	same-origin	b-a1-a	no-referrer															
+R1206	R				no-cors	GET	same-origin	b-a1-a	unsafe-url															
+R1207	R				no-cors	GET	same-origin	b-a1-a1																
+R1208	R				no-cors	GET	same-origin	b-a1-a1	no-referrer															
+R1209	R				no-cors	GET	same-origin	b-a1-a1	unsafe-url															
+R1210	R				no-cors	GET	same-origin	b-a1-b																
+R1211	R				no-cors	GET	same-origin	b-a1-b	no-referrer															
+R1212	R				no-cors	GET	same-origin	b-a1-b	unsafe-url															
+R1213	R				no-cors	GET	same-origin	b-b-a																
+R1214	R				no-cors	GET	same-origin	b-b-a	no-referrer															
+R1215	R				no-cors	GET	same-origin	b-b-a	unsafe-url															
+R1216	R				no-cors	GET	same-origin	b-b-a1																
+R1217	R				no-cors	GET	same-origin	b-b-a1	no-referrer															
+R1218	R				no-cors	GET	same-origin	b-b-a1	unsafe-url															
+R1219	R				no-cors	GET	same-origin	b-b-b																
+R1220	R				no-cors	GET	same-origin	b-b-b	no-referrer															
+R1221	R				no-cors	GET	same-origin	b-b-b	unsafe-url															
+R1222	R				no-cors	GET	unsafe-url	a																
+R1223	R				no-cors	GET	unsafe-url	a1																
+R1224	R				no-cors	GET	unsafe-url	b																
+R1225	R				no-cors	GET	unsafe-url	a-a																
+R1226	R				no-cors	GET	unsafe-url	a-a	no-referrer															
+R1227	R				no-cors	GET	unsafe-url	a-a	unsafe-url															
+R1228	R				no-cors	GET	unsafe-url	a-a1																
+R1229	R				no-cors	GET	unsafe-url	a-a1	no-referrer															
+R1230	R				no-cors	GET	unsafe-url	a-a1	unsafe-url															
+R1231	R				no-cors	GET	unsafe-url	a-b																
+R1232	R				no-cors	GET	unsafe-url	a-b	no-referrer															
+R1233	R				no-cors	GET	unsafe-url	a-b	unsafe-url															
+R1234	R				no-cors	GET	unsafe-url	a1-a																
+R1235	R				no-cors	GET	unsafe-url	a1-a	no-referrer															
+R1236	R				no-cors	GET	unsafe-url	a1-a	unsafe-url															
+R1237	R				no-cors	GET	unsafe-url	a1-a1																
+R1238	R				no-cors	GET	unsafe-url	a1-a1	no-referrer															
+R1239	R				no-cors	GET	unsafe-url	a1-a1	unsafe-url															
+R1240	R				no-cors	GET	unsafe-url	a1-b																
+R1241	R				no-cors	GET	unsafe-url	a1-b	no-referrer															
+R1242	R				no-cors	GET	unsafe-url	a1-b	unsafe-url															
+R1243	R				no-cors	GET	unsafe-url	b-a																
+R1244	R				no-cors	GET	unsafe-url	b-a	no-referrer															
+R1245	R				no-cors	GET	unsafe-url	b-a	unsafe-url															
+R1246	R				no-cors	GET	unsafe-url	b-a1																
+R1247	R				no-cors	GET	unsafe-url	b-a1	no-referrer															
+R1248	R				no-cors	GET	unsafe-url	b-a1	unsafe-url															
+R1249	R				no-cors	GET	unsafe-url	b-b																
+R1250	R				no-cors	GET	unsafe-url	b-b	no-referrer															
+R1251	R				no-cors	GET	unsafe-url	b-b	unsafe-url															
+R1252	R				no-cors	GET	unsafe-url	a-a-a																
+R1253	R				no-cors	GET	unsafe-url	a-a-a	no-referrer															
+R1254	R				no-cors	GET	unsafe-url	a-a-a	unsafe-url															
+R1255	R				no-cors	GET	unsafe-url	a-a-a1																
+R1256	R				no-cors	GET	unsafe-url	a-a-a1	no-referrer															
+R1257	R				no-cors	GET	unsafe-url	a-a-a1	unsafe-url															
+R1258	R				no-cors	GET	unsafe-url	a-a-b																
+R1259	R				no-cors	GET	unsafe-url	a-a-b	no-referrer															
+R1260	R				no-cors	GET	unsafe-url	a-a-b	unsafe-url															
+R1261	R				no-cors	GET	unsafe-url	a-a1-a																
+R1262	R				no-cors	GET	unsafe-url	a-a1-a	no-referrer															
+R1263	R				no-cors	GET	unsafe-url	a-a1-a	unsafe-url															
+R1264	R				no-cors	GET	unsafe-url	a-a1-a1																
+R1265	R				no-cors	GET	unsafe-url	a-a1-a1	no-referrer															
+R1266	R				no-cors	GET	unsafe-url	a-a1-a1	unsafe-url															
+R1267	R				no-cors	GET	unsafe-url	a-a1-b																
+R1268	R				no-cors	GET	unsafe-url	a-a1-b	no-referrer															
+R1269	R				no-cors	GET	unsafe-url	a-a1-b	unsafe-url															
+R1270	R				no-cors	GET	unsafe-url	a-b-a																
+R1271	R				no-cors	GET	unsafe-url	a-b-a	no-referrer															
+R1272	R				no-cors	GET	unsafe-url	a-b-a	unsafe-url															
+R1273	R				no-cors	GET	unsafe-url	a-b-a1																
+R1274	R				no-cors	GET	unsafe-url	a-b-a1	no-referrer															
+R1275	R				no-cors	GET	unsafe-url	a-b-a1	unsafe-url															
+R1276	R				no-cors	GET	unsafe-url	a-b-b																
+R1277	R				no-cors	GET	unsafe-url	a-b-b	no-referrer															
+R1278	R				no-cors	GET	unsafe-url	a-b-b	unsafe-url															
+R1279	R				no-cors	GET	unsafe-url	a1-a-a																
+R1280	R				no-cors	GET	unsafe-url	a1-a-a	no-referrer															
+R1281	R				no-cors	GET	unsafe-url	a1-a-a	unsafe-url															
+R1282	R				no-cors	GET	unsafe-url	a1-a-a1																
+R1283	R				no-cors	GET	unsafe-url	a1-a-a1	no-referrer															
+R1284	R				no-cors	GET	unsafe-url	a1-a-a1	unsafe-url															
+R1285	R				no-cors	GET	unsafe-url	a1-a-b																
+R1286	R				no-cors	GET	unsafe-url	a1-a-b	no-referrer															
+R1287	R				no-cors	GET	unsafe-url	a1-a-b	unsafe-url															
+R1288	R				no-cors	GET	unsafe-url	a1-a1-a																
+R1289	R				no-cors	GET	unsafe-url	a1-a1-a	no-referrer															
+R1290	R				no-cors	GET	unsafe-url	a1-a1-a	unsafe-url															
+R1291	R				no-cors	GET	unsafe-url	a1-a1-a1																
+R1292	R				no-cors	GET	unsafe-url	a1-a1-a1	no-referrer															
+R1293	R				no-cors	GET	unsafe-url	a1-a1-a1	unsafe-url															
+R1294	R				no-cors	GET	unsafe-url	a1-a1-b																
+R1295	R				no-cors	GET	unsafe-url	a1-a1-b	no-referrer															
+R1296	R				no-cors	GET	unsafe-url	a1-a1-b	unsafe-url															
+R1297	R				no-cors	GET	unsafe-url	a1-b-a																
+R1298	R				no-cors	GET	unsafe-url	a1-b-a	no-referrer															
+R1299	R				no-cors	GET	unsafe-url	a1-b-a	unsafe-url															
+R1300	R				no-cors	GET	unsafe-url	a1-b-a1																
+R1301	R				no-cors	GET	unsafe-url	a1-b-a1	no-referrer															
+R1302	R				no-cors	GET	unsafe-url	a1-b-a1	unsafe-url															
+R1303	R				no-cors	GET	unsafe-url	a1-b-b																
+R1304	R				no-cors	GET	unsafe-url	a1-b-b	no-referrer															
+R1305	R				no-cors	GET	unsafe-url	a1-b-b	unsafe-url															
+R1306	R				no-cors	GET	unsafe-url	b-a-a																
+R1307	R				no-cors	GET	unsafe-url	b-a-a	no-referrer															
+R1308	R				no-cors	GET	unsafe-url	b-a-a	unsafe-url															
+R1309	R				no-cors	GET	unsafe-url	b-a-a1																
+R1310	R				no-cors	GET	unsafe-url	b-a-a1	no-referrer															
+R1311	R				no-cors	GET	unsafe-url	b-a-a1	unsafe-url															
+R1312	R				no-cors	GET	unsafe-url	b-a-b																
+R1313	R				no-cors	GET	unsafe-url	b-a-b	no-referrer															
+R1314	R				no-cors	GET	unsafe-url	b-a-b	unsafe-url															
+R1315	R				no-cors	GET	unsafe-url	b-a1-a																
+R1316	R				no-cors	GET	unsafe-url	b-a1-a	no-referrer															
+R1317	R				no-cors	GET	unsafe-url	b-a1-a	unsafe-url															
+R1318	R				no-cors	GET	unsafe-url	b-a1-a1																
+R1319	R				no-cors	GET	unsafe-url	b-a1-a1	no-referrer															
+R1320	R				no-cors	GET	unsafe-url	b-a1-a1	unsafe-url															
+R1321	R				no-cors	GET	unsafe-url	b-a1-b																
+R1322	R				no-cors	GET	unsafe-url	b-a1-b	no-referrer															
+R1323	R				no-cors	GET	unsafe-url	b-a1-b	unsafe-url															
+R1324	R				no-cors	GET	unsafe-url	b-b-a																
+R1325	R				no-cors	GET	unsafe-url	b-b-a	no-referrer															
+R1326	R				no-cors	GET	unsafe-url	b-b-a	unsafe-url															
+R1327	R				no-cors	GET	unsafe-url	b-b-a1																
+R1328	R				no-cors	GET	unsafe-url	b-b-a1	no-referrer															
+R1329	R				no-cors	GET	unsafe-url	b-b-a1	unsafe-url															
+R1330	R				no-cors	GET	unsafe-url	b-b-b																
+R1331	R				no-cors	GET	unsafe-url	b-b-b	no-referrer															
+R1332	R				no-cors	GET	unsafe-url	b-b-b	unsafe-url															
+R1333	R				no-cors	POST		a																
+R1334	R				no-cors	POST		a1																
+R1335	R				no-cors	POST		b																
+R1336	R				no-cors	POST		a-a																
+R1337	R				no-cors	POST		a-a	no-referrer															
+R1338	R				no-cors	POST		a-a	unsafe-url															
+R1339	R				no-cors	POST		a-a1																
+R1340	R				no-cors	POST		a-a1	no-referrer															
+R1341	R				no-cors	POST		a-a1	unsafe-url															
+R1342	R				no-cors	POST		a-b																
+R1343	R				no-cors	POST		a-b	no-referrer															
+R1344	R				no-cors	POST		a-b	unsafe-url															
+R1345	R				no-cors	POST		a1-a																
+R1346	R				no-cors	POST		a1-a	no-referrer															
+R1347	R				no-cors	POST		a1-a	unsafe-url															
+R1348	R				no-cors	POST		a1-a1																
+R1349	R				no-cors	POST		a1-a1	no-referrer															
+R1350	R				no-cors	POST		a1-a1	unsafe-url															
+R1351	R				no-cors	POST		a1-b																
+R1352	R				no-cors	POST		a1-b	no-referrer															
+R1353	R				no-cors	POST		a1-b	unsafe-url															
+R1354	R				no-cors	POST		b-a																
+R1355	R				no-cors	POST		b-a	no-referrer															
+R1356	R				no-cors	POST		b-a	unsafe-url															
+R1357	R				no-cors	POST		b-a1																
+R1358	R				no-cors	POST		b-a1	no-referrer															
+R1359	R				no-cors	POST		b-a1	unsafe-url															
+R1360	R				no-cors	POST		b-b																
+R1361	R				no-cors	POST		b-b	no-referrer															
+R1362	R				no-cors	POST		b-b	unsafe-url															
+R1363	R				no-cors	POST		a-a-a																
+R1364	R				no-cors	POST		a-a-a	no-referrer															
+R1365	R				no-cors	POST		a-a-a	unsafe-url															
+R1366	R				no-cors	POST		a-a-a1																
+R1367	R				no-cors	POST		a-a-a1	no-referrer															
+R1368	R				no-cors	POST		a-a-a1	unsafe-url															
+R1369	R				no-cors	POST		a-a-b																
+R1370	R				no-cors	POST		a-a-b	no-referrer															
+R1371	R				no-cors	POST		a-a-b	unsafe-url															
+R1372	R				no-cors	POST		a-a1-a																
+R1373	R				no-cors	POST		a-a1-a	no-referrer															
+R1374	R				no-cors	POST		a-a1-a	unsafe-url															
+R1375	R				no-cors	POST		a-a1-a1																
+R1376	R				no-cors	POST		a-a1-a1	no-referrer															
+R1377	R				no-cors	POST		a-a1-a1	unsafe-url															
+R1378	R				no-cors	POST		a-a1-b																
+R1379	R				no-cors	POST		a-a1-b	no-referrer															
+R1380	R				no-cors	POST		a-a1-b	unsafe-url															
+R1381	R				no-cors	POST		a-b-a																
+R1382	R				no-cors	POST		a-b-a	no-referrer															
+R1383	R				no-cors	POST		a-b-a	unsafe-url															
+R1384	R				no-cors	POST		a-b-a1																
+R1385	R				no-cors	POST		a-b-a1	no-referrer															
+R1386	R				no-cors	POST		a-b-a1	unsafe-url															
+R1387	R				no-cors	POST		a-b-b																
+R1388	R				no-cors	POST		a-b-b	no-referrer															
+R1389	R				no-cors	POST		a-b-b	unsafe-url															
+R1390	R				no-cors	POST		a1-a-a																
+R1391	R				no-cors	POST		a1-a-a	no-referrer															
+R1392	R				no-cors	POST		a1-a-a	unsafe-url															
+R1393	R				no-cors	POST		a1-a-a1																
+R1394	R				no-cors	POST		a1-a-a1	no-referrer															
+R1395	R				no-cors	POST		a1-a-a1	unsafe-url															
+R1396	R				no-cors	POST		a1-a-b																
+R1397	R				no-cors	POST		a1-a-b	no-referrer															
+R1398	R				no-cors	POST		a1-a-b	unsafe-url															
+R1399	R				no-cors	POST		a1-a1-a																
+R1400	R				no-cors	POST		a1-a1-a	no-referrer															
+R1401	R				no-cors	POST		a1-a1-a	unsafe-url															
+R1402	R				no-cors	POST		a1-a1-a1																
+R1403	R				no-cors	POST		a1-a1-a1	no-referrer															
+R1404	R				no-cors	POST		a1-a1-a1	unsafe-url															
+R1405	R				no-cors	POST		a1-a1-b																
+R1406	R				no-cors	POST		a1-a1-b	no-referrer															
+R1407	R				no-cors	POST		a1-a1-b	unsafe-url															
+R1408	R				no-cors	POST		a1-b-a																
+R1409	R				no-cors	POST		a1-b-a	no-referrer															
+R1410	R				no-cors	POST		a1-b-a	unsafe-url															
+R1411	R				no-cors	POST		a1-b-a1																
+R1412	R				no-cors	POST		a1-b-a1	no-referrer															
+R1413	R				no-cors	POST		a1-b-a1	unsafe-url															
+R1414	R				no-cors	POST		a1-b-b																
+R1415	R				no-cors	POST		a1-b-b	no-referrer															
+R1416	R				no-cors	POST		a1-b-b	unsafe-url															
+R1417	R				no-cors	POST		b-a-a																
+R1418	R				no-cors	POST		b-a-a	no-referrer															
+R1419	R				no-cors	POST		b-a-a	unsafe-url															
+R1420	R				no-cors	POST		b-a-a1																
+R1421	R				no-cors	POST		b-a-a1	no-referrer															
+R1422	R				no-cors	POST		b-a-a1	unsafe-url															
+R1423	R				no-cors	POST		b-a-b																
+R1424	R				no-cors	POST		b-a-b	no-referrer															
+R1425	R				no-cors	POST		b-a-b	unsafe-url															
+R1426	R				no-cors	POST		b-a1-a																
+R1427	R				no-cors	POST		b-a1-a	no-referrer															
+R1428	R				no-cors	POST		b-a1-a	unsafe-url															
+R1429	R				no-cors	POST		b-a1-a1																
+R1430	R				no-cors	POST		b-a1-a1	no-referrer															
+R1431	R				no-cors	POST		b-a1-a1	unsafe-url															
+R1432	R				no-cors	POST		b-a1-b																
+R1433	R				no-cors	POST		b-a1-b	no-referrer															
+R1434	R				no-cors	POST		b-a1-b	unsafe-url															
+R1435	R				no-cors	POST		b-b-a																
+R1436	R				no-cors	POST		b-b-a	no-referrer															
+R1437	R				no-cors	POST		b-b-a	unsafe-url															
+R1438	R				no-cors	POST		b-b-a1																
+R1439	R				no-cors	POST		b-b-a1	no-referrer															
+R1440	R				no-cors	POST		b-b-a1	unsafe-url															
+R1441	R				no-cors	POST		b-b-b																
+R1442	R				no-cors	POST		b-b-b	no-referrer															
+R1443	R				no-cors	POST		b-b-b	unsafe-url															
+R1444	R				no-cors	POST	no-referrer	a																
+R1445	R				no-cors	POST	no-referrer	a1																
+R1446	R				no-cors	POST	no-referrer	b																
+R1447	R				no-cors	POST	no-referrer	a-a																
+R1448	R				no-cors	POST	no-referrer	a-a	no-referrer															
+R1449	R				no-cors	POST	no-referrer	a-a	unsafe-url															
+R1450	R				no-cors	POST	no-referrer	a-a1																
+R1451	R				no-cors	POST	no-referrer	a-a1	no-referrer															
+R1452	R				no-cors	POST	no-referrer	a-a1	unsafe-url															
+R1453	R				no-cors	POST	no-referrer	a-b																
+R1454	R				no-cors	POST	no-referrer	a-b	no-referrer															
+R1455	R				no-cors	POST	no-referrer	a-b	unsafe-url															
+R1456	R				no-cors	POST	no-referrer	a1-a																
+R1457	R				no-cors	POST	no-referrer	a1-a	no-referrer															
+R1458	R				no-cors	POST	no-referrer	a1-a	unsafe-url															
+R1459	R				no-cors	POST	no-referrer	a1-a1																
+R1460	R				no-cors	POST	no-referrer	a1-a1	no-referrer															
+R1461	R				no-cors	POST	no-referrer	a1-a1	unsafe-url															
+R1462	R				no-cors	POST	no-referrer	a1-b																
+R1463	R				no-cors	POST	no-referrer	a1-b	no-referrer															
+R1464	R				no-cors	POST	no-referrer	a1-b	unsafe-url															
+R1465	R				no-cors	POST	no-referrer	b-a																
+R1466	R				no-cors	POST	no-referrer	b-a	no-referrer															
+R1467	R				no-cors	POST	no-referrer	b-a	unsafe-url															
+R1468	R				no-cors	POST	no-referrer	b-a1																
+R1469	R				no-cors	POST	no-referrer	b-a1	no-referrer															
+R1470	R				no-cors	POST	no-referrer	b-a1	unsafe-url															
+R1471	R				no-cors	POST	no-referrer	b-b																
+R1472	R				no-cors	POST	no-referrer	b-b	no-referrer															
+R1473	R				no-cors	POST	no-referrer	b-b	unsafe-url															
+R1474	R				no-cors	POST	no-referrer	a-a-a																
+R1475	R				no-cors	POST	no-referrer	a-a-a	no-referrer															
+R1476	R				no-cors	POST	no-referrer	a-a-a	unsafe-url															
+R1477	R				no-cors	POST	no-referrer	a-a-a1																
+R1478	R				no-cors	POST	no-referrer	a-a-a1	no-referrer															
+R1479	R				no-cors	POST	no-referrer	a-a-a1	unsafe-url															
+R1480	R				no-cors	POST	no-referrer	a-a-b																
+R1481	R				no-cors	POST	no-referrer	a-a-b	no-referrer															
+R1482	R				no-cors	POST	no-referrer	a-a-b	unsafe-url															
+R1483	R				no-cors	POST	no-referrer	a-a1-a																
+R1484	R				no-cors	POST	no-referrer	a-a1-a	no-referrer															
+R1485	R				no-cors	POST	no-referrer	a-a1-a	unsafe-url															
+R1486	R				no-cors	POST	no-referrer	a-a1-a1																
+R1487	R				no-cors	POST	no-referrer	a-a1-a1	no-referrer															
+R1488	R				no-cors	POST	no-referrer	a-a1-a1	unsafe-url															
+R1489	R				no-cors	POST	no-referrer	a-a1-b																
+R1490	R				no-cors	POST	no-referrer	a-a1-b	no-referrer															
+R1491	R				no-cors	POST	no-referrer	a-a1-b	unsafe-url															
+R1492	R				no-cors	POST	no-referrer	a-b-a																
+R1493	R				no-cors	POST	no-referrer	a-b-a	no-referrer															
+R1494	R				no-cors	POST	no-referrer	a-b-a	unsafe-url															
+R1495	R				no-cors	POST	no-referrer	a-b-a1																
+R1496	R				no-cors	POST	no-referrer	a-b-a1	no-referrer															
+R1497	R				no-cors	POST	no-referrer	a-b-a1	unsafe-url															
+R1498	R				no-cors	POST	no-referrer	a-b-b																
+R1499	R				no-cors	POST	no-referrer	a-b-b	no-referrer															
+R1500	R				no-cors	POST	no-referrer	a-b-b	unsafe-url															
+R1501	R				no-cors	POST	no-referrer	a1-a-a																
+R1502	R				no-cors	POST	no-referrer	a1-a-a	no-referrer															
+R1503	R				no-cors	POST	no-referrer	a1-a-a	unsafe-url															
+R1504	R				no-cors	POST	no-referrer	a1-a-a1																
+R1505	R				no-cors	POST	no-referrer	a1-a-a1	no-referrer															
+R1506	R				no-cors	POST	no-referrer	a1-a-a1	unsafe-url															
+R1507	R				no-cors	POST	no-referrer	a1-a-b																
+R1508	R				no-cors	POST	no-referrer	a1-a-b	no-referrer															
+R1509	R				no-cors	POST	no-referrer	a1-a-b	unsafe-url															
+R1510	R				no-cors	POST	no-referrer	a1-a1-a																
+R1511	R				no-cors	POST	no-referrer	a1-a1-a	no-referrer															
+R1512	R				no-cors	POST	no-referrer	a1-a1-a	unsafe-url															
+R1513	R				no-cors	POST	no-referrer	a1-a1-a1																
+R1514	R				no-cors	POST	no-referrer	a1-a1-a1	no-referrer															
+R1515	R				no-cors	POST	no-referrer	a1-a1-a1	unsafe-url															
+R1516	R				no-cors	POST	no-referrer	a1-a1-b																
+R1517	R				no-cors	POST	no-referrer	a1-a1-b	no-referrer															
+R1518	R				no-cors	POST	no-referrer	a1-a1-b	unsafe-url															
+R1519	R				no-cors	POST	no-referrer	a1-b-a																
+R1520	R				no-cors	POST	no-referrer	a1-b-a	no-referrer															
+R1521	R				no-cors	POST	no-referrer	a1-b-a	unsafe-url															
+R1522	R				no-cors	POST	no-referrer	a1-b-a1																
+R1523	R				no-cors	POST	no-referrer	a1-b-a1	no-referrer															
+R1524	R				no-cors	POST	no-referrer	a1-b-a1	unsafe-url															
+R1525	R				no-cors	POST	no-referrer	a1-b-b																
+R1526	R				no-cors	POST	no-referrer	a1-b-b	no-referrer															
+R1527	R				no-cors	POST	no-referrer	a1-b-b	unsafe-url															
+R1528	R				no-cors	POST	no-referrer	b-a-a																
+R1529	R				no-cors	POST	no-referrer	b-a-a	no-referrer															
+R1530	R				no-cors	POST	no-referrer	b-a-a	unsafe-url															
+R1531	R				no-cors	POST	no-referrer	b-a-a1																
+R1532	R				no-cors	POST	no-referrer	b-a-a1	no-referrer															
+R1533	R				no-cors	POST	no-referrer	b-a-a1	unsafe-url															
+R1534	R				no-cors	POST	no-referrer	b-a-b																
+R1535	R				no-cors	POST	no-referrer	b-a-b	no-referrer															
+R1536	R				no-cors	POST	no-referrer	b-a-b	unsafe-url															
+R1537	R				no-cors	POST	no-referrer	b-a1-a																
+R1538	R				no-cors	POST	no-referrer	b-a1-a	no-referrer															
+R1539	R				no-cors	POST	no-referrer	b-a1-a	unsafe-url															
+R1540	R				no-cors	POST	no-referrer	b-a1-a1																
+R1541	R				no-cors	POST	no-referrer	b-a1-a1	no-referrer															
+R1542	R				no-cors	POST	no-referrer	b-a1-a1	unsafe-url															
+R1543	R				no-cors	POST	no-referrer	b-a1-b																
+R1544	R				no-cors	POST	no-referrer	b-a1-b	no-referrer															
+R1545	R				no-cors	POST	no-referrer	b-a1-b	unsafe-url															
+R1546	R				no-cors	POST	no-referrer	b-b-a																
+R1547	R				no-cors	POST	no-referrer	b-b-a	no-referrer															
+R1548	R				no-cors	POST	no-referrer	b-b-a	unsafe-url															
+R1549	R				no-cors	POST	no-referrer	b-b-a1																
+R1550	R				no-cors	POST	no-referrer	b-b-a1	no-referrer															
+R1551	R				no-cors	POST	no-referrer	b-b-a1	unsafe-url															
+R1552	R				no-cors	POST	no-referrer	b-b-b																
+R1553	R				no-cors	POST	no-referrer	b-b-b	no-referrer															
+R1554	R				no-cors	POST	no-referrer	b-b-b	unsafe-url															
+R1555	R				no-cors	POST	same-origin	a																
+R1556	R				no-cors	POST	same-origin	a1																
+R1557	R				no-cors	POST	same-origin	b																
+R1558	R				no-cors	POST	same-origin	a-a																
+R1559	R				no-cors	POST	same-origin	a-a	no-referrer															
+R1560	R				no-cors	POST	same-origin	a-a	unsafe-url															
+R1561	R				no-cors	POST	same-origin	a-a1																
+R1562	R				no-cors	POST	same-origin	a-a1	no-referrer															
+R1563	R				no-cors	POST	same-origin	a-a1	unsafe-url															
+R1564	R				no-cors	POST	same-origin	a-b																
+R1565	R				no-cors	POST	same-origin	a-b	no-referrer															
+R1566	R				no-cors	POST	same-origin	a-b	unsafe-url															
+R1567	R				no-cors	POST	same-origin	a1-a																
+R1568	R				no-cors	POST	same-origin	a1-a	no-referrer															
+R1569	R				no-cors	POST	same-origin	a1-a	unsafe-url															
+R1570	R				no-cors	POST	same-origin	a1-a1																
+R1571	R				no-cors	POST	same-origin	a1-a1	no-referrer															
+R1572	R				no-cors	POST	same-origin	a1-a1	unsafe-url															
+R1573	R				no-cors	POST	same-origin	a1-b																
+R1574	R				no-cors	POST	same-origin	a1-b	no-referrer															
+R1575	R				no-cors	POST	same-origin	a1-b	unsafe-url															
+R1576	R				no-cors	POST	same-origin	b-a																
+R1577	R				no-cors	POST	same-origin	b-a	no-referrer															
+R1578	R				no-cors	POST	same-origin	b-a	unsafe-url															
+R1579	R				no-cors	POST	same-origin	b-a1																
+R1580	R				no-cors	POST	same-origin	b-a1	no-referrer															
+R1581	R				no-cors	POST	same-origin	b-a1	unsafe-url															
+R1582	R				no-cors	POST	same-origin	b-b																
+R1583	R				no-cors	POST	same-origin	b-b	no-referrer															
+R1584	R				no-cors	POST	same-origin	b-b	unsafe-url															
+R1585	R				no-cors	POST	same-origin	a-a-a																
+R1586	R				no-cors	POST	same-origin	a-a-a	no-referrer															
+R1587	R				no-cors	POST	same-origin	a-a-a	unsafe-url															
+R1588	R				no-cors	POST	same-origin	a-a-a1																
+R1589	R				no-cors	POST	same-origin	a-a-a1	no-referrer															
+R1590	R				no-cors	POST	same-origin	a-a-a1	unsafe-url															
+R1591	R				no-cors	POST	same-origin	a-a-b																
+R1592	R				no-cors	POST	same-origin	a-a-b	no-referrer															
+R1593	R				no-cors	POST	same-origin	a-a-b	unsafe-url															
+R1594	R				no-cors	POST	same-origin	a-a1-a																
+R1595	R				no-cors	POST	same-origin	a-a1-a	no-referrer															
+R1596	R				no-cors	POST	same-origin	a-a1-a	unsafe-url															
+R1597	R				no-cors	POST	same-origin	a-a1-a1																
+R1598	R				no-cors	POST	same-origin	a-a1-a1	no-referrer															
+R1599	R				no-cors	POST	same-origin	a-a1-a1	unsafe-url															
+R1600	R				no-cors	POST	same-origin	a-a1-b																
+R1601	R				no-cors	POST	same-origin	a-a1-b	no-referrer															
+R1602	R				no-cors	POST	same-origin	a-a1-b	unsafe-url															
+R1603	R				no-cors	POST	same-origin	a-b-a																
+R1604	R				no-cors	POST	same-origin	a-b-a	no-referrer															
+R1605	R				no-cors	POST	same-origin	a-b-a	unsafe-url															
+R1606	R				no-cors	POST	same-origin	a-b-a1																
+R1607	R				no-cors	POST	same-origin	a-b-a1	no-referrer															
+R1608	R				no-cors	POST	same-origin	a-b-a1	unsafe-url															
+R1609	R				no-cors	POST	same-origin	a-b-b																
+R1610	R				no-cors	POST	same-origin	a-b-b	no-referrer															
+R1611	R				no-cors	POST	same-origin	a-b-b	unsafe-url															
+R1612	R				no-cors	POST	same-origin	a1-a-a																
+R1613	R				no-cors	POST	same-origin	a1-a-a	no-referrer															
+R1614	R				no-cors	POST	same-origin	a1-a-a	unsafe-url															
+R1615	R				no-cors	POST	same-origin	a1-a-a1																
+R1616	R				no-cors	POST	same-origin	a1-a-a1	no-referrer															
+R1617	R				no-cors	POST	same-origin	a1-a-a1	unsafe-url															
+R1618	R				no-cors	POST	same-origin	a1-a-b																
+R1619	R				no-cors	POST	same-origin	a1-a-b	no-referrer															
+R1620	R				no-cors	POST	same-origin	a1-a-b	unsafe-url															
+R1621	R				no-cors	POST	same-origin	a1-a1-a																
+R1622	R				no-cors	POST	same-origin	a1-a1-a	no-referrer															
+R1623	R				no-cors	POST	same-origin	a1-a1-a	unsafe-url															
+R1624	R				no-cors	POST	same-origin	a1-a1-a1																
+R1625	R				no-cors	POST	same-origin	a1-a1-a1	no-referrer															
+R1626	R				no-cors	POST	same-origin	a1-a1-a1	unsafe-url															
+R1627	R				no-cors	POST	same-origin	a1-a1-b																
+R1628	R				no-cors	POST	same-origin	a1-a1-b	no-referrer															
+R1629	R				no-cors	POST	same-origin	a1-a1-b	unsafe-url															
+R1630	R				no-cors	POST	same-origin	a1-b-a																
+R1631	R				no-cors	POST	same-origin	a1-b-a	no-referrer															
+R1632	R				no-cors	POST	same-origin	a1-b-a	unsafe-url															
+R1633	R				no-cors	POST	same-origin	a1-b-a1																
+R1634	R				no-cors	POST	same-origin	a1-b-a1	no-referrer															
+R1635	R				no-cors	POST	same-origin	a1-b-a1	unsafe-url															
+R1636	R				no-cors	POST	same-origin	a1-b-b																
+R1637	R				no-cors	POST	same-origin	a1-b-b	no-referrer															
+R1638	R				no-cors	POST	same-origin	a1-b-b	unsafe-url															
+R1639	R				no-cors	POST	same-origin	b-a-a																
+R1640	R				no-cors	POST	same-origin	b-a-a	no-referrer															
+R1641	R				no-cors	POST	same-origin	b-a-a	unsafe-url															
+R1642	R				no-cors	POST	same-origin	b-a-a1																
+R1643	R				no-cors	POST	same-origin	b-a-a1	no-referrer															
+R1644	R				no-cors	POST	same-origin	b-a-a1	unsafe-url															
+R1645	R				no-cors	POST	same-origin	b-a-b																
+R1646	R				no-cors	POST	same-origin	b-a-b	no-referrer															
+R1647	R				no-cors	POST	same-origin	b-a-b	unsafe-url															
+R1648	R				no-cors	POST	same-origin	b-a1-a																
+R1649	R				no-cors	POST	same-origin	b-a1-a	no-referrer															
+R1650	R				no-cors	POST	same-origin	b-a1-a	unsafe-url															
+R1651	R				no-cors	POST	same-origin	b-a1-a1																
+R1652	R				no-cors	POST	same-origin	b-a1-a1	no-referrer															
+R1653	R				no-cors	POST	same-origin	b-a1-a1	unsafe-url															
+R1654	R				no-cors	POST	same-origin	b-a1-b																
+R1655	R				no-cors	POST	same-origin	b-a1-b	no-referrer															
+R1656	R				no-cors	POST	same-origin	b-a1-b	unsafe-url															
+R1657	R				no-cors	POST	same-origin	b-b-a																
+R1658	R				no-cors	POST	same-origin	b-b-a	no-referrer															
+R1659	R				no-cors	POST	same-origin	b-b-a	unsafe-url															
+R1660	R				no-cors	POST	same-origin	b-b-a1																
+R1661	R				no-cors	POST	same-origin	b-b-a1	no-referrer															
+R1662	R				no-cors	POST	same-origin	b-b-a1	unsafe-url															
+R1663	R				no-cors	POST	same-origin	b-b-b																
+R1664	R				no-cors	POST	same-origin	b-b-b	no-referrer															
+R1665	R				no-cors	POST	same-origin	b-b-b	unsafe-url															
+R1666	R				no-cors	POST	unsafe-url	a																
+R1667	R				no-cors	POST	unsafe-url	a1																
+R1668	R				no-cors	POST	unsafe-url	b																
+R1669	R				no-cors	POST	unsafe-url	a-a																
+R1670	R				no-cors	POST	unsafe-url	a-a	no-referrer															
+R1671	R				no-cors	POST	unsafe-url	a-a	unsafe-url															
+R1672	R				no-cors	POST	unsafe-url	a-a1																
+R1673	R				no-cors	POST	unsafe-url	a-a1	no-referrer															
+R1674	R				no-cors	POST	unsafe-url	a-a1	unsafe-url															
+R1675	R				no-cors	POST	unsafe-url	a-b																
+R1676	R				no-cors	POST	unsafe-url	a-b	no-referrer															
+R1677	R				no-cors	POST	unsafe-url	a-b	unsafe-url															
+R1678	R				no-cors	POST	unsafe-url	a1-a																
+R1679	R				no-cors	POST	unsafe-url	a1-a	no-referrer															
+R1680	R				no-cors	POST	unsafe-url	a1-a	unsafe-url															
+R1681	R				no-cors	POST	unsafe-url	a1-a1																
+R1682	R				no-cors	POST	unsafe-url	a1-a1	no-referrer															
+R1683	R				no-cors	POST	unsafe-url	a1-a1	unsafe-url															
+R1684	R				no-cors	POST	unsafe-url	a1-b																
+R1685	R				no-cors	POST	unsafe-url	a1-b	no-referrer															
+R1686	R				no-cors	POST	unsafe-url	a1-b	unsafe-url															
+R1687	R				no-cors	POST	unsafe-url	b-a																
+R1688	R				no-cors	POST	unsafe-url	b-a	no-referrer															
+R1689	R				no-cors	POST	unsafe-url	b-a	unsafe-url															
+R1690	R				no-cors	POST	unsafe-url	b-a1																
+R1691	R				no-cors	POST	unsafe-url	b-a1	no-referrer															
+R1692	R				no-cors	POST	unsafe-url	b-a1	unsafe-url															
+R1693	R				no-cors	POST	unsafe-url	b-b																
+R1694	R				no-cors	POST	unsafe-url	b-b	no-referrer															
+R1695	R				no-cors	POST	unsafe-url	b-b	unsafe-url															
+R1696	R				no-cors	POST	unsafe-url	a-a-a																
+R1697	R				no-cors	POST	unsafe-url	a-a-a	no-referrer															
+R1698	R				no-cors	POST	unsafe-url	a-a-a	unsafe-url															
+R1699	R				no-cors	POST	unsafe-url	a-a-a1																
+R1700	R				no-cors	POST	unsafe-url	a-a-a1	no-referrer															
+R1701	R				no-cors	POST	unsafe-url	a-a-a1	unsafe-url															
+R1702	R				no-cors	POST	unsafe-url	a-a-b																
+R1703	R				no-cors	POST	unsafe-url	a-a-b	no-referrer															
+R1704	R				no-cors	POST	unsafe-url	a-a-b	unsafe-url															
+R1705	R				no-cors	POST	unsafe-url	a-a1-a																
+R1706	R				no-cors	POST	unsafe-url	a-a1-a	no-referrer															
+R1707	R				no-cors	POST	unsafe-url	a-a1-a	unsafe-url															
+R1708	R				no-cors	POST	unsafe-url	a-a1-a1																
+R1709	R				no-cors	POST	unsafe-url	a-a1-a1	no-referrer															
+R1710	R				no-cors	POST	unsafe-url	a-a1-a1	unsafe-url															
+R1711	R				no-cors	POST	unsafe-url	a-a1-b																
+R1712	R				no-cors	POST	unsafe-url	a-a1-b	no-referrer															
+R1713	R				no-cors	POST	unsafe-url	a-a1-b	unsafe-url															
+R1714	R				no-cors	POST	unsafe-url	a-b-a																
+R1715	R				no-cors	POST	unsafe-url	a-b-a	no-referrer															
+R1716	R				no-cors	POST	unsafe-url	a-b-a	unsafe-url															
+R1717	R				no-cors	POST	unsafe-url	a-b-a1																
+R1718	R				no-cors	POST	unsafe-url	a-b-a1	no-referrer															
+R1719	R				no-cors	POST	unsafe-url	a-b-a1	unsafe-url															
+R1720	R				no-cors	POST	unsafe-url	a-b-b																
+R1721	R				no-cors	POST	unsafe-url	a-b-b	no-referrer															
+R1722	R				no-cors	POST	unsafe-url	a-b-b	unsafe-url															
+R1723	R				no-cors	POST	unsafe-url	a1-a-a																
+R1724	R				no-cors	POST	unsafe-url	a1-a-a	no-referrer															
+R1725	R				no-cors	POST	unsafe-url	a1-a-a	unsafe-url															
+R1726	R				no-cors	POST	unsafe-url	a1-a-a1																
+R1727	R				no-cors	POST	unsafe-url	a1-a-a1	no-referrer															
+R1728	R				no-cors	POST	unsafe-url	a1-a-a1	unsafe-url															
+R1729	R				no-cors	POST	unsafe-url	a1-a-b																
+R1730	R				no-cors	POST	unsafe-url	a1-a-b	no-referrer															
+R1731	R				no-cors	POST	unsafe-url	a1-a-b	unsafe-url															
+R1732	R				no-cors	POST	unsafe-url	a1-a1-a																
+R1733	R				no-cors	POST	unsafe-url	a1-a1-a	no-referrer															
+R1734	R				no-cors	POST	unsafe-url	a1-a1-a	unsafe-url															
+R1735	R				no-cors	POST	unsafe-url	a1-a1-a1																
+R1736	R				no-cors	POST	unsafe-url	a1-a1-a1	no-referrer															
+R1737	R				no-cors	POST	unsafe-url	a1-a1-a1	unsafe-url															
+R1738	R				no-cors	POST	unsafe-url	a1-a1-b																
+R1739	R				no-cors	POST	unsafe-url	a1-a1-b	no-referrer															
+R1740	R				no-cors	POST	unsafe-url	a1-a1-b	unsafe-url															
+R1741	R				no-cors	POST	unsafe-url	a1-b-a																
+R1742	R				no-cors	POST	unsafe-url	a1-b-a	no-referrer															
+R1743	R				no-cors	POST	unsafe-url	a1-b-a	unsafe-url															
+R1744	R				no-cors	POST	unsafe-url	a1-b-a1																
+R1745	R				no-cors	POST	unsafe-url	a1-b-a1	no-referrer															
+R1746	R				no-cors	POST	unsafe-url	a1-b-a1	unsafe-url															
+R1747	R				no-cors	POST	unsafe-url	a1-b-b																
+R1748	R				no-cors	POST	unsafe-url	a1-b-b	no-referrer															
+R1749	R				no-cors	POST	unsafe-url	a1-b-b	unsafe-url															
+R1750	R				no-cors	POST	unsafe-url	b-a-a																
+R1751	R				no-cors	POST	unsafe-url	b-a-a	no-referrer															
+R1752	R				no-cors	POST	unsafe-url	b-a-a	unsafe-url															
+R1753	R				no-cors	POST	unsafe-url	b-a-a1																
+R1754	R				no-cors	POST	unsafe-url	b-a-a1	no-referrer															
+R1755	R				no-cors	POST	unsafe-url	b-a-a1	unsafe-url															
+R1756	R				no-cors	POST	unsafe-url	b-a-b																
+R1757	R				no-cors	POST	unsafe-url	b-a-b	no-referrer															
+R1758	R				no-cors	POST	unsafe-url	b-a-b	unsafe-url															
+R1759	R				no-cors	POST	unsafe-url	b-a1-a																
+R1760	R				no-cors	POST	unsafe-url	b-a1-a	no-referrer															
+R1761	R				no-cors	POST	unsafe-url	b-a1-a	unsafe-url															
+R1762	R				no-cors	POST	unsafe-url	b-a1-a1																
+R1763	R				no-cors	POST	unsafe-url	b-a1-a1	no-referrer															
+R1764	R				no-cors	POST	unsafe-url	b-a1-a1	unsafe-url															
+R1765	R				no-cors	POST	unsafe-url	b-a1-b																
+R1766	R				no-cors	POST	unsafe-url	b-a1-b	no-referrer															
+R1767	R				no-cors	POST	unsafe-url	b-a1-b	unsafe-url															
+R1768	R				no-cors	POST	unsafe-url	b-b-a																
+R1769	R				no-cors	POST	unsafe-url	b-b-a	no-referrer															
+R1770	R				no-cors	POST	unsafe-url	b-b-a	unsafe-url															
+R1771	R				no-cors	POST	unsafe-url	b-b-a1																
+R1772	R				no-cors	POST	unsafe-url	b-b-a1	no-referrer															
+R1773	R				no-cors	POST	unsafe-url	b-b-a1	unsafe-url															
+R1774	R				no-cors	POST	unsafe-url	b-b-b																
+R1775	R				no-cors	POST	unsafe-url	b-b-b	no-referrer															
+R1776	R				no-cors	POST	unsafe-url	b-b-b	unsafe-url															
+K0001	K							a		none														
+K0002	K							a		a1														
+K0003	K							a		b														
+K0004	K							a1		none														
+K0005	K							a1		a1														
+K0006	K							a1		b														
+K0007	K							b		none														
+K0008	K							b		a1														
+K0009	K							b		b														
+K0010	K							a-a		none														
+K0011	K							a-a		a1														
+K0012	K							a-a		b														
+K0013	K							a-a1		none														
+K0014	K							a-a1		a1														
+K0015	K							a-a1		b														
+K0016	K							a-b		none														
+K0017	K							a-b		a1														
+K0018	K							a-b		b														
+K0019	K							a1-a		none														
+K0020	K							a1-a		a1														
+K0021	K							a1-a		b														
+K0022	K							a1-a1		none														
+K0023	K							a1-a1		a1														
+K0024	K							a1-a1		b														
+K0025	K							a1-b		none														
+K0026	K							a1-b		a1														
+K0027	K							a1-b		b														
+K0028	K							b-a		none														
+K0029	K							b-a		a1														
+K0030	K							b-a		b														
+K0031	K							b-a1		none														
+K0032	K							b-a1		a1														
+K0033	K							b-a1		b														
+K0034	K							b-b		none														
+K0035	K							b-b		a1														
+K0036	K							b-b		b														
+K0037	K							a-a-a		none														
+K0038	K							a-a-a		a1														
+K0039	K							a-a-a		b														
+K0040	K							a-a-a1		none														
+K0041	K							a-a-a1		a1														
+K0042	K							a-a-a1		b														
+K0043	K							a-a-b		none														
+K0044	K							a-a-b		a1														
+K0045	K							a-a-b		b														
+K0046	K							a-a1-a		none														
+K0047	K							a-a1-a		a1														
+K0048	K							a-a1-a		b														
+K0049	K							a-a1-a1		none														
+K0050	K							a-a1-a1		a1														
+K0051	K							a-a1-a1		b														
+K0052	K							a-a1-b		none														
+K0053	K							a-a1-b		a1														
+K0054	K							a-a1-b		b														
+K0055	K							a-b-a		none														
+K0056	K							a-b-a		a1														
+K0057	K							a-b-a		b														
+K0058	K							a-b-a1		none														
+K0059	K							a-b-a1		a1														
+K0060	K							a-b-a1		b														
+K0061	K							a-b-b		none														
+K0062	K							a-b-b		a1														
+K0063	K							a-b-b		b														
+K0064	K							a1-a-a		none														
+K0065	K							a1-a-a		a1														
+K0066	K							a1-a-a		b														
+K0067	K							a1-a-a1		none														
+K0068	K							a1-a-a1		a1														
+K0069	K							a1-a-a1		b														
+K0070	K							a1-a-b		none														
+K0071	K							a1-a-b		a1														
+K0072	K							a1-a-b		b														
+K0073	K							a1-a1-a		none														
+K0074	K							a1-a1-a		a1														
+K0075	K							a1-a1-a		b														
+K0076	K							a1-a1-a1		none														
+K0077	K							a1-a1-a1		a1														
+K0078	K							a1-a1-a1		b														
+K0079	K							a1-a1-b		none														
+K0080	K							a1-a1-b		a1														
+K0081	K							a1-a1-b		b														
+K0082	K							a1-b-a		none														
+K0083	K							a1-b-a		a1														
+K0084	K							a1-b-a		b														
+K0085	K							a1-b-a1		none														
+K0086	K							a1-b-a1		a1														
+K0087	K							a1-b-a1		b														
+K0088	K							a1-b-b		none														
+K0089	K							a1-b-b		a1														
+K0090	K							a1-b-b		b														
+K0091	K							b-a-a		none														
+K0092	K							b-a-a		a1														
+K0093	K							b-a-a		b														
+K0094	K							b-a-a1		none														
+K0095	K							b-a-a1		a1														
+K0096	K							b-a-a1		b														
+K0097	K							b-a-b		none														
+K0098	K							b-a-b		a1														
+K0099	K							b-a-b		b														
+K0100	K							b-a1-a		none														
+K0101	K							b-a1-a		a1														
+K0102	K							b-a1-a		b														
+K0103	K							b-a1-a1		none														
+K0104	K							b-a1-a1		a1														
+K0105	K							b-a1-a1		b														
+K0106	K							b-a1-b		none														
+K0107	K							b-a1-b		a1														
+K0108	K							b-a1-b		b														
+K0109	K							b-b-a		none														
+K0110	K							b-b-a		a1														
+K0111	K							b-b-a		b														
+K0112	K							b-b-a1		none														
+K0113	K							b-b-a1		a1														
+K0114	K							b-b-a1		b														
+K0115	K							b-b-b		none														
+K0116	K							b-b-b		a1														
+K0117	K							b-b-b		b														
+D0001	D										a	none	no											
+D0002	D										a	none	yes											
+D0003	D										a	p	no											
+D0004	D										a	p	yes											
+D0005	D										a	c	no											
+D0006	D										a	c	yes											
+D0007	D										a	both	no											
+D0008	D										a	both	yes											
+D0009	D										a1	none	no											
+D0010	D										a1	none	yes											
+D0011	D										a1	p	no											
+D0012	D										a1	p	yes											
+D0013	D										a1	c	no											
+D0014	D										a1	c	yes											
+D0015	D										a1	both	no											
+D0016	D										a1	both	yes											
+D0017	D										b	none	no											
+D0018	D										b	none	yes											
+D0019	D										b	p	no											
+D0020	D										b	p	yes											
+D0021	D										b	c	no											
+D0022	D										b	c	yes											
+D0023	D										b	both	no											
+D0024	D										b	both	yes											
+N0001	N													a	none	ifr-after								
+N0002	N													a	none	ifr-insert								
+N0003	N													a	none	popup								
+N0004	N													a	before	ifr-after								
+N0005	N													a	before	ifr-insert								
+N0006	N													a	before	popup								
+N0007	N													a	after	ifr-after								
+N0008	N													a	after	ifr-insert								
+N0009	N													a	after	popup								
+N0010	N													a1	none	ifr-after								
+N0011	N													a1	none	ifr-insert								
+N0012	N													a1	none	popup								
+N0013	N													a1	before	ifr-after								
+N0014	N													a1	before	ifr-insert								
+N0015	N													a1	before	popup								
+N0016	N													a1	after	ifr-after								
+N0017	N													a1	after	ifr-insert								
+N0018	N													a1	after	popup								
+N0019	N													b	none	ifr-after								
+N0020	N													b	none	ifr-insert								
+N0021	N													b	none	popup								
+N0022	N													b	before	ifr-after								
+N0023	N													b	before	ifr-insert								
+N0024	N													b	before	popup								
+N0025	N													b	after	ifr-after								
+N0026	N													b	after	ifr-insert								
+N0027	N													b	after	popup								
+W0001	W																unsafe-none	unsafe-none	ded	unsafe-none				
+W0002	W																unsafe-none	unsafe-none	ded	require-corp				
+W0003	W																unsafe-none	unsafe-none	ded	credentialless				
+W0004	W																unsafe-none	unsafe-none	shared	unsafe-none				
+W0005	W																unsafe-none	unsafe-none	shared	require-corp				
+W0006	W																unsafe-none	unsafe-none	shared	credentialless				
+W0007	W																unsafe-none	unsafe-none	blob	n/a				
+W0008	W																same-origin	require-corp	ded	unsafe-none				
+W0009	W																same-origin	require-corp	ded	require-corp				
+W0010	W																same-origin	require-corp	ded	credentialless				
+W0011	W																same-origin	require-corp	shared	unsafe-none				
+W0012	W																same-origin	require-corp	shared	require-corp				
+W0013	W																same-origin	require-corp	shared	credentialless				
+W0014	W																same-origin	require-corp	blob	n/a				
+W0015	W																same-origin	credentialless	ded	unsafe-none				
+W0016	W																same-origin	credentialless	ded	require-corp				
+W0017	W																same-origin	credentialless	ded	credentialless				
+W0018	W																same-origin	credentialless	shared	unsafe-none				
+W0019	W																same-origin	credentialless	shared	require-corp				
+W0020	W																same-origin	credentialless	shared	credentialless				
+W0021	W																same-origin	credentialless	blob	n/a				
+W0022	W																unsafe-none	require-corp	ded	unsafe-none				
+W0023	W																unsafe-none	require-corp	ded	require-corp				
+W0024	W																unsafe-none	require-corp	ded	credentialless				
+W0025	W																unsafe-none	require-corp	shared	unsafe-none				
+W0026	W																unsafe-none	require-corp	shared	require-corp				
+W0027	W																unsafe-none	require-corp	shared	credentialless				
+W0028	W																unsafe-none	require-corp	blob	n/a				
+F0001	F																	unsafe-none			a1	none	omit	none
+F0002	F																	unsafe-none			a1	none	omit	same-origin
+F0003	F																	unsafe-none			a1	none	omit	cross-origin
+F0004	F																	unsafe-none			a1	none	same-origin	none
+F0005	F																	unsafe-none			a1	none	same-origin	same-origin
+F0006	F																	unsafe-none			a1	none	same-origin	cross-origin
+F0007	F																	unsafe-none			a1	none	include	none
+F0008	F																	unsafe-none			a1	none	include	same-origin
+F0009	F																	unsafe-none			a1	none	include	cross-origin
+F0010	F																	unsafe-none			a1	*	omit	none
+F0011	F																	unsafe-none			a1	*	omit	same-origin
+F0012	F																	unsafe-none			a1	*	omit	cross-origin
+F0013	F																	unsafe-none			a1	*	same-origin	none
+F0014	F																	unsafe-none			a1	*	same-origin	same-origin
+F0015	F																	unsafe-none			a1	*	same-origin	cross-origin
+F0016	F																	unsafe-none			a1	*	include	none
+F0017	F																	unsafe-none			a1	*	include	same-origin
+F0018	F																	unsafe-none			a1	*	include	cross-origin
+F0019	F																	unsafe-none			a1	origin	omit	none
+F0020	F																	unsafe-none			a1	origin	omit	same-origin
+F0021	F																	unsafe-none			a1	origin	omit	cross-origin
+F0022	F																	unsafe-none			a1	origin	same-origin	none
+F0023	F																	unsafe-none			a1	origin	same-origin	same-origin
+F0024	F																	unsafe-none			a1	origin	same-origin	cross-origin
+F0025	F																	unsafe-none			a1	origin	include	none
+F0026	F																	unsafe-none			a1	origin	include	same-origin
+F0027	F																	unsafe-none			a1	origin	include	cross-origin
+F0028	F																	unsafe-none			a1	origin-acac	omit	none
+F0029	F																	unsafe-none			a1	origin-acac	omit	same-origin
+F0030	F																	unsafe-none			a1	origin-acac	omit	cross-origin
+F0031	F																	unsafe-none			a1	origin-acac	same-origin	none
+F0032	F																	unsafe-none			a1	origin-acac	same-origin	same-origin
+F0033	F																	unsafe-none			a1	origin-acac	same-origin	cross-origin
+F0034	F																	unsafe-none			a1	origin-acac	include	none
+F0035	F																	unsafe-none			a1	origin-acac	include	same-origin
+F0036	F																	unsafe-none			a1	origin-acac	include	cross-origin
+F0037	F																	unsafe-none			b	none	omit	none
+F0038	F																	unsafe-none			b	none	omit	same-origin
+F0039	F																	unsafe-none			b	none	omit	cross-origin
+F0040	F																	unsafe-none			b	none	same-origin	none
+F0041	F																	unsafe-none			b	none	same-origin	same-origin
+F0042	F																	unsafe-none			b	none	same-origin	cross-origin
+F0043	F																	unsafe-none			b	none	include	none
+F0044	F																	unsafe-none			b	none	include	same-origin
+F0045	F																	unsafe-none			b	none	include	cross-origin
+F0046	F																	unsafe-none			b	*	omit	none
+F0047	F																	unsafe-none			b	*	omit	same-origin
+F0048	F																	unsafe-none			b	*	omit	cross-origin
+F0049	F																	unsafe-none			b	*	same-origin	none
+F0050	F																	unsafe-none			b	*	same-origin	same-origin
+F0051	F																	unsafe-none			b	*	same-origin	cross-origin
+F0052	F																	unsafe-none			b	*	include	none
+F0053	F																	unsafe-none			b	*	include	same-origin
+F0054	F																	unsafe-none			b	*	include	cross-origin
+F0055	F																	unsafe-none			b	origin	omit	none
+F0056	F																	unsafe-none			b	origin	omit	same-origin
+F0057	F																	unsafe-none			b	origin	omit	cross-origin
+F0058	F																	unsafe-none			b	origin	same-origin	none
+F0059	F																	unsafe-none			b	origin	same-origin	same-origin
+F0060	F																	unsafe-none			b	origin	same-origin	cross-origin
+F0061	F																	unsafe-none			b	origin	include	none
+F0062	F																	unsafe-none			b	origin	include	same-origin
+F0063	F																	unsafe-none			b	origin	include	cross-origin
+F0064	F																	unsafe-none			b	origin-acac	omit	none
+F0065	F																	unsafe-none			b	origin-acac	omit	same-origin
+F0066	F																	unsafe-none			b	origin-acac	omit	cross-origin
+F0067	F																	unsafe-none			b	origin-acac	same-origin	none
+F0068	F																	unsafe-none			b	origin-acac	same-origin	same-origin
+F0069	F																	unsafe-none			b	origin-acac	same-origin	cross-origin
+F0070	F																	unsafe-none			b	origin-acac	include	none
+F0071	F																	unsafe-none			b	origin-acac	include	same-origin
+F0072	F																	unsafe-none			b	origin-acac	include	cross-origin
+F0073	F																	require-corp			a1	none	omit	none
+F0074	F																	require-corp			a1	none	omit	same-origin
+F0075	F																	require-corp			a1	none	omit	cross-origin
+F0076	F																	require-corp			a1	none	same-origin	none
+F0077	F																	require-corp			a1	none	same-origin	same-origin
+F0078	F																	require-corp			a1	none	same-origin	cross-origin
+F0079	F																	require-corp			a1	none	include	none
+F0080	F																	require-corp			a1	none	include	same-origin
+F0081	F																	require-corp			a1	none	include	cross-origin
+F0082	F																	require-corp			a1	*	omit	none
+F0083	F																	require-corp			a1	*	omit	same-origin
+F0084	F																	require-corp			a1	*	omit	cross-origin
+F0085	F																	require-corp			a1	*	same-origin	none
+F0086	F																	require-corp			a1	*	same-origin	same-origin
+F0087	F																	require-corp			a1	*	same-origin	cross-origin
+F0088	F																	require-corp			a1	*	include	none
+F0089	F																	require-corp			a1	*	include	same-origin
+F0090	F																	require-corp			a1	*	include	cross-origin
+F0091	F																	require-corp			a1	origin	omit	none
+F0092	F																	require-corp			a1	origin	omit	same-origin
+F0093	F																	require-corp			a1	origin	omit	cross-origin
+F0094	F																	require-corp			a1	origin	same-origin	none
+F0095	F																	require-corp			a1	origin	same-origin	same-origin
+F0096	F																	require-corp			a1	origin	same-origin	cross-origin
+F0097	F																	require-corp			a1	origin	include	none
+F0098	F																	require-corp			a1	origin	include	same-origin
+F0099	F																	require-corp			a1	origin	include	cross-origin
+F0100	F																	require-corp			a1	origin-acac	omit	none
+F0101	F																	require-corp			a1	origin-acac	omit	same-origin
+F0102	F																	require-corp			a1	origin-acac	omit	cross-origin
+F0103	F																	require-corp			a1	origin-acac	same-origin	none
+F0104	F																	require-corp			a1	origin-acac	same-origin	same-origin
+F0105	F																	require-corp			a1	origin-acac	same-origin	cross-origin
+F0106	F																	require-corp			a1	origin-acac	include	none
+F0107	F																	require-corp			a1	origin-acac	include	same-origin
+F0108	F																	require-corp			a1	origin-acac	include	cross-origin
+F0109	F																	require-corp			b	none	omit	none
+F0110	F																	require-corp			b	none	omit	same-origin
+F0111	F																	require-corp			b	none	omit	cross-origin
+F0112	F																	require-corp			b	none	same-origin	none
+F0113	F																	require-corp			b	none	same-origin	same-origin
+F0114	F																	require-corp			b	none	same-origin	cross-origin
+F0115	F																	require-corp			b	none	include	none
+F0116	F																	require-corp			b	none	include	same-origin
+F0117	F																	require-corp			b	none	include	cross-origin
+F0118	F																	require-corp			b	*	omit	none
+F0119	F																	require-corp			b	*	omit	same-origin
+F0120	F																	require-corp			b	*	omit	cross-origin
+F0121	F																	require-corp			b	*	same-origin	none
+F0122	F																	require-corp			b	*	same-origin	same-origin
+F0123	F																	require-corp			b	*	same-origin	cross-origin
+F0124	F																	require-corp			b	*	include	none
+F0125	F																	require-corp			b	*	include	same-origin
+F0126	F																	require-corp			b	*	include	cross-origin
+F0127	F																	require-corp			b	origin	omit	none
+F0128	F																	require-corp			b	origin	omit	same-origin
+F0129	F																	require-corp			b	origin	omit	cross-origin
+F0130	F																	require-corp			b	origin	same-origin	none
+F0131	F																	require-corp			b	origin	same-origin	same-origin
+F0132	F																	require-corp			b	origin	same-origin	cross-origin
+F0133	F																	require-corp			b	origin	include	none
+F0134	F																	require-corp			b	origin	include	same-origin
+F0135	F																	require-corp			b	origin	include	cross-origin
+F0136	F																	require-corp			b	origin-acac	omit	none
+F0137	F																	require-corp			b	origin-acac	omit	same-origin
+F0138	F																	require-corp			b	origin-acac	omit	cross-origin
+F0139	F																	require-corp			b	origin-acac	same-origin	none
+F0140	F																	require-corp			b	origin-acac	same-origin	same-origin
+F0141	F																	require-corp			b	origin-acac	same-origin	cross-origin
+F0142	F																	require-corp			b	origin-acac	include	none
+F0143	F																	require-corp			b	origin-acac	include	same-origin
+F0144	F																	require-corp			b	origin-acac	include	cross-origin
+F0145	F																	credentialless			a1	none	omit	none
+F0146	F																	credentialless			a1	none	omit	same-origin
+F0147	F																	credentialless			a1	none	omit	cross-origin
+F0148	F																	credentialless			a1	none	same-origin	none
+F0149	F																	credentialless			a1	none	same-origin	same-origin
+F0150	F																	credentialless			a1	none	same-origin	cross-origin
+F0151	F																	credentialless			a1	none	include	none
+F0152	F																	credentialless			a1	none	include	same-origin
+F0153	F																	credentialless			a1	none	include	cross-origin
+F0154	F																	credentialless			a1	*	omit	none
+F0155	F																	credentialless			a1	*	omit	same-origin
+F0156	F																	credentialless			a1	*	omit	cross-origin
+F0157	F																	credentialless			a1	*	same-origin	none
+F0158	F																	credentialless			a1	*	same-origin	same-origin
+F0159	F																	credentialless			a1	*	same-origin	cross-origin
+F0160	F																	credentialless			a1	*	include	none
+F0161	F																	credentialless			a1	*	include	same-origin
+F0162	F																	credentialless			a1	*	include	cross-origin
+F0163	F																	credentialless			a1	origin	omit	none
+F0164	F																	credentialless			a1	origin	omit	same-origin
+F0165	F																	credentialless			a1	origin	omit	cross-origin
+F0166	F																	credentialless			a1	origin	same-origin	none
+F0167	F																	credentialless			a1	origin	same-origin	same-origin
+F0168	F																	credentialless			a1	origin	same-origin	cross-origin
+F0169	F																	credentialless			a1	origin	include	none
+F0170	F																	credentialless			a1	origin	include	same-origin
+F0171	F																	credentialless			a1	origin	include	cross-origin
+F0172	F																	credentialless			a1	origin-acac	omit	none
+F0173	F																	credentialless			a1	origin-acac	omit	same-origin
+F0174	F																	credentialless			a1	origin-acac	omit	cross-origin
+F0175	F																	credentialless			a1	origin-acac	same-origin	none
+F0176	F																	credentialless			a1	origin-acac	same-origin	same-origin
+F0177	F																	credentialless			a1	origin-acac	same-origin	cross-origin
+F0178	F																	credentialless			a1	origin-acac	include	none
+F0179	F																	credentialless			a1	origin-acac	include	same-origin
+F0180	F																	credentialless			a1	origin-acac	include	cross-origin
+F0181	F																	credentialless			b	none	omit	none
+F0182	F																	credentialless			b	none	omit	same-origin
+F0183	F																	credentialless			b	none	omit	cross-origin
+F0184	F																	credentialless			b	none	same-origin	none
+F0185	F																	credentialless			b	none	same-origin	same-origin
+F0186	F																	credentialless			b	none	same-origin	cross-origin
+F0187	F																	credentialless			b	none	include	none
+F0188	F																	credentialless			b	none	include	same-origin
+F0189	F																	credentialless			b	none	include	cross-origin
+F0190	F																	credentialless			b	*	omit	none
+F0191	F																	credentialless			b	*	omit	same-origin
+F0192	F																	credentialless			b	*	omit	cross-origin
+F0193	F																	credentialless			b	*	same-origin	none
+F0194	F																	credentialless			b	*	same-origin	same-origin
+F0195	F																	credentialless			b	*	same-origin	cross-origin
+F0196	F																	credentialless			b	*	include	none
+F0197	F																	credentialless			b	*	include	same-origin
+F0198	F																	credentialless			b	*	include	cross-origin
+F0199	F																	credentialless			b	origin	omit	none
+F0200	F																	credentialless			b	origin	omit	same-origin
+F0201	F																	credentialless			b	origin	omit	cross-origin
+F0202	F																	credentialless			b	origin	same-origin	none
+F0203	F																	credentialless			b	origin	same-origin	same-origin
+F0204	F																	credentialless			b	origin	same-origin	cross-origin
+F0205	F																	credentialless			b	origin	include	none
+F0206	F																	credentialless			b	origin	include	same-origin
+F0207	F																	credentialless			b	origin	include	cross-origin
+F0208	F																	credentialless			b	origin-acac	omit	none
+F0209	F																	credentialless			b	origin-acac	omit	same-origin
+F0210	F																	credentialless			b	origin-acac	omit	cross-origin
+F0211	F																	credentialless			b	origin-acac	same-origin	none
+F0212	F																	credentialless			b	origin-acac	same-origin	same-origin
+F0213	F																	credentialless			b	origin-acac	same-origin	cross-origin
+F0214	F																	credentialless			b	origin-acac	include	none
+F0215	F																	credentialless			b	origin-acac	include	same-origin
+F0216	F																	credentialless			b	origin-acac	include	cross-origin

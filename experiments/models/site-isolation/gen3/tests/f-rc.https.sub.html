@@ -1,0 +1,45 @@
+<!doctype html>
+<meta charset=utf-8>
+<meta name=timeout content=long>
+<title>gen3 f-rc.https.sub.html</title>
+<script src=/resources/testharness.js></script>
+<script src=/resources/testharnessreport.js></script>
+<script src=/common/utils.js></script>
+<script src=/common/dispatcher/dispatcher.js></script>
+<script src=resources/g3.js></script>
+<body>
+<script>
+const HOSTS = {a: "{{host}}", a1: "{{hosts[][www1]}}", b: "{{hosts[alt][]}}"};
+const PORT = {{ports[https][0]}};
+const SCEN = [
+{"te":"require-corp","tg":"a1","acao":"none","cred":"omit","corp":"cross-origin","id":"F0075"},
+{"te":"require-corp","tg":"a1","acao":"none","cred":"same-origin","corp":"same-origin","id":"F0077"},
+{"te":"require-corp","tg":"a1","acao":"none","cred":"include","corp":"none","id":"F0079"},
+{"te":"require-corp","tg":"a1","acao":"*","cred":"omit","corp":"same-origin","id":"F0083"},
+{"te":"require-corp","tg":"a1","acao":"*","cred":"same-origin","corp":"none","id":"F0085"},
+{"te":"require-corp","tg":"a1","acao":"*","cred":"include","corp":"none","id":"F0088"},
+{"te":"require-corp","tg":"a1","acao":"origin","cred":"same-origin","corp":"cross-origin","id":"F0096"},
+{"te":"require-corp","tg":"a1","acao":"origin","cred":"include","corp":"none","id":"F0097"},
+{"te":"require-corp","tg":"a1","acao":"origin","cred":"include","corp":"same-origin","id":"F0098"},
+{"te":"require-corp","tg":"a1","acao":"origin","cred":"include","corp":"cross-origin","id":"F0099"},
+{"te":"require-corp","tg":"a1","acao":"origin-acac","cred":"omit","corp":"none","id":"F0100"},
+{"te":"require-corp","tg":"a1","acao":"origin-acac","cred":"omit","corp":"cross-origin","id":"F0102"},
+{"te":"require-corp","tg":"a1","acao":"origin-acac","cred":"same-origin","corp":"none","id":"F0103"},
+{"te":"require-corp","tg":"a1","acao":"origin-acac","cred":"same-origin","corp":"same-origin","id":"F0104"},
+{"te":"require-corp","tg":"b","acao":"none","cred":"omit","corp":"none","id":"F0109"},
+{"te":"require-corp","tg":"b","acao":"none","cred":"omit","corp":"cross-origin","id":"F0111"},
+{"te":"require-corp","tg":"b","acao":"none","cred":"same-origin","corp":"same-origin","id":"F0113"},
+{"te":"require-corp","tg":"b","acao":"none","cred":"same-origin","corp":"cross-origin","id":"F0114"},
+{"te":"require-corp","tg":"b","acao":"*","cred":"omit","corp":"cross-origin","id":"F0120"},
+{"te":"require-corp","tg":"b","acao":"*","cred":"include","corp":"none","id":"F0124"},
+{"te":"require-corp","tg":"b","acao":"*","cred":"include","corp":"cross-origin","id":"F0126"},
+{"te":"require-corp","tg":"b","acao":"origin","cred":"omit","corp":"none","id":"F0127"},
+{"te":"require-corp","tg":"b","acao":"origin","cred":"include","corp":"none","id":"F0133"},
+{"te":"require-corp","tg":"b","acao":"origin","cred":"include","corp":"same-origin","id":"F0134"},
+{"te":"require-corp","tg":"b","acao":"origin-acac","cred":"omit","corp":"none","id":"F0136"},
+{"te":"require-corp","tg":"b","acao":"origin-acac","cred":"omit","corp":"cross-origin","id":"F0138"},
+{"te":"require-corp","tg":"b","acao":"origin-acac","cred":"same-origin","corp":"none","id":"F0139"},
+{"te":"require-corp","tg":"b","acao":"origin-acac","cred":"same-origin","corp":"cross-origin","id":"F0141"},
+{"te":"require-corp","tg":"b","acao":"origin-acac","cred":"include","corp":"none","id":"F0142"}];
+runF(SCEN);
+</script>

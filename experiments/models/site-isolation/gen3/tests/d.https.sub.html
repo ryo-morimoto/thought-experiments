@@ -1,0 +1,40 @@
+<!doctype html>
+<meta charset=utf-8>
+<meta name=timeout content=long>
+<title>gen3 d.https.sub.html</title>
+<script src=/resources/testharness.js></script>
+<script src=/resources/testharnessreport.js></script>
+<script src=/common/utils.js></script>
+<script src=/common/dispatcher/dispatcher.js></script>
+<script src=resources/g3.js></script>
+<body>
+<script>
+const HOSTS = {a: "{{host}}", a1: "{{hosts[][www1]}}", b: "{{hosts[alt][]}}"};
+const PORT = {{ports[https][0]}};
+const SCEN = [
+{"ch":"a","set":"none","csb":"no","id":"D0001"},
+{"ch":"a","set":"none","csb":"yes","id":"D0002"},
+{"ch":"a","set":"p","csb":"no","id":"D0003"},
+{"ch":"a","set":"p","csb":"yes","id":"D0004"},
+{"ch":"a","set":"c","csb":"no","id":"D0005"},
+{"ch":"a","set":"c","csb":"yes","id":"D0006"},
+{"ch":"a","set":"both","csb":"no","id":"D0007"},
+{"ch":"a","set":"both","csb":"yes","id":"D0008"},
+{"ch":"a1","set":"none","csb":"no","id":"D0009"},
+{"ch":"a1","set":"none","csb":"yes","id":"D0010"},
+{"ch":"a1","set":"p","csb":"no","id":"D0011"},
+{"ch":"a1","set":"p","csb":"yes","id":"D0012"},
+{"ch":"a1","set":"c","csb":"no","id":"D0013"},
+{"ch":"a1","set":"c","csb":"yes","id":"D0014"},
+{"ch":"a1","set":"both","csb":"no","id":"D0015"},
+{"ch":"a1","set":"both","csb":"yes","id":"D0016"},
+{"ch":"b","set":"none","csb":"no","id":"D0017"},
+{"ch":"b","set":"none","csb":"yes","id":"D0018"},
+{"ch":"b","set":"p","csb":"no","id":"D0019"},
+{"ch":"b","set":"p","csb":"yes","id":"D0020"},
+{"ch":"b","set":"c","csb":"no","id":"D0021"},
+{"ch":"b","set":"c","csb":"yes","id":"D0022"},
+{"ch":"b","set":"both","csb":"no","id":"D0023"},
+{"ch":"b","set":"both","csb":"yes","id":"D0024"}];
+runD(SCEN);
+</script>

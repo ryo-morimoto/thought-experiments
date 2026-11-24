@@ -1,0 +1,43 @@
+<!doctype html>
+<meta charset=utf-8>
+<meta name=timeout content=long>
+<title>gen3 n.https.sub.html</title>
+<script src=/resources/testharness.js></script>
+<script src=/resources/testharnessreport.js></script>
+<script src=/common/utils.js></script>
+<script src=/common/dispatcher/dispatcher.js></script>
+<script src=resources/g3.js></script>
+<body>
+<script>
+const HOSTS = {a: "{{host}}", a1: "{{hosts[][www1]}}", b: "{{hosts[alt][]}}"};
+const PORT = {{ports[https][0]}};
+const SCEN = [
+{"tgt":"a","dd":"none","how":"ifr-after","id":"N0001"},
+{"tgt":"a","dd":"none","how":"ifr-insert","id":"N0002"},
+{"tgt":"a","dd":"none","how":"popup","id":"N0003"},
+{"tgt":"a","dd":"before","how":"ifr-after","id":"N0004"},
+{"tgt":"a","dd":"before","how":"ifr-insert","id":"N0005"},
+{"tgt":"a","dd":"before","how":"popup","id":"N0006"},
+{"tgt":"a","dd":"after","how":"ifr-after","id":"N0007"},
+{"tgt":"a","dd":"after","how":"ifr-insert","id":"N0008"},
+{"tgt":"a","dd":"after","how":"popup","id":"N0009"},
+{"tgt":"a1","dd":"none","how":"ifr-after","id":"N0010"},
+{"tgt":"a1","dd":"none","how":"ifr-insert","id":"N0011"},
+{"tgt":"a1","dd":"none","how":"popup","id":"N0012"},
+{"tgt":"a1","dd":"before","how":"ifr-after","id":"N0013"},
+{"tgt":"a1","dd":"before","how":"ifr-insert","id":"N0014"},
+{"tgt":"a1","dd":"before","how":"popup","id":"N0015"},
+{"tgt":"a1","dd":"after","how":"ifr-after","id":"N0016"},
+{"tgt":"a1","dd":"after","how":"ifr-insert","id":"N0017"},
+{"tgt":"a1","dd":"after","how":"popup","id":"N0018"},
+{"tgt":"b","dd":"none","how":"ifr-after","id":"N0019"},
+{"tgt":"b","dd":"none","how":"ifr-insert","id":"N0020"},
+{"tgt":"b","dd":"none","how":"popup","id":"N0021"},
+{"tgt":"b","dd":"before","how":"ifr-after","id":"N0022"},
+{"tgt":"b","dd":"before","how":"ifr-insert","id":"N0023"},
+{"tgt":"b","dd":"before","how":"popup","id":"N0024"},
+{"tgt":"b","dd":"after","how":"ifr-after","id":"N0025"},
+{"tgt":"b","dd":"after","how":"ifr-insert","id":"N0026"},
+{"tgt":"b","dd":"after","how":"popup","id":"N0027"}];
+runN(SCEN);
+</script>
