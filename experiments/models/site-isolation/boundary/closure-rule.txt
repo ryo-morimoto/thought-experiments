@@ -1,0 +1,63 @@
+Closure boundary rule T (chosen), for HTML 0e292f4 and Fetch d7fc0fd.
+
+Nodes: algorithms of HTML and Fetch (a defining dfn owns an ol or a prose
+paragraph), plus unowned ol blocks named by their section. Edges: a step
+links to another node (extract/analyze.py link resolution).
+
+Stop rules: links to other specs (Infra, DOM, URL, WebIDL, Encoding,
+MIME Sniffing, Streams = primitives; all others = other-spec exits) are not
+followed. Every such link from a closure step is counted; other-spec exits are
+listed in paths.tsv (kind exit-call).
+
+S  (seeds): nodes with a step that writes a model-read concept, by the write
+   rules of ../havoc/writesets.py run blind (--blind) on every node.
+S' (state-writing seeds): seeds whose write is to a field or a collection
+   (not a local or the return value).
+K  (sinks): crossOriginIsolated getter, originAgentCluster getter,
+   document.domain getter and setter steps, opener getter and setter steps
+   (the setters are unowned blocks introduced as "setter steps"), fetch
+   response handover.
+W  (fetch wrappers): nodes whose name contains fetch or preload and that
+   reach fetch (rule R1b of the 2026-11-22 inventory).
+
+1. Backward: BT = callers of K and S', to fixpoint, but the walk continues
+   past a caller only if that caller is in S or W.
+2. Argument producers PT: in a caller in BT that is not a seed, a callee
+   called in the same step as a BT member, or bound by Let/Set to a variable
+   that such a step mentions.
+3. T = BT + forward closure (callees, to fixpoint) of S + K + PT.
+
+Why the backward walk stops: a caller that writes no model-read concept
+reaches the seed only through its arguments (step 2) or by deciding whether
+to call (the model quantifies over what pages do). Writes in any caller are
+seeds by themselves, because seeding is whole-corpus.
+
+Compared rules: naive = forward closure of the full backward closure of
+S + K; cone = full backward closure + forward closure of S + K + producers.
+[ws] rows use the seeds of ../havoc/writesets.tsv (hand closure only) instead
+of the whole-corpus seeds [all].
+
+Measured (written by boundary.py):
+nodes in corpus 2342 = algorithms 1995 + unowned blocks 347 ; html 2201 fetch 141
+hand closure 415
+sinks 7 ['(setter steps of dom-document-domain)', '(setter steps of dom-opener)', 'crossOriginIsolated', 'domain', 'fetch response handover', 'opener', 'originAgentCluster']
+[ws] seeds 46 (+7 sinks), state-writing 18; seeds in hand 46
+[ws] naive  backward 355; fwd(back) 925 (39% of corpus); both 415 rule-only 510 hand-only 0
+[ws] cone   producers 107; 758 (32% of corpus); both 415 rule-only 343 hand-only 0
+[ws] T      backward 112, producers 49; 533 (23% of corpus); both 415 rule-only 118 hand-only 0
+[all] seeds 80 (+7 sinks), state-writing 43; seeds in hand 44
+[all] naive  backward 381; fwd(back) 950 (41% of corpus); both 415 rule-only 535 hand-only 0
+[all] cone   producers 108; 829 (35% of corpus); both 415 rule-only 414 hand-only 0
+[all] T      backward 134, producers 58; 610 (26% of corpus); both 415 rule-only 195 hand-only 0
+T sensitivity: depth-2 callers not in T 44 ; adding them and their producers would add 170
+leave-one-seed-out (T): algorithms lost, max 34 median 0 seeds whose removal loses >10: 3
+hand-only under T by spec {} ; reached from a hand root that is not a seed or sink: 0
+exits from tight closure (external call targets by host): {'infra.spec.whatwg.org': 358, '(bikeshed xref, spec unknown)': 136, 'w3c.github.io': 79, 'dom.spec.whatwg.org': 46, 'url.spec.whatwg.org': 21, 'drafts.csswg.org': 16, 'encoding.spec.whatwg.org': 14, 'tc39.es': 11, 'webidl.spec.whatwg.org': 10, 'wicg.github.io': 4, 'mimesniff.spec.whatwg.org': 3, 'storage.spec.whatwg.org': 3, 'urlpattern.spec.whatwg.org': 2, 'httpwg.org': 2, 'github.com': 1, 'webassembly.github.io': 1}
+extension-hook steps in tight closure: 4
+exits from hand closure: 508 tight: 707
+holders discovered 96 containers 11 ['image map', 'list of available images', 'map of preloaded resources', 'module map', 'module map', 'module map', 'module map', 'module map', 'module responses map', 'owner set', 'scoped document set']
+field holders (tier F) 11
+exit calls in T: primitive 452 other-spec 255 {'infra.spec.whatwg.org': 358, '(bikeshed xref, spec unknown)': 136, 'w3c.github.io': 79, 'dom.spec.whatwg.org': 46, 'url.spec.whatwg.org': 21, 'drafts.csswg.org': 16, 'encoding.spec.whatwg.org': 14, 'tc39.es': 11, 'webidl.spec.whatwg.org': 10, 'wicg.github.io': 4, 'mimesniff.spec.whatwg.org': 3, 'storage.spec.whatwg.org': 3, 'httpwg.org': 2, 'urlpattern.spec.whatwg.org': 2, 'github.com': 1, 'webassembly.github.io': 1}
+algorithms returning a container ['ancestor origins list', 'determine the HTTP cache partition']
+wrappers 19 ; fetch-internal re-entry component ['CORS-preflight fetch', 'HTTP fetch', 'HTTP-network-or-cache fetch', 'HTTP-redirect fetch', 'main fetch', 'override fetch', 'scheme fetch']
+paths by kind {'fetch-call': 51, 're-entry': 5, 'field-read': 62, 'reuse-read': 38, 'field-write': 27, 'exit-response': 2, 'reuse-bind': 5, 'reuse-use': 15, 'exit-call': 119, 'reuse-write': 12}

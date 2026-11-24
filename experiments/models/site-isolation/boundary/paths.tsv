@@ -1,0 +1,337 @@
+id	kind	rule	spec	algorithm	anchor	step	structure_or_callee	key	kept	category
+P0001	fetch-call	R1b	fetch	terminated	concept-fetch-group-terminate	2	process deferred fetches		y	fetch call site
+P0002	re-entry	R1c	fetch	HTTP-redirect fetch	concept-http-redirect-fetch	22	main fetch		y	fetch-internal re-entry
+P0003	re-entry	R1c	fetch	HTTP-network-or-cache fetch	concept-http-network-or-cache-fetch	8.26.2.1.7	main fetch		y	fetch-internal re-entry
+P0004	re-entry	R1c	fetch	HTTP-network-or-cache fetch	concept-http-network-or-cache-fetch	15.4	HTTP-network-or-cache fetch		y	fetch-internal re-entry
+P0005	re-entry	R1c	fetch	HTTP-network-or-cache fetch	concept-http-network-or-cache-fetch	16.5	HTTP-network-or-cache fetch		y	fetch-internal re-entry
+P0006	re-entry	R1c	fetch	HTTP-network-or-cache fetch	concept-http-network-or-cache-fetch	17.2	HTTP-network-or-cache fetch		y	fetch-internal re-entry
+P0007	fetch-call	R1b	fetch	process deferred fetches	process deferred fetches	1	process a deferred fetch		y	fetch call site
+P0008	fetch-call	R1a	fetch	process a deferred fetch	process a deferred fetch	3	fetch		y	fetch call site
+P0009	fetch-call	R1a	fetch	fetch(input, init)	dom-global-fetch	12	fetch		y	fetch call site
+P0010	fetch-call	R1a	html	default fetch and process the linked resource	default fetch and process the linked resource	6	fetch		y	fetch call site
+P0011	fetch-call	R1a	html	download the hyperlink	downloading hyperlinks	9	fetch		y	fetch call site
+P0012	fetch-call	R1a	html	(unowned block in section: Hyperlink auditing)	@27994	6	fetch		y	fetch call site
+P0013	fetch-call	R1a	html	"(unowned block in section: Link type ""<code)"	@28941	2	fetch		y	fetch call site
+P0014	fetch-call	R1b	html	"(unowned block in section: Link type ""<code)"	@29236	14	fetch a modulepreload module script graph		y	fetch call site
+P0015	fetch-call	R1a	html	"(unowned block in section: Link type ""<code)"	@29610	7	fetch		y	fetch call site
+P0016	fetch-call	R1a	html	preload	preload	11	fetch		y	fetch call site
+P0017	fetch-call	R1b	html	"(unowned block in section: Link type ""<code)"	@30000	6	preload		y	fetch call site
+P0018	fetch-call	R1a	html	update the image data	update the image data	28	fetch		y	fetch call site
+P0019	fetch-call	R1a	html	abort the image request	abort the image request	3	fetch		n	links to fetch, no call
+P0020	fetch-call	R1a	html	react to changes in the environment	img-environment-changes	18.5	fetch		y	fetch call site
+P0021	fetch-call	R1a	html	The embed element setup steps	The embed element setup steps	2.4	fetch		y	fetch call site
+P0022	fetch-call	R1a	html	(unowned block in section: The object element)	@37024	3.5	fetch		y	fetch call site
+P0023	fetch-call	R1a	html	(unowned block in section: The object element)	@37024	3.9	fetch		y	fetch call site
+P0024	fetch-call	R1a	html	determine a video's poster frame	determine a video's poster frame	7	fetch		y	fetch call site
+P0025	fetch-call	R1b	html	resource selection algorithm	concept-media-load-algorithm	14.3	resource fetch algorithm		y	fetch call site
+P0026	fetch-call	R1b	html	resource selection algorithm	concept-media-load-algorithm	14.11	resource fetch algorithm		y	fetch call site
+P0027	fetch-call	R1b	html	resource selection algorithm	concept-media-load-algorithm	14.23	resource fetch algorithm		y	fetch call site
+P0028	fetch-call	R1a	html	resource fetch algorithm	concept-media-load-resource	6.8	fetch		y	fetch call site
+P0029	fetch-call	R1a	html	start the track processing model	start the track processing model	10	fetch		y	fetch call site
+P0030	fetch-call	R1a	html	start the track processing model	start the track processing model	10.4	fetch		y	fetch call site
+P0031	fetch-call	R1a	html	(unowned block in section: Image Button state (type=image))	@55183	4	fetch		y	fetch call site
+P0032	fetch-call	R1b	html	prepare the script element	prepare the script element	35.11	fetch a classic script; fetch an external module script graph		y	fetch call site
+P0033	fetch-call	R1b	html	attempt to populate the history entry's document	attempt to populate the history entry's document	4.2	create navigation params by fetching		y	fetch call site
+P0034	fetch-call	R1b	html	attempt to populate the history entry's document	attempt to populate the history entry's document	5.3.1	attempt to create a non-fetch scheme document		y	fetch call site
+P0035	fetch-call	R1a	html	create navigation params by fetching	create navigation params by fetching	21.5	fetch		y	fetch call site
+P0036	fetch-call	R1a	html	abort	abort a document	2	fetch		n	links to fetch, no call
+P0037	fetch-call	R1a	html	process the `Speculation-Rules` header	process the `Speculation-Rules` header	3.4.2.2	fetch		y	fetch call site
+P0038	fetch-call	R1a	html	fetch a classic script	fetch a classic script	5	fetch		y	fetch call site
+P0039	fetch-call	R1a	html	fetch a classic worker script	fetch a classic worker script	2	fetch		y	fetch call site
+P0040	fetch-call	R1a	html	fetch a classic worker-imported script	fetch a classic worker-imported script	4	fetch		y	fetch call site
+P0041	fetch-call	R1b	html	fetch an external module script graph	fetch-a-module-script-tree	1	fetch a single module script		y	fetch call site
+P0042	fetch-call	R1b	html	fetch a modulepreload module script graph	fetch a modulepreload module script graph	1	fetch a single module script		y	fetch call site
+P0043	fetch-call	R1a	html	fetch a worklet script graph	fetch a worklet script graph	5	fetch		y	fetch call site
+P0044	fetch-call	R1b	html	fetch a worklet/module worker script graph	fetch a worklet/module worker script graph	2	fetch a single module script		y	fetch call site
+P0045	fetch-call	R1b	html	fetch a single module script	fetch a single module script	3	fetch a single imported module script		y	fetch call site
+P0046	fetch-call	R1a	html	fetch a single module script	fetch a single module script	13	fetch		y	fetch call site
+P0047	fetch-call	R1b	html	fetch a single imported module script	fetch a single imported module script	4	fetch a single module script		y	fetch call site
+P0048	fetch-call	R1b	html	HostLoadImportedModule	HostLoadImportedModule	14	fetch a single imported module script		y	fetch call site
+P0049	fetch-call	R1a	html	EventSource(url, eventSourceInitDict)	EventSource(url, eventSourceInitDict)	15	fetch		y	fetch call site
+P0050	fetch-call	R1a	html	reestablish the connection	reestablish the connection	5.4	fetch		y	fetch call site
+P0051	fetch-call	R1b	html	run a worker	run a worker	12	fetch a classic worker script; fetch a module worker script graph; perform the fetch hook		y	fetch call site
+P0052	fetch-call	R1a	html	run a worker	run a worker	12.1	fetch		y	fetch call site
+P0053	fetch-call	R1a	html	run a worker	run a worker	12.3	fetch		y	fetch call site
+P0054	fetch-call	R1b	html	import scripts into worker global scope	import scripts into worker global scope	6.1	fetch a classic worker-imported script		y	fetch call site
+P0055	fetch-call	R1b	html	create a worklet global scope	create a worklet global scope	7.1.2	fetch a worklet script graph		y	fetch call site
+P0056	fetch-call	R1b	html	addModule(moduleURL, options)	dom-Worklet-addModule	6.4	fetch a worklet script graph		y	fetch call site
+P0057	field-read	R2f	fetch	clone	concept-response-clone	1	internal response (for filtered response)		n	flow field, not reuse
+P0058	reuse-read	R2d	fetch	determine the HTTP cache partition	determine the HTTP cache partition	3	determine the HTTP cache partition	network partition key; selection per HTTP Caching	y	HTTP cache
+P0059	field-read	R2f	fetch	fetch	concept-fetch	11.2	preloaded response candidate (for fetch params)	per fetch params; filled from the preload map	y	preloaded response candidate
+P0060	field-read	R2f	fetch	fetch	concept-fetch	11.4	preloaded response candidate (for fetch params)	per fetch params; filled from the preload map	y	preloaded response candidate
+P0061	field-write	R2f	fetch	main fetch	concept-main-fetch	12	preloaded response candidate (for fetch params)	per fetch params; filled from the preload map	y	preloaded response candidate
+P0062	field-read	R2f	fetch	main fetch	concept-main-fetch	12.1	preloaded response candidate (for fetch params)	per fetch params; filled from the preload map	y	preloaded response candidate
+P0063	field-read	R2f	fetch	main fetch	concept-main-fetch	12.2	preloaded response candidate (for fetch params)	per fetch params; filled from the preload map	y	preloaded response candidate
+P0064	field-read	R2f	fetch	main fetch	concept-main-fetch	12.3	preloaded response candidate (for fetch params)	per fetch params; filled from the preload map	y	preloaded response candidate
+P0065	field-write	R2f	fetch	main fetch	concept-main-fetch	14.2	internal response (for filtered response)		n	flow field, not reuse
+P0066	field-read	R2f	fetch	main fetch	concept-main-fetch	15	internal response (for filtered response)		n	flow field, not reuse
+P0067	field-read	R2f	fetch	fetch response handover	fetch-finale	2	internal response (for filtered response)		n	flow field, not reuse
+P0068	field-read	R2f	fetch	fetch response handover	fetch-finale	4.2.4	body info (for response)		n	flow field, not reuse
+P0069	field-read	R2f	fetch	fetch response handover	fetch-finale	6	internal response (for filtered response)		n	flow field, not reuse
+P0070	exit-response	R2x	fetch	HTTP fetch	concept-http-fetch	3.4	external: ?		y	other-spec response (service worker)
+P0071	field-write	R2f	fetch	HTTP fetch	concept-http-fetch	3.5.5	internal response (for filtered response)		n	flow field, not reuse
+P0072	field-write	R2f	fetch	HTTP fetch	concept-http-fetch	6.3.3	internal response (for filtered response)		n	flow field, not reuse
+P0073	field-read	R2f	fetch	HTTP-redirect fetch	concept-http-redirect-fetch	2	internal response (for filtered response)		n	flow field, not reuse
+P0074	reuse-bind	R2d	fetch	HTTP-network-or-cache fetch	concept-http-network-or-cache-fetch	8.24	determine the HTTP cache partition	network partition key; selection per HTTP Caching	y	HTTP cache
+P0075	reuse-read	R2d+alias	fetch	HTTP-network-or-cache fetch	concept-http-network-or-cache-fetch	8.25	determine the HTTP cache partition	network partition key; selection per HTTP Caching	y	HTTP cache
+P0076	reuse-read	R2d+alias	fetch	HTTP-network-or-cache fetch	concept-http-network-or-cache-fetch	8.26.1	determine the HTTP cache partition	network partition key; selection per HTTP Caching	y	HTTP cache
+P0077	reuse-use	R2v	fetch	HTTP-network-or-cache fetch	concept-http-network-or-cache-fetch	8.26.2	determine the HTTP cache partition	network partition key; selection per HTTP Caching	y	HTTP cache
+P0078	reuse-use	R2v	fetch	HTTP-network-or-cache fetch	concept-http-network-or-cache-fetch	8.26.2.1	determine the HTTP cache partition	network partition key; selection per HTTP Caching	y	HTTP cache
+P0079	reuse-use	R2v	fetch	HTTP-network-or-cache fetch	concept-http-network-or-cache-fetch	8.26.2.1.1	determine the HTTP cache partition	network partition key; selection per HTTP Caching	y	HTTP cache
+P0080	reuse-use	R2v	fetch	HTTP-network-or-cache fetch	concept-http-network-or-cache-fetch	8.26.2.2.1	determine the HTTP cache partition	network partition key; selection per HTTP Caching	y	HTTP cache
+P0081	reuse-use	R2v	fetch	HTTP-network-or-cache fetch	concept-http-network-or-cache-fetch	8.26.2.2.2.1	determine the HTTP cache partition	network partition key; selection per HTTP Caching	y	HTTP cache
+P0082	reuse-use	R2v	fetch	HTTP-network-or-cache fetch	concept-http-network-or-cache-fetch	8.26.2.2.2.2	determine the HTTP cache partition	network partition key; selection per HTTP Caching	y	HTTP cache
+P0083	reuse-use	R2v	fetch	HTTP-network-or-cache fetch	concept-http-network-or-cache-fetch	8.26.2.2.3	determine the HTTP cache partition	network partition key; selection per HTTP Caching	y	HTTP cache
+P0084	reuse-read	R2d+alias	fetch	HTTP-network-or-cache fetch	concept-http-network-or-cache-fetch	11.3	determine the HTTP cache partition	network partition key; selection per HTTP Caching	y	HTTP cache
+P0085	reuse-use	R2v	fetch	HTTP-network-or-cache fetch	concept-http-network-or-cache-fetch	11.4.1	determine the HTTP cache partition	network partition key; selection per HTTP Caching	y	HTTP cache
+P0086	reuse-use	R2v	fetch	HTTP-network-or-cache fetch	concept-http-network-or-cache-fetch	11.4.2	determine the HTTP cache partition	network partition key; selection per HTTP Caching	y	HTTP cache
+P0087	reuse-read	R2d+alias	fetch	HTTP-network-or-cache fetch	concept-http-network-or-cache-fetch	11.5.2	determine the HTTP cache partition	network partition key; selection per HTTP Caching	y	HTTP cache
+P0088	field-write	R2f	fetch	HTTP-network fetch	concept-http-network-fetch	18.1.1.1.7	body info (for response)		n	flow field, not reuse
+P0089	field-read	R2f	fetch	HTTP-network fetch	concept-http-network-fetch	18.1.1.1.8	body info (for response)		n	flow field, not reuse
+P0090	field-read	R2f	fetch	HTTP-network fetch	concept-http-network-fetch	18.1.1.1.10	body info (for response)		n	flow field, not reuse
+P0091	exit-call	X	fetch	keepalive	keepalive	10	github.com#https://github.com/whatwg/html/issues/6424		n	other-spec call, no response
+P0092	field-write	R2f	fetch	create	create	2	response (for response)		n	flow field (Response object), not reuse
+P0093	field-write	R2f	fetch	initialize a response	initialize a response	3	response (for response)		n	flow field (Response object), not reuse
+P0094	field-write	R2f	fetch	initialize a response	initialize a response	4	response (for response)		n	flow field (Response object), not reuse
+P0095	field-write	R2f	fetch	new Response(body, init)	dom-response	1	response (for response)		n	flow field (Response object), not reuse
+P0096	field-write	R2f	fetch	new Response(body, init)	dom-response	2	response (for response)		n	flow field (Response object), not reuse
+P0097	field-write	R2f	fetch	redirect(url, status)	redirect(url, status)	5	response (for response)		n	flow field (Response object), not reuse
+P0098	field-write	R2f	fetch	redirect(url, status)	redirect(url, status)	7	response (for response)		n	flow field (Response object), not reuse
+P0099	field-read	R2f	fetch	clone()	clone()	2	response (for response)		n	flow field (Response object), not reuse
+P0100	field-read	R2f	fetch	abort a fetch() call	abort-fetch	4	response (for response)		n	flow field (Response object), not reuse
+P0101	exit-call	X	html	match integrity metadata	match integrity metadata	1	w3c.github.io#parse-metadata		n	other-spec call, no response
+P0102	exit-call	X	html	match integrity metadata	match integrity metadata	2	w3c.github.io#parse-metadata		n	other-spec call, no response
+P0103	exit-call	X	html	StructuredSerializeInternal	StructuredSerializeInternal	14.2.4	tc39.es#sec-copydatablockbytes		n	other-spec call, no response
+P0104	reuse-read	R2d	html	ancestor origins list	concept-document-ancestor-origins-list	5	ancestor origins list		n	not a result store (origins)
+P0105	exit-call	X	html	update the current document readiness	update the current document readiness	3.1	w3c.github.io#dfn-current-high-resolution-time		n	other-spec call, no response
+P0106	field-read	R2f	html	create link options from element	create link options from element	2	document (for link processing options)		n	flow field (target Document), not reuse
+P0107	exit-call	X	html	extract links from headers	extract links from headers	3.1	httpwg.org#parse-fv		n	other-spec call, no response
+P0108	field-read	R2f	html	process link headers	process link headers	2.6	document (for link processing options)		n	flow field (target Document), not reuse
+P0109	field-write	R2f	html	process early hint headers	process early hint headers	5.1	document (for link processing options); on document ready (for link processing options)		n	flow field (target Document), not reuse
+P0110	field-read	R2f	html	process early hint headers	process early hint headers	5.2	on document ready (for link processing options)		n	flow field, not reuse
+P0111	exit-call	X	html	(unowned block in section: Standard metadata names)	@18448	2.1	drafts.csswg.org#parse-a-list-of-component-values		n	other-spec call, no response
+P0112	exit-call	X	html	Content language state	attr-meta-http-equiv-content-language	11	drafts.csswg.org#change-the-preferred-css-style-sheet-set-name		n	other-spec call, no response
+P0113	exit-call	X	html	Content language state	attr-meta-http-equiv-content-language	32	w3c.github.io#enforced		n	other-spec call, no response
+P0114	exit-call	X	html	handle as a download	handle as a download	2	w3c.github.io#webdriver-bidi-download-will-begin		n	other-spec call, no response
+P0115	exit-call	X	html	handle as a download	handle as a download	3.1	w3c.github.io#webdriver-bidi-download-end		n	other-spec call, no response
+P0116	exit-call	X	html	handle as a download	handle as a download	5.2.1	w3c.github.io#webdriver-bidi-download-end		n	other-spec call, no response
+P0117	exit-call	X	html	handle as a download	handle as a download	5.3	w3c.github.io#webdriver-bidi-download-end		n	other-spec call, no response
+P0118	exit-call	X	html	"(unowned block in section: Link type ""<code)"	@29137	2.4	w3c.github.io#dfn-processing-a-manifest		n	other-spec call, no response
+P0119	reuse-bind	R2d	html	consume a preloaded resource	consume a preloaded resource	2	map of preloaded resources	preload key (URL, destination, mode, credentials mode)	y	preload map
+P0120	reuse-read	R2d+alias	html	consume a preloaded resource	consume a preloaded resource	3	map of preloaded resources	preload key (URL, destination, mode, credentials mode)	y	preload map
+P0121	reuse-read	R2d+alias	html	consume a preloaded resource	consume a preloaded resource	4	map of preloaded resources	preload key (URL, destination, mode, credentials mode)	y	preload map
+P0122	reuse-use	R2v	html	consume a preloaded resource	consume a preloaded resource	5	map of preloaded resources	preload key (URL, destination, mode, credentials mode)	y	preload map
+P0123	reuse-read	R2d+alias	html	consume a preloaded resource	consume a preloaded resource	6	map of preloaded resources	preload key (URL, destination, mode, credentials mode)	y	preload map
+P0124	reuse-use	R2v	html	consume a preloaded resource	consume a preloaded resource	7	map of preloaded resources	preload key (URL, destination, mode, credentials mode)	y	preload map
+P0125	reuse-use	R2v	html	consume a preloaded resource	consume a preloaded resource	8	map of preloaded resources	preload key (URL, destination, mode, credentials mode)	y	preload map
+P0126	field-read	R2f	html	preload	preload	2.1	document (for link processing options)		n	flow field (target Document), not reuse
+P0127	field-read	R2f	html	preload	preload	2.2	document (for link processing options)		n	flow field (target Document), not reuse
+P0128	field-read	R2f	html	preload	preload	8	document (for link processing options)		n	flow field (target Document), not reuse
+P0129	field-read	R2f	html	preload	preload	11.4	document (for link processing options)		n	flow field (target Document), not reuse
+P0130	reuse-write	R2d	html	preload	preload	12.2	map of preloaded resources	preload key (URL, destination, mode, credentials mode)	y	preload map
+P0131	field-read	R2f	html	preload	preload	13	document (for link processing options); on document ready (for link processing options)		n	flow field (target Document), not reuse
+P0132	exit-call	X	html	"(unowned block in section: Link type ""<code)"	@30199	4.1	drafts.csswg.org#create-a-css-style-sheet		n	other-spec call, no response
+P0133	reuse-read	R2d	html	update the image data	update the image data	8.4	list of available images	(absolute URL, CORS mode, origin unless No CORS)	y	image list
+P0134	reuse-write	R2d	html	update the image data	update the image data	29.13	list of available images	(absolute URL, CORS mode, origin unless No CORS)	y	image list
+P0135	exit-call	X	html	select an image source from a source set	select an image source from a source set	6	drafts.csswg.org#determine-the-device-pixel-ratio		n	other-spec call, no response
+P0136	reuse-bind	R2d	html	select an image source from a source set	select an image source from a source set	8	list of available images	(absolute URL, CORS mode, origin unless No CORS)	y	image list
+P0137	reuse-read	R2d+alias	html	select an image source from a source set	select an image source from a source set	9	list of available images	(absolute URL, CORS mode, origin unless No CORS)	y	image list
+P0138	exit-call	X	html	parse a sizes attribute	parse a sizes attribute	1	drafts.csswg.org#parse-a-comma-separated-list-of-component-values		n	other-spec call, no response
+P0139	reuse-write	R2d	html	react to changes in the environment	img-environment-changes	16.4	list of available images	(absolute URL, CORS mode, origin unless No CORS)	y	image list
+P0140	reuse-read	R2d	html	react to changes in the environment	img-environment-changes	17	list of available images	(absolute URL, CORS mode, origin unless No CORS)	y	image list
+P0141	exit-call	X	html	navigate an iframe or frame	navigate an iframe or frame	3.1	w3c.github.io#dfn-current-high-resolution-time		n	other-spec call, no response
+P0142	exit-call	X	html	iframe load event steps	iframe load event steps	4.3	w3c.github.io#dfn-current-high-resolution-time		n	other-spec call, no response
+P0143	exit-call	X	html	iframe load event steps	iframe load event steps	4.4	w3c.github.io#dfn-mark-resource-timing		n	other-spec call, no response
+P0144	exit-call	X	html	allowed to use	allowed to use	3	w3c.github.io#is-feature-enabled		n	other-spec call, no response
+P0145	exit-call	X	html	verify a media response	verify a media response	6	wicg.github.io#extract-content-range-values		n	other-spec call, no response
+P0146	exit-call	X	html	resource fetch algorithm	concept-media-load-resource	3.6	w3c.github.io#blob-url-obtain-object		y	other-spec store or object
+P0147	exit-call	X	html	update the visibility state	update the visibility state	3	w3c.github.io#queue-a-performanceentry		n	other-spec call, no response
+P0148	exit-call	X	html	update the visibility state	update the visibility state	3	w3c.github.io#dfn-current-high-resolution-time		n	other-spec call, no response
+P0149	exit-call	X	html	update the visibility state	update the visibility state	4	w3c.github.io#dfn-screen-orientation-change-steps		n	other-spec call, no response
+P0150	exit-call	X	html	update the visibility state	update the visibility state	5	drafts.csswg.org#view-transition-page-visibility-change-steps		n	other-spec call, no response
+P0151	exit-call	X	html	set the initial visibility state	set the initial visibility state	2	w3c.github.io#queue-a-performanceentry		n	other-spec call, no response
+P0152	exit-call	X	html	queue a violation report for browsing context group switch when navigating to a COOP response	coop-violation-navigation-to	7	w3c.github.io#queue-report		n	other-spec call, no response
+P0153	exit-call	X	html	queue a violation report for browsing context group switch when navigating away from a COOP response	coop-violation-navigation-from	5	w3c.github.io#queue-report		n	other-spec call, no response
+P0154	exit-call	X	html	queue a cross-origin embedder policy inheritance violation	queue a cross-origin embedder policy inheritance violation	3	w3c.github.io#queue-report		n	other-spec call, no response
+P0155	exit-call	X	html	create a policy container from a fetch response	creating a policy container from a fetch response	3	w3c.github.io#parse-response-csp		n	other-spec call, no response
+P0156	exit-call	X	html	create a policy container from a fetch response	creating a policy container from a fetch response	5	w3c.github.io#parse-referrer-policy-from-header		n	other-spec call, no response
+P0157	exit-call	X	html	create a policy container from a fetch response	creating a policy container from a fetch response	6	w3c.github.io#parse-integrity-policy-headers		n	other-spec call, no response
+P0158	reuse-read	R2d	html	initialize a worker global scope's policy container	initialize worker policy container	1.1	owner set		n	not a result store (worker owners)
+P0159	reuse-read	R2d	html	initialize a worker global scope's policy container	initialize worker policy container	1.2	owner set		n	not a result store (worker owners)
+P0160	exit-call	X	html	window open steps	window open steps	15.2	drafts.csswg.org#set-up-browsing-context-features		n	other-spec call, no response
+P0161	reuse-read	R2d	html	set up a window environment settings object	set up a window environment settings object	3	module map; module map	(URL, module type)	y	module map
+P0162	exit-call	X	html	process scroll behavior	process scroll behavior	4.2	drafts.csswg.org#scroll-to-the-beginning-of-the-document		n	other-spec call, no response
+P0163	field-read	R2f	html	initialize the navigable	initialize the navigable	1	document (for document state)	session history entry's document state	y	back/forward cache
+P0164	field-read	R2f	html	initialize the navigable	initialize the navigable	2	document (for document state)	session history entry's document state	y	back/forward cache
+P0165	field-write	R2f	html	initialize the navigable	initialize the navigable	6	document (for document state)	session history entry's document state	y	back/forward cache
+P0166	field-read	R2f	html	create a new top-level traversable	creating a new top-level traversable	4	document (for document state)	session history entry's document state	y	back/forward cache
+P0167	exit-call	X	html	create a new top-level traversable	creating a new top-level traversable	10	storage.spec.whatwg.org#legacy-clone-a-traversable-storage-shed		n	other-spec call, no response
+P0168	exit-call	X	html	create a new top-level traversable	creating a new top-level traversable	12	w3c.github.io#webdriver-bidi-navigable-created		n	other-spec call, no response
+P0169	field-read	R2f	html	create a new child navigable	create a new child navigable	6	document (for document state)	session history entry's document state	y	back/forward cache
+P0170	exit-call	X	html	create a new child navigable	create a new child navigable	13	w3c.github.io#webdriver-bidi-navigable-created		n	other-spec call, no response
+P0171	exit-call	X	html	destroy a child navigable	destroy a child navigable	10	w3c.github.io#webdriver-bidi-navigable-destroyed		n	other-spec call, no response
+P0172	exit-call	X	html	create a new browsing context and document	creating-a-new-browsing-context	8	w3c.github.io#create-for-navigable		n	other-spec call, no response
+P0173	exit-call	X	html	create a new browsing context and document	creating-a-new-browsing-context	14	w3c.github.io#dfn-coarsen-time		n	other-spec call, no response
+P0174	reuse-write	R2d	html	create a new browsing context and document	creating-a-new-browsing-context	18	ancestor origins list		n	not a result store (origins)
+P0175	exit-call	X	html	navigate	navigate	7	w3c.github.io#dfn-generate-a-random-uuid		n	other-spec call, no response
+P0176	exit-call	X	html	navigate	navigate	9	w3c.github.io#webdriver-bidi-navigation-failed		n	other-spec call, no response
+P0177	exit-call	X	html	navigate	navigate	12	w3c.github.io#webdriver-bidi-navigation-failed		n	other-spec call, no response
+P0178	exit-call	X	html	navigate	navigate	18	w3c.github.io#webdriver-bidi-navigation-started		n	other-spec call, no response
+P0179	exit-call	X	html	navigate	navigate	19.1	w3c.github.io#webdriver-bidi-navigation-failed		n	other-spec call, no response
+P0180	exit-call	X	html	navigate	navigate	24.2.1	w3c.github.io#webdriver-bidi-navigation-failed		n	other-spec call, no response
+P0181	field-write	R2f	html	navigate	navigate	24.8.7	commit early hints (for navigation params); response (for navigation params)	navigation params; commits into the new Document preload map	y	early hints
+P0182	exit-call	X	html	navigate to a javascript: URL	navigate to a javascript: URL	5	w3c.github.io#should-block-navigation-request		n	other-spec call, no response
+P0183	field-read	R2f	html	navigate to a javascript: URL	navigate to a javascript: URL	11	document (for document state)	session history entry's document state	y	back/forward cache
+P0184	field-read	R2f	html	evaluate a javascript: URL	evaluate a javascript: URL	15	commit early hints (for navigation params); response (for navigation params)	navigation params; commits into the new Document preload map	y	early hints
+P0185	exit-call	X	html	navigate to a fragment	navigate-fragid	18.2	w3c.github.io#webdriver-bidi-fragment-navigated		n	other-spec call, no response
+P0186	exit-call	X	html	steps to fire beforeunload	steps to fire beforeunload	6.2	w3c.github.io#webdriver-bidi-user-prompt-opened		n	other-spec call, no response
+P0187	exit-call	X	html	steps to fire beforeunload	steps to fire beforeunload	6.5	w3c.github.io#webdriver-bidi-user-prompt-closed		n	other-spec call, no response
+P0188	exit-call	X	html	URL and history update steps	URL and history update steps	14.2	w3c.github.io#webdriver-bidi-history-updated		n	other-spec call, no response
+P0189	field-read	R2f	html	attempt to populate the history entry's document	attempt to populate the history entry's document	2	response (for navigation params)		n	flow field, not reuse
+P0190	field-write	R2f	html	attempt to populate the history entry's document	attempt to populate the history entry's document	5.3.1	document (for document state)	session history entry's document state	y	back/forward cache
+P0191	field-read	R2f	html	attempt to populate the history entry's document	attempt to populate the history entry's document	5.4	response (for navigation params)		n	flow field, not reuse
+P0192	exit-call	X	html	attempt to populate the history entry's document	attempt to populate the history entry's document	5.4	w3c.github.io#should-block-navigation-response		n	other-spec call, no response
+P0193	field-write	R2f	html	attempt to populate the history entry's document	attempt to populate the history entry's document	5.4.1	document (for document state)	session history entry's document state	y	back/forward cache
+P0194	field-read	R2f	html	attempt to populate the history entry's document	attempt to populate the history entry's document	5.4.2	document (for document state)	session history entry's document state	y	back/forward cache
+P0195	field-read	R2f	html	attempt to populate the history entry's document	attempt to populate the history entry's document	5.4.4.2	response (for navigation params)		n	flow field, not reuse
+P0196	exit-call	X	html	attempt to populate the history entry's document	attempt to populate the history entry's document	5.4.4.2	w3c.github.io#webdriver-bidi-navigation-failed		n	other-spec call, no response
+P0197	field-read	R2f	html	attempt to populate the history entry's document	attempt to populate the history entry's document	5.5	response (for navigation params)		n	flow field, not reuse
+P0198	field-read	R2f	html	attempt to populate the history entry's document	attempt to populate the history entry's document	5.5.5.1	response (for navigation params)		n	flow field, not reuse
+P0199	field-read	R2f	html	attempt to populate the history entry's document	attempt to populate the history entry's document	5.6	document (for document state); response (for navigation params)	session history entry's document state	y	back/forward cache
+P0200	field-read	R2f	html	attempt to populate the history entry's document	attempt to populate the history entry's document	5.7	document (for document state)	session history entry's document state	y	back/forward cache
+P0201	field-read	R2f	html	attempt to populate the history entry's document	attempt to populate the history entry's document	5.7.2	document (for document state)	session history entry's document state	y	back/forward cache
+P0202	field-read	R2f	html	attempt to populate the history entry's document	attempt to populate the history entry's document	5.7.3.1	document (for document state)	session history entry's document state	y	back/forward cache
+P0203	field-read	R2f	html	create navigation params from a srcdoc resource	create navigation params from a srcdoc resource	7	commit early hints (for navigation params); response (for navigation params)	navigation params; commits into the new Document preload map	y	early hints
+P0204	exit-call	X	html	create navigation params by fetching	create navigation params by fetching	21.3	w3c.github.io#should-block-navigation-request		n	other-spec call, no response
+P0205	exit-response	R2x	html	create navigation params by fetching	create navigation params by fetching	21.3	external: w3c.github.io		n	other-spec call, no response
+P0206	field-read	R2f	html	create navigation params by fetching	create navigation params by fetching	27	commit early hints (for navigation params); response (for navigation params)	navigation params; commits into the new Document preload map	y	early hints
+P0207	field-read	R2f	html	load a document	loading a document	1	response (for navigation params)		n	flow field, not reuse
+P0208	field-read	R2f	html	load a document	loading a document	4	response (for navigation params)		n	flow field, not reuse
+P0209	field-read	R2f	html	apply the history step	apply the history step	12.3	displayed document (for changing navigable continuation state)		n	flow field, not reuse
+P0210	field-read	R2f	html	apply the history step	apply the history step	14.4	displayed document (for changing navigable continuation state)		n	flow field, not reuse
+P0211	exit-call	X	html	deactivate a document for a cross-document navigation	deactivate a document for a cross-document navigation	4	drafts.csswg.org#navigation-can-trigger-a-cross-document-view-transition		n	other-spec call, no response
+P0212	exit-call	X	html	deactivate a document for a cross-document navigation	deactivate a document for a cross-document navigation	6.2	drafts.csswg.org#setup-cross-document-view-transition		n	other-spec call, no response
+P0213	exit-call	X	html	update document for history step application	update document for history step application	9.2	w3c.github.io#webdriver-bidi-navigation-committed		n	other-spec call, no response
+P0214	exit-call	X	html	scroll to the fragment	scroll-to-the-fragment-identifier	2.2	drafts.csswg.org#scroll-to-the-beginning-of-the-document		n	other-spec call, no response
+P0215	exit-call	X	html	scroll to the fragment	scroll-to-the-fragment-identifier	3.5	drafts.csswg.org#scroll-a-target-into-view		n	other-spec call, no response
+P0216	field-read	R2f	html	create and initialize a Document object	initialise-the-document-object	3	response (for navigation params)		n	flow field, not reuse
+P0217	exit-call	X	html	create and initialize a Document object	initialise-the-document-object	3	w3c.github.io#create-from-response		n	other-spec call, no response
+P0218	field-read	R2f	html	create and initialize a Document object	initialise-the-document-object	4	response (for navigation params)		n	flow field, not reuse
+P0219	field-read	R2f	html	create and initialize a Document object	initialise-the-document-object	8.1	response (for navigation params)		n	flow field, not reuse
+P0220	field-read	R2f	html	create and initialize a Document object	initialise-the-document-object	9	response (for navigation params)		n	flow field, not reuse
+P0221	field-read	R2f	html	create and initialize a Document object	initialise-the-document-object	10	response (for navigation params)		n	flow field, not reuse
+P0222	reuse-write	R2d	html	create and initialize a Document object	initialise-the-document-object	13	ancestor origins list		n	not a result store (origins)
+P0223	exit-call	X	html	create and initialize a Document object	initialise-the-document-object	14	w3c.github.io#run-document-csp-initialization		n	other-spec call, no response
+P0224	field-write	R2f	html	create and initialize a Document object	initialise-the-document-object	16.3	response (for navigation params)		n	flow field, not reuse
+P0225	field-read	R2f	html	create and initialize a Document object	initialise-the-document-object	16.4	body info (for response); response (for navigation params)		n	flow field, not reuse
+P0226	exit-call	X	html	create and initialize a Document object	initialise-the-document-object	16.4	w3c.github.io#dfn-create-the-navigation-timing-entry		n	other-spec call, no response
+P0227	field-read	R2f	html	create and initialize a Document object	initialise-the-document-object	17	response (for navigation params)		n	flow field, not reuse
+P0228	exit-call	X	html	create and initialize a Document object	initialise-the-document-object	17	w3c.github.io#dfn-create-the-navigation-timing-entry		n	other-spec call, no response
+P0229	field-read	R2f	html	create and initialize a Document object	initialise-the-document-object	18	response (for navigation params)		n	flow field, not reuse
+P0230	field-read	R2f	html	create and initialize a Document object	initialise-the-document-object	19	commit early hints (for navigation params)	navigation params; commits into the new Document preload map	y	early hints
+P0231	field-read	R2f	html	create and initialize a Document object	initialise-the-document-object	20	response (for navigation params)		n	flow field, not reuse
+P0232	field-read	R2f	html	create and initialize a Document object	initialise-the-document-object	21	response (for navigation params)		n	flow field, not reuse
+P0233	field-read	R2f	html	load an HTML document	navigate-html	3	response (for navigation params)		n	flow field, not reuse
+P0234	field-read	R2f	html	load a text document	navigate-text	4	response (for navigation params)		n	flow field, not reuse
+P0235	field-read	R2f	html	load a multipart/x-mixed-replace document	navigate-multipart-x-mixed-replace	1	response (for navigation params)		n	flow field, not reuse
+P0236	field-write	R2f	html	load a multipart/x-mixed-replace document	navigate-multipart-x-mixed-replace	3	response (for navigation params)		n	flow field, not reuse
+P0237	field-read	R2f	html	load a multipart/x-mixed-replace document	navigate-multipart-x-mixed-replace	4	response (for navigation params)		n	flow field, not reuse
+P0238	field-read	R2f	html	load a media document	navigate-media	7	response (for navigation params)		n	flow field, not reuse
+P0239	field-read	R2f	html	create a document to display a user agent page or PDF viewer inline	navigate-ua-inline	4	commit early hints (for navigation params); response (for navigation params)	navigation params; commits into the new Document preload map	y	early hints
+P0240	exit-call	X	html	unload	unload a document	11	w3c.github.io#dfn-current-high-resolution-time		n	other-spec call, no response
+P0241	exit-call	X	html	unload	unload a document	11	w3c.github.io#dfn-coarsen-time		n	other-spec call, no response
+P0242	exit-call	X	html	unload	unload a document	13	w3c.github.io#dfn-current-high-resolution-time		n	other-spec call, no response
+P0243	exit-call	X	html	unload	unload a document	13	w3c.github.io#dfn-coarsen-time		n	other-spec call, no response
+P0244	exit-call	X	html	unload	unload a document	15	w3c.github.io#dfn-current-high-resolution-time		n	other-spec call, no response
+P0245	exit-call	X	html	unloading document cleanup steps	unloading document cleanup steps	3	w3c.github.io#context-cleanup-steps		n	other-spec call, no response
+P0246	field-write	R2f	html	destroy	destroy a document	7	document (for document state)	session history entry's document state	y	back/forward cache
+P0247	reuse-read	R2d	html	destroy	destroy a document	8	owner set		n	not a result store (worker owners)
+P0248	exit-call	X	html	abort	abort a document	3.1	w3c.github.io#webdriver-bidi-navigation-aborted		n	other-spec call, no response
+P0249	exit-call	X	html	parse a speculation rule	parse a speculation rule	24.2	httpwg.org#parse-a-url-search-variance		n	other-spec call, no response
+P0250	exit-call	X	html	parse a document rule predicate	parse a document rule predicate	6.6.1	urlpattern.spec.whatwg.org#build-a-url-pattern-from-an-infra-value		n	other-spec call, no response
+P0251	exit-call	X	html	parse a document rule predicate	parse a document rule predicate	7.5.2	drafts.csswg.org#parse-a-selector		n	other-spec call, no response
+P0252	exit-call	X	html	inner consider speculative loads steps	inner consider speculative loads steps	4.3	wicg.github.io#prefetch-record-still-being-speculated		y	other-spec store or object
+P0253	exit-call	X	html	inner consider speculative loads steps	inner consider speculative loads steps	7.1.3	wicg.github.io#prefetch-record		y	other-spec store or object
+P0254	exit-call	X	html	inner consider speculative loads steps	inner consider speculative loads steps	7.1.4	wicg.github.io#start-a-referrer-initiated-navigational-prefetch		y	other-spec store or object
+P0255	exit-call	X	html	matches	dr-predicate-matches	7.1	urlpattern.spec.whatwg.org#url-pattern-match		n	other-spec call, no response
+P0256	exit-call	X	html	matches	dr-predicate-matches	9.1	drafts.csswg.org#match-a-selector-against-an-element		n	other-spec call, no response
+P0257	exit-call	X	html	create a new realm	creating-a-new-javascript-realm	1	tc39.es#sec-initializehostdefinedrealm		n	other-spec call, no response
+P0258	reuse-read	R2d	html	secure context	secure context	1.2.1	owner set		n	not a result store (worker owners)
+P0259	exit-call	X	html	secure context	secure context	3	w3c.github.io#potentially-trustworthy-url		n	other-spec call, no response
+P0260	reuse-read	R2d+name	html	fetch a worklet script graph	fetch a worklet script graph	2	module responses map	request URL	y	worklet module responses
+P0261	reuse-read	R2d+name	html	fetch a worklet script graph	fetch a worklet script graph	3	module responses map	request URL	y	worklet module responses
+P0262	reuse-read	R2d+name	html	fetch a worklet script graph	fetch a worklet script graph	3.1	module responses map	request URL	y	worklet module responses
+P0263	reuse-use	R2v	html	fetch a worklet script graph	fetch a worklet script graph	3.2	module responses map	request URL	y	worklet module responses
+P0264	reuse-write	R2d+name	html	fetch a worklet script graph	fetch a worklet script graph	4	module responses map	request URL	y	worklet module responses
+P0265	reuse-write	R2d+name	html	fetch a worklet script graph	fetch a worklet script graph	5.1	module responses map	request URL	y	worklet module responses
+P0266	reuse-bind	R2d	html	fetch a single module script	fetch a single module script	4	module map; module map; module map; module map; module map	(URL, module type)	y	module map
+P0267	reuse-read	R2d+alias	html	fetch a single module script	fetch a single module script	5	module map; module map; module map; module map; module map	(URL, module type)	y	module map
+P0268	reuse-read	R2d+alias	html	fetch a single module script	fetch a single module script	6	module map; module map; module map; module map; module map	(URL, module type)	y	module map
+P0269	reuse-write	R2d+alias	html	fetch a single module script	fetch a single module script	7	module map; module map; module map; module map; module map	(URL, module type)	y	module map
+P0270	reuse-read	R2d+alias	html	fetch a single module script	fetch a single module script	13.1.1	module map; module map; module map; module map; module map	(URL, module type)	y	module map
+P0271	reuse-read	R2d+alias	html	fetch a single module script	fetch a single module script	13.1.2	module map; module map; module map; module map; module map	(URL, module type)	y	module map
+P0272	reuse-use	R2v	html	fetch a single module script	fetch a single module script	13.1.3	module map; module map; module map; module map; module map	(URL, module type)	y	module map
+P0273	exit-call	X	html	fetch a single module script	fetch a single module script	13.4	w3c.github.io#parse-referrer-policy-from-header		n	other-spec call, no response
+P0274	reuse-read	R2d+alias	html	fetch a single module script	fetch a single module script	13.8	module map; module map; module map; module map; module map	(URL, module type)	y	module map
+P0275	reuse-read	R2d+alias	html	fetch a single module script	fetch a single module script	13.9	module map; module map; module map; module map; module map	(URL, module type)	y	module map
+P0276	reuse-use	R2v	html	fetch a single module script	fetch a single module script	13.10	module map; module map; module map; module map; module map	(URL, module type)	y	module map
+P0277	field-write	R2f	html	create a classic script	creating a classic script	6	Fetch options (for script)		n	flow field (options), not reuse
+P0278	exit-call	X	html	create a classic script	creating a classic script	9	w3c.github.io#record-classic-script-creation-time		n	other-spec call, no response
+P0279	field-write	R2f	html	create a JavaScript module script	creating a JavaScript module script	5	Fetch options (for script)		n	flow field (options), not reuse
+P0280	field-write	R2f	html	create a WebAssembly module script	creating a WebAssembly module script	5	Fetch options (for script)		n	flow field (options), not reuse
+P0281	exit-call	X	html	create a WebAssembly module script	creating a WebAssembly module script	7	webassembly.github.io#parse-a-webassembly-module		n	other-spec call, no response
+P0282	field-write	R2f	html	create a CSS module script	creating a CSS module script	3	Fetch options (for script)		n	flow field (options), not reuse
+P0283	exit-call	X	html	create a CSS module script	creating a CSS module script	5	drafts.csswg.org#create-a-constructed-cssstylesheet		n	other-spec call, no response
+P0284	exit-call	X	html	create a CSS module script	creating a CSS module script	6	drafts.csswg.org#synchronously-replace-the-rules-of-a-cssstylesheet		n	other-spec call, no response
+P0285	exit-call	X	html	create a CSS module script	creating a CSS module script	7	tc39.es#sec-create-default-export-synthetic-module		n	other-spec call, no response
+P0286	field-write	R2f	html	create a JSON module script	creating a JSON module script	3	Fetch options (for script)		n	flow field (options), not reuse
+P0287	field-write	R2f	html	create a text module script	creating a text module script	3	Fetch options (for script)		n	flow field (options), not reuse
+P0288	exit-call	X	html	run a classic script	run a classic script	3	w3c.github.io#record-classic-script-execution-start-time		n	other-spec call, no response
+P0289	exit-call	X	html	run a module script	run a module script	3	w3c.github.io#record-module-script-execution-start-time		n	other-spec call, no response
+P0290	exit-call	X	html	HostLoadImportedModule	HostLoadImportedModule	2.1	tc39.es#sec-FinishLoadingImportedModule		n	other-spec call, no response
+P0291	field-write	R2f	html	HostLoadImportedModule	HostLoadImportedModule	6.4	Fetch options (for script)		n	flow field (options), not reuse
+P0292	exit-call	X	html	HostLoadImportedModule	HostLoadImportedModule	7.1.1.3	tc39.es#sec-FinishLoadingImportedModule		n	other-spec call, no response
+P0293	exit-call	X	html	HostLoadImportedModule	HostLoadImportedModule	7.1.3.2	tc39.es#sec-FinishLoadingImportedModule		n	other-spec call, no response
+P0294	exit-call	X	html	HostLoadImportedModule	HostLoadImportedModule	7.1.5.3	tc39.es#sec-FinishLoadingImportedModule		n	other-spec call, no response
+P0295	exit-call	X	html	HostLoadImportedModule	HostLoadImportedModule	9.2	tc39.es#sec-FinishLoadingImportedModule		n	other-spec call, no response
+P0296	exit-call	X	html	HostLoadImportedModule	HostLoadImportedModule	14.5	tc39.es#sec-FinishLoadingImportedModule		n	other-spec call, no response
+P0297	exit-call	X	html	(unowned block in section: <span)	@124158	2.4	w3c.github.io#record-task-start-time		n	other-spec call, no response
+P0298	exit-call	X	html	(unowned block in section: <span)	@124158	4.3	w3c.github.io#report-long-tasks		n	other-spec call, no response
+P0299	exit-call	X	html	(unowned block in section: <span)	@124158	4.4	w3c.github.io#record-task-end-time		n	other-spec call, no response
+P0300	exit-call	X	html	(unowned block in section: <span)	@124158	5.3	w3c.github.io#start-an-idle-period-algorithm		n	other-spec call, no response
+P0301	exit-call	X	html	(unowned block in section: <span)	@124158	5.3	w3c.github.io#dfn-coarsen-time		n	other-spec call, no response
+P0302	exit-call	X	html	(unowned block in section: <span)	@124158	6.1.1	w3c.github.io#dfn-current-high-resolution-time		n	other-spec call, no response
+P0303	exit-call	X	html	perform a microtask checkpoint	perform a microtask checkpoint	5	w3c.github.io#cleanup-indexed-database-transactions		n	other-spec call, no response
+P0304	exit-call	X	html	perform a microtask checkpoint	perform a microtask checkpoint	6	tc39.es#sec-clear-kept-objects		n	other-spec call, no response
+P0305	exit-call	X	html	perform a microtask checkpoint	perform a microtask checkpoint	8	w3c.github.io#record-timing-info-for-microtask-checkpoint		n	other-spec call, no response
+P0306	exit-call	X	html	spin the event loop	spin the event loop	6.2.1	tc39.es#execution-context-stack		n	other-spec call, no response
+P0307	exit-call	X	html	pause	pause	2	w3c.github.io#dfn-current-high-resolution-time		n	other-spec call, no response
+P0308	exit-call	X	html	pause	pause	5	w3c.github.io#record-pause-duration		n	other-spec call, no response
+P0309	exit-call	X	html	pause	pause	5	w3c.github.io#dfn-current-high-resolution-time		n	other-spec call, no response
+P0310	reuse-read	R2d	html	in extended lifetime	in extended lifetime worker	3	owner set		n	not a result store (worker owners)
+P0311	reuse-read	R2d	html	in extended lifetime	in extended lifetime worker	4	owner set		n	not a result store (worker owners)
+P0312	reuse-read	R2d	html	in extended lifetime	in extended lifetime worker	5	owner set		n	not a result store (worker owners)
+P0313	reuse-read	R2d	html	actively needed	active needed worker	2	owner set		n	not a result store (worker owners)
+P0314	reuse-read	R2d	html	permissible	permissible worker	1	owner set		n	not a result store (worker owners)
+P0315	reuse-read	R2d	html	permissible	permissible worker	3	owner set		n	not a result store (worker owners)
+P0316	reuse-write	R2d	html	run a worker	run a worker	9	owner set		n	not a result store (worker owners)
+P0317	exit-call	X	html	run a worker	run a worker	10.1	storage.spec.whatwg.org#obtain-a-storage-key-for-non-storage-purposes		n	other-spec call, no response
+P0318	reuse-read	R2d	html	run a worker	run a worker	12.21	owner set		n	not a result store (worker owners)
+P0319	reuse-read	R2d	html	set up a worker environment settings object	set up a worker environment settings object	4	module map; module map	(URL, module type)	y	module map
+P0320	exit-call	X	html	set up a worker environment settings object	set up a worker environment settings object	4	w3c.github.io#dfn-coarsen-time		n	other-spec call, no response
+P0321	exit-call	X	html	new SharedWorker(scriptURL, options)	new SharedWorker(scriptURL, options)	9	storage.spec.whatwg.org#obtain-a-storage-key-for-non-storage-purposes		n	other-spec call, no response
+P0322	reuse-write	R2d	html	new SharedWorker(scriptURL, options)	new SharedWorker(scriptURL, options)	11.5.8	owner set		n	not a result store (worker owners)
+P0323	reuse-read	R2d	html	create a worklet global scope	create a worklet global scope	7.1.2	module responses map	request URL	y	worklet module responses
+P0324	reuse-read	R2d	html	create a worklet global scope	create a worklet global scope	7.1.2.1	module responses map	request URL	y	worklet module responses
+P0325	reuse-bind	R2d	html	set up a worklet environment settings object	set up a worklet environment settings object	6	module map; module map	(URL, module type)	y	module map
+P0326	reuse-write	R2d+alias	html	set up a worklet environment settings object	set up a worklet environment settings object	7	module map; module map	(URL, module type)	y	module map
+P0327	reuse-write	R2d+alias	html	set up a worklet environment settings object	set up a worklet environment settings object	8	module map; module map	(URL, module type)	y	module map
+P0328	reuse-read	R2d+alias	html	set up a worklet environment settings object	set up a worklet environment settings object	9	module map; module map	(URL, module type)	y	module map
+P0329	reuse-read	R2d	html	addModule(moduleURL, options)	dom-Worklet-addModule	6.4	module responses map	request URL	y	worklet module responses
+P0330	exit-call	X	html	stops parsing	stop parsing	8.1	w3c.github.io#dfn-current-high-resolution-time		n	other-spec call, no response
+P0331	exit-call	X	html	stops parsing	stop parsing	8.3	w3c.github.io#dfn-current-high-resolution-time		n	other-spec call, no response
+P0332	exit-call	X	html	stops parsing	stop parsing	8.5	w3c.github.io#webdriver-bidi-dom-content-loaded		n	other-spec call, no response
+P0333	exit-call	X	html	stops parsing	stop parsing	11.4	w3c.github.io#dfn-current-high-resolution-time		n	other-spec call, no response
+P0334	exit-call	X	html	stops parsing	stop parsing	11.6	w3c.github.io#webdriver-bidi-load-complete		n	other-spec call, no response
+P0335	exit-call	X	html	stops parsing	stop parsing	11.8	w3c.github.io#dfn-current-high-resolution-time		n	other-spec call, no response
+P0336	exit-call	X	html	stops parsing	stop parsing	11.13	w3c.github.io#dfn-queue-the-navigation-timing-entry		n	other-spec call, no response

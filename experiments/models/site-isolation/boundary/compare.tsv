@@ -1,0 +1,951 @@
+spec	algorithm	anchor	membership	rule_role	in_naive
+fetch	report timing	finalize-and-report-timing	rule-only	callee	y
+fetch	process the next manual redirect	process the next manual redirect	both	callee	y
+fetch	extract full timing info	extract-full-timing-info	both	callee	y
+fetch	abort	abort	both	callee	y
+fetch	deserialize a serialized abort reason	deserialize a serialized abort reason	both	callee	y
+fetch	terminate	terminate	both	callee	y
+fetch	create an opaque timing info	create an opaque timing info	both	callee	y
+fetch	queue a fetch task	queue a fetch task	both	callee	y
+fetch	is offline	is offline	both	callee	y
+fetch	collect an HTTP quoted string	collect an HTTP quoted string	both	callee	y
+fetch	get a structured field value	concept-header-list-get-structured-header	both	callee	y
+fetch	set a structured field value	concept-header-list-set-structured-header	both	callee	y
+fetch	contains	contains	both	callee	y
+fetch	get	concept-header-list-get	both	callee	y
+fetch	get, decode, and split	concept-header-list-get-decode-split	both	callee	y
+fetch	get, decode, and split	get, decode, and split	both	callee	y
+fetch	append	concept-header-list-append	both	callee	y
+fetch	delete	concept-header-list-delete	both	callee	y
+fetch	set	concept-header-list-set	both	callee	y
+fetch	convert header names to a sorted-lowercase set	convert header names to a sorted-lowercase set	both	callee	y
+fetch	normalize	concept-header-value-normalize	rule-only	callee	y
+fetch	CORS-safelisted request-header	CORS-safelisted request-header	both	callee	y
+fetch	CORS-unsafe request-header byte	CORS-unsafe request-header byte	both	callee	y
+fetch	CORS-unsafe request-header names	CORS-unsafe request-header names	both	callee	y
+fetch	no-CORS-safelisted request-header	no-CORS-safelisted request-header	rule-only	callee	y
+fetch	forbidden request-header	forbidden request-header	rule-only	callee	y
+fetch	extract header values	extract header values	both	callee	y
+fetch	extract header list values	extract header list values	both	callee	y
+fetch	build a content range	build a content range	both	callee	y
+fetch	parse a single range header value	simple-range-header-value	both	callee	y
+fetch	environment default `User-Agent` value	environment default `User-Agent` value	both	callee	y
+fetch	clone	concept-body-clone	both	callee	y
+fetch	as a body	as a body	both	callee	y
+fetch	incrementally read	incrementally read	both	callee	y
+fetch	incrementally-read loop	incrementally-read loop	both	callee	y
+fetch	fully read	fully read	both	callee	y
+fetch	handle content codings	handle content codings	both	callee	y
+fetch	redirect-taint	concept-request-tainted-origin	both	seed	y
+fetch	Serializing a request origin	Serializing a request origin	both	callee	y
+fetch	Byte-serializing a request origin	Byte-serializing a request origin	both	callee	y
+fetch	clone	concept-request-clone	both	arg-producer	y
+fetch	add a range header	concept-request-add-range-header	naive-only		y
+fetch	serialize a response URL for reporting	serialize a response URL for reporting	both	callee	y
+fetch	Cross-Origin-Embedder-Policy allows credentials	Cross-Origin-Embedder-Policy allows credentials	both	seed	y
+fetch	appropriate network error	appropriate network error	both	callee	y
+fetch	clone	concept-response-clone	rule-only	arg-producer	y
+fetch	location URL	concept-response-location-url	both	callee	y
+fetch	translate	concept-potential-destination-translate	both	callee	y
+fetch	terminated	concept-fetch-group-terminate	rule-only	caller	y
+fetch	resolve an origin	resolve-an-origin	both	callee	y
+fetch	clamp and coarsen connection timing info	clamp and coarsen connection timing info	both	callee	y
+fetch	obtain a connection	concept-connection-obtain	both	callee	y
+fetch	create a connection	create a connection	both	callee	y
+fetch	record connection timing info	record connection timing info	both	callee	y
+fetch	determine the network partition key	determine the network partition key	both	callee	y
+fetch	determine the network partition key	determine the network partition key	both	callee	y
+fetch	determine the HTTP cache partition	determine the HTTP cache partition	both	callee	y
+fetch	should be blocked due to a bad port	should be blocked due to a bad port	both	callee	y
+fetch	Should response to request be blocked due to its MIME type?	should-response-to-request-be-blocked-due-to-mime-type?	both	callee	y
+fetch	append a request `Cookie` header	append a request `Cookie` header	both	callee	y
+fetch	parse and store response `Set-Cookie` headers	parse and store response `Set-Cookie` headers	both	callee	y
+fetch	determine the same-site mode	determine the same-site mode	both	callee	y
+fetch	append a request `Origin` header	append-a-request-origin-header	both	callee	y
+fetch	extract a MIME type	concept-header-extract-mime-type	both	callee	y
+fetch	legacy extract an encoding	legacy extract an encoding	rule-only	callee	y
+fetch	determine nosniff	determine nosniff	both	callee	y
+fetch	Should response to request be blocked due to nosniff?	should-response-to-request-be-blocked-due-to-nosniff?	both	callee	y
+fetch	cross-origin resource policy check	cross-origin resource policy check	both	seed	y
+fetch	cross-origin resource policy internal check	cross-origin resource policy internal check	both	callee	y
+fetch	queue a cross-origin embedder policy CORP violation report	queue a cross-origin embedder policy CORP violation report	both	callee	y
+fetch	fetch	concept-fetch	both	seed	y
+fetch	populate request from client	populate request from client	both	seed	y
+fetch	main fetch	concept-main-fetch	both	seed	y
+fetch	fetch response handover	fetch-finale	both	sink	y
+fetch	override fetch	concept-override-fetch	both	seed	y
+fetch	potentially override response for a request	potentially override response for a request	both	callee	y
+fetch	scheme fetch	concept-scheme-fetch	both	seed	y
+fetch	determine the environment	determine the environment	both	callee	y
+fetch	HTTP fetch	concept-http-fetch	both	seed	y
+fetch	HTTP-redirect fetch	concept-http-redirect-fetch	both	seed	y
+fetch	HTTP-network-or-cache fetch	concept-http-network-or-cache-fetch	both	seed	y
+fetch	HTTP-network fetch	concept-http-network-fetch	both	seed	y
+fetch	CORS-preflight fetch	cors-preflight-fetch-0	both	seed	y
+fetch	create a new cache entry	concept-cache-create-entry	both	callee	y
+fetch	CORS check	concept-cors-check	both	callee	y
+fetch	TAO check	concept-tao-check	both	callee	y
+fetch	append to a request's navigation timing allow values list	append to a request's navigation timing allow values list	both	callee	y
+fetch	navigation TAO check	navigation TAO check	both	callee	y
+fetch	queue a deferred fetch	queue a deferred fetch	rule-only	caller	y
+fetch	total request length	total request length	both	callee	y
+fetch	process deferred fetches	process deferred fetches	rule-only	caller	y
+fetch	process a deferred fetch	process a deferred fetch	rule-only	caller	y
+fetch	available deferred-fetch quota	available deferred-fetch quota	both	callee	y
+fetch	reserve deferred-fetch quota	reserve deferred-fetch quota	both	callee	y
+fetch	potentially free deferred-fetch quota	potentially free deferred-fetch quota	both	callee	y
+fetch	deferred-fetch control document	deferred-fetch control document	both	callee	y
+fetch	validate	validate	rule-only	callee	y
+fetch	append	concept-headers-append	rule-only	callee	y
+fetch	fill	concept-headers-fill	rule-only	callee	y
+fetch	remove privileged no-CORS request-headers	concept-headers-remove-privileged-no-cors-request-headers	rule-only	callee	y
+fetch	safely extract	safely extract	both	callee	y
+fetch	keepalive	keepalive	rule-only	caller	y
+fetch	body	body	naive-only		y
+fetch	consume body	concept-body-consume-body	naive-only		y
+fetch	arrayBuffer()	arrayBuffer()	rule-only	caller	y
+fetch	bytes()	bytes()	rule-only	caller	y
+fetch	create	create	rule-only	seed	y
+fetch	new Request(input, init)	dom-request	rule-only	seed	y
+fetch	referrer	referrer	both	callee	y
+fetch	clone()	clone()	rule-only	caller	y
+fetch	create	create	rule-only	seed	y
+fetch	initialize a response	initialize a response	rule-only	seed	y
+fetch	new Response(body, init)	dom-response	rule-only	seed	y
+fetch	redirect(url, status)	redirect(url, status)	rule-only	seed	y
+fetch	json(data, init)	json(data, init)	rule-only	caller	y
+fetch	clone()	clone()	rule-only	caller	y
+fetch	fetch(input, init)	dom-global-fetch	rule-only	caller	y
+fetch	abort a fetch() call	abort-fetch	rule-only	seed	y
+fetch	fetchLater(input, init)	fetchLater(input, init)	naive-only		y
+fetch	data: URL processor	data: URL processor	both	callee	y
+html	enqueue steps	enqueue the following steps	naive-only		y
+html	start a new parallel queue	starting a new parallel queue	both	callee	y
+html	(unowned block in section: DOM trees)	@1951	naive-only		y
+html	node is inserted into a document	insert-an-element-into-a-document	rule-only	arg-producer	y
+html	becomes connected	becomes connected	rule-only	arg-producer	y
+html	browsing-context connected	browsing-context connected	both	callee	y
+html	valid integer	valid integer	naive-only		y
+html	rules for parsing integers	rules for parsing integers	both	callee	y
+html	valid non-negative integer	valid non-negative integer	both	callee	y
+html	rules for parsing non-negative integers	rules for parsing non-negative integers	both	callee	y
+html	valid floating-point number	valid floating-point number	both	callee	y
+html	rules for parsing floating-point number values	rules for parsing floating-point number values	both	callee	y
+html	matches the environment	matches the environment	both	callee	y
+html	matches about:blank	matches about:blank	both	arg-producer	y
+html	matches about:srcdoc	matches about:srcdoc	both	callee	y
+html	parse a URL	parse a URL	both	arg-producer	y
+html	encoding-parse a URL	encoding-parsing a URL	both	arg-producer	y
+html	encoding-parse-and-serialize a URL	encoding-parsing-and-serializing a URL	both	callee	y
+html	document base URL	document base URL	both	callee	y
+html	fallback base URL	fallback base URL	both	callee	y
+html	set the URL	set the URL	both	callee	y
+html	respond to base URL changes	respond to base URL changes	both	callee	y
+html	CORS-same-origin	CORS-same-origin	rule-only	arg-producer	y
+html	CORS-cross-origin	CORS-cross-origin	rule-only	arg-producer	y
+html	unsafe response	unsafe response	rule-only	callee	y
+html	create a potential-CORS request	create a potential-CORS request	rule-only	seed+arg-producer	y
+html	match integrity metadata	match integrity metadata	both	callee	y
+html	algorithm for extracting a character encoding from a meta element	algorithm for extracting a character encoding from a meta element	rule-only	callee	y
+html	No CORS	attr-crossorigin-none	rule-only	callee	y
+html	CORS settings attribute credentials mode	CORS settings attribute credentials mode	rule-only	callee	y
+html	referrer policy attribute	referrer policy attribute	naive-only		y
+html	will lazy load element steps	will lazy load element steps	both	callee	y
+html	start intersection-observing a lazy loading element	start intersection-observing a lazy loading element	naive-only		y
+html	stop intersection-observing a lazy loading element	stop intersection-observing a lazy loading element	both	callee	y
+html	blocking tokens set	blocking tokens set	both	callee	y
+html	potentially render-blocking	potentially render-blocking	both	callee	y
+html	get the attr-associated element	attr-associated-element	naive-only		y
+html	restrict	restrict to the same agent cluster	both	callee	y
+html	StructuredSerializeInternal	StructuredSerializeInternal	both	callee	y
+html	StructuredSerializeForStorage	StructuredSerializeForStorage	both	arg-producer	y
+html	StructuredDeserialize	StructuredDeserialize	both	callee	y
+html	StructuredSerializeWithTransfer	StructuredSerializeWithTransfer	naive-only		y
+html	StructuredDeserializeWithTransfer	StructuredDeserializeWithTransfer	naive-only		y
+html	internal ancestor origin objects list	concept-document-internal-ancestor-origin-objects-list	both	callee	y
+html	ancestor origins list	concept-document-ancestor-origins-list	both	callee	y
+html	referrer	dom-document-referrer	naive-only		y
+html	update the current document readiness	update the current document readiness	both	callee	y
+html	active parser	active parser	both	callee	y
+html	allows adding render-blocking elements	allows adding render-blocking elements	both	callee	y
+html	render-blocked	render-blocked	rule-only	callee	y
+html	render-blocking	render-blocking	rule-only	callee	y
+html	block rendering	block rendering	both	callee	y
+html	unblock rendering	unblock rendering	both	callee	y
+html	The html element	The html element	both	callee	y
+html	The body element	The body element	both	callee	y
+html	currentScript	dom-document-currentScript	both	callee	y
+html	language	language	rule-only	callee	y
+html	Undefined	attr-dir-undefined-state	naive-only		y
+html	directionality	the directionality	naive-only		y
+html	auto-directionality form-associated elements	auto-directionality form-associated elements	naive-only		y
+html	auto directionality	auto directionality	naive-only		y
+html	contained text auto directionality	contained text auto directionality	naive-only		y
+html	text node directionality	text node directionality	naive-only		y
+html	custom data attribute	custom data attribute	naive-only		y
+html	get an element's target	get an element's target	naive-only		y
+html	default fetch and process the linked resource	default fetch and process the linked resource	rule-only	caller	y
+html	create a link request	create a link request	rule-only	seed	y
+html	create link options from element	create link options from element	rule-only	arg-producer	y
+html	extract links from headers	extract links from headers	both	callee	y
+html	process link headers	process link headers	both	callee	y
+html	apply link options from parsed header attributes	apply link options from parsed header attributes	both	callee	y
+html	process early hint headers	process early hint headers	both	seed	y
+html	(unowned block in section: Standard metadata names)	@18115	rule-only	seed	y
+html	(unowned block in section: Standard metadata names)	@18216	rule-only	seed	y
+html	(unowned block in section: Standard metadata names)	@18266	rule-only	seed	y
+html	(unowned block in section: Standard metadata names)	@18362	rule-only	seed	y
+html	(unowned block in section: Standard metadata names)	@18448	rule-only	seed	y
+html	Content language state	attr-meta-http-equiv-content-language	rule-only	caller	y
+html	contributes a script-blocking style sheet	contributes a script-blocking style sheet	rule-only	callee	y
+html	has a style sheet that is blocking scripts	has a style sheet that is blocking scripts	both	callee	y
+html	has no style sheet that is blocking scripts	has no style sheet that is blocking scripts	both	callee	y
+html	(unowned block in section: Links created by a and area elements)	@26764	naive-only		y
+html	cannot navigate	cannot navigate	both	callee	y
+html	get an element's noopener	get an element's noopener	naive-only		y
+html	follow the hyperlink	following hyperlinks	rule-only	caller	y
+html	hyperlink referrer policy	hyperlink referrer policy	both	arg-producer	y
+html	download the hyperlink	downloading hyperlinks	both	caller	y
+html	handle as a download	handle as a download	both	callee	y
+html	get the suggested filename	getting the suggested filename	both	caller	y
+html	(unowned block in section: Hyperlink auditing)	@27994	rule-only	caller	y
+html	"(unowned block in section: Link type ""<code)"	@28659	rule-only	seed	y
+html	process internal resource link	process internal resource link	both	callee	y
+html	process internal resource links	process internal resource links	both	callee	y
+html	"(unowned block in section: Link type ""<code)"	@28884	rule-only	seed	y
+html	"(unowned block in section: Link type ""<code)"	@28922	rule-only	seed	y
+html	"(unowned block in section: Link type ""<code)"	@28941	rule-only	seed	y
+html	"(unowned block in section: Link type ""<code)"	@29105	rule-only	seed	y
+html	"(unowned block in section: Link type ""<code)"	@29137	rule-only	seed	y
+html	"(unowned block in section: Link type ""<code)"	@29236	rule-only	seed	y
+html	preconnect	preconnect	rule-only	seed	y
+html	"(unowned block in section: Link type ""<code)"	@29610	rule-only	seed	y
+html	consume a preloaded resource	consume a preloaded resource	both	callee	y
+html	matches	match preload type	rule-only	callee	y
+html	create a preload key	create a preload key	rule-only	callee	y
+html	translate a preload destination	translate a preload destination	both	callee	y
+html	preload	preload	rule-only	seed	y
+html	"(unowned block in section: Link type ""<code)"	@30000	rule-only	seed	y
+html	"(unowned block in section: Link type ""<code)"	@30160	rule-only	seed	y
+html	"(unowned block in section: Link type ""<code)"	@30199	rule-only	seed	y
+html	(unowned block in section: The source element)	@31291	naive-only		y
+html	(unowned block in section: The source element)	@31313	naive-only		y
+html	(unowned block in section: The source element)	@31326	naive-only		y
+html	(unowned block in section: The source element)	@31347	naive-only		y
+html	allows auto-sizes	allows auto-sizes	both	callee	y
+html	(unowned block in section: The img element)	@31604	naive-only		y
+html	(unowned block in section: The img element)	@31615	naive-only		y
+html	(unowned block in section: The img element)	@31628	naive-only		y
+html	(unowned block in section: The img element)	@31639	naive-only		y
+html	use srcset or picture	use srcset or picture	naive-only		y
+html	relevant mutations	relevant mutations	naive-only		y
+html	update the image data	update the image data	rule-only	caller	y
+html	abort the image request	abort the image request	rule-only	caller	y
+html	upgrade the pending request to the current request	upgrade the pending request to the current request	rule-only	arg-producer	y
+html	prepare an image for presentation	prepare an image for presentation	rule-only	arg-producer	y
+html	select an image source	select an image source	naive-only		y
+html	select an image source from a source set	select an image source from a source set	rule-only	callee	y
+html	create a source set	create a source set	both	callee	y
+html	update the source set	update the source set	rule-only	callee	y
+html	parse a srcset attribute	parse a srcset attribute	both	callee	y
+html	parse a sizes attribute	parse a sizes attribute	both	callee	y
+html	normalize the source densities	normalise-the-source-densities	both	callee	y
+html	react to changes in the environment	img-environment-changes	rule-only	caller	y
+html	(unowned block in section: The)	@35843	naive-only		y
+html	(unowned block in section: The)	@35881	naive-only		y
+html	process the iframe attributes	process the iframe attributes	naive-only		y
+html	shared attribute processing steps for iframe and frame elements	shared attribute processing steps for iframe and frame elements	naive-only		y
+html	navigate an iframe or frame	navigate an iframe or frame	rule-only	caller	y
+html	iframe load event steps	iframe load event steps	both	callee	y
+html	allowed to use	allowed to use	both	callee	y
+html	contentDocument	dom-iframe-contentDocument	naive-only		y
+html	potentially active	concept-embed-active	naive-only		y
+html	embed task source	embed task source	naive-only		y
+html	The embed element setup steps	The embed element setup steps	rule-only	caller	y
+html	type of the content	concept-embed-type	naive-only		y
+html	display no plugin	display no plugin	naive-only		y
+html	(unowned block in section: The object element)	@37024	rule-only	caller	y
+html	contentDocument	dom-object-contentDocument	naive-only		y
+html	determine a video's poster frame	determine a video's poster frame	rule-only	caller	y
+html	videoWidth	dom-video-videoWidth	naive-only		y
+html	videoHeight	dom-video-videoHeight	naive-only		y
+html	Audio(src)	Audio(src)	naive-only		y
+html	(unowned block in section: Media elements)	@38483	naive-only		y
+html	queue a media element task	queue a media element task	rule-only	arg-producer	y
+html	error	dom-media-error	naive-only		y
+html	create a MediaError	creating a MediaError	naive-only		y
+html	(setter steps of dom-media-srcObject)	@38835	naive-only		y
+html	networkState	dom-media-networkState	rule-only	arg-producer	y
+html	load()	dom-media-load	naive-only		y
+html	media element load algorithm	media element load algorithm	naive-only		y
+html	resource selection algorithm	concept-media-load-algorithm	rule-only	caller	y
+html	verify a media response	verify a media response	rule-only	seed	y
+html	resource fetch algorithm	concept-media-load-resource	rule-only	caller	y
+html	forget the media element's media-resource-specific tracks	forget the media element's media-resource-specific tracks	naive-only		y
+html	preload	dom-media-preload	rule-only	seed	y
+html	currentTime	dom-media-currentTime	naive-only		y
+html	duration	dom-media-duration	naive-only		y
+html	(unowned block in section: Ready states)	@40737	naive-only		y
+html	readyState	dom-media-readyState	naive-only		y
+html	blocked media element	blocked media element	naive-only		y
+html	potentially playing	potentially playing	naive-only		y
+html	eligible for autoplay	eligible for autoplay	naive-only		y
+html	allowed to play	allowed to play	naive-only		y
+html	ended playback	ended playback	naive-only		y
+html	ended	dom-media-ended	naive-only		y
+html	stopped due to errors	stopped due to errors	naive-only		y
+html	paused for user interaction	paused for user interaction	naive-only		y
+html	paused for in-band content	paused for in-band content	naive-only		y
+html	(unowned block in section: Playing the media resource)	@41133	naive-only		y
+html	defaultPlaybackRate	dom-media-defaultPlaybackRate	naive-only		y
+html	playbackRate	dom-media-playbackRate	naive-only		y
+html	take pending play promises	take pending play promises	naive-only		y
+html	resolve pending play promises	resolve pending play promises	naive-only		y
+html	reject pending play promises	reject pending play promises	naive-only		y
+html	notify about playing	notify about playing	naive-only		y
+html	play()	dom-media-play	naive-only		y
+html	internal play steps	internal play steps	naive-only		y
+html	pause()	dom-media-pause	naive-only		y
+html	internal pause steps	internal pause steps	naive-only		y
+html	direction of playback	direction of playback	naive-only		y
+html	list of newly introduced cues	list of newly introduced cues	naive-only		y
+html	time marches on	time marches on	naive-only		y
+html	fastSeek(time)	fastSeek(time)	naive-only		y
+html	seek	dom-media-seek	naive-only		y
+html	seekable	dom-media-seekable	naive-only		y
+html	audioTracks	dom-media-audioTracks	naive-only		y
+html	videoTracks	dom-media-videoTracks	naive-only		y
+html	enabled	dom-AudioTrack-enabled	naive-only		y
+html	selected	dom-VideoTrack-selected	naive-only		y
+html	list of text tracks	list of text tracks	naive-only		y
+html	populate the list of pending text tracks	populate the list of pending text tracks	naive-only		y
+html	(unowned block in section: Text track model)	@42663	naive-only		y
+html	steps to expose a media-resource-specific text track	steps to expose a media-resource-specific text track	naive-only		y
+html	start the track processing model	start the track processing model	rule-only	caller	y
+html	textTracks	dom-media-textTracks	naive-only		y
+html	startTime	dom-TextTrackCue-startTime	naive-only		y
+html	endTime	dom-TextTrackCue-endTime	naive-only		y
+html	normalized TimeRanges object	normalised-timeranges-object	naive-only		y
+html	track	dom-TrackEvent-track	naive-only		y
+html	getSVGDocument()	dom-media-getSVGDocument	rule-only	caller	y
+html	submit()	dom-form-submit	naive-only		y
+html	requestSubmit(submitter)	requestSubmit(submitter)	naive-only		y
+html	(unowned block in section: The input element)	@51749	naive-only		y
+html	radio button group	radio button group	naive-only		y
+html	update the file selection	update the file selection	naive-only		y
+html	(unowned block in section: Submit Button state (type=submit))	@55042	naive-only		y
+html	(unowned block in section: Image Button state (type=image))	@55183	rule-only	caller	y
+html	(unowned block in section: Image Button state (type=image))	@55278	naive-only		y
+html	selected coordinate	concept-input-type-image-coordinate	naive-only		y
+html	showPicker()	dom-input-showPicker	naive-only		y
+html	show the picker, if applicable	show the picker, if applicable	naive-only		y
+html	Auto	attr-button-type-auto-state	naive-only		y
+html	Unknown	attr-button-command-unknown-state	naive-only		y
+html	determine if a command is valid for a target	determine-if-command-is-valid	naive-only		y
+html	(unowned block in section: The button element)	@57481	naive-only		y
+html	open the picker	select-open-picker	naive-only		y
+html	list of options	concept-select-option-list	naive-only		y
+html	selectedness	concept-option-selectedness	naive-only		y
+html	disabled	attr-fieldset-disabled	naive-only		y
+html	reset the form owners with a form attribute	reset the form owners with a form attribute	naive-only		y
+html	reset the form owner	reset the form owner	naive-only		y
+html	disabled	concept-fe-disabled	naive-only		y
+html	method	concept-fs-method	naive-only		y
+html	enctype	concept-fs-enctype	naive-only		y
+html	no-validate state	concept-fs-novalidate	naive-only		y
+html	candidate for constraint validation	candidate for constraint validation	naive-only		y
+html	satisfies its constraints	concept-fv-valid	naive-only		y
+html	statically validate the constraints	statically validate the constraints	naive-only		y
+html	interactively validate the constraints	interactively validate the constraints	naive-only		y
+html	(unowned block in section: Implicit submission)	@65149	naive-only		y
+html	field that blocks implicit submission	field that blocks implicit submission	naive-only		y
+html	submit	concept-form-submit	rule-only	caller	y
+html	create an entry	create an entry	naive-only		y
+html	construct the entry list	constructing-the-form-data-set	naive-only		y
+html	pick an encoding for a form	picking an encoding for the form	naive-only		y
+html	convert to a list of name-value pairs	convert to a list of name-value pairs	naive-only		y
+html	multipart/form-data encoding algorithm	multipart/form-data encoding algorithm	rule-only	callee	y
+html	text/plain encoding algorithm	text/plain encoding algorithm	naive-only		y
+html	submitter	dom-SubmitEvent-submitter	naive-only		y
+html	formData	dom-FormDataEvent-formData	naive-only		y
+html	reset	concept-form-reset	naive-only		y
+html	show()	dom-dialog-show	naive-only		y
+html	showModal()	dom-dialog-showModal	naive-only		y
+html	returnValue	dom-dialog-returnValue	naive-only		y
+html	show a modal dialog	show a modal dialog	naive-only		y
+html	(unowned block in section: The dialog element)	@67582	naive-only		y
+html	closed	close the dialog	naive-only		y
+html	request to close	dialog-request-close	naive-only		y
+html	queue a dialog toggle event task	queue a dialog toggle event task	naive-only		y
+html	dialog focusing steps	dialog focusing steps	naive-only		y
+html	steps to run when the result is ready	steps to run when the result is ready	naive-only		y
+html	(unowned block in section: Processing model)	@68890	naive-only		y
+html	prepare the script element	prepare the script element	rule-only	caller	y
+html	execute the script element	execute the script element	both	callee	y
+html	form-associated custom element	form-associated custom element	naive-only		y
+html	look up a custom element registry	look up a custom element registry	naive-only		y
+html	entry construction algorithm	face-entry-construction	naive-only		y
+html	ancestor revealing algorithm	ancestor revealing algorithm	both	callee	y
+html	update the visibility state	update the visibility state	both	callee	y
+html	set the initial visibility state	set the initial visibility state	both	callee	y
+html	blocked by a modal dialog	blocked by a modal dialog	naive-only		y
+html	activation notification	activation notification	naive-only		y
+html	consume user activation	consume user activation	rule-only	callee	y
+html	consume history-action user activation	consume history-action user activation	both	callee	y
+html	oldState	dom-ToggleEvent-oldState	naive-only		y
+html	source	dom-ToggleEvent-source	naive-only		y
+html	command	dom-CommandEvent-command	naive-only		y
+html	source	dom-CommandEvent-source	naive-only		y
+html	system focus	system focus	both	callee	y
+html	currently focused area of a top-level traversable	currently focused area of a top-level traversable	both	callee	y
+html	current focus chain of a top-level traversable	current focus chain of a top-level traversable	both	callee	y
+html	focus chain	focus chain	both	callee	y
+html	sequentially focusable	sequentially focusable	both	callee	y
+html	click focusable	click focusable	both	callee	y
+html	tabindex value	tabindex value	both	callee	y
+html	get the focusable area	get the focusable area	both	callee	y
+html	focus delegate	focus delegate	both	callee	y
+html	autofocus delegate	autofocus delegate	both	callee	y
+html	focusing steps	focusing steps	both	callee	y
+html	focus update steps	focus update steps	both	callee	y
+html	fire a focus event	fire a focus event	both	callee	y
+html	allow focus steps	allow focus steps	naive-only		y
+html	update the assigned access key	update the assigned access key	naive-only		y
+html	notify the close watcher manager about user activation	notify the close watcher manager about user activation	naive-only		y
+html	is active	close-watcher-active	naive-only		y
+html	establish a close watcher	establish a close watcher	naive-only		y
+html	request to close	close-watcher-request-close	naive-only		y
+html	close	close-watcher-close	naive-only		y
+html	destroy	close-watcher-destroy	naive-only		y
+html	No Popover	attr-popover-none-state	naive-only		y
+html	showPopover(options)	showPopover(options)	naive-only		y
+html	show popover	show popover	naive-only		y
+html	queue a popover toggle event task	queue a popover toggle event task	naive-only		y
+html	hide a popover	hide popover algorithm	naive-only		y
+html	togglePopover(options)	togglePopover(options)	naive-only		y
+html	hide popovers until	hide popovers until	naive-only		y
+html	hide popover stack until	hide popover stack until	naive-only		y
+html	topmost popover ancestor	topmost popover ancestor	naive-only		y
+html	find the topmost auto or hint popover	topmost auto or hint popover	naive-only		y
+html	popover focusing steps	popover focusing steps	naive-only		y
+html	check popover validity	check popover validity	naive-only		y
+html	showing auto popover list	auto-popover-list	naive-only		y
+html	showing hint popover list	showing hint popover list	naive-only		y
+html	popover target attribute activation behavior	popover target attribute activation behavior	naive-only		y
+html	popover target element	popover target element	naive-only		y
+html	effective domain	concept-origin-effective-domain	both	callee	y
+html	serialization of an origin	ascii-serialisation-of-an-origin	both	callee	y
+html	same origin	same origin	both	seed	y
+html	same origin-domain	same origin-domain	both	arg-producer	y
+html	obtain a site	obtain a site	both	seed	y
+html	same site	concept-site-same-site	both	seed	y
+html	schemelessly same site	schemelessly same site	both	seed	y
+html	same site	same site	both	seed	y
+html	domain	dom-document-domain	both	sink	y
+html	(setter steps of dom-document-domain)	@95055	rule-only	sink	y
+html	is a registrable domain suffix of or is equal to	is a registrable domain suffix of or is equal to	rule-only	callee	y
+html	isSameOrigin(other)	isSameOrigin(other)	naive-only		y
+html	isSameSite(other)	isSameSite(other)	naive-only		y
+html	originAgentCluster	dom-originAgentCluster	rule-only	sink	y
+html	match opener policy values	matching-coop	both	seed	y
+html	obtain an opener policy	obtain-coop	both	seed	y
+html	check if popup COOP values require a browsing context group switch	check-browsing-context-group-switch-coop-value-popup	both	seed	y
+html	check if COOP values require a browsing context group switch	check-browsing-context-group-switch-coop-value	both	seed	y
+html	check if enforcing report-only COOP would require a browsing context group switch	check-bcg-switch-navigation-report-only	both	callee	y
+html	enforce a response's opener policy	coop-enforce	both	seed	y
+html	obtain a browsing context to use for a navigation response	obtain-browsing-context-navigation	both	seed	y
+html	check if an access between two browsing contexts should be reported	coop-check-access-report	naive-only		y
+html	sanitize a URL to send in a report	sanitize-url-report	both	callee	y
+html	queue a violation report for browsing context group switch when navigating to a COOP response	coop-violation-navigation-to	both	callee	y
+html	queue a violation report for browsing context group switch when navigating away from a COOP response	coop-violation-navigation-from	both	callee	y
+html	queue violation reports for accesses	coop-violation-access	naive-only		y
+html	queue a violation report for access to the opener	coop-violation-access-to-opener	naive-only		y
+html	queue a violation report for access to an opened window	coop-violation-access-to-opened	naive-only		y
+html	queue a violation report for access to another window	coop-violation-access-to-other	naive-only		y
+html	queue a violation report for access from the opener	coop-violation-access-from-opener	naive-only		y
+html	queue a violation report for access from an opened window	coop-violation-access-from-opened	naive-only		y
+html	queue a violation report for access from another window	coop-violation-access-from-other	naive-only		y
+html	compatible with cross-origin isolation	compatible with cross-origin isolation	both	callee	y
+html	obtain an embedder policy	obtain an embedder policy	both	seed	y
+html	check a navigation response's adherence to its embedder policy	check a navigation response's adherence to its embedder policy	both	seed	y
+html	check a global object's embedder policy	check a global object's embedder policy	rule-only	callee	y
+html	queue a cross-origin embedder policy inheritance violation	queue a cross-origin embedder policy inheritance violation	both	callee	y
+html	parse a sandboxing directive	parse a sandboxing directive	both	caller	y
+html	CSP-derived sandboxing flags	CSP-derived sandboxing flags	both	callee	y
+html	determine the creation sandboxing flags	determining the creation sandboxing flags	both	callee	y
+html	determine the iframe element referrer policy	determining the iframe element referrer policy	both	callee	y
+html	clone a policy container	clone a policy container	both	seed	y
+html	requires storing the policy container in history	requires storing the policy container in history	both	callee	y
+html	create a policy container from a fetch response	creating a policy container from a fetch response	both	seed	y
+html	determine navigation params policy container	determining navigation params policy container	both	seed	y
+html	initialize a worker global scope's policy container	initialize worker policy container	rule-only	seed	y
+html	(unowned block in section: Integration with IDL)	@97720	naive-only		y
+html	CrossOriginProperties	CrossOriginProperties	naive-only		y
+html	cross-origin accessible window property name	cross-origin accessible window property name	naive-only		y
+html	CrossOriginPropertyFallback	CrossOriginPropertyFallback	naive-only		y
+html	IsPlatformObjectSameOrigin	IsPlatformObjectSameOrigin	naive-only		y
+html	CrossOriginGetOwnPropertyHelper	CrossOriginGetOwnPropertyHelper	naive-only		y
+html	CrossOriginGet	CrossOriginGet	naive-only		y
+html	CrossOriginSet	CrossOriginSet	naive-only		y
+html	CrossOriginOwnPropertyKeys	CrossOriginOwnPropertyKeys	naive-only		y
+html	browsing context	window bc	rule-only	callee	y
+html	navigable	window navigable	both	arg-producer	y
+html	get noopener for window open	get noopener for window open	naive-only		y
+html	window open steps	window open steps	rule-only	caller	y
+html	open(url, target, features)	open(url, target, features)	naive-only		y
+html	tokenize the features argument	concept-window-open-features-tokenize	naive-only		y
+html	check if a window feature is set	window-feature-is-set	naive-only		y
+html	check if a popup window is requested	popup-window-is-requested	naive-only		y
+html	feature separator	feature separator	naive-only		y
+html	normalize a feature name	normalizing the feature name	naive-only		y
+html	parse a boolean feature	concept-window-open-features-parse-boolean	naive-only		y
+html	close()	dom-window-close	naive-only		y
+html	script-closable	script-closable	naive-only		y
+html	stop()	dom-window-stop	naive-only		y
+html	document-tree child navigable target name property set	document-tree child navigable target name property set	naive-only		y
+html	Named objects	dom-window-nameditem-filter	naive-only		y
+html	opener	dom-opener	rule-only	sink	y
+html	(setter steps of dom-opener)	@98978	rule-only	sink	y
+html	frameElement	dom-frameElement	naive-only		y
+html	set up a window environment settings object	set up a window environment settings object	both	seed	y
+html	(unowned block in section: [[GetPrototypeOf]] ( ))	@99357	naive-only		y
+html	(unowned block in section: [[GetOwnProperty]] ( P ))	@99396	naive-only		y
+html	(unowned block in section: [[DefineOwnProperty]] ( P, Desc)	@99495	naive-only		y
+html	(unowned block in section: [[Get]] ( P, Receiver ))	@99524	naive-only		y
+html	(unowned block in section: [[Set]] ( P, V, Receiver ))	@99550	naive-only		y
+html	(unowned block in section: [[Delete]] ( P ))	@99586	naive-only		y
+html	(unowned block in section: [[OwnPropertyKeys]] ( ))	@99617	naive-only		y
+html	relevant Document	relevant Document	rule-only	arg-producer	y
+html	url	concept-location-url	naive-only		y
+html	Location-object navigate	Location-object navigate	rule-only	caller	y
+html	href	dom-location-href	naive-only		y
+html	(setter steps of dom-location-href)	@99891	naive-only		y
+html	origin	dom-location-origin	naive-only		y
+html	protocol	dom-location-protocol	naive-only		y
+html	(setter steps of dom-location-protocol)	@99945	naive-only		y
+html	host	dom-location-host	naive-only		y
+html	(setter steps of dom-location-host)	@100011	naive-only		y
+html	hostname	dom-location-hostname	naive-only		y
+html	(setter steps of dom-location-hostname)	@100059	naive-only		y
+html	port	dom-location-port	naive-only		y
+html	(setter steps of dom-location-port)	@100107	naive-only		y
+html	pathname	dom-location-pathname	naive-only		y
+html	(setter steps of dom-location-pathname)	@100155	naive-only		y
+html	search	dom-location-search	naive-only		y
+html	(setter steps of dom-location-search)	@100207	naive-only		y
+html	hash	dom-location-hash	naive-only		y
+html	(setter steps of dom-location-hash)	@100270	naive-only		y
+html	assign(url)	assign(url)	naive-only		y
+html	replace(url)	replace(url)	naive-only		y
+html	reload()	dom-location-reload	naive-only		y
+html	ancestorOrigins	dom-location-ancestorOrigins	naive-only		y
+html	(unowned block in section: [[GetPrototypeOf]] ( ))	@100435	naive-only		y
+html	(unowned block in section: [[GetOwnProperty]] ( P ))	@100470	naive-only		y
+html	(unowned block in section: [[DefineOwnProperty]] ( P, Desc ))	@100497	naive-only		y
+html	(unowned block in section: [[Get]] ( P, Receiver ))	@100517	naive-only		y
+html	(unowned block in section: [[Set]] ( P, V, Receiver ))	@100529	naive-only		y
+html	(unowned block in section: [[Delete]] ( P ))	@100541	naive-only		y
+html	(unowned block in section: [[OwnPropertyKeys]] ( ))	@100552	naive-only		y
+html	go(delta)	go(delta)	naive-only		y
+html	back()	dom-history-back	naive-only		y
+html	forward()	dom-history-forward	naive-only		y
+html	delta traverse	delta traverse	naive-only		y
+html	pushState(data, unused, url)	pushState(data, unused, url)	naive-only		y
+html	replaceState(data, unused, url)	replaceState(data, unused, url)	naive-only		y
+html	shared history push/replace state steps	shared history push/replace state steps	naive-only		y
+html	can have its URL rewritten	can have its URL rewritten	both	callee	y
+html	navigation API	window-navigation-api	both	callee	y
+html	current entry	navigation-current-entry	both	callee	y
+html	has entries and events disabled	has entries and events disabled	both	callee	y
+html	get the navigation API entry index	getting the navigation API entry index	both	callee	y
+html	initialize the navigation API entries for a new document	initialize the navigation API entries for a new document	both	callee	y
+html	update the navigation API entries for reactivation	update the navigation API entries for reactivation	both	callee	y
+html	update the navigation API entries for a same-document navigation	update the navigation API entries for a same-document navigation	both	callee	y
+html	key	concept-NavigationHistoryEntry-key	both	callee	y
+html	navigate(url, options)	navigate(url, options)	rule-only	caller	y
+html	reload(options)	reload(options)	naive-only		y
+html	traverseTo(key, options)	traverseTo(key, options)	naive-only		y
+html	back(options)	back(options)	naive-only		y
+html	forward(options)	forward(options)	naive-only		y
+html	perform a navigation API traversal	performing a navigation API traversal	naive-only		y
+html	early error result	navigation-api-early-error-result	rule-only	arg-producer	y
+html	navigation API method tracker-derived result	navigation API method tracker-derived result	naive-only		y
+html	set up a navigate/reload API method tracker	set up a navigate/reload API method tracker	rule-only	arg-producer	y
+html	add an upcoming traverse API method tracker	add an upcoming traverse API method tracker	naive-only		y
+html	clean up	navigation-api-method-tracker-clean-up	both	callee	y
+html	notify about the committed-to entry	notify about the committed-to entry	both	callee	y
+html	resolve the finished promise	resolve the finished promise	both	callee	y
+html	reject the finished promise	reject the finished promise	both	callee	y
+html	abort the ongoing navigation	abort the ongoing navigation	both	callee	y
+html	inform the navigation API about aborting navigation	inform the navigation API about aborting navigation	both	callee	y
+html	inform the navigation API about child navigable destruction	inform the navigation API about child navigable destruction	rule-only	callee	y
+html	navigationType	dom-NavigateEvent-navigationType	both	callee	y
+html	url	dom-NavigationDestination-url	both	callee	y
+html	fire a traverse navigate event	fire a traverse navigate event	both	callee	y
+html	fire a push/replace/reload navigate event	fire a push/replace/reload navigate event	both	callee	y
+html	fire a download request navigate event	fire a download request navigate event	both	callee	y
+html	inner navigate event firing algorithm	inner navigate event firing algorithm	both	callee	y
+html	navigate event intercept commit handler steps	navigate event intercept commit handler steps	both	callee	y
+html	commit a navigate event	commit a navigate event	both	callee	y
+html	process navigate event handler failure	process navigate event handler failure	both	callee	y
+html	finish	NavigateEvent-finish	both	callee	y
+html	potentially reset the focus	potentially reset the focus	both	callee	y
+html	potentially process scroll behavior	potentially process scroll behavior	both	callee	y
+html	process scroll behavior	process scroll behavior	both	callee	y
+html	navigationType	dom-NavigationCurrentEntryChangeEvent-navigationType	both	callee	y
+html	state	dom-PopStateEvent-state	both	callee	y
+html	hasUAVisualTransition	dom-PopStateEvent-hasUAVisualTransition	both	callee	y
+html	oldURL	dom-HashChangeEvent-oldURL	both	callee	y
+html	newURL	dom-HashChangeEvent-newURL	both	callee	y
+html	activation	dom-PageSwapEvent-activation	both	callee	y
+html	persisted	dom-PageTransitionEvent-persisted	both	callee	y
+html	fire a page transition event	fire a page transition event	both	callee	y
+html	returnValue	dom-BeforeUnloadEvent-returnValue	both	callee	y
+html	Document's not restored reasons	concept-document-nrr	both	callee	y
+html	active document	nav-document	both	arg-producer	y
+html	active browsing context	nav-bc	both	callee	y
+html	active WindowProxy	nav-wp	both	callee	y
+html	active window	nav-window	both	callee	y
+html	target name	nav-target	both	callee	y
+html	node navigable	node navigable	both	arg-producer	y
+html	initialize the navigable	initialize the navigable	rule-only	callee	y
+html	traversable navigable	nav-traversable	both	arg-producer	y
+html	top-level traversable	top-level traversable	both	arg-producer	y
+html	top-level traversable	nav-top	both	callee	y
+html	create a new top-level traversable	creating a new top-level traversable	rule-only	arg-producer	y
+html	create a fresh top-level traversable	create a fresh top-level traversable	rule-only	caller	y
+html	container	nav-container	both	arg-producer	y
+html	container document	nav-container-document	both	callee	y
+html	container document	doc-container-document	both	callee	y
+html	child navigable	child navigable	both	callee	y
+html	content document	concept-bcc-content-document	rule-only	arg-producer	y
+html	create a new child navigable	create a new child navigable	rule-only	caller	y
+html	Jake diagram	Jake diagram	rule-only	caller	y
+html	ancestor navigables	ancestor navigables	both	callee	y
+html	inclusive ancestor navigables	inclusive ancestor navigables	rule-only	callee	y
+html	descendant navigables	descendant navigables	both	callee	y
+html	inclusive descendant navigables	inclusive descendant navigables	both	callee	y
+html	document-tree child navigables	document-tree child navigables	both	callee	y
+html	destroy a child navigable	destroy a child navigable	rule-only	arg-producer	y
+html	destroy	destroy a top-level traversable	naive-only		y
+html	close	close-a-top-level-traversable	naive-only		y
+html	definitely close	definitely close a top-level traversable	naive-only		y
+html	find a navigable by target name	find a navigable by target name	rule-only	callee	y
+html	The rules for choosing a navigable	The rules for choosing a navigable	rule-only	arg-producer	y
+html	active window	active window	both	arg-producer	y
+html	top-level traversable	bc-traversable	rule-only	callee	y
+html	auxiliary browsing context	auxiliary browsing context	both	callee	y
+html	create a new browsing context and document	creating-a-new-browsing-context	both	seed	y
+html	create a new top-level browsing context and document	creating-a-new-top-level-browsing-context	both	callee	y
+html	create a new auxiliary browsing context and document	creating-a-new-auxiliary-browsing-context	rule-only	caller	y
+html	determine the origin	determining the origin	both	seed	y
+html	ancestor	ancestor browsing context	rule-only	callee	y
+html	top-level browsing context	top-level browsing context	both	callee	y
+html	top-level browsing context	bc-tlbc	both	arg-producer	y
+html	familiar with	familiar with	rule-only	callee	y
+html	create a new browsing context group and document	creating a new browsing context group and document	both	caller	y
+html	append	bcg append	both	callee	y
+html	remove	bcg remove	naive-only		y
+html	fully active	fully active	both	callee	y
+html	document	she-document	both	callee	y
+html	append session history traversal steps	tn-append-session-history-traversal-steps	both	callee	y
+html	append session history synchronous navigation steps	tn-append-session-history-sync-nav-steps	both	callee	y
+html	get session history entries	getting session history entries	both	callee	y
+html	get session history entries for the navigation API	getting session history entries for the navigation API	both	seed	y
+html	clear the forward session history	clear the forward session history	both	callee	y
+html	get all used history steps	getting all used history steps	both	callee	y
+html	snapshot source snapshot params	snapshotting source snapshot params	both	caller	y
+html	snapshot target snapshot params	snapshotting target snapshot params	both	callee	y
+html	The navigation must be a replace	The navigation must be a replace	both	callee	y
+html	user navigation involvement	event-uni	naive-only		y
+html	navigate	navigate	both	seed	y
+html	finalize a cross-document navigation	finalize a cross-document navigation	both	callee	y
+html	navigate to a javascript: URL	navigate to a javascript: URL	both	caller	y
+html	evaluate a javascript: URL	evaluate a javascript: URL	both	seed+arg-producer	y
+html	navigate to a fragment	navigate-fragid	both	callee	y
+html	finalize a same-document navigation	finalize a same-document navigation	both	callee	y
+html	attempt to create a non-fetch scheme document	attempt to create a non-fetch scheme document	both	callee	y
+html	hand-off to external software	hand-off to external software	both	callee	y
+html	allowed by sandboxing to navigate	allowed-to-navigate	both	callee	y
+html	check if unloading is canceled	checking if unloading is canceled	both	callee	y
+html	steps to fire beforeunload	steps to fire beforeunload	both	callee	y
+html	set the ongoing navigation	set the ongoing navigation	both	callee	y
+html	reload	reload	naive-only		y
+html	traverse the history by a delta	traverse the history by a delta	naive-only		y
+html	URL and history update steps	URL and history update steps	both	callee	y
+html	attempt to populate the history entry's document	attempt to populate the history entry's document	both	seed	y
+html	create navigation params from a srcdoc resource	create navigation params from a srcdoc resource	both	seed	y
+html	create navigation params by fetching	create navigation params by fetching	both	seed	y
+html	browsing context scope origin	browsing context scope origin	both	callee	y
+html	load a document	loading a document	both	caller	y
+html	update for navigable creation/destruction	update for navigable creation/destruction	rule-only	caller	y
+html	apply the push/replace history step	apply the push/replace history step	both	caller	y
+html	apply the reload history step	apply the reload history step	rule-only	caller	y
+html	apply the traverse history step	apply the traverse history step	rule-only	caller	y
+html	resume applying the traverse history step	resume applying the traverse history step	both	caller	y
+html	apply the history step	apply the history step	both	seed	y
+html	deactivate a document for a cross-document navigation	deactivate a document for a cross-document navigation	both	callee	y
+html	fire the pageswap event	fire the pageswap event	both	callee	y
+html	activate history entry	activate history entry	both	callee	y
+html	get the used step	getting the used step	both	callee	y
+html	get the history object length and index	getting the history object length and index	both	callee	y
+html	get all navigables whose current session history entry will change or reload	get all navigables whose current session history entry will change or reload	both	callee	y
+html	get all navigables that only need history object length/index update	getting all navigables that only need history object length/index update	both	callee	y
+html	get the target history entry	getting the target history entry	both	callee	y
+html	get all navigables that might experience a cross-document traversal	getting all navigables that might experience a cross-document traversal	both	callee	y
+html	update document for history step application	update document for history step application	both	callee	y
+html	restore the history object state	restore the history object state	both	callee	y
+html	make active	make active	both	callee	y
+html	reactivate	reactivate a document	both	callee	y
+html	try to scroll to the fragment	try to scroll to the fragment	both	callee	y
+html	make document unsalvageable	make document unsalvageable	both	arg-producer	y
+html	build not restored reasons for document state	build not restored reasons for document state	both	callee	y
+html	build not restored reasons for a top-level traversable and its descendants	build not restored reasons for a top-level traversable and its descendants	both	callee	y
+html	scroll to the fragment	scroll-to-the-fragment-identifier	both	callee	y
+html	indicated part	the-indicated-part-of-the-document	both	callee	y
+html	select the indicated part	select the indicated part	both	callee	y
+html	find a potential indicated element	find a potential indicated element	both	callee	y
+html	save persisted state	save persisted state	both	callee	y
+html	restore persisted state	restore persisted state	both	callee	y
+html	restorable scrollable regions	restorable scrollable regions	both	callee	y
+html	restore scroll position data	restore scroll position data	both	callee	y
+html	create and initialize a Document object	initialise-the-document-object	both	caller	y
+html	populate with html/head/body	populate with html/head/body	both	callee	y
+html	load an HTML document	navigate-html	both	arg-producer	y
+html	load a text document	navigate-text	both	arg-producer	y
+html	load a multipart/x-mixed-replace document	navigate-multipart-x-mixed-replace	both	seed	y
+html	load a media document	navigate-media	both	arg-producer	y
+html	create a document to display a user agent page or PDF viewer inline	navigate-ua-inline	both	seed+arg-producer	y
+html	completely loaded	completely loaded	rule-only	arg-producer	y
+html	completely finish loading	completely finish loading	both	callee	y
+html	unload	unload a document	both	callee	y
+html	unload a document and its descendants	unload a document and its descendants	both	callee	y
+html	unloading document cleanup steps	unloading document cleanup steps	both	callee	y
+html	destroy	destroy a document	both	callee	y
+html	destroy a document and its descendants	destroy a document and its descendants	rule-only	callee	y
+html	abort	abort a document	both	caller	y
+html	abort a document and its descendants	abort a document and its descendants	both	callee	y
+html	stop loading	nav-stop	naive-only		y
+html	less eager	sr-eagerness-less-eager	both	callee	y
+html	at least as eager	sr-eagerness-at-least-as-eager	both	callee	y
+html	parse a speculation rule set string	parse a speculation rule set string	both	callee	y
+html	parse a speculation rule	parse a speculation rule	both	callee	y
+html	parse a document rule predicate	parse a document rule predicate	both	callee	y
+html	redundant with	sl-candidate-redundant-with	both	callee	y
+html	consider speculative loads	consider speculative loads	both	callee	y
+html	inner consider speculative loads steps	inner consider speculative loads steps	both	callee	y
+html	compute a speculative load referrer policy	compute a speculative load referrer policy	both	callee	y
+html	collect tags from speculative load candidates	collect tags from speculative load candidates	both	callee	y
+html	find matching links	find matching links	both	callee	y
+html	matches	dr-predicate-matches	both	callee	y
+html	process the `Speculation-Rules` header	process the `Speculation-Rules` header	both	caller	y
+html	check a navigation response's adherence to `X-Frame-Options`	check a navigation response's adherence to `X-Frame-Options`	both	callee	y
+html	create an agent	create an agent	both	callee	y
+html	the realm's agent	realm's agent	both	callee	y
+html	relevant agent	relevant agent	both	callee	y
+html	obtain a similar-origin window agent	obtain-similar-origin-window-agent	both	seed	y
+html	obtain a worker/worklet agent	obtaining a worker/worklet agent	rule-only	callee	y
+html	obtain a dedicated/shared worker agent	obtain a dedicated/shared worker agent	rule-only	callee	y
+html	obtain a worklet agent	obtain a worklet agent	naive-only		y
+html	responsible event loop	responsible event loop	both	callee	y
+html	global object	global object	both	callee	y
+html	the realm's settings object	concept-realm-settings-object	both	callee	y
+html	the realm's global object	concept-realm-global	both	arg-producer	y
+html	the environment settings object's realm	environment settings object's realm	both	arg-producer	y
+html	the environment settings object's global object	concept-settings-object-global	both	callee	y
+html	create a new realm	creating-a-new-javascript-realm	both	arg-producer	y
+html	entry settings object	entry settings object	both	arg-producer	y
+html	entry global object	entry global object	rule-only	arg-producer	y
+html	topmost script-having execution context	topmost script-having execution context	rule-only	callee	y
+html	incumbent settings object	incumbent settings object	rule-only	callee	y
+html	incumbent global object	concept-incumbent-global	rule-only	arg-producer	y
+html	current settings object	current settings object	both	arg-producer	y
+html	current global object	current global object	both	callee	y
+html	relevant realm	concept-relevant-realm	both	callee	y
+html	relevant settings object	relevant settings object	both	arg-producer	y
+html	relevant global object	concept-relevant-global	both	arg-producer	y
+html	Scripting is enabled	concept-environment-script	both	callee	y
+html	Scripting is disabled	concept-environment-noscript	both	callee	y
+html	Scripting is disabled	concept-n-noscript	both	callee	y
+html	secure context	secure context	both	seed	y
+html	non-secure context	non-secure context	both	arg-producer	y
+html	default script fetch options	default script fetch options	both	callee	y
+html	set up the classic script request	set up the classic script request	rule-only	callee	y
+html	set up the module script request	set up the module script request	rule-only	callee	y
+html	get the descendant script fetch options	get the descendant script fetch options	rule-only	arg-producer	y
+html	resolve a module integrity metadata	resolving a module integrity metadata	rule-only	arg-producer	y
+html	perform the fetch hook	fetching-scripts-perform-fetch	rule-only	caller	y
+html	fetch a classic script	fetch a classic script	rule-only	seed	y
+html	fetch a classic worker script	fetch a classic worker script	rule-only	seed	y
+html	fetch a classic worker-imported script	fetch a classic worker-imported script	rule-only	seed	y
+html	fetch an external module script graph	fetch-a-module-script-tree	rule-only	caller	y
+html	fetch a modulepreload module script graph	fetch a modulepreload module script graph	rule-only	caller	y
+html	fetch an inline module script graph	fetch an inline module script graph	naive-only		y
+html	fetch a module worker script graph	fetch-a-module-worker-script-tree	rule-only	caller	y
+html	fetch a worklet script graph	fetch a worklet script graph	rule-only	caller	y
+html	fetch a worklet/module worker script graph	fetch a worklet/module worker script graph	rule-only	caller	y
+html	fetch the descendants of and link	fetch the descendants of and link a module script	rule-only	callee	y
+html	fetch a single module script	fetch a single module script	rule-only	seed	y
+html	fetch a single imported module script	fetch a single imported module script	rule-only	caller	y
+html	create a classic script	creating a classic script	both	callee	y
+html	create a JavaScript module script	creating a JavaScript module script	rule-only	callee	y
+html	create a WebAssembly module script	creating a WebAssembly module script	rule-only	callee	y
+html	create a CSS module script	creating a CSS module script	rule-only	callee	y
+html	create a JSON module script	creating a JSON module script	rule-only	callee	y
+html	create a text module script	creating a text module script	rule-only	callee	y
+html	module type from module request	module type from module request	rule-only	callee	y
+html	module type allowed	module type allowed	rule-only	callee	y
+html	fetch destination from module type	fetch destination from module type	rule-only	callee	y
+html	run a classic script	run a classic script	both	callee	y
+html	run a module script	run a module script	both	callee	y
+html	check if we can run script	check if we can run script	both	callee	y
+html	prepare to run script	prepare to run script	both	callee	y
+html	clean up after running script	clean up after running script	both	callee	y
+html	running script	running script	both	callee	y
+html	extract error information	extract-error	both	callee	y
+html	report an exception	report an exception	both	callee	y
+html	message	dom-ErrorEvent-message	both	callee	y
+html	filename	dom-ErrorEvent-filename	both	callee	y
+html	lineno	dom-ErrorEvent-lineno	both	callee	y
+html	colno	dom-ErrorEvent-colno	both	callee	y
+html	error	dom-ErrorEvent-error	both	callee	y
+html	notify about rejected promises	notify about rejected promises	both	callee	y
+html	promise	dom-PromiseRejectionEvent-promise	both	callee	y
+html	reason	dom-PromiseRejectionEvent-reason	both	callee	y
+html	create an import map parse result	create an import map parse result	naive-only		y
+html	register an import map	register an import map	both	callee	y
+html	create a speculation rules parse result	create a speculation rules parse result	both	callee	y
+html	register speculation rules	register speculation rules	both	callee	y
+html	update speculation rules	update speculation rules	both	callee	y
+html	resolve a module specifier	resolve a module specifier	rule-only	arg-producer	y
+html	resolve an imports match	resolving an imports match	rule-only	callee	y
+html	resolve a URL-like module specifier	resolving a URL-like module specifier	rule-only	callee	y
+html	add module to resolved module set	add module to resolved module set	rule-only	callee	y
+html	parse an import map string	parse an import map string	rule-only	callee	y
+html	merge module specifier maps	merge module specifier maps	both	callee	y
+html	merge existing and new import maps	merge existing and new import maps	both	callee	y
+html	sort and normalize a module specifier map	sorting and normalizing a module specifier map	rule-only	callee	y
+html	sort and normalize scopes	sorting and normalizing scopes	rule-only	callee	y
+html	normalize a module integrity map	normalizing a module integrity map	rule-only	callee	y
+html	normalize a specifier key	normalizing a specifier key	rule-only	callee	y
+html	HostGetSupportedImportAttributes	HostGetSupportedImportAttributes	rule-only	callee	y
+html	HostLoadImportedModule	HostLoadImportedModule	rule-only	caller	y
+html	window event loop	window event loop	both	callee	y
+html	runnable	concept-task-runnable	naive-only		y
+html	same-loop windows	same-loop windows	naive-only		y
+html	queue a task	queue a task	both	arg-producer	y
+html	queue a global task	queue a global task	both	arg-producer	y
+html	queue an element task	queue an element task	both	arg-producer	y
+html	queue a microtask	queue a microtask	both	callee	y
+html	implied document	implied document	both	callee	y
+html	(unowned block in section: <span)	@124158	rule-only	caller	y
+html	perform a microtask checkpoint	perform a microtask checkpoint	both	callee	y
+html	await a stable state	await a stable state	naive-only		y
+html	spin the event loop	spin the event loop	both	callee	y
+html	pause	pause	both	callee	y
+html	determine the target of an event handler	determining the target of an event handler	naive-only		y
+html	(unowned block in section: Event handlers)	@125380	naive-only		y
+html	synchronize event handlers	synchronize event handlers	naive-only		y
+html	deactivate an event handler	deactivate an event handler	naive-only		y
+html	erase all event listeners and handlers	erase all event listeners and handlers	naive-only		y
+html	activate an event handler	activate an event handler	naive-only		y
+html	The event handler processing algorithm	The event handler processing algorithm	naive-only		y
+html	get the current value of the event handler	getting the current value of the event handler	naive-only		y
+html	Window-reflecting body element event handler set	Window-reflecting body element event handler set	naive-only		y
+html	isSecureContext	dom-isSecureContext	naive-only		y
+html	crossOriginIsolated	dom-crossOriginIsolated	both	sink	y
+html	(unowned block in section: The WindowOrWorkerGlobalScope mixin)	@126455	naive-only		y
+html	document open steps	document open steps	naive-only		y
+html	open(unused1, unused2)	dom-document-open	naive-only		y
+html	open(url, name, features)	dom-document-open-window	naive-only		y
+html	close()	dom-document-close	naive-only		y
+html	document write steps	document write steps	naive-only		y
+html	document.write(...text)	document.write(...text)	naive-only		y
+html	document.writeln(...text)	document.writeln(...text)	naive-only		y
+html	stream HTML	stream HTML	naive-only		y
+html	configure	configure a sanitizer	naive-only		y
+html	canonicalize the configuration	canonicalize the configuration	naive-only		y
+html	canonicalize a sanitizer list	canonicalize a sanitizer list	naive-only		y
+html	canonicalize a processing instruction list	canonicalize a processing instruction list	naive-only		y
+html	canonicalize a processing instruction	canonicalize a processing instruction	naive-only		y
+html	canonicalize a sanitizer name	canonicalize a sanitizer name	naive-only		y
+html	canonicalize a sanitizer element	canonicalize a sanitizer element	naive-only		y
+html	canonicalize a sanitizer element list	canonicalize a sanitizer element list	naive-only		y
+html	canonicalized intersection	sanitizer canonicalized intersection	naive-only		y
+html	get a sanitizer config from options	get a sanitizer config from options	naive-only		y
+html	remove an element	remove an element from sanitizer config	naive-only		y
+html	remove an attribute	remove an attribute from sanitizer config	naive-only		y
+html	remove unsafe	remove unsafe	naive-only		y
+html	canonicalize	canonicalize a sanitizer element with attributes	naive-only		y
+html	valid	dom-SanitizerConfig-valid	naive-only		y
+html	printing steps	printing steps	both	callee	y
+html	registerProtocolHandler(scheme, url)	registerProtocolHandler(scheme, url)	rule-only	caller	y
+html	unregisterProtocolHandler(scheme, url)	unregisterProtocolHandler(scheme, url)	naive-only		y
+html	normalize protocol handler parameters	normalize protocol handler parameters	naive-only		y
+html	supported	concept-AnimationFrameProvider-supported	naive-only		y
+html	run the animation frame callbacks	run the animation frame callbacks	naive-only		y
+html	data	dom-MessageEvent-data	rule-only	callee	y
+html	source	dom-MessageEvent-source	rule-only	callee	y
+html	ports	dom-MessageEvent-ports	rule-only	callee	y
+html	EventSource(url, eventSourceInitDict)	EventSource(url, eventSourceInitDict)	rule-only	caller	y
+html	withCredentials	dom-EventSource-withCredentials	naive-only		y
+html	close()	dom-EventSource-close	rule-only	caller	y
+html	announce the connection	announce the connection	naive-only		y
+html	reestablish the connection	reestablish the connection	rule-only	caller	y
+html	fail the connection	fail the connection	rule-only	arg-producer	y
+html	forcibly close	concept-EventSource-forcibly-close	both	caller	y
+html	window post message steps	window post message steps	naive-only		y
+html	postMessage(message, options)	postMessage(message, options)	naive-only		y
+html	postMessage(message, targetOrigin, transfer)	postMessage(message, targetOrigin, transfer)	naive-only		y
+html	entangle	entangle	rule-only	callee	y
+html	the worker's ports	the worker's ports	rule-only	callee	y
+html	relevant owner to add	relevant owner to add	rule-only	callee	y
+html	in extended lifetime	in extended lifetime worker	rule-only	callee	y
+html	actively needed	active needed worker	rule-only	callee	y
+html	protected	protected worker	rule-only	callee	y
+html	permissible	permissible worker	rule-only	callee	y
+html	suspendable	suspendable worker	rule-only	callee	y
+html	run a worker	run a worker	rule-only	seed	y
+html	set up a worker environment settings object	set up a worker environment settings object	rule-only	callee	y
+html	new Worker(scriptURL, options)	new Worker(scriptURL, options)	rule-only	caller	y
+html	new SharedWorker(scriptURL, options)	new SharedWorker(scriptURL, options)	rule-only	caller	y
+html	importScripts(...urls)	importScripts(...urls)	naive-only		y
+html	import scripts into worker global scope	import scripts into worker global scope	rule-only	caller	y
+html	find the opposite of true	FakeWorkletGlobalScope-process	naive-only		y
+html	create a worklet global scope	create a worklet global scope	rule-only	caller	y
+html	terminate a worklet global scope	terminate a worklet global scope	both	callee	y
+html	set up a worklet environment settings object	set up a worklet environment settings object	rule-only	seed	y
+html	addModule(moduleURL, options)	dom-Worklet-addModule	rule-only	caller	y
+html	reorder	concept-Storage-reorder	naive-only		y
+html	broadcast	concept-Storage-broadcast	naive-only		y
+html	setItem(key, value)	setItem(key, value)	naive-only		y
+html	removeItem(key)	removeItem(key)	naive-only		y
+html	clear()	dom-Storage-clear	naive-only		y
+html	key	dom-StorageEvent-key	naive-only		y
+html	encoding sniffing algorithm	encoding sniffing algorithm	rule-only	arg-producer	y
+html	prescan a byte stream to determine its encoding	prescan a byte stream to determine its encoding	rule-only	callee	y
+html	get an attribute	concept-get-attributes-when-sniffing	rule-only	callee	y
+html	change the encoding	change the encoding	rule-only	caller	y
+html	reset the insertion mode appropriately	reset the insertion mode appropriately	naive-only		y
+html	current node	current node	both	callee	y
+html	finish parsing the children	finish parsing the children	both	callee	y
+html	remove an element from the stack of open elements	remove an element from the stack of open elements	both	callee	y
+html	pop the current node	pop the current node	both	callee	y
+html	HTML integration point	HTML integration point	naive-only		y
+html	flush pending text	flush pending text	both	callee	y
+html	"(unowned block in section: The ""in head"" insertion mode)"	@148731	naive-only		y
+html	stops parsing	stop parsing	both	callee	y
+html	execute the deferred scripts	execute the deferred scripts	both	callee	y
+html	abort a parser	abort a parser	both	callee	y
+html	run a fragment parser	run a fragment parser	naive-only		y
+html	abort a fragment parser	abort a fragment parser	naive-only		y
+html	stop the speculative HTML parser	stop the speculative HTML parser	both	callee	y
+html	determine the parser context element	determine the parser context element	naive-only		y
+html	initialize an HTML fragment parser	initialize an HTML fragment parser	naive-only		y
+html	being rendered	being rendered	both	callee	y
+html	intersect the viewport	intersect the viewport	naive-only		y
+html	restart the animation	restart the animation	naive-only		y
+html	(unowned block in section: Frames)	@158845	naive-only		y
+html	(unowned block in section: Frames)	@158866	naive-only		y
+html	process the frame attributes	process the frame attributes	naive-only		y
+html	contentDocument	dom-frame-contentDocument	naive-only		y

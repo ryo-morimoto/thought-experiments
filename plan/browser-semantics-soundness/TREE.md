@@ -28,10 +28,10 @@
       - 今: 取り込まれた本文の固定したコミット。取り込まれていない書き換えは配備の仮定
       - 根拠: [2026-11-21-informal-extension.md](../../experiments/2026-11-21-informal-extension.md)
     - **B2** [一部] 段の網羅（P に効く段が写されているか過近似されている）
-      - **B2a** [一部] 閉包の境界（効き: mid）
+      - **B2a** [済] 閉包の境界（効き: mid）
         - 完了の条件: 閉包の境界を、手で選ばずに決める規則がある
-        - 今: 取り出しで 415 算法を決めた。境界は手で選んだ（他の仕様からの差し込みは原稿に現れない）
-        - 根拠: [2026-11-24-closure-boundary-rule.md](../../experiments/2026-11-24-closure-boundary-rule.md)、[README.md](../../experiments/models/site-isolation/extract/README.md)
+        - 今: 種と行き先から逆にたどる規則 T で決めた（610 算法、手の 415 をすべて含む）。概念の型、行き先、止め方はなお筆者の選択
+        - 根拠: [2026-11-24-closure-boundary-rule.md](../../experiments/2026-11-24-closure-boundary-rule.md)、[README.md](../../experiments/models/site-isolation/extract/README.md)、[RESULTS.md](../../experiments/models/site-isolation/boundary/RESULTS.md)
       - **B2b** [一部] 写していない段の発見（効き: high）
         - 完了の条件: 写していない段のうち、性質に効くものの一覧が閉じている
         - 今: 落とした段を足して性質が変わるかで確かめる。型の全体での置き換えは空、契約で範囲を限ると前提の見直しにはなる
@@ -40,10 +40,10 @@
         - 完了の条件: 性質に効く値を書く段を、規則で決められる
         - 今: 書き先の 57% が規則で決まらない。段の中の条件の文の意味を決める必要があるか
         - 根拠: [2026-11-23-havoc-unmodeled-steps.md](../../experiments/2026-11-23-havoc-unmodeled-steps.md)、[2026-11-24-write-target-semantics.md](../../experiments/2026-11-24-write-target-semantics.md)
-      - **B2d** [一部] 中身が文書に入る経路の一覧（効き: mid）
+      - **B2d** [済] 中身が文書に入る経路の一覧（効き: mid）
         - 完了の条件: 経路の一覧が機械的に作れ、手で選んだ経路の再現率が測れている
-        - 今: 取得の呼び出しは機械的に拾え、再利用は一部手で。段階C が未
-        - 根拠: [2026-11-22-sink-path-inventory.md](../../experiments/2026-11-22-sink-path-inventory.md)、[2026-11-24-closure-boundary-rule.md](../../experiments/2026-11-24-closure-boundary-rule.md)
+        - 今: 規則の閉包の中で機械的に作り直した（再利用の精度 50%、参照の経路の再現率 9 のうち 8）。見つからないのは散文の裁量と他の仕様の中
+        - 根拠: [2026-11-22-sink-path-inventory.md](../../experiments/2026-11-22-sink-path-inventory.md)、[2026-11-24-closure-boundary-rule.md](../../experiments/2026-11-24-closure-boundary-rule.md)、[RESULTS.md](../../experiments/models/site-isolation/boundary/RESULTS.md)
     - **B3** [済] 実装の選択を過近似として扱う（効き: mid）
       - 完了の条件: 実装定義・列挙・任意の段の扱いが決まっている
       - 今: 依存する入力を明示した関数。仕様の水準では非決定の包み
@@ -145,8 +145,6 @@
 - **C2** [一部・効き high] 入力の空間の網羅: 性質が量化する入力の構造（リダイレクト、popup の系譜、sandbox、about:blank、履歴）を軸として覆い、等価のまま残る変異体が軸の外だけになる
 - **D1** [一部・効き high] 列の性質（ナビゲーションの列、リダイレクト、bfcache、履歴の移動）: 列を状態の遷移として写したモデルと、列の筋書きでの包含がある
 - **C10** [未・効き high] 凍結したモデルでの取り置きの実行: モデル・軸・パラメータ・判定を事前に固定してから、新しい種の筋書きをブラウザで動かし、包含を数えている
-- **B2a** [一部・効き mid] 閉包の境界: 閉包の境界を、手で選ばずに決める規則がある
-- **B2d** [一部・効き mid] 中身が文書に入る経路の一覧: 経路の一覧が機械的に作れ、手で選んだ経路の再現率が測れている
 - **B4** [一部・効き mid] 拡張点と支配の条件: 経路ごとに支配の条件が確かめられている
 - **B5** [一部・効き mid] 情報流（hyperproperty）: 攻撃者が入力を選び問い合わせを繰り返す形の検査（自己合成）で、漏らすものの一覧を確かめている
 - **C4** [一部・効き mid] 仕様の時点とブラウザの食い違いの扱い: 食い違いごとに、モデルのパラメータ（配備の仮定）にするか、ブラウザの欠陥とするかが決まっている

@@ -73,11 +73,11 @@ title = "段の網羅（P に効く段が写されているか過近似されて
 id = "B2a"
 parent = "B2"
 title = "閉包の境界"
-status = "partial"
+status = "done"
 impact = "mid"
 done_when = "閉包の境界を、手で選ばずに決める規則がある"
-note = "取り出しで 415 算法を決めた。境界は手で選んだ（他の仕様からの差し込みは原稿に現れない）"
-evidence = ["experiments/models/site-isolation/extract/README.md"]
+note = "種と行き先から逆にたどる規則 T で決めた（610 算法、手の 415 をすべて含む）。概念の型、行き先、止め方はなお筆者の選択"
+evidence = ["experiments/models/site-isolation/extract/README.md", "experiments/models/site-isolation/boundary/RESULTS.md"]
 
 [[node]]
 id = "B2b"
@@ -101,10 +101,11 @@ note = "書き先の 57% が規則で決まらない。段の中の条件の文�
 id = "B2d"
 parent = "B2"
 title = "中身が文書に入る経路の一覧"
-status = "partial"
+status = "done"
 impact = "mid"
 done_when = "経路の一覧が機械的に作れ、手で選んだ経路の再現率が測れている"
-note = "取得の呼び出しは機械的に拾え、再利用は一部手で。段階C が未"
+note = "規則の閉包の中で機械的に作り直した（再利用の精度 50%、参照の経路の再現率 9 のうち 8）。見つからないのは散文の裁量と他の仕様の中"
+evidence = ["experiments/models/site-isolation/boundary/RESULTS.md"]
 
 [[node]]
 id = "B3"
