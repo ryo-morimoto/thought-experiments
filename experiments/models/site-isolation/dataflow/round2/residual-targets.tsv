@@ -1,0 +1,21 @@
+spec	algorithm	step	havoc_kind	contract	why
+fetch	serialize a response URL for reporting	3	unparsed	C1	URL setter (username)
+fetch	serialize a response URL for reporting	4	unparsed	C1	URL setter (password)
+fetch	fetch response handover	9.3	unparsed	C1	Streams set-up
+fetch	HTTP fetch	3.2.3	unparsed	C1	Streams set-up
+fetch	HTTP-network-or-cache fetch	8.13	collection	C1	Fetch Metadata appends request headers
+fetch	HTTP-network-or-cache fetch	11.5.2	collection	C6	HTTP cache store
+fetch	HTTP-network-or-cache fetch	15.3.3	unparsed	C1	URL setter (username)
+fetch	HTTP-network-or-cache fetch	15.3.4	unparsed	C1	URL setter (password)
+fetch	HTTP-network fetch	14	unparsed	C1	Streams set-up
+html	sanitize a URL to send in a report	2	unparsed	C1	URL setter (username)
+html	sanitize a URL to send in a report	3	unparsed	C1	URL setter (password)
+html	navigate to a fragment	18	collection	C5	queues a task (steps analysed in place)
+html	URL and history update steps	14	collection	C5	queues a task (steps analysed in place)
+html	load a media document	4	collection	C5	DOM tree
+html	destroy	5	collection	C5	task queues
+html	create a new realm	3	collection	C5	JS execution context stack
+html	prepare to run script	1	collection	C5	JS execution context stack
+html	clean up after running script	2	collection	C5	JS execution context stack
+html	spin the event loop	4	collection	C5	JS execution context stack
+html	spin the event loop	6.2.1	collection	C5	event loop task

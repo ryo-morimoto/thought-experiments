@@ -1,0 +1,1394 @@
+{
+ "steps_parsed_total": 10198,
+ "steps_without_tokens": 0,
+ "closure_steps_matched": 3445,
+ "closure_steps_tsv": 3445,
+ "closure_algorithms": 312,
+ "closure_algorithms_with_params": 296,
+ "closure_call_sites_by_mapping": {
+  "positional": 689,
+  "fallback": 38
+ },
+ "criteria": [
+  [
+   "coep",
+   "html:policy container/embedder policy",
+   3
+  ],
+  [
+   "coep",
+   "html:embedder policy/value",
+   1
+  ],
+  [
+   "coop",
+   "html:opener policy",
+   2
+  ],
+  [
+   "coop",
+   "html:navigation params/opener policy",
+   5
+  ],
+  [
+   "coop",
+   "html:value",
+   4
+  ],
+  [
+   "corp",
+   "RET(cross-origin resource policy check)",
+   3
+  ],
+  [
+   "corp",
+   "RET(cross-origin resource policy internal check)",
+   6
+  ],
+  [
+   "creds",
+   "RET(Cross-Origin-Embedder-Policy allows credentials)",
+   5
+  ],
+  [
+   "secure",
+   "RET(secure context)",
+   6
+  ],
+  [
+   "origin",
+   "fetch:request/origin",
+   7
+  ],
+  [
+   "origin",
+   "fetch:response/URL list",
+   3
+  ],
+  [
+   "origin",
+   "html:origin",
+   0
+  ],
+  [
+   "origin",
+   "RET(determine the origin)",
+   5
+  ],
+  [
+   "akey",
+   "RET(obtain a similar-origin window agent)",
+   1
+  ],
+  [
+   "coimode",
+   "html:cross-origin isolation mode",
+   1
+  ],
+  [
+   "coimode",
+   "RET(obtain a browsing context to use for a navigation response)",
+   4
+  ],
+  [
+   "coicap",
+   "html:environment settings object/cross-origin isolated capability",
+   3
+  ],
+  [
+   "tainting",
+   "fetch:request/response tainting",
+   6
+  ],
+  [
+   "mode",
+   "fetch:request/mode",
+   14
+  ],
+  [
+   "bcgswitch",
+   "RET(check if COOP values require a browsing context group switch)",
+   3
+  ],
+  [
+   "bcgswitch",
+   "RET(check if popup COOP values require a browsing context group switch)",
+   4
+  ],
+  [
+   "bcgswitch",
+   "RET(match opener policy values)",
+   4
+  ],
+  [
+   "response",
+   "fetch:response/type",
+   0
+  ],
+  [
+   "response",
+   "fetch response handover::response",
+   3
+  ]
+ ],
+ "relevant_cells_thin": 1535,
+ "relevant_cells_full": 5161,
+ "slice_thin_closure": 1007,
+ "slice_full_closure": 2607,
+ "slice_full_outside_closure": 3453,
+ "slice_algorithms_closure": 260,
+ "roles": {
+  "def": 1350,
+  "control": 362,
+  "control,def": 425,
+  "arg,def": 248,
+  "arg": 141,
+  "arg,control,def": 64,
+  "arg,control": 17
+ },
+ "verdicts_full": {
+  "unmodeled-gap": 795,
+  "unmodeled-nonwrite": 1189,
+  "excluded:notread": 412,
+  "modeled": 126,
+  "excluded:nocone": 32,
+  "unmodeled-known": 48,
+  "excluded:outscope": 5
+ },
+ "slice_ctrl_closure": 2375,
+ "verdicts_thin": {
+  "unmodeled-gap": 350,
+  "unmodeled-nonwrite": 308,
+  "excluded:notread": 180,
+  "modeled": 98,
+  "excluded:nocone": 29,
+  "unmodeled-known": 38,
+  "excluded:outscope": 4
+ },
+ "verdicts_ctrl": {
+  "unmodeled-gap": 721,
+  "unmodeled-nonwrite": 1096,
+  "excluded:notread": 356,
+  "modeled": 121,
+  "excluded:nocone": 30,
+  "unmodeled-known": 47,
+  "excluded:outscope": 4
+ },
+ "unmodeled_groups_thin": {
+  "other": 58,
+  "url-and-parsing": 223,
+  "document-and-bc-creation": 89,
+  "script-and-events": 10,
+  "policy-coep-coop": 14,
+  "navigation-history": 145,
+  "redirect-and-network": 114,
+  "fetch-core": 43
+ },
+ "per_concept_thin": {
+  "akey": [
+   970,
+   ".x"
+  ],
+  "bcgswitch": [
+   11,
+   ".."
+  ],
+  "coep": [
+   975,
+   "xx"
+  ],
+  "coicap": [
+   7,
+   ".."
+  ],
+  "coimode": [
+   969,
+   ".x"
+  ],
+  "coop": [
+   20,
+   ".."
+  ],
+  "corp": [
+   5,
+   ".."
+  ],
+  "creds": [
+   5,
+   ".."
+  ],
+  "mode": [
+   5,
+   ".."
+  ],
+  "origin": [
+   969,
+   ".x"
+  ],
+  "response": [
+   969,
+   ".x"
+  ],
+  "secure": [
+   6,
+   ".."
+  ],
+  "tainting": [
+   6,
+   ".."
+  ]
+ },
+ "slice_ctrl_1cfa_closure": 2276,
+ "slice_data_1cfa_closure": 978,
+ "per_concept_ctrl_1cfa": {
+  "akey": [
+   2275,
+   "xx"
+  ],
+  "bcgswitch": [
+   2275,
+   "xx"
+  ],
+  "coep": [
+   2276,
+   "xx"
+  ],
+  "coicap": [
+   2275,
+   "xx"
+  ],
+  "coimode": [
+   2275,
+   "xx"
+  ],
+  "coop": [
+   2275,
+   "xx"
+  ],
+  "corp": [
+   2275,
+   "xx"
+  ],
+  "creds": [
+   2275,
+   "xx"
+  ],
+  "mode": [
+   2275,
+   "xx"
+  ],
+  "origin": [
+   2275,
+   "xx"
+  ],
+  "response": [
+   2275,
+   "xx"
+  ],
+  "secure": [
+   2275,
+   "xx"
+  ],
+  "tainting": [
+   2275,
+   "xx"
+  ]
+ },
+ "per_concept_data_1cfa": {
+  "akey": [
+   941,
+   ".x"
+  ],
+  "bcgswitch": [
+   11,
+   ".."
+  ],
+  "coep": [
+   930,
+   "xx"
+  ],
+  "coicap": [
+   7,
+   ".."
+  ],
+  "coimode": [
+   924,
+   ".x"
+  ],
+  "coop": [
+   20,
+   ".."
+  ],
+  "corp": [
+   5,
+   ".."
+  ],
+  "creds": [
+   5,
+   ".."
+  ],
+  "mode": [
+   5,
+   ".."
+  ],
+  "origin": [
+   924,
+   ".x"
+  ],
+  "response": [
+   924,
+   ".x"
+  ],
+  "secure": [
+   6,
+   ".."
+  ],
+  "tainting": [
+   6,
+   ".."
+  ]
+ },
+ "ext_terms_not_calls": 414,
+ "ext_inputs_distinct": 73,
+ "ext_input_steps": 103,
+ "ext_inputs_top": [
+  [
+   "?",
+   "collecting a sequence of code points",
+   5,
+   5
+  ],
+  [
+   "?",
+   "parsing",
+   4,
+   4
+  ],
+  [
+   "infra.spec.whatwg.org",
+   "collect a sequence of code points",
+   4,
+   4
+  ],
+  [
+   "infra.spec.whatwg.org",
+   "assert",
+   3,
+   3
+  ],
+  [
+   "?",
+   "code points",
+   3,
+   3
+  ],
+  [
+   "dom.spec.whatwg.org",
+   "creating an event",
+   3,
+   3
+  ],
+  [
+   "infra.spec.whatwg.org",
+   "ascii digits",
+   3,
+   3
+  ],
+  [
+   "infra.spec.whatwg.org",
+   "ascii whitespace",
+   3,
+   2
+  ],
+  [
+   "dom.spec.whatwg.org",
+   "firing an event",
+   3,
+   3
+  ],
+  [
+   "w3c.github.io",
+   "webdriver bidi navigation failed",
+   2,
+   2
+  ],
+  [
+   "w3c.github.io",
+   "should navigation request of type be blocked by content security policy?",
+   2,
+   2
+  ],
+  [
+   "w3c.github.io",
+   "webdriver bidi download end",
+   2,
+   2
+  ],
+  [
+   "url.spec.whatwg.org",
+   "url parsing",
+   2,
+   2
+  ],
+  [
+   "infra.spec.whatwg.org",
+   "while",
+   2,
+   2
+  ],
+  [
+   "infra.spec.whatwg.org",
+   "dequeuing",
+   2,
+   2
+  ],
+  [
+   "url.spec.whatwg.org",
+   "url parser",
+   2,
+   2
+  ],
+  [
+   "webidl.spec.whatwg.org",
+   "wait for all",
+   2,
+   2
+  ],
+  [
+   "?",
+   "if aborted",
+   2,
+   2
+  ],
+  [
+   "url.spec.whatwg.org",
+   "url serializer",
+   2,
+   2
+  ],
+  [
+   "?",
+   "coarsened shared current time",
+   2,
+   2
+  ],
+  [
+   "webidl.spec.whatwg.org",
+   "invoking",
+   2,
+   2
+  ],
+  [
+   "w3c.github.io",
+   "parsing",
+   2,
+   2
+  ],
+  [
+   "?",
+   "inherited policy",
+   2,
+   2
+  ],
+  [
+   "?",
+   "isomorphic encoded",
+   2,
+   2
+  ],
+  [
+   "?",
+   "isomorphic decoding",
+   2,
+   2
+  ],
+  [
+   "w3c.github.io",
+   "is url potentially trustworthy?",
+   1,
+   1
+  ],
+  [
+   "w3c.github.io",
+   "creating a permissions policy from a response",
+   1,
+   1
+  ],
+  [
+   "w3c.github.io",
+   "generating a random uuid",
+   1,
+   1
+  ],
+  [
+   "dom.spec.whatwg.org",
+   "type",
+   1,
+   1
+  ],
+  [
+   "w3c.github.io",
+   "should navigation response to navigation request of type in target be blocked by content security policy?",
+   1,
+   1
+  ],
+  [
+   "mimesniff.spec.whatwg.org",
+   "xml mime type",
+   1,
+   1
+  ],
+  [
+   "mimesniff.spec.whatwg.org",
+   "json mime type",
+   1,
+   1
+  ],
+  [
+   "w3c.github.io",
+   "webdriver bidi download will begin",
+   1,
+   1
+  ],
+  [
+   "?",
+   "generating a random uuid",
+   1,
+   1
+  ],
+  [
+   "w3c.github.io",
+   "is feature enabled in document for origin",
+   1,
+   1
+  ],
+  [
+   "w3c.github.io",
+   "coarsen time",
+   1,
+   1
+  ],
+  [
+   "?",
+   "assert",
+   1,
+   1
+  ],
+  [
+   "w3c.github.io",
+   "current high resolution time",
+   1,
+   1
+  ],
+  [
+   "drafts.csswg.org",
+   "can navigation trigger a cross-document view-transition?",
+   1,
+   1
+  ],
+  [
+   "w3c.github.io",
+   "creating a permissions policy",
+   1,
+   1
+  ]
+ ],
+ "unmodeled_groups_ctrl": {
+  "other": 130,
+  "url-and-parsing": 558,
+  "document-and-bc-creation": 176,
+  "script-and-events": 100,
+  "policy-coep-coop": 75,
+  "redirect-and-network": 273,
+  "navigation-history": 464,
+  "fetch-core": 88
+ },
+ "unmodeled_ctrl": 1864,
+ "unmodeled_data": 696,
+ "unmodeled_data_groups": {
+  "other": 58,
+  "url-and-parsing": 223,
+  "document-and-bc-creation": 89,
+  "script-and-events": 10,
+  "policy-coep-coop": 14,
+  "navigation-history": 145,
+  "redirect-and-network": 114,
+  "fetch-core": 43
+ },
+ "residual_after_contracts": [],
+ "residual_gap_rows": 20,
+ "residual_gap_unexplained": [],
+ "ext_by_contract": {
+  "C1": 60,
+  "C2": 5,
+  "C3": 6,
+  "C6": 2
+ },
+ "ext_top20_checked": 3,
+ "ext_may_write": [
+  [
+   "dom.spec.whatwg.org",
+   "creating an event",
+   "only through script (C2)"
+  ],
+  [
+   "dom.spec.whatwg.org",
+   "firing an event",
+   "only through script (C2)"
+  ],
+  [
+   "w3c.github.io",
+   "webdriver bidi navigation failed",
+   "yes, if a remote end intercepts"
+  ],
+  [
+   "w3c.github.io",
+   "webdriver bidi download end",
+   "yes, if a remote end intercepts"
+  ],
+  [
+   "webidl.spec.whatwg.org",
+   "wait for all",
+   "only through script (C2)"
+  ],
+  [
+   "webidl.spec.whatwg.org",
+   "invoking",
+   "only through script (C2)"
+  ],
+  [
+   "w3c.github.io",
+   "webdriver bidi download will begin",
+   "yes, if a remote end intercepts"
+  ],
+  [
+   "?",
+   "webdriver bidi emulated language",
+   "yes, if a remote end intercepts"
+  ],
+  [
+   "dom.spec.whatwg.org",
+   "fire an event",
+   "only through script (C2)"
+  ],
+  [
+   "?",
+   "webdriver bidi emulated user-agent",
+   "yes, if a remote end intercepts"
+  ],
+  [
+   "w3c.github.io",
+   "webdriver bidi user prompt opened",
+   "yes, if a remote end intercepts"
+  ]
+ ],
+ "holes_unreviewed": 0,
+ "pts_rounds": 18,
+ "alloc_sites": 300,
+ "pts_vars_with_any": 3322,
+ "pts_vars": 5466,
+ "slice_ctrl_os_closure": 2276,
+ "slice_data_os_closure": 978,
+ "per_concept_ctrl_os": {
+  "akey": [
+   2275,
+   "xx"
+  ],
+  "bcgswitch": [
+   2275,
+   "xx"
+  ],
+  "coep": [
+   2276,
+   "xx"
+  ],
+  "coicap": [
+   2275,
+   "xx"
+  ],
+  "coimode": [
+   2275,
+   "xx"
+  ],
+  "coop": [
+   2275,
+   "xx"
+  ],
+  "corp": [
+   2275,
+   "xx"
+  ],
+  "creds": [
+   2275,
+   "xx"
+  ],
+  "mode": [
+   2275,
+   "xx"
+  ],
+  "origin": [
+   2275,
+   "xx"
+  ],
+  "response": [
+   2275,
+   "xx"
+  ],
+  "secure": [
+   2275,
+   "xx"
+  ],
+  "tainting": [
+   2275,
+   "xx"
+  ]
+ },
+ "per_concept_data_os": {
+  "akey": [
+   941,
+   ".x"
+  ],
+  "bcgswitch": [
+   11,
+   ".."
+  ],
+  "coep": [
+   930,
+   "xx"
+  ],
+  "coicap": [
+   7,
+   ".."
+  ],
+  "coimode": [
+   924,
+   ".x"
+  ],
+  "coop": [
+   20,
+   ".."
+  ],
+  "corp": [
+   5,
+   ".."
+  ],
+  "creds": [
+   5,
+   ".."
+  ],
+  "mode": [
+   5,
+   ".."
+  ],
+  "origin": [
+   924,
+   ".x"
+  ],
+  "response": [
+   924,
+   ".x"
+  ],
+  "secure": [
+   6,
+   ".."
+  ],
+  "tainting": [
+   6,
+   ".."
+  ]
+ },
+ "ctrl_dist_hist": {
+  "0": 128,
+  "1": 338,
+  "2": 434,
+  "3": 392,
+  "4": 311,
+  "5": 283,
+  "6": 158,
+  "7": 113,
+  "8": 69,
+  "9": 45,
+  "10": 104
+ },
+ "ctrl_unmodeled_by_dist": {
+  "0": 78,
+  "1": 229,
+  "2": 334,
+  "3": 306,
+  "4": 260,
+  "5": 250,
+  "6": 131,
+  "7": 103,
+  "8": 60,
+  "9": 37,
+  "10": 76
+ },
+ "ctrl_unmodeled_dist_le2_groups": {
+  "url-and-parsing": 68,
+  "document-and-bc-creation": 96,
+  "policy-coep-coop": 57,
+  "other": 32,
+  "script-and-events": 6,
+  "redirect-and-network": 149,
+  "navigation-history": 171,
+  "fetch-core": 62
+ },
+ "ctrl_unmodeled_dist_le2_algos": [
+  [
+   "HTTP-network-or-cache fetch",
+   48
+  ],
+  [
+   "navigate",
+   38
+  ],
+  [
+   "create navigation params by fetching",
+   34
+  ],
+  [
+   "scheme fetch",
+   28
+  ],
+  [
+   "apply the history step",
+   23
+  ],
+  [
+   "main fetch",
+   22
+  ],
+  [
+   "HTTP-network fetch",
+   19
+  ],
+  [
+   "fetch",
+   18
+  ],
+  [
+   "HTTP-redirect fetch",
+   16
+  ],
+  [
+   "create a new browsing context and document",
+   14
+  ],
+  [
+   "attempt to populate the history entry's document",
+   14
+  ],
+  [
+   "allowed by sandboxing to navigate",
+   13
+  ],
+  [
+   "HTTP fetch",
+   13
+  ],
+  [
+   "download the hyperlink",
+   11
+  ],
+  [
+   "check a navigation response's adherence to `X-Frame-Options`",
+   11
+  ],
+  [
+   "process the `Speculation-Rules` header",
+   10
+  ],
+  [
+   "obtain a browsing context to use for a navigation response",
+   9
+  ],
+  [
+   "handle as a download",
+   8
+  ],
+  [
+   "create and initialize a Document object",
+   8
+  ],
+  [
+   "fetch response handover",
+   8
+  ],
+  [
+   "obtain an opener policy",
+   7
+  ],
+  [
+   "set up a window environment settings object",
+   7
+  ],
+  [
+   "navigate to a javascript: URL",
+   7
+  ],
+  [
+   "evaluate a javascript: URL",
+   7
+  ],
+  [
+   "secure context",
+   7
+  ],
+  [
+   "redirect-taint",
+   7
+  ],
+  [
+   "determine navigation params policy container",
+   6
+  ],
+  [
+   "deactivate a document for a cross-document navigation",
+   6
+  ],
+  [
+   "same origin-domain",
+   5
+  ],
+  [
+   "check if unloading is canceled",
+   5
+  ],
+  [
+   "unload",
+   5
+  ],
+  [
+   "process link headers",
+   4
+  ],
+  [
+   "process early hint headers",
+   4
+  ],
+  [
+   "allowed to use",
+   4
+  ],
+  [
+   "clone a policy container",
+   4
+  ],
+  [
+   "commit a navigate event",
+   4
+  ],
+  [
+   "get session history entries for the navigation API",
+   4
+  ],
+  [
+   "navigate to a fragment",
+   4
+  ],
+  [
+   "attempt to create a non-fetch scheme document",
+   4
+  ],
+  [
+   "steps to fire beforeunload",
+   4
+  ]
+ ],
+ "per_concept_ctrl": {
+  "akey": [
+   2374,
+   "xx"
+  ],
+  "bcgswitch": [
+   2374,
+   "xx"
+  ],
+  "coep": [
+   2375,
+   "xx"
+  ],
+  "coicap": [
+   2374,
+   "xx"
+  ],
+  "coimode": [
+   2374,
+   "xx"
+  ],
+  "coop": [
+   2374,
+   "xx"
+  ],
+  "corp": [
+   2374,
+   "xx"
+  ],
+  "creds": [
+   2374,
+   "xx"
+  ],
+  "mode": [
+   2374,
+   "xx"
+  ],
+  "origin": [
+   2374,
+   "xx"
+  ],
+  "response": [
+   2374,
+   "xx"
+  ],
+  "secure": [
+   2374,
+   "xx"
+  ],
+  "tainting": [
+   2374,
+   "xx"
+  ]
+ },
+ "unmodeled_groups_full": {
+  "other": 158,
+  "url-and-parsing": 576,
+  "document-and-bc-creation": 196,
+  "script-and-events": 117,
+  "policy-coep-coop": 79,
+  "navigation-history": 524,
+  "redirect-and-network": 288,
+  "fetch-core": 94
+ },
+ "n_concepts_hist_full": {
+  "13": 2607
+ },
+ "gap_rows": {
+  "local": 746,
+  "collection": 152,
+  "unparsed": 56
+ },
+ "gap_resolution": {
+  "local/resolved": 746,
+  "collection/resolved": 141,
+  "unparsed/resolved": 47,
+  "unparsed/unresolved": 9,
+  "collection/unresolved": 11
+ },
+ "gap_relevance": {
+  "local/irrelevant": 107,
+  "local/relevant-data": 255,
+  "collection/relevant-data": 36,
+  "local/relevant-control-only": 384,
+  "unparsed/irrelevant": 13,
+  "collection/irrelevant": 46,
+  "unparsed/relevant-data": 13,
+  "unparsed/relevant-control-only": 21,
+  "collection/relevant-control-only": 59
+ },
+ "holes_full": {
+  "steps_with_hole_closure": 52,
+  "on_relevant_paths": 41,
+  "kinds_closure": {
+   "prose-only": 27,
+   "callback-bound": 5,
+   "unresolved-link": 9,
+   "collection-no-target": 4,
+   "collection-unresolved-target": 5,
+   "other-write-verb": 2
+  },
+  "kinds_on_path": {
+   "prose-only": 19,
+   "callback-bound": 5,
+   "unresolved-link": 9,
+   "collection-no-target": 4,
+   "collection-unresolved-target": 2,
+   "other-write-verb": 2
+  },
+  "unbound_relevant_locals": 18,
+  "entry_params_without_callers": 5
+ },
+ "holes_ctrl": {
+  "steps_with_hole_closure": 50,
+  "on_relevant_paths": 38,
+  "kinds_closure": {
+   "prose-only": 27,
+   "callback-bound": 4,
+   "unresolved-link": 8,
+   "collection-no-target": 4,
+   "collection-unresolved-target": 5,
+   "other-write-verb": 2
+  },
+  "kinds_on_path": {
+   "prose-only": 19,
+   "callback-bound": 4,
+   "unresolved-link": 8,
+   "collection-no-target": 4,
+   "collection-unresolved-target": 1,
+   "other-write-verb": 2
+  },
+  "unbound_relevant_locals": 10,
+  "entry_params_without_callers": 5
+ },
+ "holes_thin": {
+  "steps_with_hole_closure": 45,
+  "on_relevant_paths": 25,
+  "kinds_closure": {
+   "prose-only": 27,
+   "callback-bound": 3,
+   "unresolved-link": 4,
+   "collection-no-target": 4,
+   "collection-unresolved-target": 5,
+   "other-write-verb": 2
+  },
+  "kinds_on_path": {
+   "callback-bound": 3,
+   "prose-only": 11,
+   "unresolved-link": 4,
+   "collection-no-target": 4,
+   "collection-unresolved-target": 1,
+   "other-write-verb": 2
+  },
+  "unbound_relevant_locals": 4,
+  "entry_params_without_callers": 3
+ },
+ "unbound_examples": [
+  "CSP-derived sandboxing flags::policy",
+  "HTTP-network fetch::body",
+  "Should response to request be blocked due to its MIME type?::request",
+  "Should response to request be blocked due to nosniff?::request",
+  "StructuredDeserialize::subSerialized",
+  "StructuredSerializeInternal::subValue",
+  "abort the ongoing navigation::reason",
+  "append a request `Origin` header::scheme",
+  "create a document to display a user agent page or PDF viewer inline::response",
+  "evaluate a javascript: URL::targetSnapshotParams",
+  "focus update steps::document",
+  "get a structured field value::header_type",
+  "get a structured field value::input_string",
+  "respond to base URL changes::element",
+  "run a module script::reason",
+  "steps to fire beforeunload::event",
+  "update document for history step application::activation",
+  "update the navigation API entries for reactivation::matchingOldNHE"
+ ],
+ "entry_params": [
+  "append::browsingContext",
+  "append::group",
+  "set::list",
+  "set::name",
+  "set::value"
+ ],
+ "boundary_steps_in_slice": 417,
+ "boundary_targets": [
+  [
+   "infra.spec.whatwg.org",
+   140
+  ],
+  [
+   "?",
+   103
+  ],
+  [
+   "w3c.github.io",
+   59
+  ],
+  [
+   "tc39.es",
+   51
+  ],
+  [
+   "dom.spec.whatwg.org",
+   50
+  ],
+  [
+   "webidl.spec.whatwg.org",
+   40
+  ],
+  [
+   "url.spec.whatwg.org",
+   38
+  ],
+  [
+   "httpwg.org",
+   13
+  ],
+  [
+   "drafts.csswg.org",
+   11
+  ],
+  [
+   "mimesniff.spec.whatwg.org",
+   7
+  ],
+  [
+   "encoding.spec.whatwg.org",
+   6
+  ],
+  [
+   "datatracker.ietf.org",
+   1
+  ]
+ ],
+ "havoc_read_rows": 173,
+ "havoc_read_rows_missed_by_full_slice": 1,
+ "havoc_read_rows_in_thin_slice": 136,
+ "havoc_read_rows_in_ctrl_slice": 166,
+ "missed": [
+  [
+   "cross-origin resource policy check",
+   "2",
+   "modeled",
+   "coep",
+   "",
+   ""
+  ]
+ ],
+ "control html/obtain an embedder policy/2": {
+  "full_roles": [
+   "control",
+   "def"
+  ],
+  "thin": true,
+  "ctrl_dist": 0,
+  "thin_dist": 1,
+  "ctrl": true,
+  "defs": [
+   [
+    "return",
+    "RET(obtain an embedder policy)"
+   ]
+  ],
+  "concepts": [
+   "akey",
+   "bcgswitch",
+   "coep",
+   "coicap",
+   "coimode",
+   "coop",
+   "corp",
+   "creds",
+   "mode",
+   "origin",
+   "response",
+   "secure",
+   "tainting"
+  ]
+ },
+ "control fetch/HTTP-network-or-cache fetch/8.4": {
+  "full_roles": [
+   "arg",
+   "def"
+  ],
+  "thin": true,
+  "ctrl_dist": 2,
+  "thin_dist": 16,
+  "ctrl": true,
+  "defs": [
+   [
+    "local",
+    "HTTP-network-or-cache fetch::includeCredentials"
+   ]
+  ],
+  "concepts": [
+   "akey",
+   "bcgswitch",
+   "coep",
+   "coicap",
+   "coimode",
+   "coop",
+   "corp",
+   "creds",
+   "mode",
+   "origin",
+   "response",
+   "secure",
+   "tainting"
+  ]
+ },
+ "control fetch/HTTP-network-or-cache fetch/8.3": {
+  "full_roles": [
+   "def"
+  ],
+  "thin": true,
+  "ctrl_dist": 2,
+  "thin_dist": 16,
+  "ctrl": true,
+  "defs": [
+   [
+    "local",
+    "HTTP-network-or-cache fetch::includeCredentials"
+   ]
+  ],
+  "concepts": [
+   "akey",
+   "bcgswitch",
+   "coep",
+   "coicap",
+   "coimode",
+   "coop",
+   "corp",
+   "creds",
+   "mode",
+   "origin",
+   "response",
+   "secure",
+   "tainting"
+  ]
+ },
+ "icall_status_closure": {
+  "bound": 19,
+  "contract-hook": 15,
+  "no-args": 17,
+  "contract-bidi": 25,
+  "bound-no-params": 1
+ },
+ "icall_unbound_closure": [],
+ "callback_registrations": {
+  "abortalgorithm": 1,
+  "action": 1,
+  "afterdocumentpopulated": 1,
+  "afterpotentialunloads": 2,
+  "algorithm": 4,
+  "anon": 20,
+  "callback": 1,
+  "cleanupshowingsteps": 1,
+  "cleanupsteps": 1,
+  "closealgorithm": 1,
+  "commit": 1,
+  "completionsteps": 1,
+  "continuealgorithm": 2,
+  "element": 2,
+  "errorsteps": 2,
+  "finishupdate": 1,
+  "firepageswapbeforeunload": 1,
+  "firepageswapsteps": 1,
+  "invalidreferencechildsteps": 1,
+  "on": 1,
+  "oncomplete": 6,
+  "onpreloadedresponseavailable": 1,
+  "onresponseavailable": 1,
+  "passed": 2,
+  "proceedwithnavigationafterviewtransitioncapture": 1,
+  "processbody": 5,
+  "processbodychunk": 2,
+  "processbodyerror": 7,
+  "processearlyhintsresponse": 2,
+  "processendofbody": 3,
+  "processendofmedia": 1,
+  "processeventsourceendofbody": 1,
+  "processrequestendofbody": 1,
+  "processresponse": 7,
+  "processresponseconsumebody": 10,
+  "processresponseendofbody": 2,
+  "processresponseendofbodytask": 1,
+  "pullalgorithm": 1,
+  "reporttiming": 1,
+  "reporttimingsteps": 1,
+  "response": 2,
+  "runnextaddedmodule": 1,
+  "steps": 3,
+  "successsteps": 2,
+  "transformalgorithm": 1,
+  "writealgorithm": 1
+ }
+}

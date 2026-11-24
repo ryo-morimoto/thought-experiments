@@ -1474,6 +1474,8 @@ def ext_class(host, name):
         return 'C2', 'only through script (C2)', 'recalled'
     if 'sequence of code points' in n or n in ('skip ascii whitespace', 'collecting', 'strip leading and trailing ascii whitespace'):
         return 'C1', 'no; advances the caller position variable', 'recalled'
+    if host == 'url.spec.whatwg.org' and 'serializ' in n:
+        return 'C1', 'no; returns a string', 'checked (url.bs)' if n in URL_CHECKED else 'recalled'
     if host == 'url.spec.whatwg.org':
         return 'C1', 'no; parser without state override returns a new URL', 'checked (url.bs)' if n in URL_CHECKED else 'recalled'
     if host == 'httpwg.org' or 'http' in n and host == '?':
@@ -1489,7 +1491,7 @@ with open(os.path.join(OUTDIR, 'inputs.tsv'), 'w', encoding='utf-8', newline='')
     for (h, n), c in EXT.most_common():
         cl = ext_class(h, n)
         EXT_ROWS.append((h, n, c, cl))
-        w.writerow([h, n, c, len(EXT_STEPS[(h, n)])] + list(cl))
+        w.writerow([h, ' '.join(n.split()[:12]), c, len(EXT_STEPS[(h, n)])] + list(cl))
 
 S['unmodeled_groups_ctrl'] = dict(collections.Counter(
     r['group'] for r in rows if r['slice'] in ('data', 'control') and r['verdict'].startswith('unmodeled')))

@@ -1,0 +1,63 @@
+spec	algorithm	step	line	hole_kinds	on_relevant_path_ctrl	in_ctrl_slice	ctrl_dist	detail
+html	valid floating-point number	2	5840	prose-only	no	no		
+html	valid floating-point number	2.1	5844	prose-only	no	no		
+html	valid floating-point number	2.2	5846	prose-only	no	no		
+html	valid floating-point number	2.2.1	5850	prose-only	no	no		
+html	valid floating-point number	2.2.2	5852	prose-only	no	no		
+html	valid floating-point number	3.1	5862	prose-only	no	no		
+html	valid floating-point number	3.3	5868	prose-only	no	no		
+html	rules for parsing floating-point number values	13	5970	prose-only	yes	yes	8	
+html	respond to base URL changes	2	8040	prose-only	yes	no		
+html	StructuredDeserialize	22.13	11348	prose-only	yes	no		
+html	process early hint headers	5	17923	callback-bound	yes	yes	2	
+html	hyperlink referrer policy	1	27614	unresolved-link	yes	yes	2	link types
+html	get the suggested filename	14	27919	prose-only	yes	no		
+html	parse a srcset attribute	4	34191	prose-only	yes	no		
+html	parse a srcset attribute	8.2	34216	prose-only	yes	no		
+html	parse a sizes attribute	3.2	34444	unresolved-link	yes	yes	9	<source-size-value>
+html	parse a sizes attribute	3.5	34483	prose-only	yes	yes	9	
+html	focus update steps	4.1.2	88017	prose-only	yes	no		
+html	navigate event intercept commit handler steps	4	104755	callback-bound	no	yes	3	
+html	potentially reset the focus	6	105050	unresolved-link	yes	yes	4	manual
+html	potentially reset the focus	12	105075	prose-only	yes	no		
+html	potentially process scroll behavior	3	105092	unresolved-link	no	no		manual
+html	navigate to a javascript: URL	11	109912	unresolved-link	yes	yes	1	or should this be
+html	evaluate a javascript: URL	15	110070	unresolved-link	yes	yes	0	this will cause the
+html	create navigation params by fetching	3	111593	unresolved-link	yes	yes	0	the destination is updated
+html	update document for history step application	9.4	113782	prose-only	yes	no		
+html	build not restored reasons for document state	4.2	113976	unresolved-link	yes	yes	4	src
+html	scroll to the fragment	3.7	114180	prose-only	yes	no		
+html	load a multipart/x-mixed-replace document	1	114992	prose-only	yes	no		
+html	load a media document	4	115052	collection-no-target	yes	no		
+html	create a document to display a user agent page or PDF viewer inline	6	115192	prose-only	yes	no		
+html	unload	5	115326	unresolved-link	yes	yes	4	used for history traversal
+html	destroy	5	115543	collection-no-target	yes	no		
+html	process the `Speculation-Rules` header	3.4.2.2	117512	callback-bound	yes	yes	2	
+html	create a new realm	3	118710	collection-unresolved-target	yes	no		
+html	run a classic script	8.1.2	120982	prose-only	yes	no		
+html	prepare to run script	1	121099	collection-unresolved-target	no	no		
+html	clean up after running script	2	121117	collection-unresolved-target	no	no		
+html	spin the event loop	4	124763	collection-unresolved-target	no	no		
+html	spin the event loop	6.2.1	124782	collection-unresolved-target	no	no		
+html	spin the event loop	7	124796	prose-only	no	no		
+html	terminate a worklet global scope	5	140278	prose-only	yes	no		
+html	stops parsing	13	152558	prose-only	yes	no		
+fetch	set	1	894	collection-no-target	yes	yes	2	
+fetch	fully read	2	1617	callback-bound	yes	yes	1	
+fetch	HTTP fetch	3.2.2	5749	callback-bound	yes	yes	3	
+fetch	HTTP fetch	3.2.2.3	5760	collection-no-target,collection-no-target	yes	yes	3	
+fetch	HTTP-network-or-cache fetch	8.20	6299	other-write-verb	yes	no		
+fetch	HTTP-network-or-cache fetch	11.5.2	6502	other-write-verb	yes	no		
+fetch	HTTP-network-or-cache fetch	15.1	6531	prose-only	yes	no		
+fetch	HTTP-network-or-cache fetch	16.2	6576	prose-only	yes	no		
+fetch	HTTP-network-or-cache fetch	16.4	6582	prose-only	yes	no		
+fetch	HTTP-network fetch	-	-	unbound-relevant-local	yes	-		body
+html	StructuredDeserialize	-	-	unbound-relevant-local	yes	-		subSerialized
+html	StructuredSerializeInternal	-	-	unbound-relevant-local	yes	-		subValue
+html	abort the ongoing navigation	-	-	unbound-relevant-local	yes	-		reason
+fetch	append a request `Origin` header	-	-	unbound-relevant-local	yes	-		scheme
+fetch	get a structured field value	-	-	unbound-relevant-local	yes	-		header_type
+fetch	get a structured field value	-	-	unbound-relevant-local	yes	-		input_string
+html	run a module script	-	-	unbound-relevant-local	yes	-		reason
+html	steps to fire beforeunload	-	-	unbound-relevant-local	yes	-		event
+html	update the navigation API entries for reactivation	-	-	unbound-relevant-local	yes	-		matchingOldNHE

@@ -1,0 +1,54 @@
+spec	algorithm	step	line	hole_kinds	on_relevant_path	contract	value_writing	may_write_model_read	why
+html	rules for parsing floating-point number values	13	5970	prose-only	yes	reading	n	n	label with sub-steps
+html	respond to base URL changes	2	8040	prose-only	yes	C5	y	n	CSS link pseudo-class state
+html	StructuredDeserialize	22.13	11348	prose-only	yes	C5	y	n	attaches data to a deserialized value
+html	process early hint headers	5	17923	callback-bound	yes	reading	y	n	returned callback given a document; commits preloads
+html	hyperlink referrer policy	1	27614	unresolved-link	yes	reading	n	n	concept term
+html	get the suggested filename	14	27919	prose-only	yes	C5	y	n	download filename
+html	parse a srcset attribute	4	34191	prose-only	yes	reading	y	n	parser position
+html	parse a srcset attribute	8.2	34216	prose-only	yes	reading	y	n	parser position
+html	parse a sizes attribute	3.2	34444	unresolved-link	yes	reading	n	n	CSS grammar term
+html	parse a sizes attribute	3.5	34483	prose-only	yes	C5	y	n	media condition evaluation (CSS)
+html	focus update steps	4.1.2	88017	prose-only	yes	C5	y	n	focus state
+html	potentially reset the focus	6	105050	unresolved-link	yes	reading	n	n	enum value
+html	potentially reset the focus	12	105075	prose-only	yes	C5	y	n	focus navigation starting point
+html	navigate to a javascript: URL	11	109912	unresolved-link	yes	reading	n	n	inline issue note
+html	evaluate a javascript: URL	15	110070	unresolved-link	yes	reading	n	n	inline issue note
+html	create navigation params by fetching	3	111593	unresolved-link	yes	reading	n	n	inline issue note
+html	update document for history step application	9.4	113782	prose-only	yes	C2	n	c	scripts may run
+html	build not restored reasons for document state	4.2	113976	unresolved-link	yes	reading	n	n	attribute name
+html	scroll to the fragment	3.7	114180	prose-only	yes	C5	y	n	focus navigation starting point
+html	load a multipart/x-mixed-replace document	1	114992	prose-only	yes	reading	y	n	parses the body into parts; part documents reuse the copied navigation params (step 3) or go through navigate (step 5); checked in html.src
+html	load a media document	4	115052	collection-no-target	yes	C5	y	n	DOM tree
+html	create a document to display a user agent page or PDF viewer inline	6	115192	prose-only	yes	reading	y	n	document content or rendering; policies are set in earlier steps
+html	unload	5	115326	unresolved-link	yes	reading	n	n	inline note
+html	destroy	5	115543	collection-no-target	yes	C5	y	n	task queues
+html	process the `Speculation-Rules` header	3.4.2.2	117512	callback-bound	yes	reading	y	n	speculation rules body
+html	create a new realm	3	118710	collection-unresolved-target	yes	C5	y	n	JS execution context stack
+html	run a classic script	8.1.2	120982	prose-only	yes	reading	n	n	rethrow (control)
+html	terminate a worklet global scope	5	140278	prose-only	yes	C5	y	n	destroys an event loop
+html	stops parsing	13	152558	prose-only	yes	reading	n	n	states readiness; no field
+fetch	set	1	894	collection-no-target	yes	reading	y	n	removes duplicate headers from the header list argument
+fetch	fully read	2	1617	callback-bound	yes	reading	y	n	body bytes to success steps
+fetch	HTTP fetch	3.2.2	5749	callback-bound	yes	reading	y	n	request body chunk callback
+fetch	HTTP fetch	3.2.2.3	5760	collection-no-target,collection-no-target	yes	C1	y	n	stream chunk (Streams)
+fetch	HTTP-network-or-cache fetch	8.20	6299	other-write-verb	yes	reading	y	n	request header list per HTTP (not read by the model)
+fetch	HTTP-network-or-cache fetch	11.5.2	6502	other-write-verb	yes	C6	y	n	HTTP cache store
+fetch	HTTP-network-or-cache fetch	15.1	6531	prose-only	yes	reading	n	n	editorial note, no effect
+fetch	HTTP-network-or-cache fetch	16.2	6576	prose-only	yes	reading	n	n	editorial note, no effect
+fetch	HTTP-network-or-cache fetch	16.4	6582	prose-only	yes	C6	y	n	stores a proxy-authentication entry
+fetch	HTTP-network fetch	-	-	unbound-relevant-local	yes	C6	-	n	"body: bound inside ""making an HTTP request"" (network)"
+html	StructuredDeserialize	-	-	unbound-relevant-local	yes	C7	-	n	subSerialized: prose lambda parameter
+html	StructuredSerializeInternal	-	-	unbound-relevant-local	yes	C7	-	n	subValue: prose lambda parameter
+html	abort the ongoing navigation	-	-	unbound-relevant-local	yes	C7	-	n	reason: optional parameter defaulted in prose
+fetch	append a request `Origin` header	-	-	unbound-relevant-local	yes	C7	-	n	scheme: prose binding; affects the Origin header only
+fetch	get a structured field value	-	-	unbound-relevant-local	yes	C7	-	n	header_type: named argument of RFC 9651, not a var
+fetch	get a structured field value	-	-	unbound-relevant-local	yes	C7	-	n	input_string: named argument of RFC 9651, not a var
+html	run a module script	-	-	unbound-relevant-local	yes	C7	-	n	reason: promise rejection reason (prose)
+html	steps to fire beforeunload	-	-	unbound-relevant-local	yes	C7	-	n	event: prose binding (event created in prose)
+html	update the navigation API entries for reactivation	-	-	unbound-relevant-local	yes	C7	-	n	matchingOldNHE: existential binding
+html	append	-	-	entry-param-no-caller	yes	reading	-	n	browsingContext: called through the collection-verb rule (set/append in a list)
+html	append	-	-	entry-param-no-caller	yes	reading	-	n	group: called through the collection-verb rule (set/append in a list)
+fetch	set	-	-	entry-param-no-caller	yes	reading	-	n	list: called through the collection-verb rule (set/append in a list)
+fetch	set	-	-	entry-param-no-caller	yes	reading	-	n	name: called through the collection-verb rule (set/append in a list)
+fetch	set	-	-	entry-param-no-caller	yes	reading	-	n	value: called through the collection-verb rule (set/append in a list)

@@ -1,0 +1,74 @@
+spec_host	called_algorithm	occurrences	slice_steps	contract	writes_model_read_concept	check
+?	collecting a sequence of code points	5	5	C1	no; advances the caller position variable	recalled
+?	parsing	4	4	C1	no	recalled
+infra.spec.whatwg.org	collect a sequence of code points	4	4	C1	no; advances the caller position variable	recalled
+infra.spec.whatwg.org	assert	3	3	C1	no	recalled
+?	code points	3	3	C1	no	recalled
+dom.spec.whatwg.org	creating an event	3	3	C2	only through script (C2)	recalled
+infra.spec.whatwg.org	ascii digits	3	3	C1	no	recalled
+infra.spec.whatwg.org	ascii whitespace	3	2	C1	no	recalled
+dom.spec.whatwg.org	firing an event	3	3	C2	only through script (C2)	recalled
+w3c.github.io	webdriver bidi navigation failed	2	2	C3	yes, if a remote end intercepts	recalled
+w3c.github.io	should navigation request of type be blocked by content security policy?	2	2	C1	no	recalled
+w3c.github.io	webdriver bidi download end	2	2	C3	yes, if a remote end intercepts	recalled
+url.spec.whatwg.org	url parsing	2	2	C1	no; parser without state override returns a new URL	checked (url.bs)
+infra.spec.whatwg.org	while	2	2	C1	no	recalled
+infra.spec.whatwg.org	dequeuing	2	2	C1	no	recalled
+url.spec.whatwg.org	url parser	2	2	C1	no; parser without state override returns a new URL	checked (url.bs)
+webidl.spec.whatwg.org	wait for all	2	2	C2	only through script (C2)	recalled
+?	if aborted	2	2	C1	no	recalled
+url.spec.whatwg.org	url serializer	2	2	C1	no; returns a string	checked (url.bs)
+?	coarsened shared current time	2	2	C1	no	recalled
+webidl.spec.whatwg.org	invoking	2	2	C2	only through script (C2)	recalled
+w3c.github.io	parsing	2	2	C1	no	recalled
+?	inherited policy	2	2	C1	no	recalled
+?	isomorphic encoded	2	2	C1	no	recalled
+?	isomorphic decoding	2	2	C1	no	recalled
+w3c.github.io	is url potentially trustworthy?	1	1	C1	no	recalled
+w3c.github.io	creating a permissions policy from a response	1	1	C1	no	recalled
+w3c.github.io	generating a random uuid	1	1	C1	no	recalled
+dom.spec.whatwg.org	type	1	1	C1	no	recalled
+w3c.github.io	should navigation response to navigation request of type in target be blocked	1	1	C1	no	recalled
+mimesniff.spec.whatwg.org	xml mime type	1	1	C1	no	recalled
+mimesniff.spec.whatwg.org	json mime type	1	1	C1	no	recalled
+w3c.github.io	webdriver bidi download will begin	1	1	C3	yes, if a remote end intercepts	recalled
+?	generating a random uuid	1	1	C1	no	recalled
+w3c.github.io	is feature enabled in document for origin	1	1	C1	no	recalled
+w3c.github.io	coarsen time	1	1	C1	no	recalled
+?	assert	1	1	C1	no	recalled
+w3c.github.io	current high resolution time	1	1	C1	no	recalled
+drafts.csswg.org	can navigation trigger a cross-document view-transition?	1	1	C1	no	recalled
+w3c.github.io	creating a permissions policy	1	1	C1	no	recalled
+w3c.github.io	context cleanup steps	1	1	C1	no	recalled
+w3c.github.io	parsing a response's content security policies	1	1	C1	no	recalled
+w3c.github.io	parsing the `referrer-policy` header	1	1	C1	no	recalled
+?	retrieve cookies	1	1	C1	no	recalled
+?	serialize cookies	1	1	C1	no	recalled
+?	webdriver bidi emulated language	1	1	C3	yes, if a remote end intercepts	recalled
+?	obtaining a blob object	1	1	C1	no	recalled
+?	obtaining a websocket connection	1	1	C1	no	recalled
+?	obtaining a webtransport connection	1	1	C1	no	recalled
+?	parsing structured fields	1	1	C1	no	recalled
+?	host	1	1	C1	no	recalled
+?	handle fetch	1	1	C1	no	recalled
+?	byte-lowercasing	1	1	C1	no	recalled
+w3c.github.io	mark resource timing	1	1	C1	no	recalled
+?	url serializer	1	1	C1	no	recalled
+dom.spec.whatwg.org	fire an event	1	1	C2	only through script (C2)	recalled
+dom.spec.whatwg.org	dispatching	1	1	C1	no	recalled
+mimesniff.spec.whatwg.org	mime type	1	1	C1	no	recalled
+?	webdriver bidi emulated user-agent	1	1	C3	yes, if a remote end intercepts	recalled
+?	slice blob	1	1	C1	no	recalled
+infra.spec.whatwg.org	parsing a json string to an infra value	1	1	C1	no	recalled
+?	position variable	1	1	C1	no	recalled
+?	serialized	1	1	C1	no	recalled
+httpwg.org	parsing	1	1	C6	no (HTTP semantics; network is an input)	recalled
+?	byte-lowercase	1	1	C1	no	recalled
+encoding.spec.whatwg.org	utf-8 decoding	1	1	C1	no	recalled
+httpwg.org	parsing a url search variance	1	1	C6	no (HTTP semantics; network is an input)	recalled
+w3c.github.io	webdriver bidi user prompt opened	1	1	C3	yes, if a remote end intercepts	recalled
+urlpattern.spec.whatwg.org	building a url pattern from an infra value	1	1	C1	no	recalled
+drafts.csswg.org	parsing a selector	1	1	C1	no	recalled
+webidl.spec.whatwg.org	upon rejection	1	1	C1	no	recalled
+drafts.csswg.org	component value	1	1	C1	no	recalled
+drafts.csswg.org	parsing a comma-separated list of component values	1	1	C1	no	recalled

@@ -27,19 +27,19 @@
       - 完了の条件: 範囲が記録に書かれている
       - 今: 取り込まれた本文の固定したコミット。取り込まれていない書き換えは配備の仮定
       - 根拠: [2026-11-21-informal-extension.md](../../experiments/2026-11-21-informal-extension.md)
-    - **B2** [一部] 段の網羅（P に効く段が写されているか過近似されている）
+    - **B2** [済] 段の網羅（P に効く段が写されているか過近似されている）
       - **B2a** [済] 閉包の境界（効き: mid）
         - 完了の条件: 閉包の境界を、手で選ばずに決める規則がある
         - 今: 種と行き先から逆にたどる規則 T で決めた（610 算法、手の 415 をすべて含む）。概念の型、行き先、止め方はなお筆者の選択
         - 根拠: [2026-11-24-closure-boundary-rule.md](../../experiments/2026-11-24-closure-boundary-rule.md)、[README.md](../../experiments/models/site-isolation/extract/README.md)、[RESULTS.md](../../experiments/models/site-isolation/boundary/RESULTS.md)
-      - **B2b** [一部] 写していない段の発見（効き: high）
+      - **B2b** [済] 写していない段の発見（効き: high）
         - 完了の条件: 写していない段のうち、性質に効くものの一覧が閉じている
-        - 今: 落とした段を足して性質が変わるかで確かめる。型の全体での置き換えは空、契約で範囲を限ると前提の見直しにはなる
-        - 根拠: [2026-11-21-fsp-correspondence.md](../../experiments/2026-11-21-fsp-correspondence.md)、[2026-11-23-havoc-unmodeled-steps.md](../../experiments/2026-11-23-havoc-unmodeled-steps.md)、[2026-11-24-write-target-semantics.md](../../experiments/2026-11-24-write-target-semantics.md)
-      - **B2c** [一部] 書き先の決定（効き: high）
+        - 今: データの流れの解析で、契約 C1〜C7 のもとで穴 0 の一覧が閉じた。性質に効く写していない段は 1,864（上位集合）。関係が飽和し、効く順の順位は付けられない
+        - 根拠: [2026-11-21-fsp-correspondence.md](../../experiments/2026-11-21-fsp-correspondence.md)、[2026-11-23-havoc-unmodeled-steps.md](../../experiments/2026-11-23-havoc-unmodeled-steps.md)、[2026-11-24-write-target-semantics.md](../../experiments/2026-11-24-write-target-semantics.md)、[RESULTS2.md](../../experiments/models/site-isolation/dataflow/round2/RESULTS2.md)
+      - **B2c** [済] 書き先の決定（効き: high）
         - 完了の条件: 性質に効く値を書く段を、規則で決められる
-        - 今: データの流れの解析で、決まらなかった書き先の 87.7% が決まった（残り 117）。2 巡目が進行中
-        - 根拠: [2026-11-23-havoc-unmodeled-steps.md](../../experiments/2026-11-23-havoc-unmodeled-steps.md)、[2026-11-24-write-target-semantics.md](../../experiments/2026-11-24-write-target-semantics.md)、[RESULTS.md](../../experiments/models/site-isolation/dataflow/RESULTS.md)
+        - 今: 書き先の 97.9% が規則で決まり、残る 20 は契約で説明される
+        - 根拠: [2026-11-23-havoc-unmodeled-steps.md](../../experiments/2026-11-23-havoc-unmodeled-steps.md)、[2026-11-24-write-target-semantics.md](../../experiments/2026-11-24-write-target-semantics.md)、[RESULTS.md](../../experiments/models/site-isolation/dataflow/RESULTS.md)、[RESULTS2.md](../../experiments/models/site-isolation/dataflow/round2/RESULTS2.md)
       - **B2d** [済] 中身が文書に入る経路の一覧（効き: mid）
         - 完了の条件: 経路の一覧が機械的に作れ、手で選んだ経路の再現率が測れている
         - 今: 規則の閉包の中で機械的に作り直した（再利用の精度 50%、参照の経路の再現率 9 のうち 8）。見つからないのは散文の裁量と他の仕様の中
@@ -150,8 +150,6 @@
 
 未完了（未・一部）の葉を、効きの大きい順に並べた。
 
-- **B2b** [一部・効き high] 写していない段の発見: 写していない段のうち、性質に効くものの一覧が閉じている
-- **B2c** [一部・効き high] 書き先の決定: 性質に効く値を書く段を、規則で決められる
 - **C2** [一部・効き high] 入力の空間の網羅: 性質が量化する入力の構造（リダイレクト、popup の系譜、sandbox、about:blank、履歴）を軸として覆い、等価のまま残る変異体が軸の外だけになる
 - **D1** [一部・効き high] 列の性質（ナビゲーションの列、リダイレクト、bfcache、履歴の移動）: 列を状態の遷移として写したモデルと、列の筋書きでの包含がある
 - **C10** [未・効き high] 凍結したモデルでの取り置きの実行: モデル・軸・パラメータ・判定を事前に固定してから、新しい種の筋書きをブラウザで動かし、包含を数えている
